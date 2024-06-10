@@ -52,29 +52,37 @@ class BackpackCommand extends SubCommand {
                                     sender,
                                     "messages.usage",
                                     true,
-                                    msg -> msg.replace("%usage%", "/sf backpack (玩家名)"));
+                                    msg -> msg.replace("%usage%", "/sf backpack (玩家名/UUID)"));
                     return;
                 }
 
                 if (args.length == 2) {
                     if (sender.hasPermission("slimefun.command.backpack.other")) {
-                        Slimefun.getDatabaseManager()
-                                .getProfileDataController()
-                                .getPlayerUuidAsync(args[1], new IAsyncReadCallback<>() {
-                                    @Override
-                                    public void onResult(UUID result) {
-                                        if (!player.isOnline()) {
-                                            return;
-                                        }
-                                        openBackpackMenu(Bukkit.getOfflinePlayer(result), player);
-                                    }
+                        IAsyncReadCallback<UUID> callback = new IAsyncReadCallback<>() {
+                            @Override
+                            public void onResult(UUID result) {
+                                if (!player.isOnline()) {
+                                    return;
+                                }
+                                openBackpackMenu(Bukkit.getOfflinePlayer(result), player);
+                            }
 
-                                    @Override
-                                    public void onResultNotFound() {
-                                        Slimefun.getLocalization()
-                                                .sendMessage(player, "commands.backpack.backpack-does-not-exist");
-                                    }
-                                });
+                            @Override
+                            public void onResultNotFound() {
+                                Slimefun.getLocalization()
+                                    .sendMessage(player, "commands.backpack.backpack-does-not-exist");
+                            }
+                        };
+                        if (args[1].contains("-")) {
+                            UUID uuid = UUID.fromString(args[1]);
+                            Slimefun.getDatabaseManager()
+                                .getProfileDataController()
+                                .isExistsUuidAsync(uuid, callback);
+                        } else {
+                            Slimefun.getDatabaseManager()
+                                .getProfileDataController()
+                                .getPlayerUuidAsync(args[1], callback);
+                        }
                     } else {
                         Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
                         return;
