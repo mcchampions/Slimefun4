@@ -248,14 +248,12 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     private void playAnimation(Player p, Block b, EquipmentSlot hand) {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
 
-        if (version != MinecraftVersion.UNIT_TEST) {
-            p.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());
+        p.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());
 
-            if (hand == EquipmentSlot.HAND) {
-                p.swingMainHand();
-            } else {
-                p.swingOffHand();
-            }
+        if (hand == EquipmentSlot.HAND) {
+            p.swingMainHand();
+        } else {
+            p.swingOffHand();
         }
     }
 

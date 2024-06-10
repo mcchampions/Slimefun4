@@ -3,20 +3,10 @@ package io.github.thebusybiscuit.slimefun4.core.services.localization;
 import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.function.UnaryOperator;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -31,6 +21,16 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.function.UnaryOperator;
 
 /**
  * This is an abstract parent class of {@link LocalizationService}.
@@ -374,10 +374,6 @@ public abstract class SlimefunLocalization implements Keyed {
 
     @ParametersAreNonnullByDefault
     public void sendMessage(CommandSender recipient, String key, boolean addPrefix, UnaryOperator<String> function) {
-        if (Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            return;
-        }
-
         String prefix = addPrefix ? getChatPrefix() : "";
 
         if (recipient instanceof Player player) {

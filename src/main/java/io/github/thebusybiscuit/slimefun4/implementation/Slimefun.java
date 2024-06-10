@@ -217,36 +217,13 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     }
 
     /**
-     * This constructor is invoked in Unit Test environments only.
-     *
-     * @param loader
-     *            Our {@link JavaPluginLoader}
-     * @param description
-     *            A {@link PluginDescriptionFile}
-     * @param dataFolder
-     *            The data folder
-     * @param file
-     *            A {@link File} for this {@link Plugin}
-     */
-    @ParametersAreNonnullByDefault
-    public Slimefun(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
-        super(loader, description, dataFolder, file);
-
-        // This is only invoked during a Unit Test
-        minecraftVersion = MinecraftVersion.UNIT_TEST;
-    }
-
-    /**
      * This is called when the {@link Plugin} has been loaded and enabled on a {@link Server}.
      */
     @Override
     public void onEnable() {
         setInstance(this);
 
-        if (isUnitTest()) {
-            // We handle Unit Tests seperately.
-            onUnitTestStart();
-        } else if (isVersionUnsupported()) {
+         if (isVersionUnsupported()) {
             // We wanna ensure that the Server uses a compatible version of Minecraft.
             getServer().getPluginManager().disablePlugin(this);
         } else if (!SlimefunExtended.checkEnvironment(this)) {
@@ -257,19 +234,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
             // The Environment has been validated.
             onPluginStart();
         }
-    }
-
-    /**
-     * This is our start method for a Unit Test environment.
-     */
-    private void onUnitTestStart() {
-        local = new LocalizationService(this, "", null);
-        networkManager = new NetworkManager(200);
-        command.register();
-        cfgManager.load();
-        registry.load(this);
-        loadTags();
-        soundService.reload(false);
     }
 
     /**
@@ -454,7 +418,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     @Override
     public void onDisable() {
         // Slimefun never loaded successfully, so we don't even bother doing stuff here
-        if (instance() == null || minecraftVersion == MinecraftVersion.UNIT_TEST) {
+        if (instance() == null) {
             return;
         }
 
@@ -978,16 +942,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         return instance.gitHubService;
     }
 
-    /**
-     * This method checks if this is currently running in a unit test
-     * environment.
-     *
-     * @return Whether we are inside a unit test
-     */
-    public boolean isUnitTest() {
-        return minecraftVersion == MinecraftVersion.UNIT_TEST;
-    }
-
     public static @Nonnull SlimefunConfigManager getConfigManager() {
         validateInstance();
         return instance.cfgManager;
@@ -1106,12 +1060,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         Validate.notNull(runnable, "Cannot run null");
         Validate.isTrue(delay >= 0, "The delay cannot be negative");
 
-        // Run the task instantly within a Unit Test
-        if (getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            runnable.run();
-            return null;
-        }
-
         if (instance == null || !instance.isEnabled()) {
             return null;
         }
@@ -1133,12 +1081,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      */
     public static @Nullable BukkitTask runSync(@Nonnull Runnable runnable) {
         Validate.notNull(runnable, "Cannot run null");
-
-        // Run the task instantly within a Unit Test
-        if (getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            runnable.run();
-            return null;
-        }
 
         if (instance == null || !instance.isEnabled()) {
             return null;

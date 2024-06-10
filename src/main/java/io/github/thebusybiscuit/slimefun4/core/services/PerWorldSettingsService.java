@@ -2,10 +2,14 @@ package io.github.thebusybiscuit.slimefun4.core.services;
 
 import io.github.bakedlibs.dough.collections.OptionalMap;
 import io.github.bakedlibs.dough.config.Config;
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import org.apache.commons.lang.Validate;
+import org.bukkit.Server;
+import org.bukkit.World;
+
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,10 +20,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import javax.annotation.Nonnull;
-import org.apache.commons.lang.Validate;
-import org.bukkit.Server;
-import org.bukkit.World;
 
 /**
  * This Service is responsible for disabling a {@link SlimefunItem} in a certain {@link World}.
@@ -213,11 +213,7 @@ public class PerWorldSettingsService {
 
             if (config.getBoolean("enabled")) {
                 loadItemsFromWorldConfig(name, config, items);
-
-                // We don't actually wanna write to disk during a Unit test
-                if (Slimefun.getMinecraftVersion() != MinecraftVersion.UNIT_TEST) {
-                    config.save();
-                }
+                config.save();
             } else {
                 disabledWorlds.add(world.getUID());
             }

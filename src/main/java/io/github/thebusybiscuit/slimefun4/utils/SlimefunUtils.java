@@ -230,11 +230,6 @@ public final class SlimefunUtils {
             throw new PrematureCodeException("You cannot instantiate a custom head before Slimefun was loaded.");
         }
 
-        if (Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            // com.mojang.authlib.GameProfile does not exist in a Test Environment
-            return new ItemStack(Material.PLAYER_HEAD);
-        }
-
         String base64 = texture;
 
         if (CommonPatterns.HEXADECIMAL.matcher(texture).matches()) {
