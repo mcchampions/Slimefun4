@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.items;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import io.github.bakedlibs.dough.collections.OptionalMap;
 import io.github.bakedlibs.dough.items.ItemUtils;
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.IdConflictException;
@@ -24,6 +23,19 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.VanillaItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoDisenchanter;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoEnchanter;
+import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
+import org.apache.commons.lang.Validate;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.permissions.Permission;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,18 +47,6 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import org.apache.commons.lang.Validate;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
-import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.permissions.Permission;
 
 /**
  * A {@link SlimefunItem} is a custom item registered by a {@link SlimefunAddon}.
@@ -1105,11 +1105,6 @@ public class SlimefunItem implements Placeable {
         }
 
         addon.getLogger().log(Level.SEVERE, message, throwable);
-
-        // We definitely want to re-throw them during Unit Tests
-        if (throwable instanceof RuntimeException e && Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            throw e;
-        }
     }
 
     /**
