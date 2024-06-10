@@ -295,6 +295,24 @@ public class ProfileDataController extends ADataController {
         return UUID.fromString(result.get(0).get(FieldKey.PLAYER_UUID));
     }
 
+    public boolean isExistsUuid(UUID uuid) {
+        checkDestroy();
+        var key = new RecordKey(DataScope.PLAYER_PROFILE);
+        key.addCondition(FieldKey.PLAYER_UUID, String.valueOf(uuid));
+        key.addField(FieldKey.PLAYER_NAME);
+
+        var result = getData(key);
+        return !result.isEmpty();
+    }
+
+    public void isExistsUuidAsync(UUID uuid, IAsyncReadCallback<UUID> callback) {
+        scheduleReadTask(()-> {
+            if (isExistsUuid(uuid)) {
+                invokeCallback(callback,uuid);
+            }
+        });
+    }
+
     public void getPlayerUuidAsync(String pName, IAsyncReadCallback<UUID> callback) {
         scheduleReadTask(() -> invokeCallback(callback, getPlayerUuid(pName)));
     }
