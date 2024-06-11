@@ -127,7 +127,7 @@ public abstract class AContainer extends SlimefunItem
                 @Override
                 public boolean onClick(
                         InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
-                    return cursor == null || cursor.getType() == null || cursor.getType() == Material.AIR;
+                    return cursor == null || cursor.getType() == Material.AIR;
                 }
             });
         }
@@ -403,10 +403,8 @@ public abstract class AContainer extends SlimefunItem
             }
 
             setCharge(l, charge - getEnergyConsumption());
-            return true;
-        } else {
-            return true;
         }
+        return true;
     }
 
     protected MachineRecipe findNextRecipe(BlockMenu inv) {
