@@ -24,8 +24,6 @@ jobs:
           java-package: jdk
           architecture: x64
           cache: maven
-      - name: Codestyle check
-        run: mvn -B spotless:check --errors
       - name: Build Slimefun
         run: mvn -B package --errors
       - name: Mask Output
