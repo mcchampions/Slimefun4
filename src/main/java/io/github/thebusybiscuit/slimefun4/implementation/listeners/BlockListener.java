@@ -267,10 +267,6 @@ public class BlockListener implements Listener {
     @ParametersAreNonnullByDefault
     private void dropItems(BlockBreakEvent e, List<ItemStack> drops) {
         if (!drops.isEmpty()) {
-            // TODO: properly support loading inventories within unit tests
-            // Notify plugins like CoreProtect
-            Slimefun.getProtectionManager().logAction(e.getPlayer(), e.getBlock(), Interaction.BREAK_BLOCK);
-
             // Fixes #2560
             if (e.isDropItems()) {
                 // Disable normal block drops
