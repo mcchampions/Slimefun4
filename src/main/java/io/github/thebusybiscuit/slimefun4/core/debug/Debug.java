@@ -70,7 +70,7 @@ public final class Debug {
      *            The variables to replace, use "{}" in the message and have it replaced with a specified thing
      */
     public static void log(@Nonnull String test, @Nonnull String msg, @Nonnull Object... vars) {
-        if (testCase == null || !testCase.contains(test)) {
+        if (!testCase.contains(test)) {
             return;
         }
 

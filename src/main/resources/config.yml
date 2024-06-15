@@ -1,5 +1,4 @@
 # options:
-#    auto-update - Github 新版本自动检查并更新
 #    armor-update-interval - 粘液科技护甲效果更新周期
 #    enable-armor-effects - 护甲效果的开关
 #    chat-prefix - 粘液科技所有消息的前缀
@@ -17,7 +16,6 @@
 #    backup-data - 自动备份数据
 #    bypass-environment-check - 跳过兼容性检查 (注意: 打开后将不予接受问题反馈)
 options:
-  auto-update: true
   chat-prefix: '&a&lSlimefun 4 &7> '
   armor-update-interval: 10
   enable-armor-effects: true
