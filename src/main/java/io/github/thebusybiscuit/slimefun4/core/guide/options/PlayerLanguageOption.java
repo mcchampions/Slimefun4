@@ -48,16 +48,6 @@ class PlayerLanguageOption implements SlimefunGuideOption<String> {
             lore.add("");
             lore.add("&e&o" + Slimefun.getLocalization().getMessage(p, "guide.work-in-progress"));
             lore.add("");
-            lore.addAll(Slimefun.getLocalization()
-                    .getMessages(
-                            p,
-                            "guide.languages.description",
-                            msg -> msg.replace(
-                                    "%contributors%",
-                                    String.valueOf(Slimefun.getGitHubService()
-                                            .getContributors()
-                                            .size()))));
-            lore.add("");
             lore.add("&7\u21E8 &e" + Slimefun.getLocalization().getMessage(p, "guide.languages.change"));
 
             ItemStack item = new CustomItemStack(

@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.services.localization;
 import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -135,7 +134,7 @@ public abstract class SlimefunLocalization implements Keyed {
      */
     protected void loadEmbeddedLanguages() {
         for (LanguagePreset lang : LanguagePreset.values()) {
-            if (lang.isReadyForRelease() || Slimefun.getUpdater().getBranch() != SlimefunBranch.STABLE) {
+            if (lang.isReadyForRelease()) {
                 addLanguage(lang.getLanguageCode(), lang.getTexture());
             }
         }

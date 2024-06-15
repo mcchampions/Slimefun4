@@ -31,8 +31,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.MetricsService;
 import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
 import io.github.thebusybiscuit.slimefun4.core.services.PerWorldSettingsService;
 import io.github.thebusybiscuit.slimefun4.core.services.PermissionsService;
-import io.github.thebusybiscuit.slimefun4.core.services.UpdaterService;
-import io.github.thebusybiscuit.slimefun4.core.services.github.GitHubService;
 import io.github.thebusybiscuit.slimefun4.core.services.holograms.HologramsService;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SlimefunProfiler;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundService;
@@ -107,20 +105,7 @@ import io.github.thebusybiscuit.slimefun4.integrations.IntegrationsManager;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import io.papermc.lib.PaperLib;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
-import net.guizhanss.slimefun4.updater.AutoUpdateTask;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -132,8 +117,19 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.java.JavaPluginLoader;
 import org.bukkit.scheduler.BukkitTask;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * This is the main class of Slimefun.
@@ -178,9 +174,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final CustomItemDataService itemDataService = new CustomItemDataService(this, "slimefun_item");
     private final BlockDataService blockDataService = new BlockDataService(this, "slimefun_block");
     private final CustomTextureService textureService = new CustomTextureService(new Config(this, "item-models.yml"));
-    private final GitHubService gitHubService = new GitHubService("StarWishsama/Slimefun4");
-    private final UpdaterService updaterService =
-            new UpdaterService(this, getDescription().getVersion(), getFile());
     private final MetricsService metricsService = new MetricsService(this);
     private final AutoSavingService autoSavingService = new AutoSavingService();
     private final BackupService backupService = new BackupService();
@@ -385,13 +378,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         logger.log(Level.INFO, "正在加载第三方插件支持...");
         integrations.start();
 
-        gitHubService.start(this);
-
-        if (cfgManager.isAutoUpdate()) {
-            // 汉化版自动更新
-            Bukkit.getScheduler().scheduleSyncDelayedTask(this, new AutoUpdateTask(this, getFile()));
-        }
-
         // Hooray!
         logger.log(Level.INFO, "Slimefun 完成加载, 耗时 {0}", getStartupTime(timestamp));
     }
@@ -403,7 +389,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/StarWishsama/Slimefun4/issues";
+        return "https://github.com/mcchampions/Slimefun4/issues";
     }
 
     @Override
@@ -910,17 +896,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     }
 
     /**
-     * This method returns the {@link UpdaterService} of Slimefun.
-     * It is used to handle automatic updates.
-     *
-     * @return The {@link UpdaterService} for Slimefun
-     */
-    public static @Nonnull UpdaterService getUpdater() {
-        validateInstance();
-        return instance.updaterService;
-    }
-
-    /**
      * This method returns the {@link MetricsService} of Slimefun.
      * It is used to handle sending metric information to bStats.
      *
@@ -930,18 +905,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         validateInstance();
         return instance.metricsService;
     }
-
-    /**
-     * This method returns the {@link GitHubService} of Slimefun.
-     * It is used to retrieve data from GitHub repositories.
-     *
-     * @return The {@link GitHubService} for Slimefun
-     */
-    public static @Nonnull GitHubService getGitHubService() {
-        validateInstance();
-        return instance.gitHubService;
-    }
-
     public static @Nonnull SlimefunConfigManager getConfigManager() {
         validateInstance();
         return instance.cfgManager;

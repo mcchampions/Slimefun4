@@ -5,25 +5,23 @@ import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
-import io.github.thebusybiscuit.slimefun4.core.services.github.GitHubService;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * This static utility class offers various methods that provide access to the
@@ -39,7 +37,7 @@ import org.bukkit.inventory.ItemStack;
 public final class SlimefunGuideSettings {
 
     private static final int[] BACKGROUND_SLOTS = {
-        1, 3, 5, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 48,
+        1, 2, 3, 5, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 48,
         50, 52, 53
     };
     private static final List<SlimefunGuideOption<?>> options = new ArrayList<>();
@@ -91,33 +89,6 @@ public final class SlimefunGuideSettings {
             return false;
         });
 
-        GitHubService github = Slimefun.getGitHubService();
-
-        List<String> contributorsLore = new ArrayList<>();
-        contributorsLore.add("");
-        contributorsLore.addAll(locale.getMessages(
-                p,
-                "guide.credits.description",
-                msg -> msg.replace(
-                        "%contributors%",
-                        String.valueOf(github.getContributors().size()))));
-        contributorsLore.add("");
-        contributorsLore.add("&7\u21E8 &e" + locale.getMessage(p, "guide.credits.open"));
-
-        // @formatter:off
-        menu.addItem(
-                2,
-                new CustomItemStack(
-                        SlimefunUtils.getCustomHead("e952d2b3f351a6b0487cc59db31bf5f2641133e5ba0006b18576e996a0293e52"),
-                        "&c" + locale.getMessage(p, "guide.title.credits"),
-                        contributorsLore.toArray(new String[0])));
-        // @formatter:on
-
-        menu.addMenuClickHandler(2, (pl, slot, action, item) -> {
-            ContributorsMenu.open(pl, 0);
-            return false;
-        });
-
         // @formatter:off
         menu.addItem(
                 4,
@@ -144,10 +115,6 @@ public final class SlimefunGuideSettings {
                         Material.COMPARATOR,
                         "&e" + locale.getMessage(p, "guide.title.source"),
                         "",
-                        "&7最近活动于: &a" + NumberUtils.getElapsedTime(github.getLastUpdate()) + " 前",
-                        "&7Forks: &e" + github.getForks(),
-                        "&7Stars: &e" + github.getStars(),
-                        "",
                         "&7&oSlimefun 4 是一个由社区参与的项目,",
                         "&7&o源代码可以在 GitHub 上找到",
                         "&7&o如果你想让这个项目持续下去",
@@ -158,7 +125,7 @@ public final class SlimefunGuideSettings {
 
         menu.addMenuClickHandler(6, (pl, slot, item, action) -> {
             pl.closeInventory();
-            ChatUtils.sendURL(pl, "https://github.com/StarwishSama/Slimefun4");
+            ChatUtils.sendURL(pl, "https://github.com/mcchampions/Slimefun4");
             return false;
         });
 
@@ -205,30 +172,23 @@ public final class SlimefunGuideSettings {
             return false;
         });
 
-        if (Slimefun.getUpdater().getBranch().isOfficial()) {
-            // @formatter:off
-            menu.addItem(
-                    49,
-                    new CustomItemStack(
-                            Material.REDSTONE_TORCH,
-                            "&4" + locale.getMessage(p, "guide.title.bugs"),
-                            "",
-                            "&7&oBug reports have to be made in English!",
-                            "",
-                            "&7Open Issues: &a" + github.getOpenIssues(),
-                            "&7Pending Pull Requests: &a" + github.getPendingPullRequests(),
-                            "",
-                            "&7\u21E8 &eClick to go to the Slimefun4 Bug Tracker"));
-            // @formatter:on
+        // @formatter:off
+        menu.addItem(
+            49,
+            new CustomItemStack(
+                Material.REDSTONE_TORCH,
+                "&4" + locale.getMessage(p, "guide.title.bugs"),
+                "",
+                "&7&oBug reports have to be made in English!",
+                "",
+                "&7\u21E8 &eClick to go to the Slimefun4 Bug Tracker"));
+        // @formatter:on
 
-            menu.addMenuClickHandler(49, (pl, slot, item, action) -> {
-                pl.closeInventory();
-                ChatUtils.sendURL(pl, "https://github.com/StarWishsama/Slimefun4/issues");
-                return false;
-            });
-        } else {
-            menu.addItem(49, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
-        }
+        menu.addMenuClickHandler(49, (pl, slot, item, action) -> {
+            pl.closeInventory();
+            ChatUtils.sendURL(pl, "https://github.com/mcchampions/Slimefun4/issues");
+            return false;
+        });
 
         menu.addItem(
                 51,

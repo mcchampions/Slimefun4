@@ -110,6 +110,7 @@ public class BlockListener implements Listener {
     public void onBlockPlace(BlockPlaceEvent e) {
         ItemStack item = e.getItemInHand();
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
+
         if (sfItem != null && !(sfItem instanceof NotPlaceable)) {
             if (!sfItem.canUse(e.getPlayer(), true)) {
                 e.setCancelled(true);

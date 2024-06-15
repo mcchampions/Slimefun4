@@ -4,7 +4,6 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import io.github.bakedlibs.dough.collections.OptionalMap;
 import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.IdConflictException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.IncompatibleItemHandlerException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.MissingDependencyException;
@@ -643,16 +642,6 @@ public class SlimefunItem implements Placeable {
      *            The {@link Class} from which to start this operation.
      */
     private void checkForDeprecations(@Nullable Class<?> c) {
-        if (Slimefun.getUpdater().getBranch() == SlimefunBranch.DEVELOPMENT) {
-            /*
-             * This method is currently way too spammy with all the restructuring going on...
-             * Since DEV builds are anyway under "development", things may be relocated.
-             * So we fire these only for stable versions, since devs should update then, so
-             * it's the perfect moment to tell them to act.
-             */
-            return;
-        }
-
         /*
          * We do not wanna throw an Exception here since this could also mean that.
          * We have reached the end of the Class hierarchy
