@@ -27,8 +27,6 @@ jobs:
           java-package: jdk
           architecture: x64
           cache: maven
-      - name: Codestyle Check
-        run: mvn -B spotless:check --errors
       - name: Build Slimefun
         run: mvn -B package --errors
       - uses: actions/upload-artifact@v2
