@@ -951,7 +951,7 @@ public final class ResearchSetup {
                 SlimefunItems.RAINBOW_CHESTPLATE,
                 SlimefunItems.RAINBOW_LEGGINGS,
                 SlimefunItems.RAINBOW_BOOTS);
-        register("overlock_machine", 1875311, "超频机器", 50, SlimefunItems.OVERCLOCK_MODULE);
+
     }
 
     @ParametersAreNonnullByDefault

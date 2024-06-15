@@ -20,8 +20,7 @@ import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.handlers.GlobalItemHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.VanillaItem;
-import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoDisenchanter;
-import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoEnchanter;
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
@@ -52,7 +51,7 @@ import java.util.logging.Logger;
  * This class defines the behaviours of the item, you can assign an {@link ItemHandler}
  * to give the item functionality.
  * In contrast to that the {@link SlimefunItemStack} defines the look and feel of the item.
- *
+ * <p>
  * Remember to call {@link #register(SlimefunAddon)} on your {@link SlimefunItem} for it
  * to appear in the {@link SlimefunGuide}.
  *
@@ -101,9 +100,37 @@ public class SlimefunItem implements Placeable {
     private RecipeType recipeType;
     protected ItemStack recipeOutput;
 
+    /**
+     * -- GETTER --
+     *  This returns whether or not this
+     *  is allowed to be used in
+     *  an
+     * .
+     *
+     */
+    @Getter
     protected boolean enchantable = true;
+    /**
+     * -- GETTER --
+     *  This returns whether or not this
+     *  is allowed to be used in
+     *  an
+     * .
+     *
+     */
+    @Getter
     protected boolean disenchantable = true;
     protected boolean hidden = false;
+    /**
+     * -- GETTER --
+     *  This method returns whether or not this
+     *  is allowed to
+     *  be used in a Crafting Table.
+     *  Items of type
+     *  may be used in workbenches for example.
+     *
+     */
+    @Getter
     protected boolean useableInWorkbench = false;
 
     private Optional<String> wikiURL = Optional.empty();
@@ -111,7 +138,14 @@ public class SlimefunItem implements Placeable {
     private final OptionalMap<Class<? extends ItemHandler>, ItemHandler> itemHandlers = new OptionalMap<>(HashMap::new);
     private final Set<ItemSetting<?>> itemSettings = new HashSet<>();
 
+    /**
+     * -- GETTER --
+     *  This returns whether or not we are scheduling a ticking task for this block.
+     *
+     */
+    @Getter
     private boolean ticking = false;
+    @Getter
     private BlockTicker blockTicker;
 
     /**
@@ -192,7 +226,7 @@ public class SlimefunItem implements Placeable {
      * This method returns the {@link ItemState} this {@link SlimefunItem}
      * is currently in. This can be used to determine whether a {@link SlimefunItem}
      * is enabled or disabled.
-     *
+     * <p>
      * {@link VanillaItem} represents a special case here.
      *
      * @return The {@link ItemState} of this {@link SlimefunItem}
@@ -300,26 +334,6 @@ public class SlimefunItem implements Placeable {
     }
 
     /**
-     * This returns whether or not this {@link SlimefunItem} is allowed to be used in
-     * an {@link AutoEnchanter}.
-     *
-     * @return Whether this {@link SlimefunItem} can be enchanted.
-     */
-    public boolean isEnchantable() {
-        return enchantable;
-    }
-
-    /**
-     * This returns whether or not this {@link SlimefunItem} is allowed to be used in
-     * an {@link AutoDisenchanter}.
-     *
-     * @return Whether this {@link SlimefunItem} can be disenchanted.
-     */
-    public boolean isDisenchantable() {
-        return disenchantable;
-    }
-
-    /**
      * This method returns whether this {@link SlimefunItem} was hidden from the
      * {@link SlimefunGuide}.
      *
@@ -396,10 +410,6 @@ public class SlimefunItem implements Placeable {
         }
 
         return addon;
-    }
-
-    public BlockTicker getBlockTicker() {
-        return blockTicker;
     }
 
     /**
@@ -533,10 +543,10 @@ public class SlimefunItem implements Placeable {
     /**
      * This method is called when this {@link SlimefunItem} is currently being registered
      * and we are certain that it will be enabled.
-     *
+     * <p>
      * <strong>This method is for internal purposes, like {@link ItemGroup} registration only</strong>
      */
-    private final void onEnable() {
+    private void onEnable() {
         // Register the ItemGroup too if it hasn't been registered yet
         if (!itemGroup.isRegistered()) {
             itemGroup.register(addon);
@@ -598,7 +608,7 @@ public class SlimefunItem implements Placeable {
     /**
      * This method returns whether the original {@link SlimefunItemStack} of this
      * {@link SlimefunItem} is immutable.
-     *
+     * <p>
      * If <code>true</code> is returned, then any changes to the original {@link SlimefunItemStack}
      * will be rejected with a {@link WrongItemStackException}.
      * This ensures integrity so developers don't accidentally damage the wrong {@link ItemStack}.
@@ -635,7 +645,7 @@ public class SlimefunItem implements Placeable {
     /**
      * This method checks recursively for all {@link Class} parents to look for any {@link Deprecated}
      * elements.
-     *
+     * <p>
      * If a {@link Deprecated} element was found, a warning message will be printed.
      *
      * @param c
@@ -737,20 +747,6 @@ public class SlimefunItem implements Placeable {
      */
     public void setRecipeOutput(@Nullable ItemStack output) {
         this.recipeOutput = output;
-    }
-
-    /**
-     * This method returns whether or not this {@link SlimefunItem} is allowed to
-     * be used in a Crafting Table.
-     *
-     * Items of type {@link VanillaItem} may be used in workbenches for example.
-     *
-     * @see #setUseableInWorkbench(boolean)
-     *
-     * @return Whether this {@link SlimefunItem} may be used in a Workbench.
-     */
-    public boolean isUseableInWorkbench() {
-        return useableInWorkbench;
     }
 
     /**
@@ -897,7 +893,7 @@ public class SlimefunItem implements Placeable {
      * This method will assign the given wiki page to this Item.
      * Note that you only need to provide the page name itself,
      * the URL to our wiki is prepended automatically.
-     *
+     * <p>
      * 返回非官方中文Wiki地址
      * 下游应使用 {@link SlimefunItem#addWikiPage(String)} 来添加Wiki页面
      *
@@ -1000,15 +996,6 @@ public class SlimefunItem implements Placeable {
         return false;
     }
 
-    /**
-     * This returns whether or not we are scheduling a ticking task for this block.
-     *
-     * @return Whether this {@link SlimefunItem} is a ticking block
-     */
-    public boolean isTicking() {
-        return ticking;
-    }
-
     @Override
     public String toString() {
         if (addon == null) {
@@ -1031,7 +1018,7 @@ public class SlimefunItem implements Placeable {
     }
 
     @Override
-    public @Nonnull Collection<ItemStack> getDrops(Player p) {
+    public @Nonnull Collection<ItemStack> getDrops(@Nonnull Player p) {
         return getDrops();
     }
 
@@ -1047,7 +1034,7 @@ public class SlimefunItem implements Placeable {
     public void info(String message) {
         Validate.notNull(addon, "Cannot log a message for an unregistered item!");
 
-        String msg = toString() + ": " + message;
+        String msg = this + ": " + message;
         addon.getLogger().log(Level.INFO, msg);
     }
 
@@ -1160,7 +1147,7 @@ public class SlimefunItem implements Placeable {
         } else if (hasResearch()) {
             Optional<PlayerProfile> profile = PlayerProfile.find(p);
 
-            if (!profile.isPresent()) {
+            if (profile.isEmpty()) {
                 /*
                  * We will return false since we cannot know the answer yet.
                  * But we will schedule the Profile for loading and not send
@@ -1246,11 +1233,8 @@ public class SlimefunItem implements Placeable {
 
         Optional<String> itemID = Slimefun.getItemDataService().getItemData(item);
 
-        if (itemID.isPresent()) {
-            return getById(itemID.get());
-        }
+        return itemID.map(SlimefunItem::getById).orElse(null);
 
-        return null;
     }
 
     /**

@@ -82,6 +82,7 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
         };
     }
 
+    @Nonnull
     @Override
     public Collection<ItemStack> getDrops() {
         /**

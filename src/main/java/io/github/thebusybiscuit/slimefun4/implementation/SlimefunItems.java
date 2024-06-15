@@ -2771,9 +2771,6 @@ public final class SlimefunItems {
             LoreBuilder.powerBuffer(128),
             LoreBuilder.powerPerSecond(36));
 
-    public static final SlimefunItemStack OVERCLOCK_MODULE = new SlimefunItemStack(
-        "OVERCLOCK_MODULE", Material.NAME_TAG, "&a超频加速", "", "&7加速你的机器", "&7注意: 倍率使用的是加法运算:1x->2x->3x", "&7挖掘机器后可掉落", "&b&mIntel Inside");
-
     // 别删
     public static final SlimefunItemStack CRAFTER_SMART_PORT = new SlimefunItemStack(
             "CRAFTER_SMART_PORT", Material.LIME_STAINED_GLASS, "&a合成机智能交互接口", "", "&5可以根据合成表材料数量分配输入数量", "&5并拥有指定输出槽");

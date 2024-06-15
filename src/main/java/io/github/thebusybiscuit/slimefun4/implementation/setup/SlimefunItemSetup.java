@@ -70,7 +70,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.Jetpack;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.MultiTool;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.Multimeter;
-import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.OverclockModule;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.SolarHelmet;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.generators.BioGenerator;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.generators.CoalGenerator;
@@ -7953,25 +7952,6 @@ public final class SlimefunItemSetup {
                             null
                         })
                 .register(plugin);
-
-        new OverclockModule(
-                            itemGroups.technicalGadgets,
-                            SlimefunItems.OVERCLOCK_MODULE,
-                            RecipeType.ENHANCED_CRAFTING_TABLE,
-                            new ItemStack[]{
-                                SlimefunItems.NETHER_ICE_COOLANT_CELL,
-                                null,
-                                SlimefunItems.NETHER_ICE_COOLANT_CELL,
-                                null,
-                                SlimefunItems.ELECTRIC_MOTOR,
-                                null,
-                                SlimefunItems.NETHER_ICE_COOLANT_CELL,
-                                null,
-                                SlimefunItems.NETHER_ICE_COOLANT_CELL
-                            })
-                            .register(plugin);
-
-        // @formatter:on
     }
 
     @ParametersAreNonnullByDefault
