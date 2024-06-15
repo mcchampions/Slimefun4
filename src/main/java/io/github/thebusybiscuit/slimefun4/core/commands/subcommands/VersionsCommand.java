@@ -68,15 +68,6 @@ class VersionsCommand extends SubCommand {
                     .color(ChatColor.DARK_GREEN);
             // @formatter:on
 
-            if (Slimefun.getMetricsService().getVersion() != null) {
-                // @formatter:off
-                builder.append("Metrics-组件 ")
-                        .color(ChatColor.GREEN)
-                        .append("#" + Slimefun.getMetricsService().getVersion() + '\n')
-                        .color(ChatColor.DARK_GREEN);
-                // @formatter:on
-            }
-
             addJavaVersion(builder);
 
             // Add notice to warn those smart people

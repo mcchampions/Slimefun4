@@ -27,7 +27,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.BlockDataService;
 import io.github.thebusybiscuit.slimefun4.core.services.CustomItemDataService;
 import io.github.thebusybiscuit.slimefun4.core.services.CustomTextureService;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
-import io.github.thebusybiscuit.slimefun4.core.services.MetricsService;
 import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
 import io.github.thebusybiscuit.slimefun4.core.services.PerWorldSettingsService;
 import io.github.thebusybiscuit.slimefun4.core.services.PermissionsService;
@@ -174,7 +173,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final CustomItemDataService itemDataService = new CustomItemDataService(this, "slimefun_item");
     private final BlockDataService blockDataService = new BlockDataService(this, "slimefun_block");
     private final CustomTextureService textureService = new CustomTextureService(new Config(this, "item-models.yml"));
-    private final MetricsService metricsService = new MetricsService(this);
     private final AutoSavingService autoSavingService = new AutoSavingService();
     private final BackupService backupService = new BackupService();
     private final PermissionsService permissionsService = new PermissionsService(this);
@@ -303,9 +301,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                 networkSize,
                 config.getBoolean("networks.enable-visualizer"),
                 config.getBoolean("networks.delete-excess-items"));
-
-        // Setting up bStats
-        new Thread(metricsService::start, "Slimefun Metrics").start();
 
         // Registering all GEO Resources
         logger.log(Level.INFO, "加载矿物资源...");
@@ -445,9 +440,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         if (cfgManager.getPluginConfig().getBoolean("options.backup-data")) {
             backupService.run();
         }
-
-        // Close and unload any resources from our Metrics Service
-        metricsService.cleanUp();
 
         // Terminate our Plugin instance
         setInstance(null);
@@ -895,16 +887,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         }
     }
 
-    /**
-     * This method returns the {@link MetricsService} of Slimefun.
-     * It is used to handle sending metric information to bStats.
-     *
-     * @return The {@link MetricsService} for Slimefun
-     */
-    public static @Nonnull MetricsService getMetricsService() {
-        validateInstance();
-        return instance.metricsService;
-    }
     public static @Nonnull SlimefunConfigManager getConfigManager() {
         validateInstance();
         return instance.cfgManager;
