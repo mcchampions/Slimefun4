@@ -350,14 +350,13 @@ public final class SlimefunUtils {
                  */
                 Debug.log(TestCase.CARGO_INPUT_TESTING, "  sfitem is ItemStackWrapper - possible SF Item: {}", sfitem);
 
-                ItemMeta possibleSfItemMeta = sfitem.getItemMeta();
-                String id = Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
-                String possibleItemId = Slimefun.getItemDataService()
-                        .getItemData(possibleSfItemMeta)
-                        .orElse(null);
+                ItemMeta sfItemMeta = sfitem.getItemMeta();
+                String possibleItemId = Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
+                String sfItemId = Slimefun.getItemDataService()
+                        .getItemData(sfItemMeta).get();
                 // Prioritize SlimefunItem id comparison over ItemMeta comparison
-                if (id != null && id.equals(possibleItemId)) {
-                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  Item IDs matched!");
+                if (possibleItemId != null && possibleItemId.equals(sfItemId)) {
+                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  SlimefunItem IDs matched!");
 
                     /*
                      * PR #3417
@@ -365,20 +364,13 @@ public final class SlimefunUtils {
                      * Some items can't rely on just IDs matching and will implement Distinctive Item
                      * in which case we want to use the method provided to compare
                      */
-                    Optional<DistinctiveItem> optionalDistinctive = getDistinctiveItem(id);
+                    Optional<DistinctiveItem> optionalDistinctive = getDistinctiveItem(possibleItemId);
                     if (optionalDistinctive.isPresent()) {
-                        return optionalDistinctive.get().canStack(possibleSfItemMeta, itemMeta);
+                        return optionalDistinctive.get().canStack(sfItemMeta, itemMeta);
                     }
                     return true;
-                } else {
-                    Debug.log(
-                            TestCase.CARGO_INPUT_TESTING,
-                            "  Item IDs don't match, checking meta {} == {} (lore: {})",
-                            itemMeta,
-                            possibleSfItemMeta,
-                            checkLore);
-                    return equalsItemMeta(itemMeta, possibleSfItemMeta, checkLore, checkCustomModelData);
                 }
+                return false;
             } else if (sfitem.hasItemMeta()) {
                 ItemMeta sfItemMeta = sfitem.getItemMeta();
                 Debug.log(
@@ -387,7 +379,7 @@ public final class SlimefunUtils {
                         itemMeta,
                         sfItemMeta,
                         checkLore);
-                return equalsItemMeta(itemMeta, sfItemMeta, checkLore, checkCustomModelData);
+                return equalsItemMeta(itemMeta, sfItemMeta, checkLore, !checkCustomModelData);
             } else {
                 return false;
             }
