@@ -43,6 +43,7 @@ public class CheatSheetSlimefunGuide extends SurvivalSlimefunGuide {
      *
      * @return a {@link List} of visible {@link ItemGroup} instances
      */
+    @Nonnull
     @Override
     protected List<ItemGroup> getVisibleItemGroups(@Nonnull Player p, @Nonnull PlayerProfile profile) {
         List<ItemGroup> groups = new LinkedList<>();

@@ -55,11 +55,13 @@ public abstract class NetherStarReactor extends Reactor {
         return SlimefunItems.NETHER_ICE_COOLANT_CELL;
     }
 
+    @Nonnull
     @Override
     public ItemStack getFuelIcon() {
         return new ItemStack(Material.NETHER_STAR);
     }
 
+    @Nonnull
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.NETHER_STAR);

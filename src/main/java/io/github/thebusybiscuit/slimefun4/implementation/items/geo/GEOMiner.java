@@ -200,7 +200,7 @@ public class GEOMiner extends SlimefunItem
         return new BlockPlaceHandler(false) {
 
             @Override
-            public void onPlayerPlace(BlockPlaceEvent e) {
+            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
                 updateHologram(e.getBlock(), "&7待机中...");
             }
         };
@@ -255,6 +255,7 @@ public class GEOMiner extends SlimefunItem
         return "guide.tooltips.recipes.miner";
     }
 
+    @Nonnull
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;
@@ -283,7 +284,7 @@ public class GEOMiner extends SlimefunItem
                 @Override
                 public boolean onClick(
                         InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
-                    return cursor == null || cursor.getType() == null || cursor.getType() == Material.AIR;
+                    return cursor == null || cursor.getType() == Material.AIR;
                 }
             });
         }

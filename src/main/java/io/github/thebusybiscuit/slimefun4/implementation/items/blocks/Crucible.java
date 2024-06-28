@@ -106,6 +106,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         return items;
     }
 
+    @Nonnull
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {

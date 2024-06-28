@@ -48,7 +48,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         return new BlockPlaceHandler(false) {
 
             @Override
-            public void onPlayerPlace(BlockPlaceEvent e) {
+            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
                 StorageCacheUtils.setData(
                         e.getBlock().getLocation(),
                         "owner",
@@ -62,7 +62,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         return new BlockBreakHandler(false, false) {
 
             @Override
-            public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
+            public void onPlayerBreak(@Nonnull BlockBreakEvent e, @Nonnull ItemStack item, @Nonnull List<ItemStack> drops) {
                 Location l = e.getBlock().getLocation();
                 UUID owner = UUID.fromString(StorageCacheUtils.getData(l, "owner"));
                 Slimefun.getGPSNetwork().updateTransmitter(l, owner, false);
@@ -74,6 +74,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
 
     public abstract int getEnergyConsumption();
 
+    @Nonnull
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
@@ -98,6 +99,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         };
     }
 
+    @Nonnull
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;

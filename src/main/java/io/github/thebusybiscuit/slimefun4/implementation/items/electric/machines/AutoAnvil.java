@@ -13,6 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
+
 /**
  * The {@link AutoAnvil} is an electric machine which can repair any {@link ItemStack} using
  * Duct tape.
@@ -36,6 +38,7 @@ public class AutoAnvil extends AContainer {
         return new ItemStack(Material.IRON_PICKAXE);
     }
 
+    @Nonnull
     @Override
     public String getMachineIdentifier() {
         return "AUTO_ANVIL";

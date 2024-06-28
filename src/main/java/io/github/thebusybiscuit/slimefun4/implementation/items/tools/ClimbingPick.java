@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.tools;
 
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.ClimbingPickLaunchEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
@@ -13,18 +12,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.ClimbableSurface;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -37,6 +24,19 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.EnumMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * The {@link ClimbingPick} launches you 1 block upwards when you right click
@@ -154,10 +154,11 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return speed;
     }
 
+    @Nonnull
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
-            if (!e.getClickedBlock().isPresent()) {
+            if (e.getClickedBlock().isEmpty()) {
                 return;
             }
 
@@ -246,8 +247,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
 
     @ParametersAreNonnullByDefault
     private void playAnimation(Player p, Block b, EquipmentSlot hand) {
-        MinecraftVersion version = Slimefun.getMinecraftVersion();
-
         p.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());
 
         if (hand == EquipmentSlot.HAND) {
@@ -257,6 +256,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
@@ -268,6 +268,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return display;
     }
 
+    @Nonnull
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.climbing-pick";

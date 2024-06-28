@@ -36,7 +36,7 @@ public class PersonalActivationPlate extends AbstractTeleporterPlate {
         return new BlockPlaceHandler(false) {
 
             @Override
-            public void onPlayerPlace(BlockPlaceEvent e) {
+            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
                 StorageCacheUtils.setData(
                         e.getBlock().getLocation(),
                         "owner",

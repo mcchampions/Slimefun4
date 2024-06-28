@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
  * When a {@link VanillaItem} gets disabled, its {@link ItemState} goes on {@code State.VANILLA} which
  * automatically
  * replace it in the recipes by its vanilla equivalent.
- *
+ * <p>
  * A {@link VanillaItem} is also automatically useable in workbenches.
  *
  * @author TheBusyBiscuit

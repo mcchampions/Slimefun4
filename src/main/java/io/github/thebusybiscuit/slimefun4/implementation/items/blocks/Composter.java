@@ -67,6 +67,7 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
         return items;
     }
 
+    @Nonnull
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {

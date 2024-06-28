@@ -15,6 +15,8 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -29,7 +31,14 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @see PlayerBackpack
  *
  */
+@Getter
 public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> implements DistinctiveItem {
+    /**
+     * -- GETTER --
+     *  This returns the size of this
+     * .
+     *
+     */
     private final int size;
 
     @ParametersAreNonnullByDefault
@@ -38,15 +47,6 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
         super(itemGroup, item, recipeType, recipe);
 
         this.size = size;
-    }
-
-    /**
-     * This returns the size of this {@link SlimefunBackpack}.
-     *
-     * @return The size of this backpack
-     */
-    public int getSize() {
-        return size;
     }
 
     /**
@@ -70,6 +70,7 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
         return !(itemAsSlimefunItem instanceof SlimefunBackpack);
     }
 
+    @Nonnull
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -82,9 +83,7 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
 
             BackpackListener listener = Slimefun.getBackpackListener();
 
-            if (listener != null) {
-                listener.openBackpack(e.getPlayer(), e.getItem(), this);
-            }
+            listener.openBackpack(e.getPlayer(), e.getItem(), this);
         };
     }
 

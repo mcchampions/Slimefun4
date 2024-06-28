@@ -74,12 +74,8 @@ public class ReactorAccessPort extends SlimefunItem {
                             INFO_SLOT,
                             new CustomItemStack(Material.GREEN_WOOL, "&7反应堆", "", "&6已检测到反应堆", "", "&7> 点击打开反应堆界面"));
                     menu.addMenuClickHandler(INFO_SLOT, (p, slot, item, action) -> {
-                        if (reactor != null) {
-                            reactor.open(p);
-                        }
-
+                        reactor.open(p);
                         newInstance(menu, b);
-
                         return false;
                     });
                 } else {

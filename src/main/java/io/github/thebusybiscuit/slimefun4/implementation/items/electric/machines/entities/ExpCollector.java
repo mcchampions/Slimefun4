@@ -72,7 +72,7 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(Block b) {
+            public void onBlockBreak(@Nonnull Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {

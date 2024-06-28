@@ -95,7 +95,7 @@ public class BiomeMapParser<T> {
 
     public void read(@Nonnull String json) throws BiomeMapException {
         Validate.notNull(json, "The JSON string should not be null!");
-        JsonArray root = null;
+        JsonArray root;
 
         try {
             root = JsonUtils.parseString(json).getAsJsonArray();
@@ -119,7 +119,7 @@ public class BiomeMapParser<T> {
             } else {
                 throw new BiomeMapException(
                         key,
-                        "Unexpected array element: " + element.getClass().getSimpleName() + " - " + element.toString());
+                        "Unexpected array element: " + element.getClass().getSimpleName() + " - " + element);
             }
         }
     }
@@ -185,7 +185,7 @@ public class BiomeMapParser<T> {
             } else {
                 throw new BiomeMapException(
                         key,
-                        "Unexpected array element: " + element.getClass().getSimpleName() + " - " + element.toString());
+                        "Unexpected array element: " + element.getClass().getSimpleName() + " - " + element);
             }
         }
 

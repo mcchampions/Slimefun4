@@ -165,7 +165,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         menu.addMenuClickHandler(46, (pl, slot, item, action) -> {
             int next = page - 1;
 
-            if (next != page && next > 0) {
+            if (next > 0) {
                 openMainMenu(profile, next);
             }
 
@@ -176,7 +176,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         menu.addMenuClickHandler(52, (pl, slot, item, action) -> {
             int next = page + 1;
 
-            if (next != page && next <= pages) {
+            if (next <= pages) {
                 openMainMenu(profile, next);
             }
 
@@ -251,7 +251,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         menu.addMenuClickHandler(46, (pl, slot, item, action) -> {
             int next = page - 1;
 
-            if (next != page && next > 0) {
+            if (next > 0) {
                 openItemGroup(profile, itemGroup, next);
             }
 
@@ -262,7 +262,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         menu.addMenuClickHandler(52, (pl, slot, item, action) -> {
             int next = page + 1;
 
-            if (next != page && next <= pages) {
+            if (next <= pages) {
                 openItemGroup(profile, itemGroup, next);
             }
 
@@ -439,7 +439,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     @ParametersAreNonnullByDefault
     private boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm) {
         String itemName = ChatColor.stripColor(slimefunItem.getItemName()).toLowerCase(Locale.ROOT);
-        return !itemName.isEmpty() && (itemName.equals(searchTerm) || itemName.contains(searchTerm));
+        return !itemName.isEmpty() && itemName.contains(searchTerm);
     }
 
     @Override
@@ -447,7 +447,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     public void displayItem(PlayerProfile profile, ItemStack item, int index, boolean addToHistory) {
         Player p = profile.getPlayer();
 
-        if (p == null || item == null || item.getType() == Material.AIR) {
+        if (p == null || item.getType() == Material.AIR) {
             return;
         }
 

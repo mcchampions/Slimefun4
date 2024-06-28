@@ -100,7 +100,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
 
             @Override
             public int[] getSlotsAccessedByItemTransport(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
-                if (flow == ItemTransportFlow.INSERT && item != null) {
+                if (flow == ItemTransportFlow.INSERT) {
                     if (item.getType() == getBody().getType()) {
                         return bodySlots;
                     }
@@ -175,7 +175,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
             });
         }
 
-        val = null;
         double offset =
                 (blockData == null || (val = blockData.getData(KEY_OFFSET)) == null) ? 3.0F : Double.parseDouble(val);
 
@@ -193,6 +192,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         });
     }
 
+    @Nonnull
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {

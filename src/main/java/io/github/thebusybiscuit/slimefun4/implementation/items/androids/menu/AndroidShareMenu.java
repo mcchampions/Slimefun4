@@ -209,7 +209,7 @@ public final class AndroidShareMenu {
         Optional<String> trustUsers = getSharedUserData(b.getState());
 
         // Checks for old Android
-        if (!trustUsers.isPresent()) {
+        if (trustUsers.isEmpty()) {
             List<String> emptyUsers = new ArrayList<>();
             setSharedUserData(b.getState(), String.valueOf(emptyUsers));
             return emptyUsers;

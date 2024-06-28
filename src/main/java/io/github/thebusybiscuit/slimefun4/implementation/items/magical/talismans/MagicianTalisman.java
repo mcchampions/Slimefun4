@@ -4,20 +4,20 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.TalismanEnchantment;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.logging.Level;
-import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
 
 /**
  * The {@link MagicianTalisman} is a special kind of {@link Talisman} which awards a {@link Player}
@@ -65,7 +65,7 @@ public class MagicianTalisman extends Talisman {
                             Level.SEVERE,
                             x,
                             () -> "The following Exception was thrown when initializing the settings for "
-                                    + toString());
+                                  + this);
         }
     }
 
@@ -92,7 +92,7 @@ public class MagicianTalisman extends Talisman {
                         || e.getEnchantment().canEnchantItem(item))
                 .filter(e -> hasConflicts(existingEnchantments, e))
                 .filter(TalismanEnchantment::getValue)
-                .collect(Collectors.toList());
+                .toList();
         // @formatter:on
 
         return enabled.isEmpty()

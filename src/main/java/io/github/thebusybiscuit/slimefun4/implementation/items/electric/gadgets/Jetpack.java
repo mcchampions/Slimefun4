@@ -7,6 +7,8 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.player.JetpackTask;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -21,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class Jetpack extends SlimefunItem implements Rechargeable {
 
+    @Getter
     private final double thrust;
     private final float capacity;
 
@@ -30,10 +33,6 @@ public class Jetpack extends SlimefunItem implements Rechargeable {
 
         this.thrust = thrust;
         this.capacity = capacity;
-    }
-
-    public double getThrust() {
-        return thrust;
     }
 
     @Override

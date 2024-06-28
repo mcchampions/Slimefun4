@@ -72,7 +72,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(Block b) {
+            public void onBlockBreak(@Nonnull Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -106,7 +106,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
                 @Override
                 public boolean onClick(
                         InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
-                    return cursor == null || cursor.getType() == null || cursor.getType() == Material.AIR;
+                    return cursor == null || cursor.getType() == Material.AIR;
                 }
             });
         }
@@ -253,6 +253,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         return false;
     }
 
+    @Nonnull
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {

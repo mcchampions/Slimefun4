@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.listeners.CoolerListene
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
@@ -58,6 +59,7 @@ public class Juice extends SimpleSlimefunItem<ItemConsumptionHandler> {
         }
     }
 
+    @Nonnull
     @Override
     public ItemConsumptionHandler getItemHandler() {
         return (e, p, item) -> {

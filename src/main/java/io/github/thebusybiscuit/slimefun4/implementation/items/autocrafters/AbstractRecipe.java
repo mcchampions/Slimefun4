@@ -9,6 +9,8 @@ import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
@@ -43,7 +45,14 @@ public abstract class AbstractRecipe {
 
     /**
      * Whether this recipe is enabled.
+     * -- GETTER --
+     *  This returns whether or not this recipe has been enabled.
+     *  A disabled recipe will not be crafted.
+     *
+     * @return Whether this recipe is enabled
+
      */
+    @Getter
     private boolean enabled = true;
 
     /**
@@ -83,16 +92,6 @@ public abstract class AbstractRecipe {
     @Nonnull
     public ItemStack getResult() {
         return result;
-    }
-
-    /**
-     * This returns whether or not this recipe has been enabled.
-     * A disabled recipe will not be crafted.
-     *
-     * @return Whether this recipe is enabled
-     */
-    public boolean isEnabled() {
-        return enabled;
     }
 
     /**

@@ -94,11 +94,13 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
         return fuelTypes;
     }
 
+    @Nonnull
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.generator";
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> list = new ArrayList<>();

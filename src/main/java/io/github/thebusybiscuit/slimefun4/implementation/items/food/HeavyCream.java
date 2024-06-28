@@ -36,7 +36,7 @@ public class HeavyCream extends SimpleSlimefunItem<ItemUseHandler> {
         return e -> {
             Optional<Block> block = e.getClickedBlock();
 
-            if (!block.isPresent() || !block.get().getType().isInteractable()) {
+            if (block.isEmpty() || !block.get().getType().isInteractable()) {
                 e.cancel();
             }
         };

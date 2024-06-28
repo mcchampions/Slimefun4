@@ -155,7 +155,7 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
             }
         }
 
-        if (saplingType != null && soilRequirement != null) {
+        if (saplingType != null) {
             if (soilRequirement.test(block.getRelative(BlockFace.DOWN).getType())) {
                 // Replant the block
                 block.setType(saplingType);

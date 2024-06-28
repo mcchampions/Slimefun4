@@ -39,7 +39,7 @@ public class CargoConnectorNode extends SimpleSlimefunItem<BlockUseHandler> impl
     @Override
     public @Nonnull BlockUseHandler getItemHandler() {
         return e -> {
-            if (!e.getClickedBlock().isPresent()) {
+            if (e.getClickedBlock().isEmpty()) {
                 return;
             }
 

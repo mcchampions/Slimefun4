@@ -1,6 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.elevator;
 
 import javax.annotation.Nonnull;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -12,7 +14,7 @@ import org.bukkit.entity.Player;
  *
  * @author TheBusyBiscuit
  */
-class ElevatorFloor {
+public class ElevatorFloor {
 
     /**
      * The name of this floor.
@@ -21,7 +23,14 @@ class ElevatorFloor {
 
     /**
      * The floor number.
+     * -- GETTER --
+     *  This returns the number of this floor.
+     *  The lowest floor will have the number 0 and it
+     *  increments from there.
+     *
+
      */
+    @Getter
     private final int number;
 
     /**
@@ -73,14 +82,4 @@ class ElevatorFloor {
         return location.getBlockY();
     }
 
-    /**
-     * This returns the number of this floor.
-     * The lowest floor will have the number 0 and it
-     * increments from there.
-     *
-     * @return The number of this floor.
-     */
-    public int getNumber() {
-        return number;
-    }
 }

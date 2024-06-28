@@ -2,8 +2,11 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.altar;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
+@Getter
 public class AltarRecipe {
 
     private final ItemStack catalyst;
@@ -25,18 +28,6 @@ public class AltarRecipe {
         this.input.add(input.get(3));
 
         this.output = output;
-    }
-
-    public ItemStack getCatalyst() {
-        return this.catalyst;
-    }
-
-    public ItemStack getOutput() {
-        return this.output;
-    }
-
-    public List<ItemStack> getInput() {
-        return this.input;
     }
 
     @Override

@@ -10,6 +10,8 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RandomMobDrop;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
+
+import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.inventory.ItemStack;
@@ -44,6 +46,7 @@ public class BasicCircuitBoard extends SimpleSlimefunItem<ItemUseHandler> implem
         return dropSetting.getValue();
     }
 
+    @Nonnull
     @Override
     public ItemUseHandler getItemHandler() {
         return PlayerRightClickEvent::cancel;

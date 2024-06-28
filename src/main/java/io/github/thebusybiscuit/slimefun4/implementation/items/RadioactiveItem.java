@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack;
  * A quick and easy implementation of {@link SlimefunItem} that also implements the
  * interface {@link Radioactive}.
  * This implementation is {@link NotPlaceable}!
- *
+ * <p>
  * Simply specify a level of {@link Radioactivity} in the constructor.
  *
  * @author TheBusyBiscuit

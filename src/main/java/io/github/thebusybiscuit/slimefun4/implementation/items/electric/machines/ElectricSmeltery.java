@@ -10,12 +10,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.Smeltery;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
@@ -27,6 +21,12 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The {@link ElectricSmeltery} is an electric version of the standard {@link Smeltery}.
@@ -89,7 +89,7 @@ public class ElectricSmeltery extends AContainer implements NotHopperable {
                     // All slots with that item are already full
                     return new int[0];
                 } else {
-                    Collections.sort(slots, compareSlots(menu));
+                    slots.sort(compareSlots(menu));
                     int[] array = new int[slots.size()];
 
                     for (int i = 0; i < slots.size(); i++) {
@@ -135,7 +135,7 @@ public class ElectricSmeltery extends AContainer implements NotHopperable {
                 @Override
                 public boolean onClick(
                         InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
-                    return cursor == null || cursor.getType() == null || cursor.getType() == Material.AIR;
+                    return cursor == null || cursor.getType() == Material.AIR;
                 }
             });
         }
@@ -153,7 +153,7 @@ public class ElectricSmeltery extends AContainer implements NotHopperable {
 
     @Override
     public int[] getOutputSlots() {
-        return new int[] {24, 25};
+        return super.getOutputSlots();
     }
 
     @Override

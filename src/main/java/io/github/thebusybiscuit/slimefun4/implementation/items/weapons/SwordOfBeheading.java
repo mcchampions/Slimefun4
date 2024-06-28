@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.entity.Creeper;
@@ -30,7 +31,7 @@ import org.bukkit.inventory.meta.SkullMeta;
  * {@link Monster}.
  * Additionally, you can also obtain the head of a {@link Player} by killing them too.
  * This sword also allows you to have a higher chance of getting the skull of a {@link WitherSkeleton} too.
- *
+ * <p>
  * All chances are managed by an {@link ItemSetting} and can be configured.
  *
  * @author TheBusyBiscuit
@@ -53,6 +54,7 @@ public class SwordOfBeheading extends SimpleSlimefunItem<EntityKillHandler> {
         addItemSetting(chanceZombie, chanceSkeleton, chanceWitherSkeleton, chanceCreeper, chancePiglin, chancePlayer);
     }
 
+    @Nonnull
     @Override
     public EntityKillHandler getItemHandler() {
         return (e, entity, killer, item) -> {

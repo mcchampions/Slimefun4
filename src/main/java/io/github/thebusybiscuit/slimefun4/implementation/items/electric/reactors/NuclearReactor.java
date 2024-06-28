@@ -35,6 +35,7 @@ public abstract class NuclearReactor extends Reactor {
         registerFuel(new MachineFuel(1500, SlimefunItems.BOOSTED_URANIUM, null));
     }
 
+    @Nonnull
     @Override
     public ItemStack getProgressBar() {
         return SlimefunItems.LAVA_CRYSTAL;
@@ -45,6 +46,7 @@ public abstract class NuclearReactor extends Reactor {
         return SlimefunItems.REACTOR_COOLANT_CELL;
     }
 
+    @Nonnull
     @Override
     public ItemStack getFuelIcon() {
         return SlimefunItems.URANIUM;

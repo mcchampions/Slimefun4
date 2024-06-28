@@ -71,8 +71,6 @@ import org.bukkit.inventory.ShapelessRecipe;
  */
 public abstract class AbstractAutoCrafter extends SlimefunItem implements EnergyNetComponent {
 
-    private final String WIKI_PAGE = "Auto-Crafter";
-
     private final Map<Block, ItemStack> recipeCache;
 
     /**
@@ -142,6 +140,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
 
     @Override
     public void postRegister() {
+        String WIKI_PAGE = "Auto-Crafter";
         addWikiPage(WIKI_PAGE);
     }
 

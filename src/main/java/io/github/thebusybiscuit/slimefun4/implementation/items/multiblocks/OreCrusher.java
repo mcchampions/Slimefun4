@@ -183,6 +183,7 @@ public class OreCrusher extends MultiBlockMachine {
         }
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> getDisplayRecipes() {
         return recipes.stream().map(items -> items[0]).collect(Collectors.toList());
@@ -225,7 +226,7 @@ public class OreCrusher extends MultiBlockMachine {
         }
     }
 
-    private class DoubleOreSetting extends ItemSetting<Boolean> {
+    private static class DoubleOreSetting extends ItemSetting<Boolean> {
 
         private final ItemStack coal = new ItemStack(Material.COAL, 1);
         private final ItemStack lapis = new ItemStack(Material.LAPIS_LAZULI, 7);
@@ -260,7 +261,7 @@ public class OreCrusher extends MultiBlockMachine {
         }
 
         @Override
-        public void update(Boolean newValue) {
+        public void update(@Nonnull Boolean newValue) {
             super.update(newValue);
             apply(newValue);
         }

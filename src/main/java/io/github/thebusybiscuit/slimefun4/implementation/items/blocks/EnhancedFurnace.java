@@ -70,6 +70,7 @@ public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
         return 1 + bonus;
     }
 
+    @Nonnull
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {

@@ -32,14 +32,6 @@ class ClearLagIntegration implements Listener {
 
     @EventHandler
     public void onEntityRemove(EntityRemoveEvent e) {
-        Iterator<Entity> iterator = e.getEntityList().iterator();
-
-        while (iterator.hasNext()) {
-            Entity n = iterator.next();
-
-            if (n instanceof Item item && SlimefunUtils.hasNoPickupFlag(item)) {
-                iterator.remove();
-            }
-        }
+        e.getEntityList().removeIf(n -> n instanceof Item item && SlimefunUtils.hasNoPickupFlag(item));
     }
 }

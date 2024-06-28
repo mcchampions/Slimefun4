@@ -11,6 +11,8 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNet;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
@@ -33,7 +35,21 @@ public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
 
     private final ItemSetting<Boolean> useNightEnergyInOtherDimensions =
             new ItemSetting<>(this, "other-dimensions-use-night-energy", false);
+    /**
+     * -- GETTER --
+     *  This method returns the amount of energy that this
+     *  produces during the day.
+     *
+     */
+    @Getter
     private final int dayEnergy;
+    /**
+     * -- GETTER --
+     *  This method returns the amount of energy that this
+     *  produces during the night.
+     *
+     */
+    @Getter
     private final int nightEnergy;
     private final int capacity;
 
@@ -64,26 +80,6 @@ public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
             RecipeType recipeType,
             ItemStack[] recipe) {
         this(itemGroup, dayEnergy, nightEnergy, item, recipeType, recipe, 0);
-    }
-
-    /**
-     * This method returns the amount of energy that this {@link SolarGenerator}
-     * produces during the day.
-     *
-     * @return The amount of energy generated at daylight
-     */
-    public int getDayEnergy() {
-        return dayEnergy;
-    }
-
-    /**
-     * This method returns the amount of energy that this {@link SolarGenerator}
-     * produces during the night.
-     *
-     * @return The amount of energy generated at night time
-     */
-    public int getNightEnergy() {
-        return nightEnergy;
     }
 
     @Override

@@ -73,6 +73,7 @@ public class Smeltery extends AbstractSmeltery {
         recipes.add(new ItemStack(Material.IRON_INGOT));
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> items = new ArrayList<>();

@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 /**
  * This {@link ItemStack}, which is <b>not intended for actual usage</b>, caches its {@link ItemMeta}.
  * This significantly speeds up any {@link ItemStack} comparisons a lot.
- *
+ * <p>
  * You cannot invoke {@link #equals(Object)}, {@link #hashCode()} or any of its setter on an
  * {@link ItemStackWrapper}.<br>
  * Please be very careful when using this.
@@ -79,13 +79,14 @@ public final class ItemStackWrapper extends ItemStack {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
     }
 
+    @Nonnull
     @Override
     public ItemStack clone() {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
     }
 
     @Override
-    public void setType(Material type) {
+    public void setType(@Nonnull Material type) {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
     }
 
@@ -100,7 +101,7 @@ public final class ItemStackWrapper extends ItemStack {
     }
 
     @Override
-    public void addUnsafeEnchantment(Enchantment ench, int level) {
+    public void addUnsafeEnchantment(@Nonnull Enchantment ench, int level) {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
     }
 

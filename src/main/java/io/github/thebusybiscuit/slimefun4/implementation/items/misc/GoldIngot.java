@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.Smeltery;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 
@@ -20,10 +22,25 @@ import org.bukkit.inventory.ItemStack;
  * @see Smeltery
  *
  */
+@Getter
 public class GoldIngot extends SlimefunItem {
 
     /**
      * The carat rating.
+     * -- GETTER --
+     *  This returns the carat rating of this
+     * .
+     *  <p>
+     *  The purity of the
+     *  is measured in carat (1-24).
+     *  <pre>
+     *  24k = 100% gold.
+     *  18k = 75% gold.
+     *  12k = 50% gold.
+     *  </pre>
+     *  and so on...
+     *
+
      */
     private final int caratRating;
 
@@ -37,22 +54,4 @@ public class GoldIngot extends SlimefunItem {
         this.caratRating = caratRating;
     }
 
-    /**
-     * This returns the carat rating of this {@link GoldIngot}.
-     * <p>
-     * The purity of the {@link GoldIngot} is measured in carat (1-24).
-     *
-     * <pre>
-     * 24k = 100% gold.
-     * 18k = 75% gold.
-     * 12k = 50% gold.
-     * </pre>
-     *
-     * and so on...
-     *
-     * @return The carat rating of this {@link GoldIngot}
-     */
-    public int getCaratRating() {
-        return caratRating;
-    }
 }

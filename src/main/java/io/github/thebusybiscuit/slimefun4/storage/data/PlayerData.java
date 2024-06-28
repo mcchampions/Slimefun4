@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.annotation.Nonnull;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -20,18 +22,16 @@ import org.apache.commons.lang.Validate;
 @Beta
 public class PlayerData {
 
+    @Getter
     private final Set<Research> researches = new HashSet<>();
     private final Map<Integer, PlayerBackpack> backpacks = new HashMap<>();
+    @Getter
     private final Set<Waypoint> waypoints = new HashSet<>();
 
     public PlayerData(Set<Research> researches, Map<Integer, PlayerBackpack> backpacks, Set<Waypoint> waypoints) {
         this.researches.addAll(researches);
         this.backpacks.putAll(backpacks);
         this.waypoints.addAll(waypoints);
-    }
-
-    public Set<Research> getResearches() {
-        return researches;
     }
 
     public void addResearch(@Nonnull Research research) {
@@ -62,10 +62,6 @@ public class PlayerData {
     public void removeBackpack(@Nonnull PlayerBackpack backpack) {
         Validate.notNull(backpack, "Cannot remove a 'null' backpack!");
         backpacks.remove(backpack.getId());
-    }
-
-    public Set<Waypoint> getWaypoints() {
-        return waypoints;
     }
 
     public void addWaypoint(@Nonnull Waypoint waypoint) {

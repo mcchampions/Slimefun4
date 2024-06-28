@@ -67,9 +67,9 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
 
             @ParametersAreNonnullByDefault
             private void onPlace(ItemStack item, BlockEvent e) {
-                /**
-                 * This may no longer be needed at some point but for legacy items
-                 * we still need to set the spawned EntityType manually
+                /*
+                  This may no longer be needed at some point but for legacy items
+                  we still need to set the spawned EntityType manually
                  */
                 if (e.getBlock().getType() == Material.SPAWNER) {
                     getEntityType(item).ifPresent(entity -> {
@@ -85,9 +85,9 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
     @Nonnull
     @Override
     public Collection<ItemStack> getDrops() {
-        /**
-         * There should be no drops by default since drops are handled
-         * by the Pickaxe of Containment exclusively.
+        /*
+          There should be no drops by default since drops are handled
+          by the Pickaxe of Containment exclusively.
          */
         return new ArrayList<>();
     }

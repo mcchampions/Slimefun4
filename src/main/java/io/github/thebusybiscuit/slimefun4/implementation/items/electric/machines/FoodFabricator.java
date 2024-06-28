@@ -9,6 +9,8 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class FoodFabricator extends AContainer {
 
     public FoodFabricator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -57,6 +59,7 @@ public class FoodFabricator extends AContainer {
         });
     }
 
+    @Nonnull
     @Override
     public String getMachineIdentifier() {
         return "FOOD_FABRICATOR";

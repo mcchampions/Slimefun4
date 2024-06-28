@@ -13,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
+import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
@@ -55,10 +56,10 @@ public class OilPump extends AContainer implements RecipeDisplayItem, NotDiagona
                     return false;
                 }
 
-                if (!Slimefun.getGPSNetwork()
+                if (Slimefun.getGPSNetwork()
                         .getResourceManager()
                         .getSupplies(oil, b.getWorld(), b.getX() >> 4, b.getZ() >> 4)
-                        .isPresent()) {
+                        .isEmpty()) {
                     Slimefun.getLocalization().sendMessage(p, "gps.geo.scan-required", true);
                     return false;
                 }
@@ -77,11 +78,13 @@ public class OilPump extends AContainer implements RecipeDisplayItem, NotDiagona
         };
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> getDisplayRecipes() {
         return Arrays.asList(emptyBucket, SlimefunItems.OIL_BUCKET);
     }
 
+    @Nonnull
     @Override
     public String getMachineIdentifier() {
         return "OIL_PUMP";

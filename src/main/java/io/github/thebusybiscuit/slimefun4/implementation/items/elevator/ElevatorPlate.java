@@ -76,7 +76,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         return new BlockPlaceHandler(false) {
 
             @Override
-            public void onPlayerPlace(BlockPlaceEvent e) {
+            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
                 var blockData = StorageCacheUtils.getBlock(e.getBlock().getLocation());
                 blockData.setData(DATA_KEY, ChatColor.WHITE + "一楼");
                 blockData.setData("owner", e.getPlayer().getUniqueId().toString());
@@ -255,7 +255,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                     player.getEyeLocation().getPitch());
 
             PaperLib.teleportAsync(player, destination).thenAccept(teleported -> {
-                if (teleported.booleanValue()) {
+                if (teleported) {
                     player.sendTitle(ChatColor.WHITE + ChatColors.color(floor.getName()), null, 20, 60, 20);
                 }
             });

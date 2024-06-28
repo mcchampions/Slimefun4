@@ -18,6 +18,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -46,9 +48,24 @@ public class Talisman extends SlimefunItem {
     private final SlimefunItemStack enderTalisman;
 
     protected final String suffix;
+    /**
+     * -- GETTER --
+     *  This returns whether the
+     *  will be consumed upon use.
+     *
+     */
+    @Getter
     protected final boolean consumable;
     protected final boolean cancel;
     protected final PotionEffect[] effects;
+    /**
+     * -- GETTER --
+     *  This returns the chance of this
+     *  activating.
+     *  The chance will be between 1 and 100.
+     *
+     */
+    @Getter
     protected final int chance;
 
     @ParametersAreNonnullByDefault
@@ -120,25 +137,6 @@ public class Talisman extends SlimefunItem {
         } else {
             enderTalisman = null;
         }
-    }
-
-    /**
-     * This returns whether the {@link Talisman} will be consumed upon use.
-     *
-     * @return Whether this {@link Talisman} is consumed on use.
-     */
-    public boolean isConsumable() {
-        return consumable;
-    }
-
-    /**
-     * This returns the chance of this {@link Talisman} activating.
-     * The chance will be between 1 and 100.
-     *
-     * @return The chance of this {@link Talisman} activating.
-     */
-    public int getChance() {
-        return chance;
     }
 
     @Nonnull
@@ -262,9 +260,7 @@ public class Talisman extends SlimefunItem {
         if (talisman.isConsumable()) {
             ItemStack[] contents = inv.getContents();
 
-            for (int i = 0; i < contents.length; i++) {
-                ItemStack item = contents[i];
-
+            for (ItemStack item : contents) {
                 if (SlimefunUtils.isItemSimilar(item, talismanItem, true, false)) {
                     ItemUtils.consumeItem(item, false);
                     return;

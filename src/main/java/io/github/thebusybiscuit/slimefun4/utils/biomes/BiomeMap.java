@@ -133,7 +133,7 @@ public class BiomeMap<T> implements Keyed {
      */
     @Override
     public String toString() {
-        return "BiomeMap " + dataMap.toString();
+        return "BiomeMap " + dataMap;
     }
 
     @ParametersAreNonnullByDefault

@@ -8,6 +8,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
+
+import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Keyed;
@@ -30,6 +32,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 class VanillaRecipe extends AbstractRecipe {
 
     private final int[] slots = {11, 12, 13, 20, 21, 22, 29, 30, 31};
+    @Getter
     private final Recipe recipe;
 
     VanillaRecipe(@Nonnull ShapelessRecipe recipe) {
@@ -42,10 +45,6 @@ class VanillaRecipe extends AbstractRecipe {
         super(getChoices(recipe), recipe.getResult());
 
         this.recipe = recipe;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
     }
 
     @Nonnull
@@ -63,11 +62,6 @@ class VanillaRecipe extends AbstractRecipe {
         }
 
         return choices;
-    }
-
-    @Nonnull
-    private static RecipeChoice[] getShape(@Nonnull Recipe recipe) {
-        return Slimefun.getMinecraftRecipeService().getRecipeShape(recipe);
     }
 
     @Override

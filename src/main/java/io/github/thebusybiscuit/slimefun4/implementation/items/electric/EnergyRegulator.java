@@ -54,7 +54,7 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
         return new BlockPlaceHandler(false) {
 
             @Override
-            public void onPlayerPlace(BlockPlaceEvent e) {
+            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
                 updateHologram(e.getBlock(), "&7连接中...");
             }
         };
