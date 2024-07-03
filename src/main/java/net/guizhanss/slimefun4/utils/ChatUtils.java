@@ -11,9 +11,7 @@ import org.bukkit.command.CommandSender;
  * @author ybw0014
  */
 public class ChatUtils {
-    private ChatUtils() {
-        throw new IllegalStateException("Utility class");
-    }
+    private ChatUtils() {}
 
     /**
      * 发送带 Slimefun 前缀的消息

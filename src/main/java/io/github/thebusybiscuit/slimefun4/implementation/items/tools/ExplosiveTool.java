@@ -16,6 +16,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -197,8 +198,8 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
                         Optional.ofNullable(StorageCacheUtils.getSfItem(leavesLocation));
 
                 optionalBlockSfItem.ifPresent(blockSfItem -> optionalLeavesBlockSfItem.ifPresent(leavesSfItem -> {
-                    Collection<ItemStack> sfItemDrops = blockSfItem.getDrops();
-                    Collection<ItemStack> leavesSfItemDrops = leavesSfItem.getDrops();
+                    Collection<ItemStack> sfItemDrops = SlimefunUtils.getDrops(blockSfItem, blockLocation);
+                    Collection<ItemStack> leavesSfItemDrops =  SlimefunUtils.getDrops(leavesSfItem, leavesLocation);
 
                     if (Arrays.equals(sfItemDrops.toArray(), leavesSfItemDrops.toArray())) {
                         leaveBlock.setType(Material.AIR);
@@ -234,7 +235,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
 
                 // Make sure the event wasn't cancelled by the BlockBreakHandler.
                 if (!dummyEvent.isCancelled()) {
-                    drops.addAll(sfItem.getDrops(player));
+                    drops.addAll(SlimefunUtils.getDrops(sfItem, blockLocation));
                     block.setType(Material.AIR);
                     Slimefun.getDatabaseManager().getBlockDataController().removeBlock(blockLocation);
                 }

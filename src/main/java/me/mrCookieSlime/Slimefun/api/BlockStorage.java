@@ -3,6 +3,7 @@ package me.mrCookieSlime.Slimefun.api;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.BlockDataConfigWrapper;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunChunkData;
+import de.tr7zw.nbtapi.NBT;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import javax.annotation.Nonnull;
@@ -33,7 +34,7 @@ public class BlockStorage {
         SlimefunItem sfitem = SlimefunItem.getByItem(item);
 
         if (sfitem != null) {
-            Slimefun.getDatabaseManager().getBlockDataController().createBlock(block.getLocation(), sfitem.getId());
+            Slimefun.getDatabaseManager().getBlockDataController().createBlock(block.getLocation(), NBT.readNbt(item));
         }
     }
 

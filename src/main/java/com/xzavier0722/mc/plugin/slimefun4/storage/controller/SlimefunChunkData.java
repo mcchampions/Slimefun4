@@ -1,6 +1,8 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
+import de.tr7zw.nbtapi.iface.ReadableNBT;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.HashSet;
 import java.util.Map;
@@ -18,7 +20,7 @@ import org.bukkit.Location;
 public class SlimefunChunkData extends ASlimefunDataContainer {
     private static final SlimefunBlockData INVALID_BLOCK_DATA = new SlimefunBlockData(
             new Location(Bukkit.getWorlds().get(0), Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE),
-            "INVALID_BLOCK_DATA_SF_KEY");
+            SlimefunItem.getById("INVALID_BLOCK_DATA_SF_KEY"));
     private final Chunk chunk;
     private final Map<String, SlimefunBlockData> sfBlocks;
 
@@ -41,7 +43,7 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
         if (getBlockCacheInternal(lKey) != null) {
             throw new IllegalStateException("There already a block in this location: " + lKey);
         }
-        var re = new SlimefunBlockData(l, sfId);
+        var re = new SlimefunBlockData(l, SlimefunItem.getById(sfId));
         re.setIsDataLoaded(true);
         sfBlocks.put(lKey, re);
 
@@ -51,6 +53,26 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
         }
 
         Slimefun.getDatabaseManager().getBlockDataController().saveNewBlock(l, sfId);
+
+        return re;
+    }
+
+    @ParametersAreNonnullByDefault
+    public SlimefunBlockData createBlockData(Location l, ReadableNBT nbt) {
+        var lKey = LocationUtils.getLocKey(l);
+        if (getBlockCacheInternal(lKey) != null) {
+            throw new IllegalStateException("There already a block in this location: " + lKey);
+        }
+        var re = new SlimefunBlockData(l, nbt.toString());
+        re.setIsDataLoaded(true);
+        sfBlocks.put(lKey, re);
+
+        var preset = BlockMenuPreset.getPreset(nbt.getString("slimefun:slimefun_id"));
+        if (preset != null) {
+            re.setBlockMenu(new BlockMenu(preset, l));
+        }
+
+        Slimefun.getDatabaseManager().getBlockDataController().saveNewBlock(l, nbt);
 
         return re;
     }

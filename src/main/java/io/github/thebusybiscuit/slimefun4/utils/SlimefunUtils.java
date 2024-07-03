@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
 import io.github.bakedlibs.dough.skins.PlayerHead;
@@ -22,11 +23,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.CapacitorTextureU
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
+import java.util.*;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -643,5 +640,21 @@ public final class SlimefunUtils {
     public static boolean isDust(ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
         return sfItem != null && sfItem.getId().endsWith("_DUST");
+    }
+
+    public static Collection<ItemStack> getDrops(SlimefunItem sfItem, Location loc) {
+        Collection<ItemStack> tempDrops = new ArrayList<>(sfItem.getDrops());
+        tempDrops.remove(sfItem.getItem());
+        tempDrops.add(Slimefun.getDatabaseManager().getBlockDataController().getBlockData(loc).getSfItemStack());
+        return tempDrops;
+    }
+
+    public static Collection<ItemStack> getDrops(Location loc) {
+        SlimefunBlockData blockData = Slimefun.getDatabaseManager().getBlockDataController().getBlockData(loc);
+        SlimefunItem sfItem = SlimefunItem.getById(blockData.getSfId());
+        Collection<ItemStack> tempDrops = new ArrayList<>(sfItem.getDrops());
+        tempDrops.remove(sfItem.getItem());
+        tempDrops.add(blockData.getSfItemStack());
+        return tempDrops;
     }
 }
