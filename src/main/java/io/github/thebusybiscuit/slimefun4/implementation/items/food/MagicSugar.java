@@ -31,7 +31,7 @@ public class MagicSugar extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             // Check if it is being placed into an ancient altar.
             if (e.getClickedBlock().isPresent()) {

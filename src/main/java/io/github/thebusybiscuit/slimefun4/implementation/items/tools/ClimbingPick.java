@@ -84,7 +84,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-    protected void addSurface(@Nonnull Material type, double defaultValue) {
+    protected void addSurface(Material type, double defaultValue) {
         ClimbableSurface surface = new ClimbableSurface(this, type, defaultValue);
         addItemSetting(surface);
         surfaces.put(type, surface);
@@ -106,7 +106,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      *
      * @return A {@link Collection} of every {@link ClimbableSurface}
      */
-    @Nonnull
+    
     public Collection<ClimbableSurface> getClimbableSurfaces() {
         return surfaces.values();
     }
@@ -119,7 +119,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      *
      * @return The climbing speed for this {@link Material} or 0.
      */
-    public double getClimbingSpeed(@Nonnull Material type) {
+    public double getClimbingSpeed(Material type) {
         Validate.notNull(type, "The surface cannot be null");
         ClimbableSurface surface = surfaces.get(type);
 
@@ -140,7 +140,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      *
      * @return The climbing speed or 0.
      */
-    public double getClimbingSpeed(@Nonnull ItemStack item, @Nonnull Material type) {
+    public double getClimbingSpeed(ItemStack item, Material type) {
         double speed = getClimbingSpeed(type);
 
         if (speed > 0) {
@@ -154,7 +154,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return speed;
     }
 
-    @Nonnull
+    
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -183,7 +183,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         };
     }
 
-    @Nonnull
+    
     @ParametersAreNonnullByDefault
     private ItemStack getOtherHandItem(Player p, EquipmentSlot hand) {
         if (hand == EquipmentSlot.HAND) {
@@ -234,7 +234,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     }
 
     @Override
-    public void damageItem(@Nonnull Player p, @Nullable ItemStack item) {
+    public void damageItem(Player p, @Nullable ItemStack item) {
         if (p.getGameMode() != GameMode.CREATIVE) {
             DamageableItem.super.damageItem(p, item);
         }
@@ -256,7 +256,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-    @Nonnull
+    
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
@@ -268,7 +268,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return display;
     }
 
-    @Nonnull
+    
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.climbing-pick";

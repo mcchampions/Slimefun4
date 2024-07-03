@@ -42,7 +42,7 @@ public abstract class SubCommand {
      *
      * @return The name of this {@link SubCommand}
      */
-    @Nonnull
+    
     public final String getName() {
         return name;
     }
@@ -56,13 +56,13 @@ public abstract class SubCommand {
         return hidden;
     }
 
-    protected void recordUsage(@Nonnull Map<SubCommand, Integer> commandUsage) {
+    protected void recordUsage(Map<SubCommand, Integer> commandUsage) {
         commandUsage.merge(this, 1, Integer::sum);
     }
 
-    public abstract void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args);
+    public abstract void onExecute(CommandSender sender, String[] args);
 
-    @Nonnull
+    
     protected String getDescription() {
         return "commands." + getName();
     }
@@ -77,7 +77,7 @@ public abstract class SubCommand {
      *
      * @return A possibly localized description of this {@link SubCommand}
      */
-    public @Nonnull String getDescription(@Nonnull CommandSender sender) {
+    public String getDescription(CommandSender sender) {
         if (sender instanceof Player player) {
             return Slimefun.getLocalization().getMessage(player, getDescription());
         } else {

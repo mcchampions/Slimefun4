@@ -52,7 +52,7 @@ public class CustomTextureService {
      * @param config
      *            The {@link Config} to read custom model data from
      */
-    public CustomTextureService(@Nonnull Config config) {
+    public CustomTextureService(Config config) {
         this.config = config;
         config.getConfiguration()
                 .options()
@@ -74,7 +74,7 @@ public class CustomTextureService {
      * @param save
      *            Whether to save this file
      */
-    public void register(@Nonnull Collection<SlimefunItem> items, boolean save) {
+    public void register(Collection<SlimefunItem> items, boolean save) {
         Validate.notEmpty(items, "items must neither be null or empty.");
 
         loadDefaultValues();
@@ -132,7 +132,7 @@ public class CustomTextureService {
      *
      * @return The configured custom model data
      */
-    public int getModelData(@Nonnull String id) {
+    public int getModelData(String id) {
         Validate.notNull(id, "Cannot get the ModelData for 'null'");
 
         return config.getInt(id);
@@ -147,7 +147,7 @@ public class CustomTextureService {
      * @param id
      *            The id for which to get the configured model data
      */
-    public void setTexture(@Nonnull ItemStack item, @Nonnull String id) {
+    public void setTexture(ItemStack item, String id) {
         Validate.notNull(item, "The Item cannot be null!");
         Validate.notNull(id, "Cannot store null on an Item!");
 
@@ -165,7 +165,7 @@ public class CustomTextureService {
      * @param id
      *            The id for which to get the configured model data
      */
-    public void setTexture(@Nonnull ItemMeta im, @Nonnull String id) {
+    public void setTexture(ItemMeta im, String id) {
         Validate.notNull(im, "The ItemMeta cannot be null!");
         Validate.notNull(id, "Cannot store null on an ItemMeta!");
 

@@ -48,7 +48,7 @@ public class GrindStone extends MultiBlockMachine {
     }
 
     @Override
-    protected void registerDefaultRecipes(@Nonnull List<ItemStack> recipes) {
+    protected void registerDefaultRecipes(List<ItemStack> recipes) {
         recipes.add(new ItemStack(Material.BLAZE_ROD));
         recipes.add(new ItemStack(Material.BLAZE_POWDER, 4));
 
@@ -122,7 +122,7 @@ public class GrindStone extends MultiBlockMachine {
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         return recipes.stream().map(items -> items[0]).collect(Collectors.toList());
     }
 

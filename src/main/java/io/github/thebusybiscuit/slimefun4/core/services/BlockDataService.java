@@ -43,7 +43,7 @@ public class BlockDataService implements Keyed {
      * @param key
      *            The key under which to store data
      */
-    public BlockDataService(@Nonnull Plugin plugin, @Nonnull String key) {
+    public BlockDataService(Plugin plugin, String key) {
         namespacedKey = new NamespacedKey(plugin, key);
     }
 
@@ -60,7 +60,7 @@ public class BlockDataService implements Keyed {
      * @param value
      *            The value to store
      */
-    public void setBlockData(@Nonnull Block b, @Nonnull String value) {
+    public void setBlockData(Block b, String value) {
         Validate.notNull(b, "The block cannot be null!");
         Validate.notNull(value, "The value cannot be null!");
 
@@ -101,7 +101,7 @@ public class BlockDataService implements Keyed {
      *
      * @return The stored value
      */
-    public Optional<String> getBlockData(@Nonnull Block b) {
+    public Optional<String> getBlockData(Block b) {
         Validate.notNull(b, "The block cannot be null!");
 
         BlockState state = PaperLib.getBlockState(b, false).getState();
@@ -114,7 +114,7 @@ public class BlockDataService implements Keyed {
         }
     }
 
-    @Nullable private PersistentDataContainer getPersistentDataContainer(@Nonnull BlockState state) {
+    @Nullable private PersistentDataContainer getPersistentDataContainer(BlockState state) {
         if (state instanceof TileState tileState) {
             return tileState.getPersistentDataContainer();
         } else {

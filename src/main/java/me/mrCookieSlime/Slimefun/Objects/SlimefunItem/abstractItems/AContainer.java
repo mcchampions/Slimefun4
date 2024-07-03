@@ -66,12 +66,12 @@ public abstract class AContainer extends SlimefunItem
         addItemHandler(onBlockBreak());
     }
 
-    @Nonnull
+    
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -141,7 +141,7 @@ public abstract class AContainer extends SlimefunItem
      *
      * @return The title of the {@link Inventory} of this {@link AContainer}
      */
-    @Nonnull
+    
     public String getInventoryTitle() {
         return getItemName();
     }
@@ -242,7 +242,7 @@ public abstract class AContainer extends SlimefunItem
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         this.addon = addon;
 
         if (getCapacity() <= 0) {
@@ -279,7 +279,7 @@ public abstract class AContainer extends SlimefunItem
      *
      * @return The identifier of this machine
      */
-    @Nonnull
+    
     public abstract String getMachineIdentifier();
 
     /**
@@ -392,7 +392,7 @@ public abstract class AContainer extends SlimefunItem
      *            location to try to remove charge from
      * @return Whether charge was taken if its chargeable
      */
-    protected boolean takeCharge(@Nonnull Location l) {
+    protected boolean takeCharge(Location l) {
         Validate.notNull(l, "Can't attempt to take charge from a null location!");
 
         if (isChargeable()) {

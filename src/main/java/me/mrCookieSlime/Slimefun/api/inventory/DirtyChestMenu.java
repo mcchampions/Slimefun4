@@ -28,7 +28,7 @@ public class DirtyChestMenu extends ChestMenu {
     protected final BlockMenuPreset preset;
     protected int changes = 1;
 
-    public DirtyChestMenu(@Nonnull BlockMenuPreset preset) {
+    public DirtyChestMenu(BlockMenuPreset preset) {
         super(preset.getTitle());
 
         this.preset = preset;
@@ -56,7 +56,7 @@ public class DirtyChestMenu extends ChestMenu {
         return changes;
     }
 
-    @Nonnull
+    
     public BlockMenuPreset getPreset() {
         return preset;
     }
@@ -79,7 +79,7 @@ public class DirtyChestMenu extends ChestMenu {
         }
     }
 
-    public boolean fits(@Nonnull ItemStack item, int... slots) {
+    public boolean fits(ItemStack item, int... slots) {
         Debug.log(
                 TestCase.UTILS,
                 "DirtyChestMenu#fits - start check fits | item {} | slots {}",

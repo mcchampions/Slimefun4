@@ -88,13 +88,13 @@ public class RadioactiveItem extends SlimefunItem implements Radioactive, NotPla
         addItemHandler(onRightClick());
     }
 
-    @Nonnull
+    
     private ItemUseHandler onRightClick() {
         return PlayerRightClickEvent::cancel;
     }
 
     @Override
-    @Nonnull
+    
     public Radioactivity getRadioactivity() {
         return radioactivity;
     }

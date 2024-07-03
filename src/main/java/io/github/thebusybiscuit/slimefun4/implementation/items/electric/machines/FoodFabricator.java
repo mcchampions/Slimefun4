@@ -59,7 +59,7 @@ public class FoodFabricator extends AContainer {
         });
     }
 
-    @Nonnull
+    
     @Override
     public String getMachineIdentifier() {
         return "FOOD_FABRICATOR";

@@ -27,5 +27,5 @@ public interface DistinctiveItem extends ItemAttribute {
      *
      * @return Whether the two {@link ItemMeta}s are stackable
      */
-    boolean canStack(@Nonnull ItemMeta itemMetaOne, @Nonnull ItemMeta itemMetaTwo);
+    boolean canStack(ItemMeta itemMetaOne, ItemMeta itemMetaTwo);
 }

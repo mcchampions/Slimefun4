@@ -32,7 +32,7 @@ public class SlimefunBowListener implements Listener {
 
     private final Map<UUID, SlimefunBow> projectiles = new HashMap<>();
 
-    public void register(@Nonnull Slimefun plugin) {
+    public void register(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -42,7 +42,7 @@ public class SlimefunBowListener implements Listener {
      *
      * @return A {@link HashMap} with all actively tracked {@link Arrow Arrows}
      */
-    @Nonnull
+    
     public Map<UUID, SlimefunBow> getProjectileData() {
         return projectiles;
     }

@@ -42,7 +42,7 @@ public class PickaxeOfContainment extends SimpleSlimefunItem<ToolUseHandler> {
     }
 
     @Override
-    public @Nonnull ToolUseHandler getItemHandler() {
+    public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             Block b = e.getBlock();
 
@@ -57,7 +57,7 @@ public class PickaxeOfContainment extends SimpleSlimefunItem<ToolUseHandler> {
         };
     }
 
-    private @Nonnull ItemStack breakSpawner(@Nonnull Block b) {
+    private ItemStack breakSpawner(Block b) {
         AbstractMonsterSpawner spawner;
 
         /*

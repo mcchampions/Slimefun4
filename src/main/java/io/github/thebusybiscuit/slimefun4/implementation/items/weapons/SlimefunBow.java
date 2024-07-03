@@ -31,6 +31,6 @@ public abstract class SlimefunBow extends SlimefunItem {
         addItemHandler(onShoot());
     }
 
-    @Nonnull
+    
     public abstract BowShootHandler onShoot();
 }

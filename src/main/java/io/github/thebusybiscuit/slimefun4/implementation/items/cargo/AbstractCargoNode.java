@@ -74,7 +74,7 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         };
     }
 
-    @Nonnull
+    
     @Override
     public BlockPlaceHandler getItemHandler() {
         return new BlockPlaceHandler(false) {
@@ -138,7 +138,7 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
     }
 
     @Override
-    public int getSelectedChannel(@Nonnull Block b) {
+    public int getSelectedChannel(Block b) {
         Validate.notNull(b, "Block must not be null");
 
         String frequency = StorageCacheUtils.getData(b.getLocation(), FREQUENCY);
@@ -151,11 +151,11 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         }
     }
 
-    abstract void onPlace(@Nonnull BlockPlaceEvent e);
+    abstract void onPlace(BlockPlaceEvent e);
 
-    abstract void createBorder(@Nonnull BlockMenuPreset preset);
+    abstract void createBorder(BlockMenuPreset preset);
 
-    abstract void updateBlockMenu(@Nonnull BlockMenu menu, @Nonnull Block b);
+    abstract void updateBlockMenu(BlockMenu menu, Block b);
 
-    abstract void markDirty(@Nonnull Location loc);
+    abstract void markDirty(Location loc);
 }

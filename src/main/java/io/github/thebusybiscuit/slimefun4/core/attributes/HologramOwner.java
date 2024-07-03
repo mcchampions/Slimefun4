@@ -31,12 +31,12 @@ public interface HologramOwner extends ItemAttribute {
      * @param text
      *            The nametag for the hologram
      */
-    default void updateHologram(@Nonnull Block b, @Nonnull String text) {
+    default void updateHologram(Block b, String text) {
         Location loc = b.getLocation().add(getHologramOffset(b));
         Slimefun.getHologramsService().setHologramLabel(loc, ChatColors.color(text));
     }
 
-    default void updateHologram(@Nonnull Block b, @Nonnull String text, Supplier<Boolean> abort) {
+    default void updateHologram(Block b, String text, Supplier<Boolean> abort) {
         if (Bukkit.isPrimaryThread()) {
             if (abort.get()) {
                 return;
@@ -59,7 +59,7 @@ public interface HologramOwner extends ItemAttribute {
      * @param b
      *            The {@link Block} to which the hologram blocks
      */
-    default void removeHologram(@Nonnull Block b) {
+    default void removeHologram(Block b) {
         Location loc = b.getLocation().add(getHologramOffset(b));
         Slimefun.getHologramsService().removeHologram(loc);
     }
@@ -74,8 +74,8 @@ public interface HologramOwner extends ItemAttribute {
      *
      * @return The hologram offset
      */
-    @Nonnull
-    default Vector getHologramOffset(@Nonnull Block block) {
+    
+    default Vector getHologramOffset(Block block) {
         return Slimefun.getHologramsService().getDefaultOffset();
     }
 }

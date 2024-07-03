@@ -30,7 +30,7 @@ public class IntRangeSetting extends ItemSetting<Integer> {
         this.max = max;
     }
 
-    @Nonnull
+    
     @Override
     protected String getErrorMessage() {
         return "Only whole numbers from " + min + '-' + max + "(inclusive) are allowed!";

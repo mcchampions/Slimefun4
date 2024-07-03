@@ -71,7 +71,7 @@ public class HologramsService {
      * @param plugin
      *            Our {@link Plugin} instance
      */
-    public HologramsService(@Nonnull Plugin plugin) {
+    public HologramsService(Plugin plugin) {
         this.plugin = plugin;
 
         // Null-Validation is performed in the NamespacedKey constructor
@@ -91,7 +91,7 @@ public class HologramsService {
      *
      * @return The default offset
      */
-    @Nonnull
+    
     public Vector getDefaultOffset() {
         return defaultOffset;
     }
@@ -123,7 +123,7 @@ public class HologramsService {
      *
      * @return The existing (or newly created) hologram
      */
-    @Nullable private Hologram getHologram(@Nonnull Location loc, boolean createIfNoneExists) {
+    @Nullable private Hologram getHologram(Location loc, boolean createIfNoneExists) {
         Validate.notNull(loc, "Location cannot be null");
 
         BlockPosition position = new BlockPosition(loc);
@@ -186,7 +186,7 @@ public class HologramsService {
      *
      * @return Whether this could be a hologram
      */
-    private boolean isHologram(@Nonnull Entity n) {
+    private boolean isHologram(Entity n) {
         if (n instanceof ArmorStand armorStand) {
             // The absolute minimum requirements to count as a hologram
             return !armorStand.isVisible() && armorStand.isSilent() && !armorStand.hasGravity();
@@ -209,7 +209,7 @@ public class HologramsService {
      * @return The {@link Hologram}
      */
     @Nullable private Hologram getAsHologram(
-            @Nonnull BlockPosition position, @Nonnull Entity entity, @Nonnull PersistentDataContainer container) {
+            BlockPosition position, Entity entity, PersistentDataContainer container) {
         if (entity instanceof ArmorStand armorStand) {
             armorStand.setVisible(false);
             armorStand.setInvulnerable(true);
@@ -244,7 +244,7 @@ public class HologramsService {
      * @param consumer
      *            The callback to run
      */
-    private void updateHologram(@Nonnull Location loc, @Nonnull Consumer<Hologram> consumer) {
+    private void updateHologram(Location loc, Consumer<Hologram> consumer) {
         Validate.notNull(loc, "Location must not be null");
         Validate.notNull(consumer, "Callbacks must not be null");
 
@@ -279,7 +279,7 @@ public class HologramsService {
      * @return Whether the {@link Hologram} could be removed, false if the {@link Hologram} does not
      *         exist or was already removed
      */
-    public boolean removeHologram(@Nonnull Location loc) {
+    public boolean removeHologram(Location loc) {
         Validate.notNull(loc, "Location cannot be null");
 
         if (Bukkit.isPrimaryThread()) {
@@ -311,7 +311,7 @@ public class HologramsService {
      * @param label
      *            The label to set, can be null
      */
-    public void setHologramLabel(@Nonnull Location loc, @Nullable String label) {
+    public void setHologramLabel(Location loc, @Nullable String label) {
         Validate.notNull(loc, "Location must not be null");
 
         updateHologram(loc, hologram -> hologram.setLabel(label));

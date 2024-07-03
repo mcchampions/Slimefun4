@@ -36,10 +36,10 @@ public abstract class SimpleBlockBreakHandler extends BlockBreakHandler {
      * @param b
      *            The broken {@link Block}
      */
-    public abstract void onBlockBreak(@Nonnull Block b);
+    public abstract void onBlockBreak(Block b);
 
     @Override
-    public void onPlayerBreak(BlockBreakEvent e, @Nonnull ItemStack item, @Nonnull List<ItemStack> drops) {
+    public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
         onBlockBreak(e.getBlock());
     }
 
@@ -49,7 +49,7 @@ public abstract class SimpleBlockBreakHandler extends BlockBreakHandler {
     }
 
     @Override
-    public void onExplode(@Nonnull Block b, @Nonnull List<ItemStack> drops) {
+    public void onExplode(Block b, List<ItemStack> drops) {
         onBlockBreak(b);
     }
 }

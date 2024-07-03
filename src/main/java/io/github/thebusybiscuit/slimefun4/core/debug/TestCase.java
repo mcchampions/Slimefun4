@@ -29,7 +29,7 @@ public enum TestCase {
     TestCase() {}
 
     @Override
-    public @Nonnull String toString() {
+    public String toString() {
         return "slimefun_" + name().toLowerCase(Locale.ROOT);
     }
 }

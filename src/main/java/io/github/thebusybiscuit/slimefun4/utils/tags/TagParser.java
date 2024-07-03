@@ -51,7 +51,7 @@ public class TagParser implements Keyed {
      * @param key
      *            The {@link NamespacedKey} of the resulting {@link SlimefunTag}
      */
-    public TagParser(@Nonnull NamespacedKey key) {
+    public TagParser(NamespacedKey key) {
         this.key = key;
     }
 
@@ -61,11 +61,11 @@ public class TagParser implements Keyed {
      * @param tag
      *            The {@link SlimefunTag} to parse inputs for
      */
-    TagParser(@Nonnull SlimefunTag tag) {
+    TagParser(SlimefunTag tag) {
         this(tag.getKey());
     }
 
-    void parse(@Nonnull SlimefunTag tag, @Nonnull BiConsumer<Set<Material>, Set<Tag<Material>>> callback)
+    void parse(SlimefunTag tag, BiConsumer<Set<Material>, Set<Tag<Material>>> callback)
             throws TagMisconfigurationException {
         String path = "/tags/" + tag.getKey().getKey() + ".json";
 
@@ -90,7 +90,7 @@ public class TagParser implements Keyed {
      *             This is thrown whenever the given input is malformed or no adequate
      *             {@link Material} or {@link Tag} could be found
      */
-    public void parse(@Nonnull String json, @Nonnull BiConsumer<Set<Material>, Set<Tag<Material>>> callback)
+    public void parse(String json, BiConsumer<Set<Material>, Set<Tag<Material>>> callback)
             throws TagMisconfigurationException {
         Validate.notNull(json, "Cannot parse a null String");
 
@@ -205,7 +205,7 @@ public class TagParser implements Keyed {
         }
     }
 
-    @Nonnull
+    
     @Override
     public NamespacedKey getKey() {
         return key;

@@ -62,7 +62,7 @@ public class BlockPlacer extends SlimefunItem {
         addItemHandler(new VanillaInventoryDropHandler<>(Dispenser.class));
     }
 
-    @Nonnull
+    
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
@@ -76,7 +76,7 @@ public class BlockPlacer extends SlimefunItem {
         };
     }
 
-    @Nonnull
+    
     private BlockDispenseHandler onBlockDispense() {
         return (e, dispenser, facedBlock, machine) -> {
             if (!hasPermission(dispenser, facedBlock)) {
@@ -151,7 +151,7 @@ public class BlockPlacer extends SlimefunItem {
      *
      * @return Whether placing this {@link Material} is allowed
      */
-    private boolean isAllowed(@Nonnull Block facedBlock, @Nonnull Material type) {
+    private boolean isAllowed(Block facedBlock, Material type) {
         if (!type.isBlock()) {
             // Make sure the material is actually a block.
             return false;

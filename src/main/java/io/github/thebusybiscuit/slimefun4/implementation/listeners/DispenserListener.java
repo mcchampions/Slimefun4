@@ -28,7 +28,7 @@ import org.bukkit.event.block.BlockDispenseEvent;
  */
 public class DispenserListener implements Listener {
 
-    public DispenserListener(@Nonnull Slimefun plugin) {
+    public DispenserListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

@@ -34,7 +34,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ExplosionsListener implements Listener {
 
-    public ExplosionsListener(@Nonnull Slimefun plugin) {
+    public ExplosionsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -48,7 +48,7 @@ public class ExplosionsListener implements Listener {
         removeResistantBlocks(e.blockList().iterator());
     }
 
-    private void removeResistantBlocks(@Nonnull Iterator<Block> blocks) {
+    private void removeResistantBlocks(Iterator<Block> blocks) {
         while (blocks.hasNext()) {
             Block block = blocks.next();
             var loc = block.getLocation();

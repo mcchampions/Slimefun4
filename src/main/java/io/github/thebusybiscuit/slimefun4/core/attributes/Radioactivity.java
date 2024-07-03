@@ -70,7 +70,7 @@ public enum Radioactivity {
         return exposureModifier;
     }
 
-    public @Nonnull String getLore() {
+    public String getLore() {
         return ChatColor.GREEN + "\u2622" + ChatColor.GRAY + " 辐射等级: " + color + displayName;
     }
 

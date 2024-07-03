@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class BeeListener implements Listener {
 
-    public BeeListener(@Nonnull Slimefun plugin) {
+    public BeeListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

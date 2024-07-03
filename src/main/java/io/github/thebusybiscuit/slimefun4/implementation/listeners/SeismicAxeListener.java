@@ -22,7 +22,7 @@ public class SeismicAxeListener implements Listener {
 
     private final SeismicAxe seismicAxe;
 
-    public SeismicAxeListener(@Nonnull Slimefun plugin, @Nonnull SeismicAxe seismicAxe) {
+    public SeismicAxeListener(Slimefun plugin, SeismicAxe seismicAxe) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.seismicAxe = seismicAxe;
     }

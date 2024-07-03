@@ -82,7 +82,7 @@ public class MagicianTalisman extends Talisman {
      * @return An applicable {@link TalismanEnchantment} or null
      */
     @Nullable public TalismanEnchantment getRandomEnchantment(
-            @Nonnull ItemStack item, @Nonnull Set<Enchantment> existingEnchantments) {
+            ItemStack item, Set<Enchantment> existingEnchantments) {
         Validate.notNull(item, "The ItemStack cannot be null");
         Validate.notNull(existingEnchantments, "The Enchantments Set cannot be null");
 

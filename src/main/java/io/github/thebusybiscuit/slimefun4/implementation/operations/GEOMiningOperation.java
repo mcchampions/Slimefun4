@@ -21,7 +21,7 @@ public class GEOMiningOperation extends MiningOperation {
 
     private final GEOResource resource;
 
-    public GEOMiningOperation(@Nonnull GEOResource resource, int totalTicks) {
+    public GEOMiningOperation(GEOResource resource, int totalTicks) {
         super(resource.getItem().clone(), totalTicks);
         this.resource = resource;
     }
@@ -31,7 +31,7 @@ public class GEOMiningOperation extends MiningOperation {
      * when the {@link GEOMiningOperation} gets cancelled
      */
     @Override
-    public void onCancel(@Nonnull BlockPosition position) {
+    public void onCancel(BlockPosition position) {
         ResourceManager resourceManager = Slimefun.getGPSNetwork().getResourceManager();
         OptionalInt supplies =
                 resourceManager.getSupplies(resource, position.getWorld(), position.getChunkX(), position.getChunkZ());

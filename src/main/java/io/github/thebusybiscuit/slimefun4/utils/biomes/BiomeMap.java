@@ -61,25 +61,25 @@ public class BiomeMap<T> implements Keyed {
         this.namespacedKey = namespacedKey;
     }
 
-    public @Nullable T get(@Nonnull Biome biome) {
+    public @Nullable T get(Biome biome) {
         Validate.notNull(biome, "The biome shall not be null.");
 
         return dataMap.get(biome);
     }
 
-    public @Nonnull T getOrDefault(@Nonnull Biome biome, T defaultValue) {
+    public T getOrDefault(Biome biome, T defaultValue) {
         Validate.notNull(biome, "The biome should not be null.");
 
         return dataMap.getOrDefault(biome, defaultValue);
     }
 
-    public boolean containsKey(@Nonnull Biome biome) {
+    public boolean containsKey(Biome biome) {
         Validate.notNull(biome, "The biome must not be null.");
 
         return dataMap.containsKey(biome);
     }
 
-    public boolean containsValue(@Nonnull T value) {
+    public boolean containsValue(T value) {
         Validate.notNull(value, "The value must not be null.");
 
         return dataMap.containsValue(value);
@@ -95,26 +95,26 @@ public class BiomeMap<T> implements Keyed {
         return dataMap.isEmpty();
     }
 
-    public boolean put(@Nonnull Biome biome, @Nonnull T value) {
+    public boolean put(Biome biome, T value) {
         Validate.notNull(biome, "The biome should not be null.");
         Validate.notNull(value, "Values cannot be null.");
 
         return dataMap.put(biome, value) == null;
     }
 
-    public void putAll(@Nonnull Map<Biome, T> map) {
+    public void putAll(Map<Biome, T> map) {
         Validate.notNull(map, "The map should not be null.");
 
         dataMap.putAll(map);
     }
 
-    public void putAll(@Nonnull BiomeMap<T> map) {
+    public void putAll(BiomeMap<T> map) {
         Validate.notNull(map, "The map should not be null.");
 
         dataMap.putAll(map.dataMap);
     }
 
-    public boolean remove(@Nonnull Biome biome) {
+    public boolean remove(Biome biome) {
         Validate.notNull(biome, "The biome cannot be null.");
 
         return dataMap.remove(biome) != null;
@@ -124,7 +124,7 @@ public class BiomeMap<T> implements Keyed {
      * {@inheritDoc}
      */
     @Override
-    public @Nonnull NamespacedKey getKey() {
+    public NamespacedKey getKey() {
         return namespacedKey;
     }
 
@@ -137,7 +137,7 @@ public class BiomeMap<T> implements Keyed {
     }
 
     @ParametersAreNonnullByDefault
-    public static <T> @Nonnull BiomeMap<T> fromJson(
+    public static <T> BiomeMap<T> fromJson(
             NamespacedKey key, String json, BiomeDataConverter<T> valueConverter) throws BiomeMapException {
         // All parameters are validated by the Parser.
         BiomeMapParser<T> parser = new BiomeMapParser<>(key, valueConverter);
@@ -146,7 +146,7 @@ public class BiomeMap<T> implements Keyed {
     }
 
     @ParametersAreNonnullByDefault
-    public static <T> @Nonnull BiomeMap<T> fromJson(
+    public static <T> BiomeMap<T> fromJson(
             NamespacedKey key, String json, BiomeDataConverter<T> valueConverter, boolean isLenient)
             throws BiomeMapException {
         // All parameters are validated by the Parser.
@@ -157,7 +157,7 @@ public class BiomeMap<T> implements Keyed {
     }
 
     @ParametersAreNonnullByDefault
-    public static <T> @Nonnull BiomeMap<T> fromResource(
+    public static <T> BiomeMap<T> fromResource(
             NamespacedKey key, JavaPlugin plugin, String path, BiomeDataConverter<T> valueConverter)
             throws BiomeMapException {
         Validate.notNull(key, "The key shall not be null.");
@@ -173,19 +173,19 @@ public class BiomeMap<T> implements Keyed {
     }
 
     @ParametersAreNonnullByDefault
-    public static @Nonnull BiomeMap<Integer> getIntMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
+    public static BiomeMap<Integer> getIntMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
             throws BiomeMapException {
         return fromResource(key, plugin, path, JsonElement::getAsInt);
     }
 
     @ParametersAreNonnullByDefault
-    public static @Nonnull BiomeMap<Long> getLongMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
+    public static BiomeMap<Long> getLongMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
             throws BiomeMapException {
         return fromResource(key, plugin, path, JsonElement::getAsLong);
     }
 
     @ParametersAreNonnullByDefault
-    public static @Nonnull BiomeMap<String> getStringMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
+    public static BiomeMap<String> getStringMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
             throws BiomeMapException {
         return fromResource(key, plugin, path, JsonElement::getAsString);
     }

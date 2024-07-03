@@ -139,7 +139,7 @@ public class Talisman extends SlimefunItem {
         }
     }
 
-    @Nonnull
+    
     public PotionEffect[] getEffects() {
         return effects;
     }
@@ -306,7 +306,7 @@ public class Talisman extends SlimefunItem {
      * @param p
      *            The {@link Player} who shall receive the message
      */
-    public void sendMessage(@Nonnull Player p) {
+    public void sendMessage(Player p) {
         Validate.notNull(p, "The Player must not be null.");
 
         // Check if this Talisman has a message
@@ -327,7 +327,7 @@ public class Talisman extends SlimefunItem {
         }
     }
 
-    private boolean canEffectsBeApplied(@Nonnull Player p) {
+    private boolean canEffectsBeApplied(Player p) {
         for (PotionEffect effect : getEffects()) {
             if (effect != null && p.hasPotionEffect(effect.getType())) {
                 return false;
@@ -337,7 +337,7 @@ public class Talisman extends SlimefunItem {
         return true;
     }
 
-    @Nullable private static Player getPlayerByEventType(@Nonnull Event e) {
+    @Nullable private static Player getPlayerByEventType(Event e) {
         if (e instanceof EntityDeathEvent entityDeathEvent) {
             return entityDeathEvent.getEntity().getKiller();
         } else if (e instanceof BlockBreakEvent blockBreakEvent) {

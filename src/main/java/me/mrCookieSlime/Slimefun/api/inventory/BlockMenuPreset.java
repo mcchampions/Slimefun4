@@ -26,7 +26,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
 
     private boolean locked;
 
-    protected BlockMenuPreset(@Nonnull String id, @Nonnull String title) {
+    protected BlockMenuPreset(String id, String title) {
         super(title);
 
         Validate.notNull(id, "You need to specify an id!");
@@ -59,7 +59,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *
      * @return Whether that {@link Player} is allowed
      */
-    public abstract boolean canOpen(@Nonnull Block b, @Nonnull Player p);
+    public abstract boolean canOpen(Block b, Player p);
 
     public abstract int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow);
 
@@ -79,12 +79,12 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * @return The new outcome of this operation
      */
     @Nullable protected ItemStack onItemStackChange(
-            @Nonnull DirtyChestMenu menu, int slot, @Nullable ItemStack previous, @Nullable ItemStack next) {
+            DirtyChestMenu menu, int slot, @Nullable ItemStack previous, @Nullable ItemStack next) {
         // Override this as necessary
         return next;
     }
 
-    public void newInstance(@Nonnull BlockMenu menu, @Nonnull Block b) {
+    public void newInstance(BlockMenu menu, Block b) {
         // This method can optionally be overridden by implementations
     }
 
@@ -106,7 +106,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * @param slots
      *            The slots which should be treated as background
      */
-    public void drawBackground(@Nonnull ItemStack item, @Nonnull int[] slots) {
+    public void drawBackground(ItemStack item, int[] slots) {
         Validate.notNull(item, "The background item cannot be null!");
         checkIfLocked();
 
@@ -121,7 +121,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * @param slots
      *            The slots which should be treated as background
      */
-    public void drawBackground(@Nonnull int[] slots) {
+    public void drawBackground(int[] slots) {
         drawBackground(ChestMenuUtils.getBackground(), slots);
     }
 
@@ -139,7 +139,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return super.addMenuClickHandler(slot, handler);
     }
 
-    @Nonnull
+    
     public ChestMenu setSize(int size) {
         checkIfLocked();
 
@@ -166,12 +166,12 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return inventoryTitle;
     }
 
-    @Nonnull
+    
     public Set<Integer> getPresetSlots() {
         return occupiedSlots;
     }
 
-    @Nonnull
+    
     public Set<Integer> getInventorySlots() {
         Set<Integer> emptySlots = new HashSet<>();
 
@@ -192,7 +192,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return emptySlots;
     }
 
-    protected void clone(@Nonnull DirtyChestMenu menu) {
+    protected void clone(DirtyChestMenu menu) {
         menu.setPlayerInventoryClickable(true);
 
         if (isSizeAutomaticallyInferred()) {
@@ -217,7 +217,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
         menu.addMenuCloseHandler(getMenuCloseHandler());
     }
 
-    public void newInstance(@Nonnull BlockMenu menu, @Nonnull Location l) {
+    public void newInstance(BlockMenu menu, Location l) {
         Validate.notNull(l, "Cannot create a new BlockMenu without a Location");
 
         Slimefun.runSync(() -> {
@@ -237,7 +237,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *
      * @return Our identifier
      */
-    @Nonnull
+    
     public String getID() {
         return id;
     }
@@ -247,7 +247,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *
      * @return The associated {@link SlimefunItem}
      */
-    @Nonnull
+    
     public SlimefunItem getSlimefunItem() {
         return SlimefunItem.getById(id);
     }

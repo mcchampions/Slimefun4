@@ -42,7 +42,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class SlimefunItemInteractListener implements Listener {
 
-    public SlimefunItemInteractListener(@Nonnull Slimefun plugin) {
+    public SlimefunItemInteractListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

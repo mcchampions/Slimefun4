@@ -43,9 +43,9 @@ public class CheatSheetSlimefunGuide extends SurvivalSlimefunGuide {
      *
      * @return a {@link List} of visible {@link ItemGroup} instances
      */
-    @Nonnull
+    
     @Override
-    protected List<ItemGroup> getVisibleItemGroups(@Nonnull Player p, @Nonnull PlayerProfile profile) {
+    protected List<ItemGroup> getVisibleItemGroups(Player p, PlayerProfile profile) {
         List<ItemGroup> groups = new LinkedList<>();
 
         for (ItemGroup group : Slimefun.getRegistry().getAllItemGroups()) {
@@ -58,12 +58,12 @@ public class CheatSheetSlimefunGuide extends SurvivalSlimefunGuide {
     }
 
     @Override
-    public @Nonnull SlimefunGuideMode getMode() {
+    public SlimefunGuideMode getMode() {
         return SlimefunGuideMode.CHEAT_MODE;
     }
 
     @Override
-    public @Nonnull ItemStack getItem() {
+    public ItemStack getItem() {
         return item;
     }
 

@@ -48,7 +48,7 @@ public class BackpackListener implements Listener {
     private final Map<UUID, ItemStack> backpacks = new HashMap<>();
     private final Map<UUID, List<Pair<ItemStack, Integer>>> invSnapshot = new HashMap<>();
 
-    public void register(@Nonnull Slimefun plugin) {
+    public void register(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -127,7 +127,7 @@ public class BackpackListener implements Listener {
         }
     }
 
-    private boolean isAllowed(@Nonnull SlimefunBackpack backpack, @Nullable ItemStack item) {
+    private boolean isAllowed(SlimefunBackpack backpack, @Nullable ItemStack item) {
         if (item == null || item.getType() == Material.AIR) {
             return true;
         }

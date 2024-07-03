@@ -103,7 +103,7 @@ public class IgnitionChamber extends SlimefunItem {
         }
     }
 
-    private static @Nullable Inventory findIgnitionChamber(@Nonnull Block b) {
+    private static @Nullable Inventory findIgnitionChamber(Block b) {
         for (BlockFace face : ADJACENT_FACES) {
             Block block = b.getRelative(face);
 

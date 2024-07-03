@@ -227,7 +227,7 @@ public final class SlimefunItemSetup {
 
     private SlimefunItemSetup() {}
 
-    public static void setup(@Nonnull Slimefun plugin) {
+    public static void setup(Slimefun plugin) {
         if (registeredItems) {
             throw new UnsupportedOperationException("Slimefun Items can only be registered once!");
         }

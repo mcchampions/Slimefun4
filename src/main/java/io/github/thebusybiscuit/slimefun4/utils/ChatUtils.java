@@ -22,7 +22,7 @@ public final class ChatUtils {
 
     private ChatUtils() {}
 
-    public static void sendURL(@Nonnull CommandSender sender, @Nonnull String url) {
+    public static void sendURL(CommandSender sender, String url) {
         // If we get access to the URL prompt one day, we can just prompt the link to the Player that
         // way.
         sender.sendMessage("");
@@ -31,11 +31,11 @@ public final class ChatUtils {
         sender.sendMessage("");
     }
 
-    public static @Nonnull String removeColorCodes(@Nonnull String string) {
+    public static String removeColorCodes(String string) {
         return ChatColor.stripColor(ChatColors.color(string));
     }
 
-    public static @Nonnull String crop(@Nonnull ChatColor color, @Nonnull String string) {
+    public static String crop(ChatColor color, String string) {
         if (ChatColor.stripColor(color + string).length() > 19) {
             return (color + ChatColor.stripColor(string)).substring(0, 18) + "...";
         } else {
@@ -43,11 +43,11 @@ public final class ChatUtils {
         }
     }
 
-    public static @Nonnull String christmas(@Nonnull String text) {
+    public static String christmas(String text) {
         return ChatColors.alternating(text, ChatColor.GREEN, ChatColor.RED);
     }
 
-    public static void awaitInput(@Nonnull Player p, @Nonnull Consumer<String> callback) {
+    public static void awaitInput(Player p, Consumer<String> callback) {
         ChatInput.waitForPlayer(Slimefun.instance(), p, callback);
     }
 
@@ -64,7 +64,7 @@ public final class ChatUtils {
      *
      * @return A human-friendly version of the given {@link String}
      */
-    public static @Nonnull String humanize(@Nonnull String string) {
+    public static String humanize(String string) {
         StringBuilder builder = new StringBuilder();
         String[] segments = CommonPatterns.UNDERSCORE.split(string.toLowerCase(Locale.ROOT));
 
@@ -90,7 +90,7 @@ public final class ChatUtils {
      * @throws IllegalArgumentException
      *      if count is less than 0
      */
-    public static @Nonnull String checkPlurality(@Nonnull String string, int count) {
+    public static String checkPlurality(String string, int count) {
         if (count < 0) {
             throw new IllegalArgumentException("Argument count cannot be negative.");
         }

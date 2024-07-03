@@ -66,7 +66,7 @@ public class ElectricGoldPan extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> recipes = new ArrayList<>();
 
         recipes.addAll(goldPan.getDisplayRecipes());
@@ -108,7 +108,7 @@ public class ElectricGoldPan extends AContainer implements RecipeDisplayItem {
         return null;
     }
 
-    private boolean hasFreeSlot(@Nonnull BlockMenu menu) {
+    private boolean hasFreeSlot(BlockMenu menu) {
         for (int slot : getOutputSlots()) {
             if (menu.getItemInSlot(slot) == null) {
                 return true;
@@ -119,7 +119,7 @@ public class ElectricGoldPan extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    public @Nonnull String getMachineIdentifier() {
+    public String getMachineIdentifier() {
         return "ELECTRIC_GOLD_PAN";
     }
 }

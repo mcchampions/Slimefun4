@@ -21,7 +21,7 @@ class ClearLagIntegration implements Listener {
 
     private final Slimefun plugin;
 
-    ClearLagIntegration(@Nonnull Slimefun plugin) {
+    ClearLagIntegration(Slimefun plugin) {
         this.plugin = plugin;
     }
 

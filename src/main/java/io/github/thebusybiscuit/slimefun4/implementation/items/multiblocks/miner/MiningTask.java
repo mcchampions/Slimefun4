@@ -81,7 +81,7 @@ class MiningTask implements Runnable {
      * @param b
      *            The {@link Block} which marks the center of this {@link IndustrialMiner}
      */
-    void start(@Nonnull Block b) {
+    void start(Block b) {
         miner.activeMiners.put(b.getLocation(), this);
         running = true;
 
@@ -103,7 +103,7 @@ class MiningTask implements Runnable {
      * @param reason
      *            The reason why we stop
      */
-    void stop(@Nonnull MinerStoppingReason reason) {
+    void stop(MinerStoppingReason reason) {
         Player p = Bukkit.getPlayer(owner);
 
         if (p != null) {
@@ -267,7 +267,7 @@ class MiningTask implements Runnable {
      *
      * @return Whether the operation was successful
      */
-    private boolean push(@Nonnull ItemStack item) {
+    private boolean push(ItemStack item) {
         if (fuelLevel < 1) {
             // Restock fuel
             consumeFuel();
@@ -316,7 +316,7 @@ class MiningTask implements Runnable {
         }
     }
 
-    private int grabFuelFrom(@Nonnull Inventory inv) {
+    private int grabFuelFrom(Inventory inv) {
         for (int i = 0; i < inv.getSize(); i++) {
             for (MachineFuel fuelType : miner.fuelTypes) {
                 ItemStack item = inv.getContents()[i];
@@ -341,7 +341,7 @@ class MiningTask implements Runnable {
         return 0;
     }
 
-    private void setPistonState(@Nonnull Block block, boolean extended) {
+    private void setPistonState(Block block, boolean extended) {
         if (!running) {
             return;
         }
@@ -387,7 +387,7 @@ class MiningTask implements Runnable {
         }
     }
 
-    private void setExtended(@Nonnull Block block, @Nonnull Piston piston, boolean extended) {
+    private void setExtended(Block block, Piston piston, boolean extended) {
         piston.setExtended(extended);
         block.setBlockData(piston, false);
 

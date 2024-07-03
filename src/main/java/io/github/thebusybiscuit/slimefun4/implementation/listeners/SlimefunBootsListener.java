@@ -33,7 +33,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
  */
 public class SlimefunBootsListener implements Listener {
 
-    public SlimefunBootsListener(@Nonnull Slimefun plugin) {
+    public SlimefunBootsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -55,7 +55,7 @@ public class SlimefunBootsListener implements Listener {
         }
     }
 
-    private void onFallDamage(@Nonnull EntityDamageEvent e) {
+    private void onFallDamage(EntityDamageEvent e) {
         if (e.getEntity() instanceof Player p) {
             SlimefunItem boots = SlimefunItem.getByItem(p.getInventory().getBoots());
 

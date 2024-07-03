@@ -17,11 +17,11 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface Placeable {
 
-    @Nonnull
+    
     Collection<ItemStack> getDrops();
 
-    @Nonnull
-    Collection<ItemStack> getDrops(@Nonnull Player p);
+    
+    Collection<ItemStack> getDrops(Player p);
 
     /**
      * This method determines how to treat this {@link Block} when it is broken.

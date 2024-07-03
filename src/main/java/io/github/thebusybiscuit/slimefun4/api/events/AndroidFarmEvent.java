@@ -35,7 +35,7 @@ public class AndroidFarmEvent extends Event implements Cancellable {
      * @param drop       The item to be dropped or null
      */
     public AndroidFarmEvent(
-            @Nonnull Block block, @Nonnull AndroidInstance android, boolean isAdvanced, @Nullable ItemStack drop) {
+            Block block, AndroidInstance android, boolean isAdvanced, @Nullable ItemStack drop) {
         this.block = block;
         this.android = android;
         this.isAdvanced = isAdvanced;
@@ -47,7 +47,7 @@ public class AndroidFarmEvent extends Event implements Cancellable {
      *
      * @return the mined {@link Block}
      */
-    @Nonnull
+    
     public Block getBlock() {
         return block;
     }
@@ -85,7 +85,7 @@ public class AndroidFarmEvent extends Event implements Cancellable {
      *
      * @return the involved {@link AndroidInstance}
      */
-    @Nonnull
+    
     public AndroidInstance getAndroid() {
         return android;
     }
@@ -100,12 +100,12 @@ public class AndroidFarmEvent extends Event implements Cancellable {
         cancelled = cancel;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

@@ -63,7 +63,7 @@ public class MinerAndroid extends ProgrammableAndroid {
     }
 
     @Override
-    @Nonnull
+    
     public AndroidType getAndroidType() {
         return AndroidType.MINER;
     }

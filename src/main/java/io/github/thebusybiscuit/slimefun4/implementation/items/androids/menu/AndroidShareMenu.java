@@ -185,7 +185,7 @@ public final class AndroidShareMenu {
      * @param value list raw string
      * @return parse trusted player list
      */
-    private @Nonnull static List<String> parseBlockInfoToList(@Nonnull String value) {
+    private static List<String> parseBlockInfoToList(String value) {
         Validate.notNull(value, "The trusted player list cannot be null!");
 
         String replacedText = value.replace("[", "").replace("]", "");
@@ -203,7 +203,7 @@ public final class AndroidShareMenu {
      * @param b the block of android
      * @return trusted users list
      */
-    public @Nonnull static List<String> getTrustedUsers(@Nonnull Block b) {
+    public static List<String> getTrustedUsers(Block b) {
         Validate.notNull(b, "The android block cannot be null!");
 
         Optional<String> trustUsers = getSharedUserData(b.getState());
@@ -235,7 +235,7 @@ public final class AndroidShareMenu {
         return trustUsers.map(s -> s.contains(uuid.toString())).orElse(false);
     }
 
-    private static void setSharedUserData(@Nonnull BlockState state, @Nonnull String value) {
+    private static void setSharedUserData(BlockState state, String value) {
         Validate.notNull(state, "The android block state cannot be null!");
         Validate.notNull(value, "The data value cannot be null!");
 
@@ -261,7 +261,7 @@ public final class AndroidShareMenu {
         }
     }
 
-    private @Nonnull static Optional<String> getSharedUserData(@Nonnull BlockState state) {
+    private static Optional<String> getSharedUserData(BlockState state) {
         Validate.notNull(state, "The android block state cannot be null!");
 
         if (!(state instanceof TileState)) {

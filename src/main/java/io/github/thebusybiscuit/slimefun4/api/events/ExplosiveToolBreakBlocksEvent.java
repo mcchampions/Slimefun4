@@ -54,7 +54,7 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
      *
      * @return The primary broken {@link Block}
      */
-    @Nonnull
+    
     public Block getPrimaryBlock() {
         return this.mainBlock;
     }
@@ -64,7 +64,7 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
      *
      * @return The broken blocks
      */
-    @Nonnull
+    
     public List<Block> getAdditionalBlocks() {
         return this.additionalBlocks;
     }
@@ -74,7 +74,7 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
      *
      * @return the {@link ExplosiveTool} that was involved
      */
-    @Nonnull
+    
     public ExplosiveTool getExplosiveTool() {
         return this.explosiveTool;
     }
@@ -84,7 +84,7 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
      *
      * @return The {@link ItemStack} in the hand of the {@link Player}
      */
-    @Nonnull
+    
     public ItemStack getItemInHand() {
         return this.itemInHand;
     }
@@ -99,12 +99,12 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
         this.cancelled = cancel;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

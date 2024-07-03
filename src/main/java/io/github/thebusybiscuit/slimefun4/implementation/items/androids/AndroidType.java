@@ -51,7 +51,7 @@ public enum AndroidType {
      */
     NON_FIGHTER;
 
-    boolean isType(@Nonnull AndroidType type) {
+    boolean isType(AndroidType type) {
         return type == NONE || type == this || (type == NON_FIGHTER && this != FIGHTER);
     }
 }

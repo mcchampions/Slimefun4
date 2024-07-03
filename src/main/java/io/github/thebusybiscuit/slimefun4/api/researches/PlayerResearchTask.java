@@ -42,7 +42,7 @@ public class PlayerResearchTask implements Consumer<PlayerProfile> {
      * @param callback
      *            The callback to run when the task has completed
      */
-    PlayerResearchTask(@Nonnull Research research, boolean isInstant, @Nullable Consumer<Player> callback) {
+    PlayerResearchTask(Research research, boolean isInstant, @Nullable Consumer<Player> callback) {
         Validate.notNull(research, "The Research must not be null");
 
         this.research = research;
@@ -101,7 +101,7 @@ public class PlayerResearchTask implements Consumer<PlayerProfile> {
         }
     }
 
-    private void sendUpdateMessage(@Nonnull Player p) {
+    private void sendUpdateMessage(Player p) {
         for (int i = 1; i < RESEARCH_PROGRESS.length + 1; i++) {
             int index = i;
 
@@ -118,7 +118,7 @@ public class PlayerResearchTask implements Consumer<PlayerProfile> {
         }
     }
 
-    private void unlockResearch(@Nonnull Player p, @Nonnull PlayerProfile profile) {
+    private void unlockResearch(Player p, PlayerProfile profile) {
         profile.setResearched(research, true);
         Slimefun.getLocalization()
                 .sendMessage(p, "messages.unlocked", true, msg -> msg.replace(PLACEHOLDER, research.getName(p)));
@@ -136,7 +136,7 @@ public class PlayerResearchTask implements Consumer<PlayerProfile> {
      * @param p
      *            The {@link Player} who has unlocked this {@link Research}
      */
-    private void onFinish(@Nonnull Player p) {
+    private void onFinish(Player p) {
         if (callback != null) {
             callback.accept(p);
         }

@@ -9,7 +9,7 @@ public class ScopeKey {
         this.scope = scope;
     }
 
-    @Nonnull
+    
     public DataScope getScope() {
         return scope;
     }

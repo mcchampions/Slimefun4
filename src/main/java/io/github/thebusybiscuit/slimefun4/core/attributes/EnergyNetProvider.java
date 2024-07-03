@@ -26,7 +26,7 @@ import org.bukkit.Location;
 public interface EnergyNetProvider extends EnergyNetComponent {
 
     @Override
-    @Nonnull
+    
     default EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.GENERATOR;
     }
@@ -40,11 +40,11 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @param data The stored block data
      * @return The generated output energy of this {@link EnergyNetProvider}.
      */
-    default int getGeneratedOutput(@Nonnull Location l, @Nonnull SlimefunBlockData data) {
+    default int getGeneratedOutput(Location l, SlimefunBlockData data) {
         return getGeneratedOutput(l, new BlockDataConfigWrapper(data));
     }
 
-    default int getGeneratedOutput(@Nonnull Location l, @Nonnull Config data) {
+    default int getGeneratedOutput(Location l, Config data) {
         return 0;
     }
 
@@ -56,11 +56,11 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @param data The stored block data
      * @return Whether or not this {@link Location} will explode.
      */
-    default boolean willExplode(@Nonnull Location l, @Nonnull SlimefunBlockData data) {
+    default boolean willExplode(Location l, SlimefunBlockData data) {
         return willExplode(l, new BlockDataConfigWrapper(data));
     }
 
-    default boolean willExplode(@Nonnull Location l, @Nonnull Config data) {
+    default boolean willExplode(Location l, Config data) {
         return false;
     }
 }

@@ -44,7 +44,7 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      *
      * @return The {@link Cooler} that was used
      */
-    @Nonnull
+    
     public Cooler getCooler() {
         return cooler;
     }
@@ -54,7 +54,7 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      *
      * @return The {@link Cooler} that was used
      */
-    @Nonnull
+    
     public ItemStack getCoolerItem() {
         return coolerItem;
     }
@@ -65,7 +65,7 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      *
      * @return The {@link ItemStack} that was consumed
      */
-    @Nonnull
+    
     public ItemStack getConsumedItem() {
         return consumedItem.clone();
     }
@@ -78,7 +78,7 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      *
      * @param item The new {@link ItemStack}
      */
-    public void setConsumedItem(@Nonnull ItemStack item) {
+    public void setConsumedItem(ItemStack item) {
         Validate.notNull(item, "The consumed Item cannot be null!");
         Validate.isTrue(item.getItemMeta() instanceof PotionMeta, "The item must be a potion!");
 
@@ -95,12 +95,12 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
         this.cancelled = cancel;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

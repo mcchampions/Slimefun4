@@ -74,7 +74,7 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      * {@inheritDoc}
      */
     @Override
-    public @Nonnull SummaryOrderType getOrderType() {
+    public SummaryOrderType getOrderType() {
         return orderType;
     }
 
@@ -82,7 +82,7 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      * {@inheritDoc}
      */
     @Override
-    public void sendMessage(@Nonnull String msg) {
+    public void sendMessage(String msg) {
         console.sendMessage(msg);
     }
 }

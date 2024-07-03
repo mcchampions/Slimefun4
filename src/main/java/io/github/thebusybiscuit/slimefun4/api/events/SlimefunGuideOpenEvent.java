@@ -25,7 +25,7 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
     private SlimefunGuideMode layout;
     private boolean cancelled;
 
-    public SlimefunGuideOpenEvent(@Nonnull Player p, @Nonnull ItemStack guide, @Nonnull SlimefunGuideMode layout) {
+    public SlimefunGuideOpenEvent(Player p, ItemStack guide, SlimefunGuideMode layout) {
         Validate.notNull(p, "The Player cannot be null");
         Validate.notNull(guide, "Guide cannot be null");
         Validate.notNull(layout, "Layout cannot be null");
@@ -40,7 +40,7 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
      *
      * @return The {@link Player}
      */
-    @Nonnull
+    
     public Player getPlayer() {
         return player;
     }
@@ -51,7 +51,7 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
      *
      * @return The {@link ItemStack}
      */
-    @Nonnull
+    
     public ItemStack getGuide() {
         return guide;
     }
@@ -62,7 +62,7 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
      *
      * @return The {@link SlimefunGuideMode}
      */
-    @Nonnull
+    
     public SlimefunGuideMode getGuideLayout() {
         return layout;
     }
@@ -73,7 +73,7 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
      * @param layout
      *            The new {@link SlimefunGuideMode}
      */
-    public void setGuideLayout(@Nonnull SlimefunGuideMode layout) {
+    public void setGuideLayout(SlimefunGuideMode layout) {
         Validate.notNull(layout, "You must specify a layout that is not-null!");
         this.layout = layout;
     }
@@ -88,12 +88,12 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
         this.cancelled = cancel;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

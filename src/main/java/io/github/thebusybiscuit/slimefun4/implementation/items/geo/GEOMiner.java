@@ -80,7 +80,7 @@ public class GEOMiner extends SlimefunItem
     }
 
     @Override
-    public @Nonnull MachineProcessor<GEOMiningOperation> getMachineProcessor() {
+    public MachineProcessor<GEOMiningOperation> getMachineProcessor() {
         return processor;
     }
 
@@ -170,7 +170,7 @@ public class GEOMiner extends SlimefunItem
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         this.addon = addon;
 
         if (getCapacity() <= 0) {
@@ -195,23 +195,23 @@ public class GEOMiner extends SlimefunItem
         }
     }
 
-    @Nonnull
+    
     private BlockPlaceHandler onBlockPlace() {
         return new BlockPlaceHandler(false) {
 
             @Override
-            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
+            public void onPlayerPlace(BlockPlaceEvent e) {
                 updateHologram(e.getBlock(), "&7待机中...");
             }
         };
     }
 
-    @Nonnull
+    
     private BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 removeHologram(b);
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
@@ -224,19 +224,19 @@ public class GEOMiner extends SlimefunItem
         };
     }
 
-    @Nonnull
+    
     @Override
     public int[] getInputSlots() {
         return new int[0];
     }
 
-    @Nonnull
+    
     @Override
     public int[] getOutputSlots() {
         return OUTPUT_SLOTS;
     }
 
-    @Nonnull
+    
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new LinkedList<>();
@@ -251,17 +251,17 @@ public class GEOMiner extends SlimefunItem
     }
 
     @Override
-    public @Nonnull String getLabelLocalPath() {
+    public String getLabelLocalPath() {
         return "guide.tooltips.recipes.miner";
     }
 
-    @Nonnull
+    
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;
     }
 
-    protected void constructMenu(@Nonnull BlockMenuPreset preset) {
+    protected void constructMenu(BlockMenuPreset preset) {
         for (int i : BORDER) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
@@ -306,7 +306,7 @@ public class GEOMiner extends SlimefunItem
         });
     }
 
-    protected void tick(@Nonnull Block b) {
+    protected void tick(Block b) {
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
         GEOMiningOperation operation = processor.getOperation(b);
 
@@ -343,7 +343,7 @@ public class GEOMiner extends SlimefunItem
                 });
     }
 
-    private void start(@Nonnull Block b, @Nonnull BlockMenu inv) {
+    private void start(Block b, BlockMenu inv) {
         boolean success = Slimefun.getRegistry().getGEOResources().values().isEmpty();
         for (GEOResource resource : Slimefun.getRegistry().getGEOResources().values()) {
             if (resource.isObtainableFromGEOMiner()) {

@@ -41,7 +41,7 @@ public class MultiBlock {
         SUPPORTED_TAGS.add(Tag.FIRE);
     }
 
-    @Nonnull
+    
     public static Set<Tag<Material>> getSupportedTags() {
         return SUPPORTED_TAGS;
     }
@@ -51,7 +51,7 @@ public class MultiBlock {
     private final BlockFace trigger;
     private final boolean isSymmetric;
 
-    public MultiBlock(@Nonnull SlimefunItem item, Material[] build, @Nonnull BlockFace trigger) {
+    public MultiBlock(SlimefunItem item, Material[] build, BlockFace trigger) {
         Validate.notNull(item, "A MultiBlock requires a SlimefunItem!");
 
         if (build == null || build.length != 9) {
@@ -68,21 +68,21 @@ public class MultiBlock {
         this.isSymmetric = isSymmetric(build);
     }
 
-    @Nonnull
+    
     public SlimefunItem getSlimefunItem() {
         return item;
     }
 
-    private static boolean isSymmetric(@Nonnull Material[] blocks) {
+    private static boolean isSymmetric(Material[] blocks) {
         return blocks[0] == blocks[2] && blocks[3] == blocks[5] && blocks[6] == blocks[8];
     }
 
-    @Nonnull
+    
     public Material[] getStructure() {
         return blocks;
     }
 
-    @Nonnull
+    
     public BlockFace getTriggerBlock() {
         return trigger;
     }

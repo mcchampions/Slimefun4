@@ -56,7 +56,7 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
     }
 
     @Override
-    public @Nullable AbstractRecipe getSelectedRecipe(@Nonnull Block b) {
+    public @Nullable AbstractRecipe getSelectedRecipe(Block b) {
         BlockState state = PaperLib.getBlockState(b, false).getState();
 
         if (state instanceof Skull skull) {
@@ -90,7 +90,7 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
     }
 
     @Override
-    protected boolean matches(@Nonnull ItemStack item, @Nonnull Predicate<ItemStack> predicate) {
+    protected boolean matches(ItemStack item, Predicate<ItemStack> predicate) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         // Slimefunitems should be ignored (unless allowed)
@@ -102,7 +102,7 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
     }
 
     @Override
-    protected void updateRecipe(@Nonnull Block b, @Nonnull Player p) {
+    protected void updateRecipe(Block b, Player p) {
         ItemStack item = p.getInventory().getItemInMainHand();
         List<Recipe> recipes = getRecipesFor(item);
 
@@ -172,8 +172,8 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
         recipe.show(menu, task);
     }
 
-    @Nonnull
-    private List<Recipe> getRecipesFor(@Nonnull ItemStack item) {
+    
+    private List<Recipe> getRecipesFor(ItemStack item) {
         List<Recipe> recipes = new ArrayList<>();
 
         // Fixes #2913 - Bukkit.getRecipesFor() only checks for Materials

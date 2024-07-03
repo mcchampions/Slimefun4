@@ -20,7 +20,7 @@ public class AutoDisenchantEvent extends Event implements Cancellable {
     private final ItemStack item;
     private boolean cancelled;
 
-    public AutoDisenchantEvent(@Nonnull ItemStack item) {
+    public AutoDisenchantEvent(ItemStack item) {
         super(true);
 
         this.item = item;
@@ -31,7 +31,7 @@ public class AutoDisenchantEvent extends Event implements Cancellable {
      *
      * @return The {@link ItemStack} that is being disenchanted
      */
-    @Nonnull
+    
     public ItemStack getItem() {
         return item;
     }
@@ -46,12 +46,12 @@ public class AutoDisenchantEvent extends Event implements Cancellable {
         this.cancelled = cancel;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

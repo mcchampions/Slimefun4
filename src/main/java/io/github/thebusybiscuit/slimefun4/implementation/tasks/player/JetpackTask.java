@@ -15,7 +15,7 @@ public class JetpackTask extends AbstractPlayerTask {
 
     private final Jetpack jetpack;
 
-    public JetpackTask(@Nonnull Player p, @Nonnull Jetpack jetpack) {
+    public JetpackTask(Player p, Jetpack jetpack) {
         super(p);
         this.jetpack = jetpack;
     }

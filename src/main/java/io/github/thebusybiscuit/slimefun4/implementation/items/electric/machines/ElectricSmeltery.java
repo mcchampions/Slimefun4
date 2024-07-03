@@ -102,8 +102,8 @@ public class ElectricSmeltery extends AContainer implements NotHopperable {
         };
     }
 
-    @Nonnull
-    private Comparator<Integer> compareSlots(@Nonnull DirtyChestMenu menu) {
+    
+    private Comparator<Integer> compareSlots(DirtyChestMenu menu) {
         return Comparator.comparingInt(slot -> menu.getItemInSlot(slot).getAmount());
     }
 

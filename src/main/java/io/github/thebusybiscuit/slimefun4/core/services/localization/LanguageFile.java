@@ -23,17 +23,17 @@ public enum LanguageFile {
 
     private final String fileName;
 
-    LanguageFile(@Nonnull String fileName) {
+    LanguageFile(String fileName) {
         this.fileName = fileName;
     }
 
-    @Nonnull
-    public String getFilePath(@Nonnull Language language) {
+    
+    public String getFilePath(Language language) {
         return getFilePath(language.getId());
     }
 
-    @Nonnull
-    public String getFilePath(@Nonnull String languageId) {
+    
+    public String getFilePath(String languageId) {
         Validate.notNull(languageId, "Language id must not be null!");
         return "/languages/" + languageId + '/' + fileName;
     }

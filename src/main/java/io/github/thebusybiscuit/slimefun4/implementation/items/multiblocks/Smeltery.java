@@ -68,12 +68,12 @@ public class Smeltery extends AbstractSmeltery {
     }
 
     @Override
-    protected void registerDefaultRecipes(@Nonnull List<ItemStack> recipes) {
+    protected void registerDefaultRecipes(List<ItemStack> recipes) {
         recipes.add(SlimefunItems.IRON_DUST);
         recipes.add(new ItemStack(Material.IRON_INGOT));
     }
 
-    @Nonnull
+    
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> items = new ArrayList<>();

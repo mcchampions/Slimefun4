@@ -23,6 +23,6 @@ public interface ExternallyInteractable {
      *
      * @return The {@link InteractionResult} denoting the result of the interaction.
      */
-    @Nonnull
-    InteractionResult onInteract(@Nonnull Location location);
+    
+    InteractionResult onInteract(Location location);
 }

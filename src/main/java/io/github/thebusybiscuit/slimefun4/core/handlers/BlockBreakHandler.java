@@ -69,7 +69,7 @@ public abstract class BlockBreakHandler implements ItemHandler {
      *            The {@link Block}
      * @return Whether explosions can destroy this {@link Block}
      */
-    public boolean isExplosionAllowed(@Nonnull Block b) {
+    public boolean isExplosionAllowed(Block b) {
         /*
          * By default our flag is returned, but you can override it
          * to be handled on a per-Block basis.
@@ -86,7 +86,7 @@ public abstract class BlockBreakHandler implements ItemHandler {
      *
      * @return Whether androids can break the given {@link Block}
      */
-    public boolean isAndroidAllowed(@Nonnull Block b) {
+    public boolean isAndroidAllowed(Block b) {
         /*
          * By default our flag is returned, but you can override it
          * to be handled on a per-Block basis.

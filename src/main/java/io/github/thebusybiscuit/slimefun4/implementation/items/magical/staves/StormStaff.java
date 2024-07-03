@@ -43,12 +43,12 @@ public class StormStaff extends LimitedUseItem {
     }
 
     @Override
-    protected @Nonnull NamespacedKey getStorageKey() {
+    protected NamespacedKey getStorageKey() {
         return usageKey;
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             Player p = e.getPlayer();
             ItemStack item = e.getItem();

@@ -17,14 +17,14 @@ public class MigrateCommand extends SubCommand {
         super(plugin, cmd, "migrate", true);
     }
 
-    @Nonnull
+    
     @Override
     protected String getDescription() {
         return "commands.migrate.description";
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.migrate") || sender instanceof ConsoleCommandSender) {
             if (args.length > 1 && args[1].equalsIgnoreCase("confirm")) {
                 Slimefun.getLocalization().sendMessage(sender, "commands.migrate.started", true);
@@ -56,7 +56,7 @@ public class MigrateCommand extends SubCommand {
         }
     }
 
-    private void sendMigrateStatus(@Nonnull String migrateType, @Nonnull CommandSender sender, MigrateStatus status) {
+    private void sendMigrateStatus(String migrateType, CommandSender sender, MigrateStatus status) {
         switch (status) {
             case SUCCESS -> Slimefun.getLocalization()
                     .sendMessage(

@@ -20,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class CartographyTableListener implements SlimefunCraftingListener {
 
-    public CartographyTableListener(@Nonnull Slimefun plugin) {
+    public CartographyTableListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

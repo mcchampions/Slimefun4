@@ -48,7 +48,7 @@ public class EnergyNet extends Network implements HologramOwner {
     private final Map<Location, EnergyNetComponent> capacitors = new HashMap<>();
     private final Map<Location, EnergyNetComponent> consumers = new HashMap<>();
 
-    protected EnergyNet(@Nonnull Location l) {
+    protected EnergyNet(Location l) {
         super(Slimefun.getNetworkManager(), l);
     }
 
@@ -62,7 +62,7 @@ public class EnergyNet extends Network implements HologramOwner {
      *
      * @return An immutable {@link Map} of generators
      */
-    public @Nonnull Map<Location, EnergyNetProvider> getGenerators() {
+    public Map<Location, EnergyNetProvider> getGenerators() {
         return Collections.unmodifiableMap(generators);
     }
 
@@ -71,7 +71,7 @@ public class EnergyNet extends Network implements HologramOwner {
      *
      * @return An immutable {@link Map} of capacitors
      */
-    public @Nonnull Map<Location, EnergyNetComponent> getCapacitors() {
+    public Map<Location, EnergyNetComponent> getCapacitors() {
         return Collections.unmodifiableMap(capacitors);
     }
 
@@ -80,17 +80,17 @@ public class EnergyNet extends Network implements HologramOwner {
      *
      * @return An immutable {@link Map} of consumers
      */
-    public @Nonnull Map<Location, EnergyNetComponent> getConsumers() {
+    public Map<Location, EnergyNetComponent> getConsumers() {
         return Collections.unmodifiableMap(consumers);
     }
 
     @Override
-    public @Nonnull String getId() {
+    public String getId() {
         return "ENERGY_NETWORK";
     }
 
     @Override
-    public NetworkComponent classifyLocation(@Nonnull Location l) {
+    public NetworkComponent classifyLocation(Location l) {
         if (regulator.equals(l)) {
             return NetworkComponent.REGULATOR;
         }
@@ -139,7 +139,7 @@ public class EnergyNet extends Network implements HologramOwner {
         }
     }
 
-    public void tick(@Nonnull Block b, SlimefunBlockData blockData) {
+    public void tick(Block b, SlimefunBlockData blockData) {
         AtomicLong timestamp = new AtomicLong(Slimefun.getProfiler().newEntry());
 
         if (!regulator.equals(b.getLocation())) {
@@ -260,7 +260,7 @@ public class EnergyNet extends Network implements HologramOwner {
         }
     }
 
-    private int tickAllGenerators(@Nonnull LongConsumer timings) {
+    private int tickAllGenerators(LongConsumer timings) {
         Set<Location> explodedBlocks = new HashSet<>();
         int supply = 0;
 
@@ -334,7 +334,7 @@ public class EnergyNet extends Network implements HologramOwner {
         return supply;
     }
 
-    private void updateHologram(@Nonnull SlimefunBlockData data, double supply, double demand) {
+    private void updateHologram(SlimefunBlockData data, double supply, double demand) {
         if (demand > supply) {
             String netLoss = NumberUtils.getCompactDouble(demand - supply);
             updateHologram(
@@ -346,7 +346,7 @@ public class EnergyNet extends Network implements HologramOwner {
         }
     }
 
-    @Nullable private static EnergyNetComponent getComponent(@Nonnull Location l) {
+    @Nullable private static EnergyNetComponent getComponent(Location l) {
         SlimefunItem item = StorageCacheUtils.getSfItem(l);
 
         if (item instanceof EnergyNetComponent component) {
@@ -365,7 +365,7 @@ public class EnergyNet extends Network implements HologramOwner {
      *
      * @return The {@link EnergyNet} at that {@link Location}, or {@code null}
      */
-    @Nullable public static EnergyNet getNetworkFromLocation(@Nonnull Location l) {
+    @Nullable public static EnergyNet getNetworkFromLocation(Location l) {
         return Slimefun.getNetworkManager()
                 .getNetworkFromLocation(l, EnergyNet.class)
                 .orElse(null);
@@ -380,8 +380,8 @@ public class EnergyNet extends Network implements HologramOwner {
      *
      * @return The {@link EnergyNet} at that {@link Location}, or a new one
      */
-    @Nonnull
-    public static EnergyNet getNetworkFromLocationOrCreate(@Nonnull Location l) {
+    
+    public static EnergyNet getNetworkFromLocationOrCreate(Location l) {
         Optional<EnergyNet> energyNetwork = Slimefun.getNetworkManager().getNetworkFromLocation(l, EnergyNet.class);
 
         if (energyNetwork.isPresent()) {

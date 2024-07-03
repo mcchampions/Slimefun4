@@ -23,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class CauldronListener implements SlimefunCraftingListener {
 
-    public CauldronListener(@Nonnull Slimefun plugin) {
+    public CauldronListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

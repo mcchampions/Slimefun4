@@ -32,7 +32,7 @@ public enum PerformanceRating implements Predicate<Float> {
     private final ChatColor color;
     private final float threshold;
 
-    PerformanceRating(@Nonnull ChatColor color, float threshold) {
+    PerformanceRating(ChatColor color, float threshold) {
         Validate.notNull(color, "Color cannot be null");
         this.color = color;
         this.threshold = threshold;
@@ -48,7 +48,7 @@ public enum PerformanceRating implements Predicate<Float> {
         return value <= threshold;
     }
 
-    @Nonnull
+    
     public ChatColor getColor() {
         return color;
     }

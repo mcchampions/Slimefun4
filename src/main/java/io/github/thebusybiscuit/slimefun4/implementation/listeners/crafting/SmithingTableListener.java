@@ -19,7 +19,7 @@ import org.bukkit.event.inventory.SmithItemEvent;
  */
 public class SmithingTableListener implements SlimefunCraftingListener {
 
-    public SmithingTableListener(@Nonnull Slimefun plugin) {
+    public SmithingTableListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

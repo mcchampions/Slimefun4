@@ -68,7 +68,7 @@ public class ItemSetting<T> {
      * @param newValue
      *            The new value for this {@link ItemSetting}
      */
-    public void update(@Nonnull T newValue) {
+    public void update(T newValue) {
         if (validateInput(newValue)) {
             this.value = newValue;
         } else {
@@ -83,7 +83,7 @@ public class ItemSetting<T> {
      *
      * @return The key under which this setting is stored (relative to the {@link SlimefunItem})
      */
-    public @Nonnull String getKey() {
+    public String getKey() {
         return key;
     }
 
@@ -92,7 +92,7 @@ public class ItemSetting<T> {
      *
      * @return The associated {@link SlimefunItem}
      */
-    protected @Nonnull SlimefunItem getItem() {
+    protected SlimefunItem getItem() {
         return item;
     }
 
@@ -101,7 +101,7 @@ public class ItemSetting<T> {
      *
      * @return The current value
      */
-    public @Nonnull T getValue() {
+    public T getValue() {
         if (value != null) {
             /**
              * If the value has been initialized, return it immediately.
@@ -122,7 +122,7 @@ public class ItemSetting<T> {
      *
      * @return The default value
      */
-    public @Nonnull T getDefaultValue() {
+    public T getDefaultValue() {
         return defaultValue;
     }
 
@@ -134,7 +134,7 @@ public class ItemSetting<T> {
      *
      * @return Whether this {@link ItemSetting} stores the given type
      */
-    public boolean isType(@Nonnull Class<?> c) {
+    public boolean isType(Class<?> c) {
         return c.isInstance(defaultValue);
     }
 
@@ -144,7 +144,7 @@ public class ItemSetting<T> {
      *
      * @return An error message which is displayed when this {@link ItemSetting} is misconfigured.
      */
-    protected @Nonnull String getErrorMessage() {
+    protected String getErrorMessage() {
         return "请使用在 '" + defaultValue.getClass().getSimpleName() + "' 范围内的值!";
     }
 

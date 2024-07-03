@@ -48,7 +48,7 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
      *
      * @return The {@link Vector} of the applied velocity
      */
-    @Nonnull
+    
     public Vector getVelocity() {
         return velocity;
     }
@@ -59,7 +59,7 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
      * @param velocity
      *            The {@link Vector} velocity to apply
      */
-    public void setVelocity(@Nonnull Vector velocity) {
+    public void setVelocity(Vector velocity) {
         Validate.notNull(velocity);
         this.velocity = velocity;
     }
@@ -69,7 +69,7 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
      *
      * @return The {@link ClimbingPick} that was used
      */
-    @Nonnull
+    
     public ClimbingPick getPick() {
         return pick;
     }
@@ -79,7 +79,7 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
      *
      * @return The {@link ItemStack} that was used
      */
-    @Nonnull
+    
     public ItemStack getItemStack() {
         return itemStack;
     }
@@ -89,7 +89,7 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
      *
      * @return The {@link Block} that was climbed
      */
-    @Nonnull
+    
     public Block getBlock() {
         return block;
     }
@@ -104,12 +104,12 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
         this.cancelled = cancel;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

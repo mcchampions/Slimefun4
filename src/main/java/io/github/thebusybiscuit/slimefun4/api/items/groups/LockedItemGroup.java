@@ -73,7 +73,7 @@ public class LockedItemGroup extends ItemGroup {
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         super.register(addon);
 
         List<NamespacedKey> namespacedKeys = new ArrayList<>();
@@ -107,7 +107,7 @@ public class LockedItemGroup extends ItemGroup {
      * @see #addParent(ItemGroup)
      * @see #removeParent(ItemGroup)
      */
-    public @Nonnull Set<ItemGroup> getParents() {
+    public Set<ItemGroup> getParents() {
         return parents;
     }
 
@@ -139,7 +139,7 @@ public class LockedItemGroup extends ItemGroup {
      * @see #getParents()
      * @see #addParent(ItemGroup)
      */
-    public void removeParent(@Nonnull ItemGroup group) {
+    public void removeParent(ItemGroup group) {
         parents.remove(group);
     }
 
@@ -153,7 +153,7 @@ public class LockedItemGroup extends ItemGroup {
      *
      * @return Whether the {@link Player} has fully completed all parent categories, otherwise false
      */
-    public boolean hasUnlocked(@Nonnull Player p, @Nonnull PlayerProfile profile) {
+    public boolean hasUnlocked(Player p, PlayerProfile profile) {
         Validate.notNull(p, "The player cannot be null!");
         Validate.notNull(profile, "The Profile cannot be null!");
 

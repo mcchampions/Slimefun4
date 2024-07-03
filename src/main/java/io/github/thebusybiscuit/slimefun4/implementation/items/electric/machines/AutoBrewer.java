@@ -150,17 +150,17 @@ public class AutoBrewer extends AContainer implements NotHopperable {
      *
      * @return Whether this {@link Material} is a valid potion
      */
-    private boolean isPotion(@Nonnull Material mat) {
+    private boolean isPotion(Material mat) {
         return mat == Material.POTION || mat == Material.SPLASH_POTION || mat == Material.LINGERING_POTION;
     }
 
     @Override
-    public @Nonnull ItemStack getProgressBar() {
+    public ItemStack getProgressBar() {
         return new ItemStack(Material.FISHING_ROD);
     }
 
     @Override
-    public @Nonnull String getMachineIdentifier() {
+    public String getMachineIdentifier() {
         return "AUTO_BREWER";
     }
 }

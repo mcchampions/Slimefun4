@@ -37,12 +37,12 @@ public class MaterialTagSetting extends ItemSetting<List<String>> {
      *
      * @return The default {@link Tag}
      */
-    public @Nonnull Tag<Material> getDefaultTag() {
+    public Tag<Material> getDefaultTag() {
         return defaultTag;
     }
 
     @Override
-    protected @Nonnull String getErrorMessage() {
+    protected String getErrorMessage() {
         return "This List can only contain Materials in the format of e.g. REDSTONE_BLOCK";
     }
 
@@ -72,7 +72,7 @@ public class MaterialTagSetting extends ItemSetting<List<String>> {
      *
      * @return The {@link String} {@link List}
      */
-    private static @Nonnull List<String> getAsStringList(@Nonnull Tag<Material> tag) {
+    private static List<String> getAsStringList(Tag<Material> tag) {
         return tag.getValues().stream().map(Material::name).collect(Collectors.toList());
     }
 }

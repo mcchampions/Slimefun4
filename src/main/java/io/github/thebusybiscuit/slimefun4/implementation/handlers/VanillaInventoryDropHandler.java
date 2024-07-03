@@ -44,7 +44,7 @@ public class VanillaInventoryDropHandler<T extends BlockState & InventoryHolder>
      * @param blockStateClass
      *            The class of the block's {@link BlockState}
      */
-    public VanillaInventoryDropHandler(@Nonnull Class<T> blockStateClass) {
+    public VanillaInventoryDropHandler(Class<T> blockStateClass) {
         super(false, true);
         Validate.notNull(blockStateClass, "The provided class must not be null!");
 
@@ -74,8 +74,8 @@ public class VanillaInventoryDropHandler<T extends BlockState & InventoryHolder>
         }
     }
 
-    @Nonnull
-    protected Inventory getInventory(@Nonnull T inventoryHolder) {
+    
+    protected Inventory getInventory(T inventoryHolder) {
         if (inventoryHolder instanceof Chest chest) {
             return chest.getBlockInventory();
         } else {

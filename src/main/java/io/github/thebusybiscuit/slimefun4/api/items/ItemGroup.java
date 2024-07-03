@@ -88,7 +88,7 @@ public class ItemGroup implements Keyed {
     }
 
     @Override
-    public final @Nonnull NamespacedKey getKey() {
+    public final NamespacedKey getKey() {
         return key;
     }
 
@@ -101,7 +101,7 @@ public class ItemGroup implements Keyed {
      * @param addon
      *            The {@link SlimefunAddon} that wants to register this {@link ItemGroup}
      */
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         Validate.notNull(addon, "The Addon cannot be null");
 
         if (isRegistered()) {
@@ -174,7 +174,7 @@ public class ItemGroup implements Keyed {
      * @param item
      *            the {@link SlimefunItem} that should be added to this {@link ItemGroup}
      */
-    public void add(@Nonnull SlimefunItem item) {
+    public void add(SlimefunItem item) {
         Validate.notNull(item, "Cannot add null Items to an ItemGroup!");
 
         if (items.contains(item)) {
@@ -200,7 +200,7 @@ public class ItemGroup implements Keyed {
      * @param item
      *            the {@link SlimefunItem} that should be removed from this {@link ItemGroup}
      */
-    public void remove(@Nonnull SlimefunItem item) {
+    public void remove(SlimefunItem item) {
         Validate.notNull(item, "Cannot remove null from an ItemGroup!");
         items.remove(item);
     }
@@ -214,7 +214,7 @@ public class ItemGroup implements Keyed {
      *
      * @return A localized display item for this {@link ItemGroup}
      */
-    public @Nonnull ItemStack getItem(@Nonnull Player p) {
+    public ItemStack getItem(Player p) {
         return new CustomItemStack(item, meta -> {
             String name = Slimefun.getLocalization().getItemGroupName(p, getKey());
 
@@ -243,7 +243,7 @@ public class ItemGroup implements Keyed {
      *
      * @return The unlocalized name of this {@link ItemGroup}
      */
-    public @Nonnull String getUnlocalizedName() {
+    public String getUnlocalizedName() {
         return ChatColor.stripColor(item.getItemMeta().getDisplayName());
     }
 
@@ -256,7 +256,7 @@ public class ItemGroup implements Keyed {
      *
      * @return The localized name of this {@link ItemGroup}
      */
-    public @Nonnull String getDisplayName(@Nonnull Player p) {
+    public String getDisplayName(Player p) {
         String localized = Slimefun.getLocalization().getItemGroupName(p, getKey());
 
         if (localized != null) {
@@ -271,7 +271,7 @@ public class ItemGroup implements Keyed {
      *
      * @return the list of SlimefunItems bound to this {@link ItemGroup}
      */
-    public @Nonnull List<SlimefunItem> getItems() {
+    public List<SlimefunItem> getItems() {
         return items;
     }
 
@@ -298,7 +298,7 @@ public class ItemGroup implements Keyed {
      *
      * @return Whether this {@link ItemGroup} is accessible by the given {@link Player}
      */
-    public boolean isAccessible(@Nonnull Player p) {
+    public boolean isAccessible(Player p) {
         return true;
     }
 
@@ -314,7 +314,7 @@ public class ItemGroup implements Keyed {
      *
      * @return Whether this {@link ItemGroup} is visible to the given {@link Player}
      */
-    public boolean isVisible(@Nonnull Player p) {
+    public boolean isVisible(Player p) {
         if (items.isEmpty() || !isAccessible(p)) {
             return false;
         }
@@ -387,7 +387,7 @@ public class ItemGroup implements Keyed {
      * @return Whether this {@link ItemGroup} will be hidden to the given {@link Player}
      */
     @Deprecated
-    public boolean isHidden(@Nonnull Player p) {
+    public boolean isHidden(Player p) {
         return !isVisible(p);
     }
 }

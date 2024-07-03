@@ -56,7 +56,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
      * @param originalEvent
      *            The original {@link PlayerInteractEvent}
      */
-    public PlayerRightClickEvent(@Nonnull PlayerInteractEvent originalEvent) {
+    public PlayerRightClickEvent(PlayerInteractEvent originalEvent) {
         super(originalEvent.getPlayer());
 
         event = originalEvent;
@@ -82,7 +82,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
      *
      * @return The original {@link PlayerInteractEvent}
      */
-    @Nonnull
+    
     public PlayerInteractEvent getInteractEvent() {
         return event;
     }
@@ -94,7 +94,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
      *
      * @return The {@link ItemStack} that the {@link Player} right clicked with
      */
-    @Nonnull
+    
     public ItemStack getItem() {
         return itemStack.orElse(new ItemStack(Material.AIR));
     }
@@ -105,22 +105,22 @@ public class PlayerRightClickEvent extends PlayerEvent {
      *
      * @return The hand used in this {@link Event}
      */
-    @Nonnull
+    
     public EquipmentSlot getHand() {
         return hand;
     }
 
-    @Nonnull
+    
     public Optional<Block> getClickedBlock() {
         return clickedBlock;
     }
 
-    @Nonnull
+    
     public BlockFace getClickedFace() {
         return face;
     }
 
-    @Nonnull
+    
     public Optional<SlimefunItem> getSlimefunItem() {
         if (!slimefunItem.isComputed()) {
             if (itemStack.isPresent()) {
@@ -133,7 +133,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
         return slimefunItem.getAsOptional();
     }
 
-    @Nonnull
+    
     public Optional<SlimefunItem> getSlimefunBlock() {
         if (!slimefunBlock.isComputed()) {
             if (clickedBlock.isPresent()) {
@@ -156,32 +156,32 @@ public class PlayerRightClickEvent extends PlayerEvent {
         blockResult = Result.DENY;
     }
 
-    @Nonnull
+    
     public Result useItem() {
         return itemResult;
     }
 
-    @Nonnull
+    
     public Result useBlock() {
         return blockResult;
     }
 
-    public void setUseItem(@Nonnull Result result) {
+    public void setUseItem(Result result) {
         Validate.notNull(result, "Result cannot be null");
         itemResult = result;
     }
 
-    public void setUseBlock(@Nonnull Result result) {
+    public void setUseBlock(Result result) {
         Validate.notNull(result, "Result cannot be null");
         blockResult = result;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

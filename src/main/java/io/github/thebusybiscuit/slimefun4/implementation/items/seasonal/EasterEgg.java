@@ -43,7 +43,7 @@ public class EasterEgg extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
 

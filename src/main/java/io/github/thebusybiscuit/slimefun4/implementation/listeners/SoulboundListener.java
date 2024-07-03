@@ -26,7 +26,7 @@ public class SoulboundListener implements Listener {
 
     private final Map<UUID, Map<Integer, ItemStack>> soulbound = new HashMap<>();
 
-    public SoulboundListener(@Nonnull Slimefun plugin) {
+    public SoulboundListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -62,7 +62,7 @@ public class SoulboundListener implements Listener {
         returnSoulboundItems(e.getPlayer());
     }
 
-    private void returnSoulboundItems(@Nonnull Player p) {
+    private void returnSoulboundItems(Player p) {
         Map<Integer, ItemStack> items = soulbound.remove(p.getUniqueId());
 
         if (items != null) {

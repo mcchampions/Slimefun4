@@ -26,7 +26,7 @@ public class CombustionGenerator extends AGenerator implements NotDiagonallyRota
         registerFuel(new MachineFuel(90, SlimefunItems.FUEL_BUCKET));
     }
 
-    @Nonnull
+    
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.FLINT_AND_STEEL);

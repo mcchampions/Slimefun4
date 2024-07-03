@@ -25,7 +25,7 @@ public class BlockStorage {
 
     private static final Config emptyData = new EmptyBlockData();
 
-    @Nullable public static BlockStorage getStorage(@Nonnull World world) {
+    @Nullable public static BlockStorage getStorage(World world) {
         return null;
     }
 
@@ -51,7 +51,7 @@ public class BlockStorage {
      *
      * @return the SlimefunItem's ItemStack corresponding to the block if it has one, otherwise null
      */
-    @Nullable public static ItemStack retrieve(@Nonnull Block block) {
+    @Nullable public static ItemStack retrieve(Block block) {
         SlimefunItem item = check(block);
 
         if (item == null) {
@@ -130,12 +130,12 @@ public class BlockStorage {
         Slimefun.getDatabaseManager().getBlockDataController().removeBlock(l);
     }
 
-    @Nullable public static SlimefunItem check(@Nonnull Block b) {
+    @Nullable public static SlimefunItem check(Block b) {
         String id = checkID(b);
         return id == null ? null : SlimefunItem.getById(id);
     }
 
-    @Nullable public static SlimefunItem check(@Nonnull Location l) {
+    @Nullable public static SlimefunItem check(Location l) {
         String id = checkID(l);
         return id == null ? null : SlimefunItem.getById(id);
     }
@@ -145,15 +145,15 @@ public class BlockStorage {
         return id != null && id.equals(slimefunItem);
     }
 
-    @Nullable public static String checkID(@Nonnull Block b) {
+    @Nullable public static String checkID(Block b) {
         return checkID(b.getLocation());
     }
 
-    @Nullable public static String checkID(@Nonnull Location l) {
+    @Nullable public static String checkID(Location l) {
         return getLocationInfo(l, "id");
     }
 
-    public static boolean check(@Nonnull Location l, @Nullable String slimefunItem) {
+    public static boolean check(Location l, @Nullable String slimefunItem) {
         if (slimefunItem == null) {
             return false;
         }

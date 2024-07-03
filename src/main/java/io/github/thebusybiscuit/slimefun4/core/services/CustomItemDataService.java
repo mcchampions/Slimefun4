@@ -41,7 +41,7 @@ public class CustomItemDataService implements Keyed {
      * @param key
      *            The key under which to store data
      */
-    public CustomItemDataService(@Nonnull Plugin plugin, @Nonnull String key) {
+    public CustomItemDataService(Plugin plugin, String key) {
         // Null-Validation is performed in the NamespacedKey constructor
         namespacedKey = new NamespacedKey(plugin, key);
     }
@@ -60,7 +60,7 @@ public class CustomItemDataService implements Keyed {
      * @param id
      *            The id to store on the {@link ItemStack}
      */
-    public void setItemData(@Nonnull ItemStack item, @Nonnull String id) {
+    public void setItemData(ItemStack item, String id) {
         Validate.notNull(item, "The Item cannot be null!");
         Validate.notNull(id, "Cannot store null on an Item!");
 
@@ -78,7 +78,7 @@ public class CustomItemDataService implements Keyed {
      * @param id
      *            The id to store on the {@link ItemMeta}
      */
-    public void setItemData(@Nonnull ItemMeta meta, @Nonnull String id) {
+    public void setItemData(ItemMeta meta, String id) {
         Validate.notNull(meta, "The ItemMeta cannot be null!");
         Validate.notNull(id, "Cannot store null on an ItemMeta!");
 
@@ -96,7 +96,7 @@ public class CustomItemDataService implements Keyed {
      *
      * @return An {@link Optional} describing the result
      */
-    public @Nonnull Optional<String> getItemData(@Nullable ItemStack item) {
+    public Optional<String> getItemData(@Nullable ItemStack item) {
         if (item == null || item.getType() == Material.AIR || !item.hasItemMeta()) {
             return Optional.empty();
         }
@@ -113,7 +113,7 @@ public class CustomItemDataService implements Keyed {
      *
      * @return An {@link Optional} describing the result
      */
-    public @Nonnull Optional<String> getItemData(@Nonnull ItemMeta meta) {
+    public Optional<String> getItemData(ItemMeta meta) {
         Validate.notNull(meta, "Cannot read data from null!");
 
         PersistentDataContainer container = meta.getPersistentDataContainer();
@@ -132,7 +132,7 @@ public class CustomItemDataService implements Keyed {
      *
      * @return Whether both metas have data on them and its the same.
      */
-    public boolean hasEqualItemData(@Nonnull ItemMeta meta1, @Nonnull ItemMeta meta2) {
+    public boolean hasEqualItemData(ItemMeta meta1, ItemMeta meta2) {
         Validate.notNull(meta1, "Cannot read data from null (first arg)");
         Validate.notNull(meta2, "Cannot read data from null (second arg)");
 

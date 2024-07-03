@@ -44,11 +44,11 @@ public abstract class SlimefunLocalization implements Keyed {
 
     private final Config defaultConfig;
 
-    protected SlimefunLocalization(@Nonnull Slimefun plugin) {
+    protected SlimefunLocalization(Slimefun plugin) {
         this.defaultConfig = new Config(plugin, "messages.yml");
     }
 
-    protected @Nonnull Config getConfig() {
+    protected Config getConfig() {
         return defaultConfig;
     }
 
@@ -66,7 +66,7 @@ public abstract class SlimefunLocalization implements Keyed {
      *
      * @return The chat prefix
      */
-    public @Nonnull String getChatPrefix() {
+    public String getChatPrefix() {
         return getMessage("prefix");
     }
 
@@ -79,7 +79,7 @@ public abstract class SlimefunLocalization implements Keyed {
      *
      * @return A {@link Language} with the given id or null
      */
-    public abstract @Nullable Language getLanguage(@Nonnull String id);
+    public abstract @Nullable Language getLanguage(String id);
 
     /**
      * This method returns the currently selected {@link Language} of a {@link Player}.
@@ -89,7 +89,7 @@ public abstract class SlimefunLocalization implements Keyed {
      *
      * @return The {@link Language} that was selected by the given {@link Player}
      */
-    public abstract @Nullable Language getLanguage(@Nonnull Player p);
+    public abstract @Nullable Language getLanguage(Player p);
 
     /**
      * This method returns the default {@link Language} of this {@link Server}
@@ -107,7 +107,7 @@ public abstract class SlimefunLocalization implements Keyed {
      *
      * @return Whether the project contains a {@link Language} with that id
      */
-    protected abstract boolean hasLanguage(@Nonnull String id);
+    protected abstract boolean hasLanguage(String id);
 
     /**
      * This method returns a full {@link Collection} of every {@link Language} that was
@@ -115,7 +115,7 @@ public abstract class SlimefunLocalization implements Keyed {
      *
      * @return A {@link Collection} that contains every installed {@link Language}
      */
-    public abstract @Nonnull Collection<Language> getLanguages();
+    public abstract Collection<Language> getLanguages();
 
     /**
      * This method adds a new {@link Language} with the given id and texture.
@@ -125,7 +125,7 @@ public abstract class SlimefunLocalization implements Keyed {
      * @param texture
      *            The texture of how this {@link Language} should be displayed
      */
-    protected abstract void addLanguage(@Nonnull String id, @Nonnull String texture);
+    protected abstract void addLanguage(String id, String texture);
 
     /**
      * This will load every {@link LanguagePreset} into memory.
@@ -140,7 +140,7 @@ public abstract class SlimefunLocalization implements Keyed {
         }
     }
 
-    private @Nonnull FileConfiguration getDefaultFile(@Nonnull LanguageFile file) {
+    private FileConfiguration getDefaultFile(LanguageFile file) {
         Language language = getLanguage(LanguagePreset.ENGLISH.getLanguageCode());
 
         if (language == null) {
@@ -186,7 +186,7 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     @ParametersAreNonnullByDefault
-    private @Nonnull String getString(@Nullable Language language, LanguageFile file, String path) {
+    private String getString(@Nullable Language language, LanguageFile file, String path) {
         String string = getStringOrNull(language, file, path);
         return string != null ? string : "! Missing string \"" + path + '"';
     }
@@ -221,12 +221,12 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     @ParametersAreNonnullByDefault
-    private @Nonnull List<String> getStringList(@Nullable Language language, LanguageFile file, String path) {
+    private List<String> getStringList(@Nullable Language language, LanguageFile file, String path) {
         List<String> list = getStringListOrNull(language, file, path);
         return list != null ? list : Arrays.asList("! Missing string \"" + path + '"');
     }
 
-    public @Nonnull String getMessage(@Nonnull String key) {
+    public String getMessage(String key) {
         Validate.notNull(key, "Message key must not be null!");
 
         Language language = getDefaultLanguage();
@@ -242,7 +242,7 @@ public abstract class SlimefunLocalization implements Keyed {
         return message;
     }
 
-    public @Nonnull String getMessage(@Nonnull Player p, @Nonnull String key) {
+    public String getMessage(Player p, String key) {
         Validate.notNull(p, "Player must not be null!");
         Validate.notNull(key, "Message key must not be null!");
 
@@ -256,11 +256,11 @@ public abstract class SlimefunLocalization implements Keyed {
      *            The Key of those Messages
      * @return The List this key is referring to
      */
-    public @Nonnull List<String> getDefaultMessages(@Nonnull String key) {
+    public List<String> getDefaultMessages(String key) {
         return defaultConfig.getStringList(key);
     }
 
-    public @Nonnull List<String> getMessages(@Nonnull Player p, @Nonnull String key) {
+    public List<String> getMessages(Player p, String key) {
         Validate.notNull(p, "Player should not be null.");
         Validate.notNull(key, "Message key cannot be null.");
 
@@ -268,7 +268,7 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     @ParametersAreNonnullByDefault
-    public @Nonnull List<String> getMessages(Player p, String key, UnaryOperator<String> function) {
+    public List<String> getMessages(Player p, String key, UnaryOperator<String> function) {
         Validate.notNull(p, "Player cannot be null.");
         Validate.notNull(key, "Message key cannot be null.");
         Validate.notNull(function, "Function cannot be null.");
@@ -279,28 +279,28 @@ public abstract class SlimefunLocalization implements Keyed {
         return messages;
     }
 
-    public @Nullable String getResearchName(@Nonnull Player p, @Nonnull NamespacedKey key) {
+    public @Nullable String getResearchName(Player p, NamespacedKey key) {
         Validate.notNull(p, "Player must not be null.");
         Validate.notNull(key, "NamespacedKey cannot be null.");
 
         return getStringOrNull(getLanguage(p), LanguageFile.RESEARCHES, key.getNamespace() + '.' + key.getKey());
     }
 
-    public @Nullable String getItemGroupName(@Nonnull Player p, @Nonnull NamespacedKey key) {
+    public @Nullable String getItemGroupName(Player p, NamespacedKey key) {
         Validate.notNull(p, "Player must not be null.");
         Validate.notNull(key, "NamespacedKey cannot be null!");
 
         return getStringOrNull(getLanguage(p), LanguageFile.CATEGORIES, key.getNamespace() + '.' + key.getKey());
     }
 
-    public @Nullable String getResourceString(@Nonnull Player p, @Nonnull String key) {
+    public @Nullable String getResourceString(Player p, String key) {
         Validate.notNull(p, "Player should not be null!");
         Validate.notNull(key, "Message key should not be null!");
 
         return getStringOrNull(getLanguage(p), LanguageFile.RESOURCES, key);
     }
 
-    public @Nonnull ItemStack getRecipeTypeItem(@Nonnull Player p, @Nonnull RecipeType recipeType) {
+    public ItemStack getRecipeTypeItem(Player p, RecipeType recipeType) {
         Validate.notNull(p, "Player cannot be null!");
         Validate.notNull(recipeType, "Recipe type cannot be null!");
 
@@ -338,7 +338,7 @@ public abstract class SlimefunLocalization implements Keyed {
         });
     }
 
-    public void sendMessage(@Nonnull CommandSender recipient, @Nonnull String key, boolean addPrefix) {
+    public void sendMessage(CommandSender recipient, String key, boolean addPrefix) {
         Validate.notNull(recipient, "Recipient cannot be null!");
         Validate.notNull(key, "Message key cannot be null!");
 
@@ -351,7 +351,7 @@ public abstract class SlimefunLocalization implements Keyed {
         }
     }
 
-    public void sendActionbarMessage(@Nonnull Player player, @Nonnull String key, boolean addPrefix) {
+    public void sendActionbarMessage(Player player, String key, boolean addPrefix) {
         Validate.notNull(player, "Player cannot be null!");
         Validate.notNull(key, "Message key cannot be null!");
 
@@ -362,7 +362,7 @@ public abstract class SlimefunLocalization implements Keyed {
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, components);
     }
 
-    public void sendMessage(@Nonnull CommandSender recipient, @Nonnull String key) {
+    public void sendMessage(CommandSender recipient, String key) {
         sendMessage(recipient, key, true);
     }
 
@@ -382,7 +382,7 @@ public abstract class SlimefunLocalization implements Keyed {
         }
     }
 
-    public void sendMessages(@Nonnull CommandSender recipient, @Nonnull String key) {
+    public void sendMessages(CommandSender recipient, String key) {
         String prefix = getChatPrefix();
 
         if (recipient instanceof Player player) {
@@ -420,11 +420,11 @@ public abstract class SlimefunLocalization implements Keyed {
         sendMessages(recipient, key, true, function);
     }
 
-    protected @Nonnull Set<String> getTotalKeys(@Nonnull Language lang) {
+    protected Set<String> getTotalKeys(Language lang) {
         return getKeys(lang.getFiles());
     }
 
-    protected @Nonnull Set<String> getKeys(@Nonnull FileConfiguration... files) {
+    protected Set<String> getKeys(FileConfiguration... files) {
         Set<String> keys = new HashSet<>();
 
         for (FileConfiguration cfg : files) {

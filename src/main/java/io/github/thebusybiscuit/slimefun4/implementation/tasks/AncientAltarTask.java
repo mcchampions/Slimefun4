@@ -130,7 +130,7 @@ public class AncientAltarTask implements Runnable {
         }
     }
 
-    private void checkPedestal(@Nonnull Block pedestal) {
+    private void checkPedestal(Block pedestal) {
         Optional<Item> item = pedestalItem.getPlacedItem(pedestal);
 
         if (item.isEmpty() || positionLock.remove(item.get()) == null) {

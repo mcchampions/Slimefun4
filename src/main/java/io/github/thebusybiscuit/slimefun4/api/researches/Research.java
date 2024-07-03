@@ -67,7 +67,7 @@ public class Research implements Keyed {
      *
      */
     public Research(
-            @Nonnull NamespacedKey key, int id, @Nonnull String defaultName, int levelCost, double currencyCost) {
+            NamespacedKey key, int id, String defaultName, int levelCost, double currencyCost) {
         Validate.notNull(key, "A NamespacedKey must be provided");
         Validate.notNull(defaultName, "A default name must be specified");
 
@@ -95,7 +95,7 @@ public class Research implements Keyed {
      *            The Cost in XP levels to unlock this {@link Research}
      *
      */
-    public Research(@Nonnull NamespacedKey key, int id, @Nonnull String defaultName, int defaultCost) {
+    public Research(NamespacedKey key, int id, String defaultName, int defaultCost) {
         Validate.notNull(key, "A NamespacedKey must be provided");
         Validate.notNull(defaultName, "A default name must be specified");
 
@@ -108,7 +108,7 @@ public class Research implements Keyed {
     }
 
     @Override
-    public @Nonnull NamespacedKey getKey() {
+    public NamespacedKey getKey() {
         return key;
     }
 
@@ -146,7 +146,7 @@ public class Research implements Keyed {
      *
      * @return The localized Name of this {@link Research}.
      */
-    public @Nonnull String getName(@Nonnull Player p) {
+    public String getName(Player p) {
         String localized = Slimefun.getLocalization().getResearchName(p, key);
         return localized != null ? localized : name;
     }
@@ -156,7 +156,7 @@ public class Research implements Keyed {
      *
      * @return The unlocalized, decolorized name for this {@link Research}
      */
-    public @Nonnull String getUnlocalizedName() {
+    public String getUnlocalizedName() {
         return ChatColor.stripColor(name);
     }
 
@@ -230,7 +230,7 @@ public class Research implements Keyed {
      *
      * @return The current instance of {@link Research}
      */
-    @Nonnull
+    
     public Research addItems(ItemStack... items) {
         for (ItemStack item : items) {
             SlimefunItem sfItem = SlimefunItem.getByItem(item);
@@ -248,7 +248,7 @@ public class Research implements Keyed {
      *
      * @return The Slimefun items bound to this {@link Research}.
      */
-    @Nonnull
+    
     public List<SlimefunItem> getAffectedItems() {
         return items;
     }
@@ -321,7 +321,7 @@ public class Research implements Keyed {
      * @param p The {@link Player} to check
      * @return Whether that {@link Player} can unlock this {@link Research}
      */
-    public boolean canUnlock(@Nonnull Player p) {
+    public boolean canUnlock(Player p) {
         if (!isEnabled()) {
             return true;
         }
@@ -348,7 +348,7 @@ public class Research implements Keyed {
      * @param instant
      *            Whether to unlock it instantly
      */
-    public void unlock(@Nonnull Player p, boolean instant) {
+    public void unlock(Player p, boolean instant) {
         unlock(p, instant, null);
     }
 
@@ -362,7 +362,7 @@ public class Research implements Keyed {
      * @param callback
      *            A callback which will be run when the {@link Research} animation completed
      */
-    public void unlock(@Nonnull Player p, boolean isInstant, @Nullable Consumer<Player> callback) {
+    public void unlock(Player p, boolean isInstant, @Nullable Consumer<Player> callback) {
         PlayerProfile.get(p, new PlayerResearchTask(this, isInstant, callback));
     }
 
@@ -420,7 +420,7 @@ public class Research implements Keyed {
      * @param key the {@link NamespacedKey} of the {@link Research} you are looking for
      * @return An {@link Optional} with or without the found {@link Research}
      */
-    @Nonnull
+    
     public static Optional<Research> getResearch(@Nullable NamespacedKey key) {
         if (key == null) {
             return Optional.empty();
@@ -436,7 +436,7 @@ public class Research implements Keyed {
     }
 
     @Deprecated
-    public static Optional<Research> getResearchByID(@Nonnull Integer oldID) {
+    public static Optional<Research> getResearchByID(Integer oldID) {
         if (oldID == null) {
             return Optional.empty();
         }

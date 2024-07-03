@@ -28,13 +28,13 @@ class SlimefunItemRecipe extends AbstractRecipe {
     private final int[] slots = {11, 12, 13, 20, 21, 22, 29, 30, 31};
     private final SlimefunItem item;
 
-    SlimefunItemRecipe(@Nonnull SlimefunItem item) {
+    SlimefunItemRecipe(SlimefunItem item) {
         super(getInputs(item), item.getRecipeOutput());
         this.item = item;
     }
 
-    @Nonnull
-    private static Collection<Predicate<ItemStack>> getInputs(@Nonnull SlimefunItem item) {
+    
+    private static Collection<Predicate<ItemStack>> getInputs(SlimefunItem item) {
         List<Predicate<ItemStack>> predicates = new ArrayList<>();
 
         for (int i = 0; i < 9; i++) {
@@ -49,7 +49,7 @@ class SlimefunItemRecipe extends AbstractRecipe {
     }
 
     @Override
-    public void show(@Nonnull ChestMenu menu, @Nonnull AsyncRecipeChoiceTask task) {
+    public void show(ChestMenu menu, AsyncRecipeChoiceTask task) {
         Validate.notNull(menu, "The ChestMenu cannot be null!");
         Validate.notNull(task, "The RecipeChoiceTask cannot be null!");
         menu.addItem(24, getResult().clone(), ChestMenuUtils.getEmptyClickHandler());

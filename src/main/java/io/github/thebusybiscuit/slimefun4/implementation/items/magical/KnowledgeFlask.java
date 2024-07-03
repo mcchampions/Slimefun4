@@ -34,7 +34,7 @@ public class KnowledgeFlask extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
             Player p = e.getPlayer();

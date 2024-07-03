@@ -43,7 +43,7 @@ public class StomperBoots extends SlimefunItem {
      * @param fallDamageEvent
      *            The {@link EntityDamageEvent} in which the {@link Player} has taken fall damage
      */
-    public void stomp(@Nonnull EntityDamageEvent fallDamageEvent) {
+    public void stomp(EntityDamageEvent fallDamageEvent) {
         Player player = (Player) fallDamageEvent.getEntity();
         SoundEffect.STOMPER_BOOTS_STOMP_SOUND.playFor(player);
         player.setVelocity(new Vector(0, 0.7, 0));
@@ -86,8 +86,8 @@ public class StomperBoots extends SlimefunItem {
      *
      * @return A {@link Vector} to determine the velocity for our {@link Entity}
      */
-    @Nonnull
-    protected Vector getShockwave(@Nonnull Location origin, @Nonnull Location target) {
+    
+    protected Vector getShockwave(Location origin, Location target) {
         // As the distance approaches zero we might slip into a "division by zero" when normalizing
         if (origin.distanceSquared(target) < 0.05) {
             return new Vector(0, 1, 0);
@@ -110,7 +110,7 @@ public class StomperBoots extends SlimefunItem {
      *            The {@link Player} using the {@link StomperBoots}.
      * @return If the entity can move.
      */
-    protected boolean canPush(@Nonnull Player player, @Nonnull LivingEntity entity) {
+    protected boolean canPush(Player player, LivingEntity entity) {
         return entity.isValid()
                 && !entity.getUniqueId().equals(player.getUniqueId())
                 && entity.isCollidable()

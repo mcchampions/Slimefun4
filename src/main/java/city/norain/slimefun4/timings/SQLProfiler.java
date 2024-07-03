@@ -50,7 +50,7 @@ public class SQLProfiler {
         isProfiling = true;
     }
 
-    public void subscribe(@Nonnull CommandSender sender) {
+    public void subscribe(CommandSender sender) {
         subscribers.add(sender);
     }
 

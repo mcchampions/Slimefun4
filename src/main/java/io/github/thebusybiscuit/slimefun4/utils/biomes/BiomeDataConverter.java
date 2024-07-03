@@ -39,6 +39,6 @@ public interface BiomeDataConverter<T> {
      *
      * @return Your desired data type.
      */
-    @Nonnull
-    T convert(@Nonnull JsonElement jsonElement);
+    
+    T convert(JsonElement jsonElement);
 }

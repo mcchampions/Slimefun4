@@ -34,7 +34,7 @@ public class InfusedMagnetTask extends AbstractPlayerTask {
      * @param radius
      *            The radius in which items should be picked up
      */
-    public InfusedMagnetTask(@Nonnull Player p, double radius) {
+    public InfusedMagnetTask(Player p, double radius) {
         super(p);
 
         this.radius = radius;

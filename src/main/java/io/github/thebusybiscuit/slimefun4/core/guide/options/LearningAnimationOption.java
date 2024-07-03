@@ -22,21 +22,21 @@ import org.bukkit.inventory.ItemStack;
  */
 class LearningAnimationOption implements SlimefunGuideOption<Boolean> {
 
-    @Nonnull
+    
     @Override
     public SlimefunAddon getAddon() {
         return Slimefun.instance();
     }
 
-    @Nonnull
+    
     @Override
     public NamespacedKey getKey() {
         return new NamespacedKey(Slimefun.instance(), "research_learning_animation");
     }
 
-    @Nonnull
+    
     @Override
-    public Optional<ItemStack> getDisplayItem(@Nonnull Player p, @Nonnull ItemStack guide) {
+    public Optional<ItemStack> getDisplayItem(Player p, ItemStack guide) {
         SlimefunConfigManager cfgManager = Slimefun.getConfigManager();
 
         if (!cfgManager.isResearchingEnabled() || cfgManager.isLearningAnimationDisabled()) {
@@ -57,20 +57,20 @@ class LearningAnimationOption implements SlimefunGuideOption<Boolean> {
     }
 
     @Override
-    public void onClick(@Nonnull Player p, @Nonnull ItemStack guide) {
+    public void onClick(Player p, ItemStack guide) {
         setSelectedOption(p, guide, !getSelectedOption(p, guide).orElse(true));
         SlimefunGuideSettings.openSettings(p, guide);
     }
 
     @Override
-    public Optional<Boolean> getSelectedOption(@Nonnull Player p, @Nonnull ItemStack guide) {
+    public Optional<Boolean> getSelectedOption(Player p, ItemStack guide) {
         NamespacedKey key = getKey();
         boolean value = !PersistentDataAPI.hasByte(p, key) || PersistentDataAPI.getByte(p, key) == (byte) 1;
         return Optional.of(value);
     }
 
     @Override
-    public void setSelectedOption(@Nonnull Player p, @Nonnull ItemStack guide, @Nonnull Boolean value) {
+    public void setSelectedOption(Player p, ItemStack guide, Boolean value) {
         PersistentDataAPI.setByte(p, getKey(), (byte) (value.booleanValue() ? 1 : 0));
     }
 }

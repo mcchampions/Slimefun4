@@ -183,7 +183,7 @@ public class OreCrusher extends MultiBlockMachine {
         }
     }
 
-    @Nonnull
+    
     @Override
     public List<ItemStack> getDisplayRecipes() {
         return recipes.stream().map(items -> items[0]).collect(Collectors.toList());
@@ -236,7 +236,7 @@ public class OreCrusher extends MultiBlockMachine {
         private final ItemStack quartz = new ItemStack(Material.QUARTZ, 1);
         private final ItemStack goldNuggets = new ItemStack(Material.GOLD_NUGGET, 4);
 
-        DoubleOreSetting(@Nonnull OreCrusher oreCrusher) {
+        DoubleOreSetting(OreCrusher oreCrusher) {
             super(oreCrusher, "double-ores", true);
         }
 
@@ -261,7 +261,7 @@ public class OreCrusher extends MultiBlockMachine {
         }
 
         @Override
-        public void update(@Nonnull Boolean newValue) {
+        public void update(Boolean newValue) {
             super.update(newValue);
             apply(newValue);
         }
@@ -272,31 +272,31 @@ public class OreCrusher extends MultiBlockMachine {
             apply(getValue());
         }
 
-        public @Nonnull ItemStack getCoal() {
+        public ItemStack getCoal() {
             return coal;
         }
 
-        public @Nonnull ItemStack getLapisLazuli() {
+        public ItemStack getLapisLazuli() {
             return lapis;
         }
 
-        public @Nonnull ItemStack getRedstone() {
+        public ItemStack getRedstone() {
             return redstone;
         }
 
-        public @Nonnull ItemStack getDiamond() {
+        public ItemStack getDiamond() {
             return diamond;
         }
 
-        public @Nonnull ItemStack getEmerald() {
+        public ItemStack getEmerald() {
             return emerald;
         }
 
-        public @Nonnull ItemStack getNetherQuartz() {
+        public ItemStack getNetherQuartz() {
             return quartz;
         }
 
-        public @Nonnull ItemStack getGoldNuggets() {
+        public ItemStack getGoldNuggets() {
             return goldNuggets;
         }
     }

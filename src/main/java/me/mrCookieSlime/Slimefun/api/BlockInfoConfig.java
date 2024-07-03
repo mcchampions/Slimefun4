@@ -34,7 +34,7 @@ public class BlockInfoConfig extends Config {
         this.data = data;
     }
 
-    @Nonnull
+    
     public Map<String, String> getMap() {
         return data;
     }
@@ -113,7 +113,7 @@ public class BlockInfoConfig extends Config {
         throw new UnsupportedOperationException("BlockInfoConfigs cannot be reloaded");
     }
 
-    @Nonnull
+    
     public String toJSON() {
         return new GsonBuilder().create().toJson(data);
     }

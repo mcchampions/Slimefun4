@@ -11,7 +11,7 @@ class EnvironmentChecker {
     private static final List<String> UNSUPPORTED_PLUGINS = List.of(
             "BedrockTechnology", "SlimefunFix", "SlimefunBugFixer", "Slimefunbookfix", "PlaceItemsOnGroundRebuilt");
 
-    static boolean checkIncompatiblePlugins(@Nonnull Logger logger) {
+    static boolean checkIncompatiblePlugins(Logger logger) {
         List<String> plugins = UNSUPPORTED_PLUGINS.stream()
                 .filter(name -> Bukkit.getServer().getPluginManager().isPluginEnabled(name))
                 .toList();
@@ -53,7 +53,7 @@ class EnvironmentChecker {
         }
     }
 
-    static void scheduleSlimeGlueCheck(@Nonnull Slimefun sf) {
+    static void scheduleSlimeGlueCheck(Slimefun sf) {
         Bukkit.getScheduler()
                 .runTaskLater(
                         sf,
@@ -66,7 +66,7 @@ class EnvironmentChecker {
                         300); // 15s
     }
 
-    private static void printBorder(@Nonnull Logger logger) {
+    private static void printBorder(Logger logger) {
         logger.log(Level.WARNING, "#######################################################");
     }
 }

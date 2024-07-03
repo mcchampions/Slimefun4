@@ -41,7 +41,7 @@ public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements N
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
 
@@ -89,7 +89,7 @@ public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements N
     }
 
     @ParametersAreNonnullByDefault
-    public @Nonnull Optional<Location> getAnchor(Player p, ItemStack item) {
+    public Optional<Location> getAnchor(Player p, ItemStack item) {
         ItemMeta meta = item.getItemMeta();
 
         String data = meta.getPersistentDataContainer().get(key, PersistentDataType.STRING);
@@ -115,7 +115,7 @@ public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements N
     }
 
     @ParametersAreNonnullByDefault
-    public @Nonnull OptionalDouble getDistance(Player p, ItemStack item, Block block) {
+    public OptionalDouble getDistance(Player p, ItemStack item, Block block) {
         Optional<Location> anchor = getAnchor(p, item);
 
         if (anchor.isPresent()) {

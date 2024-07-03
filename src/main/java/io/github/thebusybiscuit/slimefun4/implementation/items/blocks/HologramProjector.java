@@ -57,7 +57,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         addItemHandler(onPlace(), onRightClick(), onBreak());
     }
 
-    private @Nonnull BlockPlaceHandler onPlace() {
+    private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
             @Override
@@ -73,17 +73,17 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         };
     }
 
-    private @Nonnull BlockBreakHandler onBreak() {
+    private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 killArmorStand(b);
             }
         };
     }
 
-    public @Nonnull BlockUseHandler onRightClick() {
+    public BlockUseHandler onRightClick() {
         return e -> {
             e.cancel();
 
@@ -102,7 +102,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         };
     }
 
-    private void openEditor(@Nonnull Player p, @Nonnull Block projector) {
+    private void openEditor(Player p, Block projector) {
         ChestMenu menu =
                 new ChestMenu(Slimefun.getLocalization().getMessage(p, "machines.HOLOGRAM_PROJECTOR.inventory-title"));
 
@@ -162,7 +162,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         menu.open(p);
     }
 
-    private static ArmorStand getArmorStand(@Nonnull Block projector, boolean createIfNoneExists) {
+    private static ArmorStand getArmorStand(Block projector, boolean createIfNoneExists) {
         var blockData = StorageCacheUtils.getBlock(projector.getLocation());
         String nametag = blockData.getData("text");
         double offset = Double.parseDouble(blockData.getData(OFFSET_PARAMETER));
@@ -186,7 +186,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         return ArmorStandUtils.spawnArmorStand(l, nametag);
     }
 
-    private static void killArmorStand(@Nonnull Block b) {
+    private static void killArmorStand(Block b) {
         ArmorStand hologram = getArmorStand(b, false);
 
         if (hologram != null) {

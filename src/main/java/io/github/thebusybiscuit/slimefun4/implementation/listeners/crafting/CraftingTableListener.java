@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
  */
 public class CraftingTableListener implements SlimefunCraftingListener {
 
-    public CraftingTableListener(@Nonnull Slimefun plugin) {
+    public CraftingTableListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

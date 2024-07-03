@@ -214,7 +214,7 @@ public final class PostSetup {
         }
     }
 
-    private static boolean isDust(@Nonnull ItemStack item) {
+    private static boolean isDust(ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
         return sfItem != null && sfItem.getId().endsWith("_DUST");
     }

@@ -43,7 +43,7 @@ class BackpackCommand extends SubCommand {
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender instanceof Player player) {
             if (sender.hasPermission("slimefun.command.backpack")) {
                 if (args.length < 1) {
@@ -100,7 +100,7 @@ class BackpackCommand extends SubCommand {
         }
     }
 
-    private void openBackpackMenu(@Nonnull OfflinePlayer owner, @Nonnull Player p) {
+    private void openBackpackMenu(OfflinePlayer owner, Player p) {
         Validate.notNull(p, "The player cannot be null!");
 
         Slimefun.getDatabaseManager()

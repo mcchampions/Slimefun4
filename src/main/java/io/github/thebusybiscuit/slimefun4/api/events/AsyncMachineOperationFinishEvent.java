@@ -38,7 +38,7 @@ public class AsyncMachineOperationFinishEvent extends Event {
      *
      * @return The {@link BlockPosition} of the machine
      */
-    @Nonnull
+    
     public BlockPosition getPosition() {
         return position;
     }
@@ -61,12 +61,12 @@ public class AsyncMachineOperationFinishEvent extends Event {
         return machineOperation;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

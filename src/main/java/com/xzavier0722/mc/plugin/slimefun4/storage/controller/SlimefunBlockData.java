@@ -30,12 +30,12 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         this.sfId = other.sfId;
     }
 
-    @Nonnull
+    
     public Location getLocation() {
         return location;
     }
 
-    @Nonnull
+    
     public String getSfId() {
         return sfId;
     }

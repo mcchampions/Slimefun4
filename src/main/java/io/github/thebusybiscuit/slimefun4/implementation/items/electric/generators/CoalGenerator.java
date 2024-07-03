@@ -80,7 +80,7 @@ public class CoalGenerator extends AGenerator implements NotDiagonallyRotatable 
         }
     }
 
-    @Nonnull
+    
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.FLINT_AND_STEEL);

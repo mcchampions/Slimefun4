@@ -50,7 +50,7 @@ public class TalismanEnchantment extends ItemSetting<Boolean> {
      *
      * @return The associated {@link Enchantment}
      */
-    @Nonnull
+    
     public Enchantment getEnchantment() {
         return enchantment;
     }

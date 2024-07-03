@@ -29,7 +29,7 @@ public class EnderBackpack extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             Player p = e.getPlayer();
             p.openInventory(p.getEnderChest());

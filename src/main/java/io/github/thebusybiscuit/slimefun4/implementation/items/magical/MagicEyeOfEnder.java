@@ -30,7 +30,7 @@ public class MagicEyeOfEnder extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
 
@@ -43,7 +43,7 @@ public class MagicEyeOfEnder extends SimpleSlimefunItem<ItemUseHandler> {
         };
     }
 
-    private boolean hasArmor(@Nonnull PlayerInventory inv) {
+    private boolean hasArmor(PlayerInventory inv) {
         // @formatter:off
         return SlimefunUtils.isItemSimilar(inv.getHelmet(), SlimefunItems.ENDER_HELMET, true)
                 && SlimefunUtils.isItemSimilar(inv.getChestplate(), SlimefunItems.ENDER_CHESTPLATE, true)

@@ -59,7 +59,7 @@ public class MinecraftRecipeService {
      * @param plugin
      *            The {@link Plugin} that requests this Service
      */
-    public MinecraftRecipeService(@Nonnull Plugin plugin) {
+    public MinecraftRecipeService(Plugin plugin) {
         this.plugin = plugin;
     }
 
@@ -82,7 +82,7 @@ public class MinecraftRecipeService {
      * @param subscription
      *            A callback to run when the {@link RecipeSnapshot} has been created.
      */
-    public void subscribe(@Nonnull Consumer<RecipeSnapshot> subscription) {
+    public void subscribe(Consumer<RecipeSnapshot> subscription) {
         Validate.notNull(subscription, "Callback must not be null!");
         subscriptions.add(subscription);
     }
@@ -96,7 +96,7 @@ public class MinecraftRecipeService {
      *
      * @return An {@link Optional} describing the furnace output of the given {@link ItemStack}
      */
-    public @Nonnull Optional<ItemStack> getFurnaceOutput(@Nullable ItemStack input) {
+    public Optional<ItemStack> getFurnaceOutput(@Nullable ItemStack input) {
         if (snapshot == null || input == null) {
             return Optional.empty();
         }
@@ -128,7 +128,7 @@ public class MinecraftRecipeService {
      *
      * @return An Array of {@link RecipeChoice} representing the shape of this {@link Recipe}
      */
-    public @Nonnull RecipeChoice[] getRecipeShape(@Nonnull Recipe recipe) {
+    public RecipeChoice[] getRecipeShape(Recipe recipe) {
         Validate.notNull(recipe, "Recipe must not be null!");
 
         if (recipe instanceof ShapedRecipe shapedRecipe) {
@@ -162,7 +162,7 @@ public class MinecraftRecipeService {
      *
      * @return An array of {@link Recipe Recipes} to craft the given {@link ItemStack}
      */
-    public @Nonnull Recipe[] getRecipesFor(@Nullable ItemStack item) {
+    public Recipe[] getRecipesFor(@Nullable ItemStack item) {
         if (snapshot == null || item == null) {
             return new Recipe[0];
         } else {
@@ -181,7 +181,7 @@ public class MinecraftRecipeService {
      *
      * @return The corresponding {@link Recipe} or null
      */
-    public @Nullable Recipe getRecipe(@Nonnull NamespacedKey key) {
+    public @Nullable Recipe getRecipe(NamespacedKey key) {
         Validate.notNull(key, "The NamespacedKey should not be null");
 
         if (snapshot != null) {

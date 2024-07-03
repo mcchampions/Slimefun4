@@ -22,7 +22,7 @@ public class ClearDataCommand extends SubCommand {
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.cleardata") || sender instanceof ConsoleCommandSender) {
             if (args.length == 4 && args[3].equalsIgnoreCase("confirm")) {
                 List<World> worlds = new ArrayList<>();
@@ -91,7 +91,7 @@ public class ClearDataCommand extends SubCommand {
         }
     }
 
-    @Nonnull
+    
     @Override
     public String getDescription() {
         return "commands.cleardata.description";

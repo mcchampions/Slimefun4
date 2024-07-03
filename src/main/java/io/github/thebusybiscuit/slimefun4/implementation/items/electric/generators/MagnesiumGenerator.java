@@ -25,7 +25,7 @@ public class MagnesiumGenerator extends AGenerator implements NotDiagonallyRotat
         registerFuel(new MachineFuel(20, SlimefunItems.MAGNESIUM_SALT));
     }
 
-    @Nonnull
+    
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.FLINT_AND_STEEL);

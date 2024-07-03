@@ -47,7 +47,7 @@ public interface DamageableItem extends ItemAttribute {
      * @param item
      *            The {@link ItemStack} to damage
      */
-    default void damageItem(@Nonnull Player p, @Nullable ItemStack item) {
+    default void damageItem(Player p, @Nullable ItemStack item) {
         if (isDamageable() && item != null && !item.getType().isAir() && item.getAmount() > 0) {
             int unbreakingLevel = item.getEnchantmentLevel(Enchantment.DURABILITY);
 

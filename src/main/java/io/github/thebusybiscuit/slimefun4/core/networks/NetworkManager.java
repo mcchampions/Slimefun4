@@ -111,13 +111,13 @@ public class NetworkManager {
      *
      * @return A {@link List} containing every {@link Network} on the {@link Server}
      */
-    @Nonnull
+    
     public List<Network> getNetworkList() {
         return Collections.unmodifiableList(networks);
     }
 
-    @Nonnull
-    public <T extends Network> Optional<T> getNetworkFromLocation(@Nullable Location l, @Nonnull Class<T> type) {
+    
+    public <T extends Network> Optional<T> getNetworkFromLocation(@Nullable Location l, Class<T> type) {
         if (l == null) {
             return Optional.empty();
         }
@@ -133,8 +133,8 @@ public class NetworkManager {
         return Optional.empty();
     }
 
-    @Nonnull
-    public <T extends Network> List<T> getNetworksFromLocation(@Nullable Location l, @Nonnull Class<T> type) {
+    
+    public <T extends Network> List<T> getNetworksFromLocation(@Nullable Location l, Class<T> type) {
         if (l == null) {
             // No networks here, if the location does not even exist
             return new ArrayList<>();
@@ -158,7 +158,7 @@ public class NetworkManager {
      * @param network
      *            The {@link Network} to register
      */
-    public void registerNetwork(@Nonnull Network network) {
+    public void registerNetwork(Network network) {
         Validate.notNull(network, "Cannot register a null Network");
 
         Debug.log(
@@ -173,7 +173,7 @@ public class NetworkManager {
      * @param network
      *            The {@link Network} to remove
      */
-    public void unregisterNetwork(@Nonnull Network network) {
+    public void unregisterNetwork(Network network) {
         Validate.notNull(network, "Cannot unregister a null Network");
 
         Debug.log(
@@ -190,7 +190,7 @@ public class NetworkManager {
      * @param l
      *            The {@link Location} to update
      */
-    public void updateAllNetworks(@Nonnull Location l) {
+    public void updateAllNetworks(Location l) {
         Validate.notNull(l, "The Location cannot be null");
 
         Debug.log(TestCase.ENERGYNET, "Updating all networks now.");

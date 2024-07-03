@@ -17,7 +17,7 @@ public class JetBootsTask extends AbstractPlayerTask {
 
     private final JetBoots boots;
 
-    public JetBootsTask(@Nonnull Player p, @Nonnull JetBoots boots) {
+    public JetBootsTask(Player p, JetBoots boots) {
         super(p);
         this.boots = boots;
     }

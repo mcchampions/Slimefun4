@@ -56,7 +56,7 @@ public class SlimefunAutoCrafter extends AbstractAutoCrafter {
     }
 
     @Override
-    @Nullable public AbstractRecipe getSelectedRecipe(@Nonnull Block b) {
+    @Nullable public AbstractRecipe getSelectedRecipe(Block b) {
         Validate.notNull(b, "The Block cannot be null!");
 
         BlockState state = PaperLib.getBlockState(b, false).getState();
@@ -79,7 +79,7 @@ public class SlimefunAutoCrafter extends AbstractAutoCrafter {
     }
 
     @Override
-    protected void updateRecipe(@Nonnull Block b, @Nonnull Player p) {
+    protected void updateRecipe(Block b, Player p) {
         ItemStack itemInHand = p.getInventory().getItemInMainHand();
         SlimefunItem item = SlimefunItem.getByItem(itemInHand);
 

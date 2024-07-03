@@ -28,7 +28,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class MobDropListener implements Listener {
 
-    public MobDropListener(@Nonnull Slimefun plugin) {
+    public MobDropListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -59,7 +59,7 @@ public class MobDropListener implements Listener {
         }
     }
 
-    private boolean canDrop(@Nonnull Player p, @Nonnull ItemStack item) {
+    private boolean canDrop(Player p, ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         if (sfItem == null) {

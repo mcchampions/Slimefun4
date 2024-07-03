@@ -27,5 +27,5 @@ public interface WitherProof extends ItemAttribute {
      * @param wither
      *            The {@link Wither} who attacked.
      */
-    void onAttack(@Nonnull Block block, @Nonnull Wither wither);
+    void onAttack(Block block, Wither wither);
 }

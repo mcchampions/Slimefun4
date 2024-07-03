@@ -31,7 +31,7 @@ public class DietCookie extends SimpleSlimefunItem<ItemConsumptionHandler> {
     }
 
     @Override
-    public @Nonnull ItemConsumptionHandler getItemHandler() {
+    public ItemConsumptionHandler getItemHandler() {
         return (e, p, item) -> {
             Slimefun.getLocalization().sendMessage(p, "messages.diet-cookie");
             SoundEffect.DIET_COOKIE_CONSUME_SOUND.playFor(p);

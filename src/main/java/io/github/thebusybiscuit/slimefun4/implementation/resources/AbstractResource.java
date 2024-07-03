@@ -45,19 +45,19 @@ abstract class AbstractResource implements GEOResource {
     }
 
     @Override
-    @Nonnull
+    
     public NamespacedKey getKey() {
         return key;
     }
 
     @Override
-    @Nonnull
+    
     public String getName() {
         return defaultName;
     }
 
     @Override
-    @Nonnull
+    
     public ItemStack getItem() {
         return item.clone();
     }
@@ -84,7 +84,7 @@ abstract class AbstractResource implements GEOResource {
      * @return A {@link BiomeMap} for this resource
      */
     @ParametersAreNonnullByDefault
-    static @Nonnull BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
+    static BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
         Validate.notNull(resource, "Resource cannot be null.");
         Validate.notNull(path, "Path cannot be null.");
 

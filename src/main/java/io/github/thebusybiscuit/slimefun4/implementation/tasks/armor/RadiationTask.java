@@ -102,7 +102,7 @@ public class RadiationTask extends AbstractArmorTask {
      *
      * @return Returns true if the {@link Player} is within their grace period.
      */
-    private boolean withinGracePeriod(@Nonnull Player player) {
+    private boolean withinGracePeriod(Player player) {
         Long gracePeriodEnd = ACTIVE_GRACE_PERIODS.get(player.getUniqueId());
 
         if (gracePeriodEnd == null) {
@@ -123,7 +123,7 @@ public class RadiationTask extends AbstractArmorTask {
      *
      * @param player The player to add the grace period to.
      */
-    public static void addGracePeriod(@Nonnull Player player) {
+    public static void addGracePeriod(Player player) {
         ACTIVE_GRACE_PERIODS.put(player.getUniqueId(), System.currentTimeMillis() + (GRACE_PERIOD_DURATION * 1000L));
     }
 }

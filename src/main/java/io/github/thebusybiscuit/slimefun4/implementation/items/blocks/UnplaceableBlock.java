@@ -41,7 +41,7 @@ public class UnplaceableBlock extends SimpleSlimefunItem<ItemUseHandler> impleme
         super(itemGroup, item, recipeType, recipe, recipeOutput);
     }
 
-    @Nonnull
+    
     @Override
     public ItemUseHandler getItemHandler() {
         return PlayerRightClickEvent::cancel;

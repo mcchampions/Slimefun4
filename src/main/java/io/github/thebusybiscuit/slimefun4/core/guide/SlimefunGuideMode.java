@@ -28,7 +28,7 @@ public enum SlimefunGuideMode {
 
     private final String displayName;
 
-    SlimefunGuideMode(@Nonnull String displayName) {
+    SlimefunGuideMode(String displayName) {
         this.displayName = displayName;
     }
 
@@ -37,7 +37,7 @@ public enum SlimefunGuideMode {
      *
      * @return 指南书样式的显示名称
      */
-    public @Nonnull String getDisplayName() {
+    public String getDisplayName() {
         return displayName;
     }
 }

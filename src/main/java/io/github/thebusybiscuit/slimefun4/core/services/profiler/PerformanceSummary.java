@@ -35,7 +35,7 @@ class PerformanceSummary {
     private final Map<String, Long> plugins;
     private final Map<String, Long> items;
 
-    PerformanceSummary(@Nonnull SlimefunProfiler profiler, long totalElapsedTime, int totalTickedBlocks) {
+    PerformanceSummary(SlimefunProfiler profiler, long totalElapsedTime, int totalTickedBlocks) {
         this.profiler = profiler;
         this.rating = profiler.getPerformance();
         this.percentage = profiler.getPercentageOfTick();
@@ -48,7 +48,7 @@ class PerformanceSummary {
         items = profiler.getByItem();
     }
 
-    public void send(@Nonnull PerformanceInspector sender) {
+    public void send(PerformanceInspector sender) {
         sender.sendMessage("");
         sender.sendMessage(ChatColor.GREEN + "===== Slimefun Lag Profiler =====");
         sender.sendMessage(
@@ -116,7 +116,7 @@ class PerformanceSummary {
         }
     }
 
-    @Nonnull
+    
     @ParametersAreNonnullByDefault
     private TextComponent summarizeAsTextComponent(
             int count,
@@ -156,7 +156,7 @@ class PerformanceSummary {
         return component;
     }
 
-    @Nonnull
+    
     @ParametersAreNonnullByDefault
     private String summarizeAsString(
             PerformanceInspector inspector,
@@ -193,7 +193,7 @@ class PerformanceSummary {
         return builder.toString();
     }
 
-    @Nonnull
+    
     private String getPerformanceRating() {
         StringBuilder builder = new StringBuilder();
         builder.append(NumberUtils.getColorFromPercentage(100 - Math.min(percentage, 100)));

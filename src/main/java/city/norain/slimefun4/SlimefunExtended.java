@@ -18,7 +18,7 @@ public final class SlimefunExtended {
         }
     }
 
-    public static boolean checkEnvironment(@Nonnull Slimefun sf) {
+    public static boolean checkEnvironment(Slimefun sf) {
         if (EnvironmentChecker.checkHybridServer()) {
             sf.getLogger().log(Level.WARNING, "#######################################################");
             sf.getLogger().log(Level.WARNING, "");
@@ -47,7 +47,7 @@ public final class SlimefunExtended {
         }
     }
 
-    public static void register(@Nonnull Slimefun sf) {
+    public static void register(Slimefun sf) {
         EnvironmentChecker.scheduleSlimeGlueCheck(sf);
 
         checkDebug();

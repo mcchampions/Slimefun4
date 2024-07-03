@@ -43,7 +43,7 @@ public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefu
      *
      * @return An immutable {@link Set} of cured {@link PotionEffect PotionEffects}
      */
-    @Nonnull
+    
     public Set<PotionEffectType> getCuredEffects() {
         return Collections.unmodifiableSet(curedEffects);
     }
@@ -54,7 +54,7 @@ public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefu
      * @param n
      *            The {@link LivingEntity} to clear the effects from.
      */
-    public void clearNegativeEffects(@Nonnull LivingEntity n) {
+    public void clearNegativeEffects(LivingEntity n) {
         for (PotionEffectType effect : curedEffects) {
             if (n.hasPotionEffect(effect)) {
                 n.removePotionEffect(effect);
@@ -68,7 +68,7 @@ public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefu
      * @param n
      *            The {@link LivingEntity} to heal
      */
-    public void heal(@Nonnull LivingEntity n) {
+    public void heal(LivingEntity n) {
         double health = n.getHealth() + healAmount;
         double maxHealth = n.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
         n.setHealth(Math.min(health, maxHealth));

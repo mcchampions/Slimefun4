@@ -121,12 +121,12 @@ public class ReactorAccessPort extends SlimefunItem {
         };
     }
 
-    @Nonnull
+    
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -138,7 +138,7 @@ public class ReactorAccessPort extends SlimefunItem {
         };
     }
 
-    private void constructMenu(@Nonnull BlockMenuPreset preset) {
+    private void constructMenu(BlockMenuPreset preset) {
         preset.drawBackground(ChestMenuUtils.getBackground(), background);
 
         preset.drawBackground(new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, " "), fuelBorder);
@@ -160,27 +160,27 @@ public class ReactorAccessPort extends SlimefunItem {
                 ChestMenuUtils.getEmptyClickHandler());
     }
 
-    @Nonnull
+    
     public int[] getInputSlots() {
         return new int[] {19, 28, 37, 25, 34, 43};
     }
 
-    @Nonnull
+    
     public int[] getFuelSlots() {
         return new int[] {19, 28, 37};
     }
 
-    @Nonnull
+    
     public int[] getCoolantSlots() {
         return new int[] {25, 34, 43};
     }
 
-    @Nonnull
+    
     public static int[] getOutputSlots() {
         return new int[] {40};
     }
 
-    @Nullable private BlockMenu getReactor(@Nonnull Location l) {
+    @Nullable private BlockMenu getReactor(Location l) {
         Location location = new Location(l.getWorld(), l.getX(), l.getY() - 3, l.getZ());
         SlimefunItem item = StorageCacheUtils.getSfItem(location);
 

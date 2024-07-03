@@ -78,13 +78,13 @@ public class OilPump extends AContainer implements RecipeDisplayItem, NotDiagona
         };
     }
 
-    @Nonnull
+    
     @Override
     public List<ItemStack> getDisplayRecipes() {
         return Arrays.asList(emptyBucket, SlimefunItems.OIL_BUCKET);
     }
 
-    @Nonnull
+    
     @Override
     public String getMachineIdentifier() {
         return "OIL_PUMP";

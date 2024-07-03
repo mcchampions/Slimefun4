@@ -44,8 +44,8 @@ public class OutputChest extends SlimefunItem {
         addItemHandler(new VanillaInventoryDropHandler<>(Chest.class));
     }
 
-    @Nonnull
-    public static Optional<Inventory> findOutputChestFor(@Nonnull Block b, @Nonnull ItemStack item) {
+    
+    public static Optional<Inventory> findOutputChestFor(Block b, ItemStack item) {
         for (BlockFace face : possibleFaces) {
             Block potentialOutput = b.getRelative(face);
 

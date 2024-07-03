@@ -43,7 +43,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class BlockPhysicsListener implements Listener {
 
-    public BlockPhysicsListener(@Nonnull Slimefun plugin) {
+    public BlockPhysicsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

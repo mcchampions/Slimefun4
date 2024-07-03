@@ -21,7 +21,7 @@ public class SlimefunMigrateListener implements Listener {
         }
     }
 
-    public void register(@Nonnull Slimefun plugin) {
+    public void register(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 }

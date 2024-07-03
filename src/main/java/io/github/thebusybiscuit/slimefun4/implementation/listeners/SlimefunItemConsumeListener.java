@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class SlimefunItemConsumeListener implements Listener {
 
-    public SlimefunItemConsumeListener(@Nonnull Slimefun plugin) {
+    public SlimefunItemConsumeListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

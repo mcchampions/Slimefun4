@@ -33,7 +33,7 @@ public class RainbowTickHandler extends BlockTicker {
     private final boolean glassPanes;
     private Material material;
 
-    public RainbowTickHandler(@Nonnull List<Material> materials) {
+    public RainbowTickHandler(List<Material> materials) {
         Validate.noNullElements(materials, "A RainbowTicker cannot have a Material that is null!");
 
         if (materials.isEmpty()) {
@@ -45,11 +45,11 @@ public class RainbowTickHandler extends BlockTicker {
         material = iterator.next();
     }
 
-    public RainbowTickHandler(@Nonnull Material... materials) {
+    public RainbowTickHandler(Material... materials) {
         this(Arrays.asList(materials));
     }
 
-    public RainbowTickHandler(@Nonnull ColoredMaterial material) {
+    public RainbowTickHandler(ColoredMaterial material) {
         this(material.asList());
     }
 
@@ -64,7 +64,7 @@ public class RainbowTickHandler extends BlockTicker {
      *
      * @return Whether the array contained any {@link GlassPane} materials
      */
-    private boolean containsGlassPanes(@Nonnull List<Material> materials) {
+    private boolean containsGlassPanes(List<Material> materials) {
         for (Material type : materials) {
             /*
             This BlockData is purely virtual and only created on startup, it should have

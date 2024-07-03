@@ -9,7 +9,7 @@ public enum MachineType {
 
     private final String suffix;
 
-    MachineType(@Nonnull String suffix) {
+    MachineType(String suffix) {
         this.suffix = suffix;
     }
 

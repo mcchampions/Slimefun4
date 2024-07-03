@@ -36,12 +36,12 @@ public class NetherGoldPan extends GoldPan {
     }
 
     @Override
-    public @Nonnull Set<Material> getInputMaterials() {
+    public Set<Material> getInputMaterials() {
         return inputMaterials;
     }
 
     @Override
-    protected @Nonnull Set<GoldPanDrop> getGoldPanDrops() {
+    protected Set<GoldPanDrop> getGoldPanDrops() {
         Set<GoldPanDrop> settings = new HashSet<>();
 
         settings.add(new GoldPanDrop(this, "chance.QUARTZ", 50, new ItemStack(Material.QUARTZ)));

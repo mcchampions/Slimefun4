@@ -39,7 +39,7 @@ public class SubItemGroup extends ItemGroup {
     }
 
     @Override
-    public final boolean isVisible(@Nonnull Player p) {
+    public final boolean isVisible(Player p) {
         /*
          * Sub Categories are always hidden,
          * they won't show up in the normal guide view.
@@ -48,7 +48,7 @@ public class SubItemGroup extends ItemGroup {
     }
 
     @Override
-    public final boolean isAccessible(@Nonnull Player p) {
+    public final boolean isAccessible(Player p) {
         /*
          * Sub Categories are accessible, they are invisible
          * but their items are available to the guide search.
@@ -70,7 +70,7 @@ public class SubItemGroup extends ItemGroup {
      * @return Whether this {@link SubItemGroup} is visible to the given {@link Player}
      * in the {@link NestedItemGroup}
      */
-    public final boolean isVisibleInNested(@Nonnull Player p) {
+    public final boolean isVisibleInNested(Player p) {
         return super.isVisible(p);
     }
 
@@ -80,12 +80,12 @@ public class SubItemGroup extends ItemGroup {
      *
      * @return The parent {@link NestedItemGroup}
      */
-    public final @Nonnull NestedItemGroup getParent() {
+    public final NestedItemGroup getParent() {
         return parentItemGroup;
     }
 
     @Override
-    public final void register(@Nonnull SlimefunAddon addon) {
+    public final void register(SlimefunAddon addon) {
         super.register(addon);
 
         if (!parentItemGroup.isRegistered()) {

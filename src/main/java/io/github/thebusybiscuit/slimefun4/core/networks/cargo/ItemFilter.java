@@ -67,7 +67,7 @@ class ItemFilter implements Predicate<ItemStack> {
      * @param b
      *            The {@link Block}
      */
-    public ItemFilter(@Nonnull Block b) {
+    public ItemFilter(Block b) {
         update(b);
     }
 
@@ -78,7 +78,7 @@ class ItemFilter implements Predicate<ItemStack> {
      * @param b
      *            The {@link Block}
      */
-    public void update(@Nonnull Block b) {
+    public void update(Block b) {
         if (!isDirty() || isLoading) {
             return;
         }
@@ -186,7 +186,7 @@ class ItemFilter implements Predicate<ItemStack> {
     }
 
     @Override
-    public boolean test(@Nonnull ItemStack item) {
+    public boolean test(ItemStack item) {
         if (isDirty()) {
             return false;
         }

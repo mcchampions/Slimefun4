@@ -24,7 +24,7 @@ class SlimefunTabCompleter implements TabCompleter {
 
     private final SlimefunCommand command;
 
-    public SlimefunTabCompleter(@Nonnull SlimefunCommand command) {
+    public SlimefunTabCompleter(SlimefunCommand command) {
         this.command = command;
     }
 
@@ -85,8 +85,8 @@ class SlimefunTabCompleter implements TabCompleter {
      *            The typed string
      * @return Sublist if string is not empty
      */
-    @Nonnull
-    private List<String> createReturnList(@Nonnull List<String> list, @Nonnull String string) {
+    
+    private List<String> createReturnList(List<String> list, String string) {
         if (string.length() == 0) {
             return list;
         }
@@ -109,7 +109,7 @@ class SlimefunTabCompleter implements TabCompleter {
         return returnList;
     }
 
-    @Nonnull
+    
     private List<String> getSlimefunItems() {
         List<SlimefunItem> items = Slimefun.getRegistry().getEnabledSlimefunItems();
         List<String> list = new ArrayList<>(items.size());

@@ -29,16 +29,16 @@ public final class SlimefunGuide {
 
     private SlimefunGuide() {}
 
-    @Nonnull
-    public static ItemStack getItem(@Nonnull SlimefunGuideMode design) {
+    
+    public static ItemStack getItem(SlimefunGuideMode design) {
         return Slimefun.getRegistry().getSlimefunGuide(design).getItem();
     }
 
-    public static void openCheatMenu(@Nonnull Player p) {
+    public static void openCheatMenu(Player p) {
         openMainMenuAsync(p, SlimefunGuideMode.CHEAT_MODE, 1);
     }
 
-    public static void openGuide(@Nonnull Player p, @Nullable ItemStack guide) {
+    public static void openGuide(Player p, @Nullable ItemStack guide) {
         if (getItem(SlimefunGuideMode.CHEAT_MODE).equals(guide)) {
             openGuide(p, SlimefunGuideMode.CHEAT_MODE);
         } else {
@@ -50,7 +50,7 @@ public final class SlimefunGuide {
         }
     }
 
-    public static void openGuide(@Nonnull Player p, @Nonnull SlimefunGuideMode mode) {
+    public static void openGuide(Player p, SlimefunGuideMode mode) {
         if (!Slimefun.getWorldSettingsService().isWorldEnabled(p.getWorld())) {
             return;
         }
@@ -129,7 +129,7 @@ public final class SlimefunGuide {
      *
      * @return The default {@link SlimefunGuideMode}.
      */
-    @Nonnull
+    
     public static SlimefunGuideMode getDefaultMode() {
         return SlimefunGuideMode.SURVIVAL_MODE;
     }

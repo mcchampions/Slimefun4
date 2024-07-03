@@ -30,7 +30,7 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
         this.enumClass = enumClass;
     }
 
-    @Nonnull
+    
     @Override
     protected String getErrorMessage() {
         String values = Arrays.stream(getAllowedValues()).map(Enum::name).collect(Collectors.joining(", "));
@@ -43,7 +43,7 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
      *
      * @return An array of allowed {@link Enum} constants
      */
-    @Nonnull
+    
     public T[] getAllowedValues() {
         return enumClass.getEnumConstants();
     }
@@ -53,7 +53,7 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
      *
      * @return The value as an {@link Enum} constant
      */
-    @Nonnull
+    
     public T getAsEnumConstant() {
         return Enum.valueOf(enumClass, getValue());
     }

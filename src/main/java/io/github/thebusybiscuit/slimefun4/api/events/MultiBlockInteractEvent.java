@@ -38,7 +38,7 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
      *
      * @return The {@link MultiBlock} of this {@link MultiBlockInteractEvent}
      */
-    @Nonnull
+    
     public MultiBlock getMultiBlock() {
         return multiBlock;
     }
@@ -48,7 +48,7 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
      *
      * @return The {@link Block} that was clicked
      */
-    @Nonnull
+    
     public Block getClickedBlock() {
         return clickedBlock;
     }
@@ -58,7 +58,7 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
      *
      * @return The {@link BlockFace} that was clicked
      */
-    @Nonnull
+    
     public BlockFace getClickedFace() {
         return clickedFace;
     }
@@ -73,12 +73,12 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
         this.cancelled = cancel;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

@@ -36,7 +36,7 @@ public class WindStaff extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             Player p = e.getPlayer();
 

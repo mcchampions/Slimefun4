@@ -27,7 +27,7 @@ public interface WeaponUseHandler extends ItemHandler {
      * @param item
      *            The {@link ItemStack} that was used to attack
      */
-    void onHit(@Nonnull EntityDamageByEntityEvent e, @Nonnull Player player, @Nonnull ItemStack item);
+    void onHit(EntityDamageByEntityEvent e, Player player, ItemStack item);
 
     @Override
     default Class<? extends ItemHandler> getIdentifier() {

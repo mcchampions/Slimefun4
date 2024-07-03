@@ -28,7 +28,7 @@ public class SolarHelmetTask extends AbstractArmorTask {
         }
     }
 
-    private void checkForSolarHelmet(@Nonnull Player p) {
+    private void checkForSolarHelmet(Player p) {
         ItemStack helmet = p.getInventory().getHelmet();
         SlimefunItem item = SlimefunItem.getByItem(helmet);
 
@@ -37,7 +37,7 @@ public class SolarHelmetTask extends AbstractArmorTask {
         }
     }
 
-    private boolean hasSunlight(@Nonnull Player p) {
+    private boolean hasSunlight(Player p) {
         World world = p.getWorld();
 
         if (world.getEnvironment() != Environment.NORMAL) {

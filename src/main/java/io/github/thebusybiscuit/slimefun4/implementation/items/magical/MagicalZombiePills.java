@@ -49,7 +49,7 @@ public class MagicalZombiePills extends SimpleSlimefunItem<EntityInteractHandler
     }
 
     @Override
-    public @Nonnull EntityInteractHandler getItemHandler() {
+    public EntityInteractHandler getItemHandler() {
         return (e, item, offhand) -> {
             Entity entity = e.getRightClicked();
 
@@ -81,7 +81,7 @@ public class MagicalZombiePills extends SimpleSlimefunItem<EntityInteractHandler
         return PlayerRightClickEvent::cancel;
     }
 
-    private void useItem(@Nonnull Player p, @Nonnull ItemStack item) {
+    private void useItem(Player p, ItemStack item) {
         if (p.getGameMode() != GameMode.CREATIVE) {
             ItemUtils.consumeItem(item, false);
         }
@@ -90,12 +90,12 @@ public class MagicalZombiePills extends SimpleSlimefunItem<EntityInteractHandler
         p.playSound(p.getLocation(), Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED, 1, 1);
     }
 
-    private void healZombieVillager(@Nonnull ZombieVillager zombieVillager, @Nonnull Player p) {
+    private void healZombieVillager(ZombieVillager zombieVillager, Player p) {
         zombieVillager.setConversionTime(1);
         zombieVillager.setConversionPlayer(p);
     }
 
-    private void healZombifiedPiglin(@Nonnull PigZombie zombiePiglin) {
+    private void healZombifiedPiglin(PigZombie zombiePiglin) {
         Location loc = zombiePiglin.getLocation();
 
         zombiePiglin.remove();

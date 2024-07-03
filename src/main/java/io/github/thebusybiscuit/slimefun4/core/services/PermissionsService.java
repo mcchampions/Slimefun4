@@ -29,7 +29,7 @@ public class PermissionsService {
     private final Map<String, String> permissions = new HashMap<>();
     private final Config config;
 
-    public PermissionsService(@Nonnull Slimefun plugin) {
+    public PermissionsService(Slimefun plugin) {
         config = new Config(plugin, "permissions.yml");
 
         // @formatter:off
@@ -54,7 +54,7 @@ public class PermissionsService {
      * @param items An {@link Iterable} of {@link SlimefunItem}s to register
      * @param save  Whether to save the default values to our permissions file
      */
-    public void update(@Nonnull Iterable<SlimefunItem> items, boolean save) {
+    public void update(Iterable<SlimefunItem> items, boolean save) {
         for (SlimefunItem item : items) {
             update(item, false);
         }
@@ -64,7 +64,7 @@ public class PermissionsService {
         }
     }
 
-    public void update(@Nonnull SlimefunItem item, boolean save) {
+    public void update(SlimefunItem item, boolean save) {
         Validate.notNull(item, "The Item should not be null!");
 
         String path = item.getId() + ".permission";
@@ -111,8 +111,8 @@ public class PermissionsService {
      *
      * @return An {@link Optional} holding the {@link Permission} as a {@link String} or an empty {@link Optional}
      */
-    @Nonnull
-    public Optional<String> getPermission(@Nonnull SlimefunItem item) {
+    
+    public Optional<String> getPermission(SlimefunItem item) {
         Validate.notNull(item, "Cannot get permissions for null");
         String permission = permissions.get(item.getId());
 
@@ -131,7 +131,7 @@ public class PermissionsService {
      * @param permission
      *            The {@link Permission} to set
      */
-    public void setPermission(@Nonnull SlimefunItem item, @Nullable String permission) {
+    public void setPermission(SlimefunItem item, @Nullable String permission) {
         Validate.notNull(item, "You cannot set the permission for null");
         permissions.put(item.getId(), permission != null ? permission : "none");
     }
@@ -156,7 +156,7 @@ public class PermissionsService {
      *
      * @return The configured lore to display
      */
-    public @Nonnull List<String> getLore(@Nonnull SlimefunItem item) {
+    public List<String> getLore(SlimefunItem item) {
         return config.getStringList(item.getId() + ".lore");
     }
 }

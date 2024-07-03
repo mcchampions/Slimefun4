@@ -16,12 +16,12 @@ import org.bukkit.event.entity.PlayerDeathEvent;
  */
 public class RadioactivityListener implements Listener {
 
-    public RadioactivityListener(@Nonnull Slimefun plugin) {
+    public RadioactivityListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
-    public void onPlayerDeath(@Nonnull PlayerDeathEvent e) {
+    public void onPlayerDeath(PlayerDeathEvent e) {
         RadiationUtils.clearExposure(e.getEntity());
         RadiationTask.addGracePeriod(e.getEntity());
     }

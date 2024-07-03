@@ -88,12 +88,12 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
         return processor;
     }
 
-    @Nonnull
+    
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -279,7 +279,7 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         this.addon = addon;
 
         if (getCapacity() < 0) {

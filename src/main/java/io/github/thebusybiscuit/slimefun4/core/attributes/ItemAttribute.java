@@ -23,6 +23,6 @@ public interface ItemAttribute {
      *
      * @return the identifier of the {@link SlimefunItem}
      */
-    @Nonnull
+    
     String getId();
 }

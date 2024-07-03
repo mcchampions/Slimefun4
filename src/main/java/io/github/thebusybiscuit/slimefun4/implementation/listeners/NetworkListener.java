@@ -29,7 +29,7 @@ public class NetworkListener implements Listener {
      */
     private final NetworkManager manager;
 
-    public NetworkListener(@Nonnull Slimefun plugin, @Nonnull NetworkManager manager) {
+    public NetworkListener(Slimefun plugin, NetworkManager manager) {
         this.manager = manager;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

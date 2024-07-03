@@ -234,7 +234,7 @@ public class RecipeType implements Keyed {
         return this.item;
     }
 
-    public @Nonnull ItemStack getItem(Player p) {
+    public ItemStack getItem(Player p) {
         return Slimefun.getLocalization().getRecipeTypeItem(p, this);
     }
 
@@ -243,7 +243,7 @@ public class RecipeType implements Keyed {
     }
 
     @Override
-    public final @Nonnull NamespacedKey getKey() {
+    public final NamespacedKey getKey() {
         return key;
     }
 

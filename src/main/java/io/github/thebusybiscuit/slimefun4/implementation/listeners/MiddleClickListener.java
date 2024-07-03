@@ -23,7 +23,7 @@ import org.bukkit.event.inventory.InventoryType.SlotType;
  */
 public class MiddleClickListener implements Listener {
 
-    public MiddleClickListener(@Nonnull Slimefun plugin) {
+    public MiddleClickListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

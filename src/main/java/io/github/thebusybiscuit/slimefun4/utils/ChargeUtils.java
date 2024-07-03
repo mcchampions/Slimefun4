@@ -34,7 +34,7 @@ public final class ChargeUtils {
 
     private ChargeUtils() {}
 
-    public static void setCharge(@Nonnull ItemMeta meta, float charge, float capacity) {
+    public static void setCharge(ItemMeta meta, float charge, float capacity) {
         Validate.notNull(meta, "Meta cannot be null!");
         Validate.isTrue(charge >= 0, "Charge has to be equal to or greater than 0!");
         Validate.isTrue(capacity > 0, "Capacity has to be greater than 0!");
@@ -61,7 +61,7 @@ public final class ChargeUtils {
         meta.setLore(lore);
     }
 
-    public static float getCharge(@Nonnull ItemMeta meta) {
+    public static float getCharge(ItemMeta meta) {
         Validate.notNull(meta, "Meta cannot be null!");
 
         NamespacedKey key = Slimefun.getRegistry().getItemChargeDataKey();

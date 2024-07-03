@@ -133,7 +133,7 @@ public class IndustrialMiner extends MultiBlockMachine {
      *
      * @return The outcome when mining this ore
      */
-    public @Nonnull ItemStack getOutcome(@Nonnull Material material) {
+    public ItemStack getOutcome(Material material) {
         if (hasSilkTouch()) {
             return new ItemStack(material);
         } else {
@@ -150,7 +150,7 @@ public class IndustrialMiner extends MultiBlockMachine {
      * @param item
      *            The item that shall be consumed
      */
-    public void addFuelType(int ores, @Nonnull ItemStack item) {
+    public void addFuelType(int ores, ItemStack item) {
         Validate.isTrue(ores > 1 && ores % 2 == 0, "矿石的数量必须 >= 2 且为 2 的倍数.");
         Validate.notNull(item, "The fuel item cannot be null");
 
@@ -158,12 +158,12 @@ public class IndustrialMiner extends MultiBlockMachine {
     }
 
     @Override
-    public @Nonnull String getLabelLocalPath() {
+    public String getLabelLocalPath() {
         return "guide.tooltips.recipes.generator";
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> list = new ArrayList<>();
 
         for (MachineFuel fuel : fuelTypes) {
@@ -197,7 +197,7 @@ public class IndustrialMiner extends MultiBlockMachine {
         task.start(b);
     }
 
-    private @Nonnull Block[] findPistons(@Nonnull Block chest) {
+    private Block[] findPistons(Block chest) {
         Block northern = chest.getRelative(BlockFace.NORTH);
 
         if (northern.getType() == Material.PISTON) {
@@ -215,7 +215,7 @@ public class IndustrialMiner extends MultiBlockMachine {
      *
      * @return Whether this {@link IndustrialMiner} is capable of mining this {@link Block}
      */
-    public boolean canMine(@Nonnull Block block) {
+    public boolean canMine(Block block) {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
         Material type = block.getType();
 

@@ -220,15 +220,15 @@ public class ChestMenu extends SlimefunInventoryHolder {
         return this.inventory.getContents();
     }
 
-    public void addViewer(@Nonnull UUID uuid) {
+    public void addViewer(UUID uuid) {
         viewers.add(uuid);
     }
 
-    public void removeViewer(@Nonnull UUID uuid) {
+    public void removeViewer(UUID uuid) {
         viewers.remove(uuid);
     }
 
-    public boolean contains(@Nonnull Player viewer) {
+    public boolean contains(Player viewer) {
         return viewers.contains(viewer.getUniqueId());
     }
 

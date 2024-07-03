@@ -69,7 +69,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         return index;
     }
 
-    @Nonnull
+    
     protected ItemUseHandler getItemUseHandler() {
         return e -> {
             Player p = e.getPlayer();
@@ -103,7 +103,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         };
     }
 
-    @Nonnull
+    
     private ToolUseHandler getToolUseHandler() {
         return (e, tool, fortune, drops) -> {
             // Multi Tools cannot be used as shears
@@ -112,7 +112,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         };
     }
 
-    @Nonnull
+    
     private EntityInteractHandler getEntityInteractionHandler() {
         return (e, item, offhand) -> {
             // Fixes #2217 - Prevent them from being used to shear entities

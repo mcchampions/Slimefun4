@@ -31,7 +31,7 @@ public interface SlimefunAddon {
      *
      * @return The instance of your {@link JavaPlugin}
      */
-    @Nonnull
+    
     JavaPlugin getJavaPlugin();
 
     /**
@@ -47,7 +47,7 @@ public interface SlimefunAddon {
      *
      * @return The Name of this {@link SlimefunAddon}
      */
-    default @Nonnull String getName() {
+    default String getName() {
         return getJavaPlugin().getName();
     }
 
@@ -57,7 +57,7 @@ public interface SlimefunAddon {
      *
      * @return The version of this {@link SlimefunAddon}
      */
-    default @Nonnull String getPluginVersion() {
+    default String getPluginVersion() {
         return getJavaPlugin().getDescription().getVersion();
     }
 
@@ -67,7 +67,7 @@ public interface SlimefunAddon {
      *
      * @return The {@link Logger} of this {@link SlimefunAddon}
      */
-    default @Nonnull Logger getLogger() {
+    default Logger getLogger() {
         return getJavaPlugin().getLogger();
     }
 
@@ -82,7 +82,7 @@ public interface SlimefunAddon {
      *
      * @return Whether this {@link SlimefunAddon} depends on the given {@link Plugin}
      */
-    default boolean hasDependency(@Nonnull String dependency) {
+    default boolean hasDependency(String dependency) {
         Validate.notNull(dependency, "The dependency cannot be null");
 
         // Well... it cannot depend on itself but you get the idea.

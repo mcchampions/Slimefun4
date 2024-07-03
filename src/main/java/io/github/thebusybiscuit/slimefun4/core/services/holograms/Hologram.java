@@ -41,7 +41,7 @@ class Hologram {
      *
      * @param uniqueId The {@link UUID} of the corresponding {@link ArmorStand}
      */
-    Hologram(@Nonnull UUID uniqueId) {
+    Hologram(UUID uniqueId) {
         this.uniqueId = uniqueId;
         this.lastAccess = System.currentTimeMillis();
     }

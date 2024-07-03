@@ -21,7 +21,7 @@ class ItemIdCommand extends SubCommand {
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender instanceof Player p) {
             if (sender.hasPermission("slimefun.command.id")) {
                 var item = p.getInventory().getItemInMainHand();

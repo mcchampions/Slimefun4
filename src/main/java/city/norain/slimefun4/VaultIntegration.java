@@ -13,7 +13,7 @@ import org.bukkit.OfflinePlayer;
 public class VaultIntegration {
     private static Economy econ = null;
 
-    protected static void register(@Nonnull Slimefun plugin) {
+    protected static void register(Slimefun plugin) {
         if (plugin.getServer().getPluginManager().isPluginEnabled("Vault")) {
             var rsp = plugin.getServer().getServicesManager().getRegistration(Economy.class);
             if (rsp != null) {

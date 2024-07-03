@@ -42,7 +42,7 @@ public class ChristmasPresent extends SimpleSlimefunItem<ItemUseHandler> impleme
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
 

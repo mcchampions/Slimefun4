@@ -30,7 +30,7 @@ public class DoubleRangeSetting extends ItemSetting<Double> {
         this.max = max;
     }
 
-    @Nonnull
+    
     @Override
     protected String getErrorMessage() {
         return "Only decimal numbers from " + min + '-' + max + "(inclusive) are allowed!";

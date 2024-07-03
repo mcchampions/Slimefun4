@@ -164,7 +164,7 @@ public class ProgrammableAndroid extends SlimefunItem
         addItemHandler(onPlace(), onBreak());
     }
 
-    @Nonnull
+    
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
@@ -190,7 +190,7 @@ public class ProgrammableAndroid extends SlimefunItem
         };
     }
 
-    @Nonnull
+    
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
 
@@ -393,7 +393,7 @@ public class ProgrammableAndroid extends SlimefunItem
         return builder.toString();
     }
 
-    private String duplicateInstruction(@Nonnull String[] script, int index) {
+    private String duplicateInstruction(String[] script, int index) {
         int i = 0;
         StringBuilder builder = new StringBuilder(Instruction.START + "-");
 
@@ -611,7 +611,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    @Nonnull
+    
     protected List<Instruction> getValidScriptInstructions() {
         List<Instruction> list = new ArrayList<>();
 
@@ -665,14 +665,14 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    @Nonnull
-    public String getScript(@Nonnull Location l) {
+    
+    public String getScript(Location l) {
         Validate.notNull(l, "Location for android not specified");
         String script = StorageCacheUtils.getData(l, "script");
         return script != null ? script : DEFAULT_SCRIPT;
     }
 
-    public void setScript(@Nonnull Location l, @Nonnull String script) {
+    public void setScript(Location l, String script) {
         Validate.notNull(l, "Location for android not specified");
         Validate.notNull(script, "No script given");
         Validate.isTrue(script.startsWith(Instruction.START.name() + '-'), "A script must begin with a 'START' token.");
@@ -720,7 +720,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    public void registerFuelType(@Nonnull MachineFuel fuel) {
+    public void registerFuelType(MachineFuel fuel) {
         Validate.notNull(fuel, "Cannot register null as a Fuel type");
 
         fuelTypes.add(fuel);
@@ -946,7 +946,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    private void constructMenu(@Nonnull BlockMenuPreset preset) {
+    private void constructMenu(BlockMenuPreset preset) {
         preset.drawBackground(BORDER);
         preset.drawBackground(ChestMenuUtils.getOutputSlotTexture(), OUTPUT_BORDER);
 

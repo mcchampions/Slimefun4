@@ -53,36 +53,36 @@ public final class ChestMenuUtils {
 
     private static final MenuClickHandler CLICK_HANDLER = (p, s, i, a) -> false;
 
-    public static @Nonnull ItemStack getBackground() {
+    public static ItemStack getBackground() {
         return UI_BACKGROUND;
     }
 
-    public static @Nonnull ItemStack getNoPermissionItem() {
+    public static ItemStack getNoPermissionItem() {
         return NO_PERMISSION;
     }
 
-    public static @Nonnull ItemStack getNotResearchedItem() {
+    public static ItemStack getNotResearchedItem() {
         return NOT_RESEARCHED;
     }
 
-    public static @Nonnull ItemStack getInputSlotTexture() {
+    public static ItemStack getInputSlotTexture() {
         return INPUT_SLOT;
     }
 
-    public static @Nonnull ItemStack getOutputSlotTexture() {
+    public static ItemStack getOutputSlotTexture() {
         return OUTPUT_SLOT;
     }
 
-    public static @Nonnull MenuClickHandler getEmptyClickHandler() {
+    public static MenuClickHandler getEmptyClickHandler() {
         return CLICK_HANDLER;
     }
 
-    public static @Nonnull ItemStack getBackButton(@Nonnull Player p, String... lore) {
+    public static ItemStack getBackButton(Player p, String... lore) {
         return new CustomItemStack(
                 BACK_BUTTON, "&7\u21E6 " + Slimefun.getLocalization().getMessage(p, "guide.back.title"), lore);
     }
 
-    public static @Nonnull ItemStack getMenuButton(@Nonnull Player p) {
+    public static ItemStack getMenuButton(Player p) {
         return new CustomItemStack(
                 MENU_BUTTON,
                 ChatColor.YELLOW + Slimefun.getLocalization().getMessage(p, "guide.title.settings"),
@@ -90,7 +90,7 @@ public final class ChestMenuUtils {
                 "&7\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup"));
     }
 
-    public static @Nonnull ItemStack getSearchButton(@Nonnull Player p) {
+    public static ItemStack getSearchButton(Player p) {
         return new CustomItemStack(SEARCH_BUTTON, meta -> {
             meta.setDisplayName(ChatColors.color(Slimefun.getLocalization().getMessage(p, "guide.search.name")));
 
@@ -101,11 +101,11 @@ public final class ChestMenuUtils {
         });
     }
 
-    public static @Nonnull ItemStack getWikiButton() {
+    public static ItemStack getWikiButton() {
         return WIKI_BUTTON;
     }
 
-    public static @Nonnull ItemStack getPreviousButton(@Nonnull Player p, int page, int pages) {
+    public static ItemStack getPreviousButton(Player p, int page, int pages) {
         if (pages == 1 || page == 1) {
             return new CustomItemStack(PREV_BUTTON_INACTIVE, meta -> {
                 meta.setDisplayName(ChatColor.DARK_GRAY
@@ -122,7 +122,7 @@ public final class ChestMenuUtils {
         }
     }
 
-    public static @Nonnull ItemStack getNextButton(@Nonnull Player p, int page, int pages) {
+    public static ItemStack getNextButton(Player p, int page, int pages) {
         if (pages == 1 || page == pages) {
             return new CustomItemStack(NEXT_BUTTON_INACTIVE, meta -> {
                 meta.setDisplayName(
@@ -138,14 +138,14 @@ public final class ChestMenuUtils {
         }
     }
 
-    public static void drawBackground(@Nonnull ChestMenu menu, int... slots) {
+    public static void drawBackground(ChestMenu menu, int... slots) {
         for (int slot : slots) {
             menu.addItem(slot, getBackground(), getEmptyClickHandler());
         }
     }
 
     public static void updateProgressbar(
-            @Nonnull ChestMenu menu, int slot, int timeLeft, int time, @Nonnull ItemStack indicator) {
+            ChestMenu menu, int slot, int timeLeft, int time, ItemStack indicator) {
         Inventory inv = menu.toInventory();
 
         // We don't need to update the progress bar if noone is watching :o
@@ -169,7 +169,7 @@ public final class ChestMenuUtils {
         menu.replaceExistingItem(slot, item);
     }
 
-    public static @Nonnull String getProgressBar(int time, int total) {
+    public static String getProgressBar(int time, int total) {
         StringBuilder builder = new StringBuilder();
         float percentage = Math.round(((((total - time) * 100.0F) / total) * 100.0F) / 100.0F);
 
@@ -189,7 +189,7 @@ public final class ChestMenuUtils {
         return ChatColors.color(builder.toString());
     }
 
-    private static short getDurability(@Nonnull ItemStack item, int timeLeft, int max) {
+    private static short getDurability(ItemStack item, int timeLeft, int max) {
         return (short) ((item.getType().getMaxDurability() / max) * timeLeft);
     }
 }

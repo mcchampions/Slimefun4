@@ -79,12 +79,12 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     }
 
     @Override
-    public @Nonnull SlimefunGuideMode getMode() {
+    public SlimefunGuideMode getMode() {
         return SlimefunGuideMode.SURVIVAL_MODE;
     }
 
     @Override
-    public @Nonnull ItemStack getItem() {
+    public ItemStack getItem() {
         return item;
     }
 
@@ -102,7 +102,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
      *
      * @return a {@link List} of visible {@link ItemGroup} instances
      */
-    protected @Nonnull List<ItemGroup> getVisibleItemGroups(@Nonnull Player p, @Nonnull PlayerProfile profile) {
+    protected List<ItemGroup> getVisibleItemGroups(Player p, PlayerProfile profile) {
         List<ItemGroup> groups = new LinkedList<>();
 
         for (ItemGroup group : Slimefun.getRegistry().getAllItemGroups()) {
@@ -720,7 +720,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     }
 
     @ParametersAreNonnullByDefault
-    private static @Nonnull ItemStack getDisplayItem(Player p, boolean isSlimefunRecipe, ItemStack item) {
+    private static ItemStack getDisplayItem(Player p, boolean isSlimefunRecipe, ItemStack item) {
         if (isSlimefunRecipe) {
             SlimefunItem slimefunItem = SlimefunItem.getByItem(item);
 
@@ -832,7 +832,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         return Slimefun.getPermissionsService().hasPermission(p, item);
     }
 
-    private @Nonnull ChestMenu create(@Nonnull Player p) {
+    private ChestMenu create(Player p) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "guide.title.main"));
 
         menu.setEmptySlotsClickable(false);

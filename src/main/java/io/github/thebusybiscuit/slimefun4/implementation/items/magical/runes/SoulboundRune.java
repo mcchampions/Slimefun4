@@ -44,7 +44,7 @@ public class SoulboundRune extends SimpleSlimefunItem<ItemDropHandler> {
     }
 
     @Override
-    public @Nonnull ItemDropHandler getItemHandler() {
+    public ItemDropHandler getItemHandler() {
         return (e, p, item) -> {
             if (isItem(item.getItemStack())) {
 
@@ -60,7 +60,7 @@ public class SoulboundRune extends SimpleSlimefunItem<ItemDropHandler> {
         };
     }
 
-    private void activate(@Nonnull Player p, @Nonnull Item rune) {
+    private void activate(Player p, Item rune) {
         // Being sure the entity is still valid and not picked up or whatsoever.
         if (!rune.isValid()) {
             return;
@@ -114,7 +114,7 @@ public class SoulboundRune extends SimpleSlimefunItem<ItemDropHandler> {
      *
      * @return Whether this {@link Entity} is compatible
      */
-    private boolean findCompatibleItem(@Nonnull Entity entity) {
+    private boolean findCompatibleItem(Entity entity) {
         if (entity instanceof Item item) {
             return item.getPickupDelay() <= 0
                     && !SlimefunUtils.isSoulbound(item.getItemStack())

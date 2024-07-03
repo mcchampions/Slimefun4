@@ -48,12 +48,12 @@ public class SeasonalItemGroup extends ItemGroup {
      *
      * @return the {@link Month} in which this {@link SeasonalItemGroup} appears
      */
-    public @Nonnull Month getMonth() {
+    public Month getMonth() {
         return month;
     }
 
     @Override
-    public boolean isAccessible(@Nonnull Player p) {
+    public boolean isAccessible(Player p) {
         // Block this ItemGroup if the month differs
         if (month != LocalDate.now().getMonth()) {
             return false;

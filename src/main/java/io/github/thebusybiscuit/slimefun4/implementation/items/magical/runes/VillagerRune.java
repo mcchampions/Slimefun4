@@ -40,7 +40,7 @@ public class VillagerRune extends SimpleSlimefunItem<EntityInteractHandler> {
     }
 
     @Override
-    public @Nonnull EntityInteractHandler getItemHandler() {
+    public EntityInteractHandler getItemHandler() {
         return (e, item, offhand) -> {
             if (e.isCancelled()
                     || !Slimefun.getProtectionManager()

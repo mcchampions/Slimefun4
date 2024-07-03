@@ -92,7 +92,7 @@ public class ElectricDustWasher extends AContainer {
     }
 
     @Override
-    public @Nonnull String getMachineIdentifier() {
+    public String getMachineIdentifier() {
         return "ELECTRIC_DUST_WASHER";
     }
 }

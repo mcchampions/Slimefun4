@@ -23,7 +23,7 @@ public interface SlimefunGuideOption<T> extends Keyed {
      *
      * @return The registering {@link SlimefunAddon}
      */
-    @Nonnull
+    
     SlimefunAddon getAddon();
 
     Optional<ItemStack> getDisplayItem(Player p, ItemStack guide);

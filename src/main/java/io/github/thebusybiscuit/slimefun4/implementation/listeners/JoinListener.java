@@ -21,12 +21,12 @@ import org.bukkit.inventory.ItemStack;
  */
 public class JoinListener implements Listener {
 
-    public JoinListener(@Nonnull Slimefun plugin) {
+    public JoinListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
-    public void onJoin(@Nonnull PlayerJoinEvent e) {
+    public void onJoin(PlayerJoinEvent e) {
         PlayerProfile.get(e.getPlayer(), playerProfile -> {
             final ItemStack[] armorContents = e.getPlayer().getInventory().getArmorContents();
             final HashedArmorpiece[] hashedArmorpieces = playerProfile.getArmor();

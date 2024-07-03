@@ -33,7 +33,7 @@ import org.bukkit.inventory.EquipmentSlot;
  */
 public class MultiBlockListener implements Listener {
 
-    public MultiBlockListener(@Nonnull Slimefun plugin) {
+    public MultiBlockListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -92,7 +92,7 @@ public class MultiBlockListener implements Listener {
     }
 
     private boolean compareMaterialsVertical(
-            @Nonnull Block b, @Nullable Material top, @Nullable Material center, @Nullable Material bottom) {
+            Block b, @Nullable Material top, @Nullable Material center, @Nullable Material bottom) {
         return (center == null || equals(b.getType(), center))
                 && (top == null || equals(b.getRelative(BlockFace.UP).getType(), top))
                 && (bottom == null || equals(b.getRelative(BlockFace.DOWN).getType(), bottom));

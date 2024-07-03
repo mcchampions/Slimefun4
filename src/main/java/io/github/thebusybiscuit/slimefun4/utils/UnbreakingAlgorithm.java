@@ -28,7 +28,7 @@ public enum UnbreakingAlgorithm {
 
     private final IntFunction<Boolean> function;
 
-    UnbreakingAlgorithm(@Nonnull IntFunction<Boolean> function) {
+    UnbreakingAlgorithm(IntFunction<Boolean> function) {
         this.function = function;
     }
 

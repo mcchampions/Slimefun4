@@ -33,7 +33,7 @@ public class ElytraImpactListener implements Listener {
 
     private final Set<UUID> gliding = new HashSet<>();
 
-    public ElytraImpactListener(@Nonnull Slimefun plugin) {
+    public ElytraImpactListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

@@ -129,12 +129,12 @@ public abstract class Reactor extends AbstractEnergyProvider
         return processor;
     }
 
-    @Nonnull
+    
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -149,7 +149,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         };
     }
 
-    protected void updateInventory(@Nonnull BlockMenu menu, @Nonnull Block b) {
+    protected void updateInventory(BlockMenu menu, Block b) {
         ReactorMode mode = getReactorMode(b.getLocation());
 
         switch (mode) {
@@ -216,7 +216,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         }
     }
 
-    private void constructMenu(@Nonnull BlockMenuPreset preset) {
+    private void constructMenu(BlockMenuPreset preset) {
         for (int i : border) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
@@ -275,8 +275,8 @@ public abstract class Reactor extends AbstractEnergyProvider
         }
     }
 
-    @Nonnull
-    protected ReactorMode getReactorMode(@Nonnull Location l) {
+    
+    protected ReactorMode getReactorMode(Location l) {
         ReactorMode mode = ReactorMode.GENERATOR;
 
         var blockData = StorageCacheUtils.getBlock(l);
@@ -287,7 +287,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         return mode;
     }
 
-    public abstract void extraTick(@Nonnull Location l);
+    public abstract void extraTick(Location l);
 
     /**
      * This method returns the {@link ItemStack} that is required to cool this {@link Reactor}.
@@ -304,7 +304,7 @@ public abstract class Reactor extends AbstractEnergyProvider
      *
      * @return The {@link ItemStack} used as the fuel icon for this {@link Reactor}.
      */
-    @Nonnull
+    
     public abstract ItemStack getFuelIcon();
 
     /**
@@ -327,7 +327,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         return new int[] {19, 28, 37};
     }
 
-    @Nonnull
+    
     public int[] getCoolantSlots() {
         return needsCooling() ? new int[] {25, 34, 43} : new int[0];
     }
@@ -338,7 +338,7 @@ public abstract class Reactor extends AbstractEnergyProvider
     }
 
     @Override
-    public int getGeneratedOutput(@Nonnull Location l, @Nonnull SlimefunBlockData data) {
+    public int getGeneratedOutput(Location l, SlimefunBlockData data) {
         BlockMenu inv = StorageCacheUtils.getMenu(l);
         BlockMenu accessPort = getAccessPort(inv, l);
         FuelOperation operation = processor.getOperation(l);
@@ -359,11 +359,11 @@ public abstract class Reactor extends AbstractEnergyProvider
     }
 
     private int generateEnergy(
-            @Nonnull Location l,
-            @Nonnull SlimefunBlockData data,
-            @Nonnull BlockMenu inv,
+            Location l,
+            SlimefunBlockData data,
+            BlockMenu inv,
             @Nullable BlockMenu accessPort,
-            @Nonnull FuelOperation operation) {
+            FuelOperation operation) {
         int produced = getEnergyProduction();
         String energyData = data.getData("energy-charge");
         int charge = 0;
@@ -393,7 +393,7 @@ public abstract class Reactor extends AbstractEnergyProvider
     }
 
     @Override
-    public boolean willExplode(@Nonnull Location l, @Nonnull SlimefunBlockData data) {
+    public boolean willExplode(Location l, SlimefunBlockData data) {
         boolean explosion = explosionsQueue.contains(l);
 
         if (explosion) {
@@ -428,10 +428,10 @@ public abstract class Reactor extends AbstractEnergyProvider
     }
 
     private void createByproduct(
-            @Nonnull Location l,
-            @Nonnull BlockMenu inv,
+            Location l,
+            BlockMenu inv,
             @Nullable BlockMenu accessPort,
-            @Nonnull FuelOperation operation) {
+            FuelOperation operation) {
         inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
         ItemStack result = operation.getResult();
 
@@ -483,10 +483,10 @@ public abstract class Reactor extends AbstractEnergyProvider
      * @return Whether the {@link Reactor} was successfully cooled, if not it should explode
      */
     private boolean hasEnoughCoolant(
-            @Nonnull Location reactor,
-            @Nonnull BlockMenu menu,
+            Location reactor,
+            BlockMenu menu,
             @Nullable BlockMenu accessPort,
-            @Nonnull FuelOperation operation) {
+            FuelOperation operation) {
         boolean requiresCoolant = operation.getProgress() % COOLANT_DURATION == 0;
 
         if (requiresCoolant) {
@@ -551,7 +551,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         return null;
     }
 
-    @Nullable protected BlockMenu getAccessPort(BlockMenu menu, @Nonnull Location l) {
+    @Nullable protected BlockMenu getAccessPort(BlockMenu menu, Location l) {
         Location portLoc = new Location(l.getWorld(), l.getX(), l.getY() + 3, l.getZ());
         var controller = Slimefun.getDatabaseManager().getBlockDataController();
         var port = controller.getBlockData(portLoc);

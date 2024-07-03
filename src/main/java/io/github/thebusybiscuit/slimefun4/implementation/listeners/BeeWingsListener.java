@@ -26,7 +26,7 @@ public class BeeWingsListener implements Listener {
 
     private final BeeWings wings;
 
-    public BeeWingsListener(@Nonnull Slimefun plugin, @Nonnull BeeWings wings) {
+    public BeeWingsListener(Slimefun plugin, BeeWings wings) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
         this.wings = wings;

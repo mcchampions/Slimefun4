@@ -63,7 +63,7 @@ public class AutomatedPanningMachine extends MultiBlockMachine {
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> recipes = new ArrayList<>();
 
         recipes.addAll(goldPan.getDisplayRecipes());

@@ -31,7 +31,7 @@ public class ArmorStandUtils {
      *
      * @return The spawned {@link ArmorStand}
      */
-    public static @Nonnull ArmorStand spawnArmorStand(@Nonnull Location location, @Nonnull String customName) {
+    public static ArmorStand spawnArmorStand(Location location, String customName) {
         ArmorStand armorStand = spawnArmorStand(location);
         armorStand.setCustomName(customName);
         armorStand.setCustomNameVisible(true);
@@ -47,7 +47,7 @@ public class ArmorStandUtils {
      *
      * @return The spawned {@link ArmorStand}
      */
-    public static @Nonnull ArmorStand spawnArmorStand(@Nonnull Location location) {
+    public static ArmorStand spawnArmorStand(Location location) {
         // The consumer method was moved from World to RegionAccessor in 1.20.2
         // Due to this, we need to use a rubbish workaround to support 1.20.1 and below
         // This causes flicker on these versions which sucks but not sure a better way around this right now.

@@ -26,7 +26,7 @@ public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable
     private boolean cancelled;
 
     public AsyncAutoEnchanterProcessEvent(
-            @Nonnull ItemStack item, @Nonnull ItemStack enchantedBook, @Nonnull BlockMenu menu) {
+            ItemStack item, ItemStack enchantedBook, BlockMenu menu) {
         super(true);
 
         Validate.notNull(item, "The item to enchant cannot be null!");
@@ -43,7 +43,7 @@ public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable
      *
      * @return The {@link ItemStack} that is being enchanted
      */
-    @Nonnull
+    
     public ItemStack getItem() {
         return item;
     }
@@ -53,7 +53,7 @@ public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable
      *
      * @return The {@link ItemStack} that is being used enchanted book
      */
-    @Nonnull
+    
     public ItemStack getEnchantedBook() {
         return enchantedBook;
     }
@@ -63,17 +63,17 @@ public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable
      *
      * @return The {@link BlockMenu} of {@link AutoEnchanter} that is enchanting item
      */
-    @Nonnull
+    
     public BlockMenu getMenu() {
         return menu;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

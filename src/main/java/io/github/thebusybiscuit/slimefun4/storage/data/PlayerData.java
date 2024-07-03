@@ -34,37 +34,37 @@ public class PlayerData {
         this.waypoints.addAll(waypoints);
     }
 
-    public void addResearch(@Nonnull Research research) {
+    public void addResearch(Research research) {
         Validate.notNull(research, "Cannot add a 'null' research!");
         researches.add(research);
     }
 
-    public void removeResearch(@Nonnull Research research) {
+    public void removeResearch(Research research) {
         Validate.notNull(research, "Cannot remove a 'null' research!");
         researches.remove(research);
     }
 
-    @Nonnull
+    
     public Map<Integer, PlayerBackpack> getBackpacks() {
         return backpacks;
     }
 
-    @Nonnull
+    
     public PlayerBackpack getBackpack(int id) {
         return backpacks.get(id);
     }
 
-    public void addBackpack(@Nonnull PlayerBackpack backpack) {
+    public void addBackpack(PlayerBackpack backpack) {
         Validate.notNull(backpack, "Cannot add a 'null' backpack!");
         backpacks.put(backpack.getId(), backpack);
     }
 
-    public void removeBackpack(@Nonnull PlayerBackpack backpack) {
+    public void removeBackpack(PlayerBackpack backpack) {
         Validate.notNull(backpack, "Cannot remove a 'null' backpack!");
         backpacks.remove(backpack.getId());
     }
 
-    public void addWaypoint(@Nonnull Waypoint waypoint) {
+    public void addWaypoint(Waypoint waypoint) {
         Validate.notNull(waypoint, "Cannot add a 'null' waypoint!");
 
         for (Waypoint wp : waypoints) {
@@ -81,7 +81,7 @@ public class PlayerData {
         waypoints.add(waypoint);
     }
 
-    public void removeWaypoint(@Nonnull Waypoint waypoint) {
+    public void removeWaypoint(Waypoint waypoint) {
         Validate.notNull(waypoint, "Cannot remove a 'null' waypoint!");
         waypoints.remove(waypoint);
     }

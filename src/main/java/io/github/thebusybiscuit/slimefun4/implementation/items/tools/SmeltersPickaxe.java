@@ -31,7 +31,7 @@ public class SmeltersPickaxe extends SimpleSlimefunItem<ToolUseHandler> implemen
     }
 
     @Override
-    public @Nonnull ToolUseHandler getItemHandler() {
+    public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             Block b = e.getBlock();
 

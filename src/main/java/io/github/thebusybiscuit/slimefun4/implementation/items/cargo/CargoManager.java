@@ -31,12 +31,12 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
         addItemHandler(onBreak());
     }
 
-    @Nonnull
+    
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 removeHologram(b);
             }
         };

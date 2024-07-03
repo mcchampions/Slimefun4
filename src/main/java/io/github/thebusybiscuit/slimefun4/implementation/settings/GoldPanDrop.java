@@ -24,7 +24,7 @@ public class GoldPanDrop extends ItemSetting<Integer> {
         return super.validateInput(input) && input >= 0;
     }
 
-    @Nonnull
+    
     public ItemStack getOutput() {
         return output;
     }

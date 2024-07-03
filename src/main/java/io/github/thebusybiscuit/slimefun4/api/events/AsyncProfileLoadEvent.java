@@ -26,7 +26,7 @@ public class AsyncProfileLoadEvent extends Event {
     private final UUID uniqueId;
     private PlayerProfile profile;
 
-    public AsyncProfileLoadEvent(@Nonnull PlayerProfile profile) {
+    public AsyncProfileLoadEvent(PlayerProfile profile) {
         super(true);
 
         Validate.notNull(profile, "The Profile cannot be null");
@@ -35,12 +35,12 @@ public class AsyncProfileLoadEvent extends Event {
         this.profile = profile;
     }
 
-    @Nonnull
+    
     public UUID getPlayerUUID() {
         return uniqueId;
     }
 
-    @Nonnull
+    
     public PlayerProfile getProfile() {
         return profile;
     }
@@ -52,19 +52,19 @@ public class AsyncProfileLoadEvent extends Event {
      * @param profile
      *            The {@link PlayerProfile}
      */
-    public void setProfile(@Nonnull PlayerProfile profile) {
+    public void setProfile(PlayerProfile profile) {
         Validate.notNull(profile, "The PlayerProfile cannot be null!");
         Validate.isTrue(profile.getUUID().equals(uniqueId), "Cannot inject a PlayerProfile with a different UUID");
 
         this.profile = profile;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

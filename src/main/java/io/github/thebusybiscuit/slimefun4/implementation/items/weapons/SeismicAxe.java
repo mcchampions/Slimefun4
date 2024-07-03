@@ -53,7 +53,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @Nonnull
+    
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -149,7 +149,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         }
     }
 
-    private @Nonnull Block findGround(@Nonnull Block b) {
+    private Block findGround(Block b) {
         if (b.getType() == Material.AIR) {
             int minHeight = b.getWorld().getMinHeight();
             for (int y = 0; b.getY() - y > minHeight; y++) {

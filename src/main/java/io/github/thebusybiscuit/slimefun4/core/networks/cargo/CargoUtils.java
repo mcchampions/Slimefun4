@@ -71,8 +71,8 @@ final class CargoUtils {
         return SlimefunTag.CARGO_SUPPORTED_STORAGE_BLOCKS.isTagged(type);
     }
 
-    @Nonnull
-    static int[] getInputSlotRange(@Nonnull Inventory inv, @Nullable ItemStack item) {
+    
+    static int[] getInputSlotRange(Inventory inv, @Nullable ItemStack item) {
         if (inv instanceof FurnaceInventory) {
             if (item != null && item.getType().isFuel()) {
                 if (isSmeltable(item, true)) {
@@ -101,8 +101,8 @@ final class CargoUtils {
         }
     }
 
-    @Nonnull
-    static int[] getOutputSlotRange(@Nonnull Inventory inv) {
+    
+    static int[] getOutputSlotRange(Inventory inv) {
         if (inv instanceof FurnaceInventory) {
             // Slot 2-3
             return new int[] {2, 3};
@@ -345,7 +345,7 @@ final class CargoUtils {
     }
 
     @Nullable private static ItemStack insertIntoVanillaInventory(
-            @Nonnull ItemStack stack, @Nonnull ItemStackWrapper wrapper, boolean smartFill, @Nonnull Inventory inv) {
+            ItemStack stack, ItemStackWrapper wrapper, boolean smartFill, Inventory inv) {
         /*
          * If the Inventory does not accept this Item Type, bounce the item back.
          * Example: Shulker boxes within shulker boxes (fixes #2662)
@@ -397,11 +397,11 @@ final class CargoUtils {
         return stack;
     }
 
-    @Nullable static DirtyChestMenu getChestMenu(@Nonnull Block block) {
+    @Nullable static DirtyChestMenu getChestMenu(Block block) {
         return StorageCacheUtils.getMenu(block.getLocation());
     }
 
-    static boolean matchesFilter(@Nonnull AbstractItemNetwork network, @Nonnull Block node, @Nullable ItemStack item) {
+    static boolean matchesFilter(AbstractItemNetwork network, Block node, @Nullable ItemStack item) {
         if (item == null || item.getType() == Material.AIR) {
             return false;
         }
@@ -445,7 +445,7 @@ final class CargoUtils {
      *
      * @return The slots where the {@link ItemFilter} section for a cargo node sits
      */
-    @Nonnull
+    
     public static int[] getFilteringSlots() {
         return FILTER_SLOTS;
     }

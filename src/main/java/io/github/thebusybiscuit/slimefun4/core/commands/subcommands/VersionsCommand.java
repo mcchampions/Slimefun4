@@ -46,7 +46,7 @@ class VersionsCommand extends SubCommand {
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.versions") || sender instanceof ConsoleCommandSender) {
             /*
              * After all these years... Spigot still displays as "CraftBukkit".
@@ -90,7 +90,7 @@ class VersionsCommand extends SubCommand {
         }
     }
 
-    private void addJavaVersion(@Nonnull ComponentBuilder builder) {
+    private void addJavaVersion(ComponentBuilder builder) {
         int version = NumberUtils.getJavaVersion();
 
         if (version < RECOMMENDED_JAVA_VERSION) {
@@ -115,7 +115,7 @@ class VersionsCommand extends SubCommand {
         }
     }
 
-    private void addPluginVersions(@Nonnull ComponentBuilder builder) {
+    private void addPluginVersions(ComponentBuilder builder) {
         Collection<Plugin> addons = Slimefun.getInstalledAddons();
 
         if (addons.isEmpty()) {

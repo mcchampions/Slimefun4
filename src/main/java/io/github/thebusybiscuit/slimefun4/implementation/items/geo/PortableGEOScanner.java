@@ -19,7 +19,7 @@ public class PortableGEOScanner extends SimpleSlimefunItem<ItemUseHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @Nonnull
+    
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

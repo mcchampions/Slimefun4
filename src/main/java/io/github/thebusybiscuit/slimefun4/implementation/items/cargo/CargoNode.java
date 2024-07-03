@@ -22,7 +22,7 @@ public interface CargoNode {
      *
      * @return The channel which this {@link CargoNode} is currently on
      */
-    int getSelectedChannel(@Nonnull Block b);
+    int getSelectedChannel(Block b);
 
     /**
      * This returns whether this {@link CargoNode} has item filtering capabilities.

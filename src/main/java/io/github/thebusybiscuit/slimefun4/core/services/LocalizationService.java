@@ -52,7 +52,7 @@ public class LocalizationService extends SlimefunLocalization {
     private final Language defaultLanguage;
 
     public LocalizationService(
-            @Nonnull Slimefun plugin, @Nullable String prefix, @Nullable String serverDefaultLanguage) {
+            Slimefun plugin, @Nullable String prefix, @Nullable String serverDefaultLanguage) {
         super(plugin);
 
         this.plugin = plugin;
@@ -105,25 +105,25 @@ public class LocalizationService extends SlimefunLocalization {
     }
 
     @Override
-    @Nonnull
+    
     public NamespacedKey getKey() {
         return languageKey;
     }
 
     @Override
-    @Nullable public Language getLanguage(@Nonnull String id) {
+    @Nullable public Language getLanguage(String id) {
         Validate.notNull(id, "The language id cannot be null");
         return languages.get(id);
     }
 
     @Override
-    @Nonnull
+    
     public Collection<Language> getLanguages() {
         return languages.values();
     }
 
     @Override
-    public boolean hasLanguage(@Nonnull String id) {
+    public boolean hasLanguage(String id) {
         Validate.notNull(id, "The language id cannot be null");
 
         // Checks if our jar files contains a messages.yml file for that language
@@ -139,7 +139,7 @@ public class LocalizationService extends SlimefunLocalization {
      *
      * @return Whether or not this {@link Language} is loaded
      */
-    public boolean isLanguageLoaded(@Nonnull String id) {
+    public boolean isLanguageLoaded(String id) {
         Validate.notNull(id, "The language cannot be null!");
         return languages.containsKey(id);
     }
@@ -150,7 +150,7 @@ public class LocalizationService extends SlimefunLocalization {
     }
 
     @Override
-    public Language getLanguage(@Nonnull Player p) {
+    public Language getLanguage(Player p) {
         Validate.notNull(p, "Player cannot be null!");
 
         PersistentDataContainer container = p.getPersistentDataContainer();
@@ -167,7 +167,7 @@ public class LocalizationService extends SlimefunLocalization {
         return getDefaultLanguage();
     }
 
-    private void setLanguage(@Nonnull String language, boolean reset) {
+    private void setLanguage(String language, boolean reset) {
         // Clearing out the old Language (if necessary)
         if (reset) {
             getConfig().clear();
@@ -204,7 +204,7 @@ public class LocalizationService extends SlimefunLocalization {
     }
 
     @Override
-    protected void addLanguage(@Nonnull String id, @Nonnull String texture) {
+    protected void addLanguage(String id, String texture) {
         Validate.notNull(id, "The language id cannot be null!");
         Validate.notNull(texture, "The language texture cannot be null");
 
@@ -232,7 +232,7 @@ public class LocalizationService extends SlimefunLocalization {
      *
      * @return A percentage {@code (0.0 - 100.0)} for the progress of translation of that {@link Language}
      */
-    public double calculateProgress(@Nonnull Language lang) {
+    public double calculateProgress(Language lang) {
         Validate.notNull(lang, "Cannot get the language progress of null");
 
         Set<String> defaultKeys = getTotalKeys(languages.get("en"));
@@ -253,8 +253,8 @@ public class LocalizationService extends SlimefunLocalization {
         return Math.min(NumberUtils.reparseDouble(100.0 * (matches / (double) defaultKeys.size())), 100.0);
     }
 
-    private @Nonnull FileConfiguration getConfigurationFromStream(
-            @Nonnull String file, @Nullable FileConfiguration defaults) {
+    private FileConfiguration getConfigurationFromStream(
+            String file, @Nullable FileConfiguration defaults) {
         InputStream inputStream = plugin.getClass().getResourceAsStream(file);
 
         if (inputStream == null) {

@@ -58,7 +58,7 @@ public class ResourceManager {
      * @param plugin
      *            Our {@link Slimefun} instance
      */
-    public ResourceManager(@Nonnull Slimefun plugin) {
+    public ResourceManager(Slimefun plugin) {
         config = new Config(plugin, "resources.yml");
     }
 
@@ -69,7 +69,7 @@ public class ResourceManager {
      * @param resource
      *            The {@link GEOResource} to register
      */
-    void register(@Nonnull GEOResource resource) {
+    void register(GEOResource resource) {
         Validate.notNull(resource, "Cannot register null as a GEO-Resource");
         Validate.notNull(resource.getKey(), "GEO-Resources must have a NamespacedKey which is not null");
 
@@ -104,7 +104,7 @@ public class ResourceManager {
      *
      * @return An {@link OptionalInt}, either empty or containing the amount of the given {@link GEOResource}
      */
-    public @Nonnull OptionalInt getSupplies(@Nonnull GEOResource resource, @Nonnull World world, int x, int z) {
+    public OptionalInt getSupplies(GEOResource resource, World world, int x, int z) {
         Validate.notNull(resource, "Cannot get supplies for null");
         Validate.notNull(world, "World must not be null");
 
@@ -160,7 +160,7 @@ public class ResourceManager {
      * @param value
      *            The new supply value
      */
-    public void setSupplies(@Nonnull GEOResource resource, @Nonnull World world, int x, int z, int value) {
+    public void setSupplies(GEOResource resource, World world, int x, int z, int value) {
         Validate.notNull(resource, "Cannot set supplies for null");
         Validate.notNull(world, "World cannot be null");
 
@@ -193,7 +193,7 @@ public class ResourceManager {
      *
      * @return The new supply value
      */
-    private int generate(@Nonnull GEOResource resource, @Nonnull World world, int x, int y, int z) {
+    private int generate(GEOResource resource, World world, int x, int y, int z) {
         Validate.notNull(resource, "Cannot generate resources for null");
         Validate.notNull(world, "World cannot be null");
 
@@ -247,7 +247,7 @@ public class ResourceManager {
      * @param page
      *            The zero-based page to display
      */
-    public void scan(@Nonnull Player p, @Nonnull Block block, int page) {
+    public void scan(Player p, Block block, int page) {
         if (Slimefun.getGPSNetwork().getNetworkComplexity(p.getUniqueId()) < 600) {
             Slimefun.getLocalization()
                     .sendMessages(p, "gps.insufficient-complexity", true, msg -> msg.replace("%complexity%", "600"));

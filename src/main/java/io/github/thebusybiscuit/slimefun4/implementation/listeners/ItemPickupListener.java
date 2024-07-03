@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  */
 public class ItemPickupListener implements Listener {
 
-    public ItemPickupListener(@Nonnull Slimefun plugin) {
+    public ItemPickupListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

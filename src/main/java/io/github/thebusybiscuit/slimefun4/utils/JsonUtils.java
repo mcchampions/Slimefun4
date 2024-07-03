@@ -29,7 +29,7 @@ public final class JsonUtils {
      * @return The parsed {@link JsonElement}
      */
     @SuppressWarnings("deprecation")
-    public static @Nonnull JsonElement parseString(@Nonnull String json) {
+    public static JsonElement parseString(String json) {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_18)) {
             /*
              * As of 1.18 Spigot includes a newer version of Gson that

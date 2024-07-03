@@ -55,7 +55,7 @@ public class SolarHelmet extends SlimefunItem {
      * @param p
      *            The {@link Player} wearing this {@link SolarHelmet}
      */
-    public void rechargeItems(@Nonnull Player p) {
+    public void rechargeItems(Player p) {
         PlayerInventory inv = p.getInventory();
 
         // No need to charge the helmet since that slot is occupied by the Solar Helmet

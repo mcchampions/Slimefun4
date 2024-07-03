@@ -61,7 +61,7 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
      *
      * @return Whether the given {@link ItemStack} is allowed to be put into this {@link SlimefunBackpack}
      */
-    public boolean isItemAllowed(@Nonnull ItemStack item, @Nullable SlimefunItem itemAsSlimefunItem) {
+    public boolean isItemAllowed(ItemStack item, @Nullable SlimefunItem itemAsSlimefunItem) {
         // Shulker Boxes are not allowed!
         if (SlimefunTag.SHULKER_BOXES.isTagged(item.getType())) {
             return false;
@@ -70,7 +70,7 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
         return !(itemAsSlimefunItem instanceof SlimefunBackpack);
     }
 
-    @Nonnull
+    
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -88,7 +88,7 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
     }
 
     @Override
-    public boolean canStack(@Nonnull ItemMeta itemMetaOne, @Nonnull ItemMeta itemMetaTwo) {
+    public boolean canStack(ItemMeta itemMetaOne, ItemMeta itemMetaTwo) {
         var uuid1 = PlayerBackpack.getBackpackUUID(itemMetaOne);
         var uuid2 = PlayerBackpack.getBackpackUUID(itemMetaTwo);
         if (uuid1.isPresent() || uuid2.isPresent()) {

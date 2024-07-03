@@ -16,17 +16,17 @@ import org.bukkit.command.CommandSender;
  */
 public class DebugCommand extends SubCommand {
 
-    protected DebugCommand(@Nonnull Slimefun plugin, @Nonnull SlimefunCommand cmd) {
+    protected DebugCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "debug", true);
     }
 
     @Override
-    protected @Nonnull String getDescription() {
+    protected String getDescription() {
         return "commands.debug.description";
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (!sender.hasPermission("slimefun.command.debug")) {
             Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
             return;

@@ -51,7 +51,7 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
      *
      * @return The {@link BlockPlacer}
      */
-    @Nonnull
+    
     public Block getBlockPlacer() {
         return blockPlacer;
     }
@@ -61,7 +61,7 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
      *
      * @return The placed {@link ItemStack}
      */
-    @Nonnull
+    
     public ItemStack getItemStack() {
         return placedItem;
     }
@@ -72,7 +72,7 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
      * @param item
      *            The {@link ItemStack} to be placed
      */
-    public void setItemStack(@Nonnull ItemStack item) {
+    public void setItemStack(ItemStack item) {
         Validate.notNull(item, "The ItemStack must not be null!");
 
         if (!locked) {
@@ -105,12 +105,12 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
         locked = true;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

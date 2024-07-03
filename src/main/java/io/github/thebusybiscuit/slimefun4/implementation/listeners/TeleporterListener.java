@@ -40,7 +40,7 @@ public class TeleporterListener implements Listener {
 
     // @formatter:on
 
-    public TeleporterListener(@Nonnull Slimefun plugin) {
+    public TeleporterListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -108,7 +108,7 @@ public class TeleporterListener implements Listener {
      *
      * @return Whether the teleporter is surrounded by pylons.
      */
-    private boolean checkForPylons(@Nonnull Block teleporter) {
+    private boolean checkForPylons(Block teleporter) {
         for (BlockFace face : faces) {
             if (!(StorageCacheUtils.getSfItem(teleporter.getRelative(face).getLocation()) instanceof TeleporterPylon)) {
                 return false;

@@ -43,7 +43,7 @@ public class AsyncRecipeChoiceTask implements Runnable {
      * @param inv
      *            The {@link Inventory} to start this task for
      */
-    public void start(@Nonnull Inventory inv) {
+    public void start(Inventory inv) {
         Validate.notNull(inv, "Inventory must not be null");
 
         inventory = inv;
@@ -52,7 +52,7 @@ public class AsyncRecipeChoiceTask implements Runnable {
                 .getTaskId();
     }
 
-    public void add(int slot, @Nonnull MaterialChoice choice) {
+    public void add(int slot, MaterialChoice choice) {
         Validate.notNull(choice, "Cannot add a null RecipeChoice");
 
         lock.writeLock().lock();
@@ -64,7 +64,7 @@ public class AsyncRecipeChoiceTask implements Runnable {
         }
     }
 
-    public void add(int slot, @Nonnull Tag<Material> tag) {
+    public void add(int slot, Tag<Material> tag) {
         Validate.notNull(tag, "Cannot add a null Tag");
 
         lock.writeLock().lock();

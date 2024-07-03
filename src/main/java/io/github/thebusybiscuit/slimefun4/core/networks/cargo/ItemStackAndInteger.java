@@ -11,7 +11,7 @@ class ItemStackAndInteger {
     private ItemStackWrapper wrapper;
     private int number;
 
-    ItemStackAndInteger(@Nonnull ItemStack item, int amount) {
+    ItemStackAndInteger(ItemStack item, int amount) {
         Validate.notNull(item, "Item cannot be null!");
         this.number = amount;
         this.item = item;
@@ -21,12 +21,12 @@ class ItemStackAndInteger {
         return number;
     }
 
-    public @Nonnull ItemStack getItem() {
+    public ItemStack getItem() {
         initializeItem();
         return item;
     }
 
-    public @Nonnull ItemStackWrapper getItemStackWrapper() {
+    public ItemStackWrapper getItemStackWrapper() {
         if (wrapper == null) {
             wrapper = ItemStackWrapper.wrap(item);
         }

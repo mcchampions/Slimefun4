@@ -51,7 +51,7 @@ public final class SlimefunGuideSettings {
 
     private SlimefunGuideSettings() {}
 
-    public static <T> void addOption(@Nonnull SlimefunGuideOption<T> option) {
+    public static <T> void addOption(SlimefunGuideOption<T> option) {
         options.add(option);
     }
 
@@ -229,7 +229,7 @@ public final class SlimefunGuideSettings {
      *
      * @return Whether this {@link Player} wants to see fireworks when unlocking a {@link Research}
      */
-    public static boolean hasFireworksEnabled(@Nonnull Player p) {
+    public static boolean hasFireworksEnabled(Player p) {
         return getOptionValue(p, FireworksOption.class, true);
     }
 
@@ -243,7 +243,7 @@ public final class SlimefunGuideSettings {
      *
      * @return Whether this {@link Player} wants to info messages in chat when unlocking a {@link Research}
      */
-    public static boolean hasLearningAnimationEnabled(@Nonnull Player p) {
+    public static boolean hasLearningAnimationEnabled(Player p) {
         return getOptionValue(p, LearningAnimationOption.class, true);
     }
 
@@ -264,9 +264,9 @@ public final class SlimefunGuideSettings {
      *
      * @return The value of given {@link SlimefunGuideOption}
      */
-    @Nonnull
+    
     private static <T extends SlimefunGuideOption<V>, V> V getOptionValue(
-            @Nonnull Player p, @Nonnull Class<T> optionsClass, @Nonnull V defaultValue) {
+            Player p, Class<T> optionsClass, V defaultValue) {
         for (SlimefunGuideOption<?> option : options) {
             if (optionsClass.isInstance(option)) {
                 T o = optionsClass.cast(option);

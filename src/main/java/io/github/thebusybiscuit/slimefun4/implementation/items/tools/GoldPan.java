@@ -74,7 +74,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return The {@link Set} of {@link Material Materials} this {@link GoldPan} can be used on.
      */
-    public @Nonnull Set<Material> getInputMaterials() {
+    public Set<Material> getInputMaterials() {
         return Collections.unmodifiableSet(inputMaterials);
     }
 
@@ -83,7 +83,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return The {@link Set} of {@link GoldPanDrop GoldPanDrops} this {@link GoldPan} can drop.
      */
-    protected @Nonnull Set<GoldPanDrop> getGoldPanDrops() {
+    protected Set<GoldPanDrop> getGoldPanDrops() {
         Set<GoldPanDrop> settings = new HashSet<>();
 
         settings.add(new GoldPanDrop(this, "chance.FLINT", 40, new ItemStack(Material.FLINT)));
@@ -122,20 +122,20 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return a random {@link ItemStack} obtained by this {@link GoldPan}
      */
-    public @Nonnull ItemStack getRandomOutput() {
+    public ItemStack getRandomOutput() {
         ItemStack item = randomizer.getRandom();
 
         // Fixes #2804
         return item != null ? item : new ItemStack(Material.AIR);
     }
 
-    @Nonnull
+    
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.gold-pan";
     }
 
-    @Nonnull
+    
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -171,7 +171,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return the {@link EntityInteractHandler} of this {@link SlimefunItem}
      */
-    @Nonnull
+    
     public EntityInteractHandler onEntityInteract() {
         return (e, item, offHand) -> {
             if (!(e.getRightClicked() instanceof ItemFrame)) {
@@ -180,7 +180,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
         };
     }
 
-    @Nonnull
+    
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> recipes = new ArrayList<>();
@@ -225,7 +225,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return If the {@link Material} is valid
      */
-    public boolean isValidInputMaterial(@Nonnull Material material) {
+    public boolean isValidInputMaterial(Material material) {
         return getInputMaterials().contains(material);
     }
 }

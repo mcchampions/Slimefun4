@@ -32,7 +32,7 @@ public class ButcherAndroidListener implements Listener {
 
     private static final String METADATA_KEY = "android_killer";
 
-    public ButcherAndroidListener(@Nonnull Slimefun plugin) {
+    public ButcherAndroidListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

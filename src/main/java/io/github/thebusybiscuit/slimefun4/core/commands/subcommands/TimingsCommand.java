@@ -28,12 +28,12 @@ class TimingsCommand extends SubCommand {
     }
 
     @Override
-    protected @Nonnull String getDescription() {
+    protected String getDescription() {
         return "commands.timings.description";
     }
 
     @Override
-    public void onExecute(CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (!sender.hasPermission("slimefun.command.timings") && !(sender instanceof ConsoleCommandSender)) {
             Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
             return;
@@ -95,7 +95,7 @@ class TimingsCommand extends SubCommand {
         return false;
     }
 
-    @Nonnull
+    
     @ParametersAreNonnullByDefault
     private PerformanceInspector inspectorOf(CommandSender sender, boolean verbose, SummaryOrderType orderType) {
         if (sender instanceof Player player) {

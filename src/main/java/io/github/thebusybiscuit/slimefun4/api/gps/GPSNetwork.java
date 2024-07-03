@@ -67,7 +67,7 @@ public class GPSNetwork {
      * @param plugin
      *            Our {@link Slimefun} instance
      */
-    public GPSNetwork(@Nonnull Slimefun plugin) {
+    public GPSNetwork(Slimefun plugin) {
         resourceManager = new ResourceManager(plugin);
     }
 
@@ -81,7 +81,7 @@ public class GPSNetwork {
      * @param online
      *            Whether that {@link GPSTransmitter} is online
      */
-    public void updateTransmitter(@Nonnull Location l, @Nonnull UUID uuid, boolean online) {
+    public void updateTransmitter(Location l, UUID uuid, boolean online) {
         Set<Location> set = transmitters.computeIfAbsent(uuid, id -> new HashSet<>());
 
         if (online) {
@@ -101,7 +101,7 @@ public class GPSNetwork {
      *
      * @return The network complexity for that {@link UUID}
      */
-    public int getNetworkComplexity(@Nonnull UUID uuid) {
+    public int getNetworkComplexity(UUID uuid) {
         Set<Location> locations = transmitters.get(uuid);
 
         if (locations == null) {
@@ -129,7 +129,7 @@ public class GPSNetwork {
      *
      * @return The amount of transmitters
      */
-    public int countTransmitters(@Nonnull UUID uuid) {
+    public int countTransmitters(UUID uuid) {
         Set<Location> locations = transmitters.get(uuid);
         return locations == null ? 0 : locations.size();
     }
@@ -141,7 +141,7 @@ public class GPSNetwork {
      * @param p
      *            The {@link Player}
      */
-    public void openTransmitterControlPanel(@Nonnull Player p) {
+    public void openTransmitterControlPanel(Player p) {
         ChestMenu menu = new ChestMenu(
                 ChatColor.BLUE + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
 
@@ -230,7 +230,7 @@ public class GPSNetwork {
      * @return An icon for this waypoint
      */
     @ParametersAreNonnullByDefault
-    public @Nonnull ItemStack getIcon(String name, Environment environment) {
+    public ItemStack getIcon(String name, Environment environment) {
         if (name.startsWith("player:death ")) {
             return HeadTexture.DEATHPOINT.getAsItemStack();
         } else if (environment == Environment.NETHER) {
@@ -243,7 +243,7 @@ public class GPSNetwork {
     }
 
     @ParametersAreNonnullByDefault
-    private @Nonnull String getStatusText(Player player, int complexity) {
+    private String getStatusText(Player player, int complexity) {
         if (complexity > 0) {
             return "&2&l" + Slimefun.getLocalization().getMessage(player, "gps.status-online");
         } else {
@@ -251,7 +251,7 @@ public class GPSNetwork {
         }
     }
 
-    public void openWaypointControlPanel(@Nonnull Player p) {
+    public void openWaypointControlPanel(Player p) {
         PlayerProfile.get(p, profile -> {
             ChestMenu menu = new ChestMenu(
                     ChatColor.BLUE + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
@@ -336,7 +336,7 @@ public class GPSNetwork {
      * @param l
      *            The {@link Location} of the new waypoint
      */
-    public void createWaypoint(@Nonnull Player p, @Nonnull Location l) {
+    public void createWaypoint(Player p, Location l) {
         Validate.notNull(p, "Player cannot be null!");
         Validate.notNull(l, "Waypoint Location cannot be null!");
 
@@ -363,7 +363,7 @@ public class GPSNetwork {
      * @param l
      *            The {@link Location} of this waypoint
      */
-    public void addWaypoint(@Nonnull Player p, @Nonnull String name, @Nonnull Location l) {
+    public void addWaypoint(Player p, String name, Location l) {
         Validate.notNull(p, "Player cannot be null!");
         Validate.notNull(name, "Waypoint name cannot be null!");
         Validate.notNull(l, "Waypoint Location cannot be null!");
@@ -413,8 +413,8 @@ public class GPSNetwork {
      *
      * @return A {@link Set} with all {@link Location Locations} of transmitters for this {@link UUID}
      */
-    @Nonnull
-    public Set<Location> getTransmitters(@Nonnull UUID uuid) {
+    
+    public Set<Location> getTransmitters(UUID uuid) {
         return transmitters.getOrDefault(uuid, new HashSet<>());
     }
 
@@ -424,7 +424,7 @@ public class GPSNetwork {
      *
      * @return The {@link TeleportationManager} for this {@link GPSNetwork}
      */
-    @Nonnull
+    
     public TeleportationManager getTeleportationManager() {
         return teleportation;
     }
@@ -435,7 +435,7 @@ public class GPSNetwork {
      *
      * @return The {@link ResourceManager} for this {@link GPSNetwork}
      */
-    @Nonnull
+    
     public ResourceManager getResourceManager() {
         return resourceManager;
     }

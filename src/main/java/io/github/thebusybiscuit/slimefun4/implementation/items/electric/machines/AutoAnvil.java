@@ -38,7 +38,7 @@ public class AutoAnvil extends AContainer {
         return new ItemStack(Material.IRON_PICKAXE);
     }
 
-    @Nonnull
+    
     @Override
     public String getMachineIdentifier() {
         return "AUTO_ANVIL";

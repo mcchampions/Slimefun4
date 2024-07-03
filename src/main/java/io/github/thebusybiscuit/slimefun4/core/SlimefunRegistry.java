@@ -75,7 +75,7 @@ public final class SlimefunRegistry {
 
     private final Map<Class<? extends ItemHandler>, Set<ItemHandler>> globalItemHandlers = new HashMap<>();
 
-    public void load(@Nonnull Slimefun plugin) {
+    public void load(Slimefun plugin) {
         Validate.notNull(plugin, "The Plugin cannot be null!");
 
         soulboundKey = new NamespacedKey(plugin, "soulbound");
@@ -94,7 +94,7 @@ public final class SlimefunRegistry {
      *
      * @return {@link List} containing every enabled {@link ItemGroup}
      */
-    @Nonnull
+    
     public List<ItemGroup> getAllItemGroups() {
         return categories;
     }
@@ -104,7 +104,7 @@ public final class SlimefunRegistry {
      *
      * @return A {@link List} containing every {@link SlimefunItem}
      */
-    public @Nonnull List<SlimefunItem> getAllSlimefunItems() {
+    public List<SlimefunItem> getAllSlimefunItems() {
         return slimefunItems;
     }
 
@@ -113,7 +113,7 @@ public final class SlimefunRegistry {
      *
      * @return A {@link List} containing every disabled{@link SlimefunItem}
      */
-    public @Nonnull List<SlimefunItem> getDisabledSlimefunItems() {
+    public List<SlimefunItem> getDisabledSlimefunItems() {
         List<SlimefunItem> allItems = new ArrayList<>(getAllSlimefunItems());
         List<SlimefunItem> enabledItems = getEnabledSlimefunItems();
         allItems.removeAll(enabledItems);
@@ -125,7 +125,7 @@ public final class SlimefunRegistry {
      *
      * @return A {@link List} containing every enabled {@link SlimefunItem}
      */
-    @Nonnull
+    
     public List<SlimefunItem> getEnabledSlimefunItems() {
         return enabledItems;
     }
@@ -135,7 +135,7 @@ public final class SlimefunRegistry {
      *
      * @return A {@link List} containing every enabled {@link Research}
      */
-    @Nonnull
+    
     public List<Research> getResearches() {
         return researches;
     }
@@ -147,12 +147,12 @@ public final class SlimefunRegistry {
      * @return A {@link Set} holding the {@link UUID} from every {@link Player}
      *         who is currently unlocking a {@link Research}
      */
-    @Nonnull
+    
     public Set<UUID> getCurrentlyResearchingPlayers() {
         return researchingPlayers;
     }
 
-    @Nonnull
+    
     public List<String> getResearchRanks() {
         return researchRanks;
     }
@@ -162,7 +162,7 @@ public final class SlimefunRegistry {
      *
      * @return A {@link List} containing every enabled {@link MultiBlock}
      */
-    @Nonnull
+    
     public List<MultiBlock> getMultiBlocks() {
         return multiblocks;
     }
@@ -180,8 +180,8 @@ public final class SlimefunRegistry {
      *
      * @return The corresponding {@link SlimefunGuideImplementation}
      */
-    @Nonnull
-    public SlimefunGuideImplementation getSlimefunGuide(@Nonnull SlimefunGuideMode mode) {
+    
+    public SlimefunGuideImplementation getSlimefunGuide(SlimefunGuideMode mode) {
         Validate.notNull(mode, "The Guide mode cannot be null");
 
         SlimefunGuideImplementation guide = guides.get(mode);
@@ -199,7 +199,7 @@ public final class SlimefunRegistry {
      *
      * @return The {@link Map} of custom mob drops
      */
-    @Nonnull
+    
     public Map<EntityType, Set<ItemStack>> getMobDrops() {
         return mobDrops;
     }
@@ -210,69 +210,69 @@ public final class SlimefunRegistry {
      *
      * @return A {@link Set} of bartering drops
      */
-    @Nonnull
+    
     public Set<ItemStack> getBarteringDrops() {
         return barterDrops;
     }
 
-    @Nonnull
+    
     public Set<SlimefunItem> getRadioactiveItems() {
         return radioactive;
     }
 
-    @Nonnull
+    
     public Set<String> getTickerBlocks() {
         return tickers;
     }
 
-    @Nonnull
+    
     public Map<String, SlimefunItem> getSlimefunItemIds() {
         return slimefunIds;
     }
 
-    @Nonnull
+    
     public Map<String, BlockMenuPreset> getMenuPresets() {
         return blockMenuPresets;
     }
 
-    @Nonnull
+    
     public Map<UUID, PlayerProfile> getPlayerProfiles() {
         return profiles;
     }
 
-    @Nonnull
+    
     public Map<Class<? extends ItemHandler>, Set<ItemHandler>> getGlobalItemHandlers() {
         return globalItemHandlers;
     }
 
-    @Nonnull
-    public Set<ItemHandler> getGlobalItemHandlers(@Nonnull Class<? extends ItemHandler> identifier) {
+    
+    public Set<ItemHandler> getGlobalItemHandlers(Class<? extends ItemHandler> identifier) {
         Validate.notNull(identifier, "The identifier for an ItemHandler cannot be null!");
 
         return globalItemHandlers.computeIfAbsent(identifier, c -> new HashSet<>());
     }
 
-    @Nonnull
+    
     public Map<String, BlockInfoConfig> getChunks() {
         return chunks;
     }
 
-    @Nonnull
+    
     public KeyMap<GEOResource> getGEOResources() {
         return geoResources;
     }
 
-    @Nonnull
+    
     public NamespacedKey getSoulboundDataKey() {
         return soulboundKey;
     }
 
-    @Nonnull
+    
     public NamespacedKey getItemChargeDataKey() {
         return itemChargeKey;
     }
 
-    @Nonnull
+    
     public NamespacedKey getGuideDataKey() {
         return guideKey;
     }

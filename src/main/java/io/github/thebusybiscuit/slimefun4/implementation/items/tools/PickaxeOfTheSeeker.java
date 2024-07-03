@@ -37,7 +37,7 @@ public class PickaxeOfTheSeeker extends SimpleSlimefunItem<ItemUseHandler> imple
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             Player p = e.getPlayer();
             Block closest = findClosestOre(p);
@@ -76,7 +76,7 @@ public class PickaxeOfTheSeeker extends SimpleSlimefunItem<ItemUseHandler> imple
         };
     }
 
-    private @Nullable Block findClosestOre(@Nonnull Player p) {
+    private @Nullable Block findClosestOre(Player p) {
         Block start = p.getLocation().getBlock();
         Block closest = null;
         double lastDistance = Double.MAX_VALUE;

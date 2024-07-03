@@ -60,7 +60,7 @@ public class CoolerListener implements Listener {
         }
     }
 
-    private void checkAndConsume(@Nonnull Player p) {
+    private void checkAndConsume(Player p) {
         if (cooler == null || cooler.isDisabled()) {
             // Do not proceed if the Cooler was disabled
             return;
@@ -86,13 +86,13 @@ public class CoolerListener implements Listener {
      * @param cooler
      *            The {@link Cooler} {@link ItemStack} to take the {@link Juice} from
      */
-    private void takeJuiceFromCooler(@Nonnull Player p, @Nonnull ItemStack cooler) {
+    private void takeJuiceFromCooler(Player p, ItemStack cooler) {
         if (PlayerBackpack.isOwnerOnline(cooler.getItemMeta())) {
             PlayerBackpack.getAsync(cooler, backpack -> consumeJuice(p, cooler, backpack), true);
         }
     }
 
-    private boolean consumeJuice(@Nonnull Player p, @Nonnull ItemStack coolerItem, @Nonnull PlayerBackpack backpack) {
+    private boolean consumeJuice(Player p, ItemStack coolerItem, PlayerBackpack backpack) {
         Inventory inv = backpack.getInventory();
         int slot = -1;
 

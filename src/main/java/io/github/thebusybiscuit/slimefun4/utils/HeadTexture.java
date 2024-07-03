@@ -122,7 +122,7 @@ public enum HeadTexture {
     private final String texture;
     private final UUID uuid;
 
-    HeadTexture(@Nonnull String texture) {
+    HeadTexture(String texture) {
         Validate.notNull(texture, "Texture cannot be null");
         Validate.isTrue(CommonPatterns.HEXADECIMAL.matcher(texture).matches(), "Textures must be in hexadecimal.");
 
@@ -135,7 +135,7 @@ public enum HeadTexture {
      *
      * @return The associated texture hash
      */
-    public @Nonnull String getTexture() {
+    public String getTexture() {
         return texture;
     }
 
@@ -146,7 +146,7 @@ public enum HeadTexture {
      *
      * @return The {@link UUID} for this {@link HeadTexture}
      */
-    public @Nonnull UUID getUniqueId() {
+    public UUID getUniqueId() {
         return uuid;
     }
 
@@ -155,11 +155,11 @@ public enum HeadTexture {
      *
      * @return A custom head {@link ItemStack}
      */
-    public @Nonnull ItemStack getAsItemStack() {
+    public ItemStack getAsItemStack() {
         return SlimefunUtils.getCustomHead(getTexture());
     }
 
-    public @Nonnull PlayerSkin getAsSkin() {
+    public PlayerSkin getAsSkin() {
         return PlayerSkin.fromHashCode(texture);
     }
 }

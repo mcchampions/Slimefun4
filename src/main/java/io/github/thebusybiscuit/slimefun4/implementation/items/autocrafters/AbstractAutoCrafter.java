@@ -191,7 +191,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @param data
      *            The data stored on this block
      */
-    protected void tick(@Nonnull Block b, @Nonnull SlimefunBlockData data) {
+    protected void tick(Block b, SlimefunBlockData data) {
         AbstractRecipe recipe = getSelectedRecipe(b);
 
         if (recipe == null || !recipe.isEnabled() || getCharge(b.getLocation(), data) < getEnergyConsumption()) {
@@ -295,7 +295,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return Whether that {@link Block} has a valid {@link Inventory}
      */
-    protected boolean isValidInventory(@Nonnull Block block) {
+    protected boolean isValidInventory(Block block) {
 
         if (CrafterInteractorManager.hasInterator(block)) {
             return true;
@@ -315,7 +315,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return The currently selected {@link AbstractRecipe} or null
      */
-    @Nullable public abstract AbstractRecipe getSelectedRecipe(@Nonnull Block b);
+    @Nullable public abstract AbstractRecipe getSelectedRecipe(Block b);
 
     /**
      * This method is called when a {@link Player} right clicks the {@link AbstractAutoCrafter}
@@ -327,7 +327,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @param p
      *            The {@link Player} who clicked
      */
-    protected abstract void updateRecipe(@Nonnull Block b, @Nonnull Player p);
+    protected abstract void updateRecipe(Block b, Player p);
 
     /**
      * This method sets the selected {@link AbstractRecipe} for the given {@link Block}.
@@ -338,7 +338,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @param recipe
      *            The {@link AbstractRecipe} to select
      */
-    protected void setSelectedRecipe(@Nonnull Block b, @Nullable AbstractRecipe recipe) {
+    protected void setSelectedRecipe(Block b, @Nullable AbstractRecipe recipe) {
         Validate.notNull(b, "The Block cannot be null!");
 
         BlockStateSnapshotResult result = PaperLib.getBlockState(b, false);
@@ -471,7 +471,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return Whether this crafting operation was successful or not
      */
-    public boolean craft(@Nonnull CrafterInteractable inv, @Nonnull AbstractRecipe recipe) {
+    public boolean craft(CrafterInteractable inv, AbstractRecipe recipe) {
         Validate.notNull(inv, "The Inventory must not be null");
         Validate.notNull(recipe, "The Recipe shall not be null");
 
@@ -537,7 +537,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return The leftover item or null if the item is fully consumed
      */
-    @Nullable private ItemStack getLeftoverItem(@Nonnull ItemStack item) {
+    @Nullable private ItemStack getLeftoverItem(ItemStack item) {
         Material type = item.getType();
 
         return switch (type) {
@@ -576,7 +576,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return This method will return the current instance of {@link AContainer}, so that it can be chained.
      */
-    @Nonnull
+    
     public final AbstractAutoCrafter setCapacity(int capacity) {
         Validate.isTrue(capacity > 0, "The capacity must be greater than zero!");
 
@@ -596,7 +596,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return This method will return the current instance of {@link AContainer}, so that it can be chained.
      */
-    @Nonnull
+    
     public final AbstractAutoCrafter setEnergyConsumption(int energyConsumption) {
         Validate.isTrue(energyConsumption > 0, "The energy consumption must be greater than zero!");
         Validate.isTrue(energyCapacity > 0, "You must specify the capacity before you can set the consumption amount.");
@@ -609,7 +609,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         Validate.notNull(addon, "A SlimefunAddon cannot be null!");
         this.addon = addon;
 

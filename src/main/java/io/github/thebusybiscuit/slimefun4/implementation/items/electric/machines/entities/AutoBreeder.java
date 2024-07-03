@@ -45,12 +45,12 @@ public class AutoBreeder extends SlimefunItem implements InventoryBlock, EnergyN
         createPreset(this, this::constructMenu);
     }
 
-    @Nonnull
+    
     private ItemHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -127,7 +127,7 @@ public class AutoBreeder extends SlimefunItem implements InventoryBlock, EnergyN
         }
     }
 
-    private boolean canBreed(@Nonnull Entity n) {
+    private boolean canBreed(Entity n) {
         if (n.isValid() && n instanceof Animals animal) {
             return animal.isAdult() && animal.canBreed() && !animal.isLoveMode();
         }

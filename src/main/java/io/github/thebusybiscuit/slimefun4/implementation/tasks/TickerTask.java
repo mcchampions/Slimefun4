@@ -65,7 +65,7 @@ public class TickerTask implements Runnable {
      * @param plugin
      *            The instance of our {@link Slimefun}
      */
-    public void start(@Nonnull Slimefun plugin) {
+    public void start(Slimefun plugin) {
         this.tickRate = Slimefun.getCfg().getInt("URID.custom-ticker-delay");
 
         BukkitScheduler scheduler = plugin.getServer().getScheduler();
@@ -141,7 +141,7 @@ public class TickerTask implements Runnable {
         }
     }
 
-    private void tickLocation(@Nonnull Set<BlockTicker> tickers, @Nonnull Location l) {
+    private void tickLocation(Set<BlockTicker> tickers, Location l) {
         var blockData = StorageCacheUtils.getBlock(l);
         if (blockData == null || !blockData.isDataLoaded() || blockData.isPendingRemove()) {
             return;
@@ -230,7 +230,7 @@ public class TickerTask implements Runnable {
      *
      * @return A {@link Map} representation of all ticking {@link Location Locations}
      */
-    @Nonnull
+    
     public Map<ChunkPosition, Set<Location>> getLocations() {
         return Collections.unmodifiableMap(tickingLocations);
     }
@@ -246,8 +246,8 @@ public class TickerTask implements Runnable {
      *
      * @return A {@link Set} of all ticking {@link Location Locations}
      */
-    @Nonnull
-    public Set<Location> getLocations(@Nonnull Chunk chunk) {
+    
+    public Set<Location> getLocations(Chunk chunk) {
         Validate.notNull(chunk, "The Chunk cannot be null!");
 
         Set<Location> locations = tickingLocations.getOrDefault(new ChunkPosition(chunk), new HashSet<>());
@@ -260,7 +260,7 @@ public class TickerTask implements Runnable {
      * @param l
      *            The {@link Location} to activate
      */
-    public void enableTicker(@Nonnull Location l) {
+    public void enableTicker(Location l) {
         Validate.notNull(l, "Location cannot be null!");
 
         synchronized (tickingLocations) {
@@ -279,7 +279,7 @@ public class TickerTask implements Runnable {
      * @param l
      *            The {@link Location} to remove
      */
-    public void disableTicker(@Nonnull Location l) {
+    public void disableTicker(Location l) {
         Validate.notNull(l, "Location cannot be null!");
 
         synchronized (tickingLocations) {

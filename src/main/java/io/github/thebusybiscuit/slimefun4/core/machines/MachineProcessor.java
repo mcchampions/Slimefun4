@@ -41,7 +41,7 @@ public class MachineProcessor<T extends MachineOperation> {
      * @param owner
      *            The owner of this {@link MachineProcessor}.
      */
-    public MachineProcessor(@Nonnull MachineProcessHolder<T> owner) {
+    public MachineProcessor(MachineProcessHolder<T> owner) {
         Validate.notNull(owner, "The MachineProcessHolder cannot be null.");
 
         this.owner = owner;
@@ -52,7 +52,7 @@ public class MachineProcessor<T extends MachineOperation> {
      *
      * @return The owner / holder
      */
-    @Nonnull
+    
     public MachineProcessHolder<T> getOwner() {
         return owner;
     }
@@ -89,7 +89,7 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return Whether the {@link MachineOperation} was successfully started. This will return false if another
      *         {@link MachineOperation} has already been started at that {@link Location}.
      */
-    public boolean startOperation(@Nonnull Location loc, @Nonnull T operation) {
+    public boolean startOperation(Location loc, T operation) {
         Validate.notNull(loc, "The location must not be null");
         Validate.notNull(operation, "The operation cannot be null");
 
@@ -107,7 +107,7 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return Whether the {@link MachineOperation} was successfully started. This will return false if another
      *         {@link MachineOperation} has already been started at that {@link Block}.
      */
-    public boolean startOperation(@Nonnull Block b, @Nonnull T operation) {
+    public boolean startOperation(Block b, T operation) {
         Validate.notNull(b, "The Block must not be null");
         Validate.notNull(operation, "The machine operation cannot be null");
 
@@ -125,7 +125,7 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return Whether the {@link MachineOperation} was successfully started. This will return false if another
      *         {@link MachineOperation} has already been started at that {@link BlockPosition}.
      */
-    public boolean startOperation(@Nonnull BlockPosition pos, @Nonnull T operation) {
+    public boolean startOperation(BlockPosition pos, T operation) {
         Validate.notNull(pos, "The BlockPosition must not be null");
         Validate.notNull(operation, "The machine operation cannot be null");
 
@@ -140,7 +140,7 @@ public class MachineProcessor<T extends MachineOperation> {
      *
      * @return The current {@link MachineOperation} or null.
      */
-    @Nullable public T getOperation(@Nonnull Location loc) {
+    @Nullable public T getOperation(Location loc) {
         Validate.notNull(loc, "The location cannot be null");
 
         return getOperation(new BlockPosition(loc));
@@ -154,7 +154,7 @@ public class MachineProcessor<T extends MachineOperation> {
      *
      * @return The current {@link MachineOperation} or null.
      */
-    @Nullable public T getOperation(@Nonnull Block b) {
+    @Nullable public T getOperation(Block b) {
         Validate.notNull(b, "The Block cannot be null");
 
         return getOperation(new BlockPosition(b));
@@ -168,7 +168,7 @@ public class MachineProcessor<T extends MachineOperation> {
      *
      * @return The current {@link MachineOperation} or null.
      */
-    @Nullable public T getOperation(@Nonnull BlockPosition pos) {
+    @Nullable public T getOperation(BlockPosition pos) {
         Validate.notNull(pos, "The BlockPosition must not be null");
 
         return machines.get(pos);
@@ -183,7 +183,7 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return Whether the {@link MachineOperation} was successfully ended. This will return false if there was no
      *         {@link MachineOperation} to begin with.
      */
-    public boolean endOperation(@Nonnull Location loc) {
+    public boolean endOperation(Location loc) {
         Validate.notNull(loc, "The location should not be null");
 
         return endOperation(new BlockPosition(loc));
@@ -198,7 +198,7 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return Whether the {@link MachineOperation} was successfully ended. This will return false if there was no
      *         {@link MachineOperation} to begin with.
      */
-    public boolean endOperation(@Nonnull Block b) {
+    public boolean endOperation(Block b) {
         Validate.notNull(b, "The Block should not be null");
 
         return endOperation(new BlockPosition(b));
@@ -213,7 +213,7 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return Whether the {@link MachineOperation} was successfully ended. This will return false if there was no
      *         {@link MachineOperation} to begin with.
      */
-    public boolean endOperation(@Nonnull BlockPosition pos) {
+    public boolean endOperation(BlockPosition pos) {
         Validate.notNull(pos, "The BlockPosition cannot be null");
 
         T operation = machines.remove(pos);
@@ -236,7 +236,7 @@ public class MachineProcessor<T extends MachineOperation> {
         }
     }
 
-    public void updateProgressBar(@Nonnull BlockMenu inv, int slot, @Nonnull T operation) {
+    public void updateProgressBar(BlockMenu inv, int slot, T operation) {
         Validate.notNull(inv, "The inventory must not be null.");
         Validate.notNull(operation, "The MachineOperation must not be null.");
 

@@ -20,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class GrindstoneListener implements SlimefunCraftingListener {
 
-    public GrindstoneListener(@Nonnull Slimefun plugin) {
+    public GrindstoneListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

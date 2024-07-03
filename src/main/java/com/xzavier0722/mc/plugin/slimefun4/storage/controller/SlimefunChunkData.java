@@ -29,12 +29,12 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
         sfBlocks = new ConcurrentHashMap<>();
     }
 
-    @Nonnull
+    
     public Chunk getChunk() {
         return chunk;
     }
 
-    @Nonnull
+    
     @ParametersAreNonnullByDefault
     public SlimefunBlockData createBlockData(Location l, String sfId) {
         var lKey = LocationUtils.getLocKey(l);

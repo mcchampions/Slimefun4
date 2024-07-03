@@ -33,13 +33,13 @@ public class Teleporter extends SimpleSlimefunItem<BlockPlaceHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @Nonnull
+    
     @Override
     public BlockPlaceHandler getItemHandler() {
         return new BlockPlaceHandler(false) {
 
             @Override
-            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
+            public void onPlayerPlace(BlockPlaceEvent e) {
                 StorageCacheUtils.setData(
                         e.getBlock().getLocation(),
                         "owner",

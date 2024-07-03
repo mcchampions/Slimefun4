@@ -42,7 +42,7 @@ public class Bandage extends SimpleSlimefunItem<ItemUseHandler> {
         this.healingLevel = healingLevel;
     }
 
-    @Nonnull
+    
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

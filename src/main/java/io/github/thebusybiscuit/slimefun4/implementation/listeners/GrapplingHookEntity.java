@@ -25,12 +25,12 @@ final class GrapplingHookEntity {
         this.dropItem = p.getGameMode() != GameMode.CREATIVE && dropItem;
     }
 
-    @Nonnull
+    
     public Arrow getArrow() {
         return arrow;
     }
 
-    public void drop(@Nonnull Location l) {
+    public void drop(Location l) {
         // If a grappling hook was consumed, drop one grappling hook on the floor
         if (dropItem && wasConsumed) {
             Item item = l.getWorld().dropItem(l, SlimefunItems.GRAPPLING_HOOK.clone());

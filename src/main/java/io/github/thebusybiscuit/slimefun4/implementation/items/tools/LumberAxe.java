@@ -43,7 +43,7 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
         addItemHandler(onBlockBreak(), onItemUse());
     }
 
-    @Nonnull
+    
     private ToolUseHandler onBlockBreak() {
         return (e, tool, fortune, drops) -> {
             if (!e.getPlayer().isSneaking() && Tag.LOGS.isTagged(e.getBlock().getType())) {
@@ -61,7 +61,7 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
         };
     }
 
-    @Nonnull
+    
     public ItemUseHandler onItemUse() {
         return e -> {
             if (e.getClickedBlock().isPresent() && !e.getPlayer().isSneaking()) {
@@ -84,11 +84,11 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
         };
     }
 
-    private boolean isUnstrippedLog(@Nonnull Block block) {
+    private boolean isUnstrippedLog(Block block) {
         return Tag.LOGS.isTagged(block.getType()) && !block.getType().name().startsWith("STRIPPED_");
     }
 
-    private void stripLog(@Nonnull Block b) {
+    private void stripLog(Block b) {
         // No need for a SoundEffect here, this is supposed to be a vanilla sound.
         b.getWorld().playSound(b.getLocation(), Sound.ITEM_AXE_STRIP, 1, 1);
         Axis axis = ((Orientable) b.getBlockData()).getAxis();
@@ -99,7 +99,7 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
         b.setBlockData(orientable);
     }
 
-    private void breakLog(@Nonnull Block b) {
+    private void breakLog(Block b) {
         b.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());
 
         for (ItemStack drop : b.getDrops(getItem())) {

@@ -40,7 +40,7 @@ final class SlimefunThreadFactory implements ThreadFactory {
      * This creates a new {@link Thread} for the {@link SlimefunProfiler}.
      */
     @Override
-    public Thread newThread(@Nonnull Runnable runnable) {
+    public Thread newThread(Runnable runnable) {
         return new Thread(runnable, "Slimefun Profiler");
     }
 }

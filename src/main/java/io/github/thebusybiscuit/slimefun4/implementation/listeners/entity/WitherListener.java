@@ -23,7 +23,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
  */
 public class WitherListener implements Listener {
 
-    public WitherListener(@Nonnull Slimefun plugin) {
+    public WitherListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

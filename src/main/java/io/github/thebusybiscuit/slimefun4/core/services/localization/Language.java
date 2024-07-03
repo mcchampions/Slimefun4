@@ -41,7 +41,7 @@ public final class Language {
      * @param hash
      *            The hash of the skull texture to use
      */
-    public Language(@Nonnull String id, @Nonnull String hash) {
+    public Language(String id, String hash) {
         Validate.notNull(id, "A Language must have an id that is not null!");
         Validate.notNull(hash, "A Language must have a texture that is not null!");
 
@@ -56,7 +56,7 @@ public final class Language {
      *
      * @return The identifier of this {@link Language}
      */
-    public @Nonnull String getId() {
+    public String getId() {
         return id;
     }
 
@@ -79,11 +79,11 @@ public final class Language {
         }
     }
 
-    @Nullable FileConfiguration getFile(@Nonnull LanguageFile file) {
+    @Nullable FileConfiguration getFile(LanguageFile file) {
         return files.get(file);
     }
 
-    public void setFile(@Nonnull LanguageFile file, @Nonnull FileConfiguration config) {
+    public void setFile(LanguageFile file, FileConfiguration config) {
         Validate.notNull(file, "The provided file should not be null.");
         Validate.notNull(config, "The provided config should not be null.");
 
@@ -96,7 +96,7 @@ public final class Language {
      *
      * @return The {@link ItemStack} used to display this {@link Language}
      */
-    public @Nonnull ItemStack getItem() {
+    public ItemStack getItem() {
         return item;
     }
 
@@ -108,7 +108,7 @@ public final class Language {
      *            The {@link Player} to localize the name for
      * @return The localized name of this {@link Language}
      */
-    public @Nonnull String getName(@Nonnull Player p) {
+    public String getName(Player p) {
         return Slimefun.getLocalization().getMessage(p, "languages." + id);
     }
 
@@ -127,7 +127,7 @@ public final class Language {
         return "Language {id= " + id + ", default=" + isDefault() + " }";
     }
 
-    @Nonnull
+    
     FileConfiguration[] getFiles() {
         // @formatter:off
         return Arrays.stream(LanguageFile.valuesCached).map(this::getFile).toArray(FileConfiguration[]::new);

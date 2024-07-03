@@ -56,7 +56,7 @@ public class RainbowArmorPiece extends SlimefunArmorPiece {
      *
      * @return The {@link Color}s of this {@link RainbowArmorPiece}
      */
-    public @Nonnull Color[] getColors() {
+    public Color[] getColors() {
         return colors;
     }
 }

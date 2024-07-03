@@ -46,7 +46,7 @@ public class GrapplingHookListener implements Listener {
     private final Map<UUID, GrapplingHookEntity> activeHooks = new HashMap<>();
     private final Set<UUID> invulnerability = new HashSet<>();
 
-    public void register(@Nonnull Slimefun plugin, @Nonnull GrapplingHook grapplingHook) {
+    public void register(Slimefun plugin, GrapplingHook grapplingHook) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
         this.grapplingHook = grapplingHook;
@@ -196,7 +196,7 @@ public class GrapplingHookListener implements Listener {
         }
     }
 
-    public boolean isGrappling(@Nonnull UUID uuid) {
+    public boolean isGrappling(UUID uuid) {
         return activeHooks.containsKey(uuid);
     }
 

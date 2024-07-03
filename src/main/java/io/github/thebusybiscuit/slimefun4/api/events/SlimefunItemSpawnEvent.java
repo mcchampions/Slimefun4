@@ -52,7 +52,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *
      * @return The player responsible if applicable.
      */
-    public @Nonnull Optional<Player> getPlayer() {
+    public Optional<Player> getPlayer() {
         return Optional.ofNullable(player);
     }
 
@@ -61,7 +61,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *
      * @return the {@link ItemSpawnReason}.
      */
-    public @Nonnull ItemSpawnReason getItemSpawnReason() {
+    public ItemSpawnReason getItemSpawnReason() {
         return itemSpawnReason;
     }
 
@@ -70,7 +70,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *
      * @return The {@link Location} where the item will be dropped
      */
-    public @Nonnull Location getLocation() {
+    public Location getLocation() {
         return location;
     }
 
@@ -80,7 +80,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      * @param location
      *            The {@link Location} where to drop the {@link ItemStack}
      */
-    public void setLocation(@Nonnull Location location) {
+    public void setLocation(Location location) {
         Validate.notNull(location, "The Location cannot be null!");
 
         this.location = location;
@@ -91,7 +91,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *
      * @return The {@link ItemStack} that will be dropped
      */
-    public @Nonnull ItemStack getItemStack() {
+    public ItemStack getItemStack() {
         return itemStack;
     }
 
@@ -101,7 +101,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      * @param itemStack
      *            The {@link ItemStack} to drop
      */
-    public void setItemStack(@Nonnull ItemStack itemStack) {
+    public void setItemStack(ItemStack itemStack) {
         Validate.notNull(itemStack, "Cannot drop null.");
         Validate.isTrue(!itemStack.getType().isAir(), "Cannot drop air.");
 
@@ -118,12 +118,12 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
         this.cancelled = cancelled;
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return getHandlerList();
     }
 }

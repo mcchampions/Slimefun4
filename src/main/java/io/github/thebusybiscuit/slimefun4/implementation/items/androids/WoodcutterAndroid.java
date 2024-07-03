@@ -84,7 +84,7 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
         }
     }
 
-    private void replant(@Nonnull Block block) {
+    private void replant(Block block) {
         Material logType = block.getType();
         Material saplingType = null;
         Predicate<Material> soilRequirement = null;

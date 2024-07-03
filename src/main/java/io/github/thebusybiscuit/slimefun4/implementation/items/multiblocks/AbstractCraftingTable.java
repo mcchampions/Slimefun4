@@ -41,7 +41,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
         super(itemGroup, item, recipe, trigger);
     }
 
-    protected @Nonnull Inventory createVirtualInventory(@Nonnull Inventory inv) {
+    protected Inventory createVirtualInventory(Inventory inv) {
         Inventory fakeInv = Bukkit.createInventory(null, 9, "Fake Inventory");
 
         for (int j = 0; j < inv.getContents().length; j++) {
@@ -128,7 +128,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
         return false;
     }
 
-    private @Nonnull Optional<String> retrieveID(@Nullable ItemStack backpack) {
+    private Optional<String> retrieveID(@Nullable ItemStack backpack) {
         if (backpack != null) {
             for (String line : backpack.getItemMeta().getLore()) {
                 if (line.startsWith(ChatColors.color("&7ID: ")) && line.contains("#")) {
@@ -140,7 +140,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
         return Optional.empty();
     }
 
-    private @Nonnull Optional<String> retrieveUuid(@Nullable ItemStack backpack) {
+    private Optional<String> retrieveUuid(@Nullable ItemStack backpack) {
         if (backpack == null) {
             return Optional.empty();
         }

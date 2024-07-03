@@ -77,7 +77,7 @@ public class GEOResourceGenerationEvent extends Event {
      *
      * @return The affected {@link World}
      */
-    @Nonnull
+    
     public World getWorld() {
         return world;
     }
@@ -87,7 +87,7 @@ public class GEOResourceGenerationEvent extends Event {
      *
      * @return The generated {@link GEOResource}
      */
-    @Nonnull
+    
     public GEOResource getResource() {
         return resource;
     }
@@ -118,7 +118,7 @@ public class GEOResourceGenerationEvent extends Event {
      *
      * @return The {@link Environment} of this generation
      */
-    @Nonnull
+    
     public Environment getEnvironment() {
         return world.getEnvironment();
     }
@@ -129,7 +129,7 @@ public class GEOResourceGenerationEvent extends Event {
      *
      * @return The {@link Biome} of this generation
      */
-    @Nonnull
+    
     public Biome getBiome() {
         return biome;
     }

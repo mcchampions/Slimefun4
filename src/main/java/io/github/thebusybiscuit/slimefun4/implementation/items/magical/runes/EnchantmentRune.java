@@ -63,7 +63,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         }
     }
 
-    @Nonnull
+    
     @Override
     public ItemDropHandler getItemHandler() {
         return (e, p, item) -> {
@@ -87,7 +87,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         };
     }
 
-    private void addRandomEnchantment(@Nonnull Player p, @Nonnull Item rune) {
+    private void addRandomEnchantment(Player p, Item rune) {
         // Being sure the entity is still valid and not picked up or whatsoever.
         if (!rune.isValid()) {
             return;
@@ -175,7 +175,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         }
     }
 
-    private int getRandomlevel(@Nonnull Enchantment enchantment) {
+    private int getRandomlevel(Enchantment enchantment) {
         int level = 1;
 
         if (enchantment.getMaxLevel() != 1) {
@@ -186,7 +186,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
     }
 
     private void removeIllegalEnchantments(
-            @Nonnull ItemStack target, @Nonnull List<Enchantment> potentialEnchantments) {
+            ItemStack target, List<Enchantment> potentialEnchantments) {
         for (Enchantment enchantment : target.getEnchantments().keySet()) {
 
             // Duplicate or conflict
@@ -194,7 +194,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         }
     }
 
-    private boolean findCompatibleItem(@Nonnull Entity n) {
+    private boolean findCompatibleItem(Entity n) {
         if (n instanceof Item item) {
             return !isItem(item.getItemStack());
         }

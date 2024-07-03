@@ -50,7 +50,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
      *
      * @return The title of the {@link Inventory} of this {@link AbstractEnergyProvider}
      */
-    @Nonnull
+    
     public String getInventoryTitle() {
         return getItemName();
     }
@@ -63,7 +63,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
      *
      * @return The {@link ItemStack} to use as the progress bar
      */
-    @Nonnull
+    
     public abstract ItemStack getProgressBar();
 
     /**
@@ -79,28 +79,28 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
     protected abstract void registerDefaultFuelTypes();
 
     @Override
-    @Nonnull
+    
     public final EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.GENERATOR;
     }
 
-    public void registerFuel(@Nonnull MachineFuel fuel) {
+    public void registerFuel(MachineFuel fuel) {
         Validate.notNull(fuel, "Machine Fuel cannot be null!");
         fuelTypes.add(fuel);
     }
 
-    @Nonnull
+    
     public Set<MachineFuel> getFuelTypes() {
         return fuelTypes;
     }
 
-    @Nonnull
+    
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.generator";
     }
 
-    @Nonnull
+    
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> list = new ArrayList<>();

@@ -40,11 +40,11 @@ abstract class AbstractItemNetwork extends Network {
      */
     protected Map<Location, ItemFilter> filterCache = new HashMap<>();
 
-    protected AbstractItemNetwork(@Nonnull Location regulator) {
+    protected AbstractItemNetwork(Location regulator) {
         super(Slimefun.getNetworkManager(), regulator);
     }
 
-    protected Optional<Block> getAttachedBlock(@Nonnull Location l) {
+    protected Optional<Block> getAttachedBlock(Location l) {
         if (l.getWorld().isChunkLoaded(l.getBlockX() >> 4, l.getBlockZ() >> 4)) {
             Block block = l.getBlock();
 
@@ -66,7 +66,7 @@ abstract class AbstractItemNetwork extends Network {
     }
 
     @Override
-    public void markDirty(@Nonnull Location l) {
+    public void markDirty(Location l) {
         markCargoNodeConfigurationDirty(l);
         super.markDirty(l);
     }
@@ -78,7 +78,7 @@ abstract class AbstractItemNetwork extends Network {
      * @param node
      *            The {@link Location} of the cargo node
      */
-    public void markCargoNodeConfigurationDirty(@Nonnull Location node) {
+    public void markCargoNodeConfigurationDirty(Location node) {
         ItemFilter filter = filterCache.get(node);
 
         if (filter != null) {
@@ -113,7 +113,7 @@ abstract class AbstractItemNetwork extends Network {
         }
     }
 
-    protected @Nonnull ItemFilter getItemFilter(@Nonnull Block node) {
+    protected ItemFilter getItemFilter(Block node) {
         Location loc = node.getLocation();
         ItemFilter filter = filterCache.get(loc);
 

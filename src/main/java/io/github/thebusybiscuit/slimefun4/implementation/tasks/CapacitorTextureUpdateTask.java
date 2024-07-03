@@ -42,7 +42,7 @@ public class CapacitorTextureUpdateTask implements Runnable {
      * @param capacity
      *            The capacity of this {@link Capacitor}
      */
-    public CapacitorTextureUpdateTask(@Nonnull Location l, double charge, double capacity) {
+    public CapacitorTextureUpdateTask(Location l, double charge, double capacity) {
         Validate.notNull(l, "The Location cannot be null");
 
         this.l = l;
@@ -72,7 +72,7 @@ public class CapacitorTextureUpdateTask implements Runnable {
         }
     }
 
-    private void setTexture(@Nonnull Block b, @Nonnull HeadTexture texture) {
+    private void setTexture(Block b, HeadTexture texture) {
         PlayerSkin skin = PlayerSkin.fromHashCode(texture.getUniqueId(), texture.getTexture());
         PlayerHead.setSkin(b, skin, false);
 

@@ -68,7 +68,7 @@ public class SlimefunConfigManager {
     @Getter
     private boolean bypassEnvironmentCheck;
 
-    public SlimefunConfigManager(@Nonnull Slimefun plugin) {
+    public SlimefunConfigManager(Slimefun plugin) {
         Validate.notNull(plugin, "The Plugin instance cannot be null");
 
         this.plugin = plugin;

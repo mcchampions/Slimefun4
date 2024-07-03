@@ -17,7 +17,7 @@ public class Medicine extends MedicalSupply<ItemConsumptionHandler> {
         super(itemGroup, 8, item, recipeType, recipe);
     }
 
-    @Nonnull
+    
     @Override
     public ItemConsumptionHandler getItemHandler() {
         return (e, p, item) -> {

@@ -58,7 +58,7 @@ public class Juicer extends MultiBlockMachine {
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         return recipes.stream().map(items -> items[0]).collect(Collectors.toList());
     }
 

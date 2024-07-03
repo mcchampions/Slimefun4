@@ -232,7 +232,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
      *
      * @return The owning {@link PlayerProfile}
      */
-    @Nonnull
+    
     public OfflinePlayer getOwner() {
         return owner;
     }
@@ -251,7 +251,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
      *
      * @return The {@link Inventory} of this {@link PlayerBackpack}
      */
-    @Nonnull
+    
     public Inventory getInventory() {
         return inventory;
     }

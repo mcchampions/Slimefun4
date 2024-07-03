@@ -69,20 +69,20 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
         this(itemGroup, item, recipe, new ItemStack[0], trigger);
     }
 
-    protected void registerDefaultRecipes(@Nonnull List<ItemStack> recipes) {
+    protected void registerDefaultRecipes(List<ItemStack> recipes) {
         // Override this method to register some default recipes
     }
 
-    public @Nonnull List<ItemStack[]> getRecipes() {
+    public List<ItemStack[]> getRecipes() {
         return recipes;
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         return displayRecipes;
     }
 
-    public @Nonnull MultiBlock getMultiBlock() {
+    public MultiBlock getMultiBlock() {
         return multiblock;
     }
 
@@ -98,7 +98,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         addItemHandler(getInteractionHandler());
         super.register(addon);
     }
@@ -132,7 +132,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
         }
     }
 
-    protected @Nonnull MultiBlockInteractionHandler getInteractionHandler() {
+    protected MultiBlockInteractionHandler getInteractionHandler() {
         return (p, mb, b) -> {
             if (mb.equals(getMultiBlock())) {
                 if (canUse(p, true)
@@ -214,7 +214,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
         }
     }
 
-    private static @Nonnull Material[] convertItemStacksToMaterial(@Nonnull ItemStack[] items) {
+    private static Material[] convertItemStacksToMaterial(ItemStack[] items) {
         List<Material> materials = new ArrayList<>();
 
         for (ItemStack item : items) {

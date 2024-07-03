@@ -52,12 +52,12 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         return true;
     }
 
-    @Nonnull
+    
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -67,7 +67,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         };
     }
 
-    @Nonnull
+    
     protected abstract int[] getBorder();
 
     @Override
@@ -141,7 +141,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
     }
 
     @Override
-    protected void markDirty(@Nonnull Location loc) {
+    protected void markDirty(Location loc) {
         CargoNet network = CargoNet.getNetworkFromLocation(loc);
 
         if (network != null) {

@@ -28,7 +28,7 @@ class NetworkVisualizer implements Runnable {
      *
      * @param network The {@link Network} to visualize
      */
-    NetworkVisualizer(@Nonnull Network network) {
+    NetworkVisualizer(Network network) {
         this.network = network;
     }
 
@@ -48,7 +48,7 @@ class NetworkVisualizer implements Runnable {
      *
      * @param l The {@link Location} of our node
      */
-    private void spawnParticles(@Nonnull Location l) {
+    private void spawnParticles(Location l) {
         l.getWorld()
                 .spawnParticle(
                         Particle.REDSTONE, l.getX() + 0.5, l.getY() + 0.5, l.getZ() + 0.5, 1, 0, 0, 0, 1, options);

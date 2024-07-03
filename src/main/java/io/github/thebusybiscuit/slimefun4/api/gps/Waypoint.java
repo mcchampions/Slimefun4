@@ -84,7 +84,7 @@ public class Waypoint {
      *
      * @return The corresponding owner's {@link UUID}
      */
-    @Nonnull
+    
     public UUID getOwnerId() {
         return this.ownerId;
     }
@@ -96,7 +96,7 @@ public class Waypoint {
      *
      * @deprecated Use {@link #getOwnerId()} instead
      */
-    @Nonnull
+    
     @Deprecated
     public PlayerProfile getOwner() {
         // This is jank and should never actually return null
@@ -108,7 +108,7 @@ public class Waypoint {
      *
      * @return The {@link Waypoint} id
      */
-    @Nonnull
+    
     public String getId() {
         return id;
     }
@@ -118,7 +118,7 @@ public class Waypoint {
      *
      * @return The name of this {@link Waypoint}
      */
-    @Nonnull
+    
     public String getName() {
         return name;
     }
@@ -128,7 +128,7 @@ public class Waypoint {
      *
      * @return The {@link Waypoint} {@link Location}
      */
-    @Nonnull
+    
     public Location getLocation() {
         return location;
     }
@@ -149,7 +149,7 @@ public class Waypoint {
      *
      * @return The {@link ItemStack} icon for this {@link Waypoint}
      */
-    @Nonnull
+    
     public ItemStack getIcon() {
         return Slimefun.getGPSNetwork().getIcon(name, location.getWorld().getEnvironment());
     }

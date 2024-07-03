@@ -29,7 +29,7 @@ public class PortableCrafter extends SimpleSlimefunItem<ItemUseHandler> implemen
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
 

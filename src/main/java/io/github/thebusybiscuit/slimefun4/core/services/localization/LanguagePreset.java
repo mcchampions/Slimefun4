@@ -95,7 +95,7 @@ public enum LanguagePreset {
      *
      * @return The language code
      */
-    public @Nonnull String getLanguageCode() {
+    public String getLanguageCode() {
         return id;
     }
 
@@ -117,7 +117,7 @@ public enum LanguagePreset {
      *
      * @return The texture hash of this language
      */
-    public @Nonnull String getTexture() {
+    public String getTexture() {
         return textureHash;
     }
 
@@ -127,7 +127,7 @@ public enum LanguagePreset {
      *
      * @return The direction of text for this language
      */
-    public @Nonnull TextDirection getTextDirection() {
+    public TextDirection getTextDirection() {
         return textDirection;
     }
 }

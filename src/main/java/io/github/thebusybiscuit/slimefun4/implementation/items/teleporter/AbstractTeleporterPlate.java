@@ -43,5 +43,5 @@ public abstract class AbstractTeleporterPlate extends SlimefunItem {
      *
      * @return Whether the {@link Player} can access the {@link Teleporter}
      */
-    public abstract boolean hasAccess(@Nonnull Player p, @Nonnull Block block);
+    public abstract boolean hasAccess(Player p, Block block);
 }

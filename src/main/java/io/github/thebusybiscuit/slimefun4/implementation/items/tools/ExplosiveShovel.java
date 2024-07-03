@@ -30,7 +30,7 @@ public class ExplosiveShovel extends ExplosiveTool {
     }
 
     @Override
-    protected boolean canBreak(@Nonnull Player p, @Nonnull Block b) {
+    protected boolean canBreak(Player p, Block b) {
         return SlimefunTag.EXPLOSIVE_SHOVEL_BLOCKS.isTagged(b.getType())
                 && Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.BREAK_BLOCK);
     }

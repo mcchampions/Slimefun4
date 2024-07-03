@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 public class LegacyStorage implements Storage {
 
     @Override
-    public PlayerData loadPlayerData(@Nonnull UUID uuid) {
+    public PlayerData loadPlayerData(UUID uuid) {
         Config playerFile = new Config("data-storage/Slimefun/Players/" + uuid + ".yml");
         // Not too sure why this is its own file
         Config waypointsFile = new Config("data-storage/Slimefun/waypoints/" + uuid + ".yml");
@@ -86,7 +86,7 @@ public class LegacyStorage implements Storage {
 
     // The current design of saving all at once isn't great, this will be refined.
     @Override
-    public void savePlayerData(@Nonnull UUID uuid, @Nonnull PlayerData data) {
+    public void savePlayerData(UUID uuid, PlayerData data) {
         Config playerFile = new Config("data-storage/Slimefun/Players/" + uuid + ".yml");
         // Not too sure why this is its own file
         Config waypointsFile = new Config("data-storage/Slimefun/waypoints/" + uuid + ".yml");

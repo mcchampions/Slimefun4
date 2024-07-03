@@ -15,11 +15,11 @@ import org.bukkit.inventory.ItemStack;
  */
 interface OreDictionary {
 
-    @Nonnull
+    
     @ParametersAreNonnullByDefault
     ItemStack getDrops(Material material, Random random);
 
-    static @Nonnull OreDictionary forVersion(@Nonnull MinecraftVersion version) {
+    static OreDictionary forVersion(MinecraftVersion version) {
         if (version.isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
             // MC 1.17 - 1.18
             return new OreDictionary17();

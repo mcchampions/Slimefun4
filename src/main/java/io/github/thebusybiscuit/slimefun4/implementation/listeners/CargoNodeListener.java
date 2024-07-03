@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class CargoNodeListener implements Listener {
 
-    public CargoNodeListener(@Nonnull Slimefun plugin) {
+    public CargoNodeListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -35,7 +35,7 @@ public class CargoNodeListener implements Listener {
         }
     }
 
-    private boolean isCargoNode(@Nonnull ItemStack item) {
+    private boolean isCargoNode(ItemStack item) {
         return SlimefunItem.getByItem(item) instanceof CargoNode;
     }
 }

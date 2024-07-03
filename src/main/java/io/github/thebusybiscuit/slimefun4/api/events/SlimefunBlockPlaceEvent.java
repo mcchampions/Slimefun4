@@ -51,7 +51,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      *
      * @return The placed {@link Block}
      */
-    public @Nonnull Block getBlockPlaced() {
+    public Block getBlockPlaced() {
         return blockPlaced;
     }
 
@@ -60,7 +60,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      *
      * @return The {@link SlimefunItem} being placed
      */
-    public @Nonnull SlimefunItem getSlimefunItem() {
+    public SlimefunItem getSlimefunItem() {
         return slimefunItem;
     }
 
@@ -69,7 +69,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      *
      * @return The placed {@link ItemStack}
      */
-    public @Nonnull ItemStack getItemStack() {
+    public ItemStack getItemStack() {
         return placedItem;
     }
 
@@ -78,7 +78,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      *
      * @return The {@link Player}
      */
-    public @Nonnull Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
@@ -92,12 +92,12 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
         this.cancelled = cancelled;
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return getHandlerList();
     }
 }

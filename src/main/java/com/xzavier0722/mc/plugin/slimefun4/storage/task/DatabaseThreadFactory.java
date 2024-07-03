@@ -8,7 +8,7 @@ public class DatabaseThreadFactory implements ThreadFactory {
     private final AtomicInteger threadCount = new AtomicInteger(0);
 
     @Override
-    public Thread newThread(@Nonnull Runnable r) {
+    public Thread newThread(Runnable r) {
         return new Thread(r, "SF-Database-Thread #" + threadCount.getAndIncrement());
     }
 }

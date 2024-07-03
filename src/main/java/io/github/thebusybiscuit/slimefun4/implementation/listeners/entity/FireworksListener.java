@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
  */
 public class FireworksListener implements Listener {
 
-    public FireworksListener(@Nonnull Slimefun plugin) {
+    public FireworksListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

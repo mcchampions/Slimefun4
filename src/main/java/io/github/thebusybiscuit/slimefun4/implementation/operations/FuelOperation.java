@@ -21,11 +21,11 @@ public class FuelOperation implements MachineOperation {
     private final int totalTicks;
     private int currentTicks = 0;
 
-    public FuelOperation(@Nonnull MachineFuel recipe) {
+    public FuelOperation(MachineFuel recipe) {
         this(recipe.getInput(), recipe.getOutput(), recipe.getTicks());
     }
 
-    public FuelOperation(@Nonnull ItemStack ingredient, @Nullable ItemStack result, int totalTicks) {
+    public FuelOperation(ItemStack ingredient, @Nullable ItemStack result, int totalTicks) {
         Validate.notNull(ingredient, "The Ingredient cannot be null");
         Validate.isTrue(totalTicks > 0, "The amount of total ticks must be a positive integer");
 
@@ -40,7 +40,7 @@ public class FuelOperation implements MachineOperation {
         currentTicks += num;
     }
 
-    @Nonnull
+    
     public ItemStack getIngredient() {
         return ingredient;
     }

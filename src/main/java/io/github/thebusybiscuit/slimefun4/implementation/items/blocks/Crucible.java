@@ -57,7 +57,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         return recipes;
     }
 
-    @Nonnull
+    
     private List<ItemStack> getMachineRecipes() {
         List<ItemStack> items = new LinkedList<>();
 
@@ -106,7 +106,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         return items;
     }
 
-    @Nonnull
+    
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {
@@ -163,7 +163,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
      * @param isWater
      *            Whether we generate water or lava.
      */
-    private void generateLiquid(@Nonnull Block block, boolean isWater) {
+    private void generateLiquid(Block block, boolean isWater) {
         // Fixes #2877 - If water in the nether is disabled, abort and play an effect.
         if (isWater && block.getWorld().getEnvironment() == Environment.NETHER && !allowWaterInNether.getValue()) {
             // We will still consume the items but won't generate water in the Nether.
@@ -184,7 +184,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         }
     }
 
-    private void addLiquidLevel(@Nonnull Block block, boolean water) {
+    private void addLiquidLevel(Block block, boolean water) {
         int level = ((Levelled) block.getBlockData()).getLevel();
 
         if (level > 7) {
@@ -205,7 +205,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         }
     }
 
-    private void placeLiquid(@Nonnull Block block, boolean water) {
+    private void placeLiquid(Block block, boolean water) {
         if (block.getType().isAir()) {
             // Fixes #2903 - Cancel physics update to resolve weird overlapping
             block.setType(water ? Material.WATER : Material.LAVA, false);

@@ -27,7 +27,7 @@ public class AutoSavingService {
      * @param interval
      *            The interval in which to run this task
      */
-    public void start(@Nonnull Slimefun plugin, int interval) {
+    public void start(Slimefun plugin, int interval) {
         this.interval = interval;
 
         plugin.getServer().getScheduler().runTaskTimer(plugin, this::saveAllPlayers, 2000L, interval * 60L * 20L);

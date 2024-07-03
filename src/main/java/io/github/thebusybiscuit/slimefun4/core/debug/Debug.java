@@ -29,7 +29,7 @@ public final class Debug {
      * @param msg
      *            The message to log
      */
-    public static void log(@Nonnull TestCase testCase, @Nonnull String msg) {
+    public static void log(TestCase testCase, String msg) {
         log(testCase.toString(), msg, new Object[0]);
     }
 
@@ -43,7 +43,7 @@ public final class Debug {
      * @param vars
      *            The variables to replace, use "{}" in the message and have it replaced with a specified thing
      */
-    public static void log(@Nonnull TestCase testCase, @Nonnull String msg, @Nonnull Object... vars) {
+    public static void log(TestCase testCase, String msg, Object... vars) {
         log(testCase.toString(), msg, vars);
     }
 
@@ -55,7 +55,7 @@ public final class Debug {
      * @param msg
      *            The message to log
      */
-    public static void log(@Nonnull String test, @Nonnull String msg) {
+    public static void log(String test, String msg) {
         log(test, msg, new Object[0]);
     }
 
@@ -69,7 +69,7 @@ public final class Debug {
      * @param vars
      *            The variables to replace, use "{}" in the message and have it replaced with a specified thing
      */
-    public static void log(@Nonnull String test, @Nonnull String msg, @Nonnull Object... vars) {
+    public static void log(String test, String msg, Object... vars) {
         if (!testCase.contains(test)) {
             return;
         }
@@ -98,7 +98,7 @@ public final class Debug {
      *
      * @return The resulting String
      */
-    private static @Nonnull String formatMessage(@Nonnull String msg, @Nonnull Object... vars) {
+    private static String formatMessage(String msg, Object... vars) {
         int i = 0;
         int idx = 0;
 
@@ -128,7 +128,7 @@ public final class Debug {
      *
      * @return The current test case to enable or null if disabled
      */
-    public static @Nonnull List<String> getTestCase() {
+    public static List<String> getTestCase() {
         return testCase;
     }
 

@@ -101,7 +101,7 @@ public class PlayerProfileMigrator implements IMigrator {
         return result;
     }
 
-    private void migratePlayerProfile(@Nonnull OfflinePlayer p) {
+    private void migratePlayerProfile(OfflinePlayer p) {
         var uuid = p.getUniqueId();
         var configFile = new Config("data-storage/Slimefun/Players/" + uuid + ".yml");
 

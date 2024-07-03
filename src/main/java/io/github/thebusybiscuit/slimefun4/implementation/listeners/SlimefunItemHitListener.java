@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class SlimefunItemHitListener implements Listener {
 
-    public SlimefunItemHitListener(@Nonnull Slimefun plugin) {
+    public SlimefunItemHitListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

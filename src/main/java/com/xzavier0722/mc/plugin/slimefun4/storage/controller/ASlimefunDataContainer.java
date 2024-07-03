@@ -56,13 +56,13 @@ public abstract class ASlimefunDataContainer {
         }
     }
 
-    @Nonnull
+    
     public Map<String, String> getAllData() {
         checkData();
         return Collections.unmodifiableMap(data);
     }
 
-    @Nonnull
+    
     public Set<String> getDataKeys() {
         checkData();
         return Collections.unmodifiableSet(data.keySet());
@@ -73,7 +73,7 @@ public abstract class ASlimefunDataContainer {
         return getCacheInternal(key);
     }
 
-    @Nonnull
+    
     public String getKey() {
         return key;
     }

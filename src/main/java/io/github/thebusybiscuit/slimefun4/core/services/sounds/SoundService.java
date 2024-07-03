@@ -27,7 +27,7 @@ public class SoundService {
      */
     private final Map<SoundEffect, SoundConfiguration> soundMap = new EnumMap<>(SoundEffect.class);
 
-    public SoundService(@Nonnull Slimefun plugin) {
+    public SoundService(Slimefun plugin) {
         config = new Config(plugin, "sounds.yml");
 
         // @formatter:off
@@ -69,7 +69,7 @@ public class SoundService {
         }
     }
 
-    private void reloadSound(@Nonnull SoundEffect sound) {
+    private void reloadSound(SoundEffect sound) {
         // Set up default values
         config.setDefaultValue(sound.name() + ".sound", sound.getDefaultSoundId());
         config.setDefaultValue(sound.name() + ".volume", sound.getDefaultVolume());
@@ -113,7 +113,7 @@ public class SoundService {
      *
      * @return The corresponding {@link SoundConfiguration}. This may be null if something went wrong
      */
-    public @Nullable SoundConfiguration getConfiguration(@Nonnull SoundEffect sound) {
+    public @Nullable SoundConfiguration getConfiguration(SoundEffect sound) {
         Preconditions.checkNotNull(sound, "The sound must not be null!");
         return soundMap.get(sound);
     }

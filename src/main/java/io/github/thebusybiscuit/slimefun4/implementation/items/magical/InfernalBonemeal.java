@@ -36,7 +36,7 @@ public class InfernalBonemeal extends SimpleSlimefunItem<ItemUseHandler> {
         super(itemGroup, item, recipeType, recipe, recipeOutput);
     }
 
-    @Nonnull
+    
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

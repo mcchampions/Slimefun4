@@ -30,7 +30,7 @@ public class IcyBow extends SlimefunBow {
         super(itemGroup, item, recipe);
     }
 
-    @Nonnull
+    
     @Override
     public BowShootHandler onShoot() {
         return (e, n) -> {

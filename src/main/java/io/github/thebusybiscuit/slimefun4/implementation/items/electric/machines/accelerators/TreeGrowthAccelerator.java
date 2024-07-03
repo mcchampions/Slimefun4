@@ -50,7 +50,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
     }
 
     @Override
-    protected void tick(@Nonnull Block b) {
+    protected void tick(Block b) {
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
         if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {

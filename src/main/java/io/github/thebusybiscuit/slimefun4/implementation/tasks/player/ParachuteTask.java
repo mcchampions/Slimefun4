@@ -6,7 +6,7 @@ import org.bukkit.util.Vector;
 
 public class ParachuteTask extends AbstractPlayerTask {
 
-    public ParachuteTask(@Nonnull Player p) {
+    public ParachuteTask(Player p) {
         super(p);
     }
 

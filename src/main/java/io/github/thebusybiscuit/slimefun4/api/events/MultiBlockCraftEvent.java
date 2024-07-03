@@ -61,7 +61,7 @@ public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
      *
      * @return The {@link MultiBlockMachine} used to craft.
      */
-    public @Nonnull MultiBlockMachine getMachine() {
+    public MultiBlockMachine getMachine() {
         return machine;
     }
 
@@ -70,7 +70,7 @@ public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
      *
      * @return The {@link ItemStack ItemStack[]} input that is used in the craft.
      */
-    public @Nonnull ItemStack[] getInput() {
+    public ItemStack[] getInput() {
         return input;
     }
 
@@ -79,7 +79,7 @@ public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
      *
      * @return The {@link ItemStack} output that results from the craft.
      */
-    public @Nonnull ItemStack getOutput() {
+    public ItemStack getOutput() {
         return output;
     }
 
@@ -107,12 +107,12 @@ public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
         this.cancelled = cancel;
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return getHandlerList();
     }
 }

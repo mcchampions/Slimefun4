@@ -49,11 +49,11 @@ enum MinerStoppingReason {
 
     private final String messageKey;
 
-    MinerStoppingReason(@Nonnull String messageKey) {
+    MinerStoppingReason(String messageKey) {
         this.messageKey = messageKey;
     }
 
-    @Nonnull
+    
     String getErrorMessage() {
         return messageKey;
     }

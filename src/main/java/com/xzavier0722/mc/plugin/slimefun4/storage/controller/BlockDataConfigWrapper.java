@@ -25,19 +25,19 @@ public class BlockDataConfigWrapper extends Config {
     public void createFile() {}
 
     @Override
-    public String getString(@Nonnull String path) {
+    public String getString(String path) {
         return blockData.getData(path);
     }
 
-    @Nonnull
+    
     @Override
     public Set<String> getKeys() {
         return new HashSet<>(blockData.getAllData().keySet());
     }
 
-    @Nonnull
+    
     @Override
-    public Set<String> getKeys(@Nonnull String path) {
+    public Set<String> getKeys(String path) {
         return getKeys();
     }
 
@@ -47,12 +47,12 @@ public class BlockDataConfigWrapper extends Config {
     }
 
     @Override
-    public boolean contains(@Nonnull String path) {
+    public boolean contains(String path) {
         return getString(path) != null;
     }
 
     @Nullable @Override
-    public Object getValue(@Nonnull String path) {
+    public Object getValue(String path) {
         return getString(path);
     }
 
@@ -62,7 +62,7 @@ public class BlockDataConfigWrapper extends Config {
     }
 
     @Override
-    public void setDefaultValue(@Nonnull String path, @Nullable Object value) {
+    public void setDefaultValue(String path, @Nullable Object value) {
         if (!(value instanceof String str)) {
             throw new NotImplementedException();
         }
@@ -72,7 +72,7 @@ public class BlockDataConfigWrapper extends Config {
     }
 
     @Override
-    public void setValue(@Nonnull String path, Object value) {
+    public void setValue(String path, Object value) {
         if (!(value instanceof String str)) {
             throw new NotImplementedException();
         }
@@ -80,7 +80,7 @@ public class BlockDataConfigWrapper extends Config {
     }
 
     @Override
-    public void save(@Nonnull File file) {}
+    public void save(File file) {}
 
     @Override
     public void reload() {}

@@ -64,14 +64,14 @@ public class CrafterSmartPort extends SlimefunItem {
             }
 
             @Override
-            public boolean canOpen(@Nonnull Block b, @Nonnull Player p) {
+            public boolean canOpen(Block b, Player p) {
                 return p.hasPermission("slimefun.inventory.bypass")
                         || Slimefun.getProtectionManager()
                                 .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override
-            public void newInstance(@Nonnull BlockMenu menu, @Nonnull Block b) {
+            public void newInstance(BlockMenu menu, Block b) {
                 // Resume the ingredient count
                 String countStr = StorageCacheUtils.getData(b.getLocation(), "ingredientCount");
                 if (countStr != null) {
@@ -114,7 +114,7 @@ public class CrafterSmartPort extends SlimefunItem {
         addItemHandler(new BlockBreakHandler(false, true) {
             @Override
             public void onPlayerBreak(
-                    @Nonnull BlockBreakEvent e, @Nonnull ItemStack item, @Nonnull List<ItemStack> drops) {
+                    BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 BlockMenu inv = StorageCacheUtils.getMenu(e.getBlock().getLocation());
                 if (inv != null) {
                     for (int slot : INPUT_SLOTS) {

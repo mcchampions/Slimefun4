@@ -21,6 +21,6 @@ public interface Radioactive extends ItemAttribute {
      *
      * @return The level of {@link Radioactivity} of this item.
      */
-    @Nonnull
+    
     Radioactivity getRadioactivity();
 }

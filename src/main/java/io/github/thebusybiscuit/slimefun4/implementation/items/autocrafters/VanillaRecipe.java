@@ -35,20 +35,20 @@ class VanillaRecipe extends AbstractRecipe {
     @Getter
     private final Recipe recipe;
 
-    VanillaRecipe(@Nonnull ShapelessRecipe recipe) {
+    VanillaRecipe(ShapelessRecipe recipe) {
         super(new ArrayList<>(recipe.getChoiceList()), recipe.getResult());
 
         this.recipe = recipe;
     }
 
-    VanillaRecipe(@Nonnull ShapedRecipe recipe) {
+    VanillaRecipe(ShapedRecipe recipe) {
         super(getChoices(recipe), recipe.getResult());
 
         this.recipe = recipe;
     }
 
-    @Nonnull
-    private static Collection<Predicate<ItemStack>> getChoices(@Nonnull ShapedRecipe recipe) {
+    
+    private static Collection<Predicate<ItemStack>> getChoices(ShapedRecipe recipe) {
         List<Predicate<ItemStack>> choices = new ArrayList<>();
 
         for (String row : recipe.getShape()) {
@@ -65,7 +65,7 @@ class VanillaRecipe extends AbstractRecipe {
     }
 
     @Override
-    public void show(@Nonnull ChestMenu menu, @Nonnull AsyncRecipeChoiceTask task) {
+    public void show(ChestMenu menu, AsyncRecipeChoiceTask task) {
         Validate.notNull(menu, "The ChestMenu cannot be null!");
         Validate.notNull(task, "The RecipeChoiceTask cannot be null!");
 

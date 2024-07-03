@@ -23,7 +23,7 @@ import org.bukkit.inventory.PlayerInventory;
  */
 public class IronGolemListener implements Listener {
 
-    public IronGolemListener(@Nonnull Slimefun plugin) {
+    public IronGolemListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

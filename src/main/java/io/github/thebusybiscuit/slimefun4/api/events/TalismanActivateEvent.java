@@ -42,14 +42,14 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
     /**
      * @return The {@link Talisman} used.
      */
-    public @Nonnull Talisman getTalisman() {
+    public Talisman getTalisman() {
         return this.talisman;
     }
 
     /**
      * @return The {@link ItemStack} of the used {@link Talisman}.
      */
-    public @Nonnull ItemStack getTalismanItem() {
+    public ItemStack getTalismanItem() {
         return this.talismanItemStack;
     }
 
@@ -84,11 +84,11 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return getHandlerList();
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 }

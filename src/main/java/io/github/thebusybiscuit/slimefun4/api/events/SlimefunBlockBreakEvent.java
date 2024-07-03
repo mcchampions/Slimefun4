@@ -51,7 +51,7 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
      *
      * @return The broken {@link Block}
      */
-    public @Nonnull Block getBlockBroken() {
+    public Block getBlockBroken() {
         return blockBroken;
     }
 
@@ -60,7 +60,7 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
      *
      * @return The {@link SlimefunItem} being broken
      */
-    public @Nonnull SlimefunItem getSlimefunItem() {
+    public SlimefunItem getSlimefunItem() {
         return slimefunItem;
     }
 
@@ -69,7 +69,7 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
      *
      * @return The held {@link ItemStack}
      */
-    public @Nonnull ItemStack getHeldItem() {
+    public ItemStack getHeldItem() {
         return heldItem;
     }
 
@@ -78,7 +78,7 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
      *
      * @return The {@link Player}
      */
-    public @Nonnull Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
@@ -92,12 +92,12 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
         this.cancelled = cancelled;
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return getHandlerList();
     }
 }

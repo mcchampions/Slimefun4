@@ -134,7 +134,7 @@ public class BookBinder extends AContainer {
         return "BOOK_BINDER";
     }
 
-    @Nonnull
+    
     @ParametersAreNonnullByDefault
     private Map<Enchantment, Integer> combineEnchantments(
             Map<Enchantment, Integer> ech1, Map<Enchantment, Integer> ech2) {

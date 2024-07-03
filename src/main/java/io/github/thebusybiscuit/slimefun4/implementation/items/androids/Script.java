@@ -41,7 +41,7 @@ public final class Script {
      * @param config
      *            The {@link Config}
      */
-    private Script(@Nonnull Config config) {
+    private Script(Config config) {
         Validate.notNull(config);
 
         this.config = config;
@@ -64,7 +64,7 @@ public final class Script {
      *
      * @return The name
      */
-    @Nonnull
+    
     public String getName() {
         return name;
     }
@@ -75,7 +75,7 @@ public final class Script {
      *
      * @return The author of this {@link Script}
      */
-    @Nonnull
+    
     public String getAuthor() {
         return author;
     }
@@ -87,7 +87,7 @@ public final class Script {
      *
      * @return The code for this {@link Script}
      */
-    @Nonnull
+    
     public String getSourceCode() {
         return code;
     }
@@ -101,7 +101,7 @@ public final class Script {
      *
      * @return Whether the given {@link OfflinePlayer} is the author of this {@link Script}.
      */
-    public boolean isAuthor(@Nonnull OfflinePlayer p) {
+    public boolean isAuthor(OfflinePlayer p) {
         return p.getUniqueId().equals(config.getUUID("author"));
     }
 
@@ -114,7 +114,7 @@ public final class Script {
      *
      * @return Whether the given {@link Player} is able to rate this {@link Script}
      */
-    public boolean canRate(@Nonnull Player p) {
+    public boolean canRate(Player p) {
         if (isAuthor(p)) {
             return false;
         }
@@ -125,8 +125,8 @@ public final class Script {
                 && !downvoters.contains(p.getUniqueId().toString());
     }
 
-    @Nonnull
-    ItemStack getAsItemStack(@Nonnull ProgrammableAndroid android, @Nonnull Player p) {
+    
+    ItemStack getAsItemStack(ProgrammableAndroid android, Player p) {
         List<String> lore = new LinkedList<>();
         lore.add("&7作者 &f" + getAuthor());
         lore.add("");
@@ -146,7 +146,7 @@ public final class Script {
         return new CustomItemStack(android.getItem(), "&b" + getName(), lore.toArray(new String[0]));
     }
 
-    @Nonnull
+    
     private String getScriptRatingPercentage() {
         float percentage = getRating();
         return NumberUtils.getColorFromPercentage(percentage) + String.valueOf(percentage) + ChatColor.WHITE + "% ";
@@ -200,7 +200,7 @@ public final class Script {
         config.save();
     }
 
-    public void rate(@Nonnull Player p, boolean positive) {
+    public void rate(Player p, boolean positive) {
         config.reload();
 
         String path = "rating." + (positive ? "positive" : "negative");
@@ -211,8 +211,8 @@ public final class Script {
         config.save();
     }
 
-    @Nonnull
-    public static List<Script> getUploadedScripts(@Nonnull AndroidType androidType) {
+    
+    public static List<Script> getUploadedScripts(AndroidType androidType) {
         List<Script> scripts = new LinkedList<>();
 
         loadScripts(scripts, androidType);
@@ -225,7 +225,7 @@ public final class Script {
         return scripts;
     }
 
-    private static void loadScripts(@Nonnull List<Script> scripts, @Nonnull AndroidType type) {
+    private static void loadScripts(List<Script> scripts, AndroidType type) {
         File directory = new File("plugins/Slimefun/scripts/" + type.name());
         if (!directory.exists()) {
             directory.mkdirs();

@@ -19,12 +19,12 @@ public class SlimefunItemRegistryFinalizedEvent extends Event {
 
     public SlimefunItemRegistryFinalizedEvent() {}
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

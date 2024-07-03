@@ -30,7 +30,7 @@ class OrebfuscatorIntegration implements Listener {
     private final Slimefun plugin;
     private OrebfuscatorService service;
 
-    OrebfuscatorIntegration(@Nonnull Slimefun plugin) {
+    OrebfuscatorIntegration(Slimefun plugin) {
         this.plugin = plugin;
     }
 

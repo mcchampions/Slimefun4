@@ -31,7 +31,7 @@ public class FortuneCookie extends SimpleSlimefunItem<ItemConsumptionHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @Nonnull
+    
     @Override
     public ItemConsumptionHandler getItemHandler() {
         return (e, p, item) -> {

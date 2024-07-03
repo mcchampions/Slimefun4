@@ -42,27 +42,27 @@ public class PlayerPreResearchEvent extends Event implements Cancellable {
         this.slimefunItem = slimefunItem;
     }
 
-    @Nonnull
+    
     public Player getPlayer() {
         return player;
     }
 
-    @Nonnull
+    
     public Research getResearch() {
         return research;
     }
 
-    @Nonnull
+    
     public SlimefunItem getSlimefunItem() {
         return slimefunItem;
     }
 
-    @Nonnull
+    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    @Nonnull
+    
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

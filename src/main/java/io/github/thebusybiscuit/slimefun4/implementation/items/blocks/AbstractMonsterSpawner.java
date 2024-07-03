@@ -45,8 +45,8 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      *
      * @return An {@link Optional} describing the result
      */
-    @Nonnull
-    public Optional<EntityType> getEntityType(@Nonnull ItemStack item) {
+    
+    public Optional<EntityType> getEntityType(ItemStack item) {
         Validate.notNull(item, "The Item cannot be null");
 
         ItemMeta meta = item.getItemMeta();
@@ -79,8 +79,8 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      *
      * @return An {@link ItemStack} for this {@link SlimefunItem} holding that {@link EntityType}
      */
-    @Nonnull
-    public ItemStack getItemForEntityType(@Nonnull EntityType type) {
+    
+    public ItemStack getItemForEntityType(EntityType type) {
         Validate.notNull(type, "The EntityType cannot be null");
 
         ItemStack item = getItem().clone();

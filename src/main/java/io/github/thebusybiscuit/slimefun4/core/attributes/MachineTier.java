@@ -12,7 +12,7 @@ public enum MachineTier {
 
     private final String prefix;
 
-    MachineTier(@Nonnull String prefix) {
+    MachineTier(String prefix) {
         this.prefix = prefix;
     }
 

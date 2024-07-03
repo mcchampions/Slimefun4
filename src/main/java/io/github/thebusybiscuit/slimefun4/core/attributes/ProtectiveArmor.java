@@ -28,7 +28,7 @@ public interface ProtectiveArmor extends ItemAttribute {
      *
      * @return The {@link ProtectionType}s.
      */
-    @Nonnull
+    
     ProtectionType[] getProtectionTypes();
 
     /**

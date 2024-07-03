@@ -42,12 +42,12 @@ public final class FireworkUtils {
 
     private FireworkUtils() {}
 
-    public static void launchFirework(@Nonnull Location l, @Nonnull Color color) {
+    public static void launchFirework(Location l, Color color) {
         createFirework(l, color);
     }
 
-    @Nonnull
-    public static Firework createFirework(@Nonnull Location l, @Nonnull Color color) {
+    
+    public static Firework createFirework(Location l, Color color) {
         Firework fw = (Firework) l.getWorld().spawnEntity(l, EntityType.FIREWORK);
         FireworkMeta meta = fw.getFireworkMeta();
 
@@ -60,7 +60,7 @@ public final class FireworkUtils {
         return fw;
     }
 
-    public static void launchRandom(@Nonnull Entity n, int amount) {
+    public static void launchRandom(Entity n, int amount) {
         Random random = ThreadLocalRandom.current();
 
         for (int i = 0; i < amount; i++) {
@@ -72,8 +72,8 @@ public final class FireworkUtils {
         }
     }
 
-    @Nonnull
-    public static FireworkEffect getRandomEffect(@Nonnull Random random, @Nonnull Color color) {
+    
+    public static FireworkEffect getRandomEffect(Random random, Color color) {
         return FireworkEffect.builder()
                 .flicker(random.nextBoolean())
                 .withColor(color)
@@ -82,7 +82,7 @@ public final class FireworkUtils {
                 .build();
     }
 
-    @Nonnull
+    
     private static Color getRandomColor() {
         return COLORS[ThreadLocalRandom.current().nextInt(COLORS.length)];
     }

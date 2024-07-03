@@ -22,7 +22,7 @@ public class PlayerLanguageChangeEvent extends Event {
     private final Language from;
     private final Language to;
 
-    public PlayerLanguageChangeEvent(@Nonnull Player p, @Nonnull Language from, @Nonnull Language to) {
+    public PlayerLanguageChangeEvent(Player p, Language from, Language to) {
         player = p;
         this.from = from;
         this.to = to;
@@ -34,7 +34,7 @@ public class PlayerLanguageChangeEvent extends Event {
      *
      * @return The {@link Player} who switched his {@link Language}
      */
-    @Nonnull
+    
     public Player getPlayer() {
         return player;
     }
@@ -44,7 +44,7 @@ public class PlayerLanguageChangeEvent extends Event {
      *
      * @return The previous {@link Language} of our {@link Player}
      */
-    @Nonnull
+    
     public Language getPreviousLanguage() {
         return from;
     }
@@ -54,7 +54,7 @@ public class PlayerLanguageChangeEvent extends Event {
      *
      * @return The new {@link Language}
      */
-    @Nonnull
+    
     public Language getNewLanguage() {
         return to;
     }

@@ -33,7 +33,7 @@ public interface SlimefunGuideImplementation {
      *
      * @return The mode this {@link SlimefunGuideImplementation} represents
      */
-    @Nonnull
+    
     SlimefunGuideMode getMode();
 
     /**
@@ -43,7 +43,7 @@ public interface SlimefunGuideImplementation {
      *
      * @return The {@link ItemStack} representation for this {@link SlimefunGuideImplementation}
      */
-    @Nonnull
+    
     ItemStack getItem();
 
     @ParametersAreNonnullByDefault

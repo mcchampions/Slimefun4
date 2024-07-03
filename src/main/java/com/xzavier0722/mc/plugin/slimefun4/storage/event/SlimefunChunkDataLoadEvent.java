@@ -27,12 +27,12 @@ public class SlimefunChunkDataLoadEvent extends Event {
         return chunkData.getChunk();
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return getHandlerList();
     }
 }

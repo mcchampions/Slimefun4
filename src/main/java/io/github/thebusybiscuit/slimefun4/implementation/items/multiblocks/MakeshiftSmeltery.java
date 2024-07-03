@@ -45,7 +45,7 @@ public class MakeshiftSmeltery extends AbstractSmeltery {
                 BlockFace.DOWN);
     }
 
-    @Nonnull
+    
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> items = new ArrayList<>();

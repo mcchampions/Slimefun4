@@ -23,7 +23,7 @@ public class GPSControlPanel extends SimpleSlimefunItem<BlockUseHandler> impleme
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @Nonnull
+    
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {

@@ -41,7 +41,7 @@ public class PickaxeOfVeinMining extends SimpleSlimefunItem<ToolUseHandler> {
     }
 
     @Override
-    public @Nonnull ToolUseHandler getItemHandler() {
+    public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             if (SlimefunTag.PICKAXE_OF_VEIN_MINING_BLOCKS.isTagged(e.getBlock().getType())) {
                 List<Block> blocks = Vein.find(

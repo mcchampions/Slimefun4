@@ -31,12 +31,12 @@ public class PersonalActivationPlate extends AbstractTeleporterPlate {
         addItemHandler(onPlace());
     }
 
-    @Nonnull
+    
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
             @Override
-            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
+            public void onPlayerPlace(BlockPlaceEvent e) {
                 StorageCacheUtils.setData(
                         e.getBlock().getLocation(),
                         "owner",

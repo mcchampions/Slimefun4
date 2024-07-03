@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
  */
 public class BrewingStandListener implements SlimefunCraftingListener {
 
-    public BrewingStandListener(@Nonnull Slimefun plugin) {
+    public BrewingStandListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

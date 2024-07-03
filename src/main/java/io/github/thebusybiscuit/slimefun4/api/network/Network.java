@@ -51,7 +51,7 @@ public abstract class Network {
      * @param regulator
      *            The {@link Location} marking the regulator of this {@link Network}.
      */
-    protected Network(@Nonnull NetworkManager manager, @Nonnull Location regulator) {
+    protected Network(NetworkManager manager, Location regulator) {
         Validate.notNull(manager, "A NetworkManager must be provided");
         Validate.notNull(regulator, "No regulator was specified");
 
@@ -82,7 +82,7 @@ public abstract class Network {
      *
      * @return The assigned type of {@link NetworkComponent} for this {@link Location}
      */
-    @Nullable public abstract NetworkComponent classifyLocation(@Nonnull Location l);
+    @Nullable public abstract NetworkComponent classifyLocation(Location l);
 
     /**
      * This method is called whenever a {@link Location} in this {@link Network} changes
@@ -113,7 +113,7 @@ public abstract class Network {
      * @param l
      *            The {@link Location} to add
      */
-    protected void addLocationToNetwork(@Nonnull Location l) {
+    protected void addLocationToNetwork(Location l) {
         if (connectedLocations.add(l.clone())) {
             markDirty(l);
         }
@@ -126,7 +126,7 @@ public abstract class Network {
      * @param l
      *            The {@link Location} to update
      */
-    public void markDirty(@Nonnull Location l) {
+    public void markDirty(Location l) {
         Debug.log(TestCase.ENERGYNET, "Mark location " + LocationUtils.locationToString(l) + " as dirty block");
 
         if (regulator.equals(l)) {
@@ -144,7 +144,7 @@ public abstract class Network {
      *
      * @return Whether the given {@link Location} is part of this {@link Network}
      */
-    public boolean connectsTo(@Nonnull Location l) {
+    public boolean connectsTo(Location l) {
         if (regulator.equals(l)) {
             return true;
         } else {
@@ -152,7 +152,7 @@ public abstract class Network {
         }
     }
 
-    @Nullable private NetworkComponent getCurrentClassification(@Nonnull Location l) {
+    @Nullable private NetworkComponent getCurrentClassification(Location l) {
         if (regulatorNodes.contains(l)) {
             return NetworkComponent.REGULATOR;
         } else if (connectorNodes.contains(l)) {
@@ -204,14 +204,14 @@ public abstract class Network {
         }
     }
 
-    private void discoverNeighbors(@Nonnull Location l, double xDiff, double yDiff, double zDiff) {
+    private void discoverNeighbors(Location l, double xDiff, double yDiff, double zDiff) {
         for (int i = getRange() + 1; i > 0; i--) {
             Location newLocation = l.clone().add(i * xDiff, i * yDiff, i * zDiff);
             addLocationToNetwork(newLocation);
         }
     }
 
-    private void discoverNeighbors(@Nonnull Location l) {
+    private void discoverNeighbors(Location l) {
         discoverNeighbors(l, 1.0, 0.0, 0.0);
         discoverNeighbors(l, -1.0, 0.0, 0.0);
         discoverNeighbors(l, 0.0, 1.0, 0.0);
@@ -235,7 +235,7 @@ public abstract class Network {
      *
      * @return The {@link Location} of our regulator
      */
-    @Nonnull
+    
     public Location getRegulator() {
         return regulator;
     }

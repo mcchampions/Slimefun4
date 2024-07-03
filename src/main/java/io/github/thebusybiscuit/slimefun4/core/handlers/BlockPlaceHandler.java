@@ -31,7 +31,7 @@ public abstract class BlockPlaceHandler implements ItemHandler {
      * @param e
      *            The corresponding {@link BlockPlaceEvent}
      */
-    public abstract void onPlayerPlace(@Nonnull BlockPlaceEvent e);
+    public abstract void onPlayerPlace(BlockPlaceEvent e);
 
     /**
      * This method is called whenever a {@link BlockPlacer} places this {@link Block}.
@@ -42,7 +42,7 @@ public abstract class BlockPlaceHandler implements ItemHandler {
      * @param e
      *            The corresponding {@link BlockPlacerPlaceEvent}
      */
-    public void onBlockPlacerPlace(@Nonnull BlockPlacerPlaceEvent e) {
+    public void onBlockPlacerPlace(BlockPlacerPlaceEvent e) {
         // This can be overridden, if necessary
     }
 

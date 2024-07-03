@@ -70,7 +70,7 @@ public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
         return 1 + bonus;
     }
 
-    @Nonnull
+    
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
@@ -104,7 +104,7 @@ public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
         };
     }
 
-    private void setProgress(@Nonnull Furnace furnace) {
+    private void setProgress(Furnace furnace) {
         // Update the cooktime
         int cookTime = furnace.getCookTime() + getProcessingSpeed() * 10;
         furnace.setCookTime((short) Math.min(cookTime, furnace.getCookTimeTotal() - 1));

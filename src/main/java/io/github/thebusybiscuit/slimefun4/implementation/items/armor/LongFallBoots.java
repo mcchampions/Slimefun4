@@ -54,7 +54,7 @@ public class LongFallBoots extends SlimefunArmorPiece {
      *
      * @return The {@link SoundEffect} played when landing
      */
-    @Nonnull
+    
     public SoundEffect getSoundEffect() {
         return soundEffect;
     }

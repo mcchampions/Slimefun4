@@ -63,7 +63,7 @@ public class ArmorTask implements Runnable {
      *
      * @return The {@link Set} of {@link PotionEffect PotionEffects} applied upon radioactive contact
      */
-    @Nonnull
+    
     public Set<PotionEffect> getRadiationEffects() {
         return radiationEffects;
     }
@@ -122,7 +122,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private void checkForSolarHelmet(@Nonnull Player p) {
+    private void checkForSolarHelmet(Player p) {
         ItemStack helmet = p.getInventory().getHelmet();
         SlimefunItem item = SlimefunItem.getByItem(helmet);
 
@@ -131,7 +131,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private boolean hasSunlight(@Nonnull Player p) {
+    private boolean hasSunlight(Player p) {
         World world = p.getWorld();
 
         if (world.getEnvironment() != Environment.NORMAL) {
@@ -143,7 +143,7 @@ public class ArmorTask implements Runnable {
                 && p.getEyeLocation().getBlock().getLightFromSky() == 15;
     }
 
-    private void checkForRadiation(@Nonnull Player p, @Nonnull PlayerProfile profile) {
+    private void checkForRadiation(Player p, PlayerProfile profile) {
         if (!profile.hasFullProtectionAgainst(ProtectionType.RADIATION)) {
             for (ItemStack item : p.getInventory()) {
                 if (checkAndApplyRadiation(p, item)) {
@@ -153,7 +153,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private boolean checkAndApplyRadiation(@Nonnull Player p, @Nullable ItemStack item) {
+    private boolean checkAndApplyRadiation(Player p, @Nullable ItemStack item) {
         if (item == null || item.getType() == Material.AIR) {
             return false;
         }

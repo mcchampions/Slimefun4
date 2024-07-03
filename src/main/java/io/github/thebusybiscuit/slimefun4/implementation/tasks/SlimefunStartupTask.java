@@ -31,7 +31,7 @@ public class SlimefunStartupTask implements Runnable {
      * @param runnable
      *            A {@link Runnable} containing additional operations that need to be run
      */
-    public SlimefunStartupTask(@Nonnull Slimefun plugin, @Nonnull Runnable runnable) {
+    public SlimefunStartupTask(Slimefun plugin, Runnable runnable) {
         this.plugin = plugin;
         this.runnable = runnable;
     }

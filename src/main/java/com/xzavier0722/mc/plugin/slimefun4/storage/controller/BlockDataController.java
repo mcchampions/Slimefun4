@@ -144,7 +144,7 @@ public class BlockDataController extends ADataController {
      * @param sfId slimefun block id {@link SlimefunItem#getId()}
      * @return {@link SlimefunBlockData}
      */
-    @Nonnull
+    
     public SlimefunBlockData createBlock(Location l, String sfId) {
         checkDestroy();
         var re = getChunkDataCache(l.getChunk(), true).createBlockData(l, sfId);

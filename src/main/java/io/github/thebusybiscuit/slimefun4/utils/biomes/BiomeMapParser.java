@@ -93,7 +93,7 @@ public class BiomeMapParser<T> {
         return isLenient;
     }
 
-    public void read(@Nonnull String json) throws BiomeMapException {
+    public void read(String json) throws BiomeMapException {
         Validate.notNull(json, "The JSON string should not be null!");
         JsonArray root;
 
@@ -110,7 +110,7 @@ public class BiomeMapParser<T> {
         read(root);
     }
 
-    public void read(@Nonnull JsonArray json) throws BiomeMapException {
+    public void read(JsonArray json) throws BiomeMapException {
         Validate.notNull(json, "The JSON Array should not be null!");
 
         for (JsonElement element : json) {
@@ -124,7 +124,7 @@ public class BiomeMapParser<T> {
         }
     }
 
-    private void readEntry(@Nonnull JsonObject entry) throws BiomeMapException {
+    private void readEntry(JsonObject entry) throws BiomeMapException {
         Validate.notNull(entry, "The JSON entry should not be null!");
 
         /*
@@ -156,7 +156,7 @@ public class BiomeMapParser<T> {
         }
     }
 
-    private @Nonnull Set<Biome> readBiomes(@Nonnull JsonArray array) throws BiomeMapException {
+    private Set<Biome> readBiomes(JsonArray array) throws BiomeMapException {
         Validate.notNull(array, "The JSON array should not be null!");
         Set<Biome> biomes = EnumSet.noneOf(Biome.class);
 
@@ -200,7 +200,7 @@ public class BiomeMapParser<T> {
      *
      * @return The resulting {@link BiomeMap}
      */
-    @Nonnull
+    
     public BiomeMap<T> buildBiomeMap() {
         BiomeMap<T> biomeMap = new BiomeMap<>(key);
         biomeMap.putAll(map);

@@ -53,7 +53,7 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
         addItemHandler(onPlace(), onBreak());
     }
 
-    @Nonnull
+    
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
@@ -67,12 +67,12 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
         };
     }
 
-    @Nonnull
+    
     private ItemHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -156,7 +156,7 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
      * @param experiencePoints
      *                  The number of experience points to use during production.
      */
-    private void produceFlasks(@Nonnull Location location, int experiencePoints) {
+    private void produceFlasks(Location location, int experiencePoints) {
         int withdrawn = 0;
         BlockMenu menu = StorageCacheUtils.getMenu(location);
         for (int level = 0; level < getStoredExperience(location); level = level + 10) {

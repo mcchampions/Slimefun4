@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class EntityInteractionListener implements Listener {
 
-    public EntityInteractionListener(@Nonnull Slimefun plugin) {
+    public EntityInteractionListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

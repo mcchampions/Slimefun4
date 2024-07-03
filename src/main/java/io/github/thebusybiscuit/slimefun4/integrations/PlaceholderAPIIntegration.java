@@ -24,24 +24,24 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
     private final String version;
     private final String author;
 
-    public PlaceholderAPIIntegration(@Nonnull Slimefun plugin) {
+    public PlaceholderAPIIntegration(Slimefun plugin) {
         this.version = plugin.getDescription().getVersion();
         this.author = plugin.getDescription().getAuthors().toString();
     }
 
-    @Nonnull
+    
     @Override
     public String getIdentifier() {
         return "slimefun";
     }
 
-    @Nonnull
+    
     @Override
     public String getVersion() {
         return version;
     }
 
-    @Nonnull
+    
     @Override
     public String getAuthor() {
         return author;
@@ -58,7 +58,7 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
     }
 
     private boolean isPlaceholder(
-            @Nullable OfflinePlayer p, boolean requiresProfile, @Nonnull String params, @Nonnull String placeholder) {
+            @Nullable OfflinePlayer p, boolean requiresProfile, String params, String placeholder) {
         if (requiresProfile) {
             if (p != null && placeholder.equals(params)) {
                 PlayerProfile.request(p);
@@ -72,7 +72,7 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
     }
 
     @Override
-    public String onRequest(@Nullable OfflinePlayer p, @Nonnull String params) {
+    public String onRequest(@Nullable OfflinePlayer p, String params) {
         if (isPlaceholder(p, true, params, "researches_total_xp_levels_spent")) {
             Optional<PlayerProfile> profile = PlayerProfile.find(p);
 
@@ -138,8 +138,8 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
         return null;
     }
 
-    @Nonnull
-    private String getProfilePlaceholder(@Nonnull Player p) {
+    
+    private String getProfilePlaceholder(Player p) {
         return Slimefun.getLocalization().getMessage(p, "placeholderapi.profile-loading");
     }
 }

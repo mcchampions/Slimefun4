@@ -42,7 +42,7 @@ public class ExplosiveBow extends SlimefunBow {
         addItemSetting(range);
     }
 
-    @Nonnull
+    
     @Override
     public BowShootHandler onShoot() {
         return (e, target) -> {
@@ -79,7 +79,7 @@ public class ExplosiveBow extends SlimefunBow {
         };
     }
 
-    private boolean canDamage(@Nonnull Entity entity) {
+    private boolean canDamage(Entity entity) {
         return entity instanceof LivingEntity && !(entity instanceof ArmorStand) && entity.isValid();
     }
 }

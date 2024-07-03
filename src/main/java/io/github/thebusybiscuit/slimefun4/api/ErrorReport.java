@@ -144,7 +144,7 @@ public class ErrorReport<T extends Throwable> {
      *
      * @return The {@link File} for this {@link ErrorReport}
      */
-    public @Nonnull File getFile() {
+    public File getFile() {
         return file;
     }
 
@@ -153,7 +153,7 @@ public class ErrorReport<T extends Throwable> {
      *
      * @return The {@link Throwable}
      */
-    public @Nonnull T getThrown() {
+    public T getThrown() {
         return throwable;
     }
 
@@ -166,7 +166,7 @@ public class ErrorReport<T extends Throwable> {
         return count.get();
     }
 
-    private void print(@Nonnull Consumer<PrintStream> printer) {
+    private void print(Consumer<PrintStream> printer) {
         this.file = getNewFile();
         count.incrementAndGet();
 
@@ -236,7 +236,7 @@ public class ErrorReport<T extends Throwable> {
         }
     }
 
-    private static void scanPlugins(@Nonnull List<String> plugins, @Nonnull List<String> addons) {
+    private static void scanPlugins(List<String> plugins, List<String> addons) {
         String dependency = "Slimefun";
 
         for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
@@ -262,7 +262,7 @@ public class ErrorReport<T extends Throwable> {
         }
     }
 
-    private static @Nonnull File getNewFile() {
+    private static File getNewFile() {
         String path = "plugins/Slimefun/error-reports/" + dateFormat.format(LocalDateTime.now());
         File newFile = new File(path + ".err");
 
@@ -288,7 +288,7 @@ public class ErrorReport<T extends Throwable> {
      *            The code to execute
      */
     public static void tryCatch(
-            @Nonnull Function<Exception, ErrorReport<Exception>> function, @Nonnull Runnable runnable) {
+            Function<Exception, ErrorReport<Exception>> function, Runnable runnable) {
         try {
             runnable.run();
         } catch (Exception x) {

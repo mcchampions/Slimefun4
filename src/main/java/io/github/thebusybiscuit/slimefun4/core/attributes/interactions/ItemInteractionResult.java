@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ItemInteractionResult extends InteractionResult {
 
-    private final @Nonnull Set<ItemStack> resultItems = new HashSet<>();
+    private final Set<ItemStack> resultItems = new HashSet<>();
 
     /**
      * Creates a new InteractionResult.
@@ -57,7 +57,7 @@ public class ItemInteractionResult extends InteractionResult {
      *
      * @return An unmodifiable {@link Set} of {@link ItemStack}(s) created due to the interaction.
      */
-    public @Nonnull Set<ItemStack> getResultItems() {
+    public Set<ItemStack> getResultItems() {
         return Collections.unmodifiableSet(resultItems);
     }
 }

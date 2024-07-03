@@ -30,7 +30,7 @@ public enum AndroidFuelSource {
 
     private final String[] lore;
 
-    AndroidFuelSource(@Nonnull String... lore) {
+    AndroidFuelSource(String... lore) {
         this.lore = lore;
     }
 
@@ -39,7 +39,7 @@ public enum AndroidFuelSource {
      *
      * @return An {@link ItemStack} to display
      */
-    @Nonnull
+    
     public ItemStack getItem() {
         return new CustomItemStack(HeadTexture.GENERATOR.getAsItemStack(), "&8\u21E9 &c燃料输入槽 &8\u21E9", lore);
     }

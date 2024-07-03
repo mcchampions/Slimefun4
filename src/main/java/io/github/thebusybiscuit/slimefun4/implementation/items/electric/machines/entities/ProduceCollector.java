@@ -85,7 +85,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
      * @param produce
      *            The {@link AnimalProduce} to add
      */
-    public void addProduce(@Nonnull AnimalProduce produce) {
+    public void addProduce(AnimalProduce produce) {
         Validate.notNull(produce, "A produce cannot be null");
 
         this.animalProduces.add(produce);
@@ -109,7 +109,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>();
 
         displayRecipes.add(new CustomItemStack(Material.BUCKET, null, "&fRequires &bCow &fnearby"));
@@ -127,7 +127,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    protected @Nullable MachineRecipe findNextRecipe(@Nonnull BlockMenu inv) {
+    protected @Nullable MachineRecipe findNextRecipe(BlockMenu inv) {
         for (int slot : getInputSlots()) {
             for (AnimalProduce produce : animalProduces) {
                 ItemStack item = inv.getItemInSlot(slot);
@@ -165,12 +165,12 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    public @Nonnull String getMachineIdentifier() {
+    public String getMachineIdentifier() {
         return "PRODUCE_COLLECTOR";
     }
 
     @Override
-    public @Nonnull ItemStack getProgressBar() {
+    public ItemStack getProgressBar() {
         return new ItemStack(Material.SHEARS);
     }
 }

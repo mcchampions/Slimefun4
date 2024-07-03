@@ -39,7 +39,7 @@ public class EnergyConnector extends SimpleSlimefunItem<BlockUseHandler> impleme
     }
 
     @Override
-    public @Nonnull BlockUseHandler getItemHandler() {
+    public BlockUseHandler getItemHandler() {
         return e -> {
             if (e.getClickedBlock().isEmpty()) {
                 return;
@@ -57,7 +57,7 @@ public class EnergyConnector extends SimpleSlimefunItem<BlockUseHandler> impleme
     }
 
     @Override
-    public final @Nonnull EnergyNetComponentType getEnergyComponentType() {
+    public final EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONNECTOR;
     }
 

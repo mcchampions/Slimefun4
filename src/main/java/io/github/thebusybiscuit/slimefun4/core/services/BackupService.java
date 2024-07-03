@@ -85,7 +85,7 @@ public class BackupService implements Runnable {
         }
     }
 
-    private void createBackup(@Nonnull ZipOutputStream output) throws IOException {
+    private void createBackup(ZipOutputStream output) throws IOException {
         Validate.notNull(output, "The Output Stream cannot be null!");
 
         if (Slimefun.getDatabaseManager().getProfileStorageType() == StorageType.SQLITE) {
@@ -112,7 +112,7 @@ public class BackupService implements Runnable {
         output.closeEntry();
     }
 
-    private void addDirectory(@Nonnull ZipOutputStream output, @Nonnull File directory, @Nonnull String zipPath)
+    private void addDirectory(ZipOutputStream output, File directory, String zipPath)
             throws IOException {
         for (File file : directory.listFiles()) {
             addFile(output, file, zipPath);
@@ -128,7 +128,7 @@ public class BackupService implements Runnable {
      * @throws IOException
      *             An {@link IOException} is thrown if a {@link File} could not be deleted
      */
-    private void purgeBackups(@Nonnull List<File> backups) throws IOException {
+    private void purgeBackups(List<File> backups) throws IOException {
         var matchedBackup = backups.stream()
                 .filter(f -> f.getName().matches("^\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$"))
                 .sorted((a, b) -> {

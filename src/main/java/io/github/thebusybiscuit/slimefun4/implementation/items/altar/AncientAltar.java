@@ -60,7 +60,7 @@ public class AncientAltar extends SlimefunItem {
         return stepDelay.getValue();
     }
 
-    @Nonnull
+    
     public List<AltarRecipe> getRecipes() {
         return recipes;
     }

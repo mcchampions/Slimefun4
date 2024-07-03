@@ -10,7 +10,7 @@ abstract class AbstractPlayerTask implements Runnable {
     protected final Player p;
     private int id;
 
-    AbstractPlayerTask(@Nonnull Player p) {
+    AbstractPlayerTask(Player p) {
         this.p = p;
     }
 
