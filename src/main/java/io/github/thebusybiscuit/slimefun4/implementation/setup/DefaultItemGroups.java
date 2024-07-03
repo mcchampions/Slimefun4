@@ -17,7 +17,6 @@ import org.bukkit.NamespacedKey;
 /**
  * This class holds a reference to every {@link ItemGroup}
  * found in Slimefun itself.
- *
  * Addons should use their own {@link ItemGroup} hence why the visible of this class was now
  * changed to package-private. Only {@link SlimefunItemSetup} has access to this class.
  *

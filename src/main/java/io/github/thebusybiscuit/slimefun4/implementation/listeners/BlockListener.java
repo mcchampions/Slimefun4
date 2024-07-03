@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import io.github.bakedlibs.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.ExplosiveToolBreakBlocksEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunBlockBreakEvent;
@@ -18,13 +17,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -43,6 +35,14 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * The {@link BlockListener} is responsible for listening to the {@link BlockPlaceEvent}
  * and {@link BlockBreakEvent}.
@@ -55,10 +55,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @see ToolUseHandler
  */
 public class BlockListener implements Listener {
-
-    private static final BlockFace[] CARDINAL_BLOCKFACES = new BlockFace[] {
-        BlockFace.WEST, BlockFace.EAST, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.DOWN, BlockFace.UP
-    };
 
     public BlockListener(@Nonnull Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -230,7 +226,7 @@ public class BlockListener implements Listener {
             dropItems(e, drops);
 
             // Checks for vanilla sensitive blocks everywhere
-            checkForSensitiveBlocks(e.getBlock(), 0, e.isDropItems());
+            // checkForSensitiveBlocks(e.getBlock(), 0, e.isDropItems());
         }
     }
 
@@ -341,6 +337,7 @@ public class BlockListener implements Listener {
         }
     }
 
+    /*
     /**
      * This method checks recursively for any sensitive blocks
      * that are no longer supported due to this block breaking
@@ -350,9 +347,10 @@ public class BlockListener implements Listener {
      * @param count
      *      The amount of times this has been recursively called
      */
+    /*
     @ParametersAreNonnullByDefault
     private void checkForSensitiveBlocks(Block block, Integer count, boolean isDropItems) {
-        /**if (count >= Bukkit.getServer().getMaxChainedNeighborUpdates()) {
+        *if (count >= Bukkit.getServer().getMaxChainedNeighborUpdates()) {
          * return;
          * }
          *
@@ -373,8 +371,8 @@ public class BlockListener implements Listener {
          * // Set the BlockData back: this makes it so containers and spawners drop correctly. This is a hacky fix.
          * block.setBlockData(state.getBlockData(), false);
          * state.update(true, false);
-         */
     }
+    */
 
     /**
      * This method checks if the {@link BlockData} would be

@@ -177,8 +177,7 @@ public class GrapplingHookListener implements Listener {
                     player.teleport(l);
 
                     double g = -0.08;
-                    double d = target.distance(l);
-                    double t = d;
+                    double t = target.distance(l);
                     double vX = (1.0 + 0.08 * t) * (target.getX() - l.getX()) / t;
                     double vY = (1.0 + 0.04 * t) * (target.getY() - l.getY()) / t - 0.5D * g * t;
                     double vZ = (1.0 + 0.08 * t) * (target.getZ() - l.getZ()) / t;

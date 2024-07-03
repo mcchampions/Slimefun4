@@ -15,6 +15,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Chunk;
@@ -44,7 +46,14 @@ public class TickerTask implements Runnable {
      */
     private final Map<BlockPosition, Integer> bugs = new ConcurrentHashMap<>();
 
+    /**
+     * -- GETTER --
+     *  This returns the delay between ticks
+     *
+     */
+    @Getter
     private int tickRate;
+    @Getter
     private boolean halted = false;
     private boolean running = false;
 
@@ -149,7 +158,7 @@ public class TickerTask implements Runnable {
                     Slimefun.getProfiler().scheduleEntries(1);
                     item.getBlockTicker().update();
 
-                    /**
+                    /*
                      * We are inserting a new timestamp because synchronized actions
                      * are always ran with a 50ms delay (1 game tick)
                      */
@@ -209,28 +218,14 @@ public class TickerTask implements Runnable {
         }
     }
 
-    public boolean isHalted() {
-        return halted;
-    }
-
     public void halt() {
         halted = true;
-    }
-
-    /**
-     * This returns the delay between ticks
-     *
-     * @return The tick delay
-     */
-    public int getTickRate() {
-        return tickRate;
     }
 
     /**
      * This method returns a <strong>read-only</strong> {@link Map}
      * representation of every {@link ChunkPosition} and its corresponding
      * {@link Set} of ticking {@link Location Locations}.
-     *
      * This does include any {@link Location} from an unloaded {@link Chunk} too!
      *
      * @return A {@link Map} representation of all ticking {@link Location Locations}

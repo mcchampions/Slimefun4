@@ -5,6 +5,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.magical.talismans
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.TalismanListener;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.enchantments.Enchantment;
 
 /**
@@ -18,6 +20,13 @@ import org.bukkit.enchantments.Enchantment;
 public class TalismanEnchantment extends ItemSetting<Boolean> {
 
     private final Enchantment enchantment;
+    /**
+     * -- GETTER --
+     *  This returns the level for this
+     * .
+     *
+     */
+    @Getter
     private final int level;
 
     @ParametersAreNonnullByDefault
@@ -46,12 +55,4 @@ public class TalismanEnchantment extends ItemSetting<Boolean> {
         return enchantment;
     }
 
-    /**
-     * This returns the level for this {@link Enchantment}.
-     *
-     * @return The level
-     */
-    public int getLevel() {
-        return level;
-    }
 }

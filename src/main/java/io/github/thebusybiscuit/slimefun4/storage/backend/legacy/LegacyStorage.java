@@ -37,6 +37,7 @@ public class LegacyStorage implements Storage {
 
         // Load backpacks
         HashMap<Integer, PlayerBackpack> backpacks = new HashMap<>();
+        /*
         for (String key : playerFile.getKeys("backpacks")) {
             try {
                 int id = Integer.parseInt(key);
@@ -47,9 +48,9 @@ public class LegacyStorage implements Storage {
                     items.put(i, playerFile.getItem("backpacks." + key + ".contents." + i));
                 }
 
-                // PlayerBackpack backpack = PlayerBackpack.load(uuid, id, size, items);
+                PlayerBackpack backpack = PlayerBackpack.load(uuid, id, size, items);
 
-                // backpacks.put(id, backpack);
+                 backpacks.put(id, backpack);
             } catch (Exception x) {
                 Slimefun.logger()
                         .log(
@@ -57,7 +58,9 @@ public class LegacyStorage implements Storage {
                                 x,
                                 () -> "Could not load Backpack \"" + key + "\" for Player \"" + uuid + '"');
             }
+
         }
+                 */
 
         // Load waypoints
         Set<Waypoint> waypoints = new HashSet<>();

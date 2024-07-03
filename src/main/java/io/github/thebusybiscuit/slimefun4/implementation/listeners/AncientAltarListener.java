@@ -87,7 +87,7 @@ public class AncientAltarListener implements Listener {
         }
 
         Optional<Block> blockOptional = e.getClickedBlock();
-        if (!blockOptional.isPresent()) {
+        if (blockOptional.isEmpty()) {
             return;
         }
 
@@ -97,7 +97,7 @@ public class AncientAltarListener implements Listener {
         }
 
         Optional<SlimefunItem> slimefunBlock = e.getSlimefunBlock();
-        if (!slimefunBlock.isPresent()) {
+        if (slimefunBlock.isEmpty()) {
             return;
         }
 
@@ -134,7 +134,7 @@ public class AncientAltarListener implements Listener {
         // getting the currently placed item
         Optional<Item> stack = pedestalItem.getPlacedItem(pedestal);
 
-        if (!stack.isPresent()) {
+        if (stack.isEmpty()) {
             // Check if the Item in hand is valid
             if (p.getInventory().getItemInMainHand().getType() != Material.AIR) {
                 // Check for pedestal obstructions
@@ -323,7 +323,7 @@ public class AncientAltarListener implements Listener {
         List<ItemStackWrapper> items = ItemStackWrapper.wrapList(inputs);
 
         if (SlimefunUtils.isItemSimilar(wrapper, SlimefunItems.BROKEN_SPAWNER, false, false)) {
-            if (!checkRecipe(SlimefunItems.BROKEN_SPAWNER, items).isPresent()) {
+            if (checkRecipe(SlimefunItems.BROKEN_SPAWNER, items).isEmpty()) {
                 return Optional.empty();
             }
 

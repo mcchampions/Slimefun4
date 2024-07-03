@@ -245,7 +245,6 @@ public class IntegrationsManager {
      *
      * @return Whether a different custom {@link Block} exists at that {@link Location}
      */
-    @SuppressWarnings("deprecation")
     public boolean isCustomBlock(@Nonnull Block block) {
         if (isItemsAdderInstalled) {
             try {
