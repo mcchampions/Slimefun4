@@ -15,8 +15,6 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.task.DelayedTask;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.DataUtils;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.InvStorageUtils;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
-import de.tr7zw.nbtapi.NBT;
-import de.tr7zw.nbtapi.iface.ReadableNBT;
 import io.github.bakedlibs.dough.collections.Pair;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -156,15 +154,6 @@ public class BlockDataController extends ADataController {
         return re;
     }
 
-    public SlimefunBlockData createBlock(Location l, ReadableNBT nbt) {
-        checkDestroy();
-        var re = getChunkDataCache(l.getChunk(), true).createBlockData(l, nbt);
-        if (Slimefun.getRegistry().getTickerBlocks().contains(nbt.getString("slimefun:slimefun_id"))) {
-            Slimefun.getTickerTask().enableTicker(l);
-        }
-        return re;
-    }
-
     void saveNewBlock(Location l, String sfId) {
         var lKey = LocationUtils.getLocKey(l);
 
@@ -175,30 +164,11 @@ public class BlockDataController extends ADataController {
         data.put(FieldKey.LOCATION, lKey);
         data.put(FieldKey.CHUNK, LocationUtils.getChunkKey(l.getChunk()));
         data.put(FieldKey.SLIMEFUN_ID, sfId);
-        data.put(FieldKey.ITEM_NBT, NBT.readNbt(SlimefunItem.getById(sfId).getItem()).toString());
 
         var scopeKey = new LocationKey(DataScope.NONE, l);
         removeDelayedBlockDataUpdates(scopeKey); // Shouldn't have.. But for safe..
         scheduleWriteTask(scopeKey, key, data, true);
     }
-
-    void saveNewBlock(Location l, ReadableNBT nbt) {
-        var lKey = LocationUtils.getLocKey(l);
-
-        var key = new RecordKey(DataScope.BLOCK_RECORD);
-        // key.addCondition(FieldKey.LOCATION, lKey);
-
-        var data = new RecordSet();
-        data.put(FieldKey.LOCATION, lKey);
-        data.put(FieldKey.CHUNK, LocationUtils.getChunkKey(l.getChunk()));
-        data.put(FieldKey.SLIMEFUN_ID, nbt.getString("slimefun:slimefun_id"));
-        data.put(FieldKey.ITEM_NBT, nbt.toString());
-
-        var scopeKey = new LocationKey(DataScope.NONE, l);
-        removeDelayedBlockDataUpdates(scopeKey); // Shouldn't have.. But for safe..
-        scheduleWriteTask(scopeKey, key, data, true);
-    }
-
 
     /**
      * Remove slimefun block data at specific location
@@ -262,11 +232,11 @@ public class BlockDataController extends ADataController {
 
         var key = new RecordKey(DataScope.BLOCK_RECORD);
         key.addCondition(FieldKey.LOCATION, lKey);
-        key.addField(FieldKey.ITEM_NBT);
+        key.addField(FieldKey.SLIMEFUN_ID);
 
         var result = getData(key);
         var re =
-                result.isEmpty() ? null : new SlimefunBlockData(l, result.get(0).get(FieldKey.ITEM_NBT));
+                result.isEmpty() ? null : new SlimefunBlockData(l, result.get(0).get(FieldKey.SLIMEFUN_ID));
         if (re != null) {
             chunkData = getChunkDataCache(chunk, true);
             chunkData.addBlockCacheInternal(re, false);
@@ -395,14 +365,13 @@ public class BlockDataController extends ADataController {
         getData(key).forEach(block -> {
             var lKey = block.get(FieldKey.LOCATION);
             var sfId = block.get(FieldKey.SLIMEFUN_ID);
-            var itemNbt = block.get(FieldKey.ITEM_NBT);
             var sfItem = SlimefunItem.getById(sfId);
             if (sfItem == null) {
                 return;
             }
 
             var cache = getBlockDataFromCache(chunkData.getKey(), lKey);
-            var blockData = cache == null ? new SlimefunBlockData(LocationUtils.toLocation(lKey), itemNbt) : cache;
+            var blockData = cache == null ? new SlimefunBlockData(LocationUtils.toLocation(lKey), sfId) : cache;
             chunkData.addBlockCacheInternal(blockData, false);
 
             if (sfItem.loadDataByDefault()) {

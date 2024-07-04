@@ -3,14 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-import io.github.bakedlibs.dough.protection.Interaction;
-=======
-import de.tr7zw.nbtapi.NBT;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.ExplosiveToolBreakBlocksEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunBlockBreakEvent;
@@ -24,7 +16,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -44,27 +35,14 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
-<<<<<<< Updated upstream
-=======
-import java.util.Collection;
->>>>>>> Stashed changes
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 /**
  * The {@link BlockListener} is responsible for listening to the {@link BlockPlaceEvent}
  * and {@link BlockBreakEvent}.
@@ -97,7 +75,7 @@ public class BlockListener implements Listener {
 
             SlimefunItem sfItem = StorageCacheUtils.getSfItem(loc);
             if (sfItem != null) {
-                for (ItemStack item : SlimefunUtils.getDrops(sfItem, loc)) {
+                for (ItemStack item : sfItem.getDrops()) {
                     if (item != null && !item.getType().isAir()) {
                         block.getWorld().dropItemNaturally(block.getLocation(), item);
                     }
@@ -134,7 +112,7 @@ public class BlockListener implements Listener {
                 e.setCancelled(true);
             } else {
                 if (e.getBlock().getBlockData() instanceof Rotatable rotatable
-                    && !(rotatable.getRotation() == BlockFace.UP || rotatable.getRotation() == BlockFace.DOWN)) {
+                        && !(rotatable.getRotation() == BlockFace.UP || rotatable.getRotation() == BlockFace.DOWN)) {
                     BlockFace rotation = null;
 
                     if (sfItem instanceof NotCardinallyRotatable && sfItem instanceof NotDiagonallyRotatable) {
@@ -166,7 +144,7 @@ public class BlockListener implements Listener {
 
                     Slimefun.getDatabaseManager()
                             .getBlockDataController()
-                            .createBlock(e.getBlock().getLocation(), NBT.readNbt(item));
+                            .createBlock(e.getBlock().getLocation(), sfItem.getId());
                     sfItem.callItemHandler(BlockPlaceHandler.class, handler -> handler.onPlayerPlace(e));
                 }
             }
@@ -276,7 +254,8 @@ public class BlockListener implements Listener {
             if (e.isCancelled()) {
                 return;
             }
-            drops.addAll(SlimefunUtils.getDrops(sfItem, loc));
+
+            drops.addAll(sfItem.getDrops());
             Slimefun.getDatabaseManager().getBlockDataController().removeBlock(loc);
         }
     }
@@ -293,7 +272,7 @@ public class BlockListener implements Listener {
                     // Prevent null or air from being dropped
                     if (drop != null && drop.getType() != Material.AIR) {
                         if (e.getPlayer().getGameMode() != GameMode.CREATIVE
-                            || Slimefun.getCfg().getBoolean("options.drop-block-creative")) {
+                                || Slimefun.getCfg().getBoolean("options.drop-block-creative")) {
                             e.getBlock()
                                     .getWorld()
                                     .dropItemNaturally(e.getBlock().getLocation(), drop);
@@ -328,7 +307,7 @@ public class BlockListener implements Listener {
                  * This will set the correct block context.
                  */
                 BlockBreakEvent dummyEvent = new BlockBreakEvent(blockAbove, player);
-                List<ItemStack> drops = new ArrayList<>(SlimefunUtils.getDrops(sfItem, loc));
+                List<ItemStack> drops = new ArrayList<>(sfItem.getDrops(player));
 
                 var controller = Slimefun.getDatabaseManager().getBlockDataController();
                 if (blockData.isDataLoaded()) {
@@ -399,9 +378,12 @@ public class BlockListener implements Listener {
      * This method checks if the {@link BlockData} would be
      * supported at the given {@link Block}.
      *
-     * @param blockData The {@link BlockData} to check
-     * @param block     The {@link Block} the {@link BlockData} would be at
-     * @return Whether the {@link BlockData} would be supported at the given {@link Block}
+     * @param blockData
+     *      The {@link BlockData} to check
+     * @param block
+     *      The {@link Block} the {@link BlockData} would be at
+     * @return
+     *      Whether the {@link BlockData} would be supported at the given {@link Block}
      */
     @ParametersAreNonnullByDefault
     private boolean isSupported(BlockData blockData, Block block) {

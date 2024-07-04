@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.blocks;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import de.tr7zw.nbtapi.NBT;
 import io.github.bakedlibs.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -193,7 +192,7 @@ public class BlockPlacer extends SlimefunItem {
                         block.setType(item.getType());
                         Slimefun.getDatabaseManager()
                                 .getBlockDataController()
-                                .createBlock(block.getLocation(), NBT.readNbt(item));
+                                .createBlock(block.getLocation(), sfItem.getId());
 
                         handler.onBlockPlacerPlace(e);
                     });
@@ -205,7 +204,7 @@ public class BlockPlacer extends SlimefunItem {
                     block.setType(item.getType());
                     Slimefun.getDatabaseManager()
                             .getBlockDataController()
-                            .createBlock(block.getLocation(), NBT.readNbt(item));
+                            .createBlock(block.getLocation(), sfItem.getId());
                 });
             }
         }

@@ -18,7 +18,7 @@ public enum FieldKey {
     LOCATION,
     CHUNK,
     SLIMEFUN_ID,
-    ITEM_NBT,
+
     DATA_KEY,
     DATA_VALUE;
 

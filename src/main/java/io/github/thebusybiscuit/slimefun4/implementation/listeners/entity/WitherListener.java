@@ -5,8 +5,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.WitherProof;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import javax.annotation.Nonnull;
-
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Wither;
@@ -49,7 +47,7 @@ public class WitherListener implements Listener {
                 controller.removeBlock(blockData.getLocation());
                 block.setType(Material.AIR);
 
-                for (var drop : SlimefunUtils.getDrops(block.getLocation())) {
+                for (var drop : item.getDrops()) {
                     if (drop != null && !drop.getType().isAir()) {
                         block.getWorld().dropItemNaturally(block.getLocation(), drop);
                     }

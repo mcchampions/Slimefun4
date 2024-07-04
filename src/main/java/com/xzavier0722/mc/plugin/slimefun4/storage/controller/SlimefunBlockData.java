@@ -1,81 +1,43 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
-import de.tr7zw.nbtapi.NBT;
-import de.tr7zw.nbtapi.iface.ReadWriteNBT;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import lombok.Getter;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.ParametersAreNullableByDefault;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-import javax.annotation.ParametersAreNullableByDefault;
-
 public class SlimefunBlockData extends ASlimefunDataContainer {
-    @Getter
     private final Location location;
-    @Getter
-    private final SlimefunItemStack sfItemStack;
+    private final String sfId;
     private volatile BlockMenu menu;
-    @Getter
     private volatile boolean pendingRemove = false;
 
     @ParametersAreNonnullByDefault
-    SlimefunBlockData(Location location, String nbtStr) {
+    SlimefunBlockData(Location location, String sfId) {
         super(LocationUtils.getLocKey(location));
         this.location = location;
-        // TODO: 适配1.20.5及更高版本
-        ReadWriteNBT nbt = NBT.parseNBT(nbtStr);
-        String sfId = nbt.getString("slimefun:slimefun_id");
-        SlimefunItemStack itemStack = (SlimefunItemStack) SlimefunItem.getById(sfId).getItem().clone();
-        NBT.modify(itemStack, nbtSnapshot -> {
-            nbtSnapshot.mergeCompound(nbt);
-        });
-        this.sfItemStack = itemStack;
-    }
-
-    @ParametersAreNonnullByDefault
-    SlimefunBlockData(Location location, SlimefunItem slimefunItem) {
-        super(LocationUtils.getLocKey(location));
-        this.location = location;
-        this.sfItemStack = (SlimefunItemStack) slimefunItem.getItem().clone();
+        this.sfId = sfId;
     }
 
     @ParametersAreNonnullByDefault
     SlimefunBlockData(Location location, SlimefunBlockData other) {
         super(LocationUtils.getLocKey(location), other);
         this.location = location;
-        this.sfItemStack = other.sfItemStack;
+        this.sfId = other.sfId;
     }
 
-<<<<<<< Updated upstream
     
-=======
-<<<<<<< Updated upstream
-    @Nonnull
->>>>>>> Stashed changes
     public Location getLocation() {
         return location;
     }
 
-<<<<<<< Updated upstream
     
-=======
-    @Nonnull
-=======
-
-    public String getSfNbt() {
-        return NBT.readNbt(sfItemStack).toString();
-    }
-
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     public String getSfId() {
-        return sfItemStack.getItemId();
+        return sfId;
     }
 
     @ParametersAreNonnullByDefault
@@ -122,10 +84,14 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         this.pendingRemove = pendingRemove;
     }
 
+    public boolean isPendingRemove() {
+        return pendingRemove;
+    }
+
     @Override
     public String toString() {
         return "SlimefunBlockData [sfId="
-                + getSfId()
+                + sfId
                 + ", location="
                 + location
                 + ", isPendingRemove="
