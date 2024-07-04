@@ -21,9 +21,7 @@ import org.bukkit.plugin.Plugin;
  * @author ybw0014
  */
 public final class WikiUtils {
-    private WikiUtils() {
-        throw new IllegalStateException("Utility class");
-    }
+    private WikiUtils() {}
 
     /**
      * 读取附属的 wiki.json 并设置物品的 Wiki 按钮

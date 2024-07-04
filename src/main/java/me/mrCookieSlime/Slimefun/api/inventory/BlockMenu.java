@@ -5,12 +5,15 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
+
+import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 // This class will be deprecated, relocated and rewritten in a future version.
+@Getter
 public class BlockMenu extends DirtyChestMenu {
 
     private Location location;
@@ -93,10 +96,6 @@ public class BlockMenu extends DirtyChestMenu {
 
     public Block getBlock() {
         return location.getBlock();
-    }
-
-    public Location getLocation() {
-        return location;
     }
 
     /**

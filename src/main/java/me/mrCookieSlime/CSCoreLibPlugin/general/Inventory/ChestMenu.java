@@ -1,20 +1,15 @@
 package me.mrCookieSlime.CSCoreLibPlugin.general.Inventory;
 
 import city.norain.slimefun4.holder.SlimefunInventoryHolder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.CopyOnWriteArraySet;
-import javax.annotation.Nonnull;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * An old remnant of CS-CoreLib.
@@ -34,7 +29,7 @@ public class ChestMenu extends SlimefunInventoryHolder {
      */
     private int size = -1;
 
-    private Map<Integer, MenuClickHandler> handlers;
+    private final Map<Integer, MenuClickHandler> handlers;
     private MenuOpeningHandler open;
     private MenuCloseHandler close;
     private MenuClickHandler playerclick;
@@ -371,12 +366,12 @@ public class ChestMenu extends SlimefunInventoryHolder {
     @FunctionalInterface
     public interface MenuClickHandler {
 
-        public boolean onClick(Player p, int slot, ItemStack item, ClickAction action);
+        boolean onClick(Player p, int slot, ItemStack item, ClickAction action);
     }
 
     public interface AdvancedMenuClickHandler extends MenuClickHandler {
 
-        public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action);
+        boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action);
     }
 
     @FunctionalInterface

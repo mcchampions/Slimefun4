@@ -6,12 +6,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.ParametersAreNullableByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 
 public class SlimefunBlockData extends ASlimefunDataContainer {
+    @Getter
     private final Location location;
+    @Getter
     private final String sfId;
     private volatile BlockMenu menu;
     private volatile boolean pendingRemove = false;
@@ -30,15 +34,6 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         this.sfId = other.sfId;
     }
 
-    
-    public Location getLocation() {
-        return location;
-    }
-
-    
-    public String getSfId() {
-        return sfId;
-    }
 
     @ParametersAreNonnullByDefault
     public void setData(String key, String val) {
