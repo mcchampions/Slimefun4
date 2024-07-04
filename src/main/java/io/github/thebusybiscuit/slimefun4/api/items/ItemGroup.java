@@ -13,6 +13,8 @@ import java.util.Comparator;
 import java.util.List;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Keyed;
@@ -36,10 +38,13 @@ public class ItemGroup implements Keyed {
 
     private SlimefunAddon addon;
 
+    @Getter
     protected final List<SlimefunItem> items = new ArrayList<>();
     protected final NamespacedKey key;
     protected final ItemStack item;
+    @Getter
     protected int tier;
+    @Getter
     protected boolean crossAddonItemGroup = false;
 
     /**
@@ -124,16 +129,6 @@ public class ItemGroup implements Keyed {
     }
 
     /**
-     * Returns the tier of this {@link ItemGroup}.
-     * The tier determines the position of this {@link ItemGroup} in the {@link SlimefunGuide}.
-     *
-     * @return the tier of this {@link ItemGroup}
-     */
-    public int getTier() {
-        return tier;
-    }
-
-    /**
      * This sets the tier of this {@link ItemGroup}.
      * The tier determines the position of this {@link ItemGroup} in the {@link SlimefunGuide}.
      *
@@ -154,7 +149,7 @@ public class ItemGroup implements Keyed {
      */
     private void sortCategoriesByTier() {
         List<ItemGroup> categories = Slimefun.getRegistry().getAllItemGroups();
-        Collections.sort(categories, Comparator.comparingInt(ItemGroup::getTier));
+        categories.sort(Comparator.comparingInt(ItemGroup::getTier));
     }
 
     /**
@@ -266,15 +261,6 @@ public class ItemGroup implements Keyed {
     }
 
     /**
-     * Returns all instances of {@link SlimefunItem} bound to this {@link ItemGroup}.
-     *
-     * @return the list of SlimefunItems bound to this {@link ItemGroup}
-     */
-    public List<SlimefunItem> getItems() {
-        return items;
-    }
-
-    /**
      * This method returns whether a given {@link SlimefunItem} exists in this {@link ItemGroup}.
      *
      * @param item
@@ -330,16 +316,6 @@ public class ItemGroup implements Keyed {
         }
 
         return false;
-    }
-
-    /**
-     * Returns if items from other addons are allowed to be
-     * added to this {@link ItemGroup}.
-     *
-     * @return true if items from other addons are allowed to be added to this {@link ItemGroup}.
-     */
-    public boolean isCrossAddonItemGroup() {
-        return crossAddonItemGroup;
     }
 
     /**

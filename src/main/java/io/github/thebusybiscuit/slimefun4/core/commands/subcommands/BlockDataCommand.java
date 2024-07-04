@@ -52,7 +52,7 @@ class BlockDataCommand extends SubCommand {
         Block target = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
         var blockData = StorageCacheUtils.getBlock(target.getLocation());
 
-        if (target == null || target.getType().isAir() || blockData == null) {
+        if (target.getType().isAir() || blockData == null) {
             ChatUtils.sendMessage(player, "&c你需要看向一个 Slimefun 方块才能执行该指令!");
             return;
         }
@@ -96,14 +96,12 @@ class BlockDataCommand extends SubCommand {
                 blockData.removeData(key);
                 ChatUtils.sendMessage(player, "&a已移除该方块 &b%key% &a的值", msg -> msg.replace("%key%", key));
             }
-            default -> {
-                Slimefun.getLocalization()
-                        .sendMessage(
-                                sender,
-                                "messages.usage",
-                                true,
-                                msg -> msg.replace("%usage%", "/sf blockdata get/set/remove <key> [value]"));
-            }
+            default -> Slimefun.getLocalization()
+                    .sendMessage(
+                            sender,
+                            "messages.usage",
+                            true,
+                            msg -> msg.replace("%usage%", "/sf blockdata get/set/remove <key> [value]"));
         }
     }
 }

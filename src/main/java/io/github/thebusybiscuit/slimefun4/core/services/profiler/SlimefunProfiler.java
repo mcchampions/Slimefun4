@@ -57,7 +57,7 @@ public class SlimefunProfiler {
      * So we cannot simply wait until the next server tick for this.
      */
     private final ExecutorService executor =
-            Executors.newFixedThreadPool(threadFactory.getThreadCount(), threadFactory);
+            Executors.newFixedThreadPool(threadFactory.threadCount(), threadFactory);
 
     /**
      * All possible values of {@link PerformanceRating}.

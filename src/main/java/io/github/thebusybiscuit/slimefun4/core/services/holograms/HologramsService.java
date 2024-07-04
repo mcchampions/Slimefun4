@@ -3,14 +3,7 @@ package io.github.thebusybiscuit.slimefun4.core.services.holograms;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.core.attributes.HologramOwner;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.logging.Level;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -23,6 +16,14 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.logging.Level;
 
 /**
  * This service is responsible for handling holograms.
@@ -52,6 +53,7 @@ public class HologramsService {
     /**
      * The default hologram offset
      */
+    @Getter
     private final Vector defaultOffset = new Vector(0.5, 0.75, 0.5);
 
     /**
@@ -86,28 +88,11 @@ public class HologramsService {
     }
 
     /**
-     * This returns the default {@link Hologram} offset.
-     *
-     * @return The default offset
-     */
-    
-    public Vector getDefaultOffset() {
-        return defaultOffset;
-    }
-
-    /**
      * This purges any expired {@link Hologram}.
      */
     private void purge() {
-        Iterator<Hologram> iterator = cache.values().iterator();
 
-        while (iterator.hasNext()) {
-            Hologram hologram = iterator.next();
-
-            if (hologram.hasExpired()) {
-                iterator.remove();
-            }
-        }
+        cache.values().removeIf(Hologram::hasExpired);
     }
 
     /**

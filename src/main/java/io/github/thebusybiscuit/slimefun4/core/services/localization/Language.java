@@ -1,19 +1,20 @@
 package io.github.thebusybiscuit.slimefun4.core.services.localization;
 
-import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Locale;
-import java.util.Map;
-import javax.annotation.Nullable;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * This Class represents a {@link Language} that Slimefun can recognize and use.
@@ -27,7 +28,23 @@ public final class Language {
 
     private final Map<LanguageFile, FileConfiguration> files = new EnumMap<>(LanguageFile.class);
 
+    /**
+     * -- GETTER --
+     *  This returns the identifier of this
+     * .
+     *
+     */
+    @Getter
     private final String id;
+    /**
+     * -- GETTER --
+     *  This method returns the
+     *  that is used to display this
+     *  in the
+     * .
+     *
+     */
+    @Getter
     private final ItemStack item;
     private double progress = -1;
 
@@ -48,15 +65,6 @@ public final class Language {
         this.item = SlimefunUtils.getCustomHead(hash);
 
         Slimefun.getItemTextureService().setTexture(item, "_UI_LANGUAGE_" + id.toUpperCase(Locale.ROOT));
-    }
-
-    /**
-     * This returns the identifier of this {@link Language}.
-     *
-     * @return The identifier of this {@link Language}
-     */
-    public String getId() {
-        return id;
     }
 
     /**
@@ -87,16 +95,6 @@ public final class Language {
         Validate.notNull(config, "The provided config should not be null.");
 
         files.put(file, config);
-    }
-
-    /**
-     * This method returns the {@link ItemStack} that is used to display this {@link Language}
-     * in the {@link SlimefunGuide}.
-     *
-     * @return The {@link ItemStack} used to display this {@link Language}
-     */
-    public ItemStack getItem() {
-        return item;
     }
 
     /**

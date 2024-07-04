@@ -1,6 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.core.services.localization;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -64,6 +66,7 @@ public enum LanguagePreset {
     private final String id;
     private final boolean releaseReady;
     private final String textureHash;
+    @Getter
     private final TextDirection textDirection;
 
     @ParametersAreNonnullByDefault
@@ -120,13 +123,4 @@ public enum LanguagePreset {
         return textureHash;
     }
 
-    /**
-     * This returns the direction of text for
-     * this language.
-     *
-     * @return The direction of text for this language
-     */
-    public TextDirection getTextDirection() {
-        return textDirection;
-    }
 }

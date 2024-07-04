@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.api;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.papermc.lib.PaperLib;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 
@@ -52,7 +53,9 @@ public enum MinecraftVersion {
      */
     UNKNOWN("Unknown", true);
 
+    @Getter
     private final String name;
+    @Getter
     private final boolean virtual;
     private final int majorVersion;
 
@@ -86,28 +89,6 @@ public enum MinecraftVersion {
         this.name = name;
         this.majorVersion = 0;
         this.virtual = virtual;
-    }
-
-    /**
-     * This returns the name of this {@link MinecraftVersion} in a readable format.
-     *
-     * @return The name of this {@link MinecraftVersion}
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * This returns whether this {@link MinecraftVersion} is virtual or not.
-     * A virtual {@link MinecraftVersion} does not actually exist but is rather
-     * a state of the {@link Server} software used.
-     * Virtual {@link MinecraftVersion MinecraftVersions} include "UNKNOWN" and
-     * "UNIT TEST".
-     *
-     * @return Whether this {@link MinecraftVersion} is virtual or not
-     */
-    public boolean isVirtual() {
-        return virtual;
     }
 
     /**

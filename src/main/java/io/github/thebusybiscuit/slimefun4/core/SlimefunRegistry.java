@@ -14,26 +14,18 @@ import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlock;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.guide.CheatSheetSlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.implementation.guide.SurvivalSlimefunGuide;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.BlockInfoConfig;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Piglin;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class houses a lot of instances of {@link Map} and {@link List} that hold
@@ -51,7 +43,9 @@ public final class SlimefunRegistry {
     private final List<ItemGroup> categories = new ArrayList<>();
     private final List<MultiBlock> multiblocks = new LinkedList<>();
 
+    @Getter
     private final List<Research> researches = new LinkedList<>();
+    @Getter
     private final List<String> researchRanks = new ArrayList<>();
     private final Set<UUID> researchingPlayers = Collections.synchronizedSet(new HashSet<>());
 
@@ -66,12 +60,15 @@ public final class SlimefunRegistry {
     private final KeyMap<GEOResource> geoResources = new KeyMap<>();
 
     private final Map<UUID, PlayerProfile> profiles = new ConcurrentHashMap<>();
+    @Getter
     private final Map<String, BlockInfoConfig> chunks = new HashMap<>();
     private final Map<SlimefunGuideMode, SlimefunGuideImplementation> guides = new EnumMap<>(SlimefunGuideMode.class);
+    @Getter
     private final Map<EntityType, Set<ItemStack>> mobDrops = new EnumMap<>(EntityType.class);
 
     private final Map<String, BlockMenuPreset> blockMenuPresets = new HashMap<>();
 
+    @Getter
     private final Map<Class<? extends ItemHandler>, Set<ItemHandler>> globalItemHandlers = new HashMap<>();
 
     public void load(Slimefun plugin) {
@@ -129,15 +126,6 @@ public final class SlimefunRegistry {
         return enabledItems;
     }
 
-    /**
-     * This returns a {@link List} containing every enabled {@link Research}.
-     *
-     * @return A {@link List} containing every enabled {@link Research}
-     */
-    
-    public List<Research> getResearches() {
-        return researches;
-    }
 
     /**
      * This method returns a {@link Set} containing the {@link UUID} of every
@@ -151,10 +139,6 @@ public final class SlimefunRegistry {
         return researchingPlayers;
     }
 
-    
-    public List<String> getResearchRanks() {
-        return researchRanks;
-    }
 
     /**
      * This method returns a {@link List} of every enabled {@link MultiBlock}.
@@ -193,17 +177,6 @@ public final class SlimefunRegistry {
     }
 
     /**
-     * This returns a {@link Map} connecting the {@link EntityType} with a {@link Set}
-     * of {@link ItemStack ItemStacks} which would be dropped when an {@link Entity} of that type was killed.
-     *
-     * @return The {@link Map} of custom mob drops
-     */
-    
-    public Map<EntityType, Set<ItemStack>> getMobDrops() {
-        return mobDrops;
-    }
-
-    /**
      * This returns a {@link Set} of {@link ItemStack ItemStacks} which can be obtained by bartering
      * with {@link Piglin Piglins}.
      *
@@ -239,24 +212,14 @@ public final class SlimefunRegistry {
         return profiles;
     }
 
-    
-    public Map<Class<? extends ItemHandler>, Set<ItemHandler>> getGlobalItemHandlers() {
-        return globalItemHandlers;
-    }
 
-    
     public Set<ItemHandler> getGlobalItemHandlers(Class<? extends ItemHandler> identifier) {
         Validate.notNull(identifier, "The identifier for an ItemHandler cannot be null!");
 
         return globalItemHandlers.computeIfAbsent(identifier, c -> new HashSet<>());
     }
 
-    
-    public Map<String, BlockInfoConfig> getChunks() {
-        return chunks;
-    }
 
-    
     public KeyMap<GEOResource> getGEOResources() {
         return geoResources;
     }

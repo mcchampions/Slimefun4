@@ -383,7 +383,7 @@ final class CargoUtils {
                             itemInSlot.setAmount(maxStackSize);
                             return stack;
                         } else {
-                            itemInSlot.setAmount(Math.min(amount, maxStackSize));
+                            itemInSlot.setAmount(amount);
                             return null;
                         }
                     } else if (smartFill) {

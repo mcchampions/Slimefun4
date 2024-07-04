@@ -63,9 +63,9 @@ public class BlockDataService implements Keyed {
         Validate.notNull(b, "The block cannot be null!");
         Validate.notNull(value, "The value cannot be null!");
 
-        /**
-         * Don't use PaperLib here, it seems to be quite buggy in block-placing scenarios
-         * and it would be too tedious to check for individual build versions to circumvent this.
+        /*
+          Don't use PaperLib here, it seems to be quite buggy in block-placing scenarios
+          and it would be too tedious to check for individual build versions to circumvent this.
          */
         BlockState state = b.getState();
 

@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import java.util.Deque;
 import java.util.LinkedList;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -24,6 +26,7 @@ public class GuideHistory {
 
     private final PlayerProfile profile;
     private final Deque<GuideEntry<?>> queue = new LinkedList<>();
+    @Getter
     private int mainMenuPage = 1;
 
     /**
@@ -54,15 +57,6 @@ public class GuideHistory {
         Validate.isTrue(page >= 1, "page must be greater than 0!");
 
         mainMenuPage = page;
-    }
-
-    /**
-     * This returns the current main menu page of this {@link GuideHistory}
-     *
-     * @return The main menu page of this {@link GuideHistory}
-     */
-    public int getMainMenuPage() {
-        return mainMenuPage;
     }
 
     /**

@@ -4,6 +4,8 @@ import com.google.common.base.Preconditions;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -104,18 +106,10 @@ public enum SoundEffect {
     WIND_STAFF_USE_SOUND(Sound.ENTITY_TNT_PRIMED, 1F, 1F);
 
     private final String defaultSound;
+    @Getter
     private final float defaultVolume;
+    @Getter
     private final float defaultPitch;
-
-    SoundEffect(String sound, float volume, float pitch) {
-        Preconditions.checkNotNull(sound, "The Sound id cannot be null!");
-        Preconditions.checkArgument(volume >= 0, "The volume cannot be a negative number.");
-        Preconditions.checkArgument(pitch >= 0.5, "A pitch below 0.5 has no effect on the sound.");
-
-        this.defaultSound = sound;
-        this.defaultVolume = volume;
-        this.defaultPitch = pitch;
-    }
 
     SoundEffect(Sound sound, float volume, float pitch) {
         Preconditions.checkNotNull(sound, "The Sound id cannot be null!");
@@ -190,21 +184,4 @@ public enum SoundEffect {
         return defaultSound;
     }
 
-    /**
-     * This returns the default volume.
-     *
-     * @return The default volume.
-     */
-    public float getDefaultVolume() {
-        return defaultVolume;
-    }
-
-    /**
-     * This returns the default pitch.
-     *
-     * @return The default pitch.
-     */
-    public float getDefaultPitch() {
-        return defaultPitch;
-    }
 }

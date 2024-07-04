@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -31,6 +33,7 @@ import org.bukkit.inventory.ItemStack;
 public class LockedItemGroup extends ItemGroup {
 
     private final NamespacedKey[] keys;
+    @Getter
     private final Set<ItemGroup> parents = new HashSet<>();
 
     /**
@@ -96,18 +99,6 @@ public class LockedItemGroup extends ItemGroup {
                             "Parent \"{0}\" for LockedItemGroup \"{1}\" was not found, probably just disabled.",
                             new Object[] {key, getKey()});
         }
-    }
-
-    /**
-     * Gets the list of parent item groups for this {@link LockedItemGroup}.
-     *
-     * @return the list of parent item groups
-     *
-     * @see #addParent(ItemGroup)
-     * @see #removeParent(ItemGroup)
-     */
-    public Set<ItemGroup> getParents() {
-        return parents;
     }
 
     /**

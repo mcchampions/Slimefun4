@@ -1,9 +1,12 @@
 package io.github.thebusybiscuit.slimefun4.core.guide;
 
 
+import lombok.Getter;
+
 class GuideEntry<T> {
 
     private final T object;
+    @Getter
     private int page;
 
     GuideEntry(T object, int page) {
@@ -14,10 +17,6 @@ class GuideEntry<T> {
     
     public T getIndexedObject() {
         return object;
-    }
-
-    public int getPage() {
-        return page;
     }
 
     public void setPage(int page) {

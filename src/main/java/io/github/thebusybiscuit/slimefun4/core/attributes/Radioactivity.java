@@ -2,6 +2,8 @@ package io.github.thebusybiscuit.slimefun4.core.attributes;
 
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.RadiationTask;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -49,6 +51,7 @@ public enum Radioactivity {
 
     private final ChatColor color;
     private final String displayName;
+    @Getter
     private final int exposureModifier;
 
     @ParametersAreNonnullByDefault
@@ -56,17 +59,6 @@ public enum Radioactivity {
         this.color = color;
         this.displayName = displayName;
         this.exposureModifier = exposureModifier;
-    }
-
-    /**
-     * This method returns the amount of exposure applied
-     * to a player every run of the {@link RadiationTask}
-     * for this radiation level.
-     *
-     * @return The exposure amount applied per run.
-     */
-    public int getExposureModifier() {
-        return exposureModifier;
     }
 
     public String getLore() {

@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.core.guide;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import lombok.Getter;
 
 /**
  * This enum holds the different designs a {@link SlimefunGuide} can have.
@@ -12,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
  * @see SlimefunGuideImplementation
  *
  */
+@Getter
 public enum SlimefunGuideMode {
 
     /**
@@ -25,18 +27,15 @@ public enum SlimefunGuideMode {
      */
     CHEAT_MODE("作弊模式");
 
+    /**
+     * -- GETTER --
+     *  获取指南书样式的显示名称
+     *
+     */
     private final String displayName;
 
     SlimefunGuideMode(String displayName) {
         this.displayName = displayName;
     }
 
-    /**
-     * 获取指南书样式的显示名称
-     *
-     * @return 指南书样式的显示名称
-     */
-    public String getDisplayName() {
-        return displayName;
-    }
 }

@@ -27,6 +27,8 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -49,16 +51,20 @@ import org.bukkit.entity.Player;
  */
 public class PlayerProfile {
 
+    @Getter
     private final OfflinePlayer owner;
     private int backpackNum;
     private final Config waypointsFile;
 
+    @Getter
     private boolean dirty = false;
     private boolean isInvalid = false;
+    @Getter
     private boolean markedForDeletion = false;
 
     private final Set<Research> researches;
     private final List<Waypoint> waypoints = new ArrayList<>();
+    @Getter
     private final GuideHistory guideHistory = new GuideHistory(this);
 
     private final HashedArmorpiece[] armor = {
@@ -97,12 +103,6 @@ public class PlayerProfile {
         }
     }
 
-    /**
-     * This method provides a fast way to access the armor of a {@link Player}.
-     * It returns a cached version, represented by {@link HashedArmorpiece}.
-     *
-     * @return The cached armor for this {@link Player}
-     */
     public HashedArmorpiece[] getArmor() {
         return armor;
     }
@@ -114,25 +114,6 @@ public class PlayerProfile {
      */
     public UUID getUUID() {
         return owner.getUniqueId();
-    }
-
-    /**
-     * This method returns whether the {@link Player} has logged off.
-     * If this is true, then the Profile can be removed from RAM.
-     *
-     * @return Whether the Profile is marked for deletion
-     */
-    public boolean isMarkedForDeletion() {
-        return markedForDeletion;
-    }
-
-    /**
-     * This method returns whether the Profile has unsaved changes
-     *
-     * @return Whether there are unsaved changes
-     */
-    public boolean isDirty() {
-        return dirty;
     }
 
     /**
@@ -359,16 +340,6 @@ public class PlayerProfile {
         return owner.getPlayer();
     }
 
-    /**
-     * This returns the {@link GuideHistory} of this {@link Player}.
-     * It is basically that player's browsing history.
-     *
-     * @return The {@link GuideHistory} of this {@link Player}
-     */
-    public GuideHistory getGuideHistory() {
-        return guideHistory;
-    }
-
     public static boolean fromUUID(UUID uuid, Consumer<PlayerProfile> callback) {
         return get(Bukkit.getOfflinePlayer(uuid), callback);
     }
@@ -480,10 +451,6 @@ public class PlayerProfile {
     @Override
     public String toString() {
         return "PlayerProfile {" + owner.getUniqueId() + "}";
-    }
-
-    public OfflinePlayer getOwner() {
-        return owner;
     }
 
     public void markInvalid() {

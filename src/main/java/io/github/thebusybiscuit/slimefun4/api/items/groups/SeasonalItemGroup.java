@@ -4,6 +4,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import java.time.LocalDate;
 import java.time.Month;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -18,8 +20,16 @@ import org.bukkit.inventory.ItemStack;
  * @see ItemGroup
  * @see LockedItemGroup
  */
+@Getter
 public class SeasonalItemGroup extends ItemGroup {
 
+    /**
+     * -- GETTER --
+     *  This method returns the
+     *  in which this
+     *  will appear.
+     *
+     */
     private final Month month;
 
     /**
@@ -40,15 +50,6 @@ public class SeasonalItemGroup extends ItemGroup {
         Validate.notNull(month, "The Month cannot be null");
 
         this.month = month;
-    }
-
-    /**
-     * This method returns the {@link Month} in which this {@link SeasonalItemGroup} will appear.
-     *
-     * @return the {@link Month} in which this {@link SeasonalItemGroup} appears
-     */
-    public Month getMonth() {
-        return month;
     }
 
     @Override

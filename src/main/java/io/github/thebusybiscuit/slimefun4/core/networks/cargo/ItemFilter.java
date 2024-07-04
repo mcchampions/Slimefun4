@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -54,7 +56,13 @@ class ItemFilter implements Predicate<ItemStack> {
     /**
      * If an {@link ItemFilter} is marked as dirty / outdated, then it will be updated
      * on the next tick.
+     * -- GETTER --
+     *  Whether this
+     *  is outdated and needs to be refreshed.
+     *
+
      */
+    @Getter
     private volatile boolean dirty = true;
 
     private volatile boolean isLoading = false;
@@ -169,15 +177,6 @@ class ItemFilter implements Predicate<ItemStack> {
     }
 
     /**
-     * Whether this {@link ItemFilter} is outdated and needs to be refreshed.
-     *
-     * @return Whether the filter is outdated.
-     */
-    public boolean isDirty() {
-        return this.dirty;
-    }
-
-    /**
      * This marks this {@link ItemFilter} as dirty / outdated.
      */
     public void markDirty() {
@@ -214,10 +213,7 @@ class ItemFilter implements Predicate<ItemStack> {
             }
         }
 
-        if (potentialMatches == 0) {
-            // If there is no match, we can safely assume the default value
-            return rejectOnMatch;
-        } else {
+        if (potentialMatches != 0) {
             /*
              * If there is more than one potential match, create a wrapper to save
              * performance on the ItemMeta otherwise just use the item directly.
@@ -240,7 +236,7 @@ class ItemFilter implements Predicate<ItemStack> {
             }
 
             // If no particular item was matched, we fallback to our default value.
-            return rejectOnMatch;
         }
+        return rejectOnMatch;
     }
 }

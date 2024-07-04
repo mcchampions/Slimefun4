@@ -16,8 +16,6 @@ import org.bukkit.entity.Player;
  */
 public class AutoSavingService {
 
-    private int interval;
-
     /**
      * This method starts the {@link AutoSavingService} with the given interval.
      *
@@ -27,7 +25,6 @@ public class AutoSavingService {
      *            The interval in which to run this task
      */
     public void start(Slimefun plugin, int interval) {
-        this.interval = interval;
 
         plugin.getServer().getScheduler().runTaskTimer(plugin, this::saveAllPlayers, 2000L, interval * 60L * 20L);
         plugin.getServer()

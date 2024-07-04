@@ -4,6 +4,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArm
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SlimefunArmorTask;
 import java.util.Optional;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -26,6 +28,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public final class HashedArmorpiece {
 
     private int hash;
+    @Getter
     private Optional<SlimefunArmorPiece> item;
 
     /**
@@ -82,16 +85,6 @@ public final class HashedArmorpiece {
             copy.setItemMeta(meta);
             return copy.hashCode() != hash;
         }
-    }
-
-    /**
-     * Returns the {@link SlimefunArmorPiece} that corresponds to this {@link HashedArmorpiece},
-     * or an empty {@link Optional}
-     *
-     * @return An {@link Optional} describing the result
-     */
-    public Optional<SlimefunArmorPiece> getItem() {
-        return item;
     }
 
     @Override

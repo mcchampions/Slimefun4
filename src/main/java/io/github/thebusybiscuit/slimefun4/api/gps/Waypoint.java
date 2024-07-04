@@ -7,6 +7,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Telepo
 import java.util.Objects;
 import java.util.UUID;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,11 +28,37 @@ import org.bukkit.inventory.ItemStack;
  * @see Teleporter
  *
  */
+@Getter
 public class Waypoint {
 
+    /**
+     * -- GETTER --
+     *  This returns the owner's
+     *  of the
+     * .
+     *
+     */
     private final UUID ownerId;
+    /**
+     * -- GETTER --
+     *  This method returns the unique identifier for this
+     * .
+     *
+     */
     private final String id;
+    /**
+     * -- GETTER --
+     *  This returns the name of this
+     * .
+     *
+     */
     private final String name;
+    /**
+     * -- GETTER --
+     *  This returns the
+     *  of this
+     *
+     */
     private final Location location;
 
     /**
@@ -79,16 +107,6 @@ public class Waypoint {
     }
 
     /**
-     * This returns the owner's {@link UUID} of the {@link Waypoint}.
-     *
-     * @return The corresponding owner's {@link UUID}
-     */
-    
-    public UUID getOwnerId() {
-        return this.ownerId;
-    }
-
-    /**
      * This returns the owner of the {@link Waypoint}.
      *
      * @return The corresponding {@link PlayerProfile}
@@ -100,36 +118,6 @@ public class Waypoint {
     public PlayerProfile getOwner() {
         // This is jank and should never actually return null
         return PlayerProfile.find(Bukkit.getOfflinePlayer(ownerId)).orElse(null);
-    }
-
-    /**
-     * This method returns the unique identifier for this {@link Waypoint}.
-     *
-     * @return The {@link Waypoint} id
-     */
-    
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * This returns the name of this {@link Waypoint}.
-     *
-     * @return The name of this {@link Waypoint}
-     */
-    
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * This returns the {@link Location} of this {@link Waypoint}
-     *
-     * @return The {@link Waypoint} {@link Location}
-     */
-    
-    public Location getLocation() {
-        return location;
     }
 
     /**
@@ -166,11 +154,10 @@ public class Waypoint {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Waypoint)) {
+        if (!(obj instanceof Waypoint waypoint)) {
             return false;
         }
 
-        Waypoint waypoint = (Waypoint) obj;
         return this.ownerId.equals(waypoint.getOwnerId())
                 && id.equals(waypoint.getId())
                 && location.equals(waypoint.getLocation())

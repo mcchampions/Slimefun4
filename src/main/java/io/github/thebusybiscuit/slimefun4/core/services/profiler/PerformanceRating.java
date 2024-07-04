@@ -2,6 +2,8 @@ package io.github.thebusybiscuit.slimefun4.core.services.profiler;
 
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 
@@ -28,6 +30,7 @@ public enum PerformanceRating implements Predicate<Float> {
     HURTFUL(ChatColor.DARK_RED, 500),
     BAD(ChatColor.DARK_RED, Float.MAX_VALUE);
 
+    @Getter
     private final ChatColor color;
     private final float threshold;
 
@@ -47,8 +50,5 @@ public enum PerformanceRating implements Predicate<Float> {
         return value <= threshold;
     }
 
-    
-    public ChatColor getColor() {
-        return color;
-    }
+
 }

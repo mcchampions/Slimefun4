@@ -63,9 +63,9 @@ class CargoNetworkTask implements Runnable {
         long timestamp = System.nanoTime();
 
         try {
-            /**
-             * All operations happen here: Everything gets iterated from the Input Nodes.
-             * (Apart from ChestTerminal Buses)
+            /*
+              All operations happen here: Everything gets iterated from the Input Nodes.
+              (Apart from ChestTerminal Buses)
              */
             SlimefunItem inputNode = SlimefunItems.CARGO_INPUT_NODE.getItem();
             for (Map.Entry<Location, Integer> entry : inputs.entrySet()) {

@@ -88,11 +88,9 @@ public class MultiBlock {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof MultiBlock)) {
+        if (!(obj instanceof MultiBlock mb)) {
             return false;
         }
-
-        MultiBlock mb = (MultiBlock) obj;
 
         if (trigger == mb.getTriggerBlock() && isSymmetric == mb.isSymmetric) {
             for (int i = 0; i < mb.getStructure().length; i++) {
@@ -109,7 +107,7 @@ public class MultiBlock {
 
     @Override
     public int hashCode() {
-        return Objects.hash(item.getId(), blocks, trigger, isSymmetric);
+        return Objects.hash(item.getId(), Arrays.hashCode(blocks), trigger, isSymmetric);
     }
 
     private boolean compareBlocks(Material a, @Nullable Material b) {
@@ -128,9 +126,7 @@ public class MultiBlock {
                 return a == Material.MOVING_PISTON;
             }
 
-            if (b != a) {
-                return false;
-            }
+            return b == a;
         }
 
         return true;

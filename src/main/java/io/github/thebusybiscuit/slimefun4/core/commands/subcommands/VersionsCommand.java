@@ -72,7 +72,11 @@ class VersionsCommand extends SubCommand {
             // Add notice to warn those smart people
             builder.append("\n由 StarWishsama 汉化")
                     .color(ChatColor.WHITE)
-                    .append("\n请不要将此版本信息截图到 Discord/Github 反馈 Bug" + "\n优先到汉化页面反馈" + "\n")
+                    .append("""
+
+                            请不要将此版本信息截图到 Discord/Github 反馈 Bug
+                            优先到汉化页面反馈
+                            """)
                     .color(ChatColor.RED);
 
             if (Slimefun.getConfigManager().isBypassEnvironmentCheck()) {
@@ -130,7 +134,7 @@ class VersionsCommand extends SubCommand {
         for (Plugin plugin : addons) {
             String version = plugin.getDescription().getVersion();
 
-            HoverEvent hoverEvent = null;
+            HoverEvent hoverEvent;
             ClickEvent clickEvent = null;
             ChatColor primaryColor;
             ChatColor secondaryColor;

@@ -18,6 +18,8 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -41,7 +43,9 @@ public class Research implements Keyed {
     private final int id;
     private final String name;
     private boolean enabled = true;
+    @Getter
     private int levelCost;
+    @Getter
     private double currencyCost;
 
     private final List<SlimefunItem> items = new LinkedList<>();
@@ -167,15 +171,6 @@ public class Research implements Keyed {
      */
     @Deprecated
     public int getCost() {
-        return levelCost;
-    }
-
-    /**
-     * Gets the cost in XP levels to unlock this {@link Research}.
-     *
-     * @return The cost in XP levels for this {@link Research}
-     */
-    public int getLevelCost() {
         return levelCost;
     }
 
@@ -448,10 +443,6 @@ public class Research implements Keyed {
     @Override
     public String toString() {
         return "Research (" + getKey() + ')';
-    }
-
-    public double getCurrencyCost() {
-        return currencyCost;
     }
 
     public void setCurrencyCost(double currencyCost) {

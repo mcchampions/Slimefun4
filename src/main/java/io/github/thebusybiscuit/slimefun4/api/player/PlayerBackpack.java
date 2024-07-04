@@ -14,6 +14,8 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -40,10 +42,14 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     private static final String COLORED_LORE_OWNER = ChatColors.color(LORE_OWNER);
     private static final NamespacedKey KEY_BACKPACK_UUID = new NamespacedKey(Slimefun.instance(), "B_UUID");
     private static final NamespacedKey KEY_OWNER_UUID = new NamespacedKey(Slimefun.instance(), "OWNER_UUID");
+    @Getter
     private final OfflinePlayer owner;
     private final UUID uuid;
+    @Getter
     private final int id;
+    @Getter
     private String name;
+    @Getter
     private int size;
     private boolean isInvalid = false;
 
@@ -218,34 +224,6 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     }
 
     /**
-     * This returns the id of this {@link PlayerBackpack}
-     *
-     * @return The id of this {@link PlayerBackpack}
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * This method returns the {@link PlayerProfile} this {@link PlayerBackpack} belongs to
-     *
-     * @return The owning {@link PlayerProfile}
-     */
-    
-    public OfflinePlayer getOwner() {
-        return owner;
-    }
-
-    /**
-     * This returns the size of this {@link PlayerBackpack}.
-     *
-     * @return The size of this {@link PlayerBackpack}
-     */
-    public int getSize() {
-        return size;
-    }
-
-    /**
      * This method returns the {@link Inventory} of this {@link PlayerBackpack}
      *
      * @return The {@link Inventory} of this {@link PlayerBackpack}
@@ -294,10 +272,6 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         this.name = name;
         updateInv();
         Slimefun.getDatabaseManager().getProfileDataController().saveBackpackInfo(this);
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void markInvalid() {

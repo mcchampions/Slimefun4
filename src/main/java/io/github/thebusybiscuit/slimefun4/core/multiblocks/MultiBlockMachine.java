@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -43,6 +45,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class MultiBlockMachine extends SlimefunItem implements NotPlaceable, RecipeDisplayItem {
 
+    @Getter
     protected final List<ItemStack[]> recipes;
     protected final List<ItemStack> displayRecipes;
     protected final MultiBlock multiblock;
@@ -70,10 +73,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
 
     protected void registerDefaultRecipes(List<ItemStack> recipes) {
         // Override this method to register some default recipes
-    }
-
-    public List<ItemStack[]> getRecipes() {
-        return recipes;
     }
 
     @Override
@@ -179,7 +178,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
          * It's functionally the same as the old fit check for the dispenser,
          * only refactored.
          */
-        if (!outputChest.isPresent() && InvUtils.fits(placeCheckerInv, product)) {
+        if (outputChest.isEmpty() && InvUtils.fits(placeCheckerInv, product)) {
             return dispInv;
         } else {
             return outputChest.orElse(null);

@@ -2,25 +2,28 @@ package io.github.thebusybiscuit.slimefun4.api.items;
 
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 
 /**
  * This class represents a Setting for a {@link SlimefunItem} that can be modified via
  * the {@code Items.yml} {@link Config} file.
  *
+ * @param <T> The type of data stored under this {@link ItemSetting}
  * @author TheBusyBiscuit
- *
- * @param <T>
- *            The type of data stored under this {@link ItemSetting}
  */
 public class ItemSetting<T> {
 
     private final SlimefunItem item;
 
+    @Getter
     private final String key;
+    @Getter
     private final T defaultValue;
 
     private T value;
@@ -78,15 +81,6 @@ public class ItemSetting<T> {
     }
 
     /**
-     * This returns the key of this {@link ItemSetting}.
-     *
-     * @return The key under which this setting is stored (relative to the {@link SlimefunItem})
-     */
-    public String getKey() {
-        return key;
-    }
-
-    /**
      * This returns the associated {@link SlimefunItem} for this {@link ItemSetting}.
      *
      * @return The associated {@link SlimefunItem}
@@ -102,7 +96,7 @@ public class ItemSetting<T> {
      */
     public T getValue() {
         if (value != null) {
-            /**
+            /*
              * If the value has been initialized, return it immediately.
              */
             return value;
@@ -114,15 +108,6 @@ public class ItemSetting<T> {
             item.warn("ItemSetting '" + key + "' was invoked but was not initialized yet.");
             return defaultValue;
         }
-    }
-
-    /**
-     * This returns the <strong>default</strong> value of this {@link ItemSetting}.
-     *
-     * @return The default value
-     */
-    public T getDefaultValue() {
-        return defaultValue;
     }
 
     /**
@@ -160,7 +145,7 @@ public class ItemSetting<T> {
         Object configuredValue = Slimefun.getItemCfg().getValue(item.getId() + '.' + getKey());
 
         if (defaultValue.getClass().isInstance(configuredValue)
-                || (configuredValue instanceof List && defaultValue instanceof List)) {
+            || (configuredValue instanceof List && defaultValue instanceof List)) {
             // We can do an unsafe cast here, we did an isInstance(...) check before!
             T newValue = (T) configuredValue;
 
@@ -208,13 +193,13 @@ public class ItemSetting<T> {
     public String toString() {
         T currentValue = this.value != null ? this.value : defaultValue;
         return getClass().getSimpleName()
-                + " {"
-                + getKey()
-                + " = "
-                + currentValue
-                + " (default: "
-                + getDefaultValue()
-                + ")";
+               + " {"
+               + getKey()
+               + " = "
+               + currentValue
+               + " (default: "
+               + getDefaultValue()
+               + ")";
     }
 
     @Override
@@ -224,8 +209,7 @@ public class ItemSetting<T> {
 
     @Override
     public final boolean equals(Object obj) {
-        if (obj instanceof ItemSetting) {
-            ItemSetting<?> setting = (ItemSetting<?>) obj;
+        if (obj instanceof ItemSetting<?> setting) {
             return Objects.equals(getKey(), setting.getKey()) && Objects.equals(getItem(), setting.getItem());
         } else {
             return false;

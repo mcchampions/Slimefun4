@@ -18,6 +18,8 @@ import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.stream.IntStream;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -44,6 +46,7 @@ public class ErrorReport<T extends Throwable> {
     private final SlimefunAddon addon;
     private final T throwable;
 
+    @Getter
     private File file;
 
     /**
@@ -139,15 +142,6 @@ public class ErrorReport<T extends Throwable> {
     }
 
     /**
-     * This method returns the {@link File} this {@link ErrorReport} has been written to.
-     *
-     * @return The {@link File} for this {@link ErrorReport}
-     */
-    public File getFile() {
-        return file;
-    }
-
-    /**
      * This returns the {@link Throwable} that was thrown.
      *
      * @return The {@link Throwable}
@@ -169,7 +163,7 @@ public class ErrorReport<T extends Throwable> {
         this.file = getNewFile();
         count.incrementAndGet();
 
-        try (PrintStream stream = new PrintStream(file, StandardCharsets.UTF_8.name())) {
+        try (PrintStream stream = new PrintStream(file, StandardCharsets.UTF_8)) {
             stream.println();
 
             stream.println("Error Generated: " + dateFormat.format(LocalDateTime.now()));

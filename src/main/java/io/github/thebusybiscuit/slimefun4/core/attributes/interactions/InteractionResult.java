@@ -1,6 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes.interactions;
 
 import io.github.thebusybiscuit.slimefun4.core.attributes.ExternallyInteractable;
+import lombok.Getter;
+
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -9,6 +11,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 public class InteractionResult {
 
+    @Getter
     private final boolean interactionSuccessful;
     private @Nullable String resultMessage;
 
@@ -20,15 +23,6 @@ public class InteractionResult {
     @ParametersAreNonnullByDefault
     public InteractionResult(boolean successful) {
         this.interactionSuccessful = successful;
-    }
-
-    /**
-     * Returns whether the interaction was successful or not.
-     *
-     * @return boolean denoting whether the interaction was successful or not.
-     */
-    public boolean isInteractionSuccessful() {
-        return interactionSuccessful;
     }
 
     /**

@@ -4,6 +4,8 @@ import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import java.util.Objects;
+
+import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -21,6 +23,7 @@ final class ProfiledBlock {
      * The {@link World} this {@link Block} is in.
      * It is fine to keep an actual reference here since this is a throwaway object anyway.
      */
+    @Getter
     private final World world;
 
     /**
@@ -77,10 +80,6 @@ final class ProfiledBlock {
         return ((long) (x & 0x3FFFFFF) << 38) | ((long) (z & 0x3FFFFFF) << 12) | (long) (y & 0xFFF);
     }
 
-    
-    public World getWorld() {
-        return world;
-    }
 
     /**
      * Gets the x for this block.

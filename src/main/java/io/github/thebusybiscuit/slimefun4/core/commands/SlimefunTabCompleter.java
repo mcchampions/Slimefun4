@@ -86,7 +86,7 @@ class SlimefunTabCompleter implements TabCompleter {
      */
     
     private List<String> createReturnList(List<String> list, String string) {
-        if (string.length() == 0) {
+        if (string.isEmpty()) {
             return list;
         }
 

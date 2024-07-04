@@ -8,6 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,8 +27,10 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 public class SlimefunCommand implements CommandExecutor, Listener {
 
     private boolean registered = false;
+    @Getter
     private final Slimefun plugin;
     private final List<SubCommand> commands = new LinkedList<>();
+    @Getter
     private final Map<SubCommand, Integer> commandUsage = new HashMap<>();
 
     /**
@@ -48,19 +52,6 @@ public class SlimefunCommand implements CommandExecutor, Listener {
         plugin.getCommand("slimefun").setExecutor(this);
         plugin.getCommand("slimefun").setTabCompleter(new SlimefunTabCompleter(this));
         commands.addAll(SlimefunSubCommands.getAllCommands(this));
-    }
-
-    public Slimefun getPlugin() {
-        return plugin;
-    }
-
-    /**
-     * Returns a heatmap of how often certain commands are used.
-     *
-     * @return A {@link Map} holding the amount of times each command was run
-     */
-    public Map<SubCommand, Integer> getCommandUsage() {
-        return commandUsage;
     }
 
     @Override

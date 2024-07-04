@@ -8,21 +8,16 @@ import java.util.concurrent.ThreadFactory;
  * and provides a naming convention for our {@link Thread Threads}.
  *
  * @author TheBusyBiscuit
- *
  * @see SlimefunProfiler
- *
  */
-final class SlimefunThreadFactory implements ThreadFactory {
-
-    private final int threadCount;
+record SlimefunThreadFactory(int threadCount) implements ThreadFactory {
 
     /**
      * This constructs a new {@link SlimefunThreadFactory} with the given {@link Thread} count.
      *
      * @param threadCount The amount of {@link Thread Threads} to provide to the {@link SlimefunProfiler}
      */
-    SlimefunThreadFactory(int threadCount) {
-        this.threadCount = threadCount;
+    SlimefunThreadFactory {
     }
 
     /**
@@ -31,7 +26,8 @@ final class SlimefunThreadFactory implements ThreadFactory {
      *
      * @return The {@link Thread} count
      */
-    int getThreadCount() {
+    @Override
+    public int threadCount() {
         return threadCount;
     }
 

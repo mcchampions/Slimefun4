@@ -111,13 +111,6 @@ public class BackupService implements Runnable {
         output.closeEntry();
     }
 
-    private void addDirectory(ZipOutputStream output, File directory, String zipPath)
-            throws IOException {
-        for (File file : directory.listFiles()) {
-            addFile(output, file, zipPath);
-        }
-    }
-
     /**
      * This method will delete old backups.
      *

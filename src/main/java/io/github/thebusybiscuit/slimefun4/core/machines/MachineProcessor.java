@@ -7,6 +7,8 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -30,6 +32,7 @@ import org.bukkit.inventory.ItemStack;
 public class MachineProcessor<T extends MachineOperation> {
 
     private final Map<BlockPosition, T> machines = new ConcurrentHashMap<>();
+    @Getter
     private final MachineProcessHolder<T> owner;
 
     private ItemStack progressBar;
@@ -44,16 +47,6 @@ public class MachineProcessor<T extends MachineOperation> {
         Validate.notNull(owner, "The MachineProcessHolder cannot be null.");
 
         this.owner = owner;
-    }
-
-    /**
-     * This returns the owner of this {@link MachineProcessor}.
-     *
-     * @return The owner / holder
-     */
-    
-    public MachineProcessHolder<T> getOwner() {
-        return owner;
     }
 
     /**

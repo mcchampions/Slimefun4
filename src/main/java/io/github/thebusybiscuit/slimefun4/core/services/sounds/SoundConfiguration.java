@@ -1,6 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 
 
+import lombok.Getter;
+
 /**
  * This structure class holds configured values for a {@link SoundEffect}.
  *
@@ -13,7 +15,9 @@ package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 public class SoundConfiguration {
 
     private final String sound;
+    @Getter
     private final float volume;
+    @Getter
     private final float pitch;
 
     protected SoundConfiguration(String sound, float volume, float pitch) {
@@ -26,11 +30,4 @@ public class SoundConfiguration {
         return sound;
     }
 
-    public float getVolume() {
-        return volume;
-    }
-
-    public float getPitch() {
-        return pitch;
-    }
 }

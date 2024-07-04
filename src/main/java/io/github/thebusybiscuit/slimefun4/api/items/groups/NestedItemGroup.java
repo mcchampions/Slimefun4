@@ -122,7 +122,7 @@ public class NestedItemGroup extends FlexItemGroup {
         menu.addMenuClickHandler(46, (pl, slot, item, action) -> {
             int next = page - 1;
 
-            if (next != page && next > 0) {
+            if (next > 0) {
                 openGuide(p, profile, mode, next);
             }
 
@@ -133,7 +133,7 @@ public class NestedItemGroup extends FlexItemGroup {
         menu.addMenuClickHandler(52, (pl, slot, item, action) -> {
             int next = page + 1;
 
-            if (next != page && next <= pages) {
+            if (next <= pages) {
                 openGuide(p, profile, mode, next);
             }
 

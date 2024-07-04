@@ -1,6 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.core.debug;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,6 +18,7 @@ import javax.annotation.Nullable;
  */
 public final class Debug {
 
+    @Getter
     private static final List<String> testCase = new ArrayList<>();
 
     private Debug() {}
@@ -120,15 +123,6 @@ public final class Debug {
      */
     public static void addTestCase(@Nullable String test) {
         testCase.add(test);
-    }
-
-    /**
-     * Get the current test case for this server or null if disabled
-     *
-     * @return The current test case to enable or null if disabled
-     */
-    public static List<String> getTestCase() {
-        return testCase;
     }
 
     public static boolean hasTestCase(TestCase tc) {

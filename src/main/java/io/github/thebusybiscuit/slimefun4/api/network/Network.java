@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -34,6 +36,7 @@ public abstract class Network {
     /**
      * The {@link Location} of the regulator of this {@link Network}.
      */
+    @Getter
     protected Location regulator;
 
     private final Queue<Location> nodeQueue = new ArrayDeque<>();
@@ -227,16 +230,6 @@ public abstract class Network {
         if (manager.isVisualizerEnabled()) {
             Slimefun.runSync(new NetworkVisualizer(this));
         }
-    }
-
-    /**
-     * This returns the {@link Location} of the regulator block for this {@link Network}
-     *
-     * @return The {@link Location} of our regulator
-     */
-    
-    public Location getRegulator() {
-        return regulator;
     }
 
     /**

@@ -59,6 +59,6 @@ class FireworksOption implements SlimefunGuideOption<Boolean> {
 
     @Override
     public void setSelectedOption(Player p, ItemStack guide, Boolean value) {
-        PersistentDataAPI.setByte(p, getKey(), value.booleanValue() ? (byte) 1 : (byte) 0);
+        PersistentDataAPI.setByte(p, getKey(), value ? (byte) 1 : (byte) 0);
     }
 }
