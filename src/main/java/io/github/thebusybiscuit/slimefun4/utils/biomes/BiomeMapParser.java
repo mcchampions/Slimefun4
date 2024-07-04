@@ -13,7 +13,6 @@ import java.util.EnumSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;

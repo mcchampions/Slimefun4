@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;

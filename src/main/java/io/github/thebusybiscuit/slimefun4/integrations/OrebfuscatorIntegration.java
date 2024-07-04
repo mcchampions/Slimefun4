@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.annotation.Nonnull;
 import net.imprex.orebfuscator.api.OrebfuscatorService;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;

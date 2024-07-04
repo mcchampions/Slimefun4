@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.EntityKillHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemConsumptionHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 
 /**
  * An {@link ItemHandler} represents a certain action that a {@link SlimefunItem}

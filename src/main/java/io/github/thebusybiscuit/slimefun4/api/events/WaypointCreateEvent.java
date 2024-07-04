@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.api.gps.GPSNetwork;
 import io.github.thebusybiscuit.slimefun4.api.gps.TeleportationManager;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
-import javax.annotation.Nonnull;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

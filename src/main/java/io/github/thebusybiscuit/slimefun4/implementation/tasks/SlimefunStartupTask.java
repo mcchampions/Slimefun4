@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.TeleporterListener;
 import io.github.thebusybiscuit.slimefun4.implementation.setup.PostSetup;
-import javax.annotation.Nonnull;
 import org.bukkit.Bukkit;
 
 /**

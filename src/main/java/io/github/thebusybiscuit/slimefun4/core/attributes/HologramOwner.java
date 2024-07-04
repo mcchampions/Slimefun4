@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.holograms.HologramsServi
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.HologramProjector;
 import java.util.function.Supplier;
-import javax.annotation.Nonnull;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;

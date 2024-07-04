@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.ExternallyInteractable
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.Nonnull;
 import org.bukkit.inventory.ItemStack;
 
 /**

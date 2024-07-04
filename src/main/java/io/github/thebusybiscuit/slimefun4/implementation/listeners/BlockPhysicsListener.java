@@ -12,7 +12,6 @@ import io.papermc.lib.PaperLib;
 import io.papermc.lib.features.blockstatesnapshot.BlockStateSnapshotResult;
 import java.util.ArrayList;
 import java.util.Objects;
-import javax.annotation.Nonnull;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

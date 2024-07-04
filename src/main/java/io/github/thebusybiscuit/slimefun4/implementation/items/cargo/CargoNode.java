@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.cargo;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import javax.annotation.Nonnull;
 import org.bukkit.block.Block;
 
 /**

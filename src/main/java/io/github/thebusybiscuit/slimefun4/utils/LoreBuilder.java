@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-import javax.annotation.Nonnull;
 
 /**
  * This utility class provides a few handy methods and constants to build the lore of any

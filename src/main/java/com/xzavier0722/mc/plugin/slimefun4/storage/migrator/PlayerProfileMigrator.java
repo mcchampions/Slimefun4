@@ -9,7 +9,6 @@ import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.UUID;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 

@@ -3,7 +3,6 @@ package city.norain.slimefun4;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Objects;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.OfflinePlayer;
 

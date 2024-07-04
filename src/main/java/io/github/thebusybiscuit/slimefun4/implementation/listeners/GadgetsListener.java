@@ -12,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.player.JetBootsTa
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.player.JetpackTask;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.player.ParachuteTask;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -9,7 +9,6 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
 
 /**
  * This {@link Listener} prevents any {@link SlimefunItem} from being used in a

@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.utils;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;

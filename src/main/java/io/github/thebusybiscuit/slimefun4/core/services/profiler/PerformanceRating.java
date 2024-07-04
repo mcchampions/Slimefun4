@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.services.profiler;
 
 import java.util.function.Predicate;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;

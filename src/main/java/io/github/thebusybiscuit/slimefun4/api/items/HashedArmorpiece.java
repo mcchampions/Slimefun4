@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.items;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SlimefunArmorTask;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

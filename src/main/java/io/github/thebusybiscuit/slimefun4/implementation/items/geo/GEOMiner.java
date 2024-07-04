@@ -24,7 +24,6 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.OptionalInt;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;

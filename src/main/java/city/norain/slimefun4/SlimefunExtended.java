@@ -3,7 +3,6 @@ package city.norain.slimefun4;
 import city.norain.slimefun4.listener.SlimefunMigrateListener;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import lombok.Getter;
 
 public final class SlimefunExtended {

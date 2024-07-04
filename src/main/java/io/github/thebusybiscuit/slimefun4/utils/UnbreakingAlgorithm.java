@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.utils;
 
 import io.github.thebusybiscuit.slimefun4.core.attributes.DamageableItem;
 import java.util.function.IntFunction;
-import javax.annotation.Nonnull;
 import org.bukkit.enchantments.Enchantment;
 
 /**

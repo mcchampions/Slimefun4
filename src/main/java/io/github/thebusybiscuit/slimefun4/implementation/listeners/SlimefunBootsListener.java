@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.armor.FarmerShoes
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.LongFallBoots;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.StomperBoots;
-import javax.annotation.Nonnull;
 import org.bukkit.Material;
 import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;

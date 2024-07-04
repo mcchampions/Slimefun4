@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.Enhan
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AsyncRecipeChoiceTask;
 import java.util.Collection;
 import java.util.function.Predicate;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 

@@ -11,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Abstra
 import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Teleporter;
 import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.TeleporterPylon;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;

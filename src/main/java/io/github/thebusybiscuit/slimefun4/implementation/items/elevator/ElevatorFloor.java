@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.elevator;
 
-import javax.annotation.Nonnull;
 
 import lombok.Getter;
 import org.apache.commons.lang.Validate;

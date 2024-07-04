@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.holograms.HologramsServi
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.HologramProjector;
 import io.papermc.lib.PaperLib;
-import javax.annotation.Nonnull;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 

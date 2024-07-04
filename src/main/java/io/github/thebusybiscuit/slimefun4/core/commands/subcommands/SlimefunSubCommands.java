@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import javax.annotation.Nonnull;
 
 /**
  * This class holds the implementations of every {@link SubCommand}.

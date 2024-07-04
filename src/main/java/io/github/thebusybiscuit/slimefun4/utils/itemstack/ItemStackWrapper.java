@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.utils.itemstack;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Nonnull;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

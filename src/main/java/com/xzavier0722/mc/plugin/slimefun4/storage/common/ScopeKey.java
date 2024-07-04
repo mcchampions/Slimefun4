@@ -1,6 +1,5 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.common;
 
-import javax.annotation.Nonnull;
 
 public class ScopeKey {
     protected final DataScope scope;

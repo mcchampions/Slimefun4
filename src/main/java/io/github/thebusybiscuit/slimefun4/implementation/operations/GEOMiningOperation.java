@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.core.machines.MachineOperation;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.geo.GEOMiner;
 import java.util.OptionalInt;
-import javax.annotation.Nonnull;
 
 /**
  * This {@link MachineOperation} represents a {@link GEOMiner}

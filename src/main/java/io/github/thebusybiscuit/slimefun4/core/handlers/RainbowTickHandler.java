@@ -13,7 +13,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.GlassPane;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 

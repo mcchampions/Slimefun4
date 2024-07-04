@@ -17,7 +17,6 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.Particle;

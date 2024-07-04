@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

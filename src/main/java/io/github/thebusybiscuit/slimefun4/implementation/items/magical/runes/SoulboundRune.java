@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.magical.Soulbound
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.Collection;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Location;
 import org.bukkit.SoundCategory;

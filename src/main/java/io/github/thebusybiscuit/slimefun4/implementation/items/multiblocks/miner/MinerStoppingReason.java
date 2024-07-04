@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.miner;
 
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlock;
-import javax.annotation.Nonnull;
 import org.bukkit.block.Chest;
 import org.bukkit.block.data.type.Piston;
 import org.bukkit.entity.Player;

@@ -6,7 +6,6 @@ import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Locale;
 import java.util.function.Consumer;
-import javax.annotation.Nonnull;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

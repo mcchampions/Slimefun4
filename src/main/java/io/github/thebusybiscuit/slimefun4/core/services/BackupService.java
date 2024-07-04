@@ -15,7 +15,6 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import javax.annotation.Nonnull;
 import org.apache.commons.lang.Validate;
 
 /**

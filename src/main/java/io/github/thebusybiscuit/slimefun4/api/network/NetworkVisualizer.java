@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.api.network;
 
-import javax.annotation.Nonnull;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;

@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.EnhancedFu
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import io.papermc.lib.PaperLib;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Furnace;

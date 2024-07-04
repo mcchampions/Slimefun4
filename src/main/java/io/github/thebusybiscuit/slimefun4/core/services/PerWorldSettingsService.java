@@ -9,7 +9,6 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.World;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;

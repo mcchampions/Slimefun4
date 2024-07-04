@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 
-import javax.annotation.Nonnull;
 
 /**
  * This structure class holds configured values for a {@link SoundEffect}.

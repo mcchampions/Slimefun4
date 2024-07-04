@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.MultiBlockInteractionHan
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlock;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.LinkedList;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;

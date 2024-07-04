@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 import com.google.common.base.Preconditions;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Location;
 import org.bukkit.Sound;

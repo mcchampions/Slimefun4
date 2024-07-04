@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.attributes;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.utils.UnbreakingAlgorithm;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;

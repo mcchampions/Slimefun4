@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.guide;
 
-import javax.annotation.Nonnull;
 
 class GuideEntry<T> {
 

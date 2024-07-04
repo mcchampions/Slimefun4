@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.geo.GEOMiner;
 import io.github.thebusybiscuit.slimefun4.implementation.items.geo.GEOScanner;
-import javax.annotation.Nonnull;
 import org.bukkit.Chunk;
 import org.bukkit.Keyed;
 import org.bukkit.World;

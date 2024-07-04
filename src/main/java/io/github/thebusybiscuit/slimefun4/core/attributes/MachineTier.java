@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes;
 
-import javax.annotation.Nonnull;
 
 public enum MachineTier {
     BASIC("&e基础"),

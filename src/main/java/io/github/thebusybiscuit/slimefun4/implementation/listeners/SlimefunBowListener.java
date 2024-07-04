@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.weapons.SlimefunB
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

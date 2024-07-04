@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.guide;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import javax.annotation.Nonnull;
 
 /**
  * This enum holds the different designs a {@link SlimefunGuide} can have.

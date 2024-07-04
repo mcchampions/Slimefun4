@@ -12,7 +12,6 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
-import javax.annotation.Nonnull;
 
 /**
  * This {@link Listener} prevents any {@link SlimefunItem} from being used in a

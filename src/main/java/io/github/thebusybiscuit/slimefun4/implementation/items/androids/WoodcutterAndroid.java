@@ -12,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;

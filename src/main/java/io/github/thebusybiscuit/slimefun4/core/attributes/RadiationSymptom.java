@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.attributes;
 import com.google.common.base.Preconditions;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.RadiationUtils;
-import javax.annotation.Nonnull;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
