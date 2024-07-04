@@ -142,25 +142,8 @@ guide:
     bugs: '问题反馈'
     source: '源代码'
     versions: '安装的版本'
-  credits:
-    commit: '提交'
-    commits: '提交次数'
-    profile-link: '单击访问他们的 Github 个人主页'
-    open: '单击查看贡献者名单'
-    description:
-      - '&7Slimefun 是一个开源的项目'
-      - '&7并且由玩家社区维护.'
-      - '&7在这几年中, 一共有 &e%contributors% &7人'
-      - '&7为 Slimefun 做出了贡献.'
-    roles:
-      developer: '&6开发者'
-      wiki: '&3Wiki 编辑者'
-      resourcepack: '&c材质制作者'
-      translator: '&9翻译者'
-
 actionbar:
   radiation: '&6辐射暴露等级：&c%level%&7/&e100'
-
 messages:
   android-no-permission: "&c你的机器人在某个你没有权限的领地/地皮中无法工作, 机器人已自动暂停运行."
   not-researched: '&4你的知识还不足以理解这个物品. &c你需要先解锁 &f"%item%"&f'
