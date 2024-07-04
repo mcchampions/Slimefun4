@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.WrongItemStackException;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
-import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -25,7 +24,11 @@ import org.bukkit.potion.PotionEffectType;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 /**
@@ -34,6 +37,7 @@ import java.util.function.Consumer;
  *
  * @author TheBusyBiscuit
  * @author Walshy
+ *
  */
 @SerializableAs("ItemStack")
 public class SlimefunItemStack extends ItemStack {
@@ -43,9 +47,6 @@ public class SlimefunItemStack extends ItemStack {
 
     private boolean locked = false;
     private String texture = null;
-
-    @Getter
-    private final List<ItemStack> drops = new ArrayList(List.of(this));
 
     public SlimefunItemStack(String id, ItemStack item) {
         super(item);
@@ -226,12 +227,15 @@ public class SlimefunItemStack extends ItemStack {
     /**
      * This method returns the associated {@link SlimefunItem} and casts it to the provided
      * {@link Class}.
-     * <p>
+     *
      * If no item was found or the found {@link SlimefunItem} is not of the requested type,
      * the method will return null.
      *
-     * @param <T>  The type of {@link SlimefunItem} to cast this to
-     * @param type The {@link Class} of the target {@link SlimefunItem}
+     * @param <T>
+     *            The type of {@link SlimefunItem} to cast this to
+     * @param type
+     *            The {@link Class} of the target {@link SlimefunItem}
+     *
      * @return The {@link SlimefunItem} this {@link SlimefunItem} represents, casted to the given type
      */
     public @Nullable <T extends SlimefunItem> T getItem(Class<T> type) {
@@ -333,9 +337,5 @@ public class SlimefunItemStack extends ItemStack {
     public final int hashCode() {
         // We don't want people to override this, it should use the super method
         return super.hashCode();
-    }
-
-    public void addDrop(ItemStack itemStack) {
-        this.drops.add(itemStack);
     }
 }
