@@ -1232,8 +1232,9 @@ public class SlimefunItem implements Placeable {
         }
 
         Optional<String> itemID = Slimefun.getItemDataService().getItemData(item);
-        SlimefunItem sfItem = itemID.map(SlimefunItem::getById).orElse(null);
-        return sfItem;
+
+        return itemID.map(SlimefunItem::getById).orElse(null);
+
     }
 
     /**

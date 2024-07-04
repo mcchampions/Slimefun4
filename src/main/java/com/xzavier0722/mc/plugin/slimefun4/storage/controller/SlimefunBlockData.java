@@ -52,10 +52,28 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         this.sfItemStack = other.sfItemStack;
     }
 
+<<<<<<< Updated upstream
+    
+=======
+<<<<<<< Updated upstream
+    @Nonnull
+>>>>>>> Stashed changes
+    public Location getLocation() {
+        return location;
+    }
+
+<<<<<<< Updated upstream
+    
+=======
+    @Nonnull
+=======
+
     public String getSfNbt() {
         return NBT.readNbt(sfItemStack).toString();
     }
 
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     public String getSfId() {
         return sfItemStack.getItemId();
     }
