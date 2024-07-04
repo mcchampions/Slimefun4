@@ -1,5 +1,7 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
+import lombok.Getter;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -8,6 +10,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public abstract class ASlimefunDataContainer {
+    @Getter
     private final String key;
     private final Map<String, String> data;
     private volatile boolean isDataLoaded = false;
@@ -72,10 +75,6 @@ public abstract class ASlimefunDataContainer {
         return getCacheInternal(key);
     }
 
-    
-    public String getKey() {
-        return key;
-    }
 
     public abstract void setData(String key, String val);
 }

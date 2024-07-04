@@ -3,6 +3,8 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.BlockPlacer;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.block.Block;
 import org.bukkit.event.Cancellable;
@@ -21,6 +23,7 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final Block blockPlacer;
     private ItemStack placedItem;
 
@@ -43,16 +46,6 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
 
         this.placedItem = placedItem;
         this.blockPlacer = blockPlacer;
-    }
-
-    /**
-     * This method returns the {@link BlockPlacer}
-     *
-     * @return The {@link BlockPlacer}
-     */
-    
-    public Block getBlockPlacer() {
-        return blockPlacer;
     }
 
     /**

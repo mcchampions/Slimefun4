@@ -17,6 +17,7 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
     @Getter
     private final String sfId;
     private volatile BlockMenu menu;
+    @Getter
     private volatile boolean pendingRemove = false;
 
     @ParametersAreNonnullByDefault
@@ -76,10 +77,6 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
 
     public void setPendingRemove(boolean pendingRemove) {
         this.pendingRemove = pendingRemove;
-    }
-
-    public boolean isPendingRemove() {
-        return pendingRemove;
     }
 
     @Override

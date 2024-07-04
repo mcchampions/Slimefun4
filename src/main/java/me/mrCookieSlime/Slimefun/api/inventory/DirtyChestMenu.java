@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -24,6 +26,7 @@ import org.bukkit.inventory.ItemStack;
 // This class will be deprecated, relocated and rewritten in a future version.
 public class DirtyChestMenu extends ChestMenu {
 
+    @Getter
     protected final BlockMenuPreset preset;
     protected int changes = 1;
 
@@ -55,10 +58,6 @@ public class DirtyChestMenu extends ChestMenu {
         return changes;
     }
 
-    
-    public BlockMenuPreset getPreset() {
-        return preset;
-    }
 
     public boolean canOpen(Block b, Player p) {
         return preset.canOpen(b, p);
@@ -220,8 +219,8 @@ public class DirtyChestMenu extends ChestMenu {
 
     public void replaceExistingItem(int slot, ItemStack item, boolean event) {
         if (event) {
-            ItemStack previous = getItemInSlot(slot);
-            item = preset.onItemStackChange(this, slot, previous, item);
+            getItemInSlot(slot);
+            item = preset.onItemStackChange(item);
         }
 
         super.replaceExistingItem(slot, item);

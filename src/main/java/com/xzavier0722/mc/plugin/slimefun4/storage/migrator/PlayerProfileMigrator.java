@@ -9,20 +9,19 @@ import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.UUID;
 import java.util.logging.Level;
+
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
 public class PlayerProfileMigrator implements IMigrator {
+    @Getter
     private static final PlayerProfileMigrator instance = new PlayerProfileMigrator();
 
     private static final File playerFolder = new File("data-storage/Slimefun/Players/");
     private static volatile boolean migrateLock = false;
 
     private PlayerProfileMigrator() {}
-
-    public static PlayerProfileMigrator getInstance() {
-        return instance;
-    }
 
     @Override
     public String getName() {

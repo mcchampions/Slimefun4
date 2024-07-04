@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Bukkit;
@@ -18,6 +20,7 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
     private static final SlimefunBlockData INVALID_BLOCK_DATA = new SlimefunBlockData(
             new Location(Bukkit.getWorlds().get(0), Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE),
             "INVALID_BLOCK_DATA_SF_KEY");
+    @Getter
     private final Chunk chunk;
     private final Map<String, SlimefunBlockData> sfBlocks;
 
@@ -28,12 +31,7 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
         sfBlocks = new ConcurrentHashMap<>();
     }
 
-    
-    public Chunk getChunk() {
-        return chunk;
-    }
 
-    
     @ParametersAreNonnullByDefault
     public SlimefunBlockData createBlockData(Location l, String sfId) {
         var lKey = LocationUtils.getLocKey(l);

@@ -2,6 +2,8 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Cooler;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -23,7 +25,9 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final Cooler cooler;
+    @Getter
     private final ItemStack coolerItem;
 
     private ItemStack consumedItem;
@@ -38,25 +42,6 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
         this.consumedItem = consumedItem;
     }
 
-    /**
-     * This returns the {@link Cooler} that was used.
-     *
-     * @return The {@link Cooler} that was used
-     */
-    
-    public Cooler getCooler() {
-        return cooler;
-    }
-
-    /**
-     * This returns the {@link Cooler} that was used (as an {@link ItemStack})
-     *
-     * @return The {@link Cooler} that was used
-     */
-    
-    public ItemStack getCoolerItem() {
-        return coolerItem;
-    }
 
     /**
      * This returns the {@link ItemStack} that was consumed.

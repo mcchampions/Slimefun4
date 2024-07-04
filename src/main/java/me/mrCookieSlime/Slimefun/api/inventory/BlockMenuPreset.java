@@ -12,7 +12,6 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
@@ -66,19 +65,13 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * This method is called whenever an {@link ItemStack} changes.
      * You can override this as necessary if you need to listen to these events
      *
-     * @param menu
-     *            The {@link Inventory} affected by this
-     * @param slot
-     *            The affected slot
-     * @param previous
-     *            The {@link ItemStack} in that slot before the operation
      * @param next
      *            The {@link ItemStack} that it changes to
      *
      * @return The new outcome of this operation
      */
     @Nullable protected ItemStack onItemStackChange(
-            DirtyChestMenu menu, int slot, @Nullable ItemStack previous, @Nullable ItemStack next) {
+            @Nullable ItemStack next) {
         // Override this as necessary
         return next;
     }

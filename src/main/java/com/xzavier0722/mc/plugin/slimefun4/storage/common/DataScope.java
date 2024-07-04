@@ -1,5 +1,8 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.common;
 
+import lombok.Getter;
+
+@Getter
 public enum DataScope {
     NONE,
     PLAYER_RESEARCH,
@@ -21,7 +24,4 @@ public enum DataScope {
         this.primaryKeys = primaryKeys;
     }
 
-    public FieldKey[] getPrimaryKeys() {
-        return primaryKeys;
-    }
 }

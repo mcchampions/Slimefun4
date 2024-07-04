@@ -3,6 +3,8 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -21,8 +23,11 @@ import org.bukkit.inventory.ItemStack;
 public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final MultiBlockMachine machine;
+    @Getter
     private final ItemStack[] input;
+    @Getter
     private ItemStack output;
     private boolean cancelled;
 
@@ -53,33 +58,6 @@ public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
     @ParametersAreNonnullByDefault
     public MultiBlockCraftEvent(Player p, MultiBlockMachine machine, ItemStack input, ItemStack output) {
         this(p, machine, new ItemStack[] {input}, output);
-    }
-
-    /**
-     * Gets the machine that was used to craft.
-     *
-     * @return The {@link MultiBlockMachine} used to craft.
-     */
-    public MultiBlockMachine getMachine() {
-        return machine;
-    }
-
-    /**
-     * Gets the input of the craft.
-     *
-     * @return The {@link ItemStack ItemStack[]} input that is used in the craft.
-     */
-    public ItemStack[] getInput() {
-        return input;
-    }
-
-    /**
-     * Gets the output of the craft.
-     *
-     * @return The {@link ItemStack} output that results from the craft.
-     */
-    public ItemStack getOutput() {
-        return output;
     }
 
     /**

@@ -3,6 +3,8 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.AndroidInstance;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.FarmerAndroid;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.bukkit.block.Block;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -21,7 +23,21 @@ public class AndroidFarmEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    /**
+     * -- GETTER --
+     *  This method returns the mined
+     *
+     */
+    @Getter
     private final Block block;
+    /**
+     * -- GETTER --
+     *  This method returns the
+     *  who
+     *  triggered this
+     *
+     */
+    @Getter
     private final AndroidInstance android;
     private final boolean isAdvanced;
     private ItemStack drop;
@@ -39,16 +55,6 @@ public class AndroidFarmEvent extends Event implements Cancellable {
         this.android = android;
         this.isAdvanced = isAdvanced;
         this.drop = drop;
-    }
-
-    /**
-     * This method returns the mined {@link Block}
-     *
-     * @return the mined {@link Block}
-     */
-    
-    public Block getBlock() {
-        return block;
     }
 
     /**
@@ -76,17 +82,6 @@ public class AndroidFarmEvent extends Event implements Cancellable {
      */
     public void setDrop(@Nullable ItemStack drop) {
         this.drop = drop;
-    }
-
-    /**
-     * This method returns the {@link AndroidInstance} who
-     * triggered this {@link Event}
-     *
-     * @return the involved {@link AndroidInstance}
-     */
-    
-    public AndroidInstance getAndroid() {
-        return android;
     }
 
     @Override

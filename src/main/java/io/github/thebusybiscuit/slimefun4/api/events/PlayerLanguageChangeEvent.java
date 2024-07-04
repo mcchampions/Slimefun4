@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -17,6 +18,7 @@ public class PlayerLanguageChangeEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final Player player;
     private final Language from;
     private final Language to;
@@ -25,17 +27,6 @@ public class PlayerLanguageChangeEvent extends Event {
         player = p;
         this.from = from;
         this.to = to;
-    }
-
-    /**
-     * Returns the {@link Player} who triggered this {@link Event},
-     * the {@link Player} who switched his {@link Language} to be precise.
-     *
-     * @return The {@link Player} who switched his {@link Language}
-     */
-    
-    public Player getPlayer() {
-        return player;
     }
 
     /**

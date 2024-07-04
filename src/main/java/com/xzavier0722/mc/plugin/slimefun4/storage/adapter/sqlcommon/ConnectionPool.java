@@ -25,7 +25,7 @@ public class ConnectionPool {
         this.usingConn = new HashSet<>();
     }
 
-    public synchronized Connection getConn() throws SQLException, InterruptedException {
+    public synchronized Connection getConn() throws InterruptedException {
         checkDestroy();
 
         if (freeConn.isEmpty()) {

@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -19,7 +20,9 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final Player player;
+    @Getter
     private final ItemStack guide;
     private SlimefunGuideMode layout;
     private boolean cancelled;
@@ -31,28 +34,6 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
         this.player = p;
         this.guide = guide;
         this.layout = layout;
-    }
-
-    /**
-     * This returns the {@link Player} that tries to open
-     * the Slimefun Guide.
-     *
-     * @return The {@link Player}
-     */
-    
-    public Player getPlayer() {
-        return player;
-    }
-
-    /**
-     * This returns the {@link ItemStack} that {@link Player}
-     * tries to open the Slimefun Guide with.
-     *
-     * @return The {@link ItemStack}
-     */
-    
-    public ItemStack getGuide() {
-        return guide;
     }
 
     /**

@@ -3,14 +3,15 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
 import io.github.thebusybiscuit.slimefun4.implementation.items.geo.GEOScanner;
-import javax.annotation.ParametersAreNonnullByDefault;
+import lombok.Getter;
 import org.bukkit.Chunk;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Biome;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * This {@link Event} is fired whenever a {@link GEOResource} is being freshly generated.
@@ -30,12 +31,16 @@ public class GEOResourceGenerationEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final World world;
+    @Getter
     private final Biome biome;
+    @Getter
     private final GEOResource resource;
     private final int x;
     private final int z;
 
+    @Getter
     private int value;
 
     @ParametersAreNonnullByDefault
@@ -47,15 +52,6 @@ public class GEOResourceGenerationEvent extends Event {
         this.z = z;
 
         this.value = value;
-    }
-
-    /**
-     * This returns the amount that will be generated of this {@link GEOResource}.
-     *
-     * @return The value aka the supply of this {@link GEOResource} to generate
-     */
-    public int getValue() {
-        return value;
     }
 
     /**
@@ -71,25 +67,6 @@ public class GEOResourceGenerationEvent extends Event {
         this.value = value;
     }
 
-    /**
-     * This returns the {@link World} in which this event takes place.
-     *
-     * @return The affected {@link World}
-     */
-    
-    public World getWorld() {
-        return world;
-    }
-
-    /**
-     * This method returns the {@link GEOResource} that is being generated
-     *
-     * @return The generated {@link GEOResource}
-     */
-    
-    public GEOResource getResource() {
-        return resource;
-    }
 
     /**
      * This returns the X coordinate of the {@link Chunk} in which the {@link GEOResource}
@@ -120,17 +97,6 @@ public class GEOResourceGenerationEvent extends Event {
     
     public Environment getEnvironment() {
         return world.getEnvironment();
-    }
-
-    /**
-     * This returns the {@link Biome} at the {@link Location} at which the {@link GEOResource} is
-     * generated.
-     *
-     * @return The {@link Biome} of this generation
-     */
-    
-    public Biome getBiome() {
-        return biome;
     }
 
     public static HandlerList getHandlerList() {

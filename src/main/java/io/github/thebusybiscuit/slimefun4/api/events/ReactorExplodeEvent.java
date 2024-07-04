@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors.Reactor;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
@@ -13,11 +14,24 @@ import org.bukkit.event.HandlerList;
  * @author TheBusyBiscuit
  *
  */
+@Getter
 public class ReactorExplodeEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
+    /**
+     * -- GETTER --
+     *  This returns the
+     *  where the reactor exploded.
+     *
+     */
     private final Location location;
+    /**
+     * -- GETTER --
+     *  The
+     *  instance of the exploded reactor.
+     *
+     */
     private final Reactor reactor;
 
     public ReactorExplodeEvent(Location l, Reactor reactor) {
@@ -28,27 +42,7 @@ public class ReactorExplodeEvent extends Event {
         this.reactor = reactor;
     }
 
-    /**
-     * This returns the {@link Location} where the reactor exploded.
-     *
-     * @return The {@link Location} of this explosion
-     */
-    
-    public Location getLocation() {
-        return location;
-    }
 
-    /**
-     * The {@link SlimefunItem} instance of the exploded reactor.
-     *
-     * @return The {@link SlimefunItem} instance
-     */
-    
-    public Reactor getReactor() {
-        return reactor;
-    }
-
-    
     public static HandlerList getHandlerList() {
         return handlers;
     }

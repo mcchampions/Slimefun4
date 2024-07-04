@@ -1,7 +1,10 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.tools.ClimbingPick;
+
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -23,9 +26,13 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private Vector velocity;
+    @Getter
     private final ClimbingPick pick;
+    @Getter
     private final ItemStack itemStack;
+    @Getter
     private final Block block;
 
     private boolean cancelled;
@@ -41,57 +48,17 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
         this.block = block;
     }
 
-    /**
-     * This returns the velocity {@link Vector} that was applied to the {@link Player}
-     * who used the {@link ClimbingPick}.
-     *
-     * @return The {@link Vector} of the applied velocity
-     */
-    
-    public Vector getVelocity() {
-        return velocity;
-    }
 
     /**
      * Use this to change the velocity {@link Vector} applied to the {@link Player}.
      *
-     * @param velocity
-     *            The {@link Vector} velocity to apply
+     * @param velocity The {@link Vector} velocity to apply
      */
     public void setVelocity(Vector velocity) {
         Validate.notNull(velocity);
         this.velocity = velocity;
     }
 
-    /**
-     * This returns the {@link ClimbingPick} that was used.
-     *
-     * @return The {@link ClimbingPick} that was used
-     */
-    
-    public ClimbingPick getPick() {
-        return pick;
-    }
-
-    /**
-     * This returns the {@link ItemStack} that was used.
-     *
-     * @return The {@link ItemStack} that was used
-     */
-    
-    public ItemStack getItemStack() {
-        return itemStack;
-    }
-
-    /**
-     * This returns the {@link Block} that was climbed.
-     *
-     * @return The {@link Block} that was climbed
-     */
-    
-    public Block getBlock() {
-        return block;
-    }
 
     @Override
     public boolean isCancelled() {
@@ -103,12 +70,12 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
         this.cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

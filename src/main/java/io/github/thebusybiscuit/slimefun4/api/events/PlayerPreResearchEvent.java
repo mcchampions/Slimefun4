@@ -5,6 +5,8 @@ import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.implementation.guide.CheatSheetSlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.implementation.guide.SurvivalSlimefunGuide;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -25,8 +27,11 @@ public class PlayerPreResearchEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final Player player;
+    @Getter
     private final Research research;
+    @Getter
     private final SlimefunItem slimefunItem;
     private boolean cancelled;
 
@@ -41,22 +46,7 @@ public class PlayerPreResearchEvent extends Event implements Cancellable {
         this.slimefunItem = slimefunItem;
     }
 
-    
-    public Player getPlayer() {
-        return player;
-    }
 
-    
-    public Research getResearch() {
-        return research;
-    }
-
-    
-    public SlimefunItem getSlimefunItem() {
-        return slimefunItem;
-    }
-
-    
     public static HandlerList getHandlerList() {
         return handlers;
     }

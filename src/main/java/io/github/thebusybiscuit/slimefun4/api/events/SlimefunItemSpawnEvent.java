@@ -4,6 +4,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import java.util.Optional;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -25,9 +27,11 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private Location location;
     private ItemStack itemStack;
     private boolean cancelled;
+    @Getter
     private final ItemSpawnReason itemSpawnReason;
     private final Player player;
 
@@ -55,23 +59,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
         return Optional.ofNullable(player);
     }
 
-    /**
-     * This returns the {@link ItemSpawnReason} why we dropped an {@link ItemStack}.
-     *
-     * @return the {@link ItemSpawnReason}.
-     */
-    public ItemSpawnReason getItemSpawnReason() {
-        return itemSpawnReason;
-    }
-
-    /**
-     * This returns the {@link Location} where we will drop the item.
-     *
-     * @return The {@link Location} where the item will be dropped
-     */
-    public Location getLocation() {
-        return location;
-    }
 
     /**
      * This sets the {@link Location} on where to drop this item.
@@ -85,11 +72,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
         this.location = location;
     }
 
-    /**
-     * This returns the {@link ItemStack} that will be dropped.
-     *
-     * @return The {@link ItemStack} that will be dropped
-     */
     public ItemStack getItemStack() {
         return itemStack;
     }

@@ -4,6 +4,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.plugin.Plugin;
 
+import java.io.Serial;
+
 /**
  * An {@link UnregisteredItemException} is thrown whenever a {@link Plugin} tried to
  * access a method prematurely from {@link SlimefunItem} that can only be called after the
@@ -17,6 +19,7 @@ import org.bukkit.plugin.Plugin;
  */
 public class UnregisteredItemException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -4684752240435069678L;
 
     /**
@@ -27,6 +30,6 @@ public class UnregisteredItemException extends RuntimeException {
      */
     @ParametersAreNonnullByDefault
     public UnregisteredItemException(SlimefunItem item) {
-        super(item.toString() + " has not been registered yet.");
+        super(item + " has not been registered yet.");
     }
 }

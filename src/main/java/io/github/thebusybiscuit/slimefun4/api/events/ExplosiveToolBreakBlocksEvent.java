@@ -3,6 +3,8 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.implementation.items.tools.ExplosiveTool;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -24,9 +26,12 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final ItemStack itemInHand;
+    @Getter
     private final ExplosiveTool explosiveTool;
     private final Block mainBlock;
+    @Getter
     private final List<Block> additionalBlocks;
     private boolean cancelled;
 
@@ -56,36 +61,6 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
     
     public Block getPrimaryBlock() {
         return this.mainBlock;
-    }
-
-    /**
-     * Gets the {@link Block} {@link List} of blocks destroyed in this event.
-     *
-     * @return The broken blocks
-     */
-    
-    public List<Block> getAdditionalBlocks() {
-        return this.additionalBlocks;
-    }
-
-    /**
-     * Gets the {@link ExplosiveTool} which triggered this event
-     *
-     * @return the {@link ExplosiveTool} that was involved
-     */
-    
-    public ExplosiveTool getExplosiveTool() {
-        return this.explosiveTool;
-    }
-
-    /**
-     * Gets the {@link ItemStack} of the tool used to destroy this block
-     *
-     * @return The {@link ItemStack} in the hand of the {@link Player}
-     */
-    
-    public ItemStack getItemInHand() {
-        return this.itemInHand;
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.ScopeKey;
+import lombok.Getter;
 
 public class LinkedKey extends ScopeKey {
     private final ScopeKey self;
     private final int hash;
+    @Getter
     private ScopeKey parent;
 
     public LinkedKey(ScopeKey self) {
@@ -20,10 +22,6 @@ public class LinkedKey extends ScopeKey {
 
     public void setParent(ScopeKey parent) {
         this.parent = parent;
-    }
-
-    public ScopeKey getParent() {
-        return parent;
     }
 
     @Override

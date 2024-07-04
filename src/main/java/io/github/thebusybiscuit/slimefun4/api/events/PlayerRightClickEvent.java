@@ -4,6 +4,8 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.data.TriStateOptional;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import java.util.Optional;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -37,8 +39,10 @@ public class PlayerRightClickEvent extends PlayerEvent {
     private final PlayerInteractEvent event;
 
     private final Optional<ItemStack> itemStack;
+    @Getter
     private final Optional<Block> clickedBlock;
 
+    @Getter
     private final EquipmentSlot hand;
     private final BlockFace face;
 
@@ -98,23 +102,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
         return itemStack.orElse(new ItemStack(Material.AIR));
     }
 
-    /**
-     * This returns the hand that was used in this interaction.
-     * Can either be {@code EquipmentSlot.HAND} or {@code EquipmentSlot.OFF_HAND}.
-     *
-     * @return The hand used in this {@link Event}
-     */
-    
-    public EquipmentSlot getHand() {
-        return hand;
-    }
 
-    
-    public Optional<Block> getClickedBlock() {
-        return clickedBlock;
-    }
-
-    
     public BlockFace getClickedFace() {
         return face;
     }

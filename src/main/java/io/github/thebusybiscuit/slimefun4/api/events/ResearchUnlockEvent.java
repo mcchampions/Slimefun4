@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -20,7 +21,9 @@ public class ResearchUnlockEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final Player player;
+    @Getter
     private final Research research;
     private boolean cancelled;
 
@@ -34,15 +37,6 @@ public class ResearchUnlockEvent extends Event implements Cancellable {
         this.research = research;
     }
 
-    
-    public Player getPlayer() {
-        return player;
-    }
-
-    
-    public Research getResearch() {
-        return research;
-    }
 
     @Override
     public boolean isCancelled() {

@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoEnchanter;
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.apache.commons.lang.Validate;
 import org.bukkit.event.Cancellable;
@@ -18,8 +19,29 @@ public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable
 
     private static final HandlerList handlers = new HandlerList();
 
+    /**
+     * -- GETTER --
+     *  This returns the
+     *  that is being enchanted.
+     *
+     */
+    @Getter
     private final ItemStack item;
+    /**
+     * -- GETTER --
+     *  This returns the
+     *  that is being used enchanted book
+     *
+     */
+    @Getter
     private final ItemStack enchantedBook;
+    /**
+     * -- GETTER --
+     *  This returns the
+     * 's
+     *
+     */
+    @Getter
     private final BlockMenu menu;
 
     private boolean cancelled;
@@ -37,37 +59,7 @@ public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable
         this.menu = menu;
     }
 
-    /**
-     * This returns the {@link ItemStack} that is being enchanted.
-     *
-     * @return The {@link ItemStack} that is being enchanted
-     */
-    
-    public ItemStack getItem() {
-        return item;
-    }
 
-    /**
-     * This returns the {@link ItemStack} that is being used enchanted book
-     *
-     * @return The {@link ItemStack} that is being used enchanted book
-     */
-    
-    public ItemStack getEnchantedBook() {
-        return enchantedBook;
-    }
-
-    /**
-     * This returns the {@link AutoEnchanter}'s {@link BlockMenu}
-     *
-     * @return The {@link BlockMenu} of {@link AutoEnchanter} that is enchanting item
-     */
-    
-    public BlockMenu getMenu() {
-        return menu;
-    }
-
-    
     public static HandlerList getHandlerList() {
         return handlers;
     }

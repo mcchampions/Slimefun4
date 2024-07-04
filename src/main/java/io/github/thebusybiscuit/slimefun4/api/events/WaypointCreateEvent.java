@@ -3,6 +3,7 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.api.gps.GPSNetwork;
 import io.github.thebusybiscuit.slimefun4.api.gps.TeleportationManager;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -25,9 +26,12 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private Location location;
+    @Getter
     private String name;
 
+    @Getter
     private final boolean deathpoint;
     private boolean cancelled;
 
@@ -42,15 +46,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
         this.deathpoint = name.startsWith("player:death ");
     }
 
-    /**
-     * This returns the {@link Location} of the waypoint that should be created.
-     *
-     * @return The {@link Location} of this waypoint
-     */
-    
-    public Location getLocation() {
-        return location;
-    }
 
     /**
      * This sets the {@link Location} of the waypoint.
@@ -63,15 +58,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
         this.location = loc;
     }
 
-    /**
-     * This returns the name of the waypoint.
-     *
-     * @return The name of this waypoint
-     */
-    
-    public String getName() {
-        return name;
-    }
 
     /**
      * This sets the name of the waypoint to the given argument.
@@ -82,16 +68,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
     public void setName(String name) {
         Validate.notEmpty(name, "The name of a waypoint must not be empty!");
         this.name = name;
-    }
-
-    /**
-     * This method returns whether this waypoint was created by an Emergency Transmitter.
-     * This should mean that our {@link Player} has died.
-     *
-     * @return Whether this is a deathpoint
-     */
-    public boolean isDeathpoint() {
-        return deathpoint;
     }
 
     @Override

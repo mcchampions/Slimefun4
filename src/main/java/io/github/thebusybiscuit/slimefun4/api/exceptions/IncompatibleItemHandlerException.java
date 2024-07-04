@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.plugin.Plugin;
 
+import java.io.Serial;
+
 /**
  * An {@link IncompatibleItemHandlerException} is thrown whenever a {@link Plugin} tried
  * to add an {@link ItemHandler} to a {@link SlimefunItem} despite the {@link SlimefunItem}
@@ -22,6 +24,7 @@ import org.bukkit.plugin.Plugin;
  */
 public class IncompatibleItemHandlerException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -6723066421114874138L;
 
     /**

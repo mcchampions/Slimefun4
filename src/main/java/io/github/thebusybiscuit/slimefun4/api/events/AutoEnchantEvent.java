@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoEnchanter;
+import lombok.Getter;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -18,6 +19,7 @@ public class AutoEnchantEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final ItemStack item;
     private boolean cancelled;
 
@@ -27,15 +29,6 @@ public class AutoEnchantEvent extends Event implements Cancellable {
         this.item = item;
     }
 
-    /**
-     * This returns the {@link ItemStack} that is being enchanted.
-     *
-     * @return The {@link ItemStack} that is being enchanted
-     */
-    
-    public ItemStack getItem() {
-        return item;
-    }
 
     @Override
     public boolean isCancelled() {

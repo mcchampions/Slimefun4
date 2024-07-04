@@ -1,7 +1,10 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -18,22 +21,21 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final Block blockPlaced;
+    @Getter
     private final SlimefunItem slimefunItem;
     private final ItemStack placedItem;
+    @Getter
     private final Player player;
 
     private boolean cancelled = false;
 
     /**
-     * @param player
-     *        The {@link Player} who placed this {@link SlimefunItem}
-     * @param placedItem
-     *        The {@link ItemStack} held by the {@link Player}
-     * @param blockPlaced
-     *        The {@link Block} placed by the {@link Player}
-     * @param slimefunItem
-     *        The {@link SlimefunItem} within the {@link ItemStack}
+     * @param player       The {@link Player} who placed this {@link SlimefunItem}
+     * @param placedItem   The {@link ItemStack} held by the {@link Player}
+     * @param blockPlaced  The {@link Block} placed by the {@link Player}
+     * @param slimefunItem The {@link SlimefunItem} within the {@link ItemStack}
      */
     @ParametersAreNonnullByDefault
     public SlimefunBlockPlaceEvent(Player player, ItemStack placedItem, Block blockPlaced, SlimefunItem slimefunItem) {
@@ -46,24 +48,6 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
     }
 
     /**
-     * This gets the placed {@link Block}
-     *
-     * @return The placed {@link Block}
-     */
-    public Block getBlockPlaced() {
-        return blockPlaced;
-    }
-
-    /**
-     * This gets the {@link SlimefunItem} being placed
-     *
-     * @return The {@link SlimefunItem} being placed
-     */
-    public SlimefunItem getSlimefunItem() {
-        return slimefunItem;
-    }
-
-    /**
      * This gets the placed {@link ItemStack}.
      *
      * @return The placed {@link ItemStack}
@@ -72,14 +56,6 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
         return placedItem;
     }
 
-    /**
-     * This gets the {@link Player}
-     *
-     * @return The {@link Player}
-     */
-    public Player getPlayer() {
-        return player;
-    }
 
     @Override
     public boolean isCancelled() {

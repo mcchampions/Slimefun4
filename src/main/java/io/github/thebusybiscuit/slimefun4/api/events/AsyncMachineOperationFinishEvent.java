@@ -4,6 +4,8 @@ import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineOperation;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -19,6 +21,7 @@ public class AsyncMachineOperationFinishEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final BlockPosition position;
     private final MachineProcessor<?> machineProcessor;
     private final MachineOperation machineOperation;
@@ -30,16 +33,6 @@ public class AsyncMachineOperationFinishEvent extends Event {
         this.position = pos;
         this.machineProcessor = processor;
         this.machineOperation = operation;
-    }
-
-    /**
-     * This returns the {@link BlockPosition} of the machine.
-     *
-     * @return The {@link BlockPosition} of the machine
-     */
-    
-    public BlockPosition getPosition() {
-        return position;
     }
 
     /**

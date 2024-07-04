@@ -2,6 +2,8 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import java.util.UUID;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -23,6 +25,7 @@ public class AsyncProfileLoadEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
     private final UUID uniqueId;
+    @Getter
     private PlayerProfile profile;
 
     public AsyncProfileLoadEvent(PlayerProfile profile) {
@@ -39,10 +42,6 @@ public class AsyncProfileLoadEvent extends Event {
         return uniqueId;
     }
 
-    
-    public PlayerProfile getProfile() {
-        return profile;
-    }
 
     /**
      * This method can be used to inject your custom {@link PlayerProfile} implementations.

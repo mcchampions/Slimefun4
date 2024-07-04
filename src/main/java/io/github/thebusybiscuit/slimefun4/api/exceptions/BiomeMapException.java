@@ -4,6 +4,8 @@ import io.github.thebusybiscuit.slimefun4.utils.biomes.BiomeMap;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.NamespacedKey;
 
+import java.io.Serial;
+
 /**
  * A {@link BiomeMapException} is thrown whenever a {@link BiomeMap}
  * contains illegal, invalid or unknown values.
@@ -13,6 +15,7 @@ import org.bukkit.NamespacedKey;
  */
 public class BiomeMapException extends Exception {
 
+    @Serial
     private static final long serialVersionUID = -1894334121194788527L;
 
     /**

@@ -21,8 +21,8 @@ public class ChestMenu extends SlimefunInventoryHolder {
 
     private boolean clickable;
     private boolean emptyClickable;
-    private String title;
-    private List<ItemStack> items;
+    private final String title;
+    private final List<ItemStack> items;
     /**
      * Size of chestmenu
      * Warning: it DOES NOT present actual size of its inventory!
@@ -377,12 +377,12 @@ public class ChestMenu extends SlimefunInventoryHolder {
     @FunctionalInterface
     public interface MenuOpeningHandler {
 
-        public void onOpen(Player p);
+        void onOpen(Player p);
     }
 
     @FunctionalInterface
     public interface MenuCloseHandler {
 
-        public void onClose(Player p);
+        void onClose(Player p);
     }
 }

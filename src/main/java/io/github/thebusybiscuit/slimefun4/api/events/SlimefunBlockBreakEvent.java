@@ -1,7 +1,10 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -18,22 +21,22 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
+    @Getter
     private final Block blockBroken;
+    @Getter
     private final SlimefunItem slimefunItem;
+    @Getter
     private final ItemStack heldItem;
+    @Getter
     private final Player player;
 
     private boolean cancelled = false;
 
     /**
-     * @param player
-     *        The {@link Player} who broke this {@link SlimefunItem}
-     * @param heldItem
-     *        The {@link ItemStack} held by the {@link Player}
-     * @param blockBroken
-     *        The {@link Block} broken by the {@link Player}
-     * @param slimefunItem
-     *        The {@link SlimefunItem} within the {@link ItemStack}
+     * @param player       The {@link Player} who broke this {@link SlimefunItem}
+     * @param heldItem     The {@link ItemStack} held by the {@link Player}
+     * @param blockBroken  The {@link Block} broken by the {@link Player}
+     * @param slimefunItem The {@link SlimefunItem} within the {@link ItemStack}
      */
     @ParametersAreNonnullByDefault
     public SlimefunBlockBreakEvent(Player player, ItemStack heldItem, Block blockBroken, SlimefunItem slimefunItem) {
@@ -45,41 +48,6 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
         this.slimefunItem = slimefunItem;
     }
 
-    /**
-     * This gets the broken {@link Block}
-     *
-     * @return The broken {@link Block}
-     */
-    public Block getBlockBroken() {
-        return blockBroken;
-    }
-
-    /**
-     * This gets the {@link SlimefunItem} being broken
-     *
-     * @return The {@link SlimefunItem} being broken
-     */
-    public SlimefunItem getSlimefunItem() {
-        return slimefunItem;
-    }
-
-    /**
-     * The {@link ItemStack} held by the {@link Player}
-     *
-     * @return The held {@link ItemStack}
-     */
-    public ItemStack getHeldItem() {
-        return heldItem;
-    }
-
-    /**
-     * This gets the {@link Player}
-     *
-     * @return The {@link Player}
-     */
-    public Player getPlayer() {
-        return player;
-    }
 
     @Override
     public boolean isCancelled() {
