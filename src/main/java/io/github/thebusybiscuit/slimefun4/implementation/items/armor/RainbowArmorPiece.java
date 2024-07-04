@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.Arrays;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
@@ -17,8 +19,16 @@ import org.bukkit.potion.PotionEffect;
  *
  * @author martinbrom
  */
+@Getter
 public class RainbowArmorPiece extends SlimefunArmorPiece {
 
+    /**
+     * -- GETTER --
+     *  Returns the
+     * s this
+     *  cycles between
+     *
+     */
     private final Color[] colors;
 
     /**
@@ -50,12 +60,4 @@ public class RainbowArmorPiece extends SlimefunArmorPiece {
         colors = Arrays.stream(dyeColors).map(DyeColor::getColor).toArray(Color[]::new);
     }
 
-    /**
-     * Returns the {@link Color}s this {@link RainbowArmorPiece} cycles between
-     *
-     * @return The {@link Color}s of this {@link RainbowArmorPiece}
-     */
-    public Color[] getColors() {
-        return colors;
-    }
 }

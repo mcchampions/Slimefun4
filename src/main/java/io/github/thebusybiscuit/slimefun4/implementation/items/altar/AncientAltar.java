@@ -12,6 +12,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.AncientAltarTask;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -36,6 +38,7 @@ public class AncientAltar extends SlimefunItem {
      */
     private static final int DEFAULT_STEP_DELAY = 8;
 
+    @Getter
     private final List<AltarRecipe> recipes = new ArrayList<>();
 
     private final ItemSetting<Integer> stepDelay =
@@ -59,8 +62,5 @@ public class AncientAltar extends SlimefunItem {
         return stepDelay.getValue();
     }
 
-    
-    public List<AltarRecipe> getRecipes() {
-        return recipes;
-    }
+
 }

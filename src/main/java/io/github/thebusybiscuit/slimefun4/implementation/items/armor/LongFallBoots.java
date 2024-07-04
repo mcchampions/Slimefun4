@@ -5,6 +5,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
@@ -17,8 +19,15 @@ import org.bukkit.potion.PotionEffect;
  * @author TheBusyBiscuit
  *
  */
+@Getter
 public class LongFallBoots extends SlimefunArmorPiece {
 
+    /**
+     * -- GETTER --
+     *  This returns the
+     *  that is played upon landing with these boots.
+     *
+     */
     private final SoundEffect soundEffect;
 
     /**
@@ -48,13 +57,4 @@ public class LongFallBoots extends SlimefunArmorPiece {
         this.soundEffect = soundEffect;
     }
 
-    /**
-     * This returns the {@link SoundEffect} that is played upon landing with these boots.
-     *
-     * @return The {@link SoundEffect} played when landing
-     */
-    
-    public SoundEffect getSoundEffect() {
-        return soundEffect;
-    }
 }

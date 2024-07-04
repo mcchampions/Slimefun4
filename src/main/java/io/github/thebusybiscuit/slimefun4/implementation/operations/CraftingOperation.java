@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.implementation.operations;
 
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineOperation;
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +14,9 @@ import org.bukkit.inventory.ItemStack;
  */
 public class CraftingOperation implements MachineOperation {
 
+    @Getter
     private final ItemStack[] ingredients;
+    @Getter
     private final ItemStack[] results;
 
     private final int totalTicks;
@@ -41,15 +44,6 @@ public class CraftingOperation implements MachineOperation {
         currentTicks += num;
     }
 
-    
-    public ItemStack[] getIngredients() {
-        return ingredients;
-    }
-
-    
-    public ItemStack[] getResults() {
-        return results;
-    }
 
     @Override
     public int getProgress() {

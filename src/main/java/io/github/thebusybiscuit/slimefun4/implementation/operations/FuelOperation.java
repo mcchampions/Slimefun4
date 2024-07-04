@@ -2,6 +2,8 @@ package io.github.thebusybiscuit.slimefun4.implementation.operations;
 
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineOperation;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
@@ -14,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class FuelOperation implements MachineOperation {
 
+    @Getter
     private final ItemStack ingredient;
     private final ItemStack result;
 
@@ -39,10 +42,6 @@ public class FuelOperation implements MachineOperation {
         currentTicks += num;
     }
 
-    
-    public ItemStack getIngredient() {
-        return ingredient;
-    }
 
     @Nullable public ItemStack getResult() {
         return result;

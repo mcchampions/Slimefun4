@@ -5,21 +5,18 @@ import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
-import java.util.logging.Level;
-import javax.annotation.ParametersAreNonnullByDefault;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.io.File;
+import java.util.*;
+import java.util.logging.Level;
 
 /**
  * A {@link Script} represents runnable code for a {@link ProgrammableAndroid}.
@@ -30,7 +27,23 @@ import org.bukkit.inventory.ItemStack;
 public final class Script {
 
     private final Config config;
+    /**
+     * -- GETTER --
+     *  This returns the name of this
+     * .
+     *
+     */
+    @Getter
     private final String name;
+    /**
+     * -- GETTER --
+     *  This returns the author of this
+     * .
+     *  The author is the person who initially created and uploaded this
+     * .
+     *
+     */
+    @Getter
     private final String author;
     private final String code;
 
@@ -56,27 +69,6 @@ public final class Script {
 
         OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString(uuid));
         this.author = player.getName() != null ? player.getName() : config.getString("author_name");
-    }
-
-    /**
-     * This returns the name of this {@link Script}.
-     *
-     * @return The name
-     */
-    
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * This returns the author of this {@link Script}.
-     * The author is the person who initially created and uploaded this {@link Script}.
-     *
-     * @return The author of this {@link Script}
-     */
-    
-    public String getAuthor() {
-        return author;
     }
 
     /**
@@ -220,7 +212,7 @@ public final class Script {
             loadScripts(scripts, AndroidType.NONE);
         }
 
-        Collections.sort(scripts, Comparator.comparingInt(script -> -script.getUpvotes() + 1 - script.getDownvotes()));
+        scripts.sort(Comparator.comparingInt(script -> -script.getUpvotes() + 1 - script.getDownvotes()));
         return scripts;
     }
 
