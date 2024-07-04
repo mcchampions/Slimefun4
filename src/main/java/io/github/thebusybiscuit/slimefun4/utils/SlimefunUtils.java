@@ -645,7 +645,7 @@ public final class SlimefunUtils {
     public static Collection<ItemStack> getDrops(SlimefunItem sfItem, Location loc) {
         Collection<ItemStack> tempDrops = new ArrayList<>(sfItem.getDrops());
         tempDrops.remove(sfItem.getItem());
-        tempDrops.add(Slimefun.getDatabaseManager().getBlockDataController().getBlockData(loc).getSfItemStack());
+        tempDrops.addAll(Slimefun.getDatabaseManager().getBlockDataController().getBlockData(loc).getSfItemStack().getDrops());
         return tempDrops;
     }
 
@@ -654,7 +654,7 @@ public final class SlimefunUtils {
         SlimefunItem sfItem = SlimefunItem.getById(blockData.getSfId());
         Collection<ItemStack> tempDrops = new ArrayList<>(sfItem.getDrops());
         tempDrops.remove(sfItem.getItem());
-        tempDrops.add(blockData.getSfItemStack());
+        tempDrops.addAll(blockData.getSfItemStack().getDrops());
         return tempDrops;
     }
 }
