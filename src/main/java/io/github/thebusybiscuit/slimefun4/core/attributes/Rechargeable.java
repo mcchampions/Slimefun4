@@ -77,6 +77,14 @@ public interface Rechargeable extends ItemAttribute {
         return ChargeUtils.getCharge(item.getItemMeta());
     }
 
+    default float getDistanceToMaxCharge(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        float currentCharge = ChargeUtils.getCharge(meta);
+        float maximum = getMaxItemCharge(item);
+
+        return maximum - currentCharge;
+    }
+
     /**
      * This method adds the given charge to the provided {@link ItemStack}.
      * The method will also return whether this operation was successful.
@@ -100,7 +108,6 @@ public interface Rechargeable extends ItemAttribute {
         float currentCharge = ChargeUtils.getCharge(meta);
         float maximum = getMaxItemCharge(item);
 
-        // If the item is already fully charged, we abort.
         if (currentCharge >= maximum) {
             return false;
         }

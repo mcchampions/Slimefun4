@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
+import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Material;
@@ -34,50 +36,23 @@ public class ChargingBench extends AContainer {
         if (getCharge(b.getLocation()) < getEnergyConsumption()) {
             return;
         }
-
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
         for (int slot : getInputSlots()) {
             ItemStack item = inv.getItemInSlot(slot);
-            if (item.getAmount() != 1) {
-                if (chargeOne(b, inv, slot, item)) {
+            if (item != null) {
+                if (charge(b, inv, slot, item)) {
                     return;
                 }
             }
-            if (charge(b, inv, slot, item)) {
-                return;
-            }
         }
-    }
-
-
-    private boolean chargeOne(Block b, BlockMenu inv, int slot, ItemStack item) {
-        SlimefunItem sfItem = SlimefunItem.getByItem(item);
-
-        if (sfItem instanceof Rechargeable rechargeable) {
-            float charge = getEnergyConsumption() / 2F;
-
-            if (rechargeable.addItemCharge(item, charge)) {
-                removeCharge(b.getLocation(), getEnergyConsumption());
-            } else if (inv.fits(item, getOutputSlots())) {
-                inv.pushItem((SlimefunItemStack) sfItem.getItem(), getOutputSlots());
-                item.setAmount(item.getAmount() - 1);
-            }
-
-            return true;
-        } else if (sfItem != null && inv.fits(item, getOutputSlots())) {
-            inv.pushItem((SlimefunItemStack) sfItem.getItem(), getOutputSlots());
-            // 不可充电物品直接过
-            inv.replaceExistingItem(slot, null);
-        }
-        return false;
     }
 
     private boolean charge(Block b, BlockMenu inv, int slot, ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         if (sfItem instanceof Rechargeable rechargeable) {
-            float charge = getEnergyConsumption() / 2F;
+            float charge = getEnergyConsumption() / 2F / item.getAmount();
 
             if (rechargeable.addItemCharge(item, charge)) {
                 removeCharge(b.getLocation(), getEnergyConsumption());
