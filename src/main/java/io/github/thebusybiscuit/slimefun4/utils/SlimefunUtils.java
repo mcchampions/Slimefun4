@@ -338,7 +338,7 @@ public final class SlimefunUtils {
             } else if (sfitem.hasItemMeta()) {
                 ItemMeta sfItemMeta = sfitem.getItemMeta();
                 Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing meta (vanilla items?) - {} == {} (lore: {})", itemMeta, sfItemMeta, checkLore);
-                return equalsItemMeta(itemMeta, sfItemMeta, checkLore, !checkCustomModelData);
+                return equalsItemMeta(itemMeta, sfItemMeta, checkLore, checkCustomModelData);
             } else {
                 return false;
             }
@@ -356,7 +356,7 @@ public final class SlimefunUtils {
     }
 
     private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
-        return equalsItemMeta(itemMeta, itemMetaSnapshot, checkLore, true);
+        return equalsItemMeta(itemMeta, itemMetaSnapshot, checkLore, false);
     }
 
     private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore, boolean checkCustomModelCheck) {
@@ -376,7 +376,7 @@ public final class SlimefunUtils {
             }
         }
 
-        if (!checkCustomModelCheck) {
+        if (checkCustomModelCheck) {
             return true;
         }
 
