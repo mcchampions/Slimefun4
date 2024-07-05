@@ -103,7 +103,6 @@ public class LocalizationService extends SlimefunLocalization {
     }
 
     @Override
-    
     public NamespacedKey getKey() {
         return languageKey;
     }
