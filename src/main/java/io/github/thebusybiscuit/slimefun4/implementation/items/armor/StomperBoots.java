@@ -13,6 +13,8 @@ import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.damage.DamageSource;
+import org.bukkit.damage.DamageType;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -53,12 +55,21 @@ public class StomperBoots extends SlimefunItem {
                 entity.setVelocity(velocity);
 
                 // Check if it's not a Player or if PvP is enabled
-                if (!(entity instanceof Player)
+                boolean isPlayerAttack = entity instanceof Player;
+                if (!isPlayerAttack
                         || (player.getWorld().getPVP()
                                 && Slimefun.getProtectionManager()
                                         .hasPermission(player, entity.getLocation(), Interaction.ATTACK_PLAYER))) {
+                    /* TODO: 替换初始化函数调用（此初始化函数将被移除），并兼容新旧版本
+
+                    be like(没有兼容1.20.4以下版本):
+                    DamageSource damageSource = DamageSource.builder(DamageType.PLAYER_ATTACK).withCausingEntity(player).build();
                     EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(
-                            player, entity, DamageCause.ENTITY_ATTACK, fallDamageEvent.getDamage() / 2);
+                            player, entity, DamageCause.ENTITY_ATTACK,damageSource,fallDamageEvent.getDamage() / 2);
+                    */
+
+                    EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(
+                            player, entity, DamageCause.ENTITY_ATTACK,fallDamageEvent.getDamage() / 2);
                     Bukkit.getPluginManager().callEvent(event);
 
                     if (!event.isCancelled()) {
