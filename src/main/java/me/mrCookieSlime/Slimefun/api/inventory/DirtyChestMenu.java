@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
 import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -106,8 +107,8 @@ public class DirtyChestMenu extends ChestMenu {
                 Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - Check slimefun item fits");
 
                 if (!slotItem.hasItemMeta()
-                        || item.getType() != slotItem.getType()
-                        || !SlimefunUtils.isItemSimilar(slotItem, wrapper, true, false)) {
+                    || item.getType() != slotItem.getType()
+                    || !SlimefunUtils.isItemSimilar(slotItem, wrapper, true, false)) {
                     continue;
                 }
 
@@ -148,7 +149,8 @@ public class DirtyChestMenu extends ChestMenu {
      * @return {@link ItemStack} with any items that did not fit into the inventory
      * or null when everything had fit
      */
-    @Nullable public ItemStack pushItem(ItemStack item, int... slots) {
+    @Nullable
+    public ItemStack pushItem(ItemStack item, int... slots) {
         if (item == null || item.getType() == Material.AIR) {
             throw new IllegalArgumentException("Cannot push null or AIR");
         }
@@ -211,7 +213,8 @@ public class DirtyChestMenu extends ChestMenu {
      * @return {@link ItemStack} with any items that did not fit into the inventory
      * or null when everything had fit
      */
-    @Nullable public ItemStack pushItem(SlimefunItemStack item, int... slots) {
+    @Nullable
+    public ItemStack pushSlimefunItem(ItemStack item, int... slots) {
         int amount = item.getAmount();
 
         for (int slot : slots) {
@@ -227,7 +230,7 @@ public class DirtyChestMenu extends ChestMenu {
                 int maxStackSize =
                         Math.min(stack.getMaxStackSize(), toInventory().getMaxStackSize());
                 if (stack.getAmount() < maxStackSize) {
-                    if (!SlimefunUtils.isSlimefunItemSimilar(item,stack)) {
+                    if (!SlimefunUtils.isSlimefunItemSimilar((SlimefunItemStack) SlimefunItem.getByItem(item).getItem(), stack)) {
                         continue;
                     }
 

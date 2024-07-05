@@ -57,13 +57,13 @@ public class ChargingBench extends AContainer {
             if (rechargeable.addItemCharge(item, charge)) {
                 removeCharge(b.getLocation(), getEnergyConsumption());
             } else if (inv.fits(item, getOutputSlots())) {
-                inv.pushItem((SlimefunItemStack) sfItem.getItem(), getOutputSlots());
+                inv.pushSlimefunItem(item, getOutputSlots());
                 inv.replaceExistingItem(slot, null);
             }
 
             return true;
         } else if (sfItem != null && inv.fits(item, getOutputSlots())) {
-            inv.pushItem((SlimefunItemStack) sfItem.getItem(), getOutputSlots());
+            inv.pushSlimefunItem(item, getOutputSlots());
             inv.replaceExistingItem(slot, null);
         }
         return false;
