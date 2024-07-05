@@ -118,7 +118,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final MinecraftRecipeService recipeService = new MinecraftRecipeService(this);
     private final HologramsService hologramsService = new HologramsService(this);
     private final SoundService soundService = new SoundService(this);
-    private final ThreadService threadService = new ThreadService(this);
 
     // Some other things we need
     private final IntegrationsManager integrations = new IntegrationsManager(this);
@@ -976,13 +975,4 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         return instance.chatCatcher;
     }
 
-    /**
-     * This method returns the {@link ThreadService} of Slimefun.
-     * <b>Do not use this if you're an addon. Please make your own {@link ThreadService}.</b>
-     *
-     * @return The {@link ThreadService} for Slimefun
-     */
-    public static ThreadService getThreadService() {
-        return instance().threadService;
-    }
 }
