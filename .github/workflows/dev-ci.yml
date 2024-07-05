@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: 17
+          java-version: ${{ vars.JAVA_CI_VERSION }}
           java-package: jdk
           architecture: x64
           cache: maven

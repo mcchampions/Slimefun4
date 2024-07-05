@@ -23,7 +23,9 @@ public enum TestCase {
 
     UTILS,
 
-    ENERGYNET;
+    ENERGYNET,
+
+    ANALYTICS;
 
     TestCase() {}
 

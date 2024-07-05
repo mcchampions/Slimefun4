@@ -8,12 +8,13 @@ import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.WrongItemStackException;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.configuration.serialization.SerializableAs;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -23,11 +24,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import javax.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -42,6 +39,7 @@ import java.util.function.Consumer;
 public class SlimefunItemStack extends ItemStack {
 
     private final String id;
+    @Getter
     private ItemMetaSnapshot itemMetaSnapshot;
 
     private boolean locked = false;
@@ -166,7 +164,7 @@ public class SlimefunItemStack extends ItemStack {
                 potionMeta.addCustomEffect(effect, true);
 
                 if (effect.getType().equals(PotionEffectType.SATURATION)) {
-                    im.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+                    im.addItemFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
                 }
             }
         });
@@ -240,10 +238,6 @@ public class SlimefunItemStack extends ItemStack {
     public @Nullable <T extends SlimefunItem> T getItem(Class<T> type) {
         SlimefunItem item = getItem();
         return type.isInstance(item) ? type.cast(item) : null;
-    }
-
-    public ItemMetaSnapshot getItemMetaSnapshot() {
-        return itemMetaSnapshot;
     }
 
     @Override

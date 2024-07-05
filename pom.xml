@@ -9,7 +9,7 @@
 
     <!-- Our default version will be UNOFFICIAL, this will prevent auto updates -->
     <!-- from overriding our local test file -->
-    <version>5.0-SNAPSHOT</version>
+    <version>UNOFFICIAL</version>
     <inceptionYear>2013</inceptionYear>
     <packaging>jar</packaging>
 
@@ -26,7 +26,7 @@
         <maven.compiler.target>16</maven.compiler.target>
 
         <!-- Spigot properties -->
-        <spigot.version>1.20</spigot.version>
+        <spigot.version>1.20.6</spigot.version>
         <spigot.javadocs>https://hub.spigotmc.org/javadocs/spigot/</spigot.javadocs>
     </properties>
 
@@ -105,7 +105,7 @@
                 <!-- Compiler plugin -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.12.1</version>
+                <version>3.13.0</version>
 
                 <configuration>
                     <excludes>
@@ -113,13 +113,13 @@
                         <!-- We can safely exclude them from the final jar -->
                         <exclude>**/package-info.java</exclude>
                     </excludes>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>21</source>
+                    <target>21</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.30</version>
+                            <version>1.18.34</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -269,7 +269,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
+            <version>1.18.34</version>
             <scope>provided</scope>
         </dependency>
 
@@ -277,7 +277,7 @@
         <dependency>
             <groupId>com.github.starwishsama.dough</groupId>
             <artifactId>dough-api</artifactId>
-            <version>f266e39d48</version>
+            <version>d783252831</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

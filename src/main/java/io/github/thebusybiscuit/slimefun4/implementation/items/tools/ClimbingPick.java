@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.ClimbableSurface;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -143,7 +144,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         double speed = getClimbingSpeed(type);
 
         if (speed > 0) {
-            int efficiencyLevel = item.getEnchantmentLevel(Enchantment.DIG_SPEED);
+            int efficiencyLevel = item.getEnchantmentLevel(VersionedEnchantment.EFFICIENCY);
 
             if (efficiencyLevel > 0) {
                 speed += efficiencyLevel * EFFICIENCY_MODIFIER;

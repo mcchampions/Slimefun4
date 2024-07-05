@@ -1,7 +1,11 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
+import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -13,12 +17,13 @@ import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 /**
- * This is a simple utility classs for spawning random and colorful {@link Firework} rockets.
+ * This is a simple utility class for spawning random and colorful {@link Firework} rockets.
  *
  * @author TheBusyBiscuit
  */
 public final class FireworkUtils {
 
+    // @formatter:off
     private static final Color[] COLORS = {
         Color.AQUA,
         Color.BLACK,
@@ -38,16 +43,27 @@ public final class FireworkUtils {
         Color.WHITE,
         Color.YELLOW
     };
+    // @formatter:on
 
-    private FireworkUtils() {}
+    private static final EntityType firework;
+
+    static {
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)) {
+            firework = EntityType.FIREWORK_ROCKET;
+        } else {
+            firework = EntityType.valueOf("FIREWORK");
+        }
+    }
+
+    private FireworkUtils() {
+    }
 
     public static void launchFirework(Location l, Color color) {
         createFirework(l, color);
     }
 
-    
     public static Firework createFirework(Location l, Color color) {
-        Firework fw = (Firework) l.getWorld().spawnEntity(l, EntityType.FIREWORK);
+        Firework fw = (Firework) l.getWorld().spawnEntity(l, firework);
         FireworkMeta meta = fw.getFireworkMeta();
 
         meta.setDisplayName(ChatColor.GREEN + "Slimefun Research");
@@ -71,17 +87,29 @@ public final class FireworkUtils {
         }
     }
 
-    
+    /**
+     * This returns a randomized {@link FireworkEffect} using the given {@link Color}.
+     *
+     * @param random The {@link Random} instance to use
+     * @param color  The {@link Color} of this {@link FireworkEffect}
+     * @return A randomized {@link FireworkEffect}
+     */
     public static FireworkEffect getRandomEffect(Random random, Color color) {
+        // @formatter:off
         return FireworkEffect.builder()
                 .flicker(random.nextBoolean())
                 .withColor(color)
                 .with(random.nextBoolean() ? Type.BALL : Type.BALL_LARGE)
                 .trail(random.nextBoolean())
                 .build();
+        // @formatter:on
     }
 
-    
+    /**
+     * This returns a random {@link Color} for our {@link FireworkEffect}.
+     *
+     * @return A random {@link Color}
+     */
     private static Color getRandomColor() {
         return COLORS[ThreadLocalRandom.current().nextInt(COLORS.length)];
     }
