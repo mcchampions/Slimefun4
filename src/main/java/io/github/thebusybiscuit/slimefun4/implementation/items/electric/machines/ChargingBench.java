@@ -16,9 +16,7 @@ import org.bukkit.inventory.ItemStack;
  * The {@link ChargingBench} is a powered machine that can be used to charge any {@link Rechargeable} item.
  *
  * @author TheBusyBiscuit
- *
  * @see Rechargeable
- *
  */
 public class ChargingBench extends AContainer {
 
@@ -41,11 +39,38 @@ public class ChargingBench extends AContainer {
 
         for (int slot : getInputSlots()) {
             ItemStack item = inv.getItemInSlot(slot);
-
+            if (item.getAmount() != 1) {
+                if (chargeOne(b, inv, slot, item)) {
+                    return;
+                }
+            }
             if (charge(b, inv, slot, item)) {
                 return;
             }
         }
+    }
+
+
+    private boolean chargeOne(Block b, BlockMenu inv, int slot, ItemStack item) {
+        SlimefunItem sfItem = SlimefunItem.getByItem(item);
+
+        if (sfItem instanceof Rechargeable rechargeable) {
+            float charge = getEnergyConsumption() / 2F;
+
+            if (rechargeable.addItemCharge(item, charge)) {
+                removeCharge(b.getLocation(), getEnergyConsumption());
+            } else if (inv.fits(item, getOutputSlots())) {
+                inv.pushItem((SlimefunItemStack) sfItem.getItem(), getOutputSlots());
+                item.setAmount(item.getAmount() - 1);
+            }
+
+            return true;
+        } else if (sfItem != null && inv.fits(item, getOutputSlots())) {
+            inv.pushItem((SlimefunItemStack) sfItem.getItem(), getOutputSlots());
+            // 不可充电物品直接过
+            inv.replaceExistingItem(slot, null);
+        }
+        return false;
     }
 
     private boolean charge(Block b, BlockMenu inv, int slot, ItemStack item) {
@@ -57,16 +82,15 @@ public class ChargingBench extends AContainer {
             if (rechargeable.addItemCharge(item, charge)) {
                 removeCharge(b.getLocation(), getEnergyConsumption());
             } else if (inv.fits(item, getOutputSlots())) {
-                inv.pushItem(item, getOutputSlots());
+                inv.pushItem((SlimefunItemStack) sfItem.getItem(), getOutputSlots());
                 inv.replaceExistingItem(slot, null);
             }
 
             return true;
         } else if (sfItem != null && inv.fits(item, getOutputSlots())) {
-            inv.pushItem(item, getOutputSlots());
+            inv.pushItem((SlimefunItemStack) sfItem.getItem(), getOutputSlots());
             inv.replaceExistingItem(slot, null);
         }
-
         return false;
     }
 

@@ -223,10 +223,10 @@ public final class SlimefunUtils {
 
         if (CommonPatterns.HEXADECIMAL.matcher(texture).matches()) {
             base64 = Base64.getEncoder()
-                .encodeToString(("{\"textures\":{\"SKIN\":{\"url\":\"http://textures.minecraft.net/texture/"
-                                 + texture
-                                 + "\"}}}")
-                    .getBytes(StandardCharsets.UTF_8));
+                    .encodeToString(("{\"textures\":{\"SKIN\":{\"url\":\"http://textures.minecraft.net/texture/"
+                                     + texture
+                                     + "\"}}}")
+                            .getBytes(StandardCharsets.UTF_8));
         }
 
         PlayerSkin skin = PlayerSkin.fromBase64(base64);
@@ -261,26 +261,41 @@ public final class SlimefunUtils {
     }
 
     public static boolean isItemSimilar(
-        @Nullable ItemStack item, @Nullable ItemStack sfitem, boolean checkLore, boolean checkAmount) {
+            @Nullable ItemStack item, @Nullable ItemStack sfitem, boolean checkLore, boolean checkAmount) {
         return isItemSimilar(item, sfitem, checkLore, checkAmount, true, true);
     }
 
     public static boolean isItemSimilar(
-        @Nullable ItemStack item,
-        @Nullable ItemStack sfitem,
-        boolean checkLore,
-        boolean checkAmount,
-        boolean checkDistinctiveItem) {
+            @Nullable ItemStack item,
+            @Nullable ItemStack sfitem,
+            boolean checkLore,
+            boolean checkAmount,
+            boolean checkDistinctiveItem) {
         return isItemSimilar(item, sfitem, checkLore, checkAmount, checkDistinctiveItem, true);
     }
 
+    public static boolean isSlimefunItemSimilar(SlimefunItemStack sfItem, ItemStack item) {
+        ItemStack tempStack = SlimefunItem.getByItem(item).getItem();
+        if (tempStack == null) {
+            return false;
+        }
+        SlimefunItemStack sfItemStack = (SlimefunItemStack) tempStack;
+        if (sfItem.getItemId().equals(sfItemStack.getItemId())) {
+            if (sfItem instanceof DistinctiveItem && sfItemStack instanceof DistinctiveItem distinctiveItem) {
+                return distinctiveItem.canStack(sfItem.getItemMeta(), item.getItemMeta());
+            }
+            return true;
+        }
+        return false;
+    }
+
     public static boolean isItemSimilar(
-        @Nullable ItemStack item,
-        @Nullable ItemStack sfitem,
-        boolean checkLore,
-        boolean checkAmount,
-        boolean checkDistinctiveItem,
-        boolean checkCustomModelData) {
+            @Nullable ItemStack item,
+            @Nullable ItemStack sfitem,
+            boolean checkLore,
+            boolean checkAmount,
+            boolean checkDistinctiveItem,
+            boolean checkCustomModelData) {
         if (item == null) {
             return sfitem == null;
         } else if (sfitem == null
@@ -290,19 +305,7 @@ public final class SlimefunUtils {
         } else if (checkDistinctiveItem
                    && sfitem instanceof SlimefunItemStack stackOne
                    && item instanceof SlimefunItemStack stackTwo) {
-            if (stackOne.getItemId().equals(stackTwo.getItemId())) {
-                /*
-                 * PR #3417
-                 *
-                 * Some items can't rely on just IDs matching and will implement Distinctive Item
-                 * in which case we want to use the method provided to compare
-                 */
-                if (stackOne instanceof DistinctiveItem && stackTwo instanceof DistinctiveItem distinctiveItem) {
-                    return distinctiveItem.canStack(stackOne.getItemMeta(), stackTwo.getItemMeta());
-                }
-                return true;
-            }
-            return false;
+            return isSlimefunItemSimilar(stackOne, stackTwo);
         } else if (item.hasItemMeta()) {
             Debug.log(TestCase.CARGO_INPUT_TESTING, "SlimefunUtils#isItemSimilar - item.hasItemMeta()");
             ItemMeta itemMeta = item.getItemMeta();
@@ -341,7 +344,7 @@ public final class SlimefunUtils {
                 ItemMeta sfItemMeta = sfitem.getItemMeta();
                 String possibleItemId = Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
                 String sfItemId = Slimefun.getItemDataService()
-                    .getItemData(sfItemMeta).get();
+                        .getItemData(sfItemMeta).get();
                 // Prioritize SlimefunItem id comparison over ItemMeta comparison
                 if (possibleItemId != null && possibleItemId.equals(sfItemId)) {
                     Debug.log(TestCase.CARGO_INPUT_TESTING, "  SlimefunItem IDs matched!");
@@ -353,20 +356,17 @@ public final class SlimefunUtils {
                      * in which case we want to use the method provided to compare
                      */
                     Optional<DistinctiveItem> optionalDistinctive = getDistinctiveItem(possibleItemId);
-                    if (optionalDistinctive.isPresent()) {
-                        return optionalDistinctive.get().canStack(sfItemMeta, itemMeta);
-                    }
-                    return true;
+                    return optionalDistinctive.map(distinctiveItem -> distinctiveItem.canStack(sfItemMeta, itemMeta)).orElse(true);
                 }
                 return false;
             } else if (sfitem.hasItemMeta()) {
                 ItemMeta sfItemMeta = sfitem.getItemMeta();
                 Debug.log(
-                    TestCase.CARGO_INPUT_TESTING,
-                    "  Comparing meta (vanilla items?) - {} == {} (lore: {})",
-                    itemMeta,
-                    sfItemMeta,
-                    checkLore);
+                        TestCase.CARGO_INPUT_TESTING,
+                        "  Comparing meta (vanilla items?) - {} == {} (lore: {})",
+                        itemMeta,
+                        sfItemMeta,
+                        checkLore);
                 return equalsItemMeta(itemMeta, sfItemMeta, checkLore, !checkCustomModelData);
             } else {
                 return false;
@@ -385,15 +385,15 @@ public final class SlimefunUtils {
     }
 
     private static boolean equalsItemMeta(
-        ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
+            ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
         return equalsItemMeta(itemMeta, itemMetaSnapshot, checkLore, true);
     }
 
     private static boolean equalsItemMeta(
-        ItemMeta itemMeta,
-        ItemMetaSnapshot itemMetaSnapshot,
-        boolean checkLore,
-        boolean bypassCustomModelCheck) {
+            ItemMeta itemMeta,
+            ItemMetaSnapshot itemMetaSnapshot,
+            boolean checkLore,
+            boolean bypassCustomModelCheck) {
         Optional<String> displayName = itemMetaSnapshot.getDisplayName();
 
         if (itemMeta.hasDisplayName() != displayName.isPresent()) {
@@ -428,10 +428,10 @@ public final class SlimefunUtils {
     }
 
     private static boolean equalsItemMeta(
-        ItemMeta itemMeta,
-        ItemMeta sfitemMeta,
-        boolean checkLore,
-        boolean bypassCustomModelCheck) {
+            ItemMeta itemMeta,
+            ItemMeta sfitemMeta,
+            boolean checkLore,
+            boolean bypassCustomModelCheck) {
         if (itemMeta.hasDisplayName() != sfitemMeta.hasDisplayName()) {
             return false;
         } else if (itemMeta.hasDisplayName()
@@ -563,7 +563,7 @@ public final class SlimefunUtils {
      */
     @ParametersAreNonnullByDefault
     public static @Nullable Item spawnItem(
-        Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset, @Nullable Player player) {
+            Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset, @Nullable Player player) {
         SlimefunItemSpawnEvent event = new SlimefunItemSpawnEvent(player, loc, item, reason);
         Slimefun.instance().getServer().getPluginManager().callEvent(event);
 
@@ -593,7 +593,7 @@ public final class SlimefunUtils {
      */
     @ParametersAreNonnullByDefault
     public static @Nullable Item spawnItem(
-        Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset) {
+            Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset) {
         return spawnItem(loc, item, reason, addRandomOffset, null);
     }
 

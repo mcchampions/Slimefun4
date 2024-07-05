@@ -5,6 +5,7 @@ import io.github.bakedlibs.dough.inventory.InvUtils;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
 import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
@@ -183,6 +184,51 @@ public class DirtyChestMenu extends ChestMenu {
                         if (!ItemUtils.canStack(wrapper, stack)) {
                             continue;
                         }
+                    }
+
+                    amount -= (maxStackSize - stack.getAmount());
+                    stack.setAmount(Math.min(stack.getAmount() + item.getAmount(), maxStackSize));
+                    item.setAmount(amount);
+                }
+            }
+        }
+
+        if (amount > 0) {
+            return new CustomItemStack(item, amount);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Adds given {@link ItemStack} to any of the given inventory slots.
+     * Items will be added to the inventory slots based on their order in the function argument.
+     * Items will be added either to any empty inventory slots or any partially filled slots, in which case
+     * as many items as can fit will be added to that specific spot.
+     *
+     * @param item  {@link ItemStack} to be added to the inventory
+     * @param slots Numbers of slots to add the {@link ItemStack} to
+     * @return {@link ItemStack} with any items that did not fit into the inventory
+     * or null when everything had fit
+     */
+    @Nullable public ItemStack pushItem(SlimefunItemStack item, int... slots) {
+        int amount = item.getAmount();
+
+        for (int slot : slots) {
+            if (amount <= 0) {
+                break;
+            }
+
+            ItemStack stack = getItemInSlot(slot);
+            if (stack == null) {
+                replaceExistingItem(slot, item);
+                return null;
+            } else {
+                int maxStackSize =
+                        Math.min(stack.getMaxStackSize(), toInventory().getMaxStackSize());
+                if (stack.getAmount() < maxStackSize) {
+                    if (!SlimefunUtils.isSlimefunItemSimilar(item,stack)) {
+                        continue;
                     }
 
                     amount -= (maxStackSize - stack.getAmount());
