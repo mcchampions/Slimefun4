@@ -81,7 +81,6 @@ public class LocalizationService extends SlimefunLocalization {
                         .log(Level.WARNING, "Could not recognize the given language: \"{0}\"", serverDefaultLanguage);
             }
 
-            Slimefun.logger().log(Level.INFO, "Available languages: {0}", String.join(", ", languages.keySet()));
             save();
         } else {
             translationsEnabled = false;
