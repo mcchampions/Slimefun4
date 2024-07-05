@@ -1,13 +1,13 @@
 package io.github.thebusybiscuit.slimefun4.core.services;
 
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.ParametersAreNonnullByDefault;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitScheduler;
 
 public final class ThreadService {
 
@@ -17,19 +17,9 @@ public final class ThreadService {
 
     public ThreadService(JavaPlugin plugin) {
         this.group = new ThreadGroup(plugin.getName());
-        this.cachedPool = Executors.newCachedThreadPool(new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable r) {
-                return new Thread(group, r, plugin.getName() + " - ThreadService");
-            }
-        });
+        this.cachedPool = Executors.newCachedThreadPool(r -> new Thread(group, r, plugin.getName() + " - ThreadService"));
 
-        this.scheduledPool = Executors.newScheduledThreadPool(1, new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable r) {
-                return new Thread(group, r, plugin.getName() + " - ScheduledThreadService");
-            }
-        });
+        this.scheduledPool = Executors.newScheduledThreadPool(1, r -> new Thread(group, r, plugin.getName() + " - ScheduledThreadService"));
     }
 
     /**
