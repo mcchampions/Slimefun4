@@ -80,8 +80,10 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      */
     
     public ItemStack getItemForEntityType(EntityType type) {
-        Validate.notNull(type, "The EntityType cannot be null");
-
+        if (type == null) {
+            // Fixes #4209
+            type = EntityType.PIG;
+        }
         ItemStack item = getItem().clone();
         ItemMeta meta = item.getItemMeta();
 
