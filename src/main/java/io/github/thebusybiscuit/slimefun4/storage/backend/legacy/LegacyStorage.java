@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
 public class LegacyStorage implements Storage {
     @Override
     public PlayerData loadPlayerData(UUID uuid) {
-        long start = System.nanoTime();
         Config playerFile = new Config("data-storage/Slimefun/Players/" + uuid + ".yml");
         // Not too sure why this is its own file
         Config waypointsFile = new Config("data-storage/Slimefun/waypoints/" + uuid + ".yml");
@@ -38,26 +37,6 @@ public class LegacyStorage implements Storage {
 
         // Load backpacks
         HashMap<Integer, PlayerBackpack> backpacks = new HashMap<>();
-        /*
-        for (String key : playerFile.getKeys("backpacks")) {
-            try {
-                int id = Integer.parseInt(key);
-                int size = playerFile.getInt("backpacks." + key + ".size");
-
-                HashMap<Integer, ItemStack> items = new HashMap<>();
-                for (int i = 0; i < size; i++) {
-                    items.put(i, playerFile.getItem("backpacks." + key + ".contents." + i));
-                }
-            } catch (Exception x) {
-                Slimefun.logger()
-                        .log(
-                                Level.WARNING,
-                                x,
-                                () -> "Could not load Backpack \"" + key + "\" for Player \"" + uuid + '"');
-            }
-
-        }
-                 */
 
         // Load waypoints
         Set<Waypoint> waypoints = new HashSet<>();
@@ -78,16 +57,12 @@ public class LegacyStorage implements Storage {
             }
         }
 
-        long end = System.nanoTime();
-        Slimefun.getAnalyticsService().recordPlayerProfileDataTime("legacy", true, end - start);
-
         return new PlayerData(researches, backpacks, waypoints);
     }
 
     // The current design of saving all at once isn't great, this will be refined.
     @Override
     public void savePlayerData(UUID uuid, PlayerData data) {
-        long start = System.nanoTime();
         Config playerFile = new Config("data-storage/Slimefun/Players/" + uuid + ".yml");
         // Not too sure why this is its own file
         Config waypointsFile = new Config("data-storage/Slimefun/waypoints/" + uuid + ".yml");
@@ -108,7 +83,7 @@ public class LegacyStorage implements Storage {
                 // Sooooo we're gonna hack this for now while we move away from the Legacy Storage
                 // Let's make sure the user doesn't have _any_ research with this ID and _then_ remove it
             } else if (playerFile.contains("researches." + research.getID())
-                       && !data.getResearches().stream().anyMatch((r) -> r.getID() == research.getID())) {
+                       && data.getResearches().stream().noneMatch((r) -> r.getID() == research.getID())) {
                 playerFile.setValue("researches." + research.getID(), null);
             }
         }
@@ -140,8 +115,5 @@ public class LegacyStorage implements Storage {
         // Save files
         playerFile.save();
         waypointsFile.save();
-
-        long end = System.nanoTime();
-        Slimefun.getAnalyticsService().recordPlayerProfileDataTime("legacy", false, end - start);
     }
 }
