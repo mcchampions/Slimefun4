@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -59,16 +60,9 @@ public class StomperBoots extends SlimefunItem {
                         || (player.getWorld().getPVP()
                                 && Slimefun.getProtectionManager()
                                         .hasPermission(player, entity.getLocation(), Interaction.ATTACK_PLAYER))) {
-                    /* TODO: 替换初始化函数调用（此初始化函数将被移除），并兼容新旧版本
 
-                    be like(没有兼容1.20.4以下版本):
-                    DamageSource damageSource = DamageSource.builder(DamageType.PLAYER_ATTACK).withCausingEntity(player).build();
-                    EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(
-                            player, entity, DamageCause.ENTITY_ATTACK,damageSource,fallDamageEvent.getDamage() / 2);
-                    */
-
-                    EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(
-                            player, entity, DamageCause.ENTITY_ATTACK,fallDamageEvent.getDamage() / 2);
+                    EntityDamageByEntityEvent event = VersionEventsUtils.newEntityDamageByEntityEvent(
+                            player, entity, DamageCause.ENTITY_ATTACK,"PLAYER_ATTACK",fallDamageEvent.getDamage() / 2);
                     Bukkit.getPluginManager().callEvent(event);
 
                     if (!event.isCancelled()) {

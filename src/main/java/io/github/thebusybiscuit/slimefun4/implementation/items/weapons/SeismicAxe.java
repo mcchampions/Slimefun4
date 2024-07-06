@@ -8,11 +8,14 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -36,7 +39,6 @@ import org.bukkit.util.Vector;
  * It is quite similar to a shockwave.
  *
  * @author TheBusyBiscuit
- *
  */
 public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable, DamageableItem {
 
@@ -52,7 +54,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         super(itemGroup, item, recipeType, recipe);
     }
 
-    
+
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -120,9 +122,8 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
     private void pushEntity(Player p, Entity entity) {
         // Only damage players when PVP is enabled, other entities are fine.
         if (entity.getType() != EntityType.PLAYER || p.getWorld().getPVP()) {
-            // TODO: replace
-            EntityDamageByEntityEvent event =
-                    new EntityDamageByEntityEvent(p, entity, DamageCause.ENTITY_ATTACK, DAMAGE);
+            EntityDamageByEntityEvent event = VersionEventsUtils.newEntityDamageByEntityEvent(
+                    p, entity, DamageCause.ENTITY_ATTACK, "PLAYER_ATTACK", DAMAGE);
             Bukkit.getPluginManager().callEvent(event);
 
             // Fixes #2207 - Only apply Vector if the Player is able to damage the entity
