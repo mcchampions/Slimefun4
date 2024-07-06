@@ -115,16 +115,18 @@ public class BlockListener implements Listener {
                         && !(rotatable.getRotation() == BlockFace.UP || rotatable.getRotation() == BlockFace.DOWN)) {
                     BlockFace rotation = null;
 
-                    if (sfItem instanceof NotCardinallyRotatable && sfItem instanceof NotDiagonallyRotatable) {
-                        rotation = BlockFace.NORTH;
-                    } else if (sfItem instanceof NotRotatable notRotatable) {
-                        rotation = notRotatable.getRotation();
-                    } else if (sfItem instanceof NotCardinallyRotatable notRotatable) {
-                        rotation = notRotatable.getRotation(Location.normalizeYaw(
-                                e.getPlayer().getLocation().getYaw()));
-                    } else if (sfItem instanceof NotDiagonallyRotatable notRotatable) {
-                        rotation = notRotatable.getRotation(Location.normalizeYaw(
-                                e.getPlayer().getLocation().getYaw()));
+                    switch (sfItem) {
+                        case NotCardinallyRotatable ignored when sfItem instanceof NotDiagonallyRotatable ->
+                                rotation = BlockFace.NORTH;
+                        case NotRotatable notRotatable -> rotation = notRotatable.getRotation();
+                        case NotCardinallyRotatable notRotatable ->
+                                rotation = notRotatable.getRotation(Location.normalizeYaw(
+                                        e.getPlayer().getLocation().getYaw()));
+                        case NotDiagonallyRotatable notRotatable ->
+                                rotation = notRotatable.getRotation(Location.normalizeYaw(
+                                        e.getPlayer().getLocation().getYaw()));
+                        default -> {
+                        }
                     }
 
                     if (rotation != null) {

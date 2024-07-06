@@ -180,9 +180,7 @@ public final class PostSetup {
                 if (item instanceof AContainer machine) {
                     if (machine.getMachineIdentifier().equals("ELECTRIC_SMELTERY")) {
                         List<MachineRecipe> recipes = machine.getMachineRecipes();
-                        Collections.sort(
-                                recipes,
-                                Comparator.comparingInt(recipe -> recipe == null ? 0 : -recipe.getInput().length));
+                        recipes.sort(Comparator.comparingInt(recipe -> recipe == null ? 0 : -recipe.getInput().length));
                     }
                 }
             }

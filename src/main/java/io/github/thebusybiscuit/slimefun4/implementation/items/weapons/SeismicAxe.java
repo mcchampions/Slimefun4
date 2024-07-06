@@ -120,6 +120,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
     private void pushEntity(Player p, Entity entity) {
         // Only damage players when PVP is enabled, other entities are fine.
         if (entity.getType() != EntityType.PLAYER || p.getWorld().getPVP()) {
+            // TODO: replace
             EntityDamageByEntityEvent event =
                     new EntityDamageByEntityEvent(p, entity, DamageCause.ENTITY_ATTACK, DAMAGE);
             Bukkit.getPluginManager().callEvent(event);

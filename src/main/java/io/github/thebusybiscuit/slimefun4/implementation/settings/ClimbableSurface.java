@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.events.ClimbingPickLaunchEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.settings.DoubleRangeSetting;
 import io.github.thebusybiscuit.slimefun4.implementation.items.tools.ClimbingPick;
+import lombok.Getter;
 import org.bukkit.Material;
 
 /**
@@ -16,8 +17,14 @@ import org.bukkit.Material;
  * @see ClimbingPickLaunchEvent
  *
  */
+@Getter
 public class ClimbableSurface extends DoubleRangeSetting {
 
+    /**
+     * -- GETTER --
+     *  This returns the
+     *  of this surface.
+     */
     private final Material type;
 
     /**
@@ -34,13 +41,4 @@ public class ClimbableSurface extends DoubleRangeSetting {
         this.type = surface;
     }
 
-    /**
-     * This returns the {@link Material} of this surface.
-     *
-     * @return The {@link Material} of this surface
-     */
-    
-    public Material getType() {
-        return type;
-    }
 }

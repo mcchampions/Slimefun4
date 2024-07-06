@@ -56,6 +56,7 @@ public class Talisman extends SlimefunItem {
     @Getter
     protected final boolean consumable;
     protected final boolean cancel;
+    @Getter
     protected final PotionEffect[] effects;
     /**
      * -- GETTER --
@@ -136,11 +137,6 @@ public class Talisman extends SlimefunItem {
         } else {
             enderTalisman = null;
         }
-    }
-
-    
-    public PotionEffect[] getEffects() {
-        return effects;
     }
 
     protected boolean isEventCancelled() {

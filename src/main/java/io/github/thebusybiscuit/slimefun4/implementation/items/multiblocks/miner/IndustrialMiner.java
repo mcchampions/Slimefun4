@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
@@ -49,6 +51,7 @@ public class IndustrialMiner extends MultiBlockMachine {
     private final ItemSetting<Boolean> canMineAncientDebris = new ItemSetting<>(this, "can-mine-ancient-debris", false);
     private final ItemSetting<Boolean> canMineDeepslateOres = new ItemSetting<>(this, "can-mine-deepslate-ores", true);
     private final boolean silkTouch;
+    @Getter
     private final int range;
 
     @ParametersAreNonnullByDefault
@@ -89,20 +92,6 @@ public class IndustrialMiner extends MultiBlockMachine {
      */
     public boolean hasSilkTouch() {
         return silkTouch;
-    }
-
-    /**
-     * This method returns the range of the {@link IndustrialMiner}.
-     * The total area will be determined by the range multiplied by 2 plus the actual center
-     * of the machine.
-     *
-     * So a range of 3 will make the {@link IndustrialMiner} affect an area of 7x7 blocks.
-     * 3 on all axis, plus the center of the machine itself.
-     *
-     * @return The range of this {@link IndustrialMiner}
-     */
-    public int getRange() {
-        return range;
     }
 
     /**

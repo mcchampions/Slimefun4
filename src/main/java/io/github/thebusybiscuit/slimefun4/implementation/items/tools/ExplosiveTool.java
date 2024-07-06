@@ -17,6 +17,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -54,7 +56,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         addItemSetting(damageOnUse, callExplosionEvent);
     }
 
-    
+
     @Override
     public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
@@ -78,6 +80,9 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         List<Block> blocksToDestroy = new ArrayList<>();
 
         if (callExplosionEvent.getValue()) {
+            // TODO: replace
+            // be like :
+            // BlockExplodeEvent blockExplodeEvent = new BlockExplodeEvent(b, b.getState(), blocks, 0);
             BlockExplodeEvent blockExplodeEvent = new BlockExplodeEvent(b, blocks, 0);
             Bukkit.getServer().getPluginManager().callEvent(blockExplodeEvent);
 
@@ -125,7 +130,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         }
     }
 
-    
+
     private List<Block> findBlocks(Block b) {
         List<Block> blocks = new ArrayList<>(26);
 
@@ -184,7 +189,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         AtomicBoolean isUseVanillaBlockBreaking = new AtomicBoolean(true);
 
         if (Bukkit.getPluginManager().isPluginEnabled("ExoticGarden")
-                && block.getType().equals(Material.PLAYER_HEAD)) {
+            && block.getType().equals(Material.PLAYER_HEAD)) {
             Location leavesLocation = blockLocation.clone();
             leavesLocation.setY(leavesLocation.getY() - 1);
 

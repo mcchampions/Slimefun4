@@ -35,6 +35,8 @@ import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
@@ -79,6 +81,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
     protected final List<MachineFuel> fuelTypes = new ArrayList<>();
     protected final String texture;
+    @Getter
     private final int tier;
 
     @ParametersAreNonnullByDefault
@@ -757,10 +760,6 @@ public class ProgrammableAndroid extends SlimefunItem
         return new int[] {20, 21, 22, 29, 30, 31};
     }
 
-    public int getTier() {
-        return tier;
-    }
-
     protected void tick(Block b, SlimefunBlockData data) {
         if (b.getType() != Material.PLAYER_HEAD) {
             // The Android was destroyed or moved.
@@ -913,7 +912,7 @@ public class ProgrammableAndroid extends SlimefunItem
             int rest = newFuel.getType().getMaxStackSize() - currentFuel.getAmount();
 
             if (rest > 0) {
-                int amount = newFuel.getAmount() > rest ? rest : newFuel.getAmount();
+                int amount = Math.min(newFuel.getAmount(), rest);
                 menu.replaceExistingItem(43, new CustomItemStack(newFuel, currentFuel.getAmount() + amount));
                 ItemUtils.consumeItem(newFuel, amount, false);
             }
@@ -960,7 +959,7 @@ public class ProgrammableAndroid extends SlimefunItem
                 @Override
                 public boolean onClick(
                         InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
-                    return cursor == null || cursor.getType() == null || cursor.getType() == Material.AIR;
+                    return cursor == null || cursor.getType() == Material.AIR;
                 }
             });
         }

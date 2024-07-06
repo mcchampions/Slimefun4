@@ -30,15 +30,30 @@ import org.bukkit.inventory.ShapelessRecipe;
  * @see SlimefunItemRecipe
  *
  */
+@Getter
 public abstract class AbstractRecipe {
 
     /**
      * Our {@link Collection} of ingredients / predicates.
+     * -- GETTER --
+     *  This returns the
+     *  of ingredients as
+     * .
+     *
+
      */
     private final Collection<Predicate<ItemStack>> ingredients;
 
     /**
      * The recipe result.
+     * -- GETTER --
+     *  This returns the result of this
+     * .
+     *  This will return the original
+     * , so make sure to
+     *  it.
+     *
+
      */
     private final ItemStack result;
 
@@ -48,10 +63,8 @@ public abstract class AbstractRecipe {
      *  This returns whether or not this recipe has been enabled.
      *  A disabled recipe will not be crafted.
      *
-     * @return Whether this recipe is enabled
 
      */
-    @Getter
     private boolean enabled = true;
 
     /**
@@ -69,28 +82,6 @@ public abstract class AbstractRecipe {
 
         this.ingredients = ingredients;
         this.result = result;
-    }
-
-    /**
-     * This returns the {@link Collection} of ingredients as {@link Predicate Predicates}.
-     *
-     * @return The ingredients for this {@link AbstractRecipe}
-     */
-    
-    public Collection<Predicate<ItemStack>> getIngredients() {
-        return ingredients;
-    }
-
-    /**
-     * This returns the result of this {@link AbstractRecipe}.
-     * This will return the original {@link ItemStack}, so make sure to {@link ItemStack#clone()}
-     * it.
-     *
-     * @return The resulting {@link ItemStack}
-     */
-    
-    public ItemStack getResult() {
-        return result;
     }
 
     /**

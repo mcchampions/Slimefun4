@@ -24,6 +24,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -50,11 +52,13 @@ import org.bukkit.inventory.ItemStack;
  */
 public class AncientAltarListener implements Listener {
 
-    private AncientAltar altarItem;
-    private AncientPedestal pedestalItem;
+    private final AncientAltar altarItem;
+    private final AncientPedestal pedestalItem;
 
+    @Getter
     private final Set<Location> altarsInUse = new HashSet<>();
 
+    @Getter
     private final List<Block> altars = new ArrayList<>();
     private final Set<UUID> removedItems = new HashSet<>();
 
@@ -64,19 +68,6 @@ public class AncientAltarListener implements Listener {
 
         this.altarItem = altar;
         this.pedestalItem = pedestal;
-    }
-
-    /**
-     * This returns all {@link AncientAltar Altars} that are currently in use.
-     *
-     * @return A {@link Set} of every {@link AncientAltar} currently in use
-     */
-    public Set<Location> getAltarsInUse() {
-        return altarsInUse;
-    }
-
-    public List<Block> getAltars() {
-        return altars;
     }
 
     @EventHandler

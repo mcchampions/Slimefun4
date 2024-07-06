@@ -15,6 +15,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
@@ -30,6 +32,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @see AGenerator
  * @see Reactor
  */
+@Getter
 public abstract class AbstractEnergyProvider extends SlimefunItem
         implements InventoryBlock, RecipeDisplayItem, EnergyNetProvider {
 
@@ -88,12 +91,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
         fuelTypes.add(fuel);
     }
 
-    
-    public Set<MachineFuel> getFuelTypes() {
-        return fuelTypes;
-    }
 
-    
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.generator";

@@ -138,7 +138,6 @@ class MiningTask implements Runnable {
             if (fuelLevel <= 0) {
                 // This Miner has not got enough fuel to run.
                 stop(MinerStoppingReason.NO_FUEL);
-                return;
             }
         });
 

@@ -55,7 +55,7 @@ public class PickaxeOfTheSeeker extends SimpleSlimefunItem<ItemUseHandler> imple
 
                 float yaw = alpha2 > 90 ? (180 - alpha1) : alpha1;
                 float pitch = (float)
-                        ((-Math.atan((closest.getY() - 0.5 - p.getLocation().getY()) / Math.sqrt(l * l + w * w)))
+                        ((-Math.atan((closest.getY() - 0.5 - p.getLocation().getY()) / c))
                                 * 180
                                 / Math.PI);
 

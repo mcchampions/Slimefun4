@@ -71,7 +71,6 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
                  * But it is completely fine for this purpose since we only use
                  * it for lookups.
                  */
-                @SuppressWarnings("deprecation")
                 NamespacedKey key = new NamespacedKey(values[0], values[1]);
                 Recipe keyedRecipe = Slimefun.getMinecraftRecipeService().getRecipe(key);
 

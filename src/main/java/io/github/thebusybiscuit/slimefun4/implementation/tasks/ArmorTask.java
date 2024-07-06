@@ -16,6 +16,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -35,6 +37,7 @@ import org.bukkit.potion.PotionEffectType;
  */
 public class ArmorTask implements Runnable {
 
+    @Getter
     private final Set<PotionEffect> radiationEffects;
     private final boolean radioactiveFire;
 
@@ -57,16 +60,6 @@ public class ArmorTask implements Runnable {
         radiationEffects = Collections.unmodifiableSet(effects);
     }
 
-    /**
-     * This returns a {@link Set} of {@link PotionEffect PotionEffects} which get applied to
-     * a {@link Player} when they are exposed to deadly radiation.
-     *
-     * @return The {@link Set} of {@link PotionEffect PotionEffects} applied upon radioactive contact
-     */
-    
-    public Set<PotionEffect> getRadiationEffects() {
-        return radiationEffects;
-    }
 
     @Override
     public void run() {

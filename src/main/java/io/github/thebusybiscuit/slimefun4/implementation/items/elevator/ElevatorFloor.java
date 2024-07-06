@@ -13,10 +13,14 @@ import org.bukkit.entity.Player;
  *
  * @author TheBusyBiscuit
  */
+@Getter
 public class ElevatorFloor {
 
     /**
      * The name of this floor.
+     * -- GETTER --
+     *  This returns the name of this
+     * .
      */
     private final String name;
 
@@ -29,11 +33,14 @@ public class ElevatorFloor {
      *
 
      */
-    @Getter
     private final int number;
 
     /**
      * The {@link Location} of this floor.
+     * -- GETTER --
+     *  This returns the
+     *  of this
+     * .
      */
     private final Location location;
 
@@ -51,24 +58,6 @@ public class ElevatorFloor {
         this.name = name;
         this.number = number;
         this.location = block.getLocation();
-    }
-
-    /**
-     * This returns the name of this {@link ElevatorFloor}.
-     *
-     * @return The name of this floor
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * This returns the {@link Location} of this {@link ElevatorFloor}.
-     *
-     * @return The {@link Location} of this floor
-     */
-    public Location getLocation() {
-        return location;
     }
 
     /**

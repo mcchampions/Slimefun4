@@ -16,8 +16,15 @@ import org.bukkit.enchantments.Enchantment;
  *
  * @see MagicianTalisman
  */
+@Getter
 public class TalismanEnchantment extends ItemSetting<Boolean> {
 
+    /**
+     * -- GETTER --
+     *  This returns the actual
+     *  represented by this
+     * .
+     */
     private final Enchantment enchantment;
     /**
      * -- GETTER --
@@ -25,7 +32,6 @@ public class TalismanEnchantment extends ItemSetting<Boolean> {
      * .
      *
      */
-    @Getter
     private final int level;
 
     @ParametersAreNonnullByDefault
@@ -42,16 +48,6 @@ public class TalismanEnchantment extends ItemSetting<Boolean> {
 
         this.enchantment = enchantment;
         this.level = level;
-    }
-
-    /**
-     * This returns the actual {@link Enchantment} represented by this {@link ItemSetting}.
-     *
-     * @return The associated {@link Enchantment}
-     */
-    
-    public Enchantment getEnchantment() {
-        return enchantment;
     }
 
 }

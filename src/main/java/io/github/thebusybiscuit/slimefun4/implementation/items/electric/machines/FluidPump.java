@@ -183,10 +183,10 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
 
     @Nullable private Block findNextFluid(Block fluid) {
         if (fluid.getType() == Material.WATER || fluid.getType() == Material.BUBBLE_COLUMN) {
-            /**
-             * With water we can be sure to find an infinite source whenever we
-             * go further than a block, so we can just remove the water here and
-             * save ourselves all of that computing...
+            /*
+              With water we can be sure to find an infinite source whenever we
+              go further than a block, so we can just remove the water here and
+              save ourselves all of that computing...
              */
             if (isSource(fluid)) {
                 return fluid;
