@@ -121,7 +121,7 @@ public abstract class Network {
      * @param l The {@link Location} to update
      */
     public void markDirty(Location l) {
-        Debug.log(TestCase.ENERGYNET, "Mark location " + LocationUtils.locationToString(l) + " as dirty block");
+        
 
         if (regulator.equals(l)) {
             manager.unregisterNetwork(this);

@@ -80,12 +80,6 @@ public class DirtyChestMenu extends ChestMenu {
     }
 
     public boolean fits(ItemStack item, int... slots) {
-        Debug.log(
-                TestCase.UTILS,
-                "DirtyChestMenu#fits - start check fits | item {} | slots {}",
-                StringUtil.itemStackToString(item),
-                Arrays.stream(slots).mapToObj(String::valueOf).collect(Collectors.joining(",")));
-
         var isSfItem = SlimefunItem.getByItem(item) != null;
         var wrapper = ItemStackWrapper.wrap(item);
         var remain = item.getAmount();
@@ -97,14 +91,8 @@ public class DirtyChestMenu extends ChestMenu {
                 return true;
             }
 
-            Debug.log(
-                    TestCase.UTILS,
-                    "DirtyChestMenu#fits - Now checking item | Slot {} | Item {}",
-                    slot,
-                    StringUtil.itemStackToString(slotItem));
-
             if (isSfItem) {
-                Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - Check slimefun item fits");
+                
 
                 if (!slotItem.hasItemMeta()
                     || item.getType() != slotItem.getType()
@@ -114,14 +102,14 @@ public class DirtyChestMenu extends ChestMenu {
 
                 var slotRemain = slotItem.getMaxStackSize() - slotItem.getAmount();
 
-                Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - current slot remain: {}", slotRemain);
+                
 
                 remain -= slotRemain;
 
-                Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - remaining amount: {}", remain);
+                
 
                 if (remain <= 0) {
-                    Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - check fits result (no remain): false");
+                    
                     return true;
                 }
             }
@@ -133,7 +121,7 @@ public class DirtyChestMenu extends ChestMenu {
             result = InvUtils.fits(toInventory(), wrapper, slots);
         }
 
-        Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - check fits result: {}", result);
+        
 
         return result;
     }

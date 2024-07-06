@@ -189,7 +189,7 @@ class ItemFilter implements Predicate<ItemStack> {
             return false;
         }
 
-        Debug.log(TestCase.CARGO_INPUT_TESTING, "ItemFilter#test({})", item);
+        
         /*
          * An empty Filter does not need to be iterated over.
          * We can just return our default value in this scenario.

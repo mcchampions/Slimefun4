@@ -16,7 +16,7 @@ import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 public class DataUtils {
     public static String itemStack2String(ItemStack itemStack) {
-        Debug.log(TestCase.BACKPACK, "Serializing itemstack: " + itemStack);
+        
 
         var stream = new ByteArrayOutputStream();
         try (var bs = new BukkitObjectOutputStream(stream)) {
@@ -33,13 +33,13 @@ public class DataUtils {
             return null;
         }
 
-        Debug.log(TestCase.BACKPACK, "Deserializing itemstack: " + base64Str);
+        
 
         var stream = new ByteArrayInputStream(Base64Coder.decodeLines(base64Str));
         try (var bs = new BukkitObjectInputStream(stream)) {
             var result = (ItemStack) bs.readObject();
 
-            Debug.log(TestCase.BACKPACK, "Deserialized itemstack: " + result);
+            
 
             if (result.getType().isAir()) {
                 Slimefun.logger().log(Level.WARNING, "反序列化数据库中的物品失败! 对应物品无法显示.");

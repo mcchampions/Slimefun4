@@ -283,7 +283,7 @@ public final class SlimefunUtils {
         } else if (checkDistinctiveItem && sfitem instanceof SlimefunItemStack stackOne && item instanceof SlimefunItemStack stackTwo) {
             return isSlimefunItemSimilar(stackOne, stackTwo);
         } else if (item.hasItemMeta()) {
-            Debug.log(TestCase.CARGO_INPUT_TESTING, "SlimefunUtils#isItemSimilar - item.hasItemMeta()");
+            
             ItemMeta itemMeta = item.getItemMeta();
 
             if (sfitem instanceof SlimefunItemStack sfItemStack) {
@@ -309,7 +309,7 @@ public final class SlimefunUtils {
                 ItemMetaSnapshot meta = ((SlimefunItemStack) sfitem).getItemMetaSnapshot();
                 return equalsItemMeta(itemMeta, meta, checkLore);
             } else if (sfitem instanceof ItemStackWrapper && sfitem.hasItemMeta()) {
-                Debug.log(TestCase.CARGO_INPUT_TESTING, "  is wrapper");
+                
                 /*
                  * Cargo optimization (PR #3258)
                  *
@@ -321,7 +321,7 @@ public final class SlimefunUtils {
                 String sfItemId = Slimefun.getItemDataService().getItemData(sfItemMeta).get();
                 // Prioritize SlimefunItem id comparison over ItemMeta comparison
                 if (possibleItemId != null && possibleItemId.equals(sfItemId)) {
-                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  SlimefunItem IDs matched!");
+                    
 
                     /*
                      * PR #3417
@@ -335,7 +335,7 @@ public final class SlimefunUtils {
                 return false;
             } else if (sfitem.hasItemMeta()) {
                 ItemMeta sfItemMeta = sfitem.getItemMeta();
-                Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing meta (vanilla items?) - {} == {} (lore: {})", itemMeta, sfItemMeta, checkLore);
+                
                 return equalsItemMeta(itemMeta, sfItemMeta, checkLore, checkCustomModelData);
             } else {
                 return false;
@@ -389,7 +389,7 @@ public final class SlimefunUtils {
 
     private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMeta sfitemMeta, boolean checkLore, boolean checkCustomModelCheck) {
         if (itemMeta.hasDisplayName() != sfitemMeta.hasDisplayName()) {
-            Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing has display name failed");
+            
             return false;
         } else if (itemMeta.hasDisplayName() && sfitemMeta.hasDisplayName() && !itemMeta.getDisplayName().equals(sfitemMeta.getDisplayName())) {
             return false;
@@ -399,11 +399,11 @@ public final class SlimefunUtils {
 
             if (hasItemMetaLore && hasSfItemMetaLore) {
                 if (!equalsLore(itemMeta.getLore(), sfitemMeta.getLore())) {
-                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing lore failed");
+                    
                     return false;
                 }
             } else if (hasItemMetaLore != hasSfItemMetaLore) {
-                Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing has lore failed");
+                
                 return false;
             }
         }
@@ -424,7 +424,7 @@ public final class SlimefunUtils {
             return ((PotionMeta) itemMeta).getBasePotionType().equals(((PotionMeta) sfitemMeta).getBasePotionType());
         }
 
-        Debug.log(TestCase.CARGO_INPUT_TESTING, "  All meta checked.");
+        
 
         return true;
     }

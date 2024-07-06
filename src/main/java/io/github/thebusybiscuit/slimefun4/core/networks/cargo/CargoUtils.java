@@ -270,7 +270,7 @@ final class CargoUtils {
             boolean smartFill,
             ItemStack stack,
             ItemStackWrapper wrapper) {
-        Debug.log(TestCase.CARGO_INPUT_TESTING, "CargoUtils#insert");
+        
         if (!matchesFilter(network, node, stack)) {
             return stack;
         }
