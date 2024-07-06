@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 /**
  * This class is responsible for debug logging.
  * Server owners can enable testing specific cases and have debug logs for those cases.
- *
+ * <p>
  * <b>Note:</b> We don't have validates in here because we want it to be quick and it's mainly for us internal devs.
  *
  * @author WalshyDev
@@ -86,7 +86,7 @@ public final class Debug {
 
     /**
      * Format the message. Replace "{}" with the supplied variable. This is quick and works great.
-     *
+     * <p>
      * <code>
      * Benchmark                    Mode  Cnt        Score       Error  Units
      * MyBenchmark.loopAllChars    thrpt    5  2336518.563 ± 24129.488  ops/s

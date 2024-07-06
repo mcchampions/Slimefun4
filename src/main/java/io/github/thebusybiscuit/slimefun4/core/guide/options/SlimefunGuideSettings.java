@@ -25,7 +25,7 @@ import java.util.Optional;
 /**
  * This static utility class offers various methods that provide access to the
  * Settings menu of our {@link SlimefunGuide}.
- *
+ * <p>
  * This menu is used to allow a {@link Player} to change things such as the {@link Language}.
  *
  * @author TheBusyBiscuit

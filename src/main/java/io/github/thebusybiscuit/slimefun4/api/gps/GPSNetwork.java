@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -57,6 +59,16 @@ public class GPSNetwork {
     private final Map<UUID, Set<Location>> transmitters = new HashMap<>();
     private final TeleportationManager teleportation = new TeleportationManager();
 
+    /**
+     * -- GETTER --
+     *  This returns the
+     *  for this
+     * .
+     *  Use this to access
+     * .
+     *
+     */
+    @Getter
     private final ResourceManager resourceManager;
 
     /**
@@ -218,7 +230,7 @@ public class GPSNetwork {
      * The icon is dependent on the {@link Environment} of the waypoint's {@link World}.
      * However if the name of this waypoint indicates that this is actually a deathmarker
      * then a different texture will be used.
-     *
+     * <p>
      * Otherwise it will return a globe, a nether or end sphere according to the {@link Environment}.
      *
      * @param name
@@ -428,14 +440,4 @@ public class GPSNetwork {
         return teleportation;
     }
 
-    /**
-     * This returns the {@link ResourceManager} for this {@link GPSNetwork}.
-     * Use this to access {@link GEOResource GEOResources}.
-     *
-     * @return The {@link ResourceManager} for this {@link GPSNetwork}
-     */
-    
-    public ResourceManager getResourceManager() {
-        return resourceManager;
-    }
 }

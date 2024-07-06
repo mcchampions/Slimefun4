@@ -67,6 +67,7 @@ public class PlayerProfile {
     @Getter
     private final GuideHistory guideHistory = new GuideHistory(this);
 
+    @Getter
     private final HashedArmorpiece[] armor = {
         new HashedArmorpiece(), new HashedArmorpiece(), new HashedArmorpiece(), new HashedArmorpiece()
     };
@@ -101,10 +102,6 @@ public class PlayerProfile {
                                 () -> "Could not load Waypoint \"" + key + "\" for Player \"" + owner.getName() + '"');
             }
         }
-    }
-
-    public HashedArmorpiece[] getArmor() {
-        return armor;
     }
 
     /**

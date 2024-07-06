@@ -11,10 +11,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 /**
  * This is a very basic interface that will be used to identify
  * the {@link Plugin} that registered a {@link SlimefunItem}.
- *
+ * <p>
  * It will also contain some utility methods such as {@link SlimefunAddon#getBugTrackerURL()}
  * to provide some context when bugs arise.
- *
+ * <p>
  * It is recommended to implement this interface if you are developing
  * an Addon.
  *

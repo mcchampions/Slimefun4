@@ -2,6 +2,8 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
@@ -13,6 +15,7 @@ final class GrapplingHookEntity {
 
     private final boolean dropItem;
     private final boolean wasConsumed;
+    @Getter
     private final Arrow arrow;
     private final Entity leashTarget;
 
@@ -24,10 +27,6 @@ final class GrapplingHookEntity {
         this.dropItem = p.getGameMode() != GameMode.CREATIVE && dropItem;
     }
 
-    
-    public Arrow getArrow() {
-        return arrow;
-    }
 
     public void drop(Location l) {
         // If a grappling hook was consumed, drop one grappling hook on the floor

@@ -108,18 +108,18 @@ public class TagParser implements Keyed {
                         // Strings will be parsed directly
                         parsePrimitiveValue(element.getAsString(), materials, tags, true);
                     } else if (element instanceof JsonObject) {
-                        /**
-                         * JSONObjects can have a "required" property which can
-                         * make it optional to resolve the underlying value
+                        /*
+                          JSONObjects can have a "required" property which can
+                          make it optional to resolve the underlying value
                          */
                         parseComplexValue(element.getAsJsonObject(), materials, tags);
                     } else {
                         throw new TagMisconfigurationException(
                                 key,
                                 "Unexpected value format: "
-                                        + element.getClass().getSimpleName()
-                                        + " - "
-                                        + element.toString());
+                                + element.getClass().getSimpleName()
+                                + " - "
+                                + element);
                     }
                 }
 
@@ -194,9 +194,9 @@ public class TagParser implements Keyed {
                 && requiredJson.isBoolean()) {
             boolean isRequired = required.getAsBoolean();
 
-            /**
-             * If the Tag is required, an exception may be thrown.
-             * Otherwise it will just ignore the value
+            /*
+              If the Tag is required, an exception may be thrown.
+              Otherwise it will just ignore the value
              */
             parsePrimitiveValue(id.getAsString(), materials, tags, isRequired);
         } else {

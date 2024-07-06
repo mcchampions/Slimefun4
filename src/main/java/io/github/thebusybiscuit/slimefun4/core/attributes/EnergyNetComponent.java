@@ -19,7 +19,7 @@ import org.bukkit.Location;
  * This Interface, when attached to a class that inherits from {@link SlimefunItem}, marks
  * the Item as an electric Block.
  * This will make this Block interact with an {@link EnergyNet}.
- *
+ * <p>
  * You can specify the Type of Block via {@link EnergyNetComponent#getEnergyComponentType()}.
  * You can also specify a capacity for this Block via {@link EnergyNetComponent#getCapacity()}.
  *

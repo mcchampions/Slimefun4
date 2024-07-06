@@ -205,7 +205,7 @@ public enum Instruction {
     /**
      * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest
      * the {@link Block} in front of them.
-     *
+     * <p>
      * <strong>This includes plants from ExoticGarden.</strong>
      */
     FARM_EXOTIC_FORWARD(AndroidType.ADVANCED_FARMER, HeadTexture.SCRIPT_FARM_FORWARD, (android, b, inv, face) -> {
@@ -216,7 +216,7 @@ public enum Instruction {
     /**
      * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest
      * the {@link Block} below.
-     *
+     * <p>
      * <strong>This includes plants from ExoticGarden.</strong>
      */
     FARM_EXOTIC_DOWN(AndroidType.ADVANCED_FARMER, HeadTexture.SCRIPT_FARM_DOWN, (android, b, inv, face) -> {

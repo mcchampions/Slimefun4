@@ -47,7 +47,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
     /**
      * This method returns the title that is used for the {@link Inventory} of an
      * {@link AbstractEnergyProvider} that has been opened by a Player.
-     *
+     * <p>
      * Override this method to set the title.
      *
      * @return The title of the {@link Inventory} of this {@link AbstractEnergyProvider}
@@ -60,7 +60,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
     /**
      * This method returns the {@link ItemStack} that this {@link AGenerator} will
      * use as a progress bar.
-     *
+     * <p>
      * Override this method to set the progress bar.
      *
      * @return The {@link ItemStack} to use as the progress bar

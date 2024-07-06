@@ -1,8 +1,10 @@
 package me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems;
 
+import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
 // This class will be rewritten in the "Recipe Rewrite"
+@Getter
 public class MachineRecipe {
 
     private int ticks;
@@ -15,19 +17,8 @@ public class MachineRecipe {
         this.output = output;
     }
 
-    public ItemStack[] getInput() {
-        return this.input;
-    }
-
-    public ItemStack[] getOutput() {
-        return this.output;
-    }
-
     public void setTicks(int ticks) {
         this.ticks = ticks;
     }
 
-    public int getTicks() {
-        return ticks;
-    }
 }

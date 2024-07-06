@@ -28,7 +28,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * The {@link TableSaw} is an implementation of a {@link MultiBlockMachine} that allows
  * you to turn Logs into Wooden Planks.
- *
+ * <p>
  * It also replaced the old "Saw Mill" from earlier versions.
  *
  * @author dniym
@@ -145,11 +145,7 @@ public class TableSaw extends MultiBlockMachine {
         if (Tag.LOGS.isTagged(item)) {
             Optional<Material> planks = getPlanks(item);
 
-            if (planks.isPresent()) {
-                return new ItemStack(planks.get(), 8);
-            } else {
-                return null;
-            }
+            return planks.map(material -> new ItemStack(material, 8)).orElse(null);
         } else if (Tag.PLANKS.isTagged(item)) {
             return new ItemStack(Material.STICK, 4);
         } else {

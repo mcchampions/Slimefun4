@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 @Getter
 public class BlockMenu extends DirtyChestMenu {
 
-    private Location location;
+    private final Location location;
 
     private static String serializeLocation(Location l) {
         return l.getWorld().getName() + ';' + l.getBlockX() + ';' + l.getBlockY() + ';' + l.getBlockZ();

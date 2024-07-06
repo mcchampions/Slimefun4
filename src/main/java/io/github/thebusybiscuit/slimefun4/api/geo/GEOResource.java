@@ -16,10 +16,10 @@ import org.bukkit.inventory.ItemStack;
 /**
  * A {@link GEOResource} is a virtual resource that can be thought of as world-gen.
  * However it cannot be found in a {@link World}.
- *
+ * <p>
  * This resource only exists in memory and can be retrieved through a {@link GEOMiner}
  * or similar devices.
- *
+ * <p>
  * A {@link GEOResource} can be detected via the {@link GEOScanner}.
  *
  * @author TheBusyBiscuit

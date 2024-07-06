@@ -151,7 +151,7 @@ public class RecipeType implements Keyed {
         this.item = item;
         this.machine = machine;
 
-        if (machine.length() > 0) {
+        if (!machine.isEmpty()) {
             this.key = new NamespacedKey(Slimefun.instance(), machine.toLowerCase(Locale.ROOT));
         } else {
             this.key = new NamespacedKey(Slimefun.instance(), "unknown");

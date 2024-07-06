@@ -14,7 +14,7 @@ import org.bukkit.event.block.BlockDispenseEvent;
 /**
  * This {@link ItemHandler} is triggered when the {@link SlimefunItem} it was assigned to
  * is a {@link Dispenser} and was triggered.
- *
+ * <p>
  * This {@link ItemHandler} is used for the {@link BlockPlacer}.
  *
  * @author TheBusyBiscuit

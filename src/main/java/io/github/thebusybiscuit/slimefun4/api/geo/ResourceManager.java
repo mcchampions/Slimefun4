@@ -224,7 +224,7 @@ public class ResourceManager {
     /**
      * This method will start a geo-scan at the given {@link Block} and display the result
      * of that scan to the given {@link Player}.
-     *
+     * <p>
      * Note that scans are always per {@link Chunk}, not per {@link Block}, the {@link Block}
      * parameter only determines the {@link Location} that was clicked but it will still scan
      * the entire {@link Chunk}.

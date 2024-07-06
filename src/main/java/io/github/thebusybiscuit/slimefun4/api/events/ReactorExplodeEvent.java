@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors.Reactor;
 import lombok.Getter;
 import org.apache.commons.lang.Validate;

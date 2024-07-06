@@ -52,7 +52,7 @@ public class Research implements Keyed {
 
     /**
      * The constructor for a {@link Research}.
-     *
+     * <p>
      * Create a new research, then bind this research to the Slimefun items you want by calling
      * {@link #addItems(SlimefunItem...)}. Once you're finished, call {@link #register()}
      * to register it.
@@ -83,7 +83,7 @@ public class Research implements Keyed {
 
     /**
      * The constructor for a {@link Research}.
-     *
+     * <p>
      * Create a new research, then bind this research to the Slimefun items you want by calling
      * {@link #addItems(SlimefunItem...)}. Once you're finished, call {@link #register()}
      * to register it.

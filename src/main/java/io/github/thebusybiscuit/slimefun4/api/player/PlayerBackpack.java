@@ -28,7 +28,7 @@ import org.bukkit.persistence.PersistentDataType;
 /**
  * This class represents the instance of a {@link SlimefunBackpack} that is ready to
  * be opened.
- *
+ * <p>
  * It holds an actual {@link Inventory} and represents the backpack on the
  * level of an individual {@link ItemStack} as opposed to the class {@link SlimefunBackpack}.
  *

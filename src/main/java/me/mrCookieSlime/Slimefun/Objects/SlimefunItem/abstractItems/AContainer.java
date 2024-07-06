@@ -135,7 +135,7 @@ public abstract class AContainer extends SlimefunItem
     /**
      * This method returns the title that is used for the {@link Inventory} of an
      * {@link AContainer} that has been opened by a Player.
-     *
+     * <p>
      * Override this method to set the title.
      *
      * @return The title of the {@link Inventory} of this {@link AContainer}
@@ -148,7 +148,7 @@ public abstract class AContainer extends SlimefunItem
     /**
      * This method returns the {@link ItemStack} that this {@link AContainer} will
      * use as a progress bar.
-     *
+     * <p>
      * Override this method to set the progress bar.
      *
      * @return The {@link ItemStack} to use as the progress bar
@@ -269,11 +269,11 @@ public abstract class AContainer extends SlimefunItem
     /**
      * This method returns an internal identifier that is used to identify this {@link AContainer}
      * and its recipes.
-     *
+     * <p>
      * When adding recipes to an {@link AContainer} we will use this identifier to
      * identify all instances of the same {@link AContainer}.
      * This way we can add the recipes to all instances of the same machine.
-     *
+     * <p>
      * <strong>This method will be deprecated and replaced in the future</strong>
      *
      * @return The identifier of this machine

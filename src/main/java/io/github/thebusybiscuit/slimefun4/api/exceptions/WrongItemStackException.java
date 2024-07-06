@@ -11,7 +11,7 @@ import java.io.Serial;
 /**
  * A {@link WrongItemStackException} is thrown when someone tries to alter an {@link ItemStack}
  * but actually wanted to alter a different one.
- *
+ * <p>
  * If for example a {@link DamageableItem} accidentally damages the original {@link SlimefunItem}
  * instead of the held {@link ItemStack}, this will be thrown.
  *

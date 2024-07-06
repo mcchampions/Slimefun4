@@ -15,6 +15,8 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ProfileDataControl
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.StorageType;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import lombok.Getter;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -26,7 +28,9 @@ public class SlimefunDatabaseManager {
     private final Slimefun plugin;
     private final Config profileConfig;
     private final Config blockStorageConfig;
+    @Getter
     private StorageType profileStorageType;
+    @Getter
     private StorageType blockDataStorageType;
     private IDataSourceAdapter<?> profileAdapter;
     private IDataSourceAdapter<?> blockStorageAdapter;
@@ -145,6 +149,7 @@ public class SlimefunDatabaseManager {
                     case PLAYER_PROFILE -> profileAdapter = adapter;
                 }
             }
+            default -> throw new IOException("错误的存储类型:" + storageType.name());
         }
     }
 
@@ -180,14 +185,6 @@ public class SlimefunDatabaseManager {
 
     public ChunkDataLoadMode getChunkDataLoadMode() {
         return ChunkDataLoadMode.valueOf(blockStorageConfig.getString("dataLoadMode"));
-    }
-
-    public StorageType getBlockDataStorageType() {
-        return blockDataStorageType;
-    }
-
-    public StorageType getProfileStorageType() {
-        return profileStorageType;
     }
 
     private void initDefaultVal() {

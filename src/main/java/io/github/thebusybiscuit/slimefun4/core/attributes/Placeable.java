@@ -27,7 +27,7 @@ public interface Placeable {
      * If true is returned then it will be treated as a vanilla {@link Block}.
      * If false is returned then Slimefun will treat it as a {@link Block} that is
      * the placed down version of a {@link SlimefunItem}.
-     *
+     * <p>
      * It returns false by default.
      * This was previously represented by the HandledBlock class.
      *

@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * This {@link ItemHandler} is triggered when the {@link SlimefunItem} it was assigned to
  * has been consumed.
- *
+ * <p>
  * This {@link ItemHandler} only works for food or potions.
  *
  * @author TheBusyBiscuit

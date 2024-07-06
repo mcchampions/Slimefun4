@@ -26,7 +26,7 @@ import org.bukkit.plugin.Plugin;
  * This Service is responsible for accessing a {@link RecipeSnapshot}.
  * This snapshot contains a compiled list of all recipes that could be found on the
  * Server at the time the Service was loaded.
- *
+ * <p>
  * This Service is primarily used by the {@link SurvivalSlimefunGuide}.
  *
  * @author TheBusyBiscuit

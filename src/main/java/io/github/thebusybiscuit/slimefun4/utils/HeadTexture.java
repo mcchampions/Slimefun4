@@ -4,6 +4,8 @@ import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
+
+import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 
@@ -118,6 +120,12 @@ public enum HeadTexture {
     CARGO_MOTOR("8e47f99abcd645a3ef1122c9d850a981979f431ba293255c1680e91ab117ed35"),
     CRAFTING_MOTOR("1003620899f1afa271e8e521ecbee2977a06c8529d3f389e8cc04af06d8c7940");
 
+    /**
+     * -- GETTER --
+     *  This returns the texture hash for this particular head.
+     *
+     */
+    @Getter
     private final String texture;
     private final UUID uuid;
 
@@ -127,15 +135,6 @@ public enum HeadTexture {
 
         this.texture = texture;
         this.uuid = UUID.nameUUIDFromBytes(texture.getBytes(StandardCharsets.UTF_8));
-    }
-
-    /**
-     * This returns the texture hash for this particular head.
-     *
-     * @return The associated texture hash
-     */
-    public String getTexture() {
-        return texture;
     }
 
     /**

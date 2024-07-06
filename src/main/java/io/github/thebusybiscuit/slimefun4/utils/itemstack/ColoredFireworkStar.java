@@ -25,9 +25,7 @@ public class ColoredFireworkStar extends CustomItemStack {
     @ParametersAreNonnullByDefault
     public ColoredFireworkStar(Color color, String name, String... lore) {
         super(Material.FIREWORK_STAR, im -> {
-            if (name != null) {
-                im.setDisplayName(ChatColors.color(name));
-            }
+            im.setDisplayName(ChatColors.color(name));
 
             ((FireworkEffectMeta) im)
                     .setEffect(FireworkEffect.builder()

@@ -18,13 +18,12 @@ import org.apache.commons.lang.Validate;
  * <b>This API is still experimental, it may change without notice.</b>
  */
 // TODO: Should we keep this in PlayerProfile?
+@Getter
 @Beta
 public class PlayerData {
 
-    @Getter
     private final Set<Research> researches = new HashSet<>();
     private final Map<Integer, PlayerBackpack> backpacks = new HashMap<>();
-    @Getter
     private final Set<Waypoint> waypoints = new HashSet<>();
 
     public PlayerData(Set<Research> researches, Map<Integer, PlayerBackpack> backpacks, Set<Waypoint> waypoints) {
@@ -43,12 +42,7 @@ public class PlayerData {
         researches.remove(research);
     }
 
-    
-    public Map<Integer, PlayerBackpack> getBackpacks() {
-        return backpacks;
-    }
 
-    
     public PlayerBackpack getBackpack(int id) {
         return backpacks.get(id);
     }

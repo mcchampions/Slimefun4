@@ -12,7 +12,7 @@ import java.io.Serial;
  * An {@link IncompatibleItemHandlerException} is thrown whenever a {@link Plugin} tried
  * to add an {@link ItemHandler} to a {@link SlimefunItem} despite the {@link SlimefunItem}
  * not allowing an {@link ItemHandler} of that type to be added.
- *
+ * <p>
  * An example for this is the {@link BlockUseHandler}, it can only be added to blocks.
  * So it will throw this exception when it is added to a non-block item.
  *

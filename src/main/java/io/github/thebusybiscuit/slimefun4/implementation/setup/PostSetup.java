@@ -9,7 +9,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.Makes
 import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.OreCrusher;
 import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.Smeltery;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;

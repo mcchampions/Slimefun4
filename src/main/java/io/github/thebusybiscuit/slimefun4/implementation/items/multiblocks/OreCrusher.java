@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks;
 
 import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.MultiBlockCraftEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
@@ -19,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -220,12 +220,17 @@ public class OreCrusher extends MultiBlockMachine {
 
     private static class DoubleOreSetting extends ItemSetting<Boolean> {
 
+        @Getter
         private final ItemStack coal = new ItemStack(Material.COAL, 1);
         private final ItemStack lapis = new ItemStack(Material.LAPIS_LAZULI, 7);
+        @Getter
         private final ItemStack redstone = new ItemStack(Material.REDSTONE, 4);
+        @Getter
         private final ItemStack diamond = new ItemStack(Material.DIAMOND, 1);
+        @Getter
         private final ItemStack emerald = new ItemStack(Material.EMERALD, 1);
         private final ItemStack quartz = new ItemStack(Material.QUARTZ, 1);
+        @Getter
         private final ItemStack goldNuggets = new ItemStack(Material.GOLD_NUGGET, 4);
 
         DoubleOreSetting(OreCrusher oreCrusher) {
@@ -264,32 +269,13 @@ public class OreCrusher extends MultiBlockMachine {
             apply(getValue());
         }
 
-        public ItemStack getCoal() {
-            return coal;
-        }
-
         public ItemStack getLapisLazuli() {
             return lapis;
-        }
-
-        public ItemStack getRedstone() {
-            return redstone;
-        }
-
-        public ItemStack getDiamond() {
-            return diamond;
-        }
-
-        public ItemStack getEmerald() {
-            return emerald;
         }
 
         public ItemStack getNetherQuartz() {
             return quartz;
         }
 
-        public ItemStack getGoldNuggets() {
-            return goldNuggets;
-        }
     }
 }

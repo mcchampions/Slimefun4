@@ -12,26 +12,19 @@ import org.bukkit.entity.Player;
 /**
  * A very simple API that is meant for adding/getting/clearing custom status effects
  * to/from players.
- *
+ * <p>
  * The effects are stored via {@link PersistentDataAPI} and use NBT data that is
  * saved across server restarts.
- *
+ * <p>
  * You can specify a level for your status effect too.
  *
  * @author TheBusyBiscuit
  *
  */
-public class StatusEffect implements Keyed {
-
-    private final NamespacedKey key;
-
-    public StatusEffect(NamespacedKey key) {
-        this.key = key;
-    }
-
+public record StatusEffect(NamespacedKey key) implements Keyed {
     @Override
     public NamespacedKey getKey() {
-        return key;
+        return key();
     }
 
     /**

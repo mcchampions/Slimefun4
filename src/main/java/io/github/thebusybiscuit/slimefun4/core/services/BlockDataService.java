@@ -22,7 +22,7 @@ import org.bukkit.plugin.Plugin;
 /**
  * The {@link BlockDataService} is similar to the {@link CustomItemDataService},
  * it is responsible for storing NBT data inside a {@link TileState}.
- *
+ * <p>
  * This is used to speed up performance and prevent
  *
  * @author TheBusyBiscuit
@@ -125,7 +125,7 @@ public class BlockDataService implements Keyed {
      * This method checks whether the given {@link Material} is a Tile Entity.
      * This is used to determine whether the {@link Block} produced by this {@link Material}
      * produces a {@link TileState}, making it useable as a {@link PersistentDataHolder}.
-     *
+     * <p>
      * Due to {@link Block#getState()} being a very expensive call performance-wise though,
      * this simple lookup method is used instead.
      *

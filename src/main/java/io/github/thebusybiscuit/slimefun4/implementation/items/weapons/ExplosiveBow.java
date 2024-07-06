@@ -14,7 +14,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.SoundCategory;
-import org.bukkit.damage.DamageType;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;

@@ -54,7 +54,7 @@ public final class ChatUtils {
      * This converts a given {@link String} to a human-friendly version.
      * This can be used to convert enum constants to easier to read words with
      * spaces and upper case word starts.
-     *
+     * <p>
      * For example:
      * {@code ENUM_CONSTANT: Enum Constant}
      *

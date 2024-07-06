@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.mine
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -34,7 +33,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 /**
  * The {@link IndustrialMiner} is a {@link MultiBlockMachine} that can mine any
  * ores it finds in a given range underneath where it was placed.
- *
+ * <p>
  * <i>And for those of you who are wondering... yes this is the replacement for the
  * long-time deprecated Digital Miner.</i>
  *

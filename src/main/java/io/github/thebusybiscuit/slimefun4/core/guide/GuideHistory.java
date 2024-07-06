@@ -163,7 +163,7 @@ public class GuideHistory {
      * This method opens the previous entry to the associated {@link PlayerProfile}.
      * More precisely, it will remove the last entry and open the second-last entry
      * to the {@link Player}.
-     *
+     * <p>
      * It can be thought of as a "back" button. Since that is what this is used for.
      *
      * @param guide

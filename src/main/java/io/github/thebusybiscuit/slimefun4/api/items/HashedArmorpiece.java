@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  * This class serves as a way of checking whether a {@link Player} has changed their armor
  * between ticks. We do that by storing the hash of their armor and a reference to the
  * corresponding {@link SlimefunArmorPiece} if such a correlation exists.
- *
+ * <p>
  * This gives us a significant performance improvement as we only need to check for a
  * {@link SlimefunArmorPiece} if the item diverged in the first place.
  *

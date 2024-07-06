@@ -60,7 +60,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
 
     /**
      * @deprecated since RC-36
-     *
+     * <p>
      * Use {@link GoldPan#getInputMaterials()} instead.
      */
     @Deprecated(since = "RC-36")

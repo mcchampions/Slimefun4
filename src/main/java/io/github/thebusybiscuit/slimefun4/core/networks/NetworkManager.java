@@ -39,7 +39,7 @@ public class NetworkManager {
 
     /**
      * Fixes #3041
-     *
+     * <p>
      * We use a {@link CopyOnWriteArrayList} here to ensure thread-safety.
      * This {@link List} is also much more frequently read than being written to.
      * Therefore a {@link CopyOnWriteArrayList} should be perfect for this, even

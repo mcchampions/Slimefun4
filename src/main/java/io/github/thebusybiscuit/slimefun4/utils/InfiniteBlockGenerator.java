@@ -61,7 +61,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
     }
 
     /**
-     * Similar to {@link #test(Block)} this tests whether this {@link InfiniteBlockGenerator}
+     * Similar to test block this tests whether this {@link InfiniteBlockGenerator}
      * exists at the given {@link Block}.
      *
      * @param b
@@ -126,7 +126,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
             }
         }
 
-        return count == materials.length;
+        return false;
     }
 
     /**

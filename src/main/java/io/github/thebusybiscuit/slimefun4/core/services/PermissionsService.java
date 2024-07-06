@@ -17,7 +17,7 @@ import org.bukkit.permissions.Permission;
 /**
  * This Service is responsible for handling the {@link Permission} of a
  * {@link SlimefunItem}.
- *
+ * <p>
  * You can set up these {@link Permission} nodes inside the {@code permissions.yml} file.
  *
  * @author TheBusyBiscuit

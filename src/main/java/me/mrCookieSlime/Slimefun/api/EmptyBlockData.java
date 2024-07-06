@@ -3,7 +3,7 @@ package me.mrCookieSlime.Slimefun.api;
 /**
  * This package-private class is supposed to be used as a singleton fallback in places where a
  * {@link NullPointerException} should be avoided, like {@link BlockStorage#getLocationInfo(org.bukkit.Location)}.
- *
+ * <p>
  * This object is a read-only variant of {@link BlockInfoConfig} and only serves the purpose of
  * performance and memory optimization.
  *

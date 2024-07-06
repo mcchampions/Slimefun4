@@ -124,7 +124,7 @@ public class SlimefunProfiler {
      * This method schedules a given amount of entries for the future.
      * Be careful to {@link #closeEntry(Location, SlimefunItem, long)} all of them again!
      * No {@link PerformanceSummary} will be sent until all entries were closed.
-     *
+     * <p>
      * If the specified amount is negative, scheduled entries will be removed
      *
      * @param amount

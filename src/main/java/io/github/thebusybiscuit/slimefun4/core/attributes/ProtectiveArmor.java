@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
  * Implement this interface to a {@link SlimefunArmorPiece} to protect
  * the {@link Player} who wears that {@link SlimefunArmorPiece} from
  * {@link ProtectionType} damage.
- *
+ * <p>
  * <b>Important:</b> You need to specify which {@link ProtectionType} damages
  * to protect the {@link Player} from.
  *

@@ -11,6 +11,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Server;
@@ -22,7 +24,7 @@ import org.bukkit.plugin.Plugin;
 /**
  * This Service holds all interactions and hooks with third-party {@link Plugin Plugins}
  * that are not necessarily a dependency or a {@link SlimefunAddon}.
- *
+ * <p>
  * Integration with these plugins happens inside Slimefun itself.
  *
  * @author TheBusyBiscuit
@@ -39,7 +41,15 @@ public class IntegrationsManager {
 
     /**
      * Our {@link ProtectionManager} instance.
+     * -- GETTER --
+     *  This returns out instance of the
+     * .
+     *  This bridge is used to hook into any third-party protection
+     * .
+     *
+
      */
+    @Getter
     private ProtectionManager protectionManager;
 
     /**
@@ -209,16 +219,6 @@ public class IntegrationsManager {
                 Slimefun.logger().log(Level.WARNING, x, () -> "Failed to hook into " + pluginName + " v" + version);
             }
         }
-    }
-
-    /**
-     * This returns out instance of the {@link ProtectionManager}.
-     * This bridge is used to hook into any third-party protection {@link Plugin}.
-     *
-     * @return Our instanceof of the {@link ProtectionManager}
-     */
-    public ProtectionManager getProtectionManager() {
-        return protectionManager;
     }
 
     /**

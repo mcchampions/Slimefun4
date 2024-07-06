@@ -4,7 +4,6 @@ import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunItemSpawnEvent;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
@@ -317,7 +316,6 @@ public final class SlimefunUtils {
                  * Slimefun items may be ItemStackWrapper's in the context of cargo
                  * so let's try to do an ID comparison before meta comparison
                  */
-                ;
                 ItemMeta sfItemMeta = sfitem.getItemMeta();
                 String possibleItemId = Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
                 String sfItemId = Slimefun.getItemDataService().getItemData(sfItemMeta).get();

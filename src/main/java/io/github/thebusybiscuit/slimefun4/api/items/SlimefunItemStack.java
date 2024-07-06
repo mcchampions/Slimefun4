@@ -224,7 +224,7 @@ public class SlimefunItemStack extends ItemStack {
     /**
      * This method returns the associated {@link SlimefunItem} and casts it to the provided
      * {@link Class}.
-     *
+     * <p>
      * If no item was found or the found {@link SlimefunItem} is not of the requested type,
      * the method will return null.
      *

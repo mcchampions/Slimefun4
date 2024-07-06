@@ -120,7 +120,7 @@ public final class NumberUtils {
      * This returns the elapsed time since the given {@link LocalDateTime}.
      * The output will be nicely formatted based on the elapsed hours or days since the
      * given {@link LocalDateTime}.
-     *
+     * <p>
      * If a {@link LocalDateTime} from yesterday was passed it will return {@code "1d"}.
      * One hour later it will read {@code "1d 1h"}. For values smaller than an hour {@code "< 1h"}
      * will be returned instead.
@@ -138,7 +138,7 @@ public final class NumberUtils {
      * This returns the elapsed time between the two given {@link LocalDateTime LocalDateTimes}.
      * The output will be nicely formatted based on the elapsed hours or days between the
      * given {@link LocalDateTime LocalDateTime}.
-     *
+     * <p>
      * If a {@link LocalDateTime} from today and yesterday (exactly 24h apart) was passed it
      * will return {@code "1d"}.
      * One hour later it will read {@code "1d 1h"}. For values smaller than an hour {@code "< 1h"}
@@ -221,7 +221,7 @@ public final class NumberUtils {
     }
 
     public static double reparseDouble(double number) {
-        return Double.valueOf(roundDecimalNumber(number));
+        return Double.parseDouble(roundDecimalNumber(number));
     }
 
     public static long getLong(@Nullable Long value, long defaultValue) {
@@ -252,11 +252,7 @@ public final class NumberUtils {
     public static int clamp(int min, int value, int max) {
         if (value < min) {
             return min;
-        } else if (value > max) {
-            return max;
-        } else {
-            return value;
-        }
+        } else return Math.min(value, max);
     }
 
     public static int getJavaVersion() {

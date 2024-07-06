@@ -5,6 +5,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 
@@ -12,7 +14,7 @@ import org.bukkit.Tag;
  * This variation of {@link ItemSetting} allows you to define a default {@link Tag}.
  * The {@link Tag} will be translated into a {@link String} {@link List} which the user
  * can then configure as they wish.
- *
+ * <p>
  * It also validates all inputs to be a valid {@link Material}.
  *
  * @author TheBusyBiscuit
@@ -20,8 +22,16 @@ import org.bukkit.Tag;
  * @see ItemSetting
  *
  */
+@Getter
 public class MaterialTagSetting extends ItemSetting<List<String>> {
 
+    /**
+     * -- GETTER --
+     *  This
+     *  holds the default values for this
+     * .
+     *
+     */
     private final Tag<Material> defaultTag;
 
     @ParametersAreNonnullByDefault
@@ -29,15 +39,6 @@ public class MaterialTagSetting extends ItemSetting<List<String>> {
         super(item, key, getAsStringList(defaultTag));
 
         this.defaultTag = defaultTag;
-    }
-
-    /**
-     * This {@link Tag} holds the default values for this {@link MaterialTagSetting}.
-     *
-     * @return The default {@link Tag}
-     */
-    public Tag<Material> getDefaultTag() {
-        return defaultTag;
     }
 
     @Override

@@ -30,7 +30,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * The {@link CargoNetworkTask} is the actual {@link Runnable} responsible for moving {@link ItemStack ItemStacks}
  * around the {@link CargoNet}.
- *
+ * <p>
  * Inbefore this was just a method in the {@link CargoNet} class.
  * However for aesthetic reasons but mainly to prevent the Cargo Task from showing up as
  * "lambda:xyz-123" in timing reports... this was moved.

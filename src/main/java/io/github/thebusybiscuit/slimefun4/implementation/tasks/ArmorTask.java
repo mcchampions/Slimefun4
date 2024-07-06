@@ -50,14 +50,7 @@ public class ArmorTask implements Runnable {
     public ArmorTask(boolean radioactiveFire) {
         this.radioactiveFire = radioactiveFire;
 
-        Set<PotionEffect> effects = new HashSet<>();
-        effects.add(new PotionEffect(PotionEffectType.WITHER, 400, 2));
-        effects.add(new PotionEffect(PotionEffectType.BLINDNESS, 400, 3));
-        effects.add(new PotionEffect(VersionedPotionEffectType.NAUSEA, 400, 3));
-        effects.add(new PotionEffect(PotionEffectType.WEAKNESS, 400, 2));
-        effects.add(new PotionEffect(VersionedPotionEffectType.SLOWNESS, 400, 1));
-        effects.add(new PotionEffect(VersionedPotionEffectType.MINING_FATIGUE, 400, 1));
-        radiationEffects = Collections.unmodifiableSet(effects);
+        radiationEffects = Set.of(new PotionEffect(PotionEffectType.WITHER, 400, 2), new PotionEffect(PotionEffectType.BLINDNESS, 400, 3), new PotionEffect(VersionedPotionEffectType.NAUSEA, 400, 3), new PotionEffect(PotionEffectType.WEAKNESS, 400, 2), new PotionEffect(VersionedPotionEffectType.SLOWNESS, 400, 1), new PotionEffect(VersionedPotionEffectType.MINING_FATIGUE, 400, 1));
     }
 
 

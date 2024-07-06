@@ -10,7 +10,7 @@ import java.io.Serial;
  * An {@link UnregisteredItemException} is thrown whenever a {@link Plugin} tried to
  * access a method prematurely from {@link SlimefunItem} that can only be called after the
  * {@link SlimefunItem} was registered.
- *
+ * <p>
  * In other words... calling this method this early can not result in a logical output, making
  * this an {@link Exception}.
  *

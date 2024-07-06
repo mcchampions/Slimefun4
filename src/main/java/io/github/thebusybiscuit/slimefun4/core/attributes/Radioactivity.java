@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes;
 
-import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.RadiationTask;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
@@ -68,7 +67,7 @@ public enum Radioactivity {
     /**
      * This method returns the level for the radiation effect to use in conjunction
      * with this level of {@link Radioactive}.
-     *
+     * <p>
      * It is basically the index of this enum constant.
      *
      * @return The level of radiation associated with this constant.

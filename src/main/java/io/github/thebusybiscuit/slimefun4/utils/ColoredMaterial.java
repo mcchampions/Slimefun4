@@ -210,7 +210,7 @@ public enum ColoredMaterial {
         Validate.isTrue(
                 materials.length == 16, "Expected 16, received: " + materials.length + ". Did you miss a color?");
 
-        list = Collections.unmodifiableList(Arrays.asList(materials));
+        list = List.of(materials);
     }
 
     

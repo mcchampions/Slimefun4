@@ -1,10 +1,9 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.weapons;
 
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BowShootHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;

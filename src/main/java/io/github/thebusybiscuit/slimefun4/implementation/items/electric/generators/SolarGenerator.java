@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * The {@link SolarGenerator} is a simple {@link EnergyNetProvider} which generates energy if
  * it has direct contact with sunlight.
- *
+ * <p>
  * Some versions of the {@link SolarGenerator} will even generate energy at night, this is determined by
  * {@link #getNightEnergy()}.
  *

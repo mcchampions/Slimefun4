@@ -146,7 +146,7 @@ public enum MinecraftVersion {
     /**
      * This method checks whether this {@link MinecraftVersion} is newer or equal to
      * the given {@link MinecraftVersion},
-     *
+     * <p>
      * An unknown version will default to {@literal false}.
      *
      * @param version The {@link MinecraftVersion} to compare
@@ -164,7 +164,7 @@ public enum MinecraftVersion {
 
     /**
      * This checks whether this {@link MinecraftVersion} is older than the specified {@link MinecraftVersion}.
-     *
+     * <p>
      * An unknown version will default to {@literal true}.
      *
      * @param version The {@link MinecraftVersion} to compare

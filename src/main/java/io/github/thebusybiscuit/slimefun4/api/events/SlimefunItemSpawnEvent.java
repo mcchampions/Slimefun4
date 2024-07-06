@@ -29,6 +29,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
 
     @Getter
     private Location location;
+    @Getter
     private ItemStack itemStack;
     private boolean cancelled;
     @Getter
@@ -70,10 +71,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
         Validate.notNull(location, "The Location cannot be null!");
 
         this.location = location;
-    }
-
-    public ItemStack getItemStack() {
-        return itemStack;
     }
 
     /**
