@@ -3,7 +3,6 @@ package me.qscbm.slimefun4.utils;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -11,6 +10,10 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.List;
 
+/**
+ * 这是个临时适配的工具类
+ * 如果上游更新相关的工具类会迁移保证适配附属
+ */
 public class VersionEventsUtils {
     public static EntityDamageByEntityEvent newEntityDamageByEntityEvent(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, String type, double damage) {
         return Slimefun.getMinecraftVersion()
