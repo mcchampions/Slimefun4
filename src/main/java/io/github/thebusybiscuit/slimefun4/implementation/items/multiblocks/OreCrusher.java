@@ -13,10 +13,12 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.papermc.lib.PaperLib;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -33,7 +35,6 @@ import org.bukkit.inventory.ItemStack;
  * and crush some other {@link Material Materials} into various resources.
  *
  * @author TheBusyBiscuit
- *
  */
 public class OreCrusher extends MultiBlockMachine {
 
@@ -44,16 +45,16 @@ public class OreCrusher extends MultiBlockMachine {
         super(
                 itemGroup,
                 item,
-                new ItemStack[] {
-                    null,
-                    null,
-                    null,
-                    null,
-                    new ItemStack(Material.NETHER_BRICK_FENCE),
-                    null,
-                    new ItemStack(Material.IRON_BARS),
-                    new CustomItemStack(Material.DISPENSER, "发射器 (朝上)"),
-                    new ItemStack(Material.IRON_BARS)
+                new ItemStack[]{
+                        null,
+                        null,
+                        null,
+                        null,
+                        new ItemStack(Material.NETHER_BRICK_FENCE),
+                        null,
+                        new ItemStack(Material.IRON_BARS),
+                        new CustomItemStack(Material.DISPENSER, "发射器 (朝上)"),
+                        new ItemStack(Material.IRON_BARS)
                 },
                 BlockFace.SELF);
 
@@ -113,10 +114,8 @@ public class OreCrusher extends MultiBlockMachine {
         recipes.add(SlimefunItems.COMPRESSED_CARBON);
         recipes.add(new SlimefunItemStack(SlimefunItems.CARBON, 4));
 
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            recipes.add(new ItemStack(Material.COBBLED_DEEPSLATE, 8));
-            recipes.add(new ItemStack(Material.SAND, 1));
-        }
+        recipes.add(new ItemStack(Material.COBBLED_DEEPSLATE, 8));
+        recipes.add(new ItemStack(Material.SAND, 1));
     }
 
     public boolean isOreDoublingEnabled() {
@@ -144,22 +143,17 @@ public class OreCrusher extends MultiBlockMachine {
         displayRecipes.add(new ItemStack(Material.GILDED_BLACKSTONE));
         displayRecipes.add(doubleOres.getGoldNuggets());
 
-        // Raw metal ores (1.17+)
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            displayRecipes.add(new ItemStack(Material.RAW_IRON));
-            displayRecipes.add(SlimefunItems.IRON_DUST);
+        displayRecipes.add(new ItemStack(Material.RAW_IRON));
+        displayRecipes.add(SlimefunItems.IRON_DUST);
 
-            displayRecipes.add(new ItemStack(Material.RAW_COPPER));
-            displayRecipes.add(SlimefunItems.COPPER_DUST);
+        displayRecipes.add(new ItemStack(Material.RAW_COPPER));
+        displayRecipes.add(SlimefunItems.COPPER_DUST);
 
-            displayRecipes.add(new ItemStack(Material.RAW_GOLD));
-            displayRecipes.add(SlimefunItems.GOLD_DUST);
-        }
+        displayRecipes.add(new ItemStack(Material.RAW_GOLD));
+        displayRecipes.add(SlimefunItems.GOLD_DUST);
 
-        // Deepslate Ores (1.17+)
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            // @formatter:off
-            displayRecipes.addAll(Arrays.asList(
+        // @formatter:off
+        displayRecipes.addAll(Arrays.asList(
                     new ItemStack(Material.DEEPSLATE_COAL_ORE), doubleOres.getCoal(),
                     new ItemStack(Material.DEEPSLATE_LAPIS_ORE), doubleOres.getLapisLazuli(),
                     new ItemStack(Material.DEEPSLATE_REDSTONE_ORE), doubleOres.getRedstone(),
@@ -167,22 +161,21 @@ public class OreCrusher extends MultiBlockMachine {
                     new ItemStack(Material.DEEPSLATE_EMERALD_ORE), doubleOres.getEmerald()));
             // @formatter:on
 
-            // More deepslate ores and copper ore
-            displayRecipes.add(new ItemStack(Material.DEEPSLATE_IRON_ORE));
-            displayRecipes.add(new SlimefunItemStack(SlimefunItems.IRON_DUST, isOreDoublingEnabled() ? 2 : 1));
+        // More deepslate ores and copper ore
+        displayRecipes.add(new ItemStack(Material.DEEPSLATE_IRON_ORE));
+        displayRecipes.add(new SlimefunItemStack(SlimefunItems.IRON_DUST, isOreDoublingEnabled() ? 2 : 1));
 
-            displayRecipes.add(new ItemStack(Material.DEEPSLATE_GOLD_ORE));
-            displayRecipes.add(new SlimefunItemStack(SlimefunItems.GOLD_DUST, isOreDoublingEnabled() ? 2 : 1));
+        displayRecipes.add(new ItemStack(Material.DEEPSLATE_GOLD_ORE));
+        displayRecipes.add(new SlimefunItemStack(SlimefunItems.GOLD_DUST, isOreDoublingEnabled() ? 2 : 1));
 
-            displayRecipes.add(new ItemStack(Material.DEEPSLATE_COPPER_ORE));
-            displayRecipes.add(new SlimefunItemStack(SlimefunItems.COPPER_DUST, isOreDoublingEnabled() ? 2 : 1));
+        displayRecipes.add(new ItemStack(Material.DEEPSLATE_COPPER_ORE));
+        displayRecipes.add(new SlimefunItemStack(SlimefunItems.COPPER_DUST, isOreDoublingEnabled() ? 2 : 1));
 
-            displayRecipes.add(new ItemStack(Material.COPPER_ORE));
-            displayRecipes.add(new SlimefunItemStack(SlimefunItems.COPPER_DUST, isOreDoublingEnabled() ? 2 : 1));
-        }
+        displayRecipes.add(new ItemStack(Material.COPPER_ORE));
+        displayRecipes.add(new SlimefunItemStack(SlimefunItems.COPPER_DUST, isOreDoublingEnabled() ? 2 : 1));
     }
 
-    
+
     @Override
     public List<ItemStack> getDisplayRecipes() {
         return recipes.stream().map(items -> items[0]).collect(Collectors.toList());

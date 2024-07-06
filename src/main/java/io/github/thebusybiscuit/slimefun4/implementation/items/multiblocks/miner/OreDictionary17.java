@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
  * @author TheBusyBiscuit
  *
  */
-class OreDictionary17 extends OreDictionary16 {
+class OreDictionary17 implements OreDictionary {
 
     @Override
     @ParametersAreNonnullByDefault
@@ -26,7 +26,10 @@ class OreDictionary17 extends OreDictionary16 {
             case COPPER_ORE, DEEPSLATE_COPPER_ORE -> new ItemStack(Material.RAW_COPPER);
             case IRON_ORE, DEEPSLATE_IRON_ORE -> new ItemStack(Material.RAW_IRON);
             case GOLD_ORE, DEEPSLATE_GOLD_ORE -> new ItemStack(Material.RAW_GOLD);
-            default -> super.getDrops(material, random);
+            case NETHER_QUARTZ_ORE -> new ItemStack(Material.QUARTZ);
+            case NETHER_GOLD_ORE -> new ItemStack(Material.GOLD_NUGGET, 2 + random.nextInt(4));
+            case ANCIENT_DEBRIS -> new ItemStack(Material.ANCIENT_DEBRIS);
+            default -> new ItemStack(material);
         };
     }
 }

@@ -27,19 +27,11 @@ public final class JsonUtils {
      *
      * @return The parsed {@link JsonElement}
      */
-    @SuppressWarnings("deprecation")
     public static JsonElement parseString(String json) {
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_18)) {
-            /*
-             * As of 1.18 Spigot includes a newer version of Gson that
-             * favours static method access.
-             */
-            return JsonParser.parseString(json);
-        } else {
-            /*
-             * For older versions, we will need to use this way.
-             */
-            return new JsonParser().parse(json);
-        }
+        /*
+         * As of 1.18 Spigot includes a newer version of Gson that
+         * favours static method access.
+         */
+        return JsonParser.parseString(json);
     }
 }

@@ -16,18 +16,6 @@ import org.bukkit.Server;
 public enum MinecraftVersion {
 
     /**
-     * This constant represents Minecraft (Java Edition) Version 1.16
-     * (The "Nether Update")
-     */
-    MINECRAFT_1_16(16, "1.16.x"),
-
-    /**
-     * This constant represents Minecraft (Java Edition) Version 1.17
-     * (The "Caves and Cliffs: Part I" Update)
-     */
-    MINECRAFT_1_17(17, "1.17.x"),
-
-    /**
      * This constant represents Minecraft (Java Edition) Version 1.18
      * (The "Caves and Cliffs: Part II" Update)
      */

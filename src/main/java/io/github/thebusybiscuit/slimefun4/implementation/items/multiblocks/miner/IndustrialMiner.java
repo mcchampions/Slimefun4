@@ -75,7 +75,7 @@ public class IndustrialMiner extends MultiBlockMachine {
                 BlockFace.UP);
         // @formatter:on
 
-        this.oreDictionary = OreDictionary.forVersion(Slimefun.getMinecraftVersion());
+        this.oreDictionary = OreDictionary.getInstance();
         this.range = range;
         this.silkTouch = silkTouch;
 
@@ -204,12 +204,11 @@ public class IndustrialMiner extends MultiBlockMachine {
      * @return Whether this {@link IndustrialMiner} is capable of mining this {@link Block}
      */
     public boolean canMine(Block block) {
-        MinecraftVersion version = Slimefun.getMinecraftVersion();
         Material type = block.getType();
 
         if (type == Material.ANCIENT_DEBRIS) {
             return canMineAncientDebris.getValue() && !StorageCacheUtils.hasBlock(block.getLocation());
-        } else if (version.isAtLeast(MinecraftVersion.MINECRAFT_1_17) && SlimefunTag.DEEPSLATE_ORES.isTagged(type)) {
+        } else if (SlimefunTag.DEEPSLATE_ORES.isTagged(type)) {
             return canMineDeepslateOres.getValue() && !StorageCacheUtils.hasBlock(block.getLocation());
         } else {
             return SlimefunTag.INDUSTRIAL_MINER_ORES.isTagged(type) && !StorageCacheUtils.hasBlock(block.getLocation());

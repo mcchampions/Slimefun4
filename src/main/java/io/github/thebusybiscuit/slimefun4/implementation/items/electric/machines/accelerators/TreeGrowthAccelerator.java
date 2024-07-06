@@ -72,14 +72,8 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
 
     @ParametersAreNonnullByDefault
     private boolean tryToBoostGrowth(Block machine, BlockMenu inv, Block sapling) {
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            // On 1.17+ we can actually simulate bonemeal :O
-            return applyBoneMeal(machine, sapling, inv);
-        } else {
-            Sapling saplingData = (Sapling) sapling.getBlockData();
-            return saplingData.getStage() < saplingData.getMaximumStage()
-                    && updateSaplingData(machine, sapling, inv, saplingData);
-        }
+        // On 1.17+ we can actually simulate bonemeal :O
+        return applyBoneMeal(machine, sapling, inv);
     }
 
     @ParametersAreNonnullByDefault
