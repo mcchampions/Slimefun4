@@ -18,8 +18,7 @@ class EmptyBlockData extends BlockInfoConfig {
 
     @Override
     public void setValue(String path, Object value) {
-        throw new UnsupportedOperationException(
-                "Cannot store values (" + path + ':' + value + " on a read-only data object!");
+        throw new UnsupportedOperationException();
     }
 
     @Override

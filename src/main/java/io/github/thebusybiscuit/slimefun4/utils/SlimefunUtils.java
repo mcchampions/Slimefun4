@@ -48,8 +48,7 @@ public final class SlimefunUtils {
     private static final String NO_PICKUP_METADATA = "no_pickup";
     private static final String SOULBOUND_LORE = ChatColor.GRAY + "灵魂绑定";
 
-    private SlimefunUtils() {
-    }
+    private SlimefunUtils() {}
 
     /**
      * This method quickly returns whether an {@link Item} was marked as "no_pickup" by

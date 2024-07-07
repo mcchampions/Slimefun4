@@ -1,12 +1,11 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import org.apache.commons.lang.Validate;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+
+import java.util.List;
 
 /**
  * This class holds a few ordered {@link List Lists} that hold colored variants

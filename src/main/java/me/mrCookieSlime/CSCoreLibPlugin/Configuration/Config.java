@@ -161,8 +161,7 @@ public class Config {
     public void createFile() {
         try {
             this.file.createNewFile();
-        } catch (IOException ignored) {
-        }
+        } catch (IOException ignored) {}
     }
 
     /**
