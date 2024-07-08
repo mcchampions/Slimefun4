@@ -29,11 +29,13 @@ jobs:
           cache: maven
       - name: Build Slimefun
         run: mvn -B package --errors
-      - uses: actions/upload-artifact@v2
+      - name: Rename File
+        run: mv target/Slimefun-*.jar target/Slimefun-${{ GITHUB_RUN_ID }}.jar
+      - uses: actions/upload-artifact@v4
         name: Upload Beta artifact
         with:
           name: Slimefun Beta Build
-          path: staging
+          path: target
       - name: Automatic Releases
         uses: marvinpinto/action-automatic-releases@v1.2.1
         if: github.ref_name == 'master'
