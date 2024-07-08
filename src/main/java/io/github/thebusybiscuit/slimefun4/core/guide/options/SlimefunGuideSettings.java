@@ -100,8 +100,6 @@ public final class SlimefunGuideSettings {
                         "&c请不要将此版本信息截图到 Discord/Github 反馈 Bug",
                         "&c而是优先到汉化页面反馈",
                         "",
-                        "&cTHIS BUILD IS UNOFFICIAL BUILD, DO NOT REPORT TO SLIMEFUN DEV",
-                        "",
                         "&fMinecraft: &a" + Bukkit.getBukkitVersion(),
                         "&fSlimefun: &a" + Slimefun.getVersion()),
                 ChestMenuUtils.getEmptyClickHandler());

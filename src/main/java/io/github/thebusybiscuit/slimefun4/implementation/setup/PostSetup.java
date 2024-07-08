@@ -63,11 +63,6 @@ public final class PostSetup {
 
         sender.sendMessage("");
         sender.sendMessage(ChatColor.GREEN
-                + "######################### - Slimefun v"
-                + Slimefun.getVersion()
-                + " - #########################");
-        sender.sendMessage("");
-        sender.sendMessage(ChatColor.GREEN
                 + "成功加载了 "
                 + total
                 + " 个物品和 "
