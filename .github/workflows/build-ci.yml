@@ -31,6 +31,10 @@ jobs:
         run: mvn -B package --errors
       - name: Rename File
         run: mv target/Slimefun-*.jar target/Slimefun-${{ github.run_id }}.jar
+      - name: Delete useless files
+        run: | 
+          rm -rf target/classes target/maven-archiver target/maven-status
+          rm target/original-Slimefun-UNOFFICIAL.jar
       - uses: actions/upload-artifact@v4
         name: Upload Beta artifact
         with:
