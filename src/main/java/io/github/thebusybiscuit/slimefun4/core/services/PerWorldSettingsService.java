@@ -5,7 +5,6 @@ import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.World;
 
@@ -57,7 +56,7 @@ public class PerWorldSettingsService {
      *            The {@link World} to load
      */
     public void load(World world) {
-        Validate.notNull(world, "Cannot load a world that is null");
+
         disabledItems.putIfAbsent(world.getUID(), loadWorldFromConfig(world));
     }
 
@@ -72,8 +71,6 @@ public class PerWorldSettingsService {
      * @return Whether the given {@link SlimefunItem} is enabled in that {@link World}
      */
     public boolean isEnabled(World world, SlimefunItem item) {
-        Validate.notNull(world, "The world cannot be null");
-        Validate.notNull(item, "The SlimefunItem cannot be null");
 
         Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world));
 
@@ -95,8 +92,6 @@ public class PerWorldSettingsService {
      *            Whether the given {@link SlimefunItem} should be enabled in that world
      */
     public void setEnabled(World world, SlimefunItem item, boolean enabled) {
-        Validate.notNull(world, "The world cannot be null");
-        Validate.notNull(item, "The SlimefunItem cannot be null");
 
         Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world));
 
@@ -116,7 +111,7 @@ public class PerWorldSettingsService {
      *            Whether this {@link World} should be enabled or not
      */
     public void setEnabled(World world, boolean enabled) {
-        Validate.notNull(world, "null is not a valid World");
+
         load(world);
 
         if (enabled) {
@@ -135,7 +130,7 @@ public class PerWorldSettingsService {
      * @return Whether this {@link World} is enabled
      */
     public boolean isWorldEnabled(World world) {
-        Validate.notNull(world, "null is not a valid World");
+
         load(world);
 
         return !disabledWorlds.contains(world.getUID());
@@ -152,8 +147,7 @@ public class PerWorldSettingsService {
      * @return Whether this addon is enabled in that {@link World}
      */
     public boolean isAddonEnabled(World world, SlimefunAddon addon) {
-        Validate.notNull(world, "World cannot be null");
-        Validate.notNull(addon, "Addon cannot be null");
+
         return isWorldEnabled(world)
                 && disabledAddons.getOrDefault(addon, Collections.emptySet()).contains(world.getName());
     }
@@ -167,7 +161,7 @@ public class PerWorldSettingsService {
      *            The {@link World} to save
      */
     public void save(World world) {
-        Validate.notNull(world, "Cannot save a World that does not exist");
+
         Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world));
 
         Config config = getConfig(world);
@@ -184,7 +178,6 @@ public class PerWorldSettingsService {
 
     
     private Set<String> loadWorldFromConfig(World world) {
-        Validate.notNull(world, "Cannot load a World that does not exist");
 
         String name = world.getName();
         Optional<Set<String>> optional = disabledItems.get(world.getUID());
@@ -254,7 +247,7 @@ public class PerWorldSettingsService {
      */
     
     private Config getConfig(World world) {
-        Validate.notNull(world, "World cannot be null");
+
         return new Config(plugin, "world-settings/" + world.getName() + ".yml");
     }
 }

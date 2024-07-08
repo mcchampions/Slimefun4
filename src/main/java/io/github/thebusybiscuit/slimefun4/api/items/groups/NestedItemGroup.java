@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -41,7 +40,6 @@ public class NestedItemGroup extends FlexItemGroup {
      *            The {@link SubItemGroup} to add.
      */
     public void addSubGroup(SubItemGroup group) {
-        Validate.notNull(group, "The sub item group cannot be null!");
 
         subGroups.add(group);
     }
@@ -53,7 +51,6 @@ public class NestedItemGroup extends FlexItemGroup {
      *            The {@link SubItemGroup} to remove.
      */
     public void removeSubGroup(SubItemGroup group) {
-        Validate.notNull(group, "The sub item group cannot be null!");
 
         subGroups.remove(group);
     }

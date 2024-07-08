@@ -175,7 +175,6 @@ public class OreCrusher extends MultiBlockMachine {
         displayRecipes.add(new SlimefunItemStack(SlimefunItems.COPPER_DUST, isOreDoublingEnabled() ? 2 : 1));
     }
 
-
     @Override
     public List<ItemStack> getDisplayRecipes() {
         return recipes.stream().map(items -> items[0]).collect(Collectors.toList());

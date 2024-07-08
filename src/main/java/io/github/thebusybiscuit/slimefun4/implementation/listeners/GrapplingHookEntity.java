@@ -27,7 +27,6 @@ final class GrapplingHookEntity {
         this.dropItem = p.getGameMode() != GameMode.CREATIVE && dropItem;
     }
 
-
     public void drop(Location l) {
         // If a grappling hook was consumed, drop one grappling hook on the floor
         if (dropItem && wasConsumed) {

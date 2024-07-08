@@ -54,7 +54,6 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         super(itemGroup, item, recipeType, recipe);
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

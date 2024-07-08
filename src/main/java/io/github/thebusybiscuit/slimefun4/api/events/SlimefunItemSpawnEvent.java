@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -60,7 +59,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
         return Optional.ofNullable(player);
     }
 
-
     /**
      * This sets the {@link Location} on where to drop this item.
      *
@@ -68,7 +66,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *            The {@link Location} where to drop the {@link ItemStack}
      */
     public void setLocation(Location location) {
-        Validate.notNull(location, "The Location cannot be null!");
 
         this.location = location;
     }
@@ -80,8 +77,8 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *            The {@link ItemStack} to drop
      */
     public void setItemStack(ItemStack itemStack) {
-        Validate.notNull(itemStack, "Cannot drop null.");
-        Validate.isTrue(!itemStack.getType().isAir(), "Cannot drop air.");
+
+        
 
         this.itemStack = itemStack;
     }

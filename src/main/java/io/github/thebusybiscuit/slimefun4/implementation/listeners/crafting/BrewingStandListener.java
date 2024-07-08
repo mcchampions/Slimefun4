@@ -12,7 +12,6 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
-
 /**
  * This {@link Listener} prevents any {@link SlimefunItem} from being used in a
  * brewing stand.

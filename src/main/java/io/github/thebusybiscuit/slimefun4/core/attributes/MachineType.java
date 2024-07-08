@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes;
 
-
 public enum MachineType {
     CAPACITOR("电容"),
     GENERATOR("发电机"),

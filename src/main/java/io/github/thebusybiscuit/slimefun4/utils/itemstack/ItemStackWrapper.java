@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.utils.itemstack;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -114,7 +113,6 @@ public final class ItemStackWrapper extends ItemStack {
      * @see #wrap(ItemStack)
      */
     public static ItemStackWrapper forceWrap(ItemStack itemStack) {
-        Validate.notNull(itemStack, "The ItemStack cannot be null!");
 
         return new ItemStackWrapper(itemStack);
     }
@@ -130,7 +128,6 @@ public final class ItemStackWrapper extends ItemStack {
      * @see #forceWrap(ItemStack)
      */
     public static ItemStackWrapper wrap(ItemStack itemStack) {
-        Validate.notNull(itemStack, "The ItemStack cannot be null!");
 
         if (itemStack instanceof ItemStackWrapper wrapper) {
             return wrapper;
@@ -148,7 +145,6 @@ public final class ItemStackWrapper extends ItemStack {
      * @return An {@link ItemStackWrapper} array
      */
     public static ItemStackWrapper[] wrapArray(ItemStack[] items) {
-        Validate.notNull(items, "The array must not be null!");
 
         ItemStackWrapper[] array = new ItemStackWrapper[items.length];
 
@@ -170,7 +166,7 @@ public final class ItemStackWrapper extends ItemStack {
      * @return An {@link ItemStackWrapper} array
      */
     public static List<ItemStackWrapper> wrapList(List<ItemStack> items) {
-        Validate.notNull(items, "The list must not be null!");
+
         List<ItemStackWrapper> list = new ArrayList<>(items.size());
 
         for (ItemStack item : items) {

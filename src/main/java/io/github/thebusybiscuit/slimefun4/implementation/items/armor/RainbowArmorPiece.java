@@ -8,7 +8,6 @@ import java.util.Arrays;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.inventory.ItemStack;
@@ -51,8 +50,6 @@ public class RainbowArmorPiece extends SlimefunArmorPiece {
 
         // TODO Change this validation over to our custom validation blocked by
         // https://github.com/baked-libs/dough/pull/184
-        Validate.notEmpty(dyeColors, "RainbowArmorPiece colors cannot be empty!");
-
         if (!SlimefunTag.LEATHER_ARMOR.isTagged(item.getType())) {
             throw new IllegalArgumentException("Rainbow armor needs to be a leather armor piece!");
         }

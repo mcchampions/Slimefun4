@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -40,10 +39,7 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
             Player player, Block block, List<Block> blocks, ItemStack item, ExplosiveTool explosiveTool) {
         super(player);
 
-        Validate.notNull(block, "The center block cannot be null!");
-        Validate.notNull(blocks, "Blocks cannot be null");
-        Validate.notNull(item, "Item cannot be null");
-        Validate.notNull(explosiveTool, "ExplosiveTool cannot be null");
+
 
         this.mainBlock = block;
         this.additionalBlocks = blocks;

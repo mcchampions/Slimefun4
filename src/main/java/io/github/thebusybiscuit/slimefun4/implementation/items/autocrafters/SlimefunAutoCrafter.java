@@ -13,7 +13,6 @@ import io.papermc.lib.PaperLib;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -56,7 +55,6 @@ public class SlimefunAutoCrafter extends AbstractAutoCrafter {
 
     @Override
     @Nullable public AbstractRecipe getSelectedRecipe(Block b) {
-        Validate.notNull(b, "The Block cannot be null!");
 
         BlockState state = PaperLib.getBlockState(b, false).getState();
 

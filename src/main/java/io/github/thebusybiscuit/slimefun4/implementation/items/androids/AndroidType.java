@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
-
 /**
  * This enum holds all the different types a {@link ProgrammableAndroid} can represent.
  *

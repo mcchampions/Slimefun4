@@ -31,7 +31,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -124,7 +123,7 @@ public class GEOMiner extends SlimefunItem
      * @return This method will return the current instance of {@link GEOMiner}, so that can be chained.
      */
     public final GEOMiner setCapacity(int capacity) {
-        Validate.isTrue(capacity > 0, "The capacity must be greater than zero!");
+        
 
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
@@ -143,7 +142,7 @@ public class GEOMiner extends SlimefunItem
      * @return This method will return the current instance of {@link GEOMiner}, so that can be chained.
      */
     public final GEOMiner setProcessingSpeed(int speed) {
-        Validate.isTrue(speed > 0, "The speed must be greater than zero!");
+        
 
         this.processingSpeed = speed;
         return this;
@@ -158,12 +157,6 @@ public class GEOMiner extends SlimefunItem
      * @return This method will return the current instance of {@link GEOMiner}, so that can be chained.
      */
     public final GEOMiner setEnergyConsumption(int energyConsumption) {
-        Validate.isTrue(energyConsumption > 0, "The energy consumption must be greater than zero!");
-        Validate.isTrue(energyCapacity > 0, "You must specify the capacity before you can set the consumption amount.");
-        Validate.isTrue(
-                energyConsumption <= energyCapacity,
-                "The energy consumption cannot be higher than the capacity (" + energyCapacity + ')');
-
         this.energyConsumedPerTick = energyConsumption;
         return this;
     }

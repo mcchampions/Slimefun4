@@ -14,7 +14,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Biome;
 
@@ -57,10 +56,6 @@ public class BiomeMapParser<T> {
      */
     @ParametersAreNonnullByDefault
     public BiomeMapParser(NamespacedKey key, BiomeDataConverter<T> valueConverter) {
-        Validate.notNull(key, "The key shall not be null.");
-        Validate.notNull(
-                valueConverter, "You must provide a Function to convert raw json values to your desired data type.");
-
         this.key = key;
         this.valueConverter = valueConverter;
     }
@@ -93,7 +88,7 @@ public class BiomeMapParser<T> {
     }
 
     public void read(String json) throws BiomeMapException {
-        Validate.notNull(json, "The JSON string should not be null!");
+
         JsonArray root;
 
         try {
@@ -110,7 +105,6 @@ public class BiomeMapParser<T> {
     }
 
     public void read(JsonArray json) throws BiomeMapException {
-        Validate.notNull(json, "The JSON Array should not be null!");
 
         for (JsonElement element : json) {
             if (element instanceof JsonObject) {
@@ -124,7 +118,6 @@ public class BiomeMapParser<T> {
     }
 
     private void readEntry(JsonObject entry) throws BiomeMapException {
-        Validate.notNull(entry, "The JSON entry should not be null!");
 
         /*
          * Check if the entry has a "value" element.
@@ -156,7 +149,7 @@ public class BiomeMapParser<T> {
     }
 
     private Set<Biome> readBiomes(JsonArray array) throws BiomeMapException {
-        Validate.notNull(array, "The JSON array should not be null!");
+
         Set<Biome> biomes = EnumSet.noneOf(Biome.class);
 
         for (JsonElement element : array) {

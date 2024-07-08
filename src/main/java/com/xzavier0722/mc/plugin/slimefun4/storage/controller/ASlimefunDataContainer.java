@@ -75,6 +75,5 @@ public abstract class ASlimefunDataContainer {
         return getCacheInternal(key);
     }
 
-
     public abstract void setData(String key, String val);
 }

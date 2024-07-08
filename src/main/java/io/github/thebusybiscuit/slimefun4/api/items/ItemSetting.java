@@ -8,7 +8,6 @@ import java.util.Objects;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 
 /**
  * This class represents a Setting for a {@link SlimefunItem} that can be modified via
@@ -40,9 +39,7 @@ public class ItemSetting<T> {
      */
     @ParametersAreNonnullByDefault
     public ItemSetting(SlimefunItem item, String key, T defaultValue) {
-        Validate.notNull(item, "The provided SlimefunItem must not be null!");
-        Validate.notNull(key, "The key of an ItemSetting is not allowed to be null!");
-        Validate.notNull(defaultValue, "The default value of an ItemSetting is not allowed to be null!");
+
 
         this.item = item;
         this.key = key;
@@ -139,7 +136,6 @@ public class ItemSetting<T> {
      */
     @SuppressWarnings("unchecked")
     public void reload() {
-        Validate.notNull(item, "Cannot apply settings for a non-existing SlimefunItem");
 
         Slimefun.getItemCfg().setDefaultValue(item.getId() + '.' + getKey(), getDefaultValue());
         Object configuredValue = Slimefun.getItemCfg().getValue(item.getId() + '.' + getKey());

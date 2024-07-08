@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.tools.ClimbingPic
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -48,17 +47,14 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
         this.block = block;
     }
 
-
     /**
      * Use this to change the velocity {@link Vector} applied to the {@link Player}.
      *
      * @param velocity The {@link Vector} velocity to apply
      */
     public void setVelocity(Vector velocity) {
-        Validate.notNull(velocity);
         this.velocity = velocity;
     }
-
 
     @Override
     public boolean isCancelled() {
@@ -70,11 +66,9 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
         this.cancelled = cancel;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 
     @Override
     public HandlerList getHandlers() {

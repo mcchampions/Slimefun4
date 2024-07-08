@@ -23,7 +23,6 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -85,7 +84,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     }
 
     public void addRecipe(ItemStack[] input, ItemStack output) {
-        Validate.notNull(output, "Recipes must have an Output!");
 
         recipes.add(input);
         recipes.add(new ItemStack[] {output});

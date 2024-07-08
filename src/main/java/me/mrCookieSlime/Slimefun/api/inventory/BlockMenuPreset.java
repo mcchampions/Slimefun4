@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.annotation.Nullable;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -26,8 +25,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
 
     protected BlockMenuPreset(String id, String title) {
         super(title);
-
-        Validate.notNull(id, "You need to specify an id!");
 
         this.id = id;
         this.inventoryTitle = title;
@@ -99,7 +96,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *            The slots which should be treated as background
      */
     public void drawBackground(ItemStack item, int[] slots) {
-        Validate.notNull(item, "The background item cannot be null!");
+
         checkIfLocked();
 
         for (int slot : slots) {
@@ -210,7 +207,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
     }
 
     public void newInstance(BlockMenu menu, Location l) {
-        Validate.notNull(l, "Cannot create a new BlockMenu without a Location");
 
         Slimefun.runSync(() -> {
             locked = true;

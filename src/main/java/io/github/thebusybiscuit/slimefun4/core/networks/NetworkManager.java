@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.network.Network;
 import io.github.thebusybiscuit.slimefun4.core.networks.cargo.CargoNet;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.NetworkListener;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Server;
 
@@ -56,7 +55,7 @@ public class NetworkManager {
      *            Whether excess items from a {@link CargoNet} should be voided
      */
     public NetworkManager(int maxStepSize, boolean enableVisualizer, boolean deleteExcessItems) {
-        Validate.isTrue(maxStepSize > 0, "The maximal Network size must be above zero!");
+        
 
         this.enableVisualizer = enableVisualizer;
         this.deleteExcessItems = deleteExcessItems;
@@ -119,8 +118,6 @@ public class NetworkManager {
             return Optional.empty();
         }
 
-        Validate.notNull(type, "Type must not be null");
-
         for (Network network : networks) {
             if (type.isInstance(network) && network.connectsTo(l)) {
                 return Optional.of(type.cast(network));
@@ -137,7 +134,6 @@ public class NetworkManager {
             return new ArrayList<>();
         }
 
-        Validate.notNull(type, "Type must not be null");
         List<T> list = new ArrayList<>();
 
         for (Network network : networks) {
@@ -156,7 +152,6 @@ public class NetworkManager {
      *            The {@link Network} to register
      */
     public void registerNetwork(Network network) {
-        Validate.notNull(network, "Cannot register a null Network");
 
         networks.add(network);
     }
@@ -168,7 +163,6 @@ public class NetworkManager {
      *            The {@link Network} to remove
      */
     public void unregisterNetwork(Network network) {
-        Validate.notNull(network, "Cannot unregister a null Network");
 
         networks.remove(network);
     }
@@ -181,7 +175,6 @@ public class NetworkManager {
      *            The {@link Location} to update
      */
     public void updateAllNetworks(Location l) {
-        Validate.notNull(l, "The Location cannot be null");
 
         
 

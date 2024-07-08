@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 
 /**
@@ -153,7 +152,6 @@ public enum MinecraftVersion {
      * @return Whether this {@link MinecraftVersion} is newer or equal to the given {@link MinecraftVersion}
      */
     public boolean isAtLeast(MinecraftVersion version) {
-        Validate.notNull(version, "A Minecraft version cannot be null!");
 
         if (this == UNKNOWN) {
             return false;
@@ -171,7 +169,6 @@ public enum MinecraftVersion {
      * @return Whether this {@link MinecraftVersion} is older than the given one
      */
     public boolean isBefore(MinecraftVersion version) {
-        Validate.notNull(version, "A Minecraft version cannot be null!");
 
         if (this == UNKNOWN) {
             return true;

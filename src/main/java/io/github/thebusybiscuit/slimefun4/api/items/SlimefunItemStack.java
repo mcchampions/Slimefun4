@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -47,11 +46,6 @@ public class SlimefunItemStack extends ItemStack {
 
     public SlimefunItemStack(String id, ItemStack item) {
         super(item);
-
-        Validate.notNull(id, "The Item id must never be null!");
-        Validate.isTrue(
-                id.equals(id.toUpperCase(Locale.ROOT)), "Slimefun Item Ids must be uppercase! (e.g. 'MY_ITEM_ID')");
-
         if (Slimefun.instance() == null) {
             throw new PrematureCodeException(
                     "A SlimefunItemStack must never be be created before your Plugin was enabled.");
@@ -289,8 +283,6 @@ public class SlimefunItemStack extends ItemStack {
     }
 
     private static String getTexture(String id, String texture) {
-        Validate.notNull(id, "The id cannot be null");
-        Validate.notNull(texture, "The texture cannot be null");
 
         if (texture.startsWith("ey")) {
             return texture;

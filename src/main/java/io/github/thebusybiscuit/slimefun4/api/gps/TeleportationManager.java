@@ -17,7 +17,6 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -169,8 +168,6 @@ public final class TeleportationManager {
      * @return The amount of time the teleportation will take
      */
     public int getTeleportationTime(int complexity, Location source, Location destination) {
-        Validate.notNull(source, "Source cannot be null");
-        Validate.notNull(source, "Destination cannot be null");
 
         if (complexity < 100) {
             return 100;

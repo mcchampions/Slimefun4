@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
-
 /**
  * The {@link AutoAnvil} is an electric machine which can repair any {@link ItemStack} using
  * Duct tape.

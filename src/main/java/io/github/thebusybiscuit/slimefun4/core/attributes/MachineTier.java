@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes;
 
-
 public enum MachineTier {
     BASIC("&e基础"),
     AVERAGE("&6普通"),

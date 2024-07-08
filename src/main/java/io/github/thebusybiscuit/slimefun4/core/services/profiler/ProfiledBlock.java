@@ -80,7 +80,6 @@ final class ProfiledBlock {
         return ((long) (x & 0x3FFFFFF) << 38) | ((long) (z & 0x3FFFFFF) << 12) | (long) (y & 0xFFF);
     }
 
-
     /**
      * Gets the x for this block.
      *

@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.NetworkListener;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -33,7 +32,7 @@ public abstract class Network {
      * The {@link Location} of the regulator of this {@link Network}.
      */
     @Getter
-    protected Location regulator;
+    protected final Location regulator;
 
     private final Queue<Location> nodeQueue = new ArrayDeque<>();
     protected final Set<Location> connectedLocations = new HashSet<>();
@@ -48,8 +47,6 @@ public abstract class Network {
      * @param regulator The {@link Location} marking the regulator of this {@link Network}.
      */
     protected Network(NetworkManager manager, Location regulator) {
-        Validate.notNull(manager, "A NetworkManager must be provided");
-        Validate.notNull(regulator, "No regulator was specified");
 
         this.manager = manager;
         this.regulator = regulator;

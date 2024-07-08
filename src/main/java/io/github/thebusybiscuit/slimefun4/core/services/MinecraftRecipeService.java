@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -82,7 +81,7 @@ public class MinecraftRecipeService {
      *            A callback to run when the {@link RecipeSnapshot} has been created.
      */
     public void subscribe(Consumer<RecipeSnapshot> subscription) {
-        Validate.notNull(subscription, "Callback must not be null!");
+
         subscriptions.add(subscription);
     }
 
@@ -128,7 +127,6 @@ public class MinecraftRecipeService {
      * @return An Array of {@link RecipeChoice} representing the shape of this {@link Recipe}
      */
     public RecipeChoice[] getRecipeShape(Recipe recipe) {
-        Validate.notNull(recipe, "Recipe must not be null!");
 
         if (recipe instanceof ShapedRecipe shapedRecipe) {
             List<RecipeChoice> choices = new LinkedList<>();
@@ -181,7 +179,6 @@ public class MinecraftRecipeService {
      * @return The corresponding {@link Recipe} or null
      */
     public @Nullable Recipe getRecipe(NamespacedKey key) {
-        Validate.notNull(key, "The NamespacedKey should not be null");
 
         if (snapshot != null) {
             // We operate on a cached HashMap which is much faster than Bukkit's method.

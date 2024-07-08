@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -30,13 +29,10 @@ public class ResearchUnlockEvent extends Event implements Cancellable {
     public ResearchUnlockEvent(Player p, Research research) {
         super(!Bukkit.isPrimaryThread());
 
-        Validate.notNull(p, "The Player cannot be null");
-        Validate.notNull(research, "Research cannot be null");
 
         this.player = p;
         this.research = research;
     }
-
 
     @Override
     public boolean isCancelled() {

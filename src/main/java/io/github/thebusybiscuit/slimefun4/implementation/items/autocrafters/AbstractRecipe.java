@@ -11,7 +11,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice.MaterialChoice;
@@ -77,9 +76,6 @@ public abstract class AbstractRecipe {
      */
     @ParametersAreNonnullByDefault
     protected AbstractRecipe(Collection<Predicate<ItemStack>> ingredients, ItemStack result) {
-        Validate.notEmpty(ingredients, "The input predicates cannot be null or an empty array");
-        Validate.notNull(result, "The recipe result must not be null!");
-
         this.ingredients = ingredients;
         this.result = result;
     }

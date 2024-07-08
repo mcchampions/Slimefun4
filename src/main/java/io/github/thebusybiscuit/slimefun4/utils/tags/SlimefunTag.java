@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
@@ -431,7 +430,6 @@ public enum SlimefunTag implements Tag<Material> {
      * @return The {@link SlimefunTag} or null if it does not exist.
      */
     public static @Nullable SlimefunTag getTag(String value) {
-        Validate.notNull(value, "A tag cannot be null!");
 
         return nameLookup.get(value);
     }

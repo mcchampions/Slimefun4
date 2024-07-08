@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 
-
 import lombok.Getter;
 
 /**

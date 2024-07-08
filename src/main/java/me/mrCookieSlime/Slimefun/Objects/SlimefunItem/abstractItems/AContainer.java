@@ -31,7 +31,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -196,7 +195,7 @@ public abstract class AContainer extends SlimefunItem
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setCapacity(int capacity) {
-        Validate.isTrue(capacity > 0, "The capacity must be greater than zero!");
+        
 
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
@@ -215,7 +214,7 @@ public abstract class AContainer extends SlimefunItem
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setProcessingSpeed(int speed) {
-        Validate.isTrue(speed > 0, "The speed must be greater than zero!");
+        
 
         this.processingSpeed = speed;
         return this;
@@ -230,12 +229,6 @@ public abstract class AContainer extends SlimefunItem
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setEnergyConsumption(int energyConsumption) {
-        Validate.isTrue(energyConsumption > 0, "The energy consumption must be greater than zero!");
-        Validate.isTrue(energyCapacity > 0, "You must specify the capacity before you can set the consumption amount.");
-        Validate.isTrue(
-                energyConsumption <= energyCapacity,
-                "The energy consumption cannot be higher than the capacity (" + energyCapacity + ')');
-
         this.energyConsumedPerTick = energyConsumption;
         return this;
     }
@@ -392,7 +385,6 @@ public abstract class AContainer extends SlimefunItem
      * @return Whether charge was taken if its chargeable
      */
     protected boolean takeCharge(Location l) {
-        Validate.notNull(l, "Can't attempt to take charge from a null location!");
 
         if (isChargeable()) {
             int charge = getCharge(l);

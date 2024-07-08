@@ -26,7 +26,6 @@ public class GoldPanDrop extends ItemSetting<Integer> {
         return super.validateInput(input) && input >= 0;
     }
 
-
     @Override
     public void update(Integer newValue) {
         super.update(newValue);

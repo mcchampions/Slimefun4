@@ -56,7 +56,6 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
         return placedItem;
     }
 
-
     @Override
     public boolean isCancelled() {
         return cancelled;

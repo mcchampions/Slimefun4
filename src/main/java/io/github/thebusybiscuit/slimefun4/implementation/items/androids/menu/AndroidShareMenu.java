@@ -16,7 +16,6 @@ import java.util.UUID;
 import java.util.logging.Level;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -49,8 +48,6 @@ public final class AndroidShareMenu {
      */
     @ParametersAreNonnullByDefault
     public static void openShareMenu(Player p, Block b) {
-        Validate.notNull(p, "The player cannot be null!");
-        Validate.notNull(b, "The android block cannot be null!");
 
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage("android.access-manager.title"));
 
@@ -128,10 +125,7 @@ public final class AndroidShareMenu {
 
     @ParametersAreNonnullByDefault
     private static void addPlayer(Player owner, OfflinePlayer p, Block android, List<String> users) {
-        Validate.notNull(owner, "The android cannot be null!");
-        Validate.notNull(p, "The target player cannot be null!");
-        Validate.notNull(android, "The android block cannot be null!");
-        Validate.notNull(users, "The trusted users list cannot be null!");
+
 
         if (users.contains(p.getUniqueId().toString())) {
             Slimefun.getLocalization()
@@ -155,10 +149,7 @@ public final class AndroidShareMenu {
 
     @ParametersAreNonnullByDefault
     private static void removePlayer(Player owner, OfflinePlayer p, Block android, List<String> users) {
-        Validate.notNull(owner, "The android cannot be null!");
-        Validate.notNull(p, "The target player cannot be null!");
-        Validate.notNull(android, "The android block cannot be null!");
-        Validate.notNull(users, "The trusted users list cannot be null!");
+
 
         if (users.contains(p.getUniqueId().toString())) {
             users.remove(p.getUniqueId().toString());
@@ -185,7 +176,6 @@ public final class AndroidShareMenu {
      * @return parse trusted player list
      */
     private static List<String> parseBlockInfoToList(String value) {
-        Validate.notNull(value, "The trusted player list cannot be null!");
 
         String replacedText = value.replace("[", "").replace("]", "");
 
@@ -203,7 +193,6 @@ public final class AndroidShareMenu {
      * @return trusted users list
      */
     public static List<String> getTrustedUsers(Block b) {
-        Validate.notNull(b, "The android block cannot be null!");
 
         Optional<String> trustUsers = getSharedUserData(b.getState());
 
@@ -226,8 +215,6 @@ public final class AndroidShareMenu {
      */
     @ParametersAreNonnullByDefault
     public static boolean isTrustedUser(Block b, UUID uuid) {
-        Validate.notNull(b, "The android block cannot be null!");
-        Validate.notNull(uuid, "The UUID of player to check cannot be null!");
 
         Optional<String> trustUsers = getSharedUserData(b.getState());
 
@@ -235,8 +222,6 @@ public final class AndroidShareMenu {
     }
 
     private static void setSharedUserData(BlockState state, String value) {
-        Validate.notNull(state, "The android block state cannot be null!");
-        Validate.notNull(value, "The data value cannot be null!");
 
         if (!(state instanceof TileState)) {
             return;
@@ -261,7 +246,6 @@ public final class AndroidShareMenu {
     }
 
     private static Optional<String> getSharedUserData(BlockState state) {
-        Validate.notNull(state, "The android block state cannot be null!");
 
         if (!(state instanceof TileState)) {
             return Optional.empty();

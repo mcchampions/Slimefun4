@@ -11,12 +11,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArm
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.SolarHelmet;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -26,6 +20,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Set;
 
 /**
  * The {@link ArmorTask} is responsible for handling {@link PotionEffect PotionEffects} for
@@ -52,7 +50,6 @@ public class ArmorTask implements Runnable {
 
         radiationEffects = Set.of(new PotionEffect(PotionEffectType.WITHER, 400, 2), new PotionEffect(PotionEffectType.BLINDNESS, 400, 3), new PotionEffect(VersionedPotionEffectType.NAUSEA, 400, 3), new PotionEffect(PotionEffectType.WEAKNESS, 400, 2), new PotionEffect(VersionedPotionEffectType.SLOWNESS, 400, 1), new PotionEffect(VersionedPotionEffectType.MINING_FATIGUE, 400, 1));
     }
-
 
     @Override
     public void run() {

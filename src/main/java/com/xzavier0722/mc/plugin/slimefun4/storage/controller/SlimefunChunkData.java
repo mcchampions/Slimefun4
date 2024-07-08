@@ -31,7 +31,6 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
         sfBlocks = new ConcurrentHashMap<>();
     }
 
-
     @ParametersAreNonnullByDefault
     public SlimefunBlockData createBlockData(Location l, String sfId) {
         var lKey = LocationUtils.getLocKey(l);

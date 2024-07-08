@@ -22,7 +22,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Ageable;
@@ -81,7 +80,6 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
      *            The {@link AnimalProduce} to add
      */
     public void addProduce(AnimalProduce produce) {
-        Validate.notNull(produce, "A produce cannot be null");
 
         this.animalProduces.add(produce);
     }

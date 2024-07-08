@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Cooler;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -42,7 +41,6 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
         this.consumedItem = consumedItem;
     }
 
-
     /**
      * This returns the {@link ItemStack} that was consumed.
      * The returned {@link ItemStack} is immutable.
@@ -63,8 +61,8 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      * @param item The new {@link ItemStack}
      */
     public void setConsumedItem(ItemStack item) {
-        Validate.notNull(item, "The consumed Item cannot be null!");
-        Validate.isTrue(item.getItemMeta() instanceof PotionMeta, "The item must be a potion!");
+
+        
 
         this.consumedItem = item;
     }

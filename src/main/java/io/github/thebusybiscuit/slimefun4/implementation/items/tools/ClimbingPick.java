@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.implementation.settings.ClimbableSurface;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
@@ -120,7 +119,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      * @return The climbing speed for this {@link Material} or 0.
      */
     public double getClimbingSpeed(Material type) {
-        Validate.notNull(type, "The surface cannot be null");
+
         ClimbableSurface surface = surfaces.get(type);
 
         if (surface != null) {

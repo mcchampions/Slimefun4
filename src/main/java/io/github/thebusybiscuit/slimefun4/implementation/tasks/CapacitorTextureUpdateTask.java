@@ -5,7 +5,6 @@ import io.github.bakedlibs.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.Capacitor;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.papermc.lib.PaperLib;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
@@ -42,7 +41,6 @@ public class CapacitorTextureUpdateTask implements Runnable {
      *            The capacity of this {@link Capacitor}
      */
     public CapacitorTextureUpdateTask(Location l, double charge, double capacity) {
-        Validate.notNull(l, "The Location cannot be null");
 
         this.l = l;
         this.filledPercentage = charge / capacity;

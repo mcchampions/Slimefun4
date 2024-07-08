@@ -95,14 +95,12 @@ public final class FireworkUtils {
      * @return A randomized {@link FireworkEffect}
      */
     public static FireworkEffect getRandomEffect(Random random, Color color) {
-        // @formatter:off
         return FireworkEffect.builder()
                 .flicker(random.nextBoolean())
                 .withColor(color)
                 .with(random.nextBoolean() ? Type.BALL : Type.BALL_LARGE)
                 .trail(random.nextBoolean())
                 .build();
-        // @formatter:on
     }
 
     /**

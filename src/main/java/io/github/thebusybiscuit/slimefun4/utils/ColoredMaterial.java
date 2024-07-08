@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import org.apache.commons.lang.Validate;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 
@@ -205,10 +204,6 @@ public enum ColoredMaterial {
      * @param materials The {@link Material Materials} for this {@link ColoredMaterial}.
      */
     ColoredMaterial(Material[] materials) {
-        Validate.noNullElements(materials, "The List cannot contain any null elements");
-        Validate.isTrue(
-                materials.length == 16, "Expected 16, received: " + materials.length + ". Did you miss a color?");
-
         list = List.of(materials);
     }
 
@@ -219,14 +214,10 @@ public enum ColoredMaterial {
 
     
     public Material get(int index) {
-        Validate.isTrue(index >= 0 && index < 16, "The index must be between 0 and 15 (inclusive).");
-
         return list.get(index);
     }
 
     public Material get(DyeColor color) {
-        Validate.notNull(color, "Color cannot be null!");
-
         return get(color.ordinal());
     }
 }

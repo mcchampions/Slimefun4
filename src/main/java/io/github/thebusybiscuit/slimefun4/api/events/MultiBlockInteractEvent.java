@@ -37,7 +37,6 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
         this.clickedFace = face;
     }
 
-
     @Override
     public boolean isCancelled() {
         return cancelled;

@@ -48,7 +48,6 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
         this.slimefunItem = slimefunItem;
     }
 
-
     @Override
     public boolean isCancelled() {
         return cancelled;

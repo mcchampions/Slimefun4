@@ -29,7 +29,6 @@ public class AutoEnchantEvent extends Event implements Cancellable {
         this.item = item;
     }
 
-
     @Override
     public boolean isCancelled() {
         return cancelled;

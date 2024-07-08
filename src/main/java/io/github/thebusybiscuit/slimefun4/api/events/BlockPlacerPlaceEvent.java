@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.BlockPlace
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.block.Block;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -65,7 +64,6 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
      *            The {@link ItemStack} to be placed
      */
     public void setItemStack(ItemStack item) {
-        Validate.notNull(item, "The ItemStack must not be null!");
 
         if (!locked) {
             this.placedItem = item;

@@ -20,7 +20,6 @@ import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
-import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -87,10 +86,9 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
     }
 
     public void registerFuel(MachineFuel fuel) {
-        Validate.notNull(fuel, "Machine Fuel cannot be null!");
+
         fuelTypes.add(fuel);
     }
-
 
     @Override
     public String getLabelLocalPath() {

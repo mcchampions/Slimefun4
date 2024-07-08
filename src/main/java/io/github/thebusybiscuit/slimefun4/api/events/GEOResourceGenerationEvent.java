@@ -67,7 +67,6 @@ public class GEOResourceGenerationEvent extends Event {
         this.value = value;
     }
 
-
     /**
      * This returns the X coordinate of the {@link Chunk} in which the {@link GEOResource}
      * is generated.

@@ -1,6 +1,5 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.common;
 
-
 import lombok.Getter;
 
 @Getter
@@ -10,7 +9,6 @@ public class ScopeKey {
     public ScopeKey(DataScope scope) {
         this.scope = scope;
     }
-
 
     protected String getKeyStr() {
         return scope.name();

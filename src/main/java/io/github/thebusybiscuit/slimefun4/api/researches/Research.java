@@ -20,7 +20,6 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -71,8 +70,6 @@ public class Research implements Keyed {
      */
     public Research(
             NamespacedKey key, int id, String defaultName, int levelCost, double currencyCost) {
-        Validate.notNull(key, "A NamespacedKey must be provided");
-        Validate.notNull(defaultName, "A default name must be specified");
 
         this.key = key;
         this.id = id;
@@ -99,8 +96,6 @@ public class Research implements Keyed {
      *
      */
     public Research(NamespacedKey key, int id, String defaultName, int defaultCost) {
-        Validate.notNull(key, "A NamespacedKey must be provided");
-        Validate.notNull(defaultName, "A default name must be specified");
 
         this.key = key;
         this.id = id;

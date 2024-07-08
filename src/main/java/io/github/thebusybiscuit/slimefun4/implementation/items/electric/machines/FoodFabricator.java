@@ -9,7 +9,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-
 public class FoodFabricator extends AContainer {
 
     public FoodFabricator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

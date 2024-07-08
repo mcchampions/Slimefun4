@@ -1,7 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.services.localization;
 
-import org.apache.commons.lang.Validate;
-
 /**
  * This enum holds the different types of files each {@link Language} holds.
  *
@@ -33,7 +31,7 @@ public enum LanguageFile {
 
     
     public String getFilePath(String languageId) {
-        Validate.notNull(languageId, "Language id must not be null!");
+
         return "/languages/" + languageId + '/' + fileName;
     }
 }

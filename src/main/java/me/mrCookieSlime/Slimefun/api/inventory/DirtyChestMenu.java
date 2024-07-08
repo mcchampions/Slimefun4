@@ -54,7 +54,6 @@ public class DirtyChestMenu extends ChestMenu {
         return changes;
     }
 
-
     public boolean canOpen(Block b, Player p) {
         return preset.canOpen(b, p);
     }

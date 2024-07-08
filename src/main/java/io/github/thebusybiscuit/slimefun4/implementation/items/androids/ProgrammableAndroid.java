@@ -46,7 +46,6 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -669,20 +668,12 @@ public class ProgrammableAndroid extends SlimefunItem
 
     
     public String getScript(Location l) {
-        Validate.notNull(l, "Location for android not specified");
+
         String script = StorageCacheUtils.getData(l, "script");
         return script != null ? script : DEFAULT_SCRIPT;
     }
 
     public void setScript(Location l, String script) {
-        Validate.notNull(l, "Location for android not specified");
-        Validate.notNull(script, "No script given");
-        Validate.isTrue(script.startsWith(Instruction.START.name() + '-'), "A script must begin with a 'START' token.");
-        Validate.isTrue(script.endsWith('-' + Instruction.REPEAT.name()), "A script must end with a 'REPEAT' token.");
-        Validate.isTrue(
-                CommonPatterns.DASH.split(script).length <= MAX_SCRIPT_LENGTH,
-                "Scripts may not have more than " + MAX_SCRIPT_LENGTH + " segments");
-
         StorageCacheUtils.setData(l, "script", script);
     }
 
@@ -723,7 +714,6 @@ public class ProgrammableAndroid extends SlimefunItem
     }
 
     public void registerFuelType(MachineFuel fuel) {
-        Validate.notNull(fuel, "Cannot register null as a Fuel type");
 
         fuelTypes.add(fuel);
     }
@@ -969,7 +959,6 @@ public class ProgrammableAndroid extends SlimefunItem
 
     @ParametersAreNonnullByDefault
     public void addItems(Block b, ItemStack... items) {
-        Validate.notNull(b, "The Block cannot be null.");
 
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 

@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.TalismanEnchantment;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -82,8 +81,6 @@ public class MagicianTalisman extends Talisman {
      */
     @Nullable public TalismanEnchantment getRandomEnchantment(
             ItemStack item, Set<Enchantment> existingEnchantments) {
-        Validate.notNull(item, "The ItemStack cannot be null");
-        Validate.notNull(existingEnchantments, "The Enchantments Set cannot be null");
 
         // @formatter:off
         List<TalismanEnchantment> enabled = enchantments.stream()

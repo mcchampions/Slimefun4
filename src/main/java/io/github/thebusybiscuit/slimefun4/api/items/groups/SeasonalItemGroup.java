@@ -6,7 +6,6 @@ import java.time.Month;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -47,7 +46,6 @@ public class SeasonalItemGroup extends ItemGroup {
     @ParametersAreNonnullByDefault
     public SeasonalItemGroup(NamespacedKey key, Month month, int tier, ItemStack item) {
         super(key, item, tier);
-        Validate.notNull(month, "The Month cannot be null");
 
         this.month = month;
     }

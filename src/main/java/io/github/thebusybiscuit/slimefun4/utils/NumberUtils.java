@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 
 /**
@@ -86,7 +85,7 @@ public final class NumberUtils {
      * @return The {@link LocalDateTime} for the given input
      */
     public static LocalDateTime parseGitHubDate(String date) {
-        Validate.notNull(date, "Provided date was null");
+
         return LocalDateTime.parse(date.substring(0, date.length() - 1));
     }
 
@@ -152,8 +151,6 @@ public final class NumberUtils {
      * @return The elapsed time as a {@link String}
      */
     public static String getElapsedTime(LocalDateTime current, LocalDateTime priorDate) {
-        Validate.notNull(current, "Provided current date was null");
-        Validate.notNull(priorDate, "Provided past date was null");
 
         long hours = Duration.between(priorDate, current).toHours();
 

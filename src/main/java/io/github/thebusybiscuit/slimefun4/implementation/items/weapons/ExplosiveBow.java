@@ -42,7 +42,6 @@ public class ExplosiveBow extends SlimefunBow {
         addItemSetting(range);
     }
 
-
     @Override
     public BowShootHandler onShoot() {
         return (e, target) -> {

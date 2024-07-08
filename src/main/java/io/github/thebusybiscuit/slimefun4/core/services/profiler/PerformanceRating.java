@@ -4,7 +4,6 @@ import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 
 /**
@@ -35,7 +34,7 @@ public enum PerformanceRating implements Predicate<Float> {
     private final float threshold;
 
     PerformanceRating(ChatColor color, float threshold) {
-        Validate.notNull(color, "Color cannot be null");
+
         this.color = color;
         this.threshold = threshold;
     }
@@ -49,6 +48,5 @@ public enum PerformanceRating implements Predicate<Float> {
 
         return value <= threshold;
     }
-
 
 }

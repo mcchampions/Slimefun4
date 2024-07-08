@@ -10,7 +10,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -268,15 +267,13 @@ public enum Instruction {
         this(type, head, null);
     }
 
-
     public AndroidType getRequiredType() {
         return type;
     }
 
     @ParametersAreNonnullByDefault
     public void execute(ProgrammableAndroid android, Block b, BlockMenu inventory, BlockFace face) {
-        Validate.notNull(method, "Instruction '" + name() + "' must be executed manually!");
-        method.perform(android, b, inventory, face);
+         method.perform(android, b, inventory, face);
     }
 
     /**
@@ -291,7 +288,7 @@ public enum Instruction {
      * @return The {@link Instruction} or null if it does not exist.
      */
     @Nullable public static Instruction getInstruction(String value) {
-        Validate.notNull(value, "An Instruction cannot be null!");
+
         return nameLookup.get(value);
     }
 }

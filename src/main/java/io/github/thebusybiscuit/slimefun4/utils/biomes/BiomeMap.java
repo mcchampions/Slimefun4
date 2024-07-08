@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Biome;
@@ -55,31 +54,26 @@ public class BiomeMap<T> implements Keyed {
      */
     @ParametersAreNonnullByDefault
     public BiomeMap(NamespacedKey namespacedKey) {
-        Validate.notNull(namespacedKey, "The key must not be null.");
 
         this.namespacedKey = namespacedKey;
     }
 
     public @Nullable T get(Biome biome) {
-        Validate.notNull(biome, "The biome shall not be null.");
 
         return dataMap.get(biome);
     }
 
     public T getOrDefault(Biome biome, T defaultValue) {
-        Validate.notNull(biome, "The biome should not be null.");
 
         return dataMap.getOrDefault(biome, defaultValue);
     }
 
     public boolean containsKey(Biome biome) {
-        Validate.notNull(biome, "The biome must not be null.");
 
         return dataMap.containsKey(biome);
     }
 
     public boolean containsValue(T value) {
-        Validate.notNull(value, "The value must not be null.");
 
         return dataMap.containsValue(value);
     }
@@ -95,26 +89,21 @@ public class BiomeMap<T> implements Keyed {
     }
 
     public boolean put(Biome biome, T value) {
-        Validate.notNull(biome, "The biome should not be null.");
-        Validate.notNull(value, "Values cannot be null.");
 
         return dataMap.put(biome, value) == null;
     }
 
     public void putAll(Map<Biome, T> map) {
-        Validate.notNull(map, "The map should not be null.");
 
         dataMap.putAll(map);
     }
 
     public void putAll(BiomeMap<T> map) {
-        Validate.notNull(map, "The map should not be null.");
 
         dataMap.putAll(map.dataMap);
     }
 
     public boolean remove(Biome biome) {
-        Validate.notNull(biome, "The biome cannot be null.");
 
         return dataMap.remove(biome) != null;
     }
@@ -159,9 +148,7 @@ public class BiomeMap<T> implements Keyed {
     public static <T> BiomeMap<T> fromResource(
             NamespacedKey key, JavaPlugin plugin, String path, BiomeDataConverter<T> valueConverter)
             throws BiomeMapException {
-        Validate.notNull(key, "The key shall not be null.");
-        Validate.notNull(plugin, "The plugin shall not be null.");
-        Validate.notNull(path, "The path should not be null!");
+
 
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(plugin.getClass().getResourceAsStream(path), StandardCharsets.UTF_8))) {

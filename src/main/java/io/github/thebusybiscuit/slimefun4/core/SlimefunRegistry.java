@@ -17,7 +17,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.guide.SurvivalSlimefunG
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.BlockInfoConfig;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Piglin;
@@ -72,7 +71,6 @@ public final class SlimefunRegistry {
     private final Map<Class<? extends ItemHandler>, Set<ItemHandler>> globalItemHandlers = new HashMap<>();
 
     public void load(Slimefun plugin) {
-        Validate.notNull(plugin, "The Plugin cannot be null!");
 
         soulboundKey = new NamespacedKey(plugin, "soulbound");
         itemChargeKey = new NamespacedKey(plugin, "item_charge");
@@ -126,7 +124,6 @@ public final class SlimefunRegistry {
         return enabledItems;
     }
 
-
     /**
      * This method returns a {@link Set} containing the {@link UUID} of every
      * {@link Player} who is currently unlocking a {@link Research}.
@@ -138,7 +135,6 @@ public final class SlimefunRegistry {
     public Set<UUID> getCurrentlyResearchingPlayers() {
         return researchingPlayers;
     }
-
 
     /**
      * This method returns a {@link List} of every enabled {@link MultiBlock}.
@@ -165,7 +161,6 @@ public final class SlimefunRegistry {
      */
     
     public SlimefunGuideImplementation getSlimefunGuide(SlimefunGuideMode mode) {
-        Validate.notNull(mode, "The Guide mode cannot be null");
 
         SlimefunGuideImplementation guide = guides.get(mode);
 
@@ -212,13 +207,10 @@ public final class SlimefunRegistry {
         return profiles;
     }
 
-
     public Set<ItemHandler> getGlobalItemHandlers(Class<? extends ItemHandler> identifier) {
-        Validate.notNull(identifier, "The identifier for an ItemHandler cannot be null!");
 
         return globalItemHandlers.computeIfAbsent(identifier, c -> new HashSet<>());
     }
-
 
     public KeyMap<GEOResource> getGEOResources() {
         return geoResources;

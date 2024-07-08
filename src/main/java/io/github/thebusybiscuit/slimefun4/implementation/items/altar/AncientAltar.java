@@ -62,5 +62,4 @@ public class AncientAltar extends SlimefunItem {
         return stepDelay.getValue();
     }
 
-
 }

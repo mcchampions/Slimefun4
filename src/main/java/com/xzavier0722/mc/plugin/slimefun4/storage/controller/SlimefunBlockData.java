@@ -34,7 +34,6 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         this.sfId = other.sfId;
     }
 
-
     @ParametersAreNonnullByDefault
     public void setData(String key, String val) {
         checkData();

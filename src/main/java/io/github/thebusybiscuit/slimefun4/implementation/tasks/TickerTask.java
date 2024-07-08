@@ -17,7 +17,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -247,7 +246,6 @@ public class TickerTask implements Runnable {
      */
     
     public Set<Location> getLocations(Chunk chunk) {
-        Validate.notNull(chunk, "The Chunk cannot be null!");
 
         Set<Location> locations = tickingLocations.getOrDefault(new ChunkPosition(chunk), new HashSet<>());
         return Collections.unmodifiableSet(locations);
@@ -260,7 +258,6 @@ public class TickerTask implements Runnable {
      *            The {@link Location} to activate
      */
     public void enableTicker(Location l) {
-        Validate.notNull(l, "Location cannot be null!");
 
         synchronized (tickingLocations) {
             tickingLocations
@@ -279,7 +276,6 @@ public class TickerTask implements Runnable {
      *            The {@link Location} to remove
      */
     public void disableTicker(Location l) {
-        Validate.notNull(l, "Location cannot be null!");
 
         synchronized (tickingLocations) {
             ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);

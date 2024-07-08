@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import java.util.UUID;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -31,8 +30,6 @@ public class AsyncProfileLoadEvent extends Event {
     public AsyncProfileLoadEvent(PlayerProfile profile) {
         super(true);
 
-        Validate.notNull(profile, "The Profile cannot be null");
-
         this.uniqueId = profile.getUUID();
         this.profile = profile;
     }
@@ -42,7 +39,6 @@ public class AsyncProfileLoadEvent extends Event {
         return uniqueId;
     }
 
-
     /**
      * This method can be used to inject your custom {@link PlayerProfile} implementations.
      * However, the passed {@link PlayerProfile} must have the same {@link UUID} as the original one!
@@ -51,8 +47,8 @@ public class AsyncProfileLoadEvent extends Event {
      *            The {@link PlayerProfile}
      */
     public void setProfile(PlayerProfile profile) {
-        Validate.notNull(profile, "The PlayerProfile cannot be null!");
-        Validate.isTrue(profile.getUUID().equals(uniqueId), "Cannot inject a PlayerProfile with a different UUID");
+
+        
 
         this.profile = profile;
     }

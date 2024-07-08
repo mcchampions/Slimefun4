@@ -6,7 +6,6 @@ import io.papermc.lib.PaperLib;
 import java.util.Optional;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
@@ -60,8 +59,6 @@ public class BlockDataService implements Keyed {
      *            The value to store
      */
     public void setBlockData(Block b, String value) {
-        Validate.notNull(b, "The block cannot be null!");
-        Validate.notNull(value, "The value cannot be null!");
 
         /*
           Don't use PaperLib here, it seems to be quite buggy in block-placing scenarios
@@ -101,7 +98,6 @@ public class BlockDataService implements Keyed {
      * @return The stored value
      */
     public Optional<String> getBlockData(Block b) {
-        Validate.notNull(b, "The block cannot be null!");
 
         BlockState state = PaperLib.getBlockState(b, false).getState();
         PersistentDataContainer container = getPersistentDataContainer(state);

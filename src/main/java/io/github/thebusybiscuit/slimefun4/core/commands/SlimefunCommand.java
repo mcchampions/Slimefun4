@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,8 +43,6 @@ public class SlimefunCommand implements CommandExecutor, Listener {
     }
 
     public void register() {
-        Validate.isTrue(!registered, "Slimefun's subcommands have already been registered!");
-
         registered = true;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 

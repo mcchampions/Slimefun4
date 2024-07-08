@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.guide;
 
-
 import lombok.Getter;
 
 class GuideEntry<T> {

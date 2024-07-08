@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.permissions.Permission;
@@ -62,7 +61,6 @@ You can also customize the text that is displayed when a Player does not have th
     }
 
     public void update(SlimefunItem item, boolean save) {
-        Validate.notNull(item, "The Item should not be null!");
 
         String path = item.getId() + ".permission";
 
@@ -110,7 +108,7 @@ You can also customize the text that is displayed when a Player does not have th
      */
     
     public Optional<String> getPermission(SlimefunItem item) {
-        Validate.notNull(item, "Cannot get permissions for null");
+
         String permission = permissions.get(item.getId());
 
         if (permission == null || permission.equals("none")) {
@@ -129,7 +127,7 @@ You can also customize the text that is displayed when a Player does not have th
      *            The {@link Permission} to set
      */
     public void setPermission(SlimefunItem item, @Nullable String permission) {
-        Validate.notNull(item, "You cannot set the permission for null");
+
         permissions.put(item.getId(), permission != null ? permission : "none");
     }
 

@@ -57,7 +57,6 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         addItemSetting(damageOnUse, callExplosionEvent);
     }
 
-
     @Override
     public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
@@ -127,7 +126,6 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
             }
         }
     }
-
 
     private List<Block> findBlocks(Block b) {
         List<Block> blocks = new ArrayList<>(26);

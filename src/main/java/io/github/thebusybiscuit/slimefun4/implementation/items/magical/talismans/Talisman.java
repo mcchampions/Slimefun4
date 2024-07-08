@@ -19,7 +19,6 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -302,7 +301,6 @@ public class Talisman extends SlimefunItem {
      *            The {@link Player} who shall receive the message
      */
     public void sendMessage(Player p) {
-        Validate.notNull(p, "The Player must not be null.");
 
         // Check if this Talisman has a message
         if (!isSilent()) {

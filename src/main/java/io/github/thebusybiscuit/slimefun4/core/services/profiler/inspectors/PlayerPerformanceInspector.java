@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.profiler.SummaryOrderTyp
 import java.util.UUID;
 import javax.annotation.Nullable;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -37,8 +36,6 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
      *            The {@link SummaryOrderType} of the timings
      */
     public PlayerPerformanceInspector(Player player, SummaryOrderType orderType) {
-        Validate.notNull(player, "Player cannot be null");
-        Validate.notNull(orderType, "SummaryOrderType cannot be null");
 
         this.uuid = player.getUniqueId();
         this.orderType = orderType;

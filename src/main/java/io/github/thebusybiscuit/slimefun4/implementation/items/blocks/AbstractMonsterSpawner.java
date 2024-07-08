@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.CreatureSpawner;
@@ -46,7 +45,6 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      */
     
     public Optional<EntityType> getEntityType(ItemStack item) {
-        Validate.notNull(item, "The Item cannot be null");
 
         ItemMeta meta = item.getItemMeta();
 

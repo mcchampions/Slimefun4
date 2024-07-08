@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors.Reactor;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -34,13 +33,10 @@ public class ReactorExplodeEvent extends Event {
     private final Reactor reactor;
 
     public ReactorExplodeEvent(Location l, Reactor reactor) {
-        Validate.notNull(l, "A Location must be provided");
-        Validate.notNull(reactor, "A Reactor cannot be null");
 
         this.location = l;
         this.reactor = reactor;
     }
-
 
     public static HandlerList getHandlerList() {
         return handlers;

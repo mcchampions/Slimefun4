@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 
@@ -68,7 +67,6 @@ public class SlimefunConfigManager {
     private boolean bypassEnvironmentCheck;
 
     public SlimefunConfigManager(Slimefun plugin) {
-        Validate.notNull(plugin, "The Plugin instance cannot be null");
 
         this.plugin = plugin;
         pluginConfig = getConfig(plugin, "config", () -> new Config(plugin));

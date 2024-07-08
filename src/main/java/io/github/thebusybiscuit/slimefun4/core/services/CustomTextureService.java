@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -75,8 +74,6 @@ public class CustomTextureService {
      *            Whether to save this file
      */
     public void register(Collection<SlimefunItem> items, boolean save) {
-        Validate.notEmpty(items, "items must neither be null or empty.");
-
         loadDefaultValues();
 
         for (SlimefunItem item : items) {
@@ -133,7 +130,6 @@ public class CustomTextureService {
      * @return The configured custom model data
      */
     public int getModelData(String id) {
-        Validate.notNull(id, "Cannot get the ModelData for 'null'");
 
         return config.getInt(id);
     }
@@ -148,8 +144,6 @@ public class CustomTextureService {
      *            The id for which to get the configured model data
      */
     public void setTexture(ItemStack item, String id) {
-        Validate.notNull(item, "The Item cannot be null!");
-        Validate.notNull(id, "Cannot store null on an Item!");
 
         ItemMeta im = item.getItemMeta();
         setTexture(im, id);
@@ -166,8 +160,6 @@ public class CustomTextureService {
      *            The id for which to get the configured model data
      */
     public void setTexture(ItemMeta im, String id) {
-        Validate.notNull(im, "The ItemMeta cannot be null!");
-        Validate.notNull(id, "Cannot store null on an ItemMeta!");
 
         int data = getModelData(id);
         im.setCustomModelData(data == 0 ? null : data);

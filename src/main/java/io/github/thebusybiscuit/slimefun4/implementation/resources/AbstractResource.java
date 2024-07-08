@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.biomes.BiomeMap;
 import java.util.logging.Level;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
@@ -32,9 +31,7 @@ abstract class AbstractResource implements GEOResource {
 
     @ParametersAreNonnullByDefault
     AbstractResource(String key, String defaultName, ItemStack item, int maxDeviation, boolean geoMiner) {
-        Validate.notNull(key, "NamespacedKey cannot be null!");
-        Validate.notNull(defaultName, "The default name cannot be null!");
-        Validate.notNull(item, "item cannot be null!");
+
 
         this.key = new NamespacedKey(Slimefun.instance(), key);
         this.defaultName = defaultName;
@@ -84,8 +81,6 @@ abstract class AbstractResource implements GEOResource {
      */
     @ParametersAreNonnullByDefault
     static BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
-        Validate.notNull(resource, "Resource cannot be null.");
-        Validate.notNull(path, "Path cannot be null.");
 
         try {
             return BiomeMap.fromResource(resource.getKey(), Slimefun.instance(), path, JsonElement::getAsInt);

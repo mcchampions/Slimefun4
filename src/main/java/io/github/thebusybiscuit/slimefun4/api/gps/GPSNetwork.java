@@ -5,7 +5,6 @@ import io.github.bakedlibs.dough.chat.ChatInput;
 import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.events.WaypointCreateEvent;
-import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
@@ -17,25 +16,15 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Telepo
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Server;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.*;
 
 /**
  * The {@link GPSNetwork} is a manager class for all {@link GPSTransmitter Transmitters} and waypoints.
@@ -348,8 +337,6 @@ public class GPSNetwork {
      *            The {@link Location} of the new waypoint
      */
     public void createWaypoint(Player p, Location l) {
-        Validate.notNull(p, "Player cannot be null!");
-        Validate.notNull(l, "Waypoint Location cannot be null!");
 
         PlayerProfile.get(p, profile -> {
             if ((profile.getWaypoints().size() + 2) > inventory.length) {
@@ -375,9 +362,7 @@ public class GPSNetwork {
      *            The {@link Location} of this waypoint
      */
     public void addWaypoint(Player p, String name, Location l) {
-        Validate.notNull(p, "Player cannot be null!");
-        Validate.notNull(name, "Waypoint name cannot be null!");
-        Validate.notNull(l, "Waypoint Location cannot be null!");
+
 
         PlayerProfile.get(p, profile -> {
             if ((profile.getWaypoints().size() + 2) > inventory.length) {

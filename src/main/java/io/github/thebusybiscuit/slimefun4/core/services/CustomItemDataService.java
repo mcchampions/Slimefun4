@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import java.util.Optional;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -60,8 +59,6 @@ public class CustomItemDataService implements Keyed {
      *            The id to store on the {@link ItemStack}
      */
     public void setItemData(ItemStack item, String id) {
-        Validate.notNull(item, "The Item cannot be null!");
-        Validate.notNull(id, "Cannot store null on an Item!");
 
         ItemMeta im = item.getItemMeta();
         setItemData(im, id);
@@ -78,8 +75,6 @@ public class CustomItemDataService implements Keyed {
      *            The id to store on the {@link ItemMeta}
      */
     public void setItemData(ItemMeta meta, String id) {
-        Validate.notNull(meta, "The ItemMeta cannot be null!");
-        Validate.notNull(id, "Cannot store null on an ItemMeta!");
 
         PersistentDataContainer container = meta.getPersistentDataContainer();
         container.set(namespacedKey, PersistentDataType.STRING, id);
@@ -113,7 +108,6 @@ public class CustomItemDataService implements Keyed {
      * @return An {@link Optional} describing the result
      */
     public Optional<String> getItemData(ItemMeta meta) {
-        Validate.notNull(meta, "Cannot read data from null!");
 
         PersistentDataContainer container = meta.getPersistentDataContainer();
         return Optional.ofNullable(container.get(namespacedKey, PersistentDataType.STRING));
@@ -132,8 +126,6 @@ public class CustomItemDataService implements Keyed {
      * @return Whether both metas have data on them and its the same.
      */
     public boolean hasEqualItemData(ItemMeta meta1, ItemMeta meta2) {
-        Validate.notNull(meta1, "Cannot read data from null (first arg)");
-        Validate.notNull(meta2, "Cannot read data from null (second arg)");
 
         Optional<String> data1 = getItemData(meta1);
 

@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.RainbowBlock;
 import io.github.thebusybiscuit.slimefun4.utils.ColoredMaterial;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -33,12 +32,6 @@ public class RainbowTickHandler extends BlockTicker {
     private Material material;
 
     public RainbowTickHandler(List<Material> materials) {
-        Validate.noNullElements(materials, "A RainbowTicker cannot have a Material that is null!");
-
-        if (materials.isEmpty()) {
-            throw new IllegalArgumentException("A RainbowTicker must have at least one Material associated with it!");
-        }
-
         glassPanes = containsGlassPanes(materials);
         iterator = new LoopIterator<>(materials);
         material = iterator.next();
