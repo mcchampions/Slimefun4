@@ -75,7 +75,7 @@ public class LocalizationService extends SlimefunLocalization {
             if (hasLanguage(serverDefaultLanguage)) {
                 setLanguage(serverDefaultLanguage, !serverDefaultLanguage.equals(language));
             } else {
-                setLanguage("en", false);
+                setLanguage("zh-CN", false);
                 plugin.getLogger()
                         .log(Level.WARNING, "Could not recognize the given language: \"{0}\"", serverDefaultLanguage);
             }
