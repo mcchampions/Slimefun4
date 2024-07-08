@@ -30,7 +30,7 @@ jobs:
       - name: Build Slimefun
         run: mvn -B package --errors
       - name: Rename File
-        run: mv target/Slimefun-*.jar target/Slimefun-${{github_run_id }}.jar
+        run: mv target/Slimefun-*.jar target/Slimefun-${{ github_run_id }}.jar
       - uses: actions/upload-artifact@v4
         name: Upload Beta artifact
         with:
