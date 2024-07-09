@@ -148,7 +148,7 @@ public class IntegrationsManager {
                     .log(
                             Level.WARNING,
                             x,
-                            () -> "Failed to load Protection plugin integrations for Slimefun v"
+                            () -> "无法加载保护插件支持"
                                     + Slimefun.getVersion());
         }
 

@@ -180,10 +180,10 @@ public interface EnergyNetComponent extends ItemAttribute {
                     .log(
                             Level.SEVERE,
                             x,
-                            () -> "Exception while trying to set the energy-charge for \""
+                            () -> "一个 异常 发生了 在 设置 id为  \""
                                     + getId()
-                                    + "\" at "
-                                    + new BlockPosition(l));
+                                    + "\" 位于 "
+                                    + new BlockPosition(l) + " 的方块 的 电量时");
         }
     }
 
@@ -214,10 +214,10 @@ public interface EnergyNetComponent extends ItemAttribute {
                     .log(
                             Level.SEVERE,
                             x,
-                            () -> "Exception while trying to add an energy-charge for \""
-                                    + getId()
-                                    + "\" at "
-                                    + new BlockPosition(l));
+                            () -> "一个 异常 发生了 在 增加 id为  \""
+                                  + getId()
+                                  + "\" 位于 "
+                                  + new BlockPosition(l) + " 的方块 的 电量时");
         }
     }
 
@@ -246,12 +246,14 @@ public interface EnergyNetComponent extends ItemAttribute {
         } catch (Exception | LinkageError x) {
             Slimefun.logger()
                     .log(
-                            Level.SEVERE,
-                            x,
-                            () -> "Exception while trying to remove an energy-charge for \""
-                                    + getId()
-                                    + "\" at "
-                                    + new BlockPosition(l));
+                            Slimefun.logger()
+                                    .log(
+                                            Level.SEVERE,
+                                            x,
+                                            () -> "一个 异常 发生了 在 移除 id为  \""
+                                                  + getId()
+                                                  + "\" 位于 "
+                                                  + new BlockPosition(l) + " 的方块 的 电量时");
         }
     }
 }

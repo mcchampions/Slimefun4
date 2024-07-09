@@ -606,7 +606,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                     tag.reload();
                 }
             } catch (TagMisconfigurationException e) {
-                getLogger().log(Level.SEVERE, e, () -> "Failed to load Tag: " + tag.name());
+                getLogger().log(Level.SEVERE, e, () -> "无法加载Tag: " + tag.name());
             }
         }
     }
@@ -622,7 +622,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                     .log(
                             Level.SEVERE,
                             x,
-                            () -> "An Error occurred while initializing SlimefunItems for Slimefun " + getVersion());
+                            () -> "一个 错误 发生了 在 初始化 粘液科技物品 中 ");
         }
     }
 
@@ -637,7 +637,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                     .log(
                             Level.SEVERE,
                             x,
-                            () -> "An Error occurred while initializing Slimefun Researches for Slimefun "
+                            () -> "一个 错误 发生了 在 初始化 粘液科技物品研究 中 "
                                   + getVersion());
         }
     }

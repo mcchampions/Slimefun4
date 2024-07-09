@@ -53,7 +53,7 @@ public class LegacyStorage implements Storage {
                         .log(
                                 Level.WARNING,
                                 x,
-                                () -> "Could not load Waypoint \"" + key + "\" for Player \"" + uuid + '"');
+                                () -> "无法加载路径点  \"" + key + "\" for Player \"" + uuid + '"');
             }
         }
 

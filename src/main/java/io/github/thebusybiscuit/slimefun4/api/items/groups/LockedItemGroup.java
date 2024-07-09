@@ -94,7 +94,7 @@ public class LockedItemGroup extends ItemGroup {
             Slimefun.logger()
                     .log(
                             Level.INFO,
-                            "Parent \"{0}\" for LockedItemGroup \"{1}\" was not found, probably just disabled.",
+                            "没有找到 LockedItemGroup \"{1}\" 的 父组 \"{0}\",可能被卸载了.",
                             new Object[] {key, getKey()});
         }
     }

@@ -98,7 +98,7 @@ public class PlayerProfile {
                         .log(
                                 Level.WARNING,
                                 x,
-                                () -> "Could not load Waypoint \"" + key + "\" for Player \"" + owner.getName() + '"');
+                                () -> "无法加载 玩家 \"" + owner.getName() + "\" 的路径点(坐标): \"" + key + "\".");
             }
         }
     }

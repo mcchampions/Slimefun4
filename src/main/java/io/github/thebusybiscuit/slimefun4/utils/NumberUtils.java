@@ -267,7 +267,7 @@ public final class NumberUtils {
         if (CommonPatterns.NUMERIC.matcher(javaVer).matches()) {
             return Integer.parseInt(javaVer);
         } else {
-            Slimefun.logger().log(Level.SEVERE, "Error: Cannot identify Java version - {0}", javaVer);
+            Slimefun.logger().log(Level.SEVERE, "Error: 无法识别的Java版本 - {0}", javaVer);
             return 0;
         }
     }

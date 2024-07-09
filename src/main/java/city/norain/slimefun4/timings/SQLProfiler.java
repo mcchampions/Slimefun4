@@ -111,7 +111,7 @@ public class SQLProfiler {
             reportFile.getParentFile().mkdirs();
             reportFile.createNewFile();
         } catch (Exception e) {
-            Slimefun.logger().log(Level.WARNING, "Unable to create sql timing report!");
+            Slimefun.logger().log(Level.WARNING, "未能创建SQL性能报告!");
         }
 
         int entryCount = 0;
@@ -151,7 +151,7 @@ public class SQLProfiler {
                     writer.newLine();
                     writer.newLine();
                 } catch (IOException e) {
-                    Slimefun.logger().log(Level.WARNING, "Unable to create sql timing report!", e);
+                    Slimefun.logger().log(Level.WARNING, "未能创建SQL性能报告!", e);
                 }
             }
 
@@ -169,7 +169,7 @@ public class SQLProfiler {
             writer.append("平均耗时: ")
                     .append(String.format("%dm%ds%dms", avg.toSeconds(), avg.toMillisPart(), avg.toNanosPart()));
         } catch (IOException e) {
-            Slimefun.logger().log(Level.WARNING, "Unable to create sql timing report!", e);
+            Slimefun.logger().log(Level.WARNING, "未能创建SQL性能报告!", e);
         }
 
         return reportFile.getAbsolutePath();

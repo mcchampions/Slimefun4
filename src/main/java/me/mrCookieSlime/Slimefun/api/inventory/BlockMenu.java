@@ -123,6 +123,6 @@ public class BlockMenu extends DirtyChestMenu {
         Slimefun.logger()
                 .log(
                         Level.WARNING,
-                        () -> "BlockMenu#delete(Location l) is not supported anymore. l is " + serializeLocation(l));
+                        () -> "BlockMenu#delete(Location l) 已经废弃无法使用. 坐标: " + serializeLocation(l));
     }
 }
