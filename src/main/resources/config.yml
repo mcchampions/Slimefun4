@@ -70,9 +70,6 @@ networks:
 talismans:
   use-actionbar: true
 
-metrics:
-  auto-update: false
-
 backpack:
   # 背包所有者离线时是否允许背包被打开
   allow-open-when-owner-offline: true

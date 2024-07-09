@@ -55,13 +55,10 @@ public class SlimefunConfigManager {
     private boolean showHiddenItemGroupsInSearch;
 
     @Getter
-    private boolean autoUpdate;
-
-    @Getter
     private double researchCurrencyCostConvertRate;
 
     @Getter
-    private boolean researchAutoConvert;
+    private final boolean researchAutoConvert = false;
 
     @Getter
     private boolean bypassEnvironmentCheck;
@@ -113,14 +110,12 @@ public class SlimefunConfigManager {
             useMoneyUnlock = pluginConfig.getBoolean("researches.use-money-unlock");
             showVanillaRecipes = pluginConfig.getBoolean("guide.show-vanilla-recipes");
             showHiddenItemGroupsInSearch = pluginConfig.getBoolean("guide.show-hidden-item-groups-in-search");
-            autoUpdate = pluginConfig.getBoolean("options.auto-update");
             bypassEnvironmentCheck = pluginConfig.getBoolean("options.bypass-environment-check");
 
-            researchesConfig.setDefaultValue("researches.currency-cost-convert-rate", 25.0);
-            researchCurrencyCostConvertRate = researchesConfig.getDouble("researches.currency-cost-convert-rate");
+            researchCurrencyCostConvertRate = pluginConfig.getDouble("researches.currency-cost-convert-rate");
 
-            researchesConfig.setDefaultValue("researches.auto-convert", false);
-            researchAutoConvert = researchesConfig.getBoolean("researches.auto-convert");
+            // researchesConfig.setDefaultValue("researches.auto-convert", false);
+            // researchAutoConvert = researchesConfig.getBoolean("researches.auto-convert");
         } catch (Exception x) {
             plugin.getLogger()
                     .log(
@@ -144,12 +139,8 @@ public class SlimefunConfigManager {
                 int cost = researchesConfig.getInt(key.getNamespace() + '.' + key.getKey() + ".cost");
                 research.setLevelCost(cost);
 
-                if (researchAutoConvert) {
-                    research.setCurrencyCost(researchCurrencyCostConvertRate * cost);
-                } else {
-                    research.setCurrencyCost(
-                            researchesConfig.getDouble(key.getNamespace() + '.' + key.getKey() + ".currency-cost"));
-                }
+                research.setCurrencyCost(
+                        researchesConfig.getDouble(key.getNamespace() + '.' + key.getKey() + ".currency-cost"));
 
                 var status = researchesConfig.getBoolean(key.getNamespace() + '.' + key.getKey() + ".enabled");
 
