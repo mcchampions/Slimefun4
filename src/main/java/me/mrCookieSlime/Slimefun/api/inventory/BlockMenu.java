@@ -75,7 +75,7 @@ public class BlockMenu extends DirtyChestMenu {
     }
 
     public void save(Location l) {
-        if (!isDirty()) {
+        if (isNoDirty()) {
             return;
         }
 

@@ -50,6 +50,10 @@ public class DirtyChestMenu extends ChestMenu {
         return changes > 0;
     }
 
+    public boolean isNoDirty() {
+        return changes == 0;
+    }
+
     public int getUnsavedChanges() {
         return changes;
     }
@@ -85,7 +89,7 @@ public class DirtyChestMenu extends ChestMenu {
             }
 
             if (isSfItem) {
-                
+
 
                 if (!slotItem.hasItemMeta()
                     || item.getType() != slotItem.getType()
@@ -95,14 +99,12 @@ public class DirtyChestMenu extends ChestMenu {
 
                 var slotRemain = slotItem.getMaxStackSize() - slotItem.getAmount();
 
-                
 
                 remain -= slotRemain;
 
-                
 
                 if (remain <= 0) {
-                    
+
                     return true;
                 }
             }
@@ -114,7 +116,6 @@ public class DirtyChestMenu extends ChestMenu {
             result = InvUtils.fits(toInventory(), wrapper, slots);
         }
 
-        
 
         return result;
     }

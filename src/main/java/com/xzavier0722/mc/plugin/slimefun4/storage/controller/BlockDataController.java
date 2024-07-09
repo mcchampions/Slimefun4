@@ -505,7 +505,7 @@ public class BlockDataController extends ADataController {
                 return;
             }
             var menu = block.getBlockMenu();
-            if (menu == null || !menu.isDirty()) {
+            if (menu == null || menu.isNoDirty()) {
                 return;
             }
 
