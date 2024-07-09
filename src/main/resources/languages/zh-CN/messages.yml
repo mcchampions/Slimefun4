@@ -414,6 +414,4 @@ android:
       reach-limit: '&c信任玩家个数已达上限 (10), 请先删除已有玩家再添加!'
 languages:
   default: '服务器默认语言'
-  en: '英语'
   zh-CN: '简体中文 (中国)'
-  zh-TW: '繁体中文 (台湾)'

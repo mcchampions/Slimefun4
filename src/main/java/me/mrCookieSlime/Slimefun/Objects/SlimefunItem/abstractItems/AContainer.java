@@ -385,7 +385,6 @@ public abstract class AContainer extends SlimefunItem
      * @return Whether charge was taken if its chargeable
      */
     protected boolean takeCharge(Location l) {
-
         if (isChargeable()) {
             int charge = getCharge(l);
 

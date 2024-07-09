@@ -2452,6 +2452,14 @@ public final class SlimefunItems {
             "&8\u21E8 &7速度: &a3/次",
             LoreBuilder.powerBuffer(1024),
             "&8\u21E8 &e\u26A1 &750 J/s");
+    public static final SlimefunItemStack OVERCLOCK_MODULE = new SlimefunItemStack(
+            "OVERCLOCK_MODULE",
+            Material.NAME_TAG, "&a超频模块",
+            "",
+            "&7加速你的机器",
+            "&7注意: 倍率使用的是加法运算:1x->2x->3x",
+            "&7一次性用品",
+            "&7加速完的机器被挖掉会恢复原样");
     public static final SlimefunItemStack CROP_GROWTH_ACCELERATOR_2 = new SlimefunItemStack(
             "CROP_GROWTH_ACCELERATOR_2",
             Material.LIME_TERRACOTTA,

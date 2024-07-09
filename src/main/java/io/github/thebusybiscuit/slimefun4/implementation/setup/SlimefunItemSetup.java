@@ -206,6 +206,8 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEff
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.slimefunitems.OverclockModule;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -4673,6 +4675,23 @@ public final class SlimefunItemSetup {
                 .setCapacity(128)
                 .setEnergyConsumption(10)
                 .setProcessingSpeed(1)
+                .register(plugin);
+
+        new OverclockModule(
+                itemGroups.technicalGadgets,
+                SlimefunItems.OVERCLOCK_MODULE,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        SlimefunItems.NETHER_ICE_COOLANT_CELL,
+                        null,
+                        SlimefunItems.NETHER_ICE_COOLANT_CELL,
+                        null,
+                        SlimefunItems.ELECTRIC_MOTOR,
+                        null,
+                        SlimefunItems.NETHER_ICE_COOLANT_CELL,
+                        null,
+                        SlimefunItems.NETHER_ICE_COOLANT_CELL
+                })
                 .register(plugin);
 
         new ElectricFurnace(
