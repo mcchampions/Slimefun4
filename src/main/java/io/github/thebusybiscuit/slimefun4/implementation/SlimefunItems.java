@@ -2696,7 +2696,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE),
             "&8\u21E8 &e\u26A1 &7128 J 可储存",
-            "&8\u21E8 &e\u26A1 &7能源损失率: &c50%");
+            "&8\u21E8 &e\u26A1 &7能源损失率: &c50%",
+            "&b可加速");
 
     public static final SlimefunItemStack VANILLA_AUTO_CRAFTER = new SlimefunItemStack(
             "VANILLA_AUTO_CRAFTER",
