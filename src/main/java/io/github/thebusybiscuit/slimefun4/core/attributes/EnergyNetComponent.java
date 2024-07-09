@@ -244,16 +244,15 @@ public interface EnergyNetComponent extends ItemAttribute {
                 }
             }
         } catch (Exception | LinkageError x) {
+
             Slimefun.logger()
                     .log(
-                            Slimefun.logger()
-                                    .log(
-                                            Level.SEVERE,
-                                            x,
-                                            () -> "一个 异常 发生了 在 移除 id为  \""
-                                                  + getId()
-                                                  + "\" 位于 "
-                                                  + new BlockPosition(l) + " 的方块 的 电量时");
+                            Level.SEVERE,
+                            x,
+                            () -> "一个 异常 发生了 在 移除 id为  \""
+                                  + getId()
+                                  + "\" 位于 "
+                                  + new BlockPosition(l) + " 的方块 的 电量时");
         }
     }
 }

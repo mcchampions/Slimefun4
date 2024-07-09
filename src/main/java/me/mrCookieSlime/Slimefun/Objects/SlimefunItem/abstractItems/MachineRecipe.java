@@ -21,4 +21,8 @@ public class MachineRecipe {
         this.ticks = ticks;
     }
 
+    @Override
+    public MachineRecipe clone() {
+        return new MachineRecipe(ticks / 2, input, output);
+    }
 }
