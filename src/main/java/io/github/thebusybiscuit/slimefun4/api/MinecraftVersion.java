@@ -13,6 +13,8 @@ import org.bukkit.Server;
  * @see Slimefun
  */
 public enum MinecraftVersion {
+    MINECRAFT_1_16("16", true),
+    MINECRAFT_1_17("17", true),
 
     /**
      * This constant represents Minecraft (Java Edition) Version 1.18

@@ -419,7 +419,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                 list.add(version.getName());
             }
         }
-
         return list;
     }
 
