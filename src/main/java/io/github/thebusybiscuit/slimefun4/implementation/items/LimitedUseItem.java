@@ -144,4 +144,13 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
             item.setItemMeta(meta);
         }
     }
+
+    public boolean isSameUsesLeft(ItemMeta meta1,ItemMeta meta2) {
+        NamespacedKey key = getStorageKey();
+        PersistentDataContainer pdc1 = meta1.getPersistentDataContainer();
+        int usesLeft1 = pdc1.getOrDefault(key, PersistentDataType.INTEGER, getMaxUseCount());
+        PersistentDataContainer pdc2 = meta2.getPersistentDataContainer();
+        int usesLeft2 = pdc2.getOrDefault(key, PersistentDataType.INTEGER, getMaxUseCount());
+        return usesLeft1 == usesLeft2;
+    }
 }

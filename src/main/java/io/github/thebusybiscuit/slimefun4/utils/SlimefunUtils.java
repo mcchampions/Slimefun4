@@ -14,6 +14,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Soulbound;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.LimitedUseItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.CapacitorTextureUpdateTask;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
@@ -47,7 +48,8 @@ public final class SlimefunUtils {
     private static final String NO_PICKUP_METADATA = "no_pickup";
     private static final String SOULBOUND_LORE = ChatColor.GRAY + "灵魂绑定";
 
-    private SlimefunUtils() {}
+    private SlimefunUtils() {
+    }
 
     /**
      * This method quickly returns whether an {@link Item} was marked as "no_pickup" by
@@ -253,8 +255,12 @@ public final class SlimefunUtils {
         }
         SlimefunItemStack sfItemStack = (SlimefunItemStack) tempStack;
         if (sfItem.getItemId().equals(sfItemStack.getItemId())) {
+            SlimefunItem.getByItem(sfItem)
             if (sfItem instanceof DistinctiveItem && sfItemStack instanceof DistinctiveItem distinctiveItem) {
                 return distinctiveItem.canStack(sfItem.getItemMeta(), item.getItemMeta());
+            }
+            if (SlimefunItem.getByItem(sfItem) instanceof LimitedUseItem limitedUseItem) {
+                return limitedUseItem.isSameUsesLeft(sfItem.getItemMeta(), item.getItemMeta());
             }
             return true;
         }
@@ -269,7 +275,7 @@ public final class SlimefunUtils {
         } else if (checkDistinctiveItem && sfitem instanceof SlimefunItemStack stackOne && item instanceof SlimefunItemStack stackTwo) {
             return isSlimefunItemSimilar(stackOne, stackTwo);
         } else if (item.hasItemMeta()) {
-            
+
             ItemMeta itemMeta = item.getItemMeta();
 
             if (sfitem instanceof SlimefunItemStack sfItemStack) {
@@ -284,9 +290,12 @@ public final class SlimefunUtils {
                          * in which case we want to use the method provided to compare
                          */
                         Optional<DistinctiveItem> optionalDistinctive = getDistinctiveItem(id);
+                        ItemMeta sfItemMeta = sfitem.getItemMeta();
                         if (optionalDistinctive.isPresent()) {
-                            ItemMeta sfItemMeta = sfitem.getItemMeta();
                             return optionalDistinctive.get().canStack(sfItemMeta, itemMeta);
+                        }
+                        if (SlimefunItem.getByItem(sfitem) instanceof LimitedUseItem limitedUseItem) {
+                            return limitedUseItem.isSameUsesLeft(sfItemMeta, itemMeta);
                         }
                     }
                     return id.equals(sfItemStack.getItemId());
@@ -295,7 +304,7 @@ public final class SlimefunUtils {
                 ItemMetaSnapshot meta = ((SlimefunItemStack) sfitem).getItemMetaSnapshot();
                 return equalsItemMeta(itemMeta, meta, checkLore);
             } else if (sfitem instanceof ItemStackWrapper && sfitem.hasItemMeta()) {
-                
+
                 /*
                  * Cargo optimization (PR #3258)
                  *
@@ -307,8 +316,6 @@ public final class SlimefunUtils {
                 String sfItemId = Slimefun.getItemDataService().getItemData(sfItemMeta).get();
                 // Prioritize SlimefunItem id comparison over ItemMeta comparison
                 if (possibleItemId != null && possibleItemId.equals(sfItemId)) {
-                    
-
                     /*
                      * PR #3417
                      *
@@ -321,7 +328,7 @@ public final class SlimefunUtils {
                 return false;
             } else if (sfitem.hasItemMeta()) {
                 ItemMeta sfItemMeta = sfitem.getItemMeta();
-                
+
                 return equalsItemMeta(itemMeta, sfItemMeta, checkLore, checkCustomModelData);
             } else {
                 return false;
@@ -375,7 +382,7 @@ public final class SlimefunUtils {
 
     private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMeta sfitemMeta, boolean checkLore, boolean checkCustomModelCheck) {
         if (itemMeta.hasDisplayName() != sfitemMeta.hasDisplayName()) {
-            
+
             return false;
         } else if (itemMeta.hasDisplayName() && sfitemMeta.hasDisplayName() && !itemMeta.getDisplayName().equals(sfitemMeta.getDisplayName())) {
             return false;
@@ -385,11 +392,11 @@ public final class SlimefunUtils {
 
             if (hasItemMetaLore && hasSfItemMetaLore) {
                 if (!equalsLore(itemMeta.getLore(), sfitemMeta.getLore())) {
-                    
+
                     return false;
                 }
             } else if (hasItemMetaLore != hasSfItemMetaLore) {
-                
+
                 return false;
             }
         }
@@ -409,7 +416,6 @@ public final class SlimefunUtils {
             return ((PotionMeta) itemMeta).getBasePotionType().equals(((PotionMeta) sfitemMeta).getBasePotionType());
         }
 
-        
 
         return true;
     }
@@ -461,7 +467,6 @@ public final class SlimefunUtils {
 
     public static void updateCapacitorTexture(Location l, int charge, int capacity) {
 
-        
 
         Slimefun.runSync(new CapacitorTextureUpdateTask(l, charge, capacity));
     }
