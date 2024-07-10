@@ -255,7 +255,6 @@ public final class SlimefunUtils {
         }
         SlimefunItemStack sfItemStack = (SlimefunItemStack) tempStack;
         if (sfItem.getItemId().equals(sfItemStack.getItemId())) {
-            SlimefunItem.getByItem(sfItem)
             if (sfItem instanceof DistinctiveItem && sfItemStack instanceof DistinctiveItem distinctiveItem) {
                 return distinctiveItem.canStack(sfItem.getItemMeta(), item.getItemMeta());
             }
