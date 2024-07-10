@@ -259,6 +259,7 @@
         <dependency>
             <groupId>com.github.starwishsama.dough</groupId>
             <artifactId>dough-api</artifactId>
+            <!-- 等上游修bug后再更新 -->
             <version>f266e39d48</version>
             <scope>compile</scope>
         </dependency>
