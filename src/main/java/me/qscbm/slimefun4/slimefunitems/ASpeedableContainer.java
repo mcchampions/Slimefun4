@@ -18,7 +18,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Slime;
 import org.bukkit.inventory.ItemStack;
 
 /**
