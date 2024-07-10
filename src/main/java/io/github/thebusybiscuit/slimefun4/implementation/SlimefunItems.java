@@ -1837,7 +1837,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
             "&8\u21E8 &7可修复百分比: 10%",
-            LoreBuilder.powerPerSecond(24));
+            LoreBuilder.powerPerSecond(24),
+            "&b可加速");
     public static final SlimefunItemStack AUTO_ANVIL_2 = new SlimefunItemStack(
             "AUTO_ANVIL_2",
             Material.IRON_BLOCK,
@@ -1853,7 +1854,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
             LoreBuilder.speed(1),
-            LoreBuilder.powerPerSecond(12));
+            LoreBuilder.powerPerSecond(12),
+            "&b可加速");
 
     public static final SlimefunItemStack BOOK_BINDER = new SlimefunItemStack(
             "BOOK_BINDER",
