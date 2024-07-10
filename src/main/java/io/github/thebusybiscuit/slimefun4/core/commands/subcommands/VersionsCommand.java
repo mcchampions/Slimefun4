@@ -65,19 +65,19 @@ class VersionsCommand extends SubCommand {
                     .color(ChatColor.GREEN)
                     .append(Slimefun.getVersion() + '\n')
                     .color(ChatColor.DARK_GREEN);
-
-            builder.append("\nSlimefun检测到的MC版本为"+ Slimefun.getMinecraftVersion().getName() + "\n");
             // @formatter:on
 
             addJavaVersion(builder);
+            builder.append("\nSlimefun检测到的MC版本为"+ Slimefun.getMinecraftVersion().getName() + "\n");
 
             // Add notice to warn those smart people
             builder.append("\n由 StarWishsama 汉化")
+                    .append("\n由 qscbm187531 魔改")
                     .color(ChatColor.WHITE)
                     .append("""
 
                             请不要将此版本信息截图到 Discord/Github 反馈 Bug
-                            优先到汉化页面反馈
+                            优先到汉化魔改页面反馈
                             """)
                     .color(ChatColor.RED);
 
