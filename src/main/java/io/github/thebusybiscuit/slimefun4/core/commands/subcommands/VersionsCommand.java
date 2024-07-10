@@ -65,6 +65,8 @@ class VersionsCommand extends SubCommand {
                     .color(ChatColor.GREEN)
                     .append(Slimefun.getVersion() + '\n')
                     .color(ChatColor.DARK_GREEN);
+
+            builder.append("\nSlimefun检测到的MC版本为"+ Slimefun.getMinecraftVersion().getName() + "\n");
             // @formatter:on
 
             addJavaVersion(builder);
