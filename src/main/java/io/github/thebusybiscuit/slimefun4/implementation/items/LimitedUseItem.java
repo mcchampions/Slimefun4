@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -33,7 +34,7 @@ import org.bukkit.persistence.PersistentDataType;
  *
  * @see StormStaff
  */
-public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> {
+public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> implements DistinctiveItem {
 
     private final NamespacedKey defaultUsageKey;
     private int maxUseCount = -1;
@@ -145,11 +146,12 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
         }
     }
 
-    public boolean isSameUsesLeft(ItemMeta meta1,ItemMeta meta2) {
+    @Override
+    public boolean canStack(ItemMeta itemMetaOne, ItemMeta itemMetaTwo) {
         NamespacedKey key = getStorageKey();
-        PersistentDataContainer pdc1 = meta1.getPersistentDataContainer();
+        PersistentDataContainer pdc1 = itemMetaOne.getPersistentDataContainer();
         int usesLeft1 = pdc1.getOrDefault(key, PersistentDataType.INTEGER, getMaxUseCount());
-        PersistentDataContainer pdc2 = meta2.getPersistentDataContainer();
+        PersistentDataContainer pdc2 = itemMetaTwo.getPersistentDataContainer();
         int usesLeft2 = pdc2.getOrDefault(key, PersistentDataType.INTEGER, getMaxUseCount());
         return usesLeft1 == usesLeft2;
     }

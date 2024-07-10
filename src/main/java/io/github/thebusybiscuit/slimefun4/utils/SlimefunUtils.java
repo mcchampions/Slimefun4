@@ -258,9 +258,6 @@ public final class SlimefunUtils {
             if (sfItem instanceof DistinctiveItem && sfItemStack instanceof DistinctiveItem distinctiveItem) {
                 return distinctiveItem.canStack(sfItem.getItemMeta(), item.getItemMeta());
             }
-            if (SlimefunItem.getByItem(sfItem) instanceof LimitedUseItem limitedUseItem) {
-                return limitedUseItem.isSameUsesLeft(sfItem.getItemMeta(), item.getItemMeta());
-            }
             return true;
         }
         return false;
@@ -292,9 +289,6 @@ public final class SlimefunUtils {
                         ItemMeta sfItemMeta = sfitem.getItemMeta();
                         if (optionalDistinctive.isPresent()) {
                             return optionalDistinctive.get().canStack(sfItemMeta, itemMeta);
-                        }
-                        if (SlimefunItem.getByItem(sfitem) instanceof LimitedUseItem limitedUseItem) {
-                            return limitedUseItem.isSameUsesLeft(sfItemMeta, itemMeta);
                         }
                     }
                     return id.equals(sfItemStack.getItemId());
