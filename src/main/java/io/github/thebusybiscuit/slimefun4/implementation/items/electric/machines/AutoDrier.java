@@ -80,8 +80,11 @@ public class AutoDrier extends ASpeedableContainer implements RecipeDisplayItem,
         recipeList.add(SlimefunItems.FISH_JERKY);
 
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
-            recipeList.add(new ItemStack(Material.MUD));
-            recipeList.add(new ItemStack(Material.CLAY));
+            // 运行1.18时发生错误
+            // recipeList.add(new ItemStack(Material.MUD));
+            // recipeList.add(new ItemStack(Material.CLAY));
+            recipeList.add(new ItemStack(Material.valueOf("MUD")));
+            recipeList.add(new ItemStack(Material.valueOf("CLAY")));
         }
 
         for (Material sapling : Tag.SAPLINGS.getValues()) {
