@@ -13,6 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -23,7 +24,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
  *
  * @author ProfElements
  */
-public class BookBinder extends AContainer {
+public class BookBinder extends ASpeedableContainer {
 
     private final ItemSetting<Boolean> bypassVanillaMaxLevel =
             new ItemSetting<>(this, "bypass-vanilla-max-level", false);

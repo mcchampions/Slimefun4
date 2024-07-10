@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
@@ -20,7 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @author TheBusyBiscuit
  *
  */
-public class AutoAnvil extends AContainer {
+public class AutoAnvil extends ASpeedableContainer {
 
     private final int repairFactor;
 

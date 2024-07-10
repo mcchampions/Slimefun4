@@ -12,6 +12,7 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class HeatedPressureChamber extends AContainer {
+public class HeatedPressureChamber extends ASpeedableContainer {
 
     @ParametersAreNonnullByDefault
     public HeatedPressureChamber(

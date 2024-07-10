@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  * @see ElectricIngotFactory
  *
  */
-public class ElectricIngotPulverizer extends AContainer implements RecipeDisplayItem, NotHopperable {
+public class ElectricIngotPulverizer extends ASpeedableContainer implements RecipeDisplayItem, NotHopperable {
 
     public ElectricIngotPulverizer(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

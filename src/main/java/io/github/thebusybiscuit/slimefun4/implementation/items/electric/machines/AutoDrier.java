@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
@@ -24,7 +25,7 @@ import org.bukkit.inventory.ItemStack;
  * @author Linox
  *
  */
-public class AutoDrier extends AContainer implements RecipeDisplayItem, NotHopperable {
+public class AutoDrier extends ASpeedableContainer implements RecipeDisplayItem, NotHopperable {
 
     private List<ItemStack> recipeList;
 

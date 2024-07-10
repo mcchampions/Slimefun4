@@ -16,6 +16,7 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -33,7 +34,7 @@ import java.util.List;
  * @author TheBusyBiscuit
  *
  */
-public class ElectricSmeltery extends AContainer implements NotHopperable {
+public class ElectricSmeltery extends ASpeedableContainer implements NotHopperable {
 
     private static final int[] border = {4, 5, 6, 7, 8, 13, 31, 40, 41, 42, 43, 44};
     private static final int[] inputBorder = {0, 1, 2, 3, 9, 12, 18, 21, 27, 30, 36, 37, 38, 39};

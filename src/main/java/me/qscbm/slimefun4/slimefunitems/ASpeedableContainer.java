@@ -133,5 +133,8 @@ public abstract class ASpeedableContainer extends AContainer {
         return true;
     }
 
-
+    @Override
+    @Deprecated
+    protected void tick(Block block) {
+    }
 }

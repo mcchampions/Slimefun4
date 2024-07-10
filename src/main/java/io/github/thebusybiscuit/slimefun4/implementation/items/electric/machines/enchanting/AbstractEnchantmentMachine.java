@@ -13,6 +13,7 @@ import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -28,7 +29,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @see AutoDisenchanter
  *
  */
-abstract class AbstractEnchantmentMachine extends AContainer {
+abstract class AbstractEnchantmentMachine extends ASpeedableContainer {
 
     private final ItemSetting<Boolean> useLevelLimit = new ItemSetting<>(this, "use-enchant-level-limit", false);
     private final IntRangeSetting levelLimit = new IntRangeSetting(this, "enchant-level-limit", 0, 10, Short.MAX_VALUE);

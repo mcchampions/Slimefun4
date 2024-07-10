@@ -11,6 +11,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  * @see OreWasher
  *
  */
-public class ElectricDustWasher extends AContainer {
+public class ElectricDustWasher extends ASpeedableContainer {
 
     private final OreWasher oreWasher = SlimefunItems.ORE_WASHER.getItem(OreWasher.class);
     private final boolean legacyMode;

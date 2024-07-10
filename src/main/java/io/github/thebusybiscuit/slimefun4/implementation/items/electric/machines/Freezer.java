@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -21,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
  * @author svr333
  * @author J3fftw1
  */
-public class Freezer extends AContainer implements RecipeDisplayItem {
+public class Freezer extends ASpeedableContainer implements RecipeDisplayItem {
 
     private final ItemSetting<Boolean> useVanillaRatios = new ItemSetting<>(this, "use-vanilla-ratios", false);
 

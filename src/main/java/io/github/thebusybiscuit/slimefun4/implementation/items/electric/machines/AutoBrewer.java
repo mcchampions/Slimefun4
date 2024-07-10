@@ -13,6 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -25,7 +26,7 @@ import org.bukkit.potion.PotionType;
  * @author Linox
  *
  */
-public class AutoBrewer extends AContainer implements NotHopperable {
+public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
 
     private static final Map<Material, PotionType> potionRecipes = new EnumMap<>(Material.class);
     private static final Map<PotionType, PotionType> fermentations = new EnumMap<>(PotionType.class);

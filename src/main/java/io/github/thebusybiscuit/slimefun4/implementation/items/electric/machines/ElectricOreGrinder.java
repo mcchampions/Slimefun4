@@ -7,10 +7,11 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class ElectricOreGrinder extends AContainer implements RecipeDisplayItem, NotHopperable {
+public class ElectricOreGrinder extends ASpeedableContainer implements RecipeDisplayItem, NotHopperable {
 
     @ParametersAreNonnullByDefault
     public ElectricOreGrinder(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

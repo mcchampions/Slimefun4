@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.block.Furnace;
 import org.bukkit.inventory.FurnaceRecipe;
@@ -21,7 +22,7 @@ import org.bukkit.inventory.RecipeChoice.MaterialChoice;
  * @author TheBusyBiscuit
  *
  */
-public class ElectricFurnace extends AContainer implements NotHopperable {
+public class ElectricFurnace extends ASpeedableContainer implements NotHopperable {
 
     @ParametersAreNonnullByDefault
     public ElectricFurnace(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

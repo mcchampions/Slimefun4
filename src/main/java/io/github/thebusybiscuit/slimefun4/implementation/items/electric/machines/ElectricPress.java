@@ -9,6 +9,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
  * @author TheBusyBiscuit
  *
  */
-public class ElectricPress extends AContainer implements RecipeDisplayItem, NotDiagonallyRotatable {
+public class ElectricPress extends ASpeedableContainer implements RecipeDisplayItem, NotDiagonallyRotatable {
 
     @ParametersAreNonnullByDefault
     public ElectricPress(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
