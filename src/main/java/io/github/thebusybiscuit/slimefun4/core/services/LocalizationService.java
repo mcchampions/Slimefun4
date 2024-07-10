@@ -226,7 +226,7 @@ public class LocalizationService extends SlimefunLocalization {
      */
     public double calculateProgress(Language lang) {
 
-        Set<String> defaultKeys = getTotalKeys(languages.get("en"));
+        Set<String> defaultKeys = getTotalKeys(languages.get("zh-CN"));
 
         if (defaultKeys.isEmpty()) {
             return 0;

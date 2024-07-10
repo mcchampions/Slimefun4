@@ -134,7 +134,7 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     private FileConfiguration getDefaultFile(LanguageFile file) {
-        Language language = getLanguage(LanguagePreset.ENGLISH.getLanguageCode());
+        Language language = getLanguage(LanguagePreset.CHINESE_CHINA.getLanguageCode());
 
         if (language == null) {
             throw new IllegalStateException("Fallback language \"en\" is missing!");
