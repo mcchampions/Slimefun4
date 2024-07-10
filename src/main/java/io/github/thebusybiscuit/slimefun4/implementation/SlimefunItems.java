@@ -11,10 +11,12 @@ import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ColoredFireworkStar;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -31,7 +33,8 @@ import org.bukkit.potion.PotionEffectType;
 @SuppressWarnings("java:S1192") // Suppress "duplicate string literal" warnings
 public final class SlimefunItems {
 
-    private SlimefunItems() {}
+    private SlimefunItems() {
+    }
 
     /*		 Items 		*/
     public static final SlimefunItemStack PORTABLE_CRAFTER = new SlimefunItemStack(
@@ -1732,7 +1735,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(4));
+            LoreBuilder.powerPerSecond(4),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_FURNACE_2 = new SlimefunItemStack(
             "ELECTRIC_FURNACE_2",
             Material.FURNACE,
@@ -1740,7 +1744,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
             "&8\u21E8 &7速度: 2x",
-            LoreBuilder.powerPerSecond(6));
+            LoreBuilder.powerPerSecond(6),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_FURNACE_3 = new SlimefunItemStack(
             "ELECTRIC_FURNACE_3",
             Material.FURNACE,
@@ -1748,7 +1753,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
             "&8\u21E8 &7速度: 4x",
-            LoreBuilder.powerPerSecond(10));
+            LoreBuilder.powerPerSecond(10),
+            "&b可加速");
 
     public static final SlimefunItemStack ELECTRIC_ORE_GRINDER = new SlimefunItemStack(
             "ELECTRIC_ORE_GRINDER",
@@ -1759,7 +1765,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(12));
+            LoreBuilder.powerPerSecond(12),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_ORE_GRINDER_2 = new SlimefunItemStack(
             "ELECTRIC_ORE_GRINDER_2",
             Material.FURNACE,
@@ -1769,7 +1776,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 4x",
-            LoreBuilder.powerPerSecond(30));
+            LoreBuilder.powerPerSecond(30),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_ORE_GRINDER_3 = new SlimefunItemStack(
             "ELECTRIC_ORE_GRINDER_3",
             Material.FURNACE,
@@ -1779,7 +1787,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             LoreBuilder.speed(10),
-            LoreBuilder.powerPerSecond(90));
+            LoreBuilder.powerPerSecond(90),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_INGOT_PULVERIZER = new SlimefunItemStack(
             "ELECTRIC_INGOT_PULVERIZER",
             Material.FURNACE,
@@ -1789,7 +1798,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(14));
+            LoreBuilder.powerPerSecond(14),
+            "&b可加速");
     public static final SlimefunItemStack AUTO_DRIER = new SlimefunItemStack(
             "AUTO_DRIER",
             Material.SMOKER,
@@ -1797,7 +1807,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(10));
+            LoreBuilder.powerPerSecond(10),
+            "&b可加速");
     public static final SlimefunItemStack AUTO_ENCHANTER = new SlimefunItemStack(
             "AUTO_ENCHANTER",
             Material.ENCHANTING_TABLE,
@@ -1846,7 +1857,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7可修复百分比: 25%",
-            LoreBuilder.powerPerSecond(32));
+            LoreBuilder.powerPerSecond(32),
+            "&b可加速");
     public static final SlimefunItemStack AUTO_BREWER = new SlimefunItemStack(
             "AUTO_BREWER",
             Material.SMOKER,
@@ -2107,14 +2119,14 @@ public final class SlimefunItems {
             "",
             "&c&l! &c确保你已经进行了 GEO 地形扫描");
     public static final SlimefunItemStack OIL_PUMP = new SlimefunItemStack(
-            "OIL_PUMP", HeadTexture.OIL_PUMP, "&r原油泵", "", "&7泵出原油并把它装进桶里", "", "&c&l! &c请先对所在区块进行地形扫描");
+            "OIL_PUMP", HeadTexture.OIL_PUMP, "&r原油泵", "", "&7泵出原油并把它装进桶里", "", "&c&l! &c请先对所在区块进行地形扫描", "&b可加速");
     public static final SlimefunItemStack OIL_BUCKET =
             new SlimefunItemStack("BUCKET_OF_OIL", HeadTexture.OIL_BUCKET, "&r原油桶");
     public static final SlimefunItemStack FUEL_BUCKET =
             new SlimefunItemStack("BUCKET_OF_FUEL", HeadTexture.FUEL_BUCKET, "&r燃料桶");
 
     public static final SlimefunItemStack REFINERY =
-            new SlimefunItemStack("REFINERY", Material.PISTON, "&c炼油机", "", "&r将原油提炼为燃油");
+            new SlimefunItemStack("REFINERY", Material.PISTON, "&c炼油机", "", "&r将原油提炼为燃油", "&b可加速");
     public static final SlimefunItemStack COMBUSTION_REACTOR = new SlimefunItemStack(
             "COMBUSTION_REACTOR",
             HeadTexture.GENERATOR,
@@ -2190,7 +2202,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(10));
+            LoreBuilder.powerPerSecond(10),
+            "&b可加速");
     public static final SlimefunItemStack HEATED_PRESSURE_CHAMBER_2 = new SlimefunItemStack(
             "HEATED_PRESSURE_CHAMBER_2",
             Material.LIGHT_GRAY_STAINED_GLASS,
@@ -2198,7 +2211,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 5x",
-            LoreBuilder.powerPerSecond(44));
+            LoreBuilder.powerPerSecond(44),
+            "&b可加速");
 
     public static final SlimefunItemStack ELECTRIC_SMELTERY = new SlimefunItemStack(
             "ELECTRIC_SMELTERY",
@@ -2209,7 +2223,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(20));
+            LoreBuilder.powerPerSecond(20),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_SMELTERY_2 = new SlimefunItemStack(
             "ELECTRIC_SMELTERY_2",
             Material.FURNACE,
@@ -2219,7 +2234,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 3x",
-            LoreBuilder.powerPerSecond(40));
+            LoreBuilder.powerPerSecond(40),
+            "&b可加速");
 
     public static final SlimefunItemStack ELECTRIC_PRESS = new SlimefunItemStack(
             "ELECTRIC_PRESS",
@@ -2228,7 +2244,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(16));
+            LoreBuilder.powerPerSecond(16),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_PRESS_2 = new SlimefunItemStack(
             "ELECTRIC_PRESS_2",
             HeadTexture.ELECTRIC_PRESS,
@@ -2236,7 +2253,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 3x",
-            LoreBuilder.powerPerSecond(40));
+            LoreBuilder.powerPerSecond(40),
+            "&b可加速");
 
     public static final SlimefunItemStack ELECTRIFIED_CRUCIBLE = new SlimefunItemStack(
             "ELECTRIFIED_CRUCIBLE",
@@ -2245,7 +2263,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(48));
+            LoreBuilder.powerPerSecond(48),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIFIED_CRUCIBLE_2 = new SlimefunItemStack(
             "ELECTRIFIED_CRUCIBLE_2",
             Material.RED_TERRACOTTA,
@@ -2253,7 +2272,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 2x",
-            "&8\u21E8 &e\u26A1 &780 J/s");
+            "&8\u21E8 &e\u26A1 &780 J/s",
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIFIED_CRUCIBLE_3 = new SlimefunItemStack(
             "ELECTRIFIED_CRUCIBLE_3",
             Material.RED_TERRACOTTA,
@@ -2261,7 +2281,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 4x",
-            "&8\u21E8 &e\u26A1 &7120 J/s");
+            "&8\u21E8 &e\u26A1 &7120 J/s",
+            "&b可加速");
 
     public static final SlimefunItemStack CARBON_PRESS = new SlimefunItemStack(
             "CARBON_PRESS",
@@ -2270,7 +2291,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(20));
+            LoreBuilder.powerPerSecond(20),
+            "&b可加速");
     public static final SlimefunItemStack CARBON_PRESS_2 = new SlimefunItemStack(
             "CARBON_PRESS_2",
             Material.BLACK_STAINED_GLASS,
@@ -2278,7 +2300,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 3x",
-            "&8\u21E8 &e\u26A1 &750 J/s");
+            "&8\u21E8 &e\u26A1 &750 J/s",
+            "&b可加速");
     public static final SlimefunItemStack CARBON_PRESS_3 = new SlimefunItemStack(
             "CARBON_PRESS_3",
             Material.BLACK_STAINED_GLASS,
@@ -2286,7 +2309,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 15x",
-            "&8\u21E8 &e\u26A1 &7180 J/s");
+            "&8\u21E8 &e\u26A1 &7180 J/s",
+            "&b可加速");
 
     public static final SlimefunItemStack BLISTERING_INGOT = new SlimefunItemStack(
             "BLISTERING_INGOT",
@@ -2497,7 +2521,8 @@ public final class SlimefunItems {
             LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
             LoreBuilder.powerBuffer(256),
-            LoreBuilder.powerPerSecond(14));
+            LoreBuilder.powerPerSecond(14),
+            "&b可加速");
     public static final SlimefunItemStack FOOD_FABRICATOR_2 = new SlimefunItemStack(
             "FOOD_FABRICATOR_2",
             Material.GREEN_STAINED_GLASS,
@@ -2508,7 +2533,8 @@ public final class SlimefunItems {
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 6x",
             LoreBuilder.powerBuffer(512),
-            LoreBuilder.powerPerSecond(48));
+            LoreBuilder.powerPerSecond(48),
+            "&b可加速");
 
     public static final SlimefunItemStack FOOD_COMPOSTER = new SlimefunItemStack(
             "FOOD_COMPOSTER",
@@ -2520,7 +2546,8 @@ public final class SlimefunItems {
             LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
             LoreBuilder.powerBuffer(256),
-            LoreBuilder.powerPerSecond(16));
+            LoreBuilder.powerPerSecond(16),
+            "&b可加速");
     public static final SlimefunItemStack FOOD_COMPOSTER_2 = new SlimefunItemStack(
             "FOOD_COMPOSTER_2",
             Material.GREEN_TERRACOTTA,
@@ -2531,7 +2558,8 @@ public final class SlimefunItems {
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 10x",
             LoreBuilder.powerBuffer(512),
-            "&8\u21E8 &e\u26A1 &752 J/s");
+            "&8\u21E8 &e\u26A1 &752 J/s",
+            "&b可加速");
 
     public static final SlimefunItemStack EXP_COLLECTOR = new SlimefunItemStack(
             "XP_COLLECTOR",
@@ -2589,7 +2617,8 @@ public final class SlimefunItems {
             LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
             LoreBuilder.powerBuffer(256),
-            LoreBuilder.powerPerSecond(18));
+            LoreBuilder.powerPerSecond(18),
+            "&b可加速");
     public static final SlimefunItemStack FREEZER_2 = new SlimefunItemStack(
             "FREEZER_2",
             Material.LIGHT_BLUE_STAINED_GLASS,
@@ -2598,7 +2627,8 @@ public final class SlimefunItems {
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 2x",
             LoreBuilder.powerBuffer(256),
-            LoreBuilder.powerPerSecond(30));
+            LoreBuilder.powerPerSecond(30),
+            "&b可加速");
     public static final SlimefunItemStack FREEZER_3 = new SlimefunItemStack(
             "FREEZER_3",
             Material.LIGHT_BLUE_STAINED_GLASS,
@@ -2607,7 +2637,8 @@ public final class SlimefunItems {
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             LoreBuilder.speed(3),
             LoreBuilder.powerBuffer(256),
-            LoreBuilder.powerPerSecond(42));
+            LoreBuilder.powerPerSecond(42),
+            "&b可加速");
 
     public static final SlimefunItemStack ELECTRIC_GOLD_PAN = new SlimefunItemStack(
             "ELECTRIC_GOLD_PAN",
@@ -2616,7 +2647,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(2));
+            LoreBuilder.powerPerSecond(2),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_GOLD_PAN_2 = new SlimefunItemStack(
             "ELECTRIC_GOLD_PAN_2",
             Material.BROWN_TERRACOTTA,
@@ -2624,7 +2656,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE),
             "&8\u21E8 &7速度: 3x",
-            LoreBuilder.powerPerSecond(4));
+            LoreBuilder.powerPerSecond(4),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_GOLD_PAN_3 = new SlimefunItemStack(
             "ELECTRIC_GOLD_PAN_3",
             Material.BROWN_TERRACOTTA,
@@ -2641,7 +2674,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(6));
+            LoreBuilder.powerPerSecond(6),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_DUST_WASHER_2 = new SlimefunItemStack(
             "ELECTRIC_DUST_WASHER_2",
             Material.BLUE_STAINED_GLASS,
@@ -2649,7 +2683,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE),
             "&8\u21E8 &7速度: 2x",
-            LoreBuilder.powerPerSecond(10));
+            LoreBuilder.powerPerSecond(10),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_DUST_WASHER_3 = new SlimefunItemStack(
             "ELECTRIC_DUST_WASHER_3",
             Material.BLUE_STAINED_GLASS,
@@ -2657,7 +2692,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 10x",
-            LoreBuilder.powerPerSecond(30));
+            LoreBuilder.powerPerSecond(30),
+            "&b可加速");
 
     public static final SlimefunItemStack ELECTRIC_INGOT_FACTORY = new SlimefunItemStack(
             "ELECTRIC_INGOT_FACTORY",
@@ -2666,7 +2702,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE),
             "&8\u21E8 &7速度: 1x",
-            LoreBuilder.powerPerSecond(8));
+            LoreBuilder.powerPerSecond(8),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_INGOT_FACTORY_2 = new SlimefunItemStack(
             "ELECTRIC_INGOT_FACTORY_2",
             Material.RED_TERRACOTTA,
@@ -2674,7 +2711,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE),
             "&8\u21E8 &7速度: 2x",
-            LoreBuilder.powerPerSecond(14));
+            LoreBuilder.powerPerSecond(14),
+            "&b可加速");
     public static final SlimefunItemStack ELECTRIC_INGOT_FACTORY_3 = new SlimefunItemStack(
             "ELECTRIC_INGOT_FACTORY_3",
             Material.RED_TERRACOTTA,
@@ -2682,7 +2720,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 8x",
-            LoreBuilder.powerPerSecond(40));
+            LoreBuilder.powerPerSecond(40),
+            "&b可加速");
 
     // @Deprecated
     // public static final SlimefunItemStack AUTOMATED_CRAFTING_CHAMBER = new

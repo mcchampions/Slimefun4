@@ -24,7 +24,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
  *
  * @author ProfElements
  */
-public class BookBinder extends ASpeedableContainer {
+public class BookBinder extends AContainer {
 
     private final ItemSetting<Boolean> bypassVanillaMaxLevel =
             new ItemSetting<>(this, "bypass-vanilla-max-level", false);
