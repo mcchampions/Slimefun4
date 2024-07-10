@@ -1,4 +1,4 @@
-package me.qscbm.slimefun4.slimefunitems;
+package me.qscbm.slimefun4.slimefunitems.machines;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;

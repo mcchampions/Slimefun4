@@ -1,4 +1,4 @@
-package me.qscbm.slimefun4.slimefunitems;
+package me.qscbm.slimefun4.slimefunitems.tools;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+import me.qscbm.slimefun4.slimefunitems.machines.ASpeedableContainer;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 

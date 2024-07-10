@@ -9,9 +9,9 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
-import me.qscbm.slimefun4.slimefunitems.ASpeedableContainer;
+import me.qscbm.slimefun4.slimefunitems.machines.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
