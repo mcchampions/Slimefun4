@@ -136,7 +136,7 @@ public enum MinecraftVersion {
         }
 
         if (this.majorVersion != 20) {
-            return this.majorVersion == minecraftVersion && this.minorVersion >= patchVersion;
+            return this.majorVersion == minecraftVersion;
         } else {
             return this.majorVersion == minecraftVersion && this.minorVersion == -1
                     ? patchVersion < 5
