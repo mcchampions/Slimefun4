@@ -1004,6 +1004,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
             b.setType(Material.AIR);
             /*
+             * TODO:remove
              * 临时解决外键异常方案 #807
              * 等待 #821
              */
