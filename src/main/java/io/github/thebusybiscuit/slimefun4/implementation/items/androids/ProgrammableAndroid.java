@@ -27,6 +27,7 @@ import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.papermc.lib.PaperLib;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -72,7 +73,7 @@ public class ProgrammableAndroid extends SlimefunItem
     private static final List<BlockFace> POSSIBLE_ROTATIONS =
             Arrays.asList(BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST);
     private static final int[] BORDER = {
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 24, 25, 26, 27, 33, 35, 36, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 24, 25, 26, 27, 33, 35, 36, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53
     };
     private static final int[] OUTPUT_BORDER = {10, 11, 12, 13, 14, 19, 23, 28, 32, 37, 38, 39, 40, 41};
     private static final String DEFAULT_SCRIPT = "START-TURN_LEFT-REPEAT";
@@ -102,7 +103,7 @@ public class ProgrammableAndroid extends SlimefunItem
             @Override
             public boolean canOpen(Block b, Player p) {
                 boolean isOwner = p.getUniqueId().toString().equals(StorageCacheUtils.getData(b.getLocation(), "owner"))
-                        || p.hasPermission("slimefun.android.bypass");
+                                  || p.hasPermission("slimefun.android.bypass");
 
                 if (isOwner || AndroidShareMenu.isTrustedUser(b, p.getUniqueId())) {
                     return true;
@@ -165,7 +166,7 @@ public class ProgrammableAndroid extends SlimefunItem
         addItemHandler(onPlace(), onBreak());
     }
 
-    
+
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
@@ -191,7 +192,7 @@ public class ProgrammableAndroid extends SlimefunItem
         };
     }
 
-    
+
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
 
@@ -202,7 +203,7 @@ public class ProgrammableAndroid extends SlimefunItem
                 String owner = blockData.getData("owner");
 
                 if (!e.getPlayer().hasPermission("slimefun.android.bypass")
-                        && !e.getPlayer().getUniqueId().toString().equals(owner)) {
+                    && !e.getPlayer().getUniqueId().toString().equals(owner)) {
                     // The Player is not allowed to break this android
                     e.setCancelled(true);
                     return;
@@ -343,8 +344,8 @@ public class ProgrammableAndroid extends SlimefunItem
                                         .getMessage(
                                                 p,
                                                 "android.scripts.instructions."
-                                                        + Instruction.valueOf(script[i])
-                                                                .name()),
+                                                + Instruction.valueOf(script[i])
+                                                        .name()),
                                 "",
                                 "&7\u21E8 &e左键 &7编辑",
                                 "&7\u21E8 &e右键 &7删除",
@@ -612,7 +613,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    
+
     protected List<Instruction> getValidScriptInstructions() {
         List<Instruction> list = new ArrayList<>();
 
@@ -666,7 +667,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    
+
     public String getScript(Location l) {
 
         String script = StorageCacheUtils.getData(l, "script");
@@ -747,7 +748,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
     @Override
     public int[] getOutputSlots() {
-        return new int[] {20, 21, 22, 29, 30, 31};
+        return new int[]{20, 21, 22, 29, 30, 31};
     }
 
     protected void tick(Block b, SlimefunBlockData data) {
@@ -853,7 +854,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
     protected void depositItems(BlockMenu menu, Block facedBlock) {
         if (facedBlock.getType() == Material.DISPENSER
-                && StorageCacheUtils.isBlock(facedBlock.getLocation(), "ANDROID_INTERFACE_ITEMS")) {
+            && StorageCacheUtils.isBlock(facedBlock.getLocation(), "ANDROID_INTERFACE_ITEMS")) {
             BlockState state = PaperLib.getBlockState(facedBlock, false).getState();
 
             if (state instanceof Dispenser dispenser) {
@@ -877,7 +878,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
     protected void refuel(BlockMenu menu, Block facedBlock) {
         if (facedBlock.getType() == Material.DISPENSER
-                && StorageCacheUtils.isBlock(facedBlock.getLocation(), "ANDROID_INTERFACE_FUEL")) {
+            && StorageCacheUtils.isBlock(facedBlock.getLocation(), "ANDROID_INTERFACE_FUEL")) {
             BlockState state = PaperLib.getBlockState(facedBlock, false).getState();
 
             if (state instanceof Dispenser dispenser) {
@@ -979,8 +980,8 @@ public class ProgrammableAndroid extends SlimefunItem
         }
 
         if (block.getY() > block.getWorld().getMinHeight()
-                && block.getY() < block.getWorld().getMaxHeight()
-                && block.isEmpty()) {
+            && block.getY() < block.getWorld().getMaxHeight()
+            && block.isEmpty()) {
 
             if (!block.getWorld().getWorldBorder().isInside(block.getLocation())) {
                 return;
@@ -1002,6 +1003,14 @@ public class ProgrammableAndroid extends SlimefunItem
             });
 
             b.setType(Material.AIR);
+            /*
+             * 临时解决外键异常方案 #807
+             * 等待 #821
+             */
+            // start
+            Slimefun.getDatabaseManager().getBlockDataController().removeBlock(b.getLocation());
+            Slimefun.getDatabaseManager().getBlockDataController().createBlock(b.getLocation(), getId());
+            // end
             Slimefun.getDatabaseManager().getBlockDataController().setBlockDataLocation(blockData, block.getLocation());
         }
     }

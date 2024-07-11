@@ -51,6 +51,6 @@ public class HighVersionUtils {
     }
 
     public static BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> blockList, float yield) {
-        return new BlockExplodeEvent(block, block.getState().copy(), blockList, yield);
+        return new BlockExplodeEvent(block, block.getState(), blockList, yield);
     }
 }
