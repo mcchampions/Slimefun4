@@ -2664,7 +2664,8 @@ public final class SlimefunItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             "&8\u21E8 &7速度: 10x",
-            LoreBuilder.powerPerSecond(14));
+            LoreBuilder.powerPerSecond(14),
+            "&b可加速");
 
     public static final SlimefunItemStack ELECTRIC_DUST_WASHER = new SlimefunItemStack(
             "ELECTRIC_DUST_WASHER",
