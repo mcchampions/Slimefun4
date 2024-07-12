@@ -996,7 +996,7 @@ public class ProgrammableAndroid extends SlimefunItem
              */
             // start
             Slimefun.getDatabaseManager().getBlockDataController().removeBlock(b.getLocation());
-            Slimefun.getDatabaseManager().getBlockDataController().createBlock(b.getLocation(), getId());
+            Slimefun.getDatabaseManager().getBlockDataController().createBlock(block.getLocation(), getId());
             // end
             Slimefun.getDatabaseManager().getBlockDataController().setBlockDataLocation(blockData, block.getLocation());
         }
