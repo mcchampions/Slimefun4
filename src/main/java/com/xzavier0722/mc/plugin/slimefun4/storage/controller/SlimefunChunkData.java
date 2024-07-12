@@ -2,6 +2,7 @@ package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -47,17 +48,18 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
         }
 
         Slimefun.getDatabaseManager().getBlockDataController().saveNewBlock(l, sfId);
-
         return re;
     }
 
-    @Nullable @ParametersAreNonnullByDefault
+    @Nullable
+    @ParametersAreNonnullByDefault
     public SlimefunBlockData getBlockData(Location l) {
         checkData();
         return getBlockCacheInternal(LocationUtils.getLocKey(l));
     }
 
-    @Nullable @ParametersAreNonnullByDefault
+    @Nullable
+    @ParametersAreNonnullByDefault
     public SlimefunBlockData removeBlockData(Location l) {
         var lKey = LocationUtils.getLocKey(l);
         var re = removeBlockDataCacheInternal(lKey);

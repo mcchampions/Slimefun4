@@ -18,6 +18,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
 import io.github.bakedlibs.dough.collections.Pair;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Bukkit;
@@ -142,7 +144,7 @@ public class BlockDataController extends ADataController {
      * @param sfId slimefun block id {@link SlimefunItem#getId()}
      * @return {@link SlimefunBlockData}
      */
-    
+
     public SlimefunBlockData createBlock(Location l, String sfId) {
         checkDestroy();
         var re = getChunkDataCache(l.getChunk(), true).createBlockData(l, sfId);
@@ -211,7 +213,8 @@ public class BlockDataController extends ADataController {
      * @param l slimefun block location {@link Location}
      * @return {@link SlimefunBlockData}
      */
-    @Nullable @ParametersAreNonnullByDefault
+    @Nullable
+    @ParametersAreNonnullByDefault
     public SlimefunBlockData getBlockData(Location l) {
         checkDestroy();
         if (chunkDataLoadMode.readCacheOnly()) {
@@ -246,7 +249,7 @@ public class BlockDataController extends ADataController {
     /**
      * Get slimefun block data at specific location async
      *
-     * @param l slimefun block location {@link Location}
+     * @param l        slimefun block location {@link Location}
      * @param callback operation when block data fetched {@link IAsyncReadCallback}
      */
     public void getBlockDataAsync(Location l, IAsyncReadCallback<SlimefunBlockData> callback) {
@@ -396,7 +399,7 @@ public class BlockDataController extends ADataController {
 
         chunkKeys.forEach(cKey -> loadChunk(LocationUtils.toChunk(world, cKey), false));
         logger.log(
-                Level.INFO, "世界 {0} 数据加载完成, 耗时 {1}ms", new Object[] {worldName, (System.currentTimeMillis() - start)});
+                Level.INFO, "世界 {0} 数据加载完成, 耗时 {1}ms", new Object[]{worldName, (System.currentTimeMillis() - start)});
     }
 
     private void loadChunkData(SlimefunChunkData chunkData) {
@@ -735,12 +738,12 @@ public class BlockDataController extends ADataController {
     private SlimefunChunkData getChunkDataCache(Chunk chunk, boolean createOnNotExists) {
         return createOnNotExists
                 ? loadedChunk.computeIfAbsent(LocationUtils.getChunkKey(chunk), k -> {
-                    var re = new SlimefunChunkData(chunk);
-                    if (!initLoading && chunkDataLoadMode.readCacheOnly()) {
-                        re.setIsDataLoaded(true);
-                    }
-                    return re;
-                })
+            var re = new SlimefunChunkData(chunk);
+            if (!initLoading && chunkDataLoadMode.readCacheOnly()) {
+                re.setIsDataLoaded(true);
+            }
+            return re;
+        })
                 : loadedChunk.get(LocationUtils.getChunkKey(chunk));
     }
 

@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlUtils;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.chat.ChatInput;
@@ -989,15 +990,6 @@ public class ProgrammableAndroid extends SlimefunItem
             });
 
             b.setType(Material.AIR);
-            /*
-             * TODO:remove
-             * 临时解决外键异常方案 #807
-             * 等待 #821
-             */
-            // start
-            Slimefun.getDatabaseManager().getBlockDataController().removeBlock(b.getLocation());
-            Slimefun.getDatabaseManager().getBlockDataController().createBlock(block.getLocation(), getId());
-            // end
             Slimefun.getDatabaseManager().getBlockDataController().setBlockDataLocation(blockData, block.getLocation());
         }
     }
