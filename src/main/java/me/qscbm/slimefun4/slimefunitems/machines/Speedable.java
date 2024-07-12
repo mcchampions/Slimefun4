@@ -5,7 +5,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Placeable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.block.Block;
 
-public interface Speedable extends Placeable {
+public interface Speedable {
     int getSpeedLimit();
     void setSpeedLimit();
     default int getIncreasedSpeed(SlimefunBlockData data) {
