@@ -35,7 +35,6 @@ import org.bukkit.persistence.PersistentDataType;
  *
  */
 public class SlimefunAutoCrafter extends AbstractAutoCrafter {
-
     /**
      * The targeted {@link RecipeType} that is being crafted here.
      */
@@ -55,7 +54,6 @@ public class SlimefunAutoCrafter extends AbstractAutoCrafter {
 
     @Override
     @Nullable public AbstractRecipe getSelectedRecipe(Block b) {
-
         BlockState state = PaperLib.getBlockState(b, false).getState();
 
         if (state instanceof Skull skull) {

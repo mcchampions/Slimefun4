@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class AnvilListener implements SlimefunCraftingListener {
-
     public AnvilListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

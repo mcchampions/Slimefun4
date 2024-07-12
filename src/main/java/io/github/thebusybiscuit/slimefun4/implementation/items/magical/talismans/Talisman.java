@@ -36,7 +36,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 public class Talisman extends SlimefunItem {
-
     protected static final ItemGroup TALISMANS_ITEMGROUP = new ItemGroup(
             new NamespacedKey(Slimefun.instance(), "talismans"),
             new CustomItemStack(SlimefunItems.COMMON_TALISMAN, "&7Talismans - &aTier I"),
@@ -301,7 +300,6 @@ public class Talisman extends SlimefunItem {
      *            The {@link Player} who shall receive the message
      */
     public void sendMessage(Player p) {
-
         // Check if this Talisman has a message
         if (!isSilent()) {
             try {

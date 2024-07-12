@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class InfusedMagnet extends UnplaceableBlock {
-
     private final ItemSetting<Double> radius =
             new DoubleRangeSetting(this, "pickup-radius", 0.1, 6.0, Double.MAX_VALUE);
 

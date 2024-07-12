@@ -27,7 +27,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, NotDiagonallyRotatable {
-
     private final GEOResource oil;
 
     private final ItemStack emptyBucket = new ItemStack(Material.BUCKET);
@@ -42,7 +41,6 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
                 .orElse(null);
 
         new BlockMenuPreset(getId(), getInventoryTitle()) {
-
             @Override
             public void init() {
                 constructMenu(this);

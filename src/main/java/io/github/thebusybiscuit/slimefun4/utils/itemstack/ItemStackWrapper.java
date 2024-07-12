@@ -20,7 +20,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public final class ItemStackWrapper extends ItemStack {
-
     private static final String ERROR_MESSAGE = "ItemStackWrappers are immutable and not intended for actual usage.";
 
     private final ItemMeta meta;
@@ -113,7 +112,6 @@ public final class ItemStackWrapper extends ItemStack {
      * @see #wrap(ItemStack)
      */
     public static ItemStackWrapper forceWrap(ItemStack itemStack) {
-
         return new ItemStackWrapper(itemStack);
     }
 
@@ -128,7 +126,6 @@ public final class ItemStackWrapper extends ItemStack {
      * @see #forceWrap(ItemStack)
      */
     public static ItemStackWrapper wrap(ItemStack itemStack) {
-
         if (itemStack instanceof ItemStackWrapper wrapper) {
             return wrapper;
         }
@@ -145,7 +142,6 @@ public final class ItemStackWrapper extends ItemStack {
      * @return An {@link ItemStackWrapper} array
      */
     public static ItemStackWrapper[] wrapArray(ItemStack[] items) {
-
         ItemStackWrapper[] array = new ItemStackWrapper[items.length];
 
         for (int i = 0; i < items.length; i++) {
@@ -166,7 +162,6 @@ public final class ItemStackWrapper extends ItemStack {
      * @return An {@link ItemStackWrapper} array
      */
     public static List<ItemStackWrapper> wrapList(List<ItemStack> items) {
-
         List<ItemStackWrapper> list = new ArrayList<>(items.size());
 
         for (ItemStack item : items) {

@@ -15,7 +15,6 @@ import org.bukkit.command.ConsoleCommandSender;
  *
  */
 public class ConsolePerformanceInspector implements PerformanceInspector {
-
     /**
      * Our reference to the actual underlying {@link CommandSender}.
      */
@@ -43,7 +42,6 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      */
     @ParametersAreNonnullByDefault
     public ConsolePerformanceInspector(CommandSender console, boolean verbose, SummaryOrderType orderType) {
-
         this.console = console;
         this.verbose = verbose;
         this.orderType = orderType;

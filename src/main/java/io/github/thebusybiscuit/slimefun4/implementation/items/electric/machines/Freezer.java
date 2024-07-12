@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  * @author J3fftw1
  */
 public class Freezer extends ASpeedableContainer implements RecipeDisplayItem {
-
     private final ItemSetting<Boolean> useVanillaRatios = new ItemSetting<>(this, "use-vanilla-ratios", false);
 
     @ParametersAreNonnullByDefault

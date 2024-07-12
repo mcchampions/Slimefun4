@@ -25,7 +25,6 @@ import org.bukkit.potion.PotionEffectType;
  *
  */
 public abstract class NetherStarReactor extends Reactor {
-
     @ParametersAreNonnullByDefault
     protected NetherStarReactor(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

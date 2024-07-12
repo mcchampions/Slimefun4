@@ -30,7 +30,6 @@ import org.bukkit.inventory.ItemStack;
  * @see NetherGoldPan
  */
 public class ElectricGoldPan extends ASpeedableContainer implements RecipeDisplayItem {
-
     private final ItemSetting<Boolean> overrideOutputLimit = new ItemSetting<>(this, "override-output-limit", false);
 
     private final GoldPan goldPan = SlimefunItems.GOLD_PAN.getItem(GoldPan.class);

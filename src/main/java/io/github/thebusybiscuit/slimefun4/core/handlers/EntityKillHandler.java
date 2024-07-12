@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @FunctionalInterface
 public interface EntityKillHandler extends ItemHandler {
-
     void onKill(EntityDeathEvent e, Entity entity, Player killer, ItemStack item);
 
     @Override

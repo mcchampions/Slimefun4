@@ -32,7 +32,6 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  */
 public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
-
     private static final double RANGE = 1.5;
     private final Map<Material, List<Enchantment>> applicableEnchantments = new EnumMap<>(Material.class);
 
@@ -136,7 +135,6 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
                         () -> {
                             // Being sure entities are still valid and not picked up or whatsoever.
                             if (rune.isValid() && item.isValid() && itemStack.getAmount() == 1) {
-
                                 l.getWorld().spawnParticle(VersionedParticle.ENCHANTED_HIT, l, 1);
                                 SoundEffect.ENCHANTMENT_RUNE_ADD_ENCHANT_SOUND.playAt(l, SoundCategory.PLAYERS);
 
@@ -182,7 +180,6 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
     private void removeIllegalEnchantments(
             ItemStack target, List<Enchantment> potentialEnchantments) {
         for (Enchantment enchantment : target.getEnchantments().keySet()) {
-
             // Duplicate or conflict
             potentialEnchantments.removeIf(possibleEnchantment -> possibleEnchantment.equals(enchantment) || possibleEnchantment.conflictsWith(enchantment));
         }

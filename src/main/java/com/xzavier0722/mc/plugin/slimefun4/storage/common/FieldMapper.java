@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FieldMapper<T> {
-
     private final Map<FieldKey, T> map;
     private final Map<T, FieldKey> inverseMap;
 

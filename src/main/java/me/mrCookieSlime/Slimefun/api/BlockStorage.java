@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @Deprecated
 public class BlockStorage {
-
     private static final Config emptyData = new EmptyBlockData();
 
     @Nullable public static BlockStorage getStorage(World world) {

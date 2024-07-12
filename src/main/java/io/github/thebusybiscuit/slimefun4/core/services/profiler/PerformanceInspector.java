@@ -11,7 +11,6 @@ import org.bukkit.Server;
  *
  */
 public interface PerformanceInspector {
-
     /**
      * This returns whether this {@link PerformanceInspector} is still valid.
      * An inspector will become invalid if they leave the {@link Server}.

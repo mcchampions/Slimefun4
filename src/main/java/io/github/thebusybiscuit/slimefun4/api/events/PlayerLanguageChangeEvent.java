@@ -15,7 +15,6 @@ import org.bukkit.event.HandlerList;
  * @see LocalizationService
  */
 public class PlayerLanguageChangeEvent extends Event {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter

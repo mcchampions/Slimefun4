@@ -47,7 +47,6 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  */
 public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements DamageableItem, RecipeDisplayItem {
-
     private static final double STRONG_SURFACE_DEFAULT = 1.0;
     private static final double WEAK_SURFACE_DEFAULT = 0.6;
     private static final double MAX_DISTANCE = 4.4;
@@ -119,7 +118,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      * @return The climbing speed for this {@link Material} or 0.
      */
     public double getClimbingSpeed(Material type) {
-
         ClimbableSurface surface = surfaces.get(type);
 
         if (surface != null) {

@@ -20,7 +20,6 @@ import org.bukkit.plugin.Plugin;
  */
 @Deprecated
 public class MenuListener implements Listener {
-
     public MenuListener(Plugin plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

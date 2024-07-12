@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
  * @author Semisol
  */
 public class SolarHelmetTask extends AbstractArmorTask {
-
     @Override
     @ParametersAreNonnullByDefault
     protected void onPlayerTick(Player p, PlayerProfile profile) {

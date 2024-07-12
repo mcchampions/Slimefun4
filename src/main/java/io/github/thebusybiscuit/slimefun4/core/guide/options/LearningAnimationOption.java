@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  * @author martinbrom
  */
 class LearningAnimationOption implements SlimefunGuideOption<Boolean> {
-
     
     @Override
     public SlimefunAddon getAddon() {

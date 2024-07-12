@@ -24,7 +24,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 
 public class WoodcutterAndroid extends ProgrammableAndroid {
-
     private static final int MAX_REACH = 160;
 
     @ParametersAreNonnullByDefault

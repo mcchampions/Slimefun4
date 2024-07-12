@@ -99,7 +99,6 @@ class BackpackCommand extends SubCommand {
     }
 
     private void openBackpackMenu(OfflinePlayer owner, Player p) {
-
         Slimefun.getDatabaseManager()
                 .getProfileDataController()
                 .getBackpacksAsync(owner.getUniqueId().toString(), new IAsyncReadCallback<>() {

@@ -32,7 +32,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
-
     private final ItemSetting<Boolean> useNightEnergyInOtherDimensions =
             new ItemSetting<>(this, "other-dimensions-use-night-energy", false);
     /**

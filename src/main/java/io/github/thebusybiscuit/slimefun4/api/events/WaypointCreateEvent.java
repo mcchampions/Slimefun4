@@ -22,7 +22,6 @@ import org.bukkit.event.player.PlayerEvent;
  *
  */
 public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter
@@ -36,8 +35,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
 
     public WaypointCreateEvent(Player player, String name, Location location) {
         super(player);
-
-
         this.location = location;
         this.name = name;
         this.deathpoint = name.startsWith("player:death ");
@@ -50,7 +47,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
      * @param loc The {@link Location} to set
      */
     public void setLocation(Location loc) {
-
         this.location = loc;
     }
 

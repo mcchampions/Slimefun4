@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class CoolantCell extends UnplaceableBlock {
-
     @ParametersAreNonnullByDefault
     public CoolantCell(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         this(itemGroup, item, recipeType, recipe, null);

@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
  * @author iTwins
  */
 public class JoinListener implements Listener {
-
     public JoinListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

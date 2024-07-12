@@ -36,7 +36,6 @@ import org.bukkit.potion.PotionEffect;
  *
  */
 public final class TeleportationManager {
-
     private final int[] teleporterBorder = {
         0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51,
         52, 53
@@ -168,7 +167,6 @@ public final class TeleportationManager {
      * @return The amount of time the teleportation will take
      */
     public int getTeleportationTime(int complexity, Location source, Location destination) {
-
         if (complexity < 100) {
             return 100;
         }

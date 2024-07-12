@@ -224,7 +224,6 @@ import org.bukkit.potion.PotionType;
  *
  */
 public final class SlimefunItemSetup {
-
     private static boolean registeredItems = false;
 
     private SlimefunItemSetup() {}
@@ -5475,7 +5474,6 @@ public final class SlimefunItemSetup {
                     SlimefunItems.ELECTRIC_MOTOR,
                     SlimefunItems.STEEL_INGOT
                 }) {
-
             @Override
             public int getMultiplier(int y) {
                 return y;
@@ -5503,7 +5501,6 @@ public final class SlimefunItemSetup {
                     SlimefunItems.BRONZE_INGOT,
                     SlimefunItems.GPS_TRANSMITTER
                 }) {
-
             @Override
             public int getMultiplier(int y) {
                 return y * 4 + 100;
@@ -5531,7 +5528,6 @@ public final class SlimefunItemSetup {
                     SlimefunItems.CORINTHIAN_BRONZE_INGOT,
                     SlimefunItems.GPS_TRANSMITTER_2
                 }) {
-
             @Override
             public int getMultiplier(int y) {
                 return y * 16 + 500;
@@ -5559,7 +5555,6 @@ public final class SlimefunItemSetup {
                     SlimefunItems.BLISTERING_INGOT_3,
                     SlimefunItems.GPS_TRANSMITTER_3
                 }) {
-
             @Override
             public int getMultiplier(int y) {
                 return y * 64 + 2100;
@@ -7219,7 +7214,6 @@ public final class SlimefunItemSetup {
                     SlimefunItems.ANIMAL_GROWTH_ACCELERATOR,
                     SlimefunItems.ELECTRO_MAGNET
                 }) {
-
             @Override
             public int getEnergyConsumption() {
                 return 25;
@@ -7251,7 +7245,6 @@ public final class SlimefunItemSetup {
                     SlimefunItems.ADVANCED_CIRCUIT_BOARD,
                     SlimefunItems.ELECTRO_MAGNET
                 }) {
-
             @Override
             public int getEnergyConsumption() {
                 return 30;
@@ -7384,7 +7377,6 @@ public final class SlimefunItemSetup {
                     SlimefunItems.REINFORCED_PLATE,
                     SlimefunItems.LEAD_INGOT
                 }) {
-
             @Override
             public int getEnergyProduction() {
                 return 250;
@@ -7411,7 +7403,6 @@ public final class SlimefunItemSetup {
                     SlimefunItems.REINFORCED_PLATE,
                     SlimefunItems.CORINTHIAN_BRONZE_INGOT
                 }) {
-
             @Override
             public int getEnergyProduction() {
                 return 512;

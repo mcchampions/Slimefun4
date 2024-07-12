@@ -8,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
 interface SlimefunCraftingListener extends Listener {
-
     default boolean hasUnallowedItems(@Nullable ItemStack item1, @Nullable ItemStack item2) {
         if (SlimefunGuide.isGuideItem(item1) || SlimefunGuide.isGuideItem(item2)) {
             return true;

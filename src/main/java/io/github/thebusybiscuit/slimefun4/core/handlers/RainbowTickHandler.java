@@ -26,7 +26,6 @@ import java.util.List;
  *
  */
 public class RainbowTickHandler extends BlockTicker {
-
     private final LoopIterator<Material> iterator;
     private final boolean glassPanes;
     private Material material;

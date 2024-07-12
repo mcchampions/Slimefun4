@@ -18,7 +18,6 @@ import org.bukkit.block.Block;
  *
  */
 final class ProfiledBlock {
-
     /**
      * The {@link World} this {@link Block} is in.
      * It is fine to keep an actual reference here since this is a throwaway object anyway.

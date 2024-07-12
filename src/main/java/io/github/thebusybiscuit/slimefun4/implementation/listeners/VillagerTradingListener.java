@@ -22,7 +22,6 @@ import javax.annotation.Nullable;
  *
  */
 public class VillagerTradingListener implements Listener {
-
     public VillagerTradingListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

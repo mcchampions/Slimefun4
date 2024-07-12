@@ -26,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class AutoDrier extends ASpeedableContainer implements RecipeDisplayItem, NotHopperable {
-
     private List<ItemStack> recipeList;
 
     @ParametersAreNonnullByDefault

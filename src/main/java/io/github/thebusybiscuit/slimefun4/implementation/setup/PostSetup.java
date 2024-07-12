@@ -23,7 +23,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 
 public final class PostSetup {
-
     private PostSetup() {}
 
     public static void setupWiki() {

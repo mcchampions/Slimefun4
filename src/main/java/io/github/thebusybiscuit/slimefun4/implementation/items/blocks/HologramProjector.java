@@ -41,7 +41,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class HologramProjector extends SlimefunItem implements HologramOwner {
-
     private static final String OFFSET_PARAMETER = "offset";
 
     @ParametersAreNonnullByDefault
@@ -58,7 +57,6 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
 
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 Block b = e.getBlockPlaced();
@@ -74,7 +72,6 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
 
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 killArmorStand(b);

@@ -48,7 +48,6 @@ public final class AndroidShareMenu {
      */
     @ParametersAreNonnullByDefault
     public static void openShareMenu(Player p, Block b) {
-
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage("android.access-manager.title"));
 
         menu.setEmptySlotsClickable(false);
@@ -125,8 +124,6 @@ public final class AndroidShareMenu {
 
     @ParametersAreNonnullByDefault
     private static void addPlayer(Player owner, OfflinePlayer p, Block android, List<String> users) {
-
-
         if (users.contains(p.getUniqueId().toString())) {
             Slimefun.getLocalization()
                     .sendMessage(
@@ -149,8 +146,6 @@ public final class AndroidShareMenu {
 
     @ParametersAreNonnullByDefault
     private static void removePlayer(Player owner, OfflinePlayer p, Block android, List<String> users) {
-
-
         if (users.contains(p.getUniqueId().toString())) {
             users.remove(p.getUniqueId().toString());
             Slimefun.getLocalization()
@@ -176,7 +171,6 @@ public final class AndroidShareMenu {
      * @return parse trusted player list
      */
     private static List<String> parseBlockInfoToList(String value) {
-
         String replacedText = value.replace("[", "").replace("]", "");
 
         if (replacedText.isEmpty()) {
@@ -193,7 +187,6 @@ public final class AndroidShareMenu {
      * @return trusted users list
      */
     public static List<String> getTrustedUsers(Block b) {
-
         Optional<String> trustUsers = getSharedUserData(b.getState());
 
         // Checks for old Android
@@ -215,14 +208,12 @@ public final class AndroidShareMenu {
      */
     @ParametersAreNonnullByDefault
     public static boolean isTrustedUser(Block b, UUID uuid) {
-
         Optional<String> trustUsers = getSharedUserData(b.getState());
 
         return trustUsers.map(s -> s.contains(uuid.toString())).orElse(false);
     }
 
     private static void setSharedUserData(BlockState state, String value) {
-
         if (!(state instanceof TileState)) {
             return;
         }
@@ -246,7 +237,6 @@ public final class AndroidShareMenu {
     }
 
     private static Optional<String> getSharedUserData(BlockState state) {
-
         if (!(state instanceof TileState)) {
             return Optional.empty();
         }

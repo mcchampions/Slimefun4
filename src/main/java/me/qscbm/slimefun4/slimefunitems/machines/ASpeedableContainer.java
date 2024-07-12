@@ -39,7 +39,6 @@ public abstract class ASpeedableContainer extends AContainer implements Speedabl
     @Override
     public void preRegister() {
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 ASpeedableContainer.this.tick(b,data);
@@ -58,7 +57,6 @@ public abstract class ASpeedableContainer extends AContainer implements Speedabl
 
         if (currentOperation != null) {
             if (takeCharge(b.getLocation())) {
-
                 if (!currentOperation.isFinished()) {
                     getMachineProcessor().updateProgressBar(inv, 22, currentOperation);
                     currentOperation.addProgress(1);

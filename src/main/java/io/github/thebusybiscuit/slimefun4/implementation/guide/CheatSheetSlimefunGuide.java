@@ -25,7 +25,6 @@ import org.bukkit.inventory.Recipe;
  *
  */
 public class CheatSheetSlimefunGuide extends SurvivalSlimefunGuide {
-
     private final ItemStack item;
 
     public CheatSheetSlimefunGuide() {

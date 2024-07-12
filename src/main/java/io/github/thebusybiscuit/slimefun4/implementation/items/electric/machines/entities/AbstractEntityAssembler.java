@@ -45,7 +45,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSlimefunItem<BlockTicker>
         implements EnergyNetComponent {
-
     private static final String KEY_ENABLED = "enabled";
     private static final String KEY_OFFSET = "offset";
 
@@ -66,7 +65,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         super(itemGroup, item, recipeType, recipe);
 
         new BlockMenuPreset(getId(), item.getItemMetaSnapshot().getDisplayName().orElse("Entity Assembler")) {
-
             @Override
             public void init() {
                 drawBackground(border);
@@ -119,7 +117,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
     
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(true) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 onPlace(e);
@@ -141,7 +138,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
     
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
-
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 Block b = e.getBlock();
@@ -195,7 +191,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 if ("false".equals(data.getData(KEY_ENABLED))) {

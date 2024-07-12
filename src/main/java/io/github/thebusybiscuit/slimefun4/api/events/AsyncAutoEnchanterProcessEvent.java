@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
  * @author StarWishsama
  */
 public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     /**
@@ -48,8 +47,6 @@ public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable
     public AsyncAutoEnchanterProcessEvent(
             ItemStack item, ItemStack enchantedBook, BlockMenu menu) {
         super(true);
-
-
         this.item = item;
         this.enchantedBook = enchantedBook;
         this.menu = menu;

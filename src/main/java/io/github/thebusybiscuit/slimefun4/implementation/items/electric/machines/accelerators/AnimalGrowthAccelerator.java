@@ -16,7 +16,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
 public class AnimalGrowthAccelerator extends AbstractGrowthAccelerator {
-
     private static final int ENERGY_CONSUMPTION = 14;
     private static final double RADIUS = 3.0;
 

@@ -22,7 +22,6 @@ import org.bukkit.inventory.PlayerInventory;
  *
  */
 public class MagicEyeOfEnder extends SimpleSlimefunItem<ItemUseHandler> {
-
     @ParametersAreNonnullByDefault
     public MagicEyeOfEnder(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

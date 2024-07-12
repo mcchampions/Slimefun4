@@ -25,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
  * @see ChristmasPresent
  */
 public class EasterEgg extends SimpleSlimefunItem<ItemUseHandler> {
-
     private final ItemStack[] gifts;
 
     @ParametersAreNonnullByDefault

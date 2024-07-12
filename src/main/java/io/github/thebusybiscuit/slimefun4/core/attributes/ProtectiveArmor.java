@@ -20,7 +20,6 @@ import org.bukkit.entity.Player;
  * @see ItemAttribute
  */
 public interface ProtectiveArmor extends ItemAttribute {
-
     /**
      * This returns which {@link ProtectionType} damages this {@link ItemAttribute}
      * will protect the {@link Player} from.

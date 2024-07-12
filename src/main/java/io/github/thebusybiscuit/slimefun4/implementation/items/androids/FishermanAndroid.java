@@ -15,7 +15,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 
 public class FishermanAndroid extends ProgrammableAndroid {
-
     private final RandomizedSet<ItemStack> fishingLoot = new RandomizedSet<>();
 
     @ParametersAreNonnullByDefault

@@ -21,7 +21,6 @@ import org.bukkit.inventory.PlayerInventory;
  *
  */
 public class IronGolemListener implements Listener {
-
     public IronGolemListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

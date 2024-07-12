@@ -21,7 +21,6 @@ import org.bukkit.block.Biome;
  *
  */
 class OilResource extends AbstractResource {
-
     private static final int DEFAULT_OVERWORLD_VALUE = 10;
 
     private final BiomeMap<Integer> biomes;

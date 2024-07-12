@@ -34,7 +34,6 @@ import java.util.Optional;
  *
  */
 public final class SlimefunGuideSettings {
-
     private static final int[] BACKGROUND_SLOTS = {
         1, 2, 3, 5, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 48,
         50, 52, 53

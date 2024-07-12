@@ -20,7 +20,6 @@ import org.bukkit.event.HandlerList;
  *
  */
 public class AsyncProfileLoadEvent extends Event {
-
     private static final HandlerList handlers = new HandlerList();
 
     private final UUID uniqueId;
@@ -47,9 +46,6 @@ public class AsyncProfileLoadEvent extends Event {
      *            The {@link PlayerProfile}
      */
     public void setProfile(PlayerProfile profile) {
-
-        
-
         this.profile = profile;
     }
 

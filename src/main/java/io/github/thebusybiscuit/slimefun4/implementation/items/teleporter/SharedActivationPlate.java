@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SharedActivationPlate extends AbstractTeleporterPlate {
-
     @ParametersAreNonnullByDefault
     public SharedActivationPlate(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

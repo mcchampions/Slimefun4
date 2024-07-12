@@ -24,7 +24,6 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
  * @author ProfElements
  */
 public class BookBinder extends AContainer {
-
     private final ItemSetting<Boolean> bypassVanillaMaxLevel =
             new ItemSetting<>(this, "bypass-vanilla-max-level", false);
     private final ItemSetting<Boolean> hasCustomMaxLevel = new ItemSetting<>(this, "has-custom-max-level", false);
@@ -142,7 +141,6 @@ public class BookBinder extends AContainer {
 
         for (Map.Entry<Enchantment, Integer> entry : ech2.entrySet()) {
             for (Map.Entry<Enchantment, Integer> conflictsWith : enchantments.entrySet()) {
-
                 /*
                  * Check if entry enchantment and conflictsWith enchantment conflict
                  * and confirm that the enchantsments aren't the exact same.

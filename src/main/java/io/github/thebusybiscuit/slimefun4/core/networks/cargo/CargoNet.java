@@ -38,7 +38,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class CargoNet extends AbstractItemNetwork implements HologramOwner {
-
     private static final int RANGE = 5;
 
     private final Set<Location> inputNodes = new HashSet<>();

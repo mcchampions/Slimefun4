@@ -19,7 +19,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  *
  */
 public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
-
     private final Class<T> enumClass;
 
     @ParametersAreNonnullByDefault

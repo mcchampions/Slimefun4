@@ -41,7 +41,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @see MiningTask
  */
 public class IndustrialMiner extends MultiBlockMachine {
-
     protected final Map<Location, MiningTask> activeMiners = new HashMap<>();
     protected final List<MachineFuel> fuelTypes = new ArrayList<>();
 

@@ -16,7 +16,6 @@ import org.bukkit.block.Block;
  *
  */
 public class CrafterInteractorManager {
-
     private static final Map<String, CrafterInteractorHandler> handlers = new HashMap<>();
 
     /**

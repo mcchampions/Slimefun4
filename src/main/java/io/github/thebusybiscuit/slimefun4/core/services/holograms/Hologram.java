@@ -14,7 +14,6 @@ import org.bukkit.entity.Entity;
  * @author TheBusyBiscuit
  */
 class Hologram {
-
     /**
      * This is the minimum duration after which the {@link Hologram} will expire.
      */

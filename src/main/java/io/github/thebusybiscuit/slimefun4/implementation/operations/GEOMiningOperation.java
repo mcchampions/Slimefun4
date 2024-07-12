@@ -17,7 +17,6 @@ import java.util.OptionalInt;
  * @see GEOMiner
  */
 public class GEOMiningOperation extends MiningOperation {
-
     private final GEOResource resource;
 
     public GEOMiningOperation(GEOResource resource, int totalTicks) {

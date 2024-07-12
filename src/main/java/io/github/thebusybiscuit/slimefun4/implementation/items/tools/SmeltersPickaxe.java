@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SmeltersPickaxe extends SimpleSlimefunItem<ToolUseHandler> implements DamageableItem {
-
     @ParametersAreNonnullByDefault
     public SmeltersPickaxe(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

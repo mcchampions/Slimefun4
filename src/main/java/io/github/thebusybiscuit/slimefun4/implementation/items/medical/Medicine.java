@@ -10,7 +10,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.inventory.ItemStack;
 
 public class Medicine extends MedicalSupply<ItemConsumptionHandler> {
-
     @ParametersAreNonnullByDefault
     public Medicine(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, 8, item, recipeType, recipe);

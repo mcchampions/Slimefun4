@@ -129,7 +129,6 @@ public enum HeadTexture {
     private final UUID uuid;
 
     HeadTexture(String texture) {
-
         
 
         this.texture = texture;

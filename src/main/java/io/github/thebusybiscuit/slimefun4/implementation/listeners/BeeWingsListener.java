@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class BeeWingsListener implements Listener {
-
     private final BeeWings wings;
 
     public BeeWingsListener(Slimefun plugin, BeeWings wings) {
@@ -33,7 +32,6 @@ public class BeeWingsListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onApproachGround(EntityToggleGlideEvent e) {
-
         if (wings == null || !e.isGliding() || wings.isDisabled() || !(e.getEntity() instanceof Player player)) {
             return;
         }

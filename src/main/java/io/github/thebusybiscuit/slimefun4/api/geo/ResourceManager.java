@@ -34,7 +34,6 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  */
 public class ResourceManager {
-
     private final int[] backgroundSlots = {
         0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 48, 49, 50, 52, 53
     };
@@ -58,7 +57,6 @@ public class ResourceManager {
      *            The {@link GEOResource} to register
      */
     void register(GEOResource resource) {
-
         // Resources may only be registered once
         if (Slimefun.getRegistry().getGEOResources().containsKey(resource.getKey())) {
             throw new IllegalArgumentException(
@@ -91,7 +89,6 @@ public class ResourceManager {
      * @return An {@link OptionalInt}, either empty or containing the amount of the given {@link GEOResource}
      */
     public OptionalInt getSupplies(GEOResource resource, World world, int x, int z) {
-
         String key = resource.getKey().toString().replace(':', '-');
         var chunkData = Slimefun.getDatabaseManager().getBlockDataController().getChunkData(world.getChunkAt(x, z));
         if (chunkData == null) {
@@ -145,7 +142,6 @@ public class ResourceManager {
      *            The new supply value
      */
     public void setSupplies(GEOResource resource, World world, int x, int z, int value) {
-
         String key = resource.getKey().toString().replace(':', '-');
         Slimefun.getDatabaseManager()
                 .getBlockDataController()
@@ -176,7 +172,6 @@ public class ResourceManager {
      * @return The new supply value
      */
     private int generate(GEOResource resource, World world, int x, int y, int z) {
-
         // Get the corresponding Block (and Biome)
         Block block = world.getBlockAt(x << 4, y, z << 4);
         Biome biome = block.getBiome();

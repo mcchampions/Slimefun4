@@ -26,7 +26,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @see SlimefunArmorTask
  */
 public final class HashedArmorpiece {
-
     private int hash;
     @Getter
     private Optional<SlimefunArmorPiece> item;

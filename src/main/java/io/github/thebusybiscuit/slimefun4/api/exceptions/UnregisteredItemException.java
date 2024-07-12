@@ -18,7 +18,6 @@ import java.io.Serial;
  *
  */
 public class UnregisteredItemException extends RuntimeException {
-
     @Serial
     private static final long serialVersionUID = -4684752240435069678L;
 

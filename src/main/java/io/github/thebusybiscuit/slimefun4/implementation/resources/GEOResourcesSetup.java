@@ -9,7 +9,6 @@ import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
  * @author TheBusyBiscuit
  */
 public final class GEOResourcesSetup {
-
     private GEOResourcesSetup() {}
 
     public static void setup() {

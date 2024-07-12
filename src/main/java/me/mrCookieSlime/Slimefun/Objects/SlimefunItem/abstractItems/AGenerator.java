@@ -37,7 +37,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class AGenerator extends AbstractEnergyProvider implements MachineProcessHolder<FuelOperation> {
-
     private static final int[] border = {0, 1, 2, 3, 4, 5, 6, 7, 8, 13, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44};
     private static final int[] border_in = {9, 10, 11, 12, 18, 21, 27, 28, 29, 30};
     private static final int[] border_out = {14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
@@ -54,7 +53,6 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
         processor.setProgressBar(getProgressBar());
 
         new BlockMenuPreset(item.getItemId(), getInventoryTitle()) {
-
             @Override
             public void init() {
                 constructMenu(this);
@@ -89,7 +87,6 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
     
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
@@ -119,7 +116,6 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
 
         for (int i : getOutputSlots()) {
             preset.addMenuClickHandler(i, new AdvancedMenuClickHandler() {
-
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
                     return false;

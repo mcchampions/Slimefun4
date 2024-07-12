@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter
@@ -64,7 +63,6 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
      *            The {@link ItemStack} to be placed
      */
     public void setItemStack(ItemStack item) {
-
         if (!locked) {
             this.placedItem = item;
         } else {

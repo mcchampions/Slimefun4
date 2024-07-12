@@ -39,7 +39,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class TableSaw extends MultiBlockMachine {
-
     private final List<ItemStack> displayedRecipes = new ArrayList<>();
 
     private final ItemSetting<Boolean> canUseSlimefunItems = new ItemSetting<>(this, "can-use-slimefun-items", true);

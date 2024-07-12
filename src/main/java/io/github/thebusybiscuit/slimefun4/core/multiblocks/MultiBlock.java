@@ -27,7 +27,6 @@ import org.bukkit.block.BlockFace;
  *
  */
 public class MultiBlock {
-
     private static final Set<Tag<Material>> SUPPORTED_TAGS = new HashSet<>();
 
     static {
@@ -50,7 +49,6 @@ public class MultiBlock {
     private final boolean isSymmetric;
 
     public MultiBlock(SlimefunItem item, Material[] build, BlockFace trigger) {
-
         if (build == null || build.length != 9) {
             throw new IllegalArgumentException("MultiBlocks must have a length of 9!");
         }
@@ -110,7 +108,6 @@ public class MultiBlock {
 
     private boolean compareBlocks(Material a, @Nullable Material b) {
         if (b != null) {
-
             for (Tag<Material> tag : SUPPORTED_TAGS) {
                 if (tag.isTagged(b)) {
                     return tag.isTagged(a);

@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class InfernalBonemeal extends SimpleSlimefunItem<ItemUseHandler> {
-
     @ParametersAreNonnullByDefault
     public InfernalBonemeal(
             ItemGroup itemGroup,

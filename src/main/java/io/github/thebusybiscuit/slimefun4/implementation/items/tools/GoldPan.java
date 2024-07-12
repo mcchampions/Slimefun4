@@ -44,7 +44,6 @@ import org.bukkit.inventory.ItemStack;
  * @see ElectricGoldPan
  */
 public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements RecipeDisplayItem {
-
     private final RandomizedSet<ItemStack> randomizer = new RandomizedSet<>();
     private final Set<Material> inputMaterials = new HashSet<>(List.of(Material.GRAVEL));
     private final Set<GoldPanDrop> drops = new HashSet<>();

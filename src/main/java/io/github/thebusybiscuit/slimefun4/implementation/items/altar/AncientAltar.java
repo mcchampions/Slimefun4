@@ -30,7 +30,6 @@ import org.bukkit.inventory.ItemStack;
  * @see AncientPedestal
  */
 public class AncientAltar extends SlimefunItem {
-
     /**
      * This number represents a delay in ticks between two ritual steps.
      * The whole ritual process consists of 36 steps, an item is consumed every 4 steps (8 times)

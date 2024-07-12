@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  * @see PlayerBackpack
  */
 public class RestoredBackpack extends SlimefunBackpack {
-
     /**
      * This will create a new {@link SlimefunBackpack} with the given arguments.
      *

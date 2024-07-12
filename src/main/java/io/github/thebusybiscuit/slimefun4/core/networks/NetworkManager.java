@@ -29,7 +29,6 @@ import java.util.logging.Level;
  *
  */
 public class NetworkManager {
-
     private final int maxNodes;
     private final boolean enableVisualizer;
     private final boolean deleteExcessItems;
@@ -152,7 +151,6 @@ public class NetworkManager {
      *            The {@link Network} to register
      */
     public void registerNetwork(Network network) {
-
         networks.add(network);
     }
 
@@ -163,7 +161,6 @@ public class NetworkManager {
      *            The {@link Network} to remove
      */
     public void unregisterNetwork(Network network) {
-
         networks.remove(network);
     }
 
@@ -175,7 +172,6 @@ public class NetworkManager {
      *            The {@link Location} to update
      */
     public void updateAllNetworks(Location l) {
-
         
 
         try {

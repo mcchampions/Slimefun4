@@ -2,7 +2,6 @@ package me.mrCookieSlime.Slimefun.Objects.SlimefunItem;
 
 @Deprecated
 public enum UnregisterReason {
-
     /**
      * An explosion destroys the block.
      */

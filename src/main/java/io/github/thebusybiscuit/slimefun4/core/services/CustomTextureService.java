@@ -25,7 +25,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class CustomTextureService {
-
     /**
      * The {@link Config} object in which the Server Owner can configure the item models.
      */
@@ -130,7 +129,6 @@ public class CustomTextureService {
      * @return The configured custom model data
      */
     public int getModelData(String id) {
-
         return config.getInt(id);
     }
 
@@ -144,7 +142,6 @@ public class CustomTextureService {
      *            The id for which to get the configured model data
      */
     public void setTexture(ItemStack item, String id) {
-
         ItemMeta im = item.getItemMeta();
         setTexture(im, id);
         item.setItemMeta(im);
@@ -160,7 +157,6 @@ public class CustomTextureService {
      *            The id for which to get the configured model data
      */
     public void setTexture(ItemMeta im, String id) {
-
         int data = getModelData(id);
         im.setCustomModelData(data == 0 ? null : data);
     }

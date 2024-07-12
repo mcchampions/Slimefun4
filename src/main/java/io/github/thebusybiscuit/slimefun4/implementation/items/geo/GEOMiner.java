@@ -53,7 +53,6 @@ public class GEOMiner extends SlimefunItem
                 HologramOwner,
                 MachineProcessHolder<GEOMiningOperation>,
                 NotDiagonallyRotatable {
-
     private static final int[] BORDER = {
         0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 53
     };
@@ -123,8 +122,6 @@ public class GEOMiner extends SlimefunItem
      * @return This method will return the current instance of {@link GEOMiner}, so that can be chained.
      */
     public final GEOMiner setCapacity(int capacity) {
-        
-
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
             return this;
@@ -190,7 +187,6 @@ public class GEOMiner extends SlimefunItem
     
     private BlockPlaceHandler onBlockPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 updateHologram(e.getBlock(), "&7待机中...");
@@ -201,7 +197,6 @@ public class GEOMiner extends SlimefunItem
     
     private BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 removeHologram(b);
@@ -267,7 +262,6 @@ public class GEOMiner extends SlimefunItem
 
         for (int i : OUTPUT_SLOTS) {
             preset.addMenuClickHandler(i, new AdvancedMenuClickHandler() {
-
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
                     return false;
@@ -285,7 +279,6 @@ public class GEOMiner extends SlimefunItem
     @Override
     public void preRegister() {
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 GEOMiner.this.tick(b);

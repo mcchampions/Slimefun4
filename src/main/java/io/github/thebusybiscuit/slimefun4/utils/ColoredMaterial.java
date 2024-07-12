@@ -14,7 +14,6 @@ import java.util.List;
  * @see SlimefunTag
  */
 public enum ColoredMaterial {
-
     // @formatter:off (We want this to stay formatted like this)
 
     /**

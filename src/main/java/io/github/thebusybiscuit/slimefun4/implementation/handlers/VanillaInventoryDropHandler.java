@@ -33,7 +33,6 @@ import org.bukkit.inventory.ItemStack;
  *            The type of {@link BlockState} and {@link InventoryHolder} we are dealing with
  */
 public class VanillaInventoryDropHandler<T extends BlockState & InventoryHolder> extends BlockBreakHandler {
-
     private final Class<T> blockStateClass;
 
     /**
@@ -51,7 +50,6 @@ public class VanillaInventoryDropHandler<T extends BlockState & InventoryHolder>
     @Override
     @ParametersAreNonnullByDefault
     public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
-
         // Fixes #2906 - Spigot being buggy as always...
         if (!PaperLib.isPaper()) {
             return;

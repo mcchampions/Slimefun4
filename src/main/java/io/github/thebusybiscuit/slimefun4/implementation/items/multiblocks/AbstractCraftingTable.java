@@ -34,7 +34,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 abstract class AbstractCraftingTable extends MultiBlockMachine {
-
     @ParametersAreNonnullByDefault
     AbstractCraftingTable(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, BlockFace trigger) {
         super(itemGroup, item, recipe, trigger);

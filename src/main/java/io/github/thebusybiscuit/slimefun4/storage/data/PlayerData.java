@@ -20,7 +20,6 @@ import lombok.Getter;
 @Getter
 @Beta
 public class PlayerData {
-
     private final Set<Research> researches = new HashSet<>();
     private final Map<Integer, PlayerBackpack> backpacks = new HashMap<>();
     private final Set<Waypoint> waypoints = new HashSet<>();
@@ -32,12 +31,10 @@ public class PlayerData {
     }
 
     public void addResearch(Research research) {
-
         researches.add(research);
     }
 
     public void removeResearch(Research research) {
-
         researches.remove(research);
     }
 
@@ -46,17 +43,14 @@ public class PlayerData {
     }
 
     public void addBackpack(PlayerBackpack backpack) {
-
         backpacks.put(backpack.getId(), backpack);
     }
 
     public void removeBackpack(PlayerBackpack backpack) {
-
         backpacks.remove(backpack.getId());
     }
 
     public void addWaypoint(Waypoint waypoint) {
-
         for (Waypoint wp : waypoints) {
             if (wp.getId().equals(waypoint.getId())) {
                 throw new IllegalArgumentException("A Waypoint with that id already exists for this Player");
@@ -72,7 +66,6 @@ public class PlayerData {
     }
 
     public void removeWaypoint(Waypoint waypoint) {
-
         waypoints.remove(waypoint);
     }
 }

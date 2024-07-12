@@ -16,7 +16,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
  *
  */
 public interface ItemAttribute {
-
     /**
      * Returns the identifier of the associated {@link SlimefunItem}.
      *

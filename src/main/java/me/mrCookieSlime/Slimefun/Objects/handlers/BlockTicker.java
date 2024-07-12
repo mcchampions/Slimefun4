@@ -11,7 +11,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.block.Block;
 
 public abstract class BlockTicker implements ItemHandler {
-
     protected boolean unique = true;
 
     public void update() {

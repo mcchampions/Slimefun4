@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SteelThruster extends SlimefunItem {
-
     @ParametersAreNonnullByDefault
     public SteelThruster(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

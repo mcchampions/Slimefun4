@@ -6,6 +6,5 @@ import org.bukkit.block.BlockFace;
 
 @FunctionalInterface
 interface AndroidAction {
-
     void perform(ProgrammableAndroid android, Block b, BlockMenu inventory, BlockFace face);
 }

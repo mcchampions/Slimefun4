@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ElementalRune extends SlimefunItem {
-
     @ParametersAreNonnullByDefault
     public ElementalRune(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe) {
         this(itemGroup, item, recipe, null);

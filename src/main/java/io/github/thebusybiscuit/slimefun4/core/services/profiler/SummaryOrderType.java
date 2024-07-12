@@ -14,7 +14,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  * @author Walshy
  */
 public enum SummaryOrderType {
-
     /**
      * Sort by highest to the lowest total timings
      */

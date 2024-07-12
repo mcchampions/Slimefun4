@@ -17,7 +17,6 @@ import org.bukkit.entity.ArmorStand;
  * @author JustAHuman
  */
 public class ArmorStandUtils {
-
     private ArmorStandUtils() {}
 
     /**

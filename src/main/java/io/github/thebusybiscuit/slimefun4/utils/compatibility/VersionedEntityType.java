@@ -8,7 +8,6 @@ import org.bukkit.entity.EntityType;
 
 // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/craftbukkit/browse/src/main/java/org/bukkit/craftbukkit/legacy/FieldRename.java?until=2a6207fe150b6165722fce94c83cc1f206620ab5&untilPath=src%2Fmain%2Fjava%2Forg%2Fbukkit%2Fcraftbukkit%2Flegacy%2FFieldRename.java#158-193
 public class VersionedEntityType {
-
     public static final EntityType MOOSHROOM;
     public static final EntityType SNOW_GOLEM;
 

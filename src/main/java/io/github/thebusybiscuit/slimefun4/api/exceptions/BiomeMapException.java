@@ -14,7 +14,6 @@ import java.io.Serial;
  *
  */
 public class BiomeMapException extends Exception {
-
     @Serial
     private static final long serialVersionUID = -1894334121194788527L;
 

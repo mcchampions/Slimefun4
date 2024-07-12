@@ -18,7 +18,6 @@ import org.bukkit.event.HandlerList;
  *
  */
 public class AsyncMachineOperationFinishEvent extends Event {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter

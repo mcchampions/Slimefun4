@@ -30,7 +30,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class PickaxeOfVeinMining extends SimpleSlimefunItem<ToolUseHandler> {
-
     private final ItemSetting<Integer> maxBlocks = new IntRangeSetting(this, "max-blocks", 1, 16, Integer.MAX_VALUE);
 
     @ParametersAreNonnullByDefault

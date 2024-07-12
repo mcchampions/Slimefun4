@@ -13,7 +13,6 @@ import org.bukkit.block.Biome;
  *
  */
 class SaltResource extends AbstractResource {
-
     private static final int DEFAULT_OVERWORLD_VALUE = 6;
     private static final int DEFAULT_NETHER_VALUE = 8;
 

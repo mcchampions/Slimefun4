@@ -22,7 +22,6 @@ import org.bukkit.potion.PotionEffect;
  *
  */
 public class HazmatArmorPiece extends SlimefunArmorPiece implements ProtectiveArmor {
-
     private final NamespacedKey namespacedKey;
     private final ProtectionType[] types;
 

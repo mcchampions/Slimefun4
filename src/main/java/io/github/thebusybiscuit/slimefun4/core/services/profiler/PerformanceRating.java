@@ -16,7 +16,6 @@ import org.bukkit.ChatColor;
  *
  */
 public enum PerformanceRating implements Predicate<Float> {
-
     // Thresholds might change in the future!
 
     UNKNOWN(ChatColor.WHITE, -1),
@@ -34,7 +33,6 @@ public enum PerformanceRating implements Predicate<Float> {
     private final float threshold;
 
     PerformanceRating(ChatColor color, float threshold) {
-
         this.color = color;
         this.threshold = threshold;
     }

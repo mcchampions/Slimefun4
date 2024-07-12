@@ -25,7 +25,6 @@ import org.bukkit.event.Listener;
  *
  */
 class OrebfuscatorIntegration implements Listener {
-
     private final Slimefun plugin;
     private OrebfuscatorService service;
 

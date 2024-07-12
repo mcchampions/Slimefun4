@@ -33,7 +33,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class PickaxeOfContainment extends SimpleSlimefunItem<ToolUseHandler> {
-
     @ParametersAreNonnullByDefault
     public PickaxeOfContainment(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

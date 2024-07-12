@@ -31,7 +31,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public interface GEOResource extends Keyed {
-
     /**
      * Returns the default supply of this resource in that biome
      *

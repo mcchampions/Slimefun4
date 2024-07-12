@@ -30,7 +30,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class LockedItemGroup extends ItemGroup {
-
     private final NamespacedKey[] keys;
     @Getter
     private final Set<ItemGroup> parents = new HashSet<>();
@@ -142,7 +141,6 @@ public class LockedItemGroup extends ItemGroup {
      * @return Whether the {@link Player} has fully completed all parent categories, otherwise false
      */
     public boolean hasUnlocked(Player p, PlayerProfile profile) {
-
         for (ItemGroup parent : parents) {
             for (SlimefunItem item : parent.getItems()) {
                 // Check if the Player has researched every item (if the item is enabled)

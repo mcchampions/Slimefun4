@@ -28,7 +28,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ButcherAndroidListener implements Listener {
-
     private static final String METADATA_KEY = "android_killer";
 
     public ButcherAndroidListener(Slimefun plugin) {

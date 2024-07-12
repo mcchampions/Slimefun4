@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
  * @author J3fftw1
  */
 public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter

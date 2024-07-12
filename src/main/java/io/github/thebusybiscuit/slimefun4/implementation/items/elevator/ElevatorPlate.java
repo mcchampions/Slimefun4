@@ -42,7 +42,6 @@ import org.bukkit.inventory.ItemStack;
  * @author Walshy
  */
 public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
-
     /**
      * This is our key for storing the floor name.
      */
@@ -73,7 +72,6 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
 
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 var blockData = StorageCacheUtils.getBlock(e.getBlock().getLocation());

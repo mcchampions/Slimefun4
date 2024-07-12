@@ -33,7 +33,6 @@ import org.bukkit.plugin.Plugin;
  *
  */
 public class IntegrationsManager {
-
     /**
      * This is our instance of {@link Slimefun}.
      */

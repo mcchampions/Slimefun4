@@ -34,7 +34,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 @Getter
 public abstract class AbstractEnergyProvider extends SlimefunItem
         implements InventoryBlock, RecipeDisplayItem, EnergyNetProvider {
-
     protected final Set<MachineFuel> fuelTypes = new HashSet<>();
 
     @ParametersAreNonnullByDefault
@@ -86,7 +85,6 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
     }
 
     public void registerFuel(MachineFuel fuel) {
-
         fuelTypes.add(fuel);
     }
 

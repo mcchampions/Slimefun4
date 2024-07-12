@@ -9,7 +9,6 @@ import java.util.Locale;
  * @author TheBusyBiscuit
  */
 public enum ReactorMode {
-
     /**
      * If a {@link Reactor} is operation in production mode, the focus will
      * be set on the production of nuclear byproducts, such as Neptunium or Plutonium.

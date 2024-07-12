@@ -15,7 +15,6 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
  * @author martinbrom
  */
 public class RainbowArmorTask extends AbstractArmorTask {
-
     private long currentColorIndex = 0;
 
     @Override

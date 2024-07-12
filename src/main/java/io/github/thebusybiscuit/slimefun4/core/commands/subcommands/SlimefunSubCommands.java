@@ -16,7 +16,6 @@ import java.util.List;
  *
  */
 public final class SlimefunSubCommands {
-
     private SlimefunSubCommands() {}
 
     

@@ -34,7 +34,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class ItemGroup implements Keyed {
-
     private SlimefunAddon addon;
 
     @Getter
@@ -76,7 +75,6 @@ public class ItemGroup implements Keyed {
      */
     @ParametersAreNonnullByDefault
     public ItemGroup(NamespacedKey key, ItemStack item, int tier) {
-
         this.item = item;
         this.key = key;
 
@@ -103,7 +101,6 @@ public class ItemGroup implements Keyed {
      *            The {@link SlimefunAddon} that wants to register this {@link ItemGroup}
      */
     public void register(SlimefunAddon addon) {
-
         if (isRegistered()) {
             throw new UnsupportedOperationException("This ItemGroup has already been registered!");
         }
@@ -165,7 +162,6 @@ public class ItemGroup implements Keyed {
      *            the {@link SlimefunItem} that should be added to this {@link ItemGroup}
      */
     public void add(SlimefunItem item) {
-
         if (items.contains(item)) {
             // Ignore duplicate entries
             return;
@@ -188,7 +184,6 @@ public class ItemGroup implements Keyed {
      *            the {@link SlimefunItem} that should be removed from this {@link ItemGroup}
      */
     public void remove(SlimefunItem item) {
-
         items.remove(item);
     }
 

@@ -16,7 +16,6 @@ import org.bukkit.inventory.Inventory;
  * eventually.
  */
 public interface InventoryBlock {
-
     /**
      * This method returns an {@link Array} of slots that serve as the input
      * for the {@link Inventory} of this block.
@@ -39,7 +38,6 @@ public interface InventoryBlock {
 
     default void createPreset(SlimefunItem item, String title, Consumer<BlockMenuPreset> setup) {
         new BlockMenuPreset(item.getId(), title) {
-
             @Override
             public void init() {
                 setup.accept(this);

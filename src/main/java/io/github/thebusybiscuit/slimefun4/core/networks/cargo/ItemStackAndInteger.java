@@ -4,13 +4,11 @@ import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import org.bukkit.inventory.ItemStack;
 
 class ItemStackAndInteger {
-
     private ItemStack item;
     private ItemStackWrapper wrapper;
     private int number;
 
     ItemStackAndInteger(ItemStack item, int amount) {
-
         this.number = amount;
         this.item = item;
     }

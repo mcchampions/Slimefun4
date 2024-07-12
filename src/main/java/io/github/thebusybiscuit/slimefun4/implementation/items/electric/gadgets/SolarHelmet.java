@@ -27,7 +27,6 @@ import org.bukkit.inventory.PlayerInventory;
  *
  */
 public class SolarHelmet extends SlimefunItem {
-
     private final ItemSetting<Double> charge;
 
     @ParametersAreNonnullByDefault

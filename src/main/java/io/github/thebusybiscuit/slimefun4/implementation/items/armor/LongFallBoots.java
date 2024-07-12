@@ -21,7 +21,6 @@ import org.bukkit.potion.PotionEffect;
  */
 @Getter
 public class LongFallBoots extends SlimefunArmorPiece {
-
     /**
      * -- GETTER --
      *  This returns the

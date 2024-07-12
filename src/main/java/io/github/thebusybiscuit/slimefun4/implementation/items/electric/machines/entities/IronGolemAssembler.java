@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class IronGolemAssembler extends AbstractEntityAssembler<IronGolem> {
-
     @ParametersAreNonnullByDefault
     public IronGolemAssembler(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

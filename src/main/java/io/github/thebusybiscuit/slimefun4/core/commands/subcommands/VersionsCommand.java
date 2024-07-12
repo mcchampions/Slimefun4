@@ -26,7 +26,6 @@ import org.bukkit.plugin.Plugin;
  *
  */
 class VersionsCommand extends SubCommand {
-
     /**
      * This is the Java version we recommend to use.
      * Bump as necessary and adjust the warning.

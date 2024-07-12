@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public abstract class BlockBreakHandler implements ItemHandler {
-
     /**
      * Whether a {@link MinerAndroid} is allowed to break this block.
      */

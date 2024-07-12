@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  * @see Rechargeable
  */
 public class ChargingBench extends ASpeedableContainer {
-
     public ChargingBench(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

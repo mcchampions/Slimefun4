@@ -17,7 +17,6 @@ import org.bukkit.event.HandlerList;
  *
  */
 public class ResearchUnlockEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter
@@ -28,8 +27,6 @@ public class ResearchUnlockEvent extends Event implements Cancellable {
 
     public ResearchUnlockEvent(Player p, Research research) {
         super(!Bukkit.isPrimaryThread());
-
-
         this.player = p;
         this.research = research;
     }

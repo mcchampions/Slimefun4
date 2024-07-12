@@ -18,7 +18,6 @@ import org.bukkit.entity.Player;
  *
  */
 class RickFlexGroup extends FlexItemGroup {
-
     // Never instantiate more than once.
     RickFlexGroup(NamespacedKey key) {
         super(key, new CustomItemStack(Material.NETHER_STAR, "&6&l超级神秘物品"), 1);

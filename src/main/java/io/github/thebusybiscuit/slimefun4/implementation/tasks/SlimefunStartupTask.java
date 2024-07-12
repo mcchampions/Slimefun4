@@ -18,7 +18,6 @@ import org.bukkit.Bukkit;
  *
  */
 public class SlimefunStartupTask implements Runnable {
-
     private final Slimefun plugin;
     private final Runnable runnable;
 

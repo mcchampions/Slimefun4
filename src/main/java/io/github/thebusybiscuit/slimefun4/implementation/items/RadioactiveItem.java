@@ -27,7 +27,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class RadioactiveItem extends SlimefunItem implements Radioactive, NotPlaceable {
-
     /**
      * This is the level of {@link Radioactivity} for this {@link SlimefunItem}
      */

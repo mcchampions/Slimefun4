@@ -10,7 +10,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  * This class represents the result of an interaction on an {@link ExternallyInteractable} item.
  */
 public class InteractionResult {
-
     @Getter
     private final boolean interactionSuccessful;
     private @Nullable String resultMessage;

@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 class McMMOIntegration implements Listener {
-
     private final Slimefun plugin;
 
     McMMOIntegration(Slimefun plugin) {

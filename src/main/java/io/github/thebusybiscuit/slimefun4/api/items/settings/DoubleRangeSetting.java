@@ -15,7 +15,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  *
  */
 public class DoubleRangeSetting extends ItemSetting<Double> {
-
     private final double min;
     private final double max;
 

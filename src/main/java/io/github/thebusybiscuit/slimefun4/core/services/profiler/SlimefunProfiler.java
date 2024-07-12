@@ -37,7 +37,6 @@ import org.bukkit.scheduler.BukkitScheduler;
  *
  */
 public class SlimefunProfiler {
-
     /**
      * A minecraft server tick is 50ms and Slimefun ticks are stretched
      * across two ticks (sync and async blocks), so we use 100ms as a reference here
@@ -149,7 +148,6 @@ public class SlimefunProfiler {
      * @return The total timings of this entry
      */
     public long closeEntry(Location l, SlimefunItem item, long timestamp) {
-
         if (timestamp == 0) {
             return 0;
         }
@@ -251,7 +249,6 @@ public class SlimefunProfiler {
      *            The {@link PerformanceInspector} who shall receive this summary.
      */
     public void requestSummary(PerformanceInspector inspector) {
-
         requests.add(inspector);
     }
 
@@ -294,7 +291,6 @@ public class SlimefunProfiler {
     }
 
     protected int getBlocksInChunk(String chunk) {
-
         int blocks = 0;
 
         for (ProfiledBlock block : timings.keySet()) {
@@ -311,7 +307,6 @@ public class SlimefunProfiler {
     }
 
     protected int getBlocksOfId(String id) {
-
         int blocks = 0;
 
         for (ProfiledBlock block : timings.keySet()) {
@@ -324,7 +319,6 @@ public class SlimefunProfiler {
     }
 
     protected int getBlocksFromPlugin(String pluginName) {
-
         int blocks = 0;
 
         for (ProfiledBlock block : timings.keySet()) {
@@ -380,25 +374,21 @@ public class SlimefunProfiler {
      * @return Whether timings of this {@link Block} have been collected
      */
     public boolean hasTimings(Block b) {
-
         return timings.containsKey(new ProfiledBlock(b));
     }
 
     public String getTime(Block b) {
-
         long time = timings.getOrDefault(new ProfiledBlock(b), 0L);
         return NumberUtils.getAsMillis(time);
     }
 
     public String getTime(Chunk chunk) {
-
         long time = getByChunk()
                 .getOrDefault(chunk.getWorld().getName() + " (" + chunk.getX() + ',' + chunk.getZ() + ')', 0L);
         return NumberUtils.getAsMillis(time);
     }
 
     public String getTime(SlimefunItem item) {
-
         long time = getByItem().getOrDefault(item.getId(), 0L);
         return NumberUtils.getAsMillis(time);
     }

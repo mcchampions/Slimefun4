@@ -15,7 +15,6 @@ import javax.annotation.Nullable;
  * @author TheBusyBiscuit
  */
 public class SoundService {
-
     /**
      * Our {@link Config} instance.
      */

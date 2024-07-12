@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 class ChargeCommand extends SubCommand {
-
     @ParametersAreNonnullByDefault
     ChargeCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "charge", false);

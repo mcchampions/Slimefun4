@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SubItemGroup extends ItemGroup {
-
     private final NestedItemGroup parentItemGroup;
 
     @ParametersAreNonnullByDefault

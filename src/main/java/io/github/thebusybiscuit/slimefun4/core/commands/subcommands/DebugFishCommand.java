@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 class DebugFishCommand extends SubCommand {
-
     @ParametersAreNonnullByDefault
     DebugFishCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "debug_fish", true);

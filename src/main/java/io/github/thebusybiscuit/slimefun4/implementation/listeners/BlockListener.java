@@ -55,7 +55,6 @@ import java.util.concurrent.ThreadLocalRandom;
  * @see ToolUseHandler
  */
 public class BlockListener implements Listener {
-
     public BlockListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

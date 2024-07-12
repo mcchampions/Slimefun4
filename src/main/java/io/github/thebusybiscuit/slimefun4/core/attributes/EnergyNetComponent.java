@@ -29,7 +29,6 @@ import org.bukkit.Location;
  *
  */
 public interface EnergyNetComponent extends ItemAttribute {
-
     /**
      * This method returns the Type of {@link EnergyNetComponentType} this {@link SlimefunItem} represents.
      * It describes how this Block will interact with an {@link EnergyNet}.
@@ -118,7 +117,6 @@ public interface EnergyNetComponent extends ItemAttribute {
      * @return The charge stored at that {@link Location}
      */
     default int getCharge(Location l, SlimefunBlockData data) {
-
         // Emergency fallback, this cannot hold a charge, so we'll just return zero
         if (!isChargeable()) {
             return 0;
@@ -144,7 +142,6 @@ public interface EnergyNetComponent extends ItemAttribute {
      *            The new charge
      */
     default void setCharge(Location l, int charge) {
-
         
 
         try {
@@ -188,7 +185,6 @@ public interface EnergyNetComponent extends ItemAttribute {
     }
 
     default void addCharge(Location l, int charge) {
-
         
 
         try {
@@ -222,7 +218,6 @@ public interface EnergyNetComponent extends ItemAttribute {
     }
 
     default void removeCharge(Location l, int charge) {
-
         
 
         try {
@@ -244,7 +239,6 @@ public interface EnergyNetComponent extends ItemAttribute {
                 }
             }
         } catch (Exception | LinkageError x) {
-
             Slimefun.logger()
                     .log(
                             Level.SEVERE,

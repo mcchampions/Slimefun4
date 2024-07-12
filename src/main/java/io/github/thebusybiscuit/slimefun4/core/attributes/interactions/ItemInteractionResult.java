@@ -10,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
  * This class represents the result of an interaction on an {@link ExternallyInteractable} item.
  */
 public class ItemInteractionResult extends InteractionResult {
-
     private final Set<ItemStack> resultItems = new HashSet<>();
 
     /**

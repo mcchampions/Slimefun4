@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
  */
 @Getter
 public class ElevatorFloor {
-
     /**
      * The name of this floor.
      * -- GETTER --
@@ -50,7 +49,6 @@ public class ElevatorFloor {
      * @param block The {@link Block} of this floor
      */
     public ElevatorFloor(String name, int number, Block block) {
-
         this.name = name;
         this.number = number;
         this.location = block.getLocation();

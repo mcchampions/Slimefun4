@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @Getter
 public class Waypoint {
-
     /**
      * -- GETTER --
      *  This returns the owner's
@@ -94,8 +93,6 @@ public class Waypoint {
      */
     @ParametersAreNonnullByDefault
     public Waypoint(UUID ownerId, String id, Location loc, String name) {
-
-
         this.ownerId = ownerId;
         this.id = id;
         this.location = loc;

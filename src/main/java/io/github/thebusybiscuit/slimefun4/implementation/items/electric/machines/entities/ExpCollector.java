@@ -37,7 +37,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ExpCollector extends SlimefunItem implements InventoryBlock, EnergyNetComponent, NotDiagonallyRotatable {
-
     private final int[] border = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
 
     private static final int ENERGY_CONSUMPTION = 10;
@@ -55,7 +54,6 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
     
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 StorageCacheUtils.setData(
@@ -69,7 +67,6 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
     
     private ItemHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
@@ -111,7 +108,6 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
     @Override
     public void preRegister() {
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 ExpCollector.this.tick(b);

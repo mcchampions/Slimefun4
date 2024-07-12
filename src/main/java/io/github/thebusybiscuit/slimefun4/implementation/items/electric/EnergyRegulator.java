@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotRotatable {
-
     @ParametersAreNonnullByDefault
     public EnergyRegulator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -40,7 +39,6 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
     
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 removeHologram(b);
@@ -51,7 +49,6 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
     
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 updateHologram(e.getBlock(), "&7连接中...");
@@ -64,7 +61,6 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
         addItemHandler(onPlace());
 
         addItemHandler(new BlockTicker() {
-
             @Override
             public boolean isSynchronized() {
                 return false;

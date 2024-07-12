@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public interface CrafterInteractable {
-
     /**
      * Check if the item can be output to inventory.
      * @param item: the item will check.

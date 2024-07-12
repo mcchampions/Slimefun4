@@ -38,7 +38,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class AncientAltarTask implements Runnable {
-
     private final AncientAltarListener listener;
     private final AncientPedestal pedestalItem = (AncientPedestal) SlimefunItems.ANCIENT_PEDESTAL.getItem();
 
@@ -176,7 +175,6 @@ public class AncientAltarTask implements Runnable {
 
     private void finish() {
         if (running) {
-
             AncientAltarCraftEvent event = new AncientAltarCraftEvent(output, altar, player);
             Bukkit.getPluginManager().callEvent(event);
 

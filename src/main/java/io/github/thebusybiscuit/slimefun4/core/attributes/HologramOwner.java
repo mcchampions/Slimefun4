@@ -20,7 +20,6 @@ import org.bukkit.util.Vector;
  *
  */
 public interface HologramOwner extends ItemAttribute {
-
     /**
      * This will update the hologram text for the given {@link Block}.
      *

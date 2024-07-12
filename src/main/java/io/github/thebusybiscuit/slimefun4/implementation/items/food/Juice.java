@@ -32,7 +32,6 @@ import org.bukkit.potion.PotionEffectType;
  *
  */
 public class Juice extends SimpleSlimefunItem<ItemConsumptionHandler> {
-
     private final List<PotionEffect> effects;
 
     @ParametersAreNonnullByDefault

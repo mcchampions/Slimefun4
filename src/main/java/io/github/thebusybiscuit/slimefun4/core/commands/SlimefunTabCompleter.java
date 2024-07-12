@@ -18,7 +18,6 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.generator.WorldInfo;
 
 class SlimefunTabCompleter implements TabCompleter {
-
     private static final int MAX_SUGGESTIONS = 80;
 
     private final SlimefunCommand command;

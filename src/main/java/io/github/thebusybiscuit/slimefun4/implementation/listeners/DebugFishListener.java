@@ -42,7 +42,6 @@ import org.bukkit.inventory.EquipmentSlot;
  *
  */
 public class DebugFishListener implements Listener {
-
     private final String greenCheckmark;
     private final String redCross;
 

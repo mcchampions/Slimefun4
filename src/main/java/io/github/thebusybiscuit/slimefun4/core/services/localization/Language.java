@@ -24,7 +24,6 @@ import java.util.Map;
  *
  */
 public final class Language {
-
     private final Map<LanguageFile, FileConfiguration> files = new EnumMap<>(LanguageFile.class);
 
     /**
@@ -57,7 +56,6 @@ public final class Language {
      *            The hash of the skull texture to use
      */
     public Language(String id, String hash) {
-
         this.id = id;
         this.item = SlimefunUtils.getCustomHead(hash);
 
@@ -88,7 +86,6 @@ public final class Language {
     }
 
     public void setFile(LanguageFile file, FileConfiguration config) {
-
         files.put(file, config);
     }
 

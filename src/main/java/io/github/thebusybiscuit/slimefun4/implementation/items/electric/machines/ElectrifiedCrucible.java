@@ -10,7 +10,6 @@ import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
 
 public class ElectrifiedCrucible extends ASpeedableContainer {
-
     public ElectrifiedCrucible(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

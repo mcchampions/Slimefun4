@@ -64,7 +64,6 @@ public class SlimefunConfigManager {
     private boolean bypassEnvironmentCheck;
 
     public SlimefunConfigManager(Slimefun plugin) {
-
         this.plugin = plugin;
         pluginConfig = getConfig(plugin, "config", () -> new Config(plugin));
         itemsConfig = getConfig(plugin, "Items", () -> new Config(plugin, "Items.yml"));

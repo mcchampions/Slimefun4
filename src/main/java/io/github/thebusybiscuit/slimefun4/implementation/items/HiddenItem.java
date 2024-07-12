@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class HiddenItem extends SlimefunItem implements NotConfigurable {
-
     @ParametersAreNonnullByDefault
     public HiddenItem(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

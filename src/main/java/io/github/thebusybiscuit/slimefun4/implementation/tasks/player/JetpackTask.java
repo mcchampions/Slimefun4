@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 public class JetpackTask extends AbstractPlayerTask {
-
     private static final float COST = 0.08F;
 
     private final Jetpack jetpack;

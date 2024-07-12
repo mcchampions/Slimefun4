@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  * @see AncientAltarListener
  */
 public class AncientAltarCraftEvent extends PlayerEvent implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
     private final Block block;
     private ItemStack output;

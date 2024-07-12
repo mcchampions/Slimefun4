@@ -18,7 +18,6 @@ import org.bukkit.entity.Player;
  *
  */
 public class InfusedMagnetTask extends AbstractPlayerTask {
-
     /**
      * The radius in which an {@link Item} is picked up.
      */

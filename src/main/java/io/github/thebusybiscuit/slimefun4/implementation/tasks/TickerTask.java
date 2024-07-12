@@ -32,7 +32,6 @@ import org.bukkit.scheduler.BukkitScheduler;
  *
  */
 public class TickerTask implements Runnable {
-
     /**
      * This Map holds all currently actively ticking locations.
      */
@@ -246,7 +245,6 @@ public class TickerTask implements Runnable {
      */
     
     public Set<Location> getLocations(Chunk chunk) {
-
         Set<Location> locations = tickingLocations.getOrDefault(new ChunkPosition(chunk), new HashSet<>());
         return Collections.unmodifiableSet(locations);
     }
@@ -258,7 +256,6 @@ public class TickerTask implements Runnable {
      *            The {@link Location} to activate
      */
     public void enableTicker(Location l) {
-
         synchronized (tickingLocations) {
             tickingLocations
                     .computeIfAbsent(
@@ -276,7 +273,6 @@ public class TickerTask implements Runnable {
      *            The {@link Location} to remove
      */
     public void disableTicker(Location l) {
-
         synchronized (tickingLocations) {
             ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);
             Set<Location> locations = tickingLocations.get(chunk);

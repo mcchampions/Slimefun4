@@ -25,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class TelepositionScroll extends SimpleSlimefunItem<ItemUseHandler> {
-
     private final ItemSetting<Integer> radius = new IntRangeSetting(this, "radius", 1, 10, Integer.MAX_VALUE);
 
     @ParametersAreNonnullByDefault

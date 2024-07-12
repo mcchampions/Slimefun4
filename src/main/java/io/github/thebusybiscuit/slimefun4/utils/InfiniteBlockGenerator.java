@@ -22,7 +22,6 @@ import org.bukkit.event.block.BlockFormEvent;
  *
  */
 public enum InfiniteBlockGenerator implements Predicate<Block> {
-
     /**
      * Your standard Cobblestone Generator with flowing lava and water.
      */
@@ -70,7 +69,6 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
      */
     @Override
     public boolean test(Block b) {
-
         /*
          * This will eliminate non-matching base materials If we
          * are on a version without Basalt, it will be null here and not match.
@@ -136,7 +134,6 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
      */
     
     public BlockFormEvent callEvent(Block block) {
-
         BlockState state = PaperLib.getBlockState(block, false).getState();
         BlockFormEvent event = new BlockFormEvent(block, state);
         Bukkit.getPluginManager().callEvent(event);
@@ -152,7 +149,6 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
      * @return An {@link InfiniteBlockGenerator} or null if none was found.
      */
     @Nullable public static InfiniteBlockGenerator findAt(Block b) {
-
         for (InfiniteBlockGenerator generator : valuesCached) {
             if (generator.test(b)) {
                 return generator;

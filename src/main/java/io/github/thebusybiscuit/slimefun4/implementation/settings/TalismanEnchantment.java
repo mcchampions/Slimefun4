@@ -18,7 +18,6 @@ import org.bukkit.enchantments.Enchantment;
  */
 @Getter
 public class TalismanEnchantment extends ItemSetting<Boolean> {
-
     /**
      * -- GETTER --
      *  This returns the actual

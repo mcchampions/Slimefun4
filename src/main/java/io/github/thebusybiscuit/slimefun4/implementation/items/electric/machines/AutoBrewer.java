@@ -27,7 +27,6 @@ import org.bukkit.potion.PotionType;
  *
  */
 public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
-
     private static final Map<Material, PotionType> potionRecipes = new EnumMap<>(Material.class);
     private static final Map<PotionType, PotionType> fermentations = new EnumMap<>(PotionType.class);
 

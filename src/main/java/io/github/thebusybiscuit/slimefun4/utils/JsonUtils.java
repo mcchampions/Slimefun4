@@ -10,7 +10,6 @@ import com.google.gson.JsonParser;
  *
  */
 public final class JsonUtils {
-
     /**
      * Do not instantiate this class.
      */

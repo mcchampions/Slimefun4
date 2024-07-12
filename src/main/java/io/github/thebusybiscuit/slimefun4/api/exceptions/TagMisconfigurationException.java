@@ -13,7 +13,6 @@ import java.io.Serial;
  * @author TheBusyBiscuit
  */
 public class TagMisconfigurationException extends Exception {
-
     @Serial
     private static final long serialVersionUID = 5412127960821774280L;
 

@@ -41,7 +41,6 @@ import org.bukkit.inventory.ItemStack;
  * @author AccelShark
  */
 public class BlockPhysicsListener implements Listener {
-
     public BlockPhysicsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -170,7 +169,6 @@ public class BlockPhysicsListener implements Listener {
 
         // Check the skull if it had lost its data, but name still remained.
         if (state.getState() instanceof Skull skull) {
-
             if (skull.hasOwner() && Objects.equals(skull.getOwningPlayer().getName(), "CS-CoreLib")) {
                 e.setCancelled(true);
             }

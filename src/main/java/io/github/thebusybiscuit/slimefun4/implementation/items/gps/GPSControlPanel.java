@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class GPSControlPanel extends SimpleSlimefunItem<BlockUseHandler> implements NotDiagonallyRotatable {
-
     @ParametersAreNonnullByDefault
     public GPSControlPanel(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

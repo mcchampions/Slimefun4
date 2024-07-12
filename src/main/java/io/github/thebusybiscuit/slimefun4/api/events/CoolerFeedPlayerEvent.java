@@ -21,7 +21,6 @@ import org.bukkit.potion.PotionEffect;
  * @see Cooler
  */
 public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter
@@ -61,7 +60,6 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      * @param item The new {@link ItemStack}
      */
     public void setConsumedItem(ItemStack item) {
-
         
 
         this.consumedItem = item;

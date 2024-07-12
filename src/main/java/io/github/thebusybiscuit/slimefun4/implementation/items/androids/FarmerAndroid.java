@@ -22,7 +22,6 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 
 public class FarmerAndroid extends ProgrammableAndroid {
-
     @ParametersAreNonnullByDefault
     public FarmerAndroid(
             ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -36,7 +35,6 @@ public class FarmerAndroid extends ProgrammableAndroid {
 
     @Override
     protected void farm(Block b, BlockMenu menu, Block block, boolean isAdvanced) {
-
         OfflinePlayer owner =
                 Bukkit.getOfflinePlayer(UUID.fromString(StorageCacheUtils.getData(b.getLocation(), "owner")));
         if (!Slimefun.getProtectionManager().hasPermission(owner, block, Interaction.BREAK_BLOCK)) {

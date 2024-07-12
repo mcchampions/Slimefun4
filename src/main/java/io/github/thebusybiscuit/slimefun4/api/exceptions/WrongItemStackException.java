@@ -22,7 +22,6 @@ import java.io.Serial;
  *
  */
 public class WrongItemStackException extends RuntimeException {
-
     @Serial
     private static final long serialVersionUID = 9144658137363309071L;
 

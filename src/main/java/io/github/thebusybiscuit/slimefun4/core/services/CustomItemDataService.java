@@ -24,7 +24,6 @@ import org.bukkit.plugin.Plugin;
  *
  */
 public class CustomItemDataService implements Keyed {
-
     /**
      * This is the {@link NamespacedKey} used to store/read data.
      */
@@ -59,7 +58,6 @@ public class CustomItemDataService implements Keyed {
      *            The id to store on the {@link ItemStack}
      */
     public void setItemData(ItemStack item, String id) {
-
         ItemMeta im = item.getItemMeta();
         setItemData(im, id);
         item.setItemMeta(im);
@@ -75,7 +73,6 @@ public class CustomItemDataService implements Keyed {
      *            The id to store on the {@link ItemMeta}
      */
     public void setItemData(ItemMeta meta, String id) {
-
         PersistentDataContainer container = meta.getPersistentDataContainer();
         container.set(namespacedKey, PersistentDataType.STRING, id);
     }
@@ -108,7 +105,6 @@ public class CustomItemDataService implements Keyed {
      * @return An {@link Optional} describing the result
      */
     public Optional<String> getItemData(ItemMeta meta) {
-
         PersistentDataContainer container = meta.getPersistentDataContainer();
         return Optional.ofNullable(container.get(namespacedKey, PersistentDataType.STRING));
     }
@@ -126,7 +122,6 @@ public class CustomItemDataService implements Keyed {
      * @return Whether both metas have data on them and its the same.
      */
     public boolean hasEqualItemData(ItemMeta meta1, ItemMeta meta2) {
-
         Optional<String> data1 = getItemData(meta1);
 
         // Check if the first data is present

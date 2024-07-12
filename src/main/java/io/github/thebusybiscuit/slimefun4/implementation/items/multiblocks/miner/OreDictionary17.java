@@ -12,7 +12,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 class OreDictionary17 implements OreDictionary {
-
     @Override
     @ParametersAreNonnullByDefault
     public ItemStack getDrops(Material material, Random random) {

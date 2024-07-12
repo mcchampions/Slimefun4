@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public interface Placeable {
-
     
     Collection<ItemStack> getDrops();
 

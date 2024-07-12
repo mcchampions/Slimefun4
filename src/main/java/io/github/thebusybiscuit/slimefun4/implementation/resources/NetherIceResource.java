@@ -14,7 +14,6 @@ import org.bukkit.block.Biome;
  *
  */
 class NetherIceResource extends AbstractResource {
-
     private static final int DEFAULT_NETHER_VALUE = 32;
 
     private final BiomeMap<Integer> biomes;

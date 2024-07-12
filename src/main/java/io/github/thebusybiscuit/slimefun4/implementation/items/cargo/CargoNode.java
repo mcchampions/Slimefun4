@@ -12,7 +12,6 @@ import org.bukkit.block.Block;
  *
  */
 public interface CargoNode {
-
     /**
      * This returns the selected channel for the given {@link Block}.
      *

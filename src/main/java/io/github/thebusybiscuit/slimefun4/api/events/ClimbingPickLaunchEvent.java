@@ -22,7 +22,6 @@ import org.bukkit.util.Vector;
  * @see ClimbingPick
  */
 public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter

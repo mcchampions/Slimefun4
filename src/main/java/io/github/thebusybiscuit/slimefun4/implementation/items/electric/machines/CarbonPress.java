@@ -13,7 +13,6 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class CarbonPress extends ASpeedableContainer implements RecipeDisplayItem {
-
     @ParametersAreNonnullByDefault
     public CarbonPress(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

@@ -20,7 +20,6 @@ import org.bukkit.ChatColor;
  *
  */
 public final class NumberUtils {
-
     /**
      * This is our {@link DecimalFormat} for decimal values.
      * This instance is not thread-safe!
@@ -85,7 +84,6 @@ public final class NumberUtils {
      * @return The {@link LocalDateTime} for the given input
      */
     public static LocalDateTime parseGitHubDate(String date) {
-
         return LocalDateTime.parse(date.substring(0, date.length() - 1));
     }
 
@@ -151,7 +149,6 @@ public final class NumberUtils {
      * @return The elapsed time as a {@link String}
      */
     public static String getElapsedTime(LocalDateTime current, LocalDateTime priorDate) {
-
         long hours = Duration.between(priorDate, current).toHours();
 
         if (hours == 0) {

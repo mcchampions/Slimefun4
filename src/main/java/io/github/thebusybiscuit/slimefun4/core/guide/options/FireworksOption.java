@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 class FireworksOption implements SlimefunGuideOption<Boolean> {
-
     @Override
     public SlimefunAddon getAddon() {
         return Slimefun.instance();

@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class PlayerRightClickEvent extends PlayerEvent {
-
     private static final HandlerList handlers = new HandlerList();
 
     /**
@@ -152,12 +151,10 @@ public class PlayerRightClickEvent extends PlayerEvent {
     }
 
     public void setUseItem(Result result) {
-
         itemResult = result;
     }
 
     public void setUseBlock(Result result) {
-
         blockResult = result;
     }
 

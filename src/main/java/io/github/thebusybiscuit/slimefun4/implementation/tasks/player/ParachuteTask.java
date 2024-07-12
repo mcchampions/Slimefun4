@@ -4,7 +4,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 public class ParachuteTask extends AbstractPlayerTask {
-
     public ParachuteTask(Player p) {
         super(p);
     }

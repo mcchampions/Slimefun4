@@ -20,7 +20,6 @@ import org.bukkit.event.inventory.InventoryType;
  *
  */
 public class HopperListener implements Listener {
-
     public HopperListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

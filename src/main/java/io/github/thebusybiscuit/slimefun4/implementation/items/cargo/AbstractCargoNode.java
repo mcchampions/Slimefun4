@@ -32,7 +32,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> implements CargoNode {
-
     protected static final String FREQUENCY = "frequency";
 
     @ParametersAreNonnullByDefault
@@ -46,7 +45,6 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
 
         new BlockMenuPreset(
                 getId(), ChatUtils.removeColorCodes(item.getItemMeta().getDisplayName())) {
-
             @Override
             public void init() {
                 createBorder(this);
@@ -76,7 +74,6 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
     @Override
     public BlockPlaceHandler getItemHandler() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 // The owner and frequency are required by every node
@@ -137,7 +134,6 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
 
     @Override
     public int getSelectedChannel(Block b) {
-
         String frequency = StorageCacheUtils.getData(b.getLocation(), FREQUENCY);
 
         if (frequency == null) {

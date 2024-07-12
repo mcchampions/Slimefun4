@@ -9,7 +9,6 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class ElectricIngotFactory extends ASpeedableContainer implements RecipeDisplayItem {
-
     public ElectricIngotFactory(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

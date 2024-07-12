@@ -67,7 +67,6 @@ import org.bukkit.util.Vector;
  *
  */
 public class TalismanListener implements Listener {
-
     private final int[] armorSlots = {39, 38, 37, 36};
 
     public TalismanListener(Slimefun plugin) {

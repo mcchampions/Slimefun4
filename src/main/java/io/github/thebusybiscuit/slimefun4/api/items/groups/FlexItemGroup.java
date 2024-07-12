@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public abstract class FlexItemGroup extends ItemGroup {
-
     @ParametersAreNonnullByDefault
     protected FlexItemGroup(NamespacedKey key, ItemStack item) {
         this(key, item, 3);

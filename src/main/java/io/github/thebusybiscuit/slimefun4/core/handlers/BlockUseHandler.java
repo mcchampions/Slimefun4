@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @FunctionalInterface
 public interface BlockUseHandler extends ItemHandler {
-
     void onRightClick(PlayerRightClickEvent e);
 
     @Override

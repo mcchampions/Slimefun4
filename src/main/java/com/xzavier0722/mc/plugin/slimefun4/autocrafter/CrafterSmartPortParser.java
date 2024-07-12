@@ -12,7 +12,6 @@ import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
 public class CrafterSmartPortParser implements CrafterInteractable {
-
     final BlockMenu inv;
 
     public CrafterSmartPortParser(BlockMenu inv) {

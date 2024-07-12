@@ -18,7 +18,6 @@ import org.bukkit.block.Block;
  * @see EnergyNet
  */
 public enum EnergyNetComponentType {
-
     /**
      * A Generator generates Energy and feeds it into the network.
      * Also see: {@link AGenerator} or {@link Reactor}

@@ -18,7 +18,6 @@ import org.bukkit.block.Block;
  *
  */
 public class CapacitorTextureUpdateTask implements Runnable {
-
     /**
      * The {@link Location} of the {@link Capacitor}.
      */
@@ -41,7 +40,6 @@ public class CapacitorTextureUpdateTask implements Runnable {
      *            The capacity of this {@link Capacitor}
      */
     public CapacitorTextureUpdateTask(Location l, double charge, double capacity) {
-
         this.l = l;
         this.filledPercentage = charge / capacity;
     }

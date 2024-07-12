@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
  *
  */
 public class PlayerPerformanceInspector implements PerformanceInspector {
-
     /**
      * Our reference to the {@link UUID} of the {@link Player}.
      */
@@ -36,7 +35,6 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
      *            The {@link SummaryOrderType} of the timings
      */
     public PlayerPerformanceInspector(Player player, SummaryOrderType orderType) {
-
         this.uuid = player.getUniqueId();
         this.orderType = orderType;
     }

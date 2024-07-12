@@ -17,7 +17,6 @@ import net.md_5.bungee.api.chat.hover.content.Content;
 import net.md_5.bungee.api.chat.hover.content.Text;
 
 class PerformanceSummary {
-
     // The threshold at which a Block or Chunk is significant enough to appear in /sf timings
     private static final int VISIBILITY_THRESHOLD = 260_000;
     private static final int MIN_ITEMS = 6;

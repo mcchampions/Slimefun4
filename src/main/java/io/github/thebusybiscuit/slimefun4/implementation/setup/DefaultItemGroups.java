@@ -28,7 +28,6 @@ import org.bukkit.NamespacedKey;
  *
  */
 class DefaultItemGroups {
-
     // Standard Item Groups
     protected final ItemGroup weapons = new ItemGroup(
             new NamespacedKey(Slimefun.instance(), "weapons"),

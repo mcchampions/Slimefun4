@@ -25,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public interface SlimefunGuideImplementation {
-
     /**
      * Every {@link SlimefunGuideImplementation} can be associated with a
      * {@link SlimefunGuideMode}.

@@ -40,7 +40,6 @@ import org.bukkit.inventory.meta.Repairable;
  *
  */
 public class AutoDisenchanter extends AbstractEnchantmentMachine {
-
     @ParametersAreNonnullByDefault
     public AutoDisenchanter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

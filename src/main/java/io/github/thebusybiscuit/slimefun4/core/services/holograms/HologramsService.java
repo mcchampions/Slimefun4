@@ -32,7 +32,6 @@ import java.util.logging.Level;
  * @see HologramOwner
  */
 public class HologramsService {
-
     /**
      * The radius in which we scan for holograms
      */
@@ -90,7 +89,6 @@ public class HologramsService {
      * This purges any expired {@link Hologram}.
      */
     private void purge() {
-
         cache.values().removeIf(Hologram::hasExpired);
     }
 
@@ -107,7 +105,6 @@ public class HologramsService {
      * @return The existing (or newly created) hologram
      */
     @Nullable private Hologram getHologram(Location loc, boolean createIfNoneExists) {
-
         BlockPosition position = new BlockPosition(loc);
         Hologram hologram = cache.get(position);
 
@@ -227,7 +224,6 @@ public class HologramsService {
      *            The callback to run
      */
     private void updateHologram(Location loc, Consumer<Hologram> consumer) {
-
         Runnable runnable = () -> {
             try {
                 Hologram hologram = getHologram(loc, true);
@@ -260,7 +256,6 @@ public class HologramsService {
      *         exist or was already removed
      */
     public boolean removeHologram(Location loc) {
-
         if (Bukkit.isPrimaryThread()) {
             try {
                 Hologram hologram = getHologram(loc, false);
@@ -291,7 +286,6 @@ public class HologramsService {
      *            The label to set, can be null
      */
     public void setHologramLabel(Location loc, @Nullable String label) {
-
         updateHologram(loc, hologram -> hologram.setLabel(label));
     }
 }

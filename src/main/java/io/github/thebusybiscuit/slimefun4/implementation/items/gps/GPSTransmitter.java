@@ -25,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         implements EnergyNetComponent, NotDiagonallyRotatable {
-
     private final int capacity;
 
     @ParametersAreNonnullByDefault
@@ -45,7 +44,6 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
     
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 StorageCacheUtils.setData(
@@ -59,7 +57,6 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
     
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
-
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 Location l = e.getBlock().getLocation();
@@ -77,7 +74,6 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
                 int charge = getCharge(b.getLocation(), data);

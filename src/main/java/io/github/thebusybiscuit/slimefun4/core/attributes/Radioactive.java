@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
  *
  */
 public interface Radioactive extends ItemAttribute {
-
     /**
      * This method returns the level of {@link Radioactivity} for this {@link Radioactive} item.
      * Higher levels cause more severe radiation effects.

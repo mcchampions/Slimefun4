@@ -16,7 +16,6 @@ import org.bukkit.entity.Wither;
  *
  */
 public interface WitherProof extends ItemAttribute {
-
     /**
      * This method is called when a {@link Wither} tried to attack the given {@link Block}.
      * You can use this method to play particles or even damage the {@link Wither}.

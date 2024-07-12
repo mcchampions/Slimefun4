@@ -23,7 +23,6 @@ import org.bukkit.potion.PotionEffectType;
  *
  */
 public class DietCookie extends SimpleSlimefunItem<ItemConsumptionHandler> {
-
     @ParametersAreNonnullByDefault
     public DietCookie(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

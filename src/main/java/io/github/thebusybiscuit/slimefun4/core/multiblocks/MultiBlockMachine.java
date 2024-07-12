@@ -43,7 +43,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public abstract class MultiBlockMachine extends SlimefunItem implements NotPlaceable, RecipeDisplayItem {
-
     @Getter
     protected final List<ItemStack[]> recipes;
     protected final List<ItemStack> displayRecipes;
@@ -84,7 +83,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     }
 
     public void addRecipe(ItemStack[] input, ItemStack output) {
-
         recipes.add(input);
         recipes.add(new ItemStack[] {output});
     }

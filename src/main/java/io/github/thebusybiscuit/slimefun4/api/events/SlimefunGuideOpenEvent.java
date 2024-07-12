@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  * @see SlimefunGuideMode
  */
 public class SlimefunGuideOpenEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter
@@ -27,7 +26,6 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
     private boolean cancelled;
 
     public SlimefunGuideOpenEvent(Player p, ItemStack guide, SlimefunGuideMode layout) {
-
         this.player = p;
         this.guide = guide;
         this.layout = layout;
@@ -51,7 +49,6 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
      *            The new {@link SlimefunGuideMode}
      */
     public void setGuideLayout(SlimefunGuideMode layout) {
-
         this.layout = layout;
     }
 

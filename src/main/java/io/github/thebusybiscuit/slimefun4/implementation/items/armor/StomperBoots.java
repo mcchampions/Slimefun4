@@ -32,7 +32,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  *
  */
 public class StomperBoots extends SlimefunItem {
-
     @ParametersAreNonnullByDefault
     public StomperBoots(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -60,7 +59,6 @@ public class StomperBoots extends SlimefunItem {
                         || (player.getWorld().getPVP()
                                 && Slimefun.getProtectionManager()
                                         .hasPermission(player, entity.getLocation(), Interaction.ATTACK_PLAYER))) {
-
                     EntityDamageByEntityEvent event = VersionEventsUtils.newEntityDamageByEntityEvent(
                             player, entity, DamageCause.ENTITY_ATTACK,"PLAYER_ATTACK",fallDamageEvent.getDamage() / 2);
                     Bukkit.getPluginManager().callEvent(event);

@@ -34,7 +34,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SoulboundRune extends SimpleSlimefunItem<ItemDropHandler> {
-
     private static final double RANGE = 1.5;
 
     @ParametersAreNonnullByDefault
@@ -46,7 +45,6 @@ public class SoulboundRune extends SimpleSlimefunItem<ItemDropHandler> {
     public ItemDropHandler getItemHandler() {
         return (e, p, item) -> {
             if (isItem(item.getItemStack())) {
-
                 if (!canUse(p, true)) {
                     return true;
                 }
@@ -81,7 +79,6 @@ public class SoulboundRune extends SimpleSlimefunItem<ItemDropHandler> {
                         () -> {
                             // Being sure entities are still valid and not picked up or whatsoever.
                             if (rune.isValid() && item.isValid() && itemStack.getAmount() == 1) {
-
                                 l.getWorld().createExplosion(l, 0);
                                 SoundEffect.SOULBOUND_RUNE_RITUAL_SOUND.playAt(l, SoundCategory.PLAYERS);
 

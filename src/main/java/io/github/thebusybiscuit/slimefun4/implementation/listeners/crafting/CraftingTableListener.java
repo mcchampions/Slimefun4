@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class CraftingTableListener implements SlimefunCraftingListener {
-
     public CraftingTableListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

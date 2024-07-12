@@ -22,7 +22,6 @@ import org.bukkit.event.Listener;
  *
  */
 public class NetworkListener implements Listener {
-
     /**
      * Our {@link NetworkManager} instance.
      */

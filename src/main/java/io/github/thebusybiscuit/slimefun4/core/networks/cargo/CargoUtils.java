@@ -34,7 +34,6 @@ import java.util.Map;
  *
  */
 final class CargoUtils {
-
     /**
      * These are the slots where our filter items sit.
      */

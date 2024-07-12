@@ -33,7 +33,6 @@ import org.bukkit.util.Vector;
  *
  */
 public class GrapplingHook extends SimpleSlimefunItem<ItemUseHandler> {
-
     private final ItemSetting<Boolean> consumeOnUse = new ItemSetting<>(this, "consume-on-use", true);
     private final ItemSetting<Integer> despawnTicks =
             new IntRangeSetting(this, "despawn-seconds", 0, 60, Integer.MAX_VALUE);

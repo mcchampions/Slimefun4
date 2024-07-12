@@ -21,7 +21,6 @@ import org.bukkit.configuration.file.FileConfiguration;
  * @see BlockStorage
  */
 public class BlockInfoConfig extends Config {
-
     private final Map<String, String> data;
 
     public BlockInfoConfig() {

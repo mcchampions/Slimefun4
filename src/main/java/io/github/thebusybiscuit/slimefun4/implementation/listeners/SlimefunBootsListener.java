@@ -31,7 +31,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
  *
  */
 public class SlimefunBootsListener implements Listener {
-
     public SlimefunBootsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

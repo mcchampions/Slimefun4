@@ -18,7 +18,6 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public final class ChestMenuUtils {
-
     private ChestMenuUtils() {}
 
     private static final ItemStack UI_BACKGROUND =

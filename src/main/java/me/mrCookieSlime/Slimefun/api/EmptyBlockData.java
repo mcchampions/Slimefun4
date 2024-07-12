@@ -11,7 +11,6 @@ package me.mrCookieSlime.Slimefun.api;
  *
  */
 class EmptyBlockData extends BlockInfoConfig {
-
     EmptyBlockData() {
         super(null);
     }

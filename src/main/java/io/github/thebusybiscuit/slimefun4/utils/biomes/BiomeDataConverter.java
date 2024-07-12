@@ -15,7 +15,6 @@ import com.google.gson.JsonElement;
  */
 @FunctionalInterface
 public interface BiomeDataConverter<T> {
-
     /**
      * Override this method and provide a way to convert a {@link JsonElement} into your
      * desired data type.

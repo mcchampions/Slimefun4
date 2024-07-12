@@ -21,7 +21,6 @@ import org.bukkit.event.Event;
 @Deprecated
 @FunctionalInterface
 public interface SlimefunBlockHandler {
-
     /**
      * This method gets called when the {@link Block} is broken.
      * The {@link Player} will be null if the {@link Block} exploded

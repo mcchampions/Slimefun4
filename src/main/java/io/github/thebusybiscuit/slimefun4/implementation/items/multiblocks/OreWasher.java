@@ -33,7 +33,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class OreWasher extends MultiBlockMachine {
-
     // @formatter:off
     private final ItemStack[] dusts = new ItemStack[] {
         SlimefunItems.IRON_DUST,

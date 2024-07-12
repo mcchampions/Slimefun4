@@ -12,7 +12,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class CraftingOperation implements MachineOperation {
-
     @Getter
     private final ItemStack[] ingredients;
     @Getter

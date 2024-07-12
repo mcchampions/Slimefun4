@@ -22,7 +22,6 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  */
 public interface SlimefunAddon {
-
     /**
      * This method returns the instance of {@link JavaPlugin} that this
      * {@link SlimefunAddon} refers to.
@@ -81,7 +80,6 @@ public interface SlimefunAddon {
      * @return Whether this {@link SlimefunAddon} depends on the given {@link Plugin}
      */
     default boolean hasDependency(String dependency) {
-
         // Well... it cannot depend on itself but you get the idea.
         if (getJavaPlugin().getName().equalsIgnoreCase(dependency)) {
             return true;

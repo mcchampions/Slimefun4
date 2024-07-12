@@ -19,7 +19,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
  *
  */
 public class PlayerProfileListener implements Listener {
-
     public PlayerProfileListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

@@ -47,7 +47,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class BlockPlacer extends SlimefunItem {
-
     private final ItemSetting<List<String>> unplaceableBlocks =
             new MaterialTagSetting(this, "unplaceable-blocks", SlimefunTag.UNBREAKABLE_MATERIALS);
 
@@ -64,7 +63,6 @@ public class BlockPlacer extends SlimefunItem {
     
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 Player p = e.getPlayer();

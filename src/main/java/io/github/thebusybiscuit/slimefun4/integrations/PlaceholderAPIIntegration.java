@@ -19,7 +19,6 @@ import org.bukkit.entity.Player;
  *
  */
 class PlaceholderAPIIntegration extends PlaceholderExpansion {
-
     private final String version;
     private final String author;
 

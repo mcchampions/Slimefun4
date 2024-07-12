@@ -20,7 +20,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
  *
  */
 public class DeathpointListener implements Listener {
-
     private final DateTimeFormatter format = DateTimeFormatter.ofPattern("(MMM dd, yyyy @ hh:mm)", Locale.ROOT);
 
     public DeathpointListener(Slimefun plugin) {

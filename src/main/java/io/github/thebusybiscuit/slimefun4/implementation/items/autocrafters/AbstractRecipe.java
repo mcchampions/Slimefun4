@@ -31,7 +31,6 @@ import org.bukkit.inventory.ShapelessRecipe;
  */
 @Getter
 public abstract class AbstractRecipe {
-
     /**
      * Our {@link Collection} of ingredients / predicates.
      * -- GETTER --

@@ -25,7 +25,6 @@ import org.bukkit.event.block.BlockDispenseEvent;
  */
 @FunctionalInterface
 public interface BlockDispenseHandler extends ItemHandler {
-
     @Override
     default Optional<IncompatibleItemHandlerException> validate(SlimefunItem item) {
         if (item instanceof NotPlaceable || item.getItem().getType() != Material.DISPENSER) {

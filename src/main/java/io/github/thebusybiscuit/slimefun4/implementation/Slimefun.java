@@ -74,7 +74,6 @@ import java.util.stream.Collectors;
  * @author TheBusyBiscuit
  */
 public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompatibleSlimefun {
-
     /**
      * This is the Java version we recommend server owners to use.
      * This does not necessarily mean that it's the minimum version

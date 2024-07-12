@@ -16,7 +16,6 @@ import org.bukkit.event.player.PlayerDropItemEvent;
  * @see ItemDropHandler
  */
 public class ItemDropListener implements Listener {
-
     public ItemDropListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

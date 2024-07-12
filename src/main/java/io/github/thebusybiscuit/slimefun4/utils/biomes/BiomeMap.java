@@ -35,7 +35,6 @@ import org.bukkit.plugin.java.JavaPlugin;
  *            The stored data type
  */
 public class BiomeMap<T> implements Keyed {
-
     /**
      * Our internal {@link EnumMap} holding all the data.
      */
@@ -54,27 +53,22 @@ public class BiomeMap<T> implements Keyed {
      */
     @ParametersAreNonnullByDefault
     public BiomeMap(NamespacedKey namespacedKey) {
-
         this.namespacedKey = namespacedKey;
     }
 
     public @Nullable T get(Biome biome) {
-
         return dataMap.get(biome);
     }
 
     public T getOrDefault(Biome biome, T defaultValue) {
-
         return dataMap.getOrDefault(biome, defaultValue);
     }
 
     public boolean containsKey(Biome biome) {
-
         return dataMap.containsKey(biome);
     }
 
     public boolean containsValue(T value) {
-
         return dataMap.containsValue(value);
     }
 
@@ -89,22 +83,18 @@ public class BiomeMap<T> implements Keyed {
     }
 
     public boolean put(Biome biome, T value) {
-
         return dataMap.put(biome, value) == null;
     }
 
     public void putAll(Map<Biome, T> map) {
-
         dataMap.putAll(map);
     }
 
     public void putAll(BiomeMap<T> map) {
-
         dataMap.putAll(map.dataMap);
     }
 
     public boolean remove(Biome biome) {
-
         return dataMap.remove(biome) != null;
     }
 
@@ -148,8 +138,6 @@ public class BiomeMap<T> implements Keyed {
     public static <T> BiomeMap<T> fromResource(
             NamespacedKey key, JavaPlugin plugin, String path, BiomeDataConverter<T> valueConverter)
             throws BiomeMapException {
-
-
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(plugin.getClass().getResourceAsStream(path), StandardCharsets.UTF_8))) {
             return fromJson(key, reader.lines().collect(Collectors.joining("")), valueConverter);

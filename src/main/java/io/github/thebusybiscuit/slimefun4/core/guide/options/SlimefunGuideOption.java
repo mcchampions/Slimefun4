@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  *            The type of value for this option
  */
 public interface SlimefunGuideOption<T> extends Keyed {
-
     /**
      * This returns the {@link SlimefunAddon} which added this {@link SlimefunGuideOption}.
      *

@@ -11,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 public class SlimefunArmorPiece extends SlimefunItem {
-
     private final PotionEffect[] effects;
 
     @ParametersAreNonnullByDefault

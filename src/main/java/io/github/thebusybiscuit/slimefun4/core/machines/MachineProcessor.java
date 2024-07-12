@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
  * @see MachineProcessHolder
  */
 public class MachineProcessor<T extends MachineOperation> {
-
     private final Map<BlockPosition, T> machines = new ConcurrentHashMap<>();
     @Getter
     private final MachineProcessHolder<T> owner;
@@ -43,7 +42,6 @@ public class MachineProcessor<T extends MachineOperation> {
      *            The owner of this {@link MachineProcessor}.
      */
     public MachineProcessor(MachineProcessHolder<T> owner) {
-
         this.owner = owner;
     }
 
@@ -80,7 +78,6 @@ public class MachineProcessor<T extends MachineOperation> {
      *         {@link MachineOperation} has already been started at that {@link Location}.
      */
     public boolean startOperation(Location loc, T operation) {
-
         return startOperation(new BlockPosition(loc), operation);
     }
 
@@ -96,7 +93,6 @@ public class MachineProcessor<T extends MachineOperation> {
      *         {@link MachineOperation} has already been started at that {@link Block}.
      */
     public boolean startOperation(Block b, T operation) {
-
         return startOperation(new BlockPosition(b), operation);
     }
 
@@ -112,7 +108,6 @@ public class MachineProcessor<T extends MachineOperation> {
      *         {@link MachineOperation} has already been started at that {@link BlockPosition}.
      */
     public boolean startOperation(BlockPosition pos, T operation) {
-
         return machines.putIfAbsent(pos, operation) == null;
     }
 
@@ -125,7 +120,6 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return The current {@link MachineOperation} or null.
      */
     @Nullable public T getOperation(Location loc) {
-
         return getOperation(new BlockPosition(loc));
     }
 
@@ -138,7 +132,6 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return The current {@link MachineOperation} or null.
      */
     @Nullable public T getOperation(Block b) {
-
         return getOperation(new BlockPosition(b));
     }
 
@@ -151,7 +144,6 @@ public class MachineProcessor<T extends MachineOperation> {
      * @return The current {@link MachineOperation} or null.
      */
     @Nullable public T getOperation(BlockPosition pos) {
-
         return machines.get(pos);
     }
 
@@ -165,7 +157,6 @@ public class MachineProcessor<T extends MachineOperation> {
      *         {@link MachineOperation} to begin with.
      */
     public boolean endOperation(Location loc) {
-
         return endOperation(new BlockPosition(loc));
     }
 
@@ -179,7 +170,6 @@ public class MachineProcessor<T extends MachineOperation> {
      *         {@link MachineOperation} to begin with.
      */
     public boolean endOperation(Block b) {
-
         return endOperation(new BlockPosition(b));
     }
 
@@ -193,7 +183,6 @@ public class MachineProcessor<T extends MachineOperation> {
      *         {@link MachineOperation} to begin with.
      */
     public boolean endOperation(BlockPosition pos) {
-
         T operation = machines.remove(pos);
 
         if (operation != null) {
@@ -215,7 +204,6 @@ public class MachineProcessor<T extends MachineOperation> {
     }
 
     public void updateProgressBar(BlockMenu inv, int slot, T operation) {
-
         if (getProgressBar() == null) {
             // No progress bar, no need to update anything.
             return;

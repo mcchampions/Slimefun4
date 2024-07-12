@@ -34,7 +34,6 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  */
 public final class SlimefunRegistry {
-
     private final Map<String, SlimefunItem> slimefunIds = new HashMap<>();
     private final List<SlimefunItem> slimefunItems = new ArrayList<>();
     private final List<SlimefunItem> enabledItems = new ArrayList<>();
@@ -71,7 +70,6 @@ public final class SlimefunRegistry {
     private final Map<Class<? extends ItemHandler>, Set<ItemHandler>> globalItemHandlers = new HashMap<>();
 
     public void load(Slimefun plugin) {
-
         soulboundKey = new NamespacedKey(plugin, "soulbound");
         itemChargeKey = new NamespacedKey(plugin, "item_charge");
         guideKey = new NamespacedKey(plugin, "slimefun_guide_mode");
@@ -161,7 +159,6 @@ public final class SlimefunRegistry {
      */
     
     public SlimefunGuideImplementation getSlimefunGuide(SlimefunGuideMode mode) {
-
         SlimefunGuideImplementation guide = guides.get(mode);
 
         if (guide == null) {
@@ -208,7 +205,6 @@ public final class SlimefunRegistry {
     }
 
     public Set<ItemHandler> getGlobalItemHandlers(Class<? extends ItemHandler> identifier) {
-
         return globalItemHandlers.computeIfAbsent(identifier, c -> new HashSet<>());
     }
 

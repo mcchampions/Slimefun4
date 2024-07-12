@@ -51,7 +51,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class AncientAltarListener implements Listener {
-
     private final AncientAltar altarItem;
     private final AncientPedestal pedestalItem;
 

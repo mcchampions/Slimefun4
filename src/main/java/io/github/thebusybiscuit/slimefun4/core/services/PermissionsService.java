@@ -23,7 +23,6 @@ import org.bukkit.permissions.Permission;
  *
  */
 public class PermissionsService {
-
     private final Map<String, String> permissions = new HashMap<>();
     private final Config config;
 
@@ -61,7 +60,6 @@ You can also customize the text that is displayed when a Player does not have th
     }
 
     public void update(SlimefunItem item, boolean save) {
-
         String path = item.getId() + ".permission";
 
         config.setDefaultValue(path, "none");
@@ -108,7 +106,6 @@ You can also customize the text that is displayed when a Player does not have th
      */
     
     public Optional<String> getPermission(SlimefunItem item) {
-
         String permission = permissions.get(item.getId());
 
         if (permission == null || permission.equals("none")) {
@@ -127,7 +124,6 @@ You can also customize the text that is displayed when a Player does not have th
      *            The {@link Permission} to set
      */
     public void setPermission(SlimefunItem item, @Nullable String permission) {
-
         permissions.put(item.getId(), permission != null ? permission : "none");
     }
 

@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
 
 // TODO: Remove this class and rewrite the recipe system
 public class RecipeType implements Keyed {
-
     public static final RecipeType MULTIBLOCK = new RecipeType(
             new NamespacedKey(Slimefun.instance(), "multiblock"),
             new CustomItemStack(Material.BRICKS, "&bMultiBlock", "", "&a&oBuild it in the World"));

@@ -28,7 +28,6 @@ import org.bukkit.persistence.PersistentDataType;
  *
  */
 public class MultiTool extends SlimefunItem implements Rechargeable {
-
     private static final float COST = 0.3F;
     private final NamespacedKey multiToolMode = new NamespacedKey(Slimefun.instance(), "MULTI_TOOL_MODE");
     private final List<MultiToolMode> modes = new ArrayList<>();

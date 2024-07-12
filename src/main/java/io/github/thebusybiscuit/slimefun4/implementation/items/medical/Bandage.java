@@ -25,7 +25,6 @@ import org.bukkit.potion.PotionEffect;
  * @author TheBusyBiscuit
  */
 public class Bandage extends SimpleSlimefunItem<ItemUseHandler> {
-
     private final int healingLevel;
 
     @ParametersAreNonnullByDefault

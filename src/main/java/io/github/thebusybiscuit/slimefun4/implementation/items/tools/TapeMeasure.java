@@ -30,7 +30,6 @@ import org.bukkit.persistence.PersistentDataType;
  *
  */
 public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
-
     private final NamespacedKey key = new NamespacedKey(Slimefun.instance(), "anchor");
     private final DecimalFormat format = new DecimalFormat("##.###");
 

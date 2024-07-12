@@ -22,7 +22,6 @@ import java.util.Set;
  * @see NetworkManager
  */
 public abstract class Network {
-
     /**
      * Our {@link NetworkManager} instance.
      */
@@ -47,7 +46,6 @@ public abstract class Network {
      * @param regulator The {@link Location} marking the regulator of this {@link Network}.
      */
     protected Network(NetworkManager manager, Location regulator) {
-
         this.manager = manager;
         this.regulator = regulator;
 

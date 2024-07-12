@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class AnimalProduce extends MachineRecipe implements Predicate<LivingEntity> {
-
     private final Predicate<LivingEntity> predicate;
 
     @ParametersAreNonnullByDefault

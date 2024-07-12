@@ -61,7 +61,6 @@ import org.bukkit.inventory.RecipeChoice.MaterialChoice;
  *
  */
 public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
-
     private static final int MAX_ITEM_GROUPS = 36;
 
     private final int[] recipeSlots = {3, 4, 5, 12, 13, 14, 21, 22, 23};
@@ -658,8 +657,6 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
 
     @ParametersAreNonnullByDefault
     public void createHeader(Player p, PlayerProfile profile, ChestMenu menu) {
-
-
         for (int i = 0; i < 9; i++) {
             menu.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }

@@ -9,7 +9,6 @@ import org.bukkit.inventory.ItemStack;
 
 // This class will be rewritten in the "Recipe Rewrite"
 public class MachineFuel implements Predicate<ItemStack> {
-
     /**
      * -- GETTER --
      *  This method returns how long this
@@ -31,7 +30,6 @@ public class MachineFuel implements Predicate<ItemStack> {
     }
 
     public MachineFuel(int seconds, ItemStack fuel, ItemStack output) {
-
         
 
         this.ticks = seconds * 2;

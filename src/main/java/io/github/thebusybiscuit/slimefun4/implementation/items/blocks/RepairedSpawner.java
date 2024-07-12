@@ -26,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class RepairedSpawner extends AbstractMonsterSpawner {
-
     private final ItemSetting<Boolean> allowSpawnEggs = new ItemSetting<>(this, "allow-spawn-eggs", true);
 
     @ParametersAreNonnullByDefault
@@ -53,7 +52,6 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
     
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(true) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 onPlace(e.getItemInHand(), e);

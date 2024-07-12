@@ -21,7 +21,6 @@ import org.bukkit.potion.PotionEffectType;
  *
  */
 public class MonsterJerky extends SimpleSlimefunItem<ItemConsumptionHandler> {
-
     @ParametersAreNonnullByDefault
     public MonsterJerky(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

@@ -16,7 +16,6 @@ import org.bukkit.event.Listener;
  *
  */
 class ClearLagIntegration implements Listener {
-
     private final Slimefun plugin;
 
     ClearLagIntegration(Slimefun plugin) {

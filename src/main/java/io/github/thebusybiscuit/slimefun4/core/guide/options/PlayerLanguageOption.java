@@ -21,7 +21,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 class PlayerLanguageOption implements SlimefunGuideOption<String> {
-
     @Override
     public SlimefunAddon getAddon() {
         return Slimefun.instance();

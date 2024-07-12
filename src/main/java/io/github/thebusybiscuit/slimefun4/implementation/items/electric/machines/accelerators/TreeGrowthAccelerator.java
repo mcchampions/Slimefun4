@@ -28,7 +28,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
-
     private static final int ENERGY_CONSUMPTION = 24;
     private static final int RADIUS = 9;
 

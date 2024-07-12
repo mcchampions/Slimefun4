@@ -21,7 +21,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class AutoAnvil extends ASpeedableContainer {
-
     private final int repairFactor;
 
     public AutoAnvil(

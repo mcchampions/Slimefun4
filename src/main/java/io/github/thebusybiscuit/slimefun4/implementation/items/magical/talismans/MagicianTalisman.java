@@ -25,7 +25,6 @@ import java.util.logging.Level;
  *
  */
 public class MagicianTalisman extends Talisman {
-
     private final ItemSetting<Boolean> allowEnchantmentBooks =
             new ItemSetting<>(this, "allow-enchantment-books", false);
     private final Set<TalismanEnchantment> enchantments = new HashSet<>();
@@ -81,7 +80,6 @@ public class MagicianTalisman extends Talisman {
      */
     @Nullable public TalismanEnchantment getRandomEnchantment(
             ItemStack item, Set<Enchantment> existingEnchantments) {
-
         // @formatter:off
         List<TalismanEnchantment> enabled = enchantments.stream()
                 .filter(e -> (isEnchantmentBookAllowed() && item.getType() == Material.BOOK)

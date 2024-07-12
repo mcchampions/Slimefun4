@@ -29,7 +29,6 @@ import org.bukkit.event.entity.EntityToggleGlideEvent;
  * @see ElytraCap
  */
 public class ElytraImpactListener implements Listener {
-
     private final Set<UUID> gliding = new HashSet<>();
 
     public ElytraImpactListener(Slimefun plugin) {

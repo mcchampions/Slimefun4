@@ -18,7 +18,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 @Deprecated
 public class ChestMenu extends SlimefunInventoryHolder {
-
     private boolean clickable;
     private boolean emptyClickable;
     private final String title;
@@ -365,24 +364,20 @@ public class ChestMenu extends SlimefunInventoryHolder {
 
     @FunctionalInterface
     public interface MenuClickHandler {
-
         boolean onClick(Player p, int slot, ItemStack item, ClickAction action);
     }
 
     public interface AdvancedMenuClickHandler extends MenuClickHandler {
-
         boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action);
     }
 
     @FunctionalInterface
     public interface MenuOpeningHandler {
-
         void onOpen(Player p);
     }
 
     @FunctionalInterface
     public interface MenuCloseHandler {
-
         void onClose(Player p);
     }
 }

@@ -38,7 +38,6 @@ import java.util.*;
  *
  */
 public class GPSNetwork {
-
     private final int[] border = {
         0, 1, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53
     };
@@ -337,7 +336,6 @@ public class GPSNetwork {
      *            The {@link Location} of the new waypoint
      */
     public void createWaypoint(Player p, Location l) {
-
         PlayerProfile.get(p, profile -> {
             if ((profile.getWaypoints().size() + 2) > inventory.length) {
                 Slimefun.getLocalization().sendMessage(p, "gps.waypoint.max", true);
@@ -362,8 +360,6 @@ public class GPSNetwork {
      *            The {@link Location} of this waypoint
      */
     public void addWaypoint(Player p, String name, Location l) {
-
-
         PlayerProfile.get(p, profile -> {
             if ((profile.getWaypoints().size() + 2) > inventory.length) {
                 Slimefun.getLocalization().sendMessage(p, "gps.waypoint.max", true);

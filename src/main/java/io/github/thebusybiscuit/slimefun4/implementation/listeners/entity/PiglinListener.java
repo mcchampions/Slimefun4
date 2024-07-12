@@ -28,7 +28,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class PiglinListener implements Listener {
-
     public PiglinListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

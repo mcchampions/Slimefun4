@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
  *
  */
 public enum Radioactivity {
-
     /**
      * This represents a low level of radiation.
      * It will still cause damage but will take a while before it becomes deadly.

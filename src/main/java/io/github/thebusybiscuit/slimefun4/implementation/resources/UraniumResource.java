@@ -13,7 +13,6 @@ import org.bukkit.block.Biome;
  *
  */
 class UraniumResource extends AbstractResource {
-
     private static final int DEFAULT_OVERWORLD_VALUE = 4;
 
     private final BiomeMap<Integer> biomes;

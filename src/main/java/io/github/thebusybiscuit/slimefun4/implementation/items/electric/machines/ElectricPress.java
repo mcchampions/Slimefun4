@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ElectricPress extends ASpeedableContainer implements RecipeDisplayItem, NotDiagonallyRotatable {
-
     @ParametersAreNonnullByDefault
     public ElectricPress(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

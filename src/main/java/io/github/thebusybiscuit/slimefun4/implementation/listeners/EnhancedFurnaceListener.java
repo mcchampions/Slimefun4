@@ -28,7 +28,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class EnhancedFurnaceListener implements Listener {
-
     public EnhancedFurnaceListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

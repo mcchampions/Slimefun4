@@ -37,7 +37,6 @@ import org.bukkit.inventory.ItemStack;
  * @see ResearchUnlockEvent
  */
 public class Research implements Keyed {
-
     private final NamespacedKey key;
     private final int id;
     private final String name;
@@ -70,7 +69,6 @@ public class Research implements Keyed {
      */
     public Research(
             NamespacedKey key, int id, String defaultName, int levelCost, double currencyCost) {
-
         this.key = key;
         this.id = id;
         this.name = defaultName;
@@ -96,7 +94,6 @@ public class Research implements Keyed {
      *
      */
     public Research(NamespacedKey key, int id, String defaultName, int defaultCost) {
-
         this.key = key;
         this.id = id;
         this.name = defaultName;

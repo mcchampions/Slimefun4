@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
  *
  */
 public final class PatternUtils {
-
     private PatternUtils() {}
 
     public static final Pattern SLASH_SEPARATOR = Pattern.compile(" / ");

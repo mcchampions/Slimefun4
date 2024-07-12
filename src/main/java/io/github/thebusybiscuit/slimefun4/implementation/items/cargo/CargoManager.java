@@ -22,7 +22,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 
 public class CargoManager extends SlimefunItem implements HologramOwner, NotRotatable {
-
     @ParametersAreNonnullByDefault
     public CargoManager(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -33,7 +32,6 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
     
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 removeHologram(b);
@@ -45,7 +43,6 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
     public void preRegister() {
         addItemHandler(
                 new BlockTicker() {
-
                     @Override
                     public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
                         CargoNet.getNetworkFromLocationOrCreate(b.getLocation()).tick(b, data);

@@ -36,7 +36,6 @@ import java.util.function.Consumer;
  */
 @SerializableAs("ItemStack")
 public class SlimefunItemStack extends ItemStack {
-
     private final String id;
     @Getter
     private ItemMetaSnapshot itemMetaSnapshot;
@@ -283,7 +282,6 @@ public class SlimefunItemStack extends ItemStack {
     }
 
     private static String getTexture(String id, String texture) {
-
         if (texture.startsWith("ey")) {
             return texture;
         } else if (CommonPatterns.HEXADECIMAL.matcher(texture).matches()) {

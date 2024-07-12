@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
  * @see RadiationSymptom
  */
 public final class RadiationUtils {
-
     private static final StatusEffect RADIATION_EFFECT =
             new StatusEffect(new NamespacedKey(Slimefun.instance(), "radiation"));
     private static final int MAX_EXPOSURE_LEVEL = 100;

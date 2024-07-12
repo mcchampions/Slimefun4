@@ -28,7 +28,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public abstract class AbstractMonsterSpawner extends SlimefunItem {
-
     @ParametersAreNonnullByDefault
     AbstractMonsterSpawner(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -45,7 +44,6 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      */
     
     public Optional<EntityType> getEntityType(ItemStack item) {
-
         ItemMeta meta = item.getItemMeta();
 
         // We may want to update this in the future to also make use of the BlockStateMeta

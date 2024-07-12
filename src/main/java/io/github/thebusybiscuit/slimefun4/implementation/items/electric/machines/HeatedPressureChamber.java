@@ -23,14 +23,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HeatedPressureChamber extends ASpeedableContainer {
-
     @ParametersAreNonnullByDefault
     public HeatedPressureChamber(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
         new BlockMenuPreset(getId(), getItemName()) {
-
             @Override
             public void init() {
                 constructMenu(this);

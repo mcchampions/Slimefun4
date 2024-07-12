@@ -12,7 +12,6 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 
 final class GrapplingHookEntity {
-
     private final boolean dropItem;
     private final boolean wasConsumed;
     @Getter

@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public abstract class SimpleBlockBreakHandler extends BlockBreakHandler {
-
     /**
      * This constructs a new {@link SimpleBlockBreakHandler}.
      */

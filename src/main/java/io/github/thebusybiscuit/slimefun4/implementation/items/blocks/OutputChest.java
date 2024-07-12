@@ -28,7 +28,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class OutputChest extends SlimefunItem {
-
     // @formatter:off
     private static final BlockFace[] possibleFaces = {
         BlockFace.UP, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST

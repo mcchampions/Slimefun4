@@ -29,7 +29,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 abstract class AbstractEnchantmentMachine extends AContainer {
-
     private final ItemSetting<Boolean> useLevelLimit = new ItemSetting<>(this, "use-enchant-level-limit", false);
     private final IntRangeSetting levelLimit = new IntRangeSetting(this, "enchant-level-limit", 0, 10, Short.MAX_VALUE);
     private final ItemSetting<Boolean> useIgnoredLores = new ItemSetting<>(this, "use-ignored-lores", false);

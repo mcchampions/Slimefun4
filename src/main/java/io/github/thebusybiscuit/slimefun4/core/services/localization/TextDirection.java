@@ -7,7 +7,6 @@ package io.github.thebusybiscuit.slimefun4.core.services.localization;
  *
  */
 public enum TextDirection {
-
     /**
      * The text flows from left to right.
      * This is true for most western languages,

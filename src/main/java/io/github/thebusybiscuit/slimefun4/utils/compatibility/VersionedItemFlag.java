@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import org.bukkit.inventory.ItemFlag;
 
 public class VersionedItemFlag {
-
     public static final ItemFlag HIDE_ADDITIONAL_TOOLTIP;
 
     static {

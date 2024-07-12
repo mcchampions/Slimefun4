@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class VanillaItem extends SlimefunItem {
-
     /**
      * Instantiates a new {@link VanillaItem} with the given arguments.
      *

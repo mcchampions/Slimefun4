@@ -31,7 +31,6 @@ public enum LanguageFile {
 
     
     public String getFilePath(String languageId) {
-
         return "/languages/" + languageId + '/' + fileName;
     }
 }

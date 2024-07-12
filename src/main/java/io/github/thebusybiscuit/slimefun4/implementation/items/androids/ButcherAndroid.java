@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
 public class ButcherAndroid extends ProgrammableAndroid {
-
     private static final String METADATA_KEY = "android_killer";
 
     @ParametersAreNonnullByDefault

@@ -12,7 +12,6 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class ElectricOreGrinder extends ASpeedableContainer implements RecipeDisplayItem, NotHopperable {
-
     @ParametersAreNonnullByDefault
     public ElectricOreGrinder(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

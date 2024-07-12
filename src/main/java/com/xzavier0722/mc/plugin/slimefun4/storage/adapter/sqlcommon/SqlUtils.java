@@ -39,7 +39,6 @@ import java.util.Optional;
 import java.util.Set;
 
 public class SqlUtils {
-
     private static final FieldMapper<String> mapper;
 
     static {

@@ -43,7 +43,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class BackpackListener implements Listener {
-
     private final Map<UUID, ItemStack> backpacks = new HashMap<>();
     private final Map<UUID, List<Pair<ItemStack, Integer>>> invSnapshot = new HashMap<>();
 

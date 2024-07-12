@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class VampireBlade extends SimpleSlimefunItem<WeaponUseHandler> {
-
     private static final double HEALING_AMOUNT = 4.0;
 
     private final ItemSetting<Integer> chance = new IntRangeSetting(this, "chance", 0, 45, 100);

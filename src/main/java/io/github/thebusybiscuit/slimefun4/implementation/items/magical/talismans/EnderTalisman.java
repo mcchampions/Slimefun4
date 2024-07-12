@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 class EnderTalisman extends Talisman {
-
     private static final LockedItemGroup ENDER_TALISMANS_ITEMGROUP = new LockedItemGroup(
             new NamespacedKey(Slimefun.instance(), "ender_talismans"),
             new CustomItemStack(SlimefunItems.ENDER_TALISMAN, "&7Talismans - &aTier II"),

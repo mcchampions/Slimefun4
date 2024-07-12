@@ -14,7 +14,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class FuelOperation implements MachineOperation {
-
     @Getter
     private final ItemStack ingredient;
     private final ItemStack result;
@@ -27,7 +26,6 @@ public class FuelOperation implements MachineOperation {
     }
 
     public FuelOperation(ItemStack ingredient, @Nullable ItemStack result, int totalTicks) {
-
         
 
         this.ingredient = ingredient;

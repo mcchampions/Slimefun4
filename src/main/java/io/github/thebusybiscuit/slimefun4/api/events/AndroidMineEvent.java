@@ -17,7 +17,6 @@ import org.bukkit.event.HandlerList;
  * @author poma123
  */
 public class AndroidMineEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     /**

@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 abstract class AbstractResource implements GEOResource {
-
     private final NamespacedKey key;
     private final String defaultName;
     private final ItemStack item;
@@ -31,8 +30,6 @@ abstract class AbstractResource implements GEOResource {
 
     @ParametersAreNonnullByDefault
     AbstractResource(String key, String defaultName, ItemStack item, int maxDeviation, boolean geoMiner) {
-
-
         this.key = new NamespacedKey(Slimefun.instance(), key);
         this.defaultName = defaultName;
         this.item = item;
@@ -81,7 +78,6 @@ abstract class AbstractResource implements GEOResource {
      */
     @ParametersAreNonnullByDefault
     static BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
-
         try {
             return BiomeMap.fromResource(resource.getKey(), Slimefun.instance(), path, JsonElement::getAsInt);
         } catch (BiomeMapException x) {

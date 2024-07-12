@@ -8,7 +8,6 @@ import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
 public class GoldPanDrop extends ItemSetting<Integer> {
-
     private final GoldPan goldPan;
     @Getter
     private final ItemStack output;

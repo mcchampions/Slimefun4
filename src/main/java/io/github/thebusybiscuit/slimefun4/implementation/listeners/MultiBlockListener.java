@@ -31,7 +31,6 @@ import org.bukkit.inventory.EquipmentSlot;
  *
  */
 public class MultiBlockListener implements Listener {
-
     public MultiBlockListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

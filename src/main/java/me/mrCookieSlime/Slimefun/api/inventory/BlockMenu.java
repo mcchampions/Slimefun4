@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
 // This class will be deprecated, relocated and rewritten in a future version.
 @Getter
 public class BlockMenu extends DirtyChestMenu {
-
     private final Location location;
 
     private static String serializeLocation(Location l) {

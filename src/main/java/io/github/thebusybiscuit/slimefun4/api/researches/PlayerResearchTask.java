@@ -22,7 +22,6 @@ import org.bukkit.entity.Player;
  *
  */
 public class PlayerResearchTask implements Consumer<PlayerProfile> {
-
     private static final int[] RESEARCH_PROGRESS = {23, 44, 57, 92};
     private static final String PLACEHOLDER = "%research%";
 
@@ -41,7 +40,6 @@ public class PlayerResearchTask implements Consumer<PlayerProfile> {
      *            The callback to run when the task has completed
      */
     PlayerResearchTask(Research research, boolean isInstant, @Nullable Consumer<Player> callback) {
-
         this.research = research;
         this.isInstant = isInstant;
         this.callback = callback;

@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  * @see ItemSpawnReason
  */
 public class SlimefunItemSpawnEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter
@@ -66,7 +65,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *            The {@link Location} where to drop the {@link ItemStack}
      */
     public void setLocation(Location location) {
-
         this.location = location;
     }
 
@@ -77,7 +75,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *            The {@link ItemStack} to drop
      */
     public void setItemStack(ItemStack itemStack) {
-
         
 
         this.itemStack = itemStack;

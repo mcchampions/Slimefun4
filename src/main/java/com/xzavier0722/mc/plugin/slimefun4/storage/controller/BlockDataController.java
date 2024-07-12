@@ -39,7 +39,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 public class BlockDataController extends ADataController {
-
     private final Map<LinkedKey, DelayedTask> delayedWriteTasks;
     private final Map<String, SlimefunChunkData> loadedChunk;
     private final Map<String, List<Pair<ItemStack, Integer>>> invSnapshots;

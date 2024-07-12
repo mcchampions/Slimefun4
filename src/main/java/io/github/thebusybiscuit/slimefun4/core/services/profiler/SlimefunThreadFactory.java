@@ -11,7 +11,6 @@ import java.util.concurrent.ThreadFactory;
  * @see SlimefunProfiler
  */
 record SlimefunThreadFactory(int threadCount) implements ThreadFactory {
-
     /**
      * This constructs a new {@link SlimefunThreadFactory} with the given {@link Thread} count.
      *

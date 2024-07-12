@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @FunctionalInterface
 public interface WeaponUseHandler extends ItemHandler {
-
     /**
      * This function is called when an {@link Player} attacks an {@link Entity} with a {@link SlimefunItem}
      *

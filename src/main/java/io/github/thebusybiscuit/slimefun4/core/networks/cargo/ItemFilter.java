@@ -30,7 +30,6 @@ import java.util.function.Predicate;
  *
  */
 class ItemFilter implements Predicate<ItemStack> {
-
     /**
      * Our {@link List} of items to check against, might be empty.
      * This has a maximum capacity of 9.

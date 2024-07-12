@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  * @author Ddggdd135
  */
 public class BanItemCommand extends SubCommand {
-
     private static final String PLACEHOLDER_ITEM = "%item%";
 
     @ParametersAreNonnullByDefault

@@ -12,7 +12,6 @@ import java.io.Serial;
  *
  */
 public class IdConflictException extends RuntimeException {
-
     @Serial
     private static final long serialVersionUID = -733012666374895255L;
 

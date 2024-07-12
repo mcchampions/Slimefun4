@@ -14,7 +14,6 @@ import org.bukkit.event.HandlerList;
  */
 @Getter
 public class ReactorExplodeEvent extends Event {
-
     private static final HandlerList handlers = new HandlerList();
 
     /**
@@ -33,7 +32,6 @@ public class ReactorExplodeEvent extends Event {
     private final Reactor reactor;
 
     public ReactorExplodeEvent(Location l, Reactor reactor) {
-
         this.location = l;
         this.reactor = reactor;
     }

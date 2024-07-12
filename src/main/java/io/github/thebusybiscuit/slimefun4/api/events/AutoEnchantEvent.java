@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  * @see AutoDisenchantEvent
  */
 public class AutoEnchantEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter

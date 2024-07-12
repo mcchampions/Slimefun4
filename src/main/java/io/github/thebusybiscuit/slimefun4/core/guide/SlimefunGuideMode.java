@@ -15,7 +15,6 @@ import lombok.Getter;
  */
 @Getter
 public enum SlimefunGuideMode {
-
     /**
      * This design is the standard layout used in survival mode.
      */

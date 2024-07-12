@@ -38,7 +38,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements RecipeDisplayItem {
-
     private final ItemSetting<Boolean> allowWaterInNether = new ItemSetting<>(this, "allow-water-in-nether", false);
     private final List<ItemStack> recipes;
 

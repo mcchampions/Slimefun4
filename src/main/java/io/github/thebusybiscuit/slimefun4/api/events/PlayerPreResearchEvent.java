@@ -23,7 +23,6 @@ import org.bukkit.event.HandlerList;
  *
  */
 public class PlayerPreResearchEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter
@@ -36,8 +35,6 @@ public class PlayerPreResearchEvent extends Event implements Cancellable {
 
     @ParametersAreNonnullByDefault
     public PlayerPreResearchEvent(Player p, Research research, SlimefunItem slimefunItem) {
-
-
         this.player = p;
         this.research = research;
         this.slimefunItem = slimefunItem;

@@ -22,7 +22,6 @@ import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class AbstractGrowthAccelerator extends SlimefunItem implements InventoryBlock, EnergyNetComponent {
-
     private static final int[] BORDER = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
 
     @ParametersAreNonnullByDefault
@@ -37,7 +36,6 @@ public abstract class AbstractGrowthAccelerator extends SlimefunItem implements 
     
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
@@ -77,7 +75,6 @@ public abstract class AbstractGrowthAccelerator extends SlimefunItem implements 
     public void preRegister() {
         super.preRegister();
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 AbstractGrowthAccelerator.this.tick(b);

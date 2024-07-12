@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ElectricDustWasher extends ASpeedableContainer {
-
     private final OreWasher oreWasher = SlimefunItems.ORE_WASHER.getItem(OreWasher.class);
     private final boolean legacyMode;
 

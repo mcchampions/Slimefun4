@@ -19,7 +19,6 @@ import org.bukkit.entity.Player;
  *
  */
 public abstract class SubCommand {
-
     protected final Slimefun plugin;
     protected final SlimefunCommand cmd;
 

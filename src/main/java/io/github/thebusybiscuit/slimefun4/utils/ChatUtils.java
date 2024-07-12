@@ -18,7 +18,6 @@ import org.bukkit.entity.Player;
  *
  */
 public final class ChatUtils {
-
     private ChatUtils() {}
 
     public static void sendURL(CommandSender sender, String url) {

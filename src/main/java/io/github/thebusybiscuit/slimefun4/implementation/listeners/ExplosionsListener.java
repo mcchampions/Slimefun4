@@ -32,7 +32,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ExplosionsListener implements Listener {
-
     public ExplosionsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

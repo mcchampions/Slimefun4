@@ -7,7 +7,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
  * @see ProgrammableAndroid
  */
 public enum AndroidType {
-
     /**
      * This is the default type. This {@link ProgrammableAndroid} has no special abilities.
      * But it can move!

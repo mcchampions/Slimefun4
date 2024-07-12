@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class Capacitor extends SlimefunItem implements EnergyNetComponent {
-
     private final int capacity;
 
     @ParametersAreNonnullByDefault

@@ -22,7 +22,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class SlimefunGuideItem extends ItemStack {
-
     public SlimefunGuideItem(SlimefunGuideImplementation implementation, String name) {
         super(Material.ENCHANTED_BOOK);
 

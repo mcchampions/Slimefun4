@@ -36,7 +36,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class Juicer extends MultiBlockMachine {
-
     @ParametersAreNonnullByDefault
     public Juicer(ItemGroup itemGroup, SlimefunItemStack item) {
         super(

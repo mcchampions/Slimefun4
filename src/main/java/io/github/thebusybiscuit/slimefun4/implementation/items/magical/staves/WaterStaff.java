@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class WaterStaff extends SimpleSlimefunItem<ItemUseHandler> {
-
     @ParametersAreNonnullByDefault
     public WaterStaff(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

@@ -41,7 +41,6 @@ import org.bukkit.util.Vector;
  * @author TheBusyBiscuit
  */
 public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable, DamageableItem {
-
     private static final float STRENGTH = 1.2F;
     private static final float HEIGHT = 0.9F;
     private static final float DAMAGE = 6;

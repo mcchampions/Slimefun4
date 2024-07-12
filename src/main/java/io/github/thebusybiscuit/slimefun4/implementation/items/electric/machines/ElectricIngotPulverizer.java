@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ElectricIngotPulverizer extends ASpeedableContainer implements RecipeDisplayItem, NotHopperable {
-
     public ElectricIngotPulverizer(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

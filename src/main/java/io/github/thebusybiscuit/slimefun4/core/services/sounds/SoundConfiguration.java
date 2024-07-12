@@ -12,7 +12,6 @@ import lombok.Getter;
  *
  */
 public class SoundConfiguration {
-
     private final String sound;
     @Getter
     private final float volume;

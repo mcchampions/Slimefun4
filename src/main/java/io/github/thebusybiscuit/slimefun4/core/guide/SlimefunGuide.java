@@ -25,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public final class SlimefunGuide {
-
     private SlimefunGuide() {}
 
     

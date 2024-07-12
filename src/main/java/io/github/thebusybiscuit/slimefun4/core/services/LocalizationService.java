@@ -38,7 +38,6 @@ import org.bukkit.persistence.PersistentDataType;
  *
  */
 public class LocalizationService extends SlimefunLocalization {
-
     private static final String LANGUAGE_PATH = "language";
 
     // All supported languages are stored in this LinkedHashMap, it is Linked so we keep the order
@@ -108,7 +107,6 @@ public class LocalizationService extends SlimefunLocalization {
 
     @Override
     @Nullable public Language getLanguage(String id) {
-
         return languages.get(id);
     }
 
@@ -120,7 +118,6 @@ public class LocalizationService extends SlimefunLocalization {
 
     @Override
     public boolean hasLanguage(String id) {
-
         // Checks if our jar files contains a messages.yml file for that language
         String file = LanguageFile.MESSAGES.getFilePath(id);
         return !getConfigurationFromStream(file, null).getKeys(false).isEmpty();
@@ -135,7 +132,6 @@ public class LocalizationService extends SlimefunLocalization {
      * @return Whether or not this {@link Language} is loaded
      */
     public boolean isLanguageLoaded(String id) {
-
         return languages.containsKey(id);
     }
 
@@ -146,7 +142,6 @@ public class LocalizationService extends SlimefunLocalization {
 
     @Override
     public Language getLanguage(Player p) {
-
         PersistentDataContainer container = p.getPersistentDataContainer();
         String language = container.get(languageKey, PersistentDataType.STRING);
 
@@ -199,7 +194,6 @@ public class LocalizationService extends SlimefunLocalization {
 
     @Override
     protected void addLanguage(String id, String texture) {
-
         if (hasLanguage(id)) {
             Language language = new Language(id, texture);
 
@@ -225,7 +219,6 @@ public class LocalizationService extends SlimefunLocalization {
      * @return A percentage {@code (0.0 - 100.0)} for the progress of translation of that {@link Language}
      */
     public double calculateProgress(Language lang) {
-
         Set<String> defaultKeys = getTotalKeys(languages.get("zh-CN"));
 
         if (defaultKeys.isEmpty()) {

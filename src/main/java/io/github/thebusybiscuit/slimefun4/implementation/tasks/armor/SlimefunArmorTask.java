@@ -18,7 +18,6 @@ import org.bukkit.potion.PotionEffect;
  * @author Semisol
  */
 public class SlimefunArmorTask extends AbstractArmorTask {
-
     @Override
     @ParametersAreNonnullByDefault
     protected void onPlayerTick(Player p, PlayerProfile profile) {

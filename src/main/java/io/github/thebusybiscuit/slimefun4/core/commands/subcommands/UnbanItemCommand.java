@@ -14,7 +14,6 @@ import org.bukkit.command.ConsoleCommandSender;
  * @author Ddggdd135
  */
 public class UnbanItemCommand extends SubCommand {
-
     private static final String PLACEHOLDER_ITEM = "%item%";
 
     @ParametersAreNonnullByDefault

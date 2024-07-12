@@ -20,7 +20,6 @@ import org.bukkit.potion.PotionEffect;
  */
 @Getter
 public class RainbowArmorPiece extends SlimefunArmorPiece {
-
     /**
      * -- GETTER --
      *  Returns the

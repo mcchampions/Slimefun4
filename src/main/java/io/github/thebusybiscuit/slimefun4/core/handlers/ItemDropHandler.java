@@ -16,7 +16,6 @@ import org.bukkit.event.player.PlayerDropItemEvent;
  */
 @FunctionalInterface
 public interface ItemDropHandler extends GlobalItemHandler {
-
     @ParametersAreNonnullByDefault
     boolean onItemDrop(PlayerDropItemEvent e, Player p, Item item);
 

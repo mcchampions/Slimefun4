@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 
 // This class will be deprecated, relocated and rewritten in a future version.
 public abstract class BlockMenuPreset extends ChestMenu {
-
     private final Set<Integer> occupiedSlots = new HashSet<>();
     private final String inventoryTitle;
     private final String id;
@@ -96,7 +95,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *            The slots which should be treated as background
      */
     public void drawBackground(ItemStack item, int[] slots) {
-
         checkIfLocked();
 
         for (int slot : slots) {
@@ -207,7 +205,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
     }
 
     public void newInstance(BlockMenu menu, Location l) {
-
         Slimefun.runSync(() -> {
             locked = true;
 

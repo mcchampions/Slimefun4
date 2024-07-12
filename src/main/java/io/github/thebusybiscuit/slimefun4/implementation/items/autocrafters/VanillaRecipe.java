@@ -28,7 +28,6 @@ import org.bukkit.inventory.ShapelessRecipe;
  *
  */
 class VanillaRecipe extends AbstractRecipe {
-
     private final int[] slots = {11, 12, 13, 20, 21, 22, 29, 30, 31};
     @Getter
     private final Recipe recipe;
@@ -64,7 +63,6 @@ class VanillaRecipe extends AbstractRecipe {
 
     @Override
     public void show(ChestMenu menu, AsyncRecipeChoiceTask task) {
-
         menu.replaceExistingItem(24, getResult().clone());
         menu.addMenuClickHandler(24, ChestMenuUtils.getEmptyClickHandler());
 

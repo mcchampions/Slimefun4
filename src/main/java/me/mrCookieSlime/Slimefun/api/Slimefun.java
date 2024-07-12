@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
  */
 @Deprecated
 public final class Slimefun {
-
     private Slimefun() {}
 
     /**

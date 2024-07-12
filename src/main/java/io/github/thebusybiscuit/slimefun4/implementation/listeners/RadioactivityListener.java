@@ -14,7 +14,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
  * @author Semisol
  */
 public class RadioactivityListener implements Listener {
-
     public RadioactivityListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

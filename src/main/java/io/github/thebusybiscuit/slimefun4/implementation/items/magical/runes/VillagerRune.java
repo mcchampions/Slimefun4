@@ -28,7 +28,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class VillagerRune extends SimpleSlimefunItem<EntityInteractHandler> {
-
     @ParametersAreNonnullByDefault
     public VillagerRune(
             ItemGroup itemGroup,

@@ -15,7 +15,6 @@ import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
  *            The type of {@link MachineOperation} the {@link MachineProcessor} should hold.
  */
 public interface MachineProcessHolder<T extends MachineOperation> extends ItemAttribute {
-
     /**
      * This method returns our {@link MachineProcessor} instance.
      *

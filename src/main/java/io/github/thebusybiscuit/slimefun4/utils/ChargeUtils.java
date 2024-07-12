@@ -25,7 +25,6 @@ import org.bukkit.persistence.PersistentDataType;
  *
  */
 public final class ChargeUtils {
-
     private static final String LORE_PREFIX = ChatColors.color("&8\u21E8 &e\u26A1 &7");
     private static final Pattern REGEX =
             Pattern.compile(ChatColors.color("(&c&o)?" + LORE_PREFIX) + "[0-9.]+ / [0-9.]+ J");
@@ -33,7 +32,6 @@ public final class ChargeUtils {
     private ChargeUtils() {}
 
     public static void setCharge(ItemMeta meta, float charge, float capacity) {
-
         
         
         
@@ -60,7 +58,6 @@ public final class ChargeUtils {
     }
 
     public static float getCharge(ItemMeta meta) {
-
         NamespacedKey key = Slimefun.getRegistry().getItemChargeDataKey();
         PersistentDataContainer container = meta.getPersistentDataContainer();
         Float value = container.get(key, PersistentDataType.FLOAT);

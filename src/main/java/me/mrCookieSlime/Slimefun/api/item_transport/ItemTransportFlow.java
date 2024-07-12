@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
  * @see BlockMenuPreset
  */
 public enum ItemTransportFlow {
-
     /**
      * This state represents an {@link ItemStack} being inserted into
      * an {@link Inventory}.

@@ -69,7 +69,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ProgrammableAndroid extends SlimefunItem
         implements InventoryBlock, RecipeDisplayItem, NotDiagonallyRotatable {
-
     private static final List<BlockFace> POSSIBLE_ROTATIONS =
             Arrays.asList(BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST);
     private static final int[] BORDER = {
@@ -94,7 +93,6 @@ public class ProgrammableAndroid extends SlimefunItem
         registerDefaultFuelTypes();
 
         new BlockMenuPreset(getId(), "可编程式机器人") {
-
             @Override
             public void init() {
                 constructMenu(this);
@@ -166,10 +164,8 @@ public class ProgrammableAndroid extends SlimefunItem
         addItemHandler(onPlace(), onBreak());
     }
 
-
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 Player p = e.getPlayer();
@@ -192,10 +188,8 @@ public class ProgrammableAndroid extends SlimefunItem
         };
     }
 
-
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
-
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 Block b = e.getBlock();
@@ -249,7 +243,6 @@ public class ProgrammableAndroid extends SlimefunItem
         super.preRegister();
 
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
                 if (b != null && data != null) {
@@ -613,7 +606,6 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-
     protected List<Instruction> getValidScriptInstructions() {
         List<Instruction> list = new ArrayList<>();
 
@@ -667,9 +659,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-
     public String getScript(Location l) {
-
         String script = StorageCacheUtils.getData(l, "script");
         return script != null ? script : DEFAULT_SCRIPT;
     }
@@ -715,7 +705,6 @@ public class ProgrammableAndroid extends SlimefunItem
     }
 
     public void registerFuelType(MachineFuel fuel) {
-
         fuelTypes.add(fuel);
     }
 
@@ -941,7 +930,6 @@ public class ProgrammableAndroid extends SlimefunItem
 
         for (int i : getOutputSlots()) {
             preset.addMenuClickHandler(i, new AdvancedMenuClickHandler() {
-
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
                     return false;
@@ -960,7 +948,6 @@ public class ProgrammableAndroid extends SlimefunItem
 
     @ParametersAreNonnullByDefault
     public void addItems(Block b, ItemStack... items) {
-
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
         if (inv != null) {
@@ -982,7 +969,6 @@ public class ProgrammableAndroid extends SlimefunItem
         if (block.getY() > block.getWorld().getMinHeight()
             && block.getY() < block.getWorld().getMaxHeight()
             && block.isEmpty()) {
-
             if (!block.getWorld().getWorldBorder().isInside(block.getLocation())) {
                 return;
             }

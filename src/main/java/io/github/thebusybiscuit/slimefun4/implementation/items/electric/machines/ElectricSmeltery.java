@@ -34,7 +34,6 @@ import java.util.List;
  *
  */
 public class ElectricSmeltery extends ASpeedableContainer implements NotHopperable {
-
     private static final int[] border = {4, 5, 6, 7, 8, 13, 31, 40, 41, 42, 43, 44};
     private static final int[] inputBorder = {0, 1, 2, 3, 9, 12, 18, 21, 27, 30, 36, 37, 38, 39};
     private static final int[] outputBorder = {14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
@@ -44,7 +43,6 @@ public class ElectricSmeltery extends ASpeedableContainer implements NotHopperab
         super(itemGroup, item, recipeType, recipe);
 
         new BlockMenuPreset(getId(), getItemName()) {
-
             @Override
             public void init() {
                 constructMenu(this);
@@ -125,7 +123,6 @@ public class ElectricSmeltery extends ASpeedableContainer implements NotHopperab
 
         for (int i : getOutputSlots()) {
             preset.addMenuClickHandler(i, new AdvancedMenuClickHandler() {
-
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
                     return false;

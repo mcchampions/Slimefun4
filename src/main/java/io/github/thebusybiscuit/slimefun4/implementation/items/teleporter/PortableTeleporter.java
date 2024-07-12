@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  * @see Teleporter
  */
 public class PortableTeleporter extends SimpleSlimefunItem<ItemUseHandler> implements Rechargeable {
-
     private static final int CAPACITY = 50;
     private static final int DEFAULT_COST = 10;
 

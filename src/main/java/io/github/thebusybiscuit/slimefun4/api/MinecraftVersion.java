@@ -154,7 +154,6 @@ public enum MinecraftVersion {
      * @return Whether this {@link MinecraftVersion} is newer or equal to the given {@link MinecraftVersion}
      */
     public boolean isAtLeast(MinecraftVersion version) {
-
         if (this == UNKNOWN) {
             return false;
         }
@@ -171,7 +170,6 @@ public enum MinecraftVersion {
      * @return Whether this {@link MinecraftVersion} is older than the given one
      */
     public boolean isBefore(MinecraftVersion version) {
-
         if (this == UNKNOWN) {
             return true;
         }

@@ -19,7 +19,6 @@ import org.bukkit.Material;
  */
 @Getter
 public class ClimbableSurface extends DoubleRangeSetting {
-
     /**
      * -- GETTER --
      *  This returns the

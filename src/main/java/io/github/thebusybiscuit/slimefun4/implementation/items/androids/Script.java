@@ -24,7 +24,6 @@ import java.util.logging.Level;
  *
  */
 public final class Script {
-
     private final Config config;
     /**
      * -- GETTER --

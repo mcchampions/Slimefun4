@@ -15,7 +15,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
  */
 @FunctionalInterface
 public interface ItemUseHandler extends ItemHandler {
-
     void onRightClick(PlayerRightClickEvent e);
 
     @Override

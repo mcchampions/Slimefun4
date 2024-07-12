@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class Jetpack extends SlimefunItem implements Rechargeable {
-
     @Getter
     private final double thrust;
     private final float capacity;

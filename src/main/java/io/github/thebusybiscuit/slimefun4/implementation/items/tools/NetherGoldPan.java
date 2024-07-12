@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  * @author JustAHuman
  */
 public class NetherGoldPan extends GoldPan {
-
     private final Set<Material> inputMaterials = new HashSet<>(Arrays.asList(Material.SOUL_SAND, Material.SOUL_SOIL));
 
     @ParametersAreNonnullByDefault

@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
-
     
     @Override
     public SlimefunAddon getAddon() {

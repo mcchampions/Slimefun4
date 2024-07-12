@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public enum ItemSpawnReason {
-
     /**
      * The item is spawned on top of an {@link AncientPedestal}.
      */

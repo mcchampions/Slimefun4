@@ -11,7 +11,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 class TeleporterCommand extends SubCommand {
-
     @ParametersAreNonnullByDefault
     TeleporterCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "teleporter", false);
@@ -30,7 +29,6 @@ class TeleporterCommand extends SubCommand {
                                     player.getLocation().getBlock().getRelative(BlockFace.DOWN),
                                     999999999);
                 } else if (args.length == 2) {
-
                     @SuppressWarnings("deprecation")
                     OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[1]);
 

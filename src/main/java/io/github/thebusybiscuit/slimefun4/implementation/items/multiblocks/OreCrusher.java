@@ -37,7 +37,6 @@ import org.bukkit.inventory.ItemStack;
  * @author TheBusyBiscuit
  */
 public class OreCrusher extends MultiBlockMachine {
-
     private final DoubleOreSetting doubleOres = new DoubleOreSetting(this);
 
     @ParametersAreNonnullByDefault
@@ -218,7 +217,6 @@ public class OreCrusher extends MultiBlockMachine {
     }
 
     private static class DoubleOreSetting extends ItemSetting<Boolean> {
-
         @Getter
         private final ItemStack coal = new ItemStack(Material.COAL, 1);
         private final ItemStack lapis = new ItemStack(Material.LAPIS_LAZULI, 7);

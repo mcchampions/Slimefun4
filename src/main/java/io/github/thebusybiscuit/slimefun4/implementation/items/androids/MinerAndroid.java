@@ -47,7 +47,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class MinerAndroid extends ProgrammableAndroid {
-
     // Determines the drops a miner android will get
     private final ItemStack effectivePickaxe = new ItemStack(Material.DIAMOND_PICKAXE);
 
@@ -125,7 +124,6 @@ public class MinerAndroid extends ProgrammableAndroid {
 
     @ParametersAreNonnullByDefault
     private void breakBlock(BlockMenu menu, Collection<ItemStack> drops, Block block) {
-
         if (!block.getWorld().getWorldBorder().isInside(block.getLocation())) {
             return;
         }

@@ -26,7 +26,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @see UnbreakingAlgorithm
  */
 public interface DamageableItem extends ItemAttribute {
-
     /**
      * Implement this method to make the behaviour of this interface dependent
      * on the state of your object.

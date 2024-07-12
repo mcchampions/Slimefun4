@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @FunctionalInterface
 public interface EntityInteractHandler extends ItemHandler {
-
     /**
      * This function is triggered when a {@link Player} right clicks with the assigned {@link SlimefunItem}
      * in his hand.

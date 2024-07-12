@@ -22,7 +22,6 @@ import org.bukkit.inventory.Inventory;
  *
  */
 public class BrewingStandListener implements SlimefunCraftingListener {
-
     public BrewingStandListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

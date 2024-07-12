@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @Getter
 public class SeasonalItemGroup extends ItemGroup {
-
     /**
      * -- GETTER --
      *  This method returns the

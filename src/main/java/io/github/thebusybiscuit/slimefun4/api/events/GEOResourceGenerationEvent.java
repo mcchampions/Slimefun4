@@ -28,7 +28,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  *
  */
 public class GEOResourceGenerationEvent extends Event {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter

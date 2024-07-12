@@ -32,7 +32,6 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
  *
  */
 public class GadgetsListener implements Listener {
-
     public GadgetsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

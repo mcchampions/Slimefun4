@@ -46,7 +46,6 @@ import org.bukkit.potion.PotionType;
  *
  */
 public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements InventoryBlock, EnergyNetComponent {
-
     private static final int ENERGY_CONSUMPTION = 32;
     private static final int RANGE = 42;
 
@@ -68,7 +67,6 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
     
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
@@ -95,7 +93,6 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
 
         for (int i : getOutputSlots()) {
             preset.addMenuClickHandler(i, new AdvancedMenuClickHandler() {
-
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
                     return false;
@@ -255,7 +252,6 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 FluidPump.this.tick(b);

@@ -24,7 +24,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public interface Rechargeable extends ItemAttribute {
-
     /**
      * This method returns the maximum charge the given {@link ItemStack} is capable of holding.
      *

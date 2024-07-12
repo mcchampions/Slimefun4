@@ -28,7 +28,6 @@ import org.bukkit.block.Biome;
  * @see BiomeMap
  */
 public class BiomeMapParser<T> {
-
     private static final String VALUE_KEY = "value";
     private static final String BIOMES_KEY = "biomes";
 
@@ -88,7 +87,6 @@ public class BiomeMapParser<T> {
     }
 
     public void read(String json) throws BiomeMapException {
-
         JsonArray root;
 
         try {
@@ -105,7 +103,6 @@ public class BiomeMapParser<T> {
     }
 
     public void read(JsonArray json) throws BiomeMapException {
-
         for (JsonElement element : json) {
             if (element instanceof JsonObject) {
                 readEntry(element.getAsJsonObject());
@@ -118,7 +115,6 @@ public class BiomeMapParser<T> {
     }
 
     private void readEntry(JsonObject entry) throws BiomeMapException {
-
         /*
          * Check if the entry has a "value" element.
          * The data type is irrelevant here, any JsonElement is supported (in theory).
@@ -149,7 +145,6 @@ public class BiomeMapParser<T> {
     }
 
     private Set<Biome> readBiomes(JsonArray array) throws BiomeMapException {
-
         Set<Biome> biomes = EnumSet.noneOf(Biome.class);
 
         for (JsonElement element : array) {

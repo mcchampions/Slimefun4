@@ -18,7 +18,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class SlimefunGuideListener implements Listener {
-
     private final boolean giveOnFirstJoin;
 
     public SlimefunGuideListener(Slimefun plugin, boolean giveOnFirstJoin) {
@@ -83,7 +82,6 @@ public class SlimefunGuideListener implements Listener {
     private Result tryOpenGuide(Player p, PlayerRightClickEvent e, SlimefunGuideMode layout) {
         ItemStack item = e.getItem();
         if (SlimefunUtils.isItemSimilar(item, SlimefunGuide.getItem(layout), false, false)) {
-
             if (!Slimefun.getWorldSettingsService().isWorldEnabled(p.getWorld())) {
                 Slimefun.getLocalization().sendMessage(p, "messages.disabled-item", true);
                 return Result.DENY;

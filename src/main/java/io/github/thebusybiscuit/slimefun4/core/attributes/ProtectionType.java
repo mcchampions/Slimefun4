@@ -11,7 +11,6 @@ import org.bukkit.entity.Bee;
  * @see ProtectiveArmor
  */
 public enum ProtectionType {
-
     /**
      * This damage type represents damage inflicted by {@link Radioactive} materials.
      */

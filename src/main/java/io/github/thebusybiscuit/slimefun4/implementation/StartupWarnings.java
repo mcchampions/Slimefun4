@@ -14,7 +14,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  *
  */
 final class StartupWarnings {
-
     private static final String BORDER = "****************************************************";
     private static final String PREFIX = "* ";
 

@@ -44,7 +44,6 @@ import java.util.*;
  * @author Sfiguz7
  */
 public final class SlimefunUtils {
-
     private static final String NO_PICKUP_METADATA = "no_pickup";
     private static final String SOULBOUND_LORE = ChatColor.GRAY + "灵魂绑定";
 
@@ -198,7 +197,6 @@ public final class SlimefunUtils {
      * @return An {@link ItemStack} with this Head texture
      */
     public static ItemStack getCustomHead(String texture) {
-
         if (Slimefun.instance() == null) {
             throw new PrematureCodeException("You cannot instantiate a custom head before Slimefun was loaded.");
         }
@@ -271,7 +269,6 @@ public final class SlimefunUtils {
         } else if (checkDistinctiveItem && sfitem instanceof SlimefunItemStack stackOne && item instanceof SlimefunItemStack stackTwo) {
             return isSlimefunItemSimilar(stackOne, stackTwo);
         } else if (item.hasItemMeta()) {
-
             ItemMeta itemMeta = item.getItemMeta();
 
             if (sfitem instanceof SlimefunItemStack sfItemStack) {
@@ -297,7 +294,6 @@ public final class SlimefunUtils {
                 ItemMetaSnapshot meta = ((SlimefunItemStack) sfitem).getItemMetaSnapshot();
                 return equalsItemMeta(itemMeta, meta, checkLore);
             } else if (sfitem instanceof ItemStackWrapper && sfitem.hasItemMeta()) {
-
                 /*
                  * Cargo optimization (PR #3258)
                  *
@@ -375,7 +371,6 @@ public final class SlimefunUtils {
 
     private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMeta sfitemMeta, boolean checkLore, boolean checkCustomModelCheck) {
         if (itemMeta.hasDisplayName() != sfitemMeta.hasDisplayName()) {
-
             return false;
         } else if (itemMeta.hasDisplayName() && sfitemMeta.hasDisplayName() && !itemMeta.getDisplayName().equals(sfitemMeta.getDisplayName())) {
             return false;
@@ -385,11 +380,9 @@ public final class SlimefunUtils {
 
             if (hasItemMetaLore && hasSfItemMetaLore) {
                 if (!equalsLore(itemMeta.getLore(), sfitemMeta.getLore())) {
-
                     return false;
                 }
             } else if (hasItemMetaLore != hasSfItemMetaLore) {
-
                 return false;
             }
         }
@@ -408,8 +401,6 @@ public final class SlimefunUtils {
         if (itemMeta instanceof PotionMeta && sfitemMeta instanceof PotionMeta) {
             return ((PotionMeta) itemMeta).getBasePotionType().equals(((PotionMeta) sfitemMeta).getBasePotionType());
         }
-
-
         return true;
     }
 
@@ -422,7 +413,6 @@ public final class SlimefunUtils {
      * @return Whether the two lores are equal
      */
     public static boolean equalsLore(List<String> lore1, List<String> lore2) {
-
         List<String> longerList = lore1.size() > lore2.size() ? lore1 : lore2;
         List<String> shorterList = lore1.size() > lore2.size() ? lore2 : lore1;
 
@@ -459,8 +449,6 @@ public final class SlimefunUtils {
     }
 
     public static void updateCapacitorTexture(Location l, int charge, int capacity) {
-
-
         Slimefun.runSync(new CapacitorTextureUpdateTask(l, charge, capacity));
     }
 
@@ -476,7 +464,6 @@ public final class SlimefunUtils {
      * @return Whether the {@link Player} is able to use that item.
      */
     public static boolean canPlayerUseItem(Player p, @Nullable ItemStack item, boolean sendMessage) {
-
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         if (sfItem != null) {

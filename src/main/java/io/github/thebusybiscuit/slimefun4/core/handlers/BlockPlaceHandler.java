@@ -17,7 +17,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
  *
  */
 public abstract class BlockPlaceHandler implements ItemHandler {
-
     private final boolean allowBlockPlacers;
 
     protected BlockPlaceHandler(boolean allowBlockPlacers) {

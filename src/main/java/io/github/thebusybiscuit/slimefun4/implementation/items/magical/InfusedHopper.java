@@ -33,7 +33,6 @@ import org.bukkit.util.Vector;
  * @see InfusedMagnet
  */
 public class InfusedHopper extends SimpleSlimefunItem<BlockTicker> {
-
     private final ItemSetting<Boolean> silent = new ItemSetting<>(this, "silent", false);
     private final ItemSetting<Boolean> toggleable = new ItemSetting<>(this, "toggleable-with-redstone", false);
     private final ItemSetting<Double> radius = new DoubleRangeSetting(this, "radius", 0.1, 3.5, Double.MAX_VALUE);
@@ -51,7 +50,6 @@ public class InfusedHopper extends SimpleSlimefunItem<BlockTicker> {
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sfItem, SlimefunBlockData data) {
                 if (b.getType() != Material.HOPPER) {

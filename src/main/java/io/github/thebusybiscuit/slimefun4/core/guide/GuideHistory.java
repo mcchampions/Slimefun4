@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class GuideHistory {
-
     private final PlayerProfile profile;
     private final Deque<GuideEntry<?>> queue = new LinkedList<>();
     @Getter
@@ -35,7 +34,6 @@ public class GuideHistory {
      *            The {@link PlayerProfile} this {@link GuideHistory} was made for
      */
     public GuideHistory(PlayerProfile profile) {
-
         this.profile = profile;
     }
 
@@ -93,7 +91,6 @@ public class GuideHistory {
      *            The {@link SlimefunItem} that should be added to this {@link GuideHistory}
      */
     public void add(SlimefunItem item) {
-
         queue.add(new GuideEntry<>(item, 0));
     }
 
@@ -104,12 +101,10 @@ public class GuideHistory {
      *            The term that the {@link Player} searched for
      */
     public void add(String searchTerm) {
-
         queue.add(new GuideEntry<>(searchTerm, 0));
     }
 
     private <T> void refresh(T object, int page) {
-
         
 
         GuideEntry<?> lastEntry = getLastEntry(false);

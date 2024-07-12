@@ -27,7 +27,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 abstract class AbstractItemNetwork extends Network {
-
     /**
      * This is a cache for the {@link BlockFace} a node is facing, so we don't need to
      * request the {@link BlockData} each time we visit a node

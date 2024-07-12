@@ -13,7 +13,6 @@ import org.bukkit.event.HandlerList;
  * @author ProfElements
  */
 public class SlimefunItemRegistryFinalizedEvent extends Event {
-
     private static final HandlerList handlers = new HandlerList();
 
     public SlimefunItemRegistryFinalizedEvent() {}

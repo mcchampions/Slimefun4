@@ -39,7 +39,6 @@ import org.bukkit.util.Vector;
  *
  */
 public class GrapplingHookListener implements Listener {
-
     private GrapplingHook grapplingHook;
 
     private final Map<UUID, GrapplingHookEntity> activeHooks = new HashMap<>();

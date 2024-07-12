@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class PersonalActivationPlate extends AbstractTeleporterPlate {
-
     @ParametersAreNonnullByDefault
     public PersonalActivationPlate(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -33,7 +32,6 @@ public class PersonalActivationPlate extends AbstractTeleporterPlate {
     
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
-
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 StorageCacheUtils.setData(

@@ -17,7 +17,6 @@ import lombok.Getter;
  * @author TheBusyBiscuit
  */
 public class ItemSetting<T> {
-
     private final SlimefunItem item;
 
     @Getter
@@ -39,8 +38,6 @@ public class ItemSetting<T> {
      */
     @ParametersAreNonnullByDefault
     public ItemSetting(SlimefunItem item, String key, T defaultValue) {
-
-
         this.item = item;
         this.key = key;
         this.defaultValue = defaultValue;
@@ -136,7 +133,6 @@ public class ItemSetting<T> {
      */
     @SuppressWarnings("unchecked")
     public void reload() {
-
         Slimefun.getItemCfg().setDefaultValue(item.getId() + '.' + getKey(), getDefaultValue());
         Object configuredValue = Slimefun.getItemCfg().getValue(item.getId() + '.' + getKey());
 

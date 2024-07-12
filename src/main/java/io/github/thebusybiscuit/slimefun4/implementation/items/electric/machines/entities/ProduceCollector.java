@@ -41,7 +41,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ProduceCollector extends AContainer implements RecipeDisplayItem {
-
     private final ItemSetting<Integer> range = new IntRangeSetting(this, "range", 1, 2, 32);
     private final Set<AnimalProduce> animalProduces = new HashSet<>();
 
@@ -80,14 +79,12 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
      *            The {@link AnimalProduce} to add
      */
     public void addProduce(AnimalProduce produce) {
-
         this.animalProduces.add(produce);
     }
 
     @Override
     public void preRegister() {
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 ProduceCollector.this.tick(b);

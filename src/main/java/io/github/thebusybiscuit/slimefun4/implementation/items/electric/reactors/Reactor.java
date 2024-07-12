@@ -57,7 +57,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class Reactor extends AbstractEnergyProvider
         implements HologramOwner, MachineProcessHolder<FuelOperation> {
-
     private static final String MODE = "reactor-mode";
     private static final int INFO_SLOT = 49;
     private static final int COOLANT_DURATION = 50;
@@ -90,7 +89,6 @@ public abstract class Reactor extends AbstractEnergyProvider
         processor.setProgressBar(getProgressBar());
 
         new BlockMenuPreset(getId(), getInventoryTitle()) {
-
             @Override
             public void init() {
                 constructMenu(this);
@@ -131,7 +129,6 @@ public abstract class Reactor extends AbstractEnergyProvider
     
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());

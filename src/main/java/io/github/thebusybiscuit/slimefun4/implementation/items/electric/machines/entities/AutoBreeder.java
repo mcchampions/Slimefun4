@@ -28,7 +28,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
 public class AutoBreeder extends SlimefunItem implements InventoryBlock, EnergyNetComponent {
-
     private final int[] border = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
 
     private static final int ENERGY_CONSUMPTION = 60;
@@ -47,7 +46,6 @@ public class AutoBreeder extends SlimefunItem implements InventoryBlock, EnergyN
     
     private ItemHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
@@ -91,7 +89,6 @@ public class AutoBreeder extends SlimefunItem implements InventoryBlock, EnergyN
     @Override
     public void preRegister() {
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 AutoBreeder.this.tick(b);

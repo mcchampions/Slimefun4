@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter
@@ -38,9 +37,6 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
     public ExplosiveToolBreakBlocksEvent(
             Player player, Block block, List<Block> blocks, ItemStack item, ExplosiveTool explosiveTool) {
         super(player);
-
-
-
         this.mainBlock = block;
         this.additionalBlocks = blocks;
         this.itemInHand = item;

@@ -24,7 +24,6 @@ import java.util.Optional;
  */
 @FunctionalInterface
 public interface ItemHandler {
-
     /**
      * This method is used to check whether a given {@link SlimefunItem} is compatible
      * with this {@link ItemHandler}, it will return an {@link IncompatibleItemHandlerException}

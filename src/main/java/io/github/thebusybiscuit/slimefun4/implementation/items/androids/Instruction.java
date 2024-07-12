@@ -27,7 +27,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public enum Instruction {
-
     /**
      * This {@link Instruction} is the starting point of a {@link Script}.
      */
@@ -288,7 +287,6 @@ public enum Instruction {
      * @return The {@link Instruction} or null if it does not exist.
      */
     @Nullable public static Instruction getInstruction(String value) {
-
         return nameLookup.get(value);
     }
 }

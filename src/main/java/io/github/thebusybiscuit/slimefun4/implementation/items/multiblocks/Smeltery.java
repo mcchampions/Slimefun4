@@ -41,7 +41,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class Smeltery extends AbstractSmeltery {
-
     private final ItemSetting<Integer> fireBreakingChance =
             new IntRangeSetting(this, "fire-breaking-chance", 0, 34, 100);
 

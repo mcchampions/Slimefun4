@@ -17,7 +17,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 
 public class OverclockModule extends SimpleSlimefunItem<ItemUseHandler> {
-
     @ParametersAreNonnullByDefault
     public OverclockModule(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

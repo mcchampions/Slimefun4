@@ -23,7 +23,6 @@ import java.io.Serial;
  *
  */
 public class IncompatibleItemHandlerException extends RuntimeException {
-
     @Serial
     private static final long serialVersionUID = -6723066421114874138L;
 

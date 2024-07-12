@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  * @author cworldstar
  */
 public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
     @Getter
     private final Talisman talisman;

@@ -34,7 +34,6 @@ import java.util.Set;
  *
  */
 public class ArmorTask implements Runnable {
-
     @Getter
     private final Set<PotionEffect> radiationEffects;
     private final boolean radioactiveFire;

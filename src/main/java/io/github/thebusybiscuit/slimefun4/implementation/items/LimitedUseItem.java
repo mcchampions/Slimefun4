@@ -35,7 +35,6 @@ import org.bukkit.persistence.PersistentDataType;
  * @see StormStaff
  */
 public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> implements DistinctiveItem {
-
     private final NamespacedKey defaultUsageKey;
     private int maxUseCount = -1;
 

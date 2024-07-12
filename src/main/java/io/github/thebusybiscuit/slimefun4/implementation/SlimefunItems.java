@@ -32,7 +32,6 @@ import org.bukkit.potion.PotionEffectType;
  */
 @SuppressWarnings("java:S1192") // Suppress "duplicate string literal" warnings
 public final class SlimefunItems {
-
     private SlimefunItems() {
     }
 

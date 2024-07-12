@@ -9,7 +9,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.VanillaItem;
  * @see SlimefunItem
  */
 public enum ItemState {
-
     /**
      * This {@link SlimefunItem} has not been registered (yet).
      */

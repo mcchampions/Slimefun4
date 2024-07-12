@@ -41,7 +41,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 class CargoNetworkTask implements Runnable {
-
     private final NetworkManager manager;
     private final CargoNet network;
     private final Map<Location, Inventory> inventories = new HashMap<>();

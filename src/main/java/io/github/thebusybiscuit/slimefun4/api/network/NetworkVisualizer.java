@@ -12,7 +12,6 @@ import org.bukkit.Particle.DustOptions;
  * @author TheBusyBiscuit
  */
 class NetworkVisualizer implements Runnable {
-
     /**
      * The {@link DustOptions} define the {@link Color} and size of our particles.
      */
@@ -29,7 +28,6 @@ class NetworkVisualizer implements Runnable {
      * @param network The {@link Network} to visualize
      */
     NetworkVisualizer(Network network, Color color) {
-
         this.network = network;
         this.particleOptions = new DustOptions(color, 3F);
     }

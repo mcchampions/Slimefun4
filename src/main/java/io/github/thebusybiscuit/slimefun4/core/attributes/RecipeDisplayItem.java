@@ -26,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public interface RecipeDisplayItem extends ItemAttribute {
-
     /**
      * This is the list of items to display alongside this {@link SlimefunItem}.
      * Note that these items will be filled in from top to bottom first.

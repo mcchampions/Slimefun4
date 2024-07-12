@@ -20,7 +20,6 @@ import org.bukkit.World;
  * @author TheBusyBiscuit
  */
 class WorldEditIntegration {
-
     WorldEditIntegration() {
         try {
             // This ensures that we are using a version which supports Extents
@@ -38,7 +37,6 @@ class WorldEditIntegration {
     @Subscribe
     public void wrapForLogging(EditSessionEvent event) {
         event.setExtent(new AbstractDelegateExtent(event.getExtent()) {
-
             @Override
             public <T extends BlockStateHolder<T>> boolean setBlock(BlockVector3 pos, T block)
                     throws WorldEditException {

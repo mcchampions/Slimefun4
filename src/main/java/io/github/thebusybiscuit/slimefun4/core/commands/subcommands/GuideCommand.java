@@ -10,7 +10,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 class GuideCommand extends SubCommand {
-
     @ParametersAreNonnullByDefault
     GuideCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "guide", false);

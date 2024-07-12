@@ -18,7 +18,6 @@ import org.bukkit.event.player.PlayerEvent;
  * @author TheBusyBiscuit
  */
 public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     @Getter

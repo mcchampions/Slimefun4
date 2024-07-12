@@ -15,7 +15,6 @@ import org.bukkit.block.data.Ageable;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class CropGrowthAccelerator extends AbstractGrowthAccelerator {
-
     // We wanna strip the Slimefun Item id here
     private static final ItemStack organicFertilizer = ItemStackWrapper.wrap(SlimefunItems.FERTILIZER);
 

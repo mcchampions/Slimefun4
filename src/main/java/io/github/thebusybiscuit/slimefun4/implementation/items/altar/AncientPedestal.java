@@ -47,7 +47,6 @@ import org.bukkit.util.Vector;
  *
  */
 public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> implements NotHopperable {
-
     public static final String ITEM_PREFIX = ChatColors.color("&dALTAR &3Probe - &e");
 
     @ParametersAreNonnullByDefault
@@ -64,7 +63,6 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
 
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 Optional<Item> entity = getPlacedItem(b);

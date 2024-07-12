@@ -21,7 +21,6 @@ import org.bukkit.potion.PotionEffectType;
  *
  */
 public class BeeWingsTask extends AbstractPlayerTask {
-
     private static final int MIN_ALTITUDE = 4;
 
     private Location lastLocation;

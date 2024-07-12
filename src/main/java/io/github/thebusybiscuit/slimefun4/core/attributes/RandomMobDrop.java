@@ -21,7 +21,6 @@ import org.bukkit.event.entity.EntityDeathEvent;
  *
  */
 public interface RandomMobDrop extends ItemAttribute {
-
     /**
      * Implement this method to make the object have a variable chance of being
      * added to the dropList when {@link EntityType} specified in

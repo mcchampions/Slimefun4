@@ -59,7 +59,6 @@ import java.util.logging.Logger;
  * @see SlimefunAddon
  */
 public class SlimefunItem implements Placeable {
-
     /**
      * This is our item id.
      */
@@ -187,8 +186,6 @@ public class SlimefunItem implements Placeable {
             RecipeType recipeType,
             ItemStack[] recipe,
             @Nullable ItemStack recipeOutput) {
-
-
         this.itemGroup = itemGroup;
         this.itemStackTemplate = item;
         this.id = item.getItemId();
@@ -200,8 +197,6 @@ public class SlimefunItem implements Placeable {
     // Previously deprecated constructor, now only for internal purposes
     @ParametersAreNonnullByDefault
     protected SlimefunItem(ItemGroup itemGroup, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe) {
-
-
         this.itemGroup = itemGroup;
         this.itemStackTemplate = item;
         this.id = id;
@@ -365,7 +360,6 @@ public class SlimefunItem implements Placeable {
      * @param addon The {@link SlimefunAddon} that this {@link SlimefunItem} belongs to.
      */
     public void register(SlimefunAddon addon) {
-
         this.addon = addon;
 
         try {
@@ -657,7 +651,6 @@ public class SlimefunItem implements Placeable {
      * @param type The {@link RecipeType} for this {@link SlimefunItem}
      */
     public void setRecipeType(RecipeType type) {
-
         this.recipeType = type;
     }
 
@@ -667,7 +660,6 @@ public class SlimefunItem implements Placeable {
      * @param itemGroup The new {@link ItemGroup}
      */
     public void setItemGroup(ItemGroup itemGroup) {
-
         this.itemGroup.remove(this);
         itemGroup.add(this);
 
@@ -824,7 +816,6 @@ public class SlimefunItem implements Placeable {
      */
     @Deprecated
     public final void addOfficialWikipage(String page) {
-
         // 转换链接
         page = page.replace("#", "?id=");
         wikiURL = Optional.of("https://slimefun-wiki.guizhanss.cn/" + page);
@@ -836,7 +827,6 @@ public class SlimefunItem implements Placeable {
      * @param page 物品的 Wiki 页面
      */
     public final void addWikiPage(String page) {
-
         if (addon == null) {
             Slimefun.logger().warning("该物品\"" + getId() + "\"暂未注册, 请在物品注册后再添加Wiki页面");
             return;
@@ -947,7 +937,6 @@ public class SlimefunItem implements Placeable {
      */
     @ParametersAreNonnullByDefault
     public void info(String message) {
-
         String msg = this + ": " + message;
         addon.getLogger().log(Level.INFO, msg);
     }
@@ -961,7 +950,6 @@ public class SlimefunItem implements Placeable {
      */
     @ParametersAreNonnullByDefault
     public void warn(String message) {
-
         String msg = this + ": " + message;
         addon.getLogger().log(Level.WARNING, msg);
 
@@ -980,7 +968,6 @@ public class SlimefunItem implements Placeable {
      */
     @ParametersAreNonnullByDefault
     public void error(String message, Throwable throwable) {
-
         addon.getLogger().log(Level.SEVERE, "Item \"{0}\" from {1} v{2} has caused an Error!", new Object[]{
                 id, addon.getName(), addon.getPluginVersion()
         });
@@ -1001,7 +988,6 @@ public class SlimefunItem implements Placeable {
      */
     @ParametersAreNonnullByDefault
     public void sendDeprecationWarning(Player player) {
-
         Slimefun.getLocalization().sendMessage(player, "messages.deprecated-item");
     }
 
@@ -1024,7 +1010,6 @@ public class SlimefunItem implements Placeable {
      * @return Whether this {@link Player} is able to use this {@link SlimefunItem}.
      */
     public boolean canUse(Player p, boolean sendMessage) {
-
         if (getState() == ItemState.VANILLA_FALLBACK) {
             // Vanilla items (which fell back) can always be used.
             return true;

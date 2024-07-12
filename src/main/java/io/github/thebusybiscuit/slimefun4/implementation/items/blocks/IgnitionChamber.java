@@ -34,7 +34,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class IgnitionChamber extends SlimefunItem {
-
     // @formatter:off
     private static final BlockFace[] ADJACENT_FACES = {BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST
     };
@@ -63,7 +62,6 @@ public class IgnitionChamber extends SlimefunItem {
      */
     @ParametersAreNonnullByDefault
     public static boolean useFlintAndSteel(Player p, Block smelteryBlock) {
-
         Inventory inv = findIgnitionChamber(smelteryBlock);
 
         // Check if there even is a chamber nearby

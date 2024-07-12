@@ -37,7 +37,6 @@ import org.bukkit.inventory.meta.SkullMeta;
  *
  */
 public class SwordOfBeheading extends SimpleSlimefunItem<EntityKillHandler> {
-
     private final ItemSetting<Integer> chanceZombie = new IntRangeSetting(this, "chance.ZOMBIE", 0, 40, 100);
     private final ItemSetting<Integer> chanceSkeleton = new IntRangeSetting(this, "chance.SKELETON", 0, 40, 100);
     private final ItemSetting<Integer> chanceWitherSkeleton =

@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @Getter
 public class GoldIngot extends SlimefunItem {
-
     /**
      * The carat rating.
      * -- GETTER --

@@ -23,7 +23,6 @@ import java.util.zip.ZipOutputStream;
  *
  */
 public class BackupService implements Runnable {
-
     /**
      * The maximum amount of backups to maintain
      */
@@ -84,7 +83,6 @@ public class BackupService implements Runnable {
     }
 
     private void createBackup(ZipOutputStream output) throws IOException {
-
         if (Slimefun.getDatabaseManager().getProfileStorageType() == StorageType.SQLITE) {
             addFile(output, new File("data-storage/Slimefun", "profile.db"), "");
         }

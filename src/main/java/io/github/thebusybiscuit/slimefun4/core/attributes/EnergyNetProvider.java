@@ -23,7 +23,6 @@ import org.bukkit.Location;
  * @see Reactor
  */
 public interface EnergyNetProvider extends EnergyNetComponent {
-
     @Override
     
     default EnergyNetComponentType getEnergyComponentType() {

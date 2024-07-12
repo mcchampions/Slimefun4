@@ -19,7 +19,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class NestedItemGroup extends FlexItemGroup {
-
     private static final int GROUP_SIZE = 36;
     private final List<SubItemGroup> subGroups = new ArrayList<>();
 
@@ -40,7 +39,6 @@ public class NestedItemGroup extends FlexItemGroup {
      *            The {@link SubItemGroup} to add.
      */
     public void addSubGroup(SubItemGroup group) {
-
         subGroups.add(group);
     }
 
@@ -51,7 +49,6 @@ public class NestedItemGroup extends FlexItemGroup {
      *            The {@link SubItemGroup} to remove.
      */
     public void removeSubGroup(SubItemGroup group) {
-
         subGroups.remove(group);
     }
 

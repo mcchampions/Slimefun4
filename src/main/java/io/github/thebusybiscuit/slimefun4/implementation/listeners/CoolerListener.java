@@ -33,7 +33,6 @@ import org.bukkit.potion.PotionEffect;
  *
  */
 public class CoolerListener implements Listener {
-
     private final Slimefun plugin;
     private final Cooler cooler;
 

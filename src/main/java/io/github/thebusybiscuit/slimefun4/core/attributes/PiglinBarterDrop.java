@@ -17,7 +17,6 @@ import org.bukkit.event.entity.EntityDropItemEvent;
  *
  */
 public interface PiglinBarterDrop extends ItemAttribute {
-
     /**
      * Implement this method to make this {@link SlimefunItem} have a variable chance
      * of being dropped by a {@link Piglin} when bartering with them. This interface

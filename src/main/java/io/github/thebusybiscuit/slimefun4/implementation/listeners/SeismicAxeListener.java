@@ -18,7 +18,6 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
  *
  */
 public class SeismicAxeListener implements Listener {
-
     private final SeismicAxe seismicAxe;
 
     public SeismicAxeListener(Slimefun plugin, SeismicAxe seismicAxe) {

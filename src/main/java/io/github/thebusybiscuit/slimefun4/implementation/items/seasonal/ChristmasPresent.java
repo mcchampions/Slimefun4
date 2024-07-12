@@ -25,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
  * @see EasterEgg
  */
 public class ChristmasPresent extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
-
     private final ItemStack[] gifts;
 
     @ParametersAreNonnullByDefault

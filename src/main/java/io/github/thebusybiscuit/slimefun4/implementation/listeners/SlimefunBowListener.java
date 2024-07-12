@@ -28,7 +28,6 @@ import org.bukkit.event.entity.ProjectileHitEvent;
  *
  */
 public class SlimefunBowListener implements Listener {
-
     private final Map<UUID, SlimefunBow> projectiles = new HashMap<>();
 
     public void register(Slimefun plugin) {

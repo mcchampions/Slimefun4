@@ -25,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class PickaxeOfTheSeeker extends SimpleSlimefunItem<ItemUseHandler> implements DamageableItem {
-
     private final ItemSetting<Integer> maxRange = new IntRangeSetting(this, "max-range", 1, 5, Integer.MAX_VALUE);
 
     @ParametersAreNonnullByDefault

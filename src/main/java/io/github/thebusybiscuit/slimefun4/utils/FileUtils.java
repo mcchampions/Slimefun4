@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.utils;
 import java.io.File;
 
 public class FileUtils {
-
     public static boolean deleteDirectory(File folder) {
         if (folder.isDirectory()) {
             File[] files = folder.listFiles();

@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 abstract class AbstractPlayerTask implements Runnable {
-
     protected final Player p;
     private int id;
 

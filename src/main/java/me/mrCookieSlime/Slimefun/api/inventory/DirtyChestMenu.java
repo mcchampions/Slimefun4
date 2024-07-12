@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 // This class will be deprecated, relocated and rewritten in a future version.
 public class DirtyChestMenu extends ChestMenu {
-
     @Getter
     protected final BlockMenuPreset preset;
     protected int changes = 1;
@@ -89,8 +88,6 @@ public class DirtyChestMenu extends ChestMenu {
             }
 
             if (isSfItem) {
-
-
                 if (!slotItem.hasItemMeta()
                     || item.getType() != slotItem.getType()
                     || !SlimefunUtils.isItemSimilar(slotItem, wrapper, true, false)) {
@@ -98,13 +95,8 @@ public class DirtyChestMenu extends ChestMenu {
                 }
 
                 var slotRemain = slotItem.getMaxStackSize() - slotItem.getAmount();
-
-
                 remain -= slotRemain;
-
-
                 if (remain <= 0) {
-
                     return true;
                 }
             }
@@ -115,7 +107,6 @@ public class DirtyChestMenu extends ChestMenu {
         if (!isSfItem) {
             result = InvUtils.fits(toInventory(), wrapper, slots);
         }
-
 
         return result;
     }

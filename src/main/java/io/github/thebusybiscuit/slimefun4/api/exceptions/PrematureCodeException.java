@@ -12,7 +12,6 @@ import java.io.Serial;
  * @author TheBusyBiscuit
  */
 public class PrematureCodeException extends RuntimeException {
-
     @Serial
     private static final long serialVersionUID = -7409054512888866955L;
 

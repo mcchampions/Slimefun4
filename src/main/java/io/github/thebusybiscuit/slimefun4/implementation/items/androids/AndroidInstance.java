@@ -4,7 +4,6 @@ import lombok.Getter;
 import org.bukkit.block.Block;
 
 public class AndroidInstance {
-
     @Getter
     private final ProgrammableAndroid android;
     private final Block b;

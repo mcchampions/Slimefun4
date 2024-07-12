@@ -36,7 +36,6 @@ import org.bukkit.potion.PotionEffectType;
  *
  */
 public class StrangeNetherGoo extends SimpleSlimefunItem<ItemUseHandler> implements PiglinBarterDrop {
-
     private final ItemSetting<Integer> chance = new IntRangeSetting(this, "barter-chance", 0, 7, 100);
 
     @ParametersAreNonnullByDefault

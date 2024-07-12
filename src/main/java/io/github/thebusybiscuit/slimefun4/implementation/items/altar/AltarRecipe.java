@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 
 @Getter
 public class AltarRecipe {
-
     private final ItemStack catalyst;
     private final List<ItemStack> input;
     private final ItemStack output;

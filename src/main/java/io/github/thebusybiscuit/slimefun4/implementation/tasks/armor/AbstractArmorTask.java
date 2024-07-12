@@ -19,7 +19,6 @@ import org.bukkit.entity.Player;
  * @see RainbowArmorTask
  */
 public abstract class AbstractArmorTask implements Runnable {
-
     @Override
     public final void run() {
         for (Player p : Bukkit.getOnlinePlayers()) {

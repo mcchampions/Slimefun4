@@ -21,7 +21,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
  */
 @FunctionalInterface
 public interface BowShootHandler extends ItemHandler {
-
     void onHit(EntityDamageByEntityEvent e, LivingEntity n);
 
     @Override

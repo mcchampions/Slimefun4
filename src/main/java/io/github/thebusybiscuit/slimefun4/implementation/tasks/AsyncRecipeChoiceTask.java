@@ -26,7 +26,6 @@ import org.bukkit.inventory.RecipeChoice.MaterialChoice;
  *
  */
 public class AsyncRecipeChoiceTask implements Runnable {
-
     private static final int UPDATE_INTERVAL = 14;
 
     private final Map<Integer, LoopIterator<Material>> iterators = new HashMap<>();
@@ -42,7 +41,6 @@ public class AsyncRecipeChoiceTask implements Runnable {
      *            The {@link Inventory} to start this task for
      */
     public void start(Inventory inv) {
-
         inventory = inv;
         id = Bukkit.getScheduler()
                 .runTaskTimerAsynchronously(Slimefun.instance(), this, 0, UPDATE_INTERVAL)
@@ -50,7 +48,6 @@ public class AsyncRecipeChoiceTask implements Runnable {
     }
 
     public void add(int slot, MaterialChoice choice) {
-
         lock.writeLock().lock();
 
         try {
@@ -61,7 +58,6 @@ public class AsyncRecipeChoiceTask implements Runnable {
     }
 
     public void add(int slot, Tag<Material> tag) {
-
         lock.writeLock().lock();
 
         try {

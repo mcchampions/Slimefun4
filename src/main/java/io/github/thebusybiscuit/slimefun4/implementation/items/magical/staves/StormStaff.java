@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
  * @author TheBusyBiscuit
  */
 public class StormStaff extends LimitedUseItem {
-
     public static final int MAX_USES = 8;
 
     private static final NamespacedKey usageKey = new NamespacedKey(Slimefun.instance(), "stormstaff_usage");

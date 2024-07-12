@@ -32,7 +32,6 @@ import org.bukkit.plugin.Plugin;
  *
  */
 public class MinecraftRecipeService {
-
     /**
      * Our {@link Plugin} instance
      */
@@ -81,7 +80,6 @@ public class MinecraftRecipeService {
      *            A callback to run when the {@link RecipeSnapshot} has been created.
      */
     public void subscribe(Consumer<RecipeSnapshot> subscription) {
-
         subscriptions.add(subscription);
     }
 
@@ -127,7 +125,6 @@ public class MinecraftRecipeService {
      * @return An Array of {@link RecipeChoice} representing the shape of this {@link Recipe}
      */
     public RecipeChoice[] getRecipeShape(Recipe recipe) {
-
         if (recipe instanceof ShapedRecipe shapedRecipe) {
             List<RecipeChoice> choices = new LinkedList<>();
 
@@ -179,7 +176,6 @@ public class MinecraftRecipeService {
      * @return The corresponding {@link Recipe} or null
      */
     public @Nullable Recipe getRecipe(NamespacedKey key) {
-
         if (snapshot != null) {
             // We operate on a cached HashMap which is much faster than Bukkit's method.
             return snapshot.getRecipe(key);

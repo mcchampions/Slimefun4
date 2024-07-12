@@ -16,7 +16,6 @@ import javax.annotation.concurrent.ThreadSafe;
 @Beta
 @ThreadSafe
 public interface Storage {
-
     PlayerData loadPlayerData(UUID uuid);
 
     void savePlayerData(UUID uuid, PlayerData data);

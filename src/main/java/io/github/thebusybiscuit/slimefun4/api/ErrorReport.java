@@ -39,7 +39,6 @@ import org.bukkit.plugin.Plugin;
  *
  */
 public class ErrorReport<T extends Throwable> {
-
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm", Locale.ROOT);
     private static final AtomicInteger count = new AtomicInteger(0);
 

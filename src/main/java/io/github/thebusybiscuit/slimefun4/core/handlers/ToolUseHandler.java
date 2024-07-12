@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @FunctionalInterface
 public interface ToolUseHandler extends ItemHandler {
-
     /**
      * This method is called whenever a {@link BlockBreakEvent} was fired when using this
      * {@link SlimefunItem} to break a {@link Block}.

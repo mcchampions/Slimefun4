@@ -19,7 +19,6 @@ import org.bukkit.event.Listener;
  *
  */
 public class MiningAndroidListener implements Listener {
-
     public MiningAndroidListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

@@ -12,7 +12,6 @@ import java.io.Serial;
  * @see SlimefunAddon
  */
 public class MissingDependencyException extends RuntimeException {
-
     @Serial
     private static final long serialVersionUID = -2255888430181930571L;
 

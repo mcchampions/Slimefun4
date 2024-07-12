@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 public class JetBootsTask extends AbstractPlayerTask {
-
     private static final float COST = 0.075F;
 
     private final JetBoots boots;

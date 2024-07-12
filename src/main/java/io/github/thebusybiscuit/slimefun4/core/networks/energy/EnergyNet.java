@@ -40,7 +40,6 @@ import org.bukkit.block.Block;
  *
  */
 public class EnergyNet extends Network implements HologramOwner {
-
     private static final int RANGE = 6;
 
     private final Map<Location, EnergyNetProvider> generators = new HashMap<>();

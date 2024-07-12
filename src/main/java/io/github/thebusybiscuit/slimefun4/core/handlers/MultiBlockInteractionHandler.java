@@ -24,7 +24,6 @@ import org.bukkit.entity.Player;
  */
 @FunctionalInterface
 public interface MultiBlockInteractionHandler extends ItemHandler {
-
     boolean onInteract(Player p, MultiBlock mb, Block b);
 
     @Override

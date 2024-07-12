@@ -18,7 +18,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
  */
 @Deprecated
 public class Config {
-
     /**
      * -- GETTER --
      *  Returns the File the Config is handling

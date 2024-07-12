@@ -68,7 +68,6 @@ import org.bukkit.inventory.ShapelessRecipe;
  *
  */
 public abstract class AbstractAutoCrafter extends SlimefunItem implements EnergyNetComponent {
-
     private final Map<Block, ItemStack> recipeCache;
 
     /**
@@ -110,7 +109,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
         recipeCache = new HashMap<>();
 
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
                 AbstractAutoCrafter.this.tick(b, data);
@@ -155,7 +153,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      */
     @ParametersAreNonnullByDefault
     public void onRightClick(Block b, Player p) {
-
         // Check if we have a valid chest below
         if (!isValidInventory(b.getRelative(BlockFace.DOWN))) {
             Slimefun.getLocalization().sendMessage(p, "messages.auto-crafting.missing-chest");
@@ -292,7 +289,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @return Whether that {@link Block} has a valid {@link Inventory}
      */
     protected boolean isValidInventory(Block block) {
-
         if (CrafterInteractorManager.hasInterator(block)) {
             return true;
         }
@@ -335,7 +331,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *            The {@link AbstractRecipe} to select
      */
     protected void setSelectedRecipe(Block b, @Nullable AbstractRecipe recipe) {
-
         BlockStateSnapshotResult result = PaperLib.getBlockState(b, false);
         BlockState state = result.getState();
 
@@ -370,8 +365,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      */
     @ParametersAreNonnullByDefault
     protected void showRecipe(Player p, Block b, AbstractRecipe recipe) {
-
-
         ChestMenu menu = new ChestMenu(getItemName());
         menu.setPlayerInventoryClickable(false);
         menu.setEmptySlotsClickable(false);
@@ -465,7 +458,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @return Whether this crafting operation was successful or not
      */
     public boolean craft(CrafterInteractable inv, AbstractRecipe recipe) {
-
         // Make sure that the Recipe is actually enabled
         if (!recipe.isEnabled()) {
             return false;
@@ -595,7 +587,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
 
     @Override
     public void register(SlimefunAddon addon) {
-
         this.addon = addon;
 
         if (getCapacity() <= 0) {
@@ -621,7 +612,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
     }
 
     private int getIngredientCount(AbstractRecipe recipe) {
-
         if (recipe instanceof SlimefunItemRecipe) {
             // Recipe is for slimefun item
             List<ItemStackWrapper> itemInRecipe = new ArrayList<>();

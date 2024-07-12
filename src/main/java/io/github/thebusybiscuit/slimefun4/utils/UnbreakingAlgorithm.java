@@ -13,7 +13,6 @@ import org.bukkit.enchantments.Enchantment;
  * @see DamageableItem
  */
 public enum UnbreakingAlgorithm {
-
     /**
      * For armor sets, unbreaking is capped at max. 40% effectiveness.
      */

@@ -42,7 +42,6 @@ import org.bukkit.inventory.ItemStack;
 // TODO: Replace this with "AbstractContainer" and "AbstractElectricalMachine" classes.
 public abstract class AContainer extends SlimefunItem
         implements InventoryBlock, EnergyNetComponent, MachineProcessHolder<CraftingOperation> {
-
     private static final int[] BORDER = {0, 1, 2, 3, 4, 5, 6, 7, 8, 13, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44};
     private static final int[] BORDER_IN = {9, 10, 11, 12, 18, 21, 27, 28, 29, 30};
     private static final int[] BORDER_OUT = {14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
@@ -67,7 +66,6 @@ public abstract class AContainer extends SlimefunItem
     
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
@@ -116,7 +114,6 @@ public abstract class AContainer extends SlimefunItem
 
         for (int i : getOutputSlots()) {
             preset.addMenuClickHandler(i, new AdvancedMenuClickHandler() {
-
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
                     return false;
@@ -331,7 +328,6 @@ public abstract class AContainer extends SlimefunItem
     @Override
     public void preRegister() {
         addItemHandler(new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
                 AContainer.this.tick(b);
@@ -350,7 +346,6 @@ public abstract class AContainer extends SlimefunItem
 
         if (currentOperation != null) {
             if (takeCharge(b.getLocation())) {
-
                 if (!currentOperation.isFinished()) {
                     processor.updateProgressBar(inv, 22, currentOperation);
                     currentOperation.addProgress(1);

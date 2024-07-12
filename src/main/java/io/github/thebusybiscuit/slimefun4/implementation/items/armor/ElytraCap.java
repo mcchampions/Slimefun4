@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  * @see ElytraImpactListener
  */
 public class ElytraCap extends SlimefunArmorPiece implements DamageableItem, ProtectiveArmor {
-
     private final NamespacedKey key;
 
     @ParametersAreNonnullByDefault

@@ -20,7 +20,6 @@ import javax.annotation.Nullable;
  * 为了防止有附属使用该类，故不删除
  */
 public final class Debug {
-
     @Getter
     private static final List<String> testCase = new ArrayList<>();
 

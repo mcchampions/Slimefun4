@@ -36,7 +36,6 @@ import org.bukkit.inventory.ItemStack;
  * @author AlexLander123
  */
 public class ReactorAccessPort extends SlimefunItem {
-
     private static final int INFO_SLOT = 49;
 
     private final int[] background = {0, 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 21, 23};
@@ -51,7 +50,6 @@ public class ReactorAccessPort extends SlimefunItem {
         addItemHandler(onBreak());
 
         new BlockMenuPreset(getId(), "&2反应堆交互接口") {
-
             @Override
             public void init() {
                 constructMenu(this);
@@ -123,7 +121,6 @@ public class ReactorAccessPort extends SlimefunItem {
     
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());

@@ -15,7 +15,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  *
  */
 public class IntRangeSetting extends ItemSetting<Integer> {
-
     private final int min;
     private final int max;
 

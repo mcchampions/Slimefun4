@@ -24,7 +24,6 @@ import org.bukkit.Tag;
  */
 @Getter
 public class MaterialTagSetting extends ItemSetting<List<String>> {
-
     /**
      * -- GETTER --
      *  This

@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SoulboundListener implements Listener {
-
     private final Map<UUID, Map<Integer, ItemStack>> soulbound = new HashMap<>();
 
     public SoulboundListener(Slimefun plugin) {

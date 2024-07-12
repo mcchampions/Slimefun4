@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class CargoNodeListener implements Listener {
-
     public CargoNodeListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

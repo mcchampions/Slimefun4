@@ -34,7 +34,6 @@ import java.util.function.UnaryOperator;
  *
  */
 public abstract class SlimefunLocalization implements Keyed {
-
     private final Config defaultConfig;
 
     protected SlimefunLocalization(Slimefun plugin) {
@@ -151,7 +150,6 @@ public abstract class SlimefunLocalization implements Keyed {
 
     @ParametersAreNonnullByDefault
     private @Nullable String getStringOrNull(@Nullable Language language, LanguageFile file, String path) {
-
         if (language == null) {
             // Unit-Test scenario (or something went horribly wrong)
             return "Error: No language present";
@@ -184,7 +182,6 @@ public abstract class SlimefunLocalization implements Keyed {
 
     @ParametersAreNonnullByDefault
     private @Nullable List<String> getStringListOrNull(@Nullable Language language, LanguageFile file, String path) {
-
         if (language == null) {
             // Unit-Test scenario (or something went horribly wrong)
             return List.of("Error: No language present");
@@ -216,7 +213,6 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public String getMessage(String key) {
-
         Language language = getDefaultLanguage();
 
         String message = language == null
@@ -231,7 +227,6 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public String getMessage(Player p, String key) {
-
         return getString(getLanguage(p), LanguageFile.MESSAGES, key);
     }
 
@@ -247,14 +242,11 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public List<String> getMessages(Player p, String key) {
-
         return getStringList(getLanguage(p), LanguageFile.MESSAGES, key);
     }
 
     @ParametersAreNonnullByDefault
     public List<String> getMessages(Player p, String key, UnaryOperator<String> function) {
-
-
         List<String> messages = getMessages(p, key);
         messages.replaceAll(function);
 
@@ -262,22 +254,18 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public @Nullable String getResearchName(Player p, NamespacedKey key) {
-
         return getStringOrNull(getLanguage(p), LanguageFile.RESEARCHES, key.getNamespace() + '.' + key.getKey());
     }
 
     public @Nullable String getItemGroupName(Player p, NamespacedKey key) {
-
         return getStringOrNull(getLanguage(p), LanguageFile.CATEGORIES, key.getNamespace() + '.' + key.getKey());
     }
 
     public @Nullable String getResourceString(Player p, String key) {
-
         return getStringOrNull(getLanguage(p), LanguageFile.RESOURCES, key);
     }
 
     public ItemStack getRecipeTypeItem(Player p, RecipeType recipeType) {
-
         ItemStack item = recipeType.toItem();
 
         if (item == null) {
@@ -313,7 +301,6 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public void sendMessage(CommandSender recipient, String key, boolean addPrefix) {
-
         String prefix = addPrefix ? getChatPrefix() : "";
 
         if (recipient instanceof Player player) {
@@ -324,7 +311,6 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public void sendActionbarMessage(Player player, String key, boolean addPrefix) {
-
         String prefix = addPrefix ? getChatPrefix() : "";
         String message = ChatColors.color(prefix + getMessage(player, key));
 

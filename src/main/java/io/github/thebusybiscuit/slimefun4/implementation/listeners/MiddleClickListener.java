@@ -21,7 +21,6 @@ import org.bukkit.event.inventory.InventoryType.SlotType;
  *
  */
 public class MiddleClickListener implements Listener {
-
     public MiddleClickListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

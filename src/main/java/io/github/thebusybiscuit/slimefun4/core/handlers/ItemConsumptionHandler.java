@@ -26,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
  */
 @FunctionalInterface
 public interface ItemConsumptionHandler extends ItemHandler {
-
     /**
      * This method gets fired whenever a {@link PlayerItemConsumeEvent} involving this
      * {@link SlimefunItem} has been triggered.

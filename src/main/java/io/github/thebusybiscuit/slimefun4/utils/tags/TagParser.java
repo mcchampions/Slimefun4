@@ -36,7 +36,6 @@ import org.bukkit.Tag;
  *
  */
 public class TagParser implements Keyed {
-
     /**
      * Every {@link Tag} has a {@link NamespacedKey}.
      * This is the {@link NamespacedKey} for the resulting {@link Tag}.
@@ -90,7 +89,6 @@ public class TagParser implements Keyed {
      */
     public void parse(String json, BiConsumer<Set<Material>, Set<Tag<Material>>> callback)
             throws TagMisconfigurationException {
-
         try {
             Set<Material> materials = EnumSet.noneOf(Material.class);
             Set<Tag<Material>> tags = new HashSet<>();

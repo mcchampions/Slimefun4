@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
-
     private final int speed;
     private final int efficiency;
     private final int fortuneLevel;
@@ -73,7 +72,6 @@ public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
-
             @Override
             public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
                 if (b.getType() != Material.FURNACE) {

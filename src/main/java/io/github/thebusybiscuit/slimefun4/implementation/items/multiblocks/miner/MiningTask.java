@@ -39,7 +39,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 class MiningTask implements Runnable {
-
     private final IndustrialMiner miner;
     private final UUID owner;
 

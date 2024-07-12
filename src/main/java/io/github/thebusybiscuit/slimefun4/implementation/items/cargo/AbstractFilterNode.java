@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 abstract class AbstractFilterNode extends AbstractCargoNode {
-
     protected static final int[] SLOTS = {19, 20, 21, 28, 29, 30, 37, 38, 39};
     private static final String FILTER_TYPE = "filter-type";
     private static final String FILTER_LORE = "filter-lore";
@@ -54,7 +53,6 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
     
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
-
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());

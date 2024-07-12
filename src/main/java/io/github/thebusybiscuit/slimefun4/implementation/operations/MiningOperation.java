@@ -12,7 +12,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class MiningOperation implements MachineOperation {
-
     @Getter
     private final ItemStack result;
 

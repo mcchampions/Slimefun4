@@ -26,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class Multimeter extends SimpleSlimefunItem<ItemUseHandler> {
-
     @ParametersAreNonnullByDefault
     public Multimeter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

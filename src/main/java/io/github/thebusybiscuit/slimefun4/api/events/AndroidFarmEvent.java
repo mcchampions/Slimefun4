@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  * @author TheBusyBiscuit
  */
 public class AndroidFarmEvent extends Event implements Cancellable {
-
     private static final HandlerList handlers = new HandlerList();
 
     /**

@@ -11,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public enum AndroidFuelSource {
-
     /**
      * This {@link ProgrammableAndroid} runs on solid fuel, e.g. Wood or coal
      */

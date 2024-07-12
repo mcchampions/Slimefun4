@@ -12,7 +12,6 @@ import org.bukkit.Location;
  */
 @FunctionalInterface
 public interface ExternallyInteractable {
-
     /**
      * This method should be used by the implementing class to fulfill the actions needed
      * when being interacted with returning the result of the interaction.

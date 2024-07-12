@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class WindStaff extends SimpleSlimefunItem<ItemUseHandler> {
-
     private final ItemSetting<Integer> multiplier = new IntRangeSetting(this, "power", 1, 4, Integer.MAX_VALUE);
 
     @ParametersAreNonnullByDefault

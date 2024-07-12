@@ -26,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class MobDropListener implements Listener {
-
     public MobDropListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

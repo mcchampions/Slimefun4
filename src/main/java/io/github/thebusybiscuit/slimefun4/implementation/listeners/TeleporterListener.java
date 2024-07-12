@@ -30,7 +30,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
  *
  */
 public class TeleporterListener implements Listener {
-
     // @formatter:off
     private final BlockFace[] faces = {
         BlockFace.NORTH, BlockFace.NORTH_EAST, BlockFace.EAST, BlockFace.SOUTH_EAST,

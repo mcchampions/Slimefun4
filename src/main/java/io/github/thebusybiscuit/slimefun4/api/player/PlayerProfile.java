@@ -49,7 +49,6 @@ import org.bukkit.entity.Player;
  *
  */
 public class PlayerProfile {
-
     @Getter
     private final OfflinePlayer owner;
     private int backpackNum;
@@ -131,7 +130,6 @@ public class PlayerProfile {
      *            Whether the {@link Research} should be unlocked or locked
      */
     public void setResearched(Research research, boolean unlock) {
-
         dirty = true;
 
         if (unlock) {
@@ -205,7 +203,6 @@ public class PlayerProfile {
      *            The {@link Waypoint} to add
      */
     public void addWaypoint(Waypoint waypoint) {
-
         for (Waypoint wp : waypoints) {
             if (wp.getId().equals(waypoint.getId())) {
                 throw new IllegalArgumentException("A Waypoint with that id already exists for this Player");
@@ -229,7 +226,6 @@ public class PlayerProfile {
      *            The {@link Waypoint} to remove
      */
     public void removeWaypoint(Waypoint waypoint) {
-
         if (waypoints.remove(waypoint)) {
             waypointsFile.setValue(waypoint.getId(), null);
             markDirty();
@@ -349,7 +345,6 @@ public class PlayerProfile {
      * @return If the {@link OfflinePlayer} was cached or not.
      */
     public static boolean get(OfflinePlayer p, Consumer<PlayerProfile> callback) {
-
         UUID uuid = p.getUniqueId();
         PlayerProfile profile = Slimefun.getRegistry().getPlayerProfiles().get(uuid);
 
@@ -372,7 +367,6 @@ public class PlayerProfile {
      * @return Whether the {@link PlayerProfile} was already loaded
      */
     public static boolean request(OfflinePlayer p) {
-
         var profile = Slimefun.getRegistry().getPlayerProfiles().get(p.getUniqueId());
         if (profile == null || profile.isInvalid) {
             // Should probably prevent multiple requests for the same profile in the future
@@ -406,7 +400,6 @@ public class PlayerProfile {
     }
 
     public boolean hasFullProtectionAgainst(ProtectionType type) {
-
         int armorCount = 0;
         NamespacedKey setId = null;
 

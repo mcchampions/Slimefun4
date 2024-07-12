@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import javax.annotation.Nullable;
 
 class MultiToolMode {
-
     private final ItemSetting<String> item;
     private final ItemSetting<Boolean> enabled;
 

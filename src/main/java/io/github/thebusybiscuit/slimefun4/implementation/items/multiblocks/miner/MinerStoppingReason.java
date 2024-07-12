@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
  *
  */
 enum MinerStoppingReason {
-
     /**
      * The {@link IndustrialMiner} has run out of fuel.
      */

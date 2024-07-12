@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class MeatJerky extends SimpleSlimefunItem<ItemConsumptionHandler> {
-
     private final ItemSetting<Integer> saturation =
             new IntRangeSetting(this, "saturation-level", 0, 6, Integer.MAX_VALUE);
 

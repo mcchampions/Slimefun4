@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 class SlimefunItemRecipe extends AbstractRecipe {
-
     private final int[] slots = {11, 12, 13, 20, 21, 22, 29, 30, 31};
     private final SlimefunItem item;
 
@@ -48,7 +47,6 @@ class SlimefunItemRecipe extends AbstractRecipe {
 
     @Override
     public void show(ChestMenu menu, AsyncRecipeChoiceTask task) {
-
         menu.addItem(24, getResult().clone(), ChestMenuUtils.getEmptyClickHandler());
         ItemStack[] recipe = item.getRecipe();
 

@@ -13,7 +13,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 class ResearchCommand extends SubCommand {
-
     private static final String PLACEHOLDER_PLAYER = "%player%";
     private static final String PLACEHOLDER_RESEARCH = "%research%";
 
