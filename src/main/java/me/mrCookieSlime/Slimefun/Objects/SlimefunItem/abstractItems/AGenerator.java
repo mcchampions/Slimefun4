@@ -270,8 +270,6 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
      * @return This method will return the current instance of {@link AGenerator}, so that can be chained.
      */
     public final AGenerator setEnergyProduction(int energyProduced) {
-        
-
         this.energyProducedPerTick = energyProduced;
         return this;
     }

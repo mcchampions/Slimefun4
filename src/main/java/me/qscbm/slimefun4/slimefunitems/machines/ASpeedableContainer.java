@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
  * 可提速的机器
  */
 @Getter
-public abstract class ASpeedableContainer extends AContainer {
+public abstract class ASpeedableContainer extends AContainer implements Speedable {
     @Setter
     private int speedLimit = 10;
 
@@ -34,15 +34,6 @@ public abstract class ASpeedableContainer extends AContainer {
 
     protected ASpeedableContainer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, ItemStack recipeOutput) {
         super(itemGroup, item, recipeType, recipe, recipeOutput);
-    }
-
-    public int getIncreasedSpeed(SlimefunBlockData data) {
-        String speedStr = data.getData("speed");
-        if (speedStr == null) {
-            data.setData("speed", "1");
-            speedStr = "1";
-        }
-        return Integer.parseInt(speedStr);
     }
 
     @Override
@@ -59,20 +50,6 @@ public abstract class ASpeedableContainer extends AContainer {
                 return false;
             }
         });
-    }
-
-    public synchronized boolean speedUp(SlimefunBlockData data) {
-        int speed = getIncreasedSpeed(data);
-        if (speed == speedLimit) {
-            return false;
-        }
-        data.setData("speed", String.valueOf(speed + 1));
-        return true;
-    }
-
-    public boolean speedUp(Block block) {
-        return speedUp(Slimefun.getDatabaseManager()
-                .getBlockDataController().getBlockData(block.getLocation()));
     }
 
     protected void tick(Block b, SlimefunBlockData data) {
