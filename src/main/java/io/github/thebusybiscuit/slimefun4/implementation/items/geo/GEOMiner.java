@@ -139,8 +139,6 @@ public class GEOMiner extends SlimefunItem
      * @return This method will return the current instance of {@link GEOMiner}, so that can be chained.
      */
     public final GEOMiner setProcessingSpeed(int speed) {
-        
-
         this.processingSpeed = speed;
         return this;
     }
