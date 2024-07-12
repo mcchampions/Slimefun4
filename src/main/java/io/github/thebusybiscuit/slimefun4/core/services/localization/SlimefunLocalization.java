@@ -6,6 +6,7 @@ import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.services.LanguageService;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -29,9 +30,7 @@ import java.util.function.UnaryOperator;
  * There is not really much more I can say besides that...
  *
  * @author TheBusyBiscuit
- *
  * @see LocalizationService
- *
  */
 public abstract class SlimefunLocalization implements Keyed {
     private final Config defaultConfig;
@@ -66,9 +65,7 @@ public abstract class SlimefunLocalization implements Keyed {
      * This method attempts to return the {@link Language} with the given
      * language code.
      *
-     * @param id
-     *            The language code
-     *
+     * @param id The language code
      * @return A {@link Language} with the given id or null
      */
     public abstract @Nullable Language getLanguage(String id);
@@ -76,9 +73,7 @@ public abstract class SlimefunLocalization implements Keyed {
     /**
      * This method returns the currently selected {@link Language} of a {@link Player}.
      *
-     * @param p
-     *            The {@link Player} to query
-     *
+     * @param p The {@link Player} to query
      * @return The {@link Language} that was selected by the given {@link Player}
      */
     public abstract @Nullable Language getLanguage(Player p);
@@ -94,9 +89,7 @@ public abstract class SlimefunLocalization implements Keyed {
      * This returns whether a {@link Language} with the given id exists within
      * the project resources.
      *
-     * @param id
-     *            The {@link Language} id
-     *
+     * @param id The {@link Language} id
      * @return Whether the project contains a {@link Language} with that id
      */
     protected abstract boolean hasLanguage(String id);
@@ -112,10 +105,8 @@ public abstract class SlimefunLocalization implements Keyed {
     /**
      * This method adds a new {@link Language} with the given id and texture.
      *
-     * @param id
-     *            The {@link Language} id
-     * @param texture
-     *            The texture of how this {@link Language} should be displayed
+     * @param id      The {@link Language} id
+     * @param texture The texture of how this {@link Language} should be displayed
      */
     protected abstract void addLanguage(String id, String texture);
 
@@ -134,11 +125,6 @@ public abstract class SlimefunLocalization implements Keyed {
 
     private FileConfiguration getDefaultFile(LanguageFile file) {
         Language language = getLanguage(LanguagePreset.CHINESE_CHINA.getLanguageCode());
-
-        if (language == null) {
-            throw new IllegalStateException("Fallback language \"en\" is missing!");
-        }
-
         FileConfiguration fallback = language.getFile(file);
 
         if (fallback != null) {
@@ -150,11 +136,6 @@ public abstract class SlimefunLocalization implements Keyed {
 
     @ParametersAreNonnullByDefault
     private @Nullable String getStringOrNull(@Nullable Language language, LanguageFile file, String path) {
-        if (language == null) {
-            // Unit-Test scenario (or something went horribly wrong)
-            return "Error: No language present";
-        }
-
         FileConfiguration config = language.getFile(file);
 
         if (config != null) {
@@ -213,12 +194,7 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public String getMessage(String key) {
-        Language language = getDefaultLanguage();
-
-        String message = language == null
-                ? null
-                : language.getFile(LanguageFile.MESSAGES).getString(key);
-
+        String message = LanguageService.MESSAGE_MAP.get(key);
         if (message == null) {
             return getDefaultFile(LanguageFile.MESSAGES).getString(key);
         }
@@ -227,22 +203,26 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public String getMessage(Player p, String key) {
-        return getString(getLanguage(p), LanguageFile.MESSAGES, key);
+        String message = LanguageService.MESSAGE_MAP.get(key);
+        if (message == null) {
+            return getDefaultFile(LanguageFile.MESSAGES).getString(key);
+        }
+
+        return message;
     }
 
     /**
      * Returns the Strings referring to the specified Key
      *
-     * @param key
-     *            The Key of those Messages
+     * @param key The Key of those Messages
      * @return The List this key is referring to
      */
     public List<String> getDefaultMessages(String key) {
-        return defaultConfig.getStringList(key);
+        return LanguageService.MESSAGES_MAP.get(key);
     }
 
     public List<String> getMessages(Player p, String key) {
-        return getStringList(getLanguage(p), LanguageFile.MESSAGES, key);
+        return LanguageService.MESSAGES_MAP.get(key);
     }
 
     @ParametersAreNonnullByDefault
@@ -254,15 +234,15 @@ public abstract class SlimefunLocalization implements Keyed {
     }
 
     public @Nullable String getResearchName(Player p, NamespacedKey key) {
-        return getStringOrNull(getLanguage(p), LanguageFile.RESEARCHES, key.getNamespace() + '.' + key.getKey());
+        return LanguageService.RESEARCH_NAME_MAP.get(key.getNamespace() + '.' + key.getKey());
     }
 
     public @Nullable String getItemGroupName(Player p, NamespacedKey key) {
-        return getStringOrNull(getLanguage(p), LanguageFile.CATEGORIES, key.getNamespace() + '.' + key.getKey());
+        return LanguageService.CATEGORIE_NAME_MAP.get(key.getNamespace() + '.' + key.getKey());
     }
 
     public @Nullable String getResourceString(Player p, String key) {
-        return getStringOrNull(getLanguage(p), LanguageFile.RESOURCES, key);
+        return LanguageService.RESOURCE_NAME_MAP.get(key);
     }
 
     public ItemStack getRecipeTypeItem(Player p, RecipeType recipeType) {
@@ -273,21 +253,17 @@ public abstract class SlimefunLocalization implements Keyed {
             return new ItemStack(Material.AIR);
         }
 
-        Language language = getLanguage(p);
-
         NamespacedKey key = recipeType.getKey();
 
         return new CustomItemStack(item, meta -> {
-            String displayName =
-                    getStringOrNull(language, LanguageFile.RECIPES, key.getNamespace() + "." + key.getKey() + ".name");
+            String displayName = LanguageService.RECIPE_NAME_MAP.get(key.getNamespace() + "." + key.getKey() + ".name");
 
             // Set the display name if possible, else keep the default item name.
             if (displayName != null) {
                 meta.setDisplayName(ChatColor.AQUA + displayName);
             }
 
-            List<String> lore = getStringListOrNull(
-                    language, LanguageFile.RECIPES, key.getNamespace() + "." + key.getKey() + ".lore");
+            List<String> lore = LanguageService.RECIPE_LORE_MAP.get(key.getNamespace() + "." + key.getKey() + ".lore");
 
             // Set the lore if possible, else keep the default lore.
             if (lore != null) {

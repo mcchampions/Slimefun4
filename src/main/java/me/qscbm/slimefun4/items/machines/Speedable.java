@@ -1,13 +1,12 @@
-package me.qscbm.slimefun4.slimefunitems.machines;
+package me.qscbm.slimefun4.items.machines;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
-import io.github.thebusybiscuit.slimefun4.core.attributes.Placeable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.block.Block;
 
 public interface Speedable {
     int getSpeedLimit();
-    void setSpeedLimit();
+    void setSpeedLimit(int speedLimit);
     default int getIncreasedSpeed(SlimefunBlockData data) {
         String speedStr = data.getData("ispeed");
         if (speedStr == null) {

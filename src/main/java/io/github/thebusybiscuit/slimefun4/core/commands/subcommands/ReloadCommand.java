@@ -4,6 +4,8 @@ import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.services.LanguageService;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 
@@ -28,6 +30,7 @@ public class ReloadCommand extends SubCommand {
     public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.reload") || sender instanceof ConsoleCommandSender) {
             if (Slimefun.getConfigManager().load(true)) {
+                LanguageService.get().load();
                 Slimefun.getLocalization().sendMessage(sender, "commands.reload.reload-success", true);
             } else {
                 Slimefun.getLocalization().sendMessage(sender, "commands.reload.reload-failed", true);

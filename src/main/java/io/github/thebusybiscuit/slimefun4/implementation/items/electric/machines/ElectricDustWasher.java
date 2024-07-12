@@ -11,7 +11,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.qscbm.slimefun4.slimefunitems.machines.ASpeedableContainer;
+import me.qscbm.slimefun4.items.machines.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

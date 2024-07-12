@@ -70,18 +70,10 @@ public final class Language {
      * @return A percentage {@code (0.0 - 100.0)} for the progress of translation of this {@link Language}
      */
     public double getTranslationProgress() {
-        if (id.equals("en")) {
-            return 100.0;
-        } else {
-            if (progress < 0) {
-                progress = Slimefun.getLocalization().calculateProgress(this);
-            }
-
-            return progress;
-        }
+        return 100.0;
     }
 
-    @Nullable FileConfiguration getFile(LanguageFile file) {
+    public @Nullable FileConfiguration getFile(LanguageFile file) {
         return files.get(file);
     }
 

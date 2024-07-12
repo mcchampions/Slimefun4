@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public enum LanguagePreset {
-   CHINESE_CHINA("zh-CN", "7f9bc035cdc80f1ab5e1198f29f3ad3fdd2b42d9a69aeb64de990681800b98dc");
+    CHINESE_CHINA("zh-CN", "7f9bc035cdc80f1ab5e1198f29f3ad3fdd2b42d9a69aeb64de990681800b98dc");
 
     private final String id;
     private final boolean releaseReady;

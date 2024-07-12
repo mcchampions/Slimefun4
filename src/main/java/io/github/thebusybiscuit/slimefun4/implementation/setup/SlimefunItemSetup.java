@@ -207,7 +207,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import me.qscbm.slimefun4.slimefunitems.tools.OverclockModule;
+import me.qscbm.slimefun4.items.tools.OverclockModule;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

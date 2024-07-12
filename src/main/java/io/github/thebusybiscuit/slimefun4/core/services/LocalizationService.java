@@ -142,18 +142,7 @@ public class LocalizationService extends SlimefunLocalization {
 
     @Override
     public Language getLanguage(Player p) {
-        PersistentDataContainer container = p.getPersistentDataContainer();
-        String language = container.get(languageKey, PersistentDataType.STRING);
-
-        if (language != null) {
-            Language lang = languages.get(language);
-
-            if (lang != null) {
-                return lang;
-            }
-        }
-
-        return getDefaultLanguage();
+         return getLanguage("zh-CN");
     }
 
     private void setLanguage(String language, boolean reset) {

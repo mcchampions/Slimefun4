@@ -48,6 +48,7 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import io.papermc.lib.PaperLib;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
+import me.qscbm.slimefun4.services.LanguageService;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -235,7 +236,10 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                 networkSize,
                 config.getBoolean("networks.enable-visualizer"),
                 config.getBoolean("networks.delete-excess-items"));
+        // load language cache
+        LanguageService.get().load();
         // Registering all GEO Resources
+
         logger.log(Level.INFO, "加载矿物资源...");
         GEOResourcesSetup.setup();
 
