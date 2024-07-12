@@ -24,7 +24,7 @@ import java.util.Map;
  *
  */
 public final class Language {
-    private final Map<LanguageFile, FileConfiguration> files = new EnumMap<>(LanguageFile.class);
+    public final Map<LanguageFile, FileConfiguration> files = new EnumMap<>(LanguageFile.class);
 
     /**
      * -- GETTER --

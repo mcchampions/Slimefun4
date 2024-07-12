@@ -208,22 +208,7 @@ public class LocalizationService extends SlimefunLocalization {
      * @return A percentage {@code (0.0 - 100.0)} for the progress of translation of that {@link Language}
      */
     public double calculateProgress(Language lang) {
-        Set<String> defaultKeys = getTotalKeys(languages.get("zh-CN"));
-
-        if (defaultKeys.isEmpty()) {
-            return 0;
-        }
-
-        Set<String> keys = getTotalKeys(lang);
-        int matches = 0;
-
-        for (String key : defaultKeys) {
-            if (keys.contains(key)) {
-                matches++;
-            }
-        }
-
-        return Math.min(NumberUtils.reparseDouble(100.0 * (matches / (double) defaultKeys.size())), 100.0);
+        return 100d;
     }
 
     private FileConfiguration getConfigurationFromStream(
