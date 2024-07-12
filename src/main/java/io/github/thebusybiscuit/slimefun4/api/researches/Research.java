@@ -146,6 +146,11 @@ public class Research implements Keyed {
         return localized != null ? localized : name;
     }
 
+    public String getName() {
+        String localized = Slimefun.getLocalization().getResearchName(null, key);
+        return localized != null ? localized : name;
+    }
+
     /**
      * Retrieve the name of this {@link Research} without any localization nor coloring.
      *

@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class LanguageService {
     public static final HashMap<String, String> RESEARCH_NAME_MAP = new HashMap<>();
@@ -33,12 +34,16 @@ public class LanguageService {
     }
 
     public void load() {
+        Slimefun.logger().log(Level.INFO,"正在加载语言文件至内存中");
+        long start = System.currentTimeMillis();
         language = Slimefun.getLocalization().getLanguage("zh-CN");
         loadMessages();
         loadCategories();
         loadRecipes();
         loadResearches();
         loadResources();
+        long end = System.currentTimeMillis();
+        Slimefun.logger().log(Level.INFO,"加载完毕,耗时:" + (end - start) + "ms");
     }
 
     public void loadResearches() {

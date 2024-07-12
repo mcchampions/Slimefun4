@@ -114,12 +114,14 @@ class ResearchCommand extends SubCommand {
 
     
     private Optional<Research> getResearchFromString(String input) {
-        if (!input.contains(":")) {
-            return Optional.empty();
+        for (Research research : Slimefun.getRegistry().getResearches()) {
+            if (research.getKey().toString().equalsIgnoreCase(input)) {
+                return Optional.of(research);
+            }
         }
 
         for (Research research : Slimefun.getRegistry().getResearches()) {
-            if (research.getKey().toString().equalsIgnoreCase(input)) {
+            if (research.getName().toString().equals(input)) {
                 return Optional.of(research);
             }
         }
