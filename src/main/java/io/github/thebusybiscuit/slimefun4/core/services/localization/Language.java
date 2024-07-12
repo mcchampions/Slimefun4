@@ -107,11 +107,4 @@ public final class Language {
     public String toString() {
         return "Language {id= " + id + ", default=" + isDefault() + " }";
     }
-
-    
-    FileConfiguration[] getFiles() {
-        // @formatter:off
-        return Arrays.stream(LanguageFile.valuesCached).map(this::getFile).toArray(FileConfiguration[]::new);
-        // @formatter:on
-    }
 }

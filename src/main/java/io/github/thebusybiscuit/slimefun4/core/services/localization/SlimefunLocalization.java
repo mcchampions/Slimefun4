@@ -116,11 +116,7 @@ public abstract class SlimefunLocalization implements Keyed {
      * value of {@link LanguagePreset}.
      */
     protected void loadEmbeddedLanguages() {
-        for (LanguagePreset lang : LanguagePreset.values()) {
-            if (lang.isReadyForRelease()) {
-                addLanguage(lang.getLanguageCode(), lang.getTexture());
-            }
-        }
+        addLanguage(LanguagePreset.CHINESE_CHINA.getLanguageCode(), LanguagePreset.CHINESE_CHINA.getTexture());
     }
 
     private FileConfiguration getDefaultFile(LanguageFile file) {
@@ -132,38 +128,6 @@ public abstract class SlimefunLocalization implements Keyed {
         } else {
             throw new IllegalStateException("Fallback file: \"" + file.getFilePath("en") + "\" is missing!");
         }
-    }
-
-    @ParametersAreNonnullByDefault
-    private @Nullable List<String> getStringListOrNull(@Nullable Language language, LanguageFile file, String path) {
-        if (language == null) {
-            // Unit-Test scenario (or something went horribly wrong)
-            return List.of("Error: No language present");
-        }
-
-        FileConfiguration config = language.getFile(file);
-
-        if (config != null) {
-            List<String> value = config.getStringList(path);
-
-            // Return the found value (unless empty)
-            if (!value.isEmpty()) {
-                return value;
-            }
-        }
-
-        // Fallback to default configuration
-        FileConfiguration defaults = getDefaultFile(file);
-        List<String> defaultValue = defaults.getStringList(path);
-
-        // Return the default value or an error message
-        return !defaultValue.isEmpty() ? defaultValue : null;
-    }
-
-    @ParametersAreNonnullByDefault
-    private List<String> getStringList(@Nullable Language language, LanguageFile file, String path) {
-        List<String> list = getStringListOrNull(language, file, path);
-        return list != null ? list : List.of("! Missing string \"" + path + '"');
     }
 
     public String getMessage(String key) {
@@ -325,17 +289,4 @@ public abstract class SlimefunLocalization implements Keyed {
         sendMessages(recipient, key, true, function);
     }
 
-    protected Set<String> getTotalKeys(Language lang) {
-        return getKeys(lang.getFiles());
-    }
-
-    protected Set<String> getKeys(FileConfiguration... files) {
-        Set<String> keys = new HashSet<>();
-
-        for (FileConfiguration cfg : files) {
-            keys.addAll(cfg.getKeys(true));
-        }
-
-        return keys;
-    }
 }

@@ -4,17 +4,13 @@ import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.LanguageFile;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -25,8 +21,6 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 
 /**
  * As the name suggests, this Service is responsible for Localization.
@@ -71,14 +65,7 @@ public class LocalizationService extends SlimefunLocalization {
                 language = serverDefaultLanguage;
             }
 
-            if (hasLanguage(serverDefaultLanguage)) {
-                setLanguage(serverDefaultLanguage, !serverDefaultLanguage.equals(language));
-            } else {
-                setLanguage("zh-CN", false);
-                plugin.getLogger()
-                        .log(Level.WARNING, "Could not recognize the given language: \"{0}\"", serverDefaultLanguage);
-            }
-
+            initLanguage();
             save();
         } else {
             translationsEnabled = false;
@@ -119,8 +106,7 @@ public class LocalizationService extends SlimefunLocalization {
     @Override
     public boolean hasLanguage(String id) {
         // Checks if our jar files contains a messages.yml file for that language
-        String file = LanguageFile.MESSAGES.getFilePath(id);
-        return !getConfigurationFromStream(file, null).getKeys(false).isEmpty();
+        return Objects.equals(id, "zh-CN");
     }
 
     /**
@@ -145,24 +131,19 @@ public class LocalizationService extends SlimefunLocalization {
          return getLanguage("zh-CN");
     }
 
-    private void setLanguage(String language, boolean reset) {
-        // Clearing out the old Language (if necessary)
-        if (reset) {
-            getConfig().clear();
-        }
-
+    private void initLanguage() {
         // Copy defaults
         for (LanguageFile file : LanguageFile.values()) {
             if (file != LanguageFile.MESSAGES) {
-                copyToDefaultLanguage(language, file);
+                copyToDefaultLanguage("zh-CN", file);
             }
         }
 
-        Slimefun.logger().log(Level.INFO, "Loaded language \"{0}\"", language);
-        getConfig().setValue(LANGUAGE_PATH, language);
+        Slimefun.logger().log(Level.INFO, "Loaded language \"{0}\"", "zh-CN");
+        getConfig().setValue(LANGUAGE_PATH, "zh-CN");
 
         // Loading in the defaults from our resources folder
-        String path = "/languages/" + language + "/messages.yml";
+        String path = "/languages/" + "zh-CN" + "/messages.yml";
 
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(plugin.getClass().getResourceAsStream(path), StandardCharsets.UTF_8))) {

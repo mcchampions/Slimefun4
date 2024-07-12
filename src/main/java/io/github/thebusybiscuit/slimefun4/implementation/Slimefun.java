@@ -221,7 +221,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
         var config = cfgManager.getPluginConfig();
         String chatPrefix = config.getString("options.chat-prefix");
-        String serverDefaultLanguage = config.getString("options.language");
+        String serverDefaultLanguage = "zh-CN";
         local = new LocalizationService(this, chatPrefix, serverDefaultLanguage);
 
         int networkSize = config.getInt("networks.max-size");
