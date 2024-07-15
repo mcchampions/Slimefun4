@@ -22,12 +22,7 @@ final class StartupWarnings {
     @ParametersAreNonnullByDefault
     static void discourageCSCoreLib(Logger logger) {
         logger.log(Level.SEVERE, BORDER);
-        logger.log(Level.SEVERE, PREFIX + "似乎你还在使用 CS-CoreLib。");
-        logger.log(Level.SEVERE, PREFIX);
-        logger.log(Level.SEVERE, PREFIX + "Slimefun 自 2021/01/30 起");
-        logger.log(Level.SEVERE, PREFIX + "就不再强制依赖 CS-CoreLib 了，");
-        logger.log(Level.SEVERE, PREFIX + "你需要移除 CS-CoreLib");
-        logger.log(Level.SEVERE, PREFIX + "才能让 Slimefun 正常运行。");
+        logger.log(Level.SEVERE, PREFIX + "请卸载 CS-CoreLib。");
         logger.log(Level.SEVERE, BORDER);
     }
 
@@ -39,7 +34,7 @@ final class StartupWarnings {
         logger.log(Level.SEVERE, PREFIX);
         logger.log(Level.SEVERE, PREFIX + "你正在使用 Minecraft 1.{0}.x", majorVersion);
         logger.log(Level.SEVERE, PREFIX + "但 Slimefun {0} 只支持", slimefunVersion);
-        logger.log(Level.SEVERE, PREFIX + "Minecraft {0}", String.join(" / ", Slimefun.getSupportedVersions()));
+        logger.log(Level.SEVERE, PREFIX + "Minecraft {0}", String.join(" / ", Slimefun.getSupportedVersions())) ;
         logger.log(Level.SEVERE, BORDER);
     }
 

@@ -134,16 +134,16 @@ public enum MinecraftVersion {
         if (isVirtual()) {
             return false;
         }
-
         if (this.majorVersion != 20) {
             return this.majorVersion == minecraftVersion;
         } else {
-            return this.majorVersion == minecraftVersion && this.minorVersion == -1
+            return this.majorVersion == minecraftVersion && (this.minorVersion == -1
                     ? patchVersion < 5
-                    : patchVersion >= minorVersion;
+                    : patchVersion >= minorVersion);
         }
-    }
 
+
+    }
     /**
      * This method checks whether this {@link MinecraftVersion} is newer or equal to
      * the given {@link MinecraftVersion},
