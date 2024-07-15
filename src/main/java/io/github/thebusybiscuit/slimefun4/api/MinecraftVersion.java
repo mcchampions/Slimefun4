@@ -41,6 +41,12 @@ public enum MinecraftVersion {
     MINECRAFT_1_20_5(20, 5, "1.20.5+"),
 
     /**
+     * This constant represents Minecraft (Java Edition) Version 1.21
+     * ("The Tricky Trials Update")
+     */
+    MINECRAFT_1_21(21, "1.21.x"),
+
+    /**
      * This constant represents an exceptional state in which we were unable
      * to identify the Minecraft Version we are using
      */
@@ -141,8 +147,6 @@ public enum MinecraftVersion {
                     ? patchVersion < 5
                     : patchVersion >= minorVersion);
         }
-
-
     }
     /**
      * This method checks whether this {@link MinecraftVersion} is newer or equal to

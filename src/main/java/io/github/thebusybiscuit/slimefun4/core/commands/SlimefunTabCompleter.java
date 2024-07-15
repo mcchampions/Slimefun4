@@ -83,10 +83,13 @@ class SlimefunTabCompleter implements TabCompleter {
      *            The typed string
      * @return Sublist if string is not empty
      */
-    
     private List<String> createReturnList(List<String> list, String string) {
         if (string.isEmpty()) {
-            return list;
+            if (list.size() >= MAX_SUGGESTIONS) {
+                return list.subList(0, MAX_SUGGESTIONS);
+            } else {
+                return list;
+            }
         }
 
         String input = string.toLowerCase(Locale.ROOT);
