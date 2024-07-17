@@ -14,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Soulbound;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.implementation.items.LimitedUseItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.CapacitorTextureUpdateTask;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;

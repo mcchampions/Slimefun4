@@ -312,13 +312,4 @@ public class SlimefunItemStack extends ItemStack {
         // We don't want people to override this, it should use the super method
         return super.equals(obj);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final int hashCode() {
-        // We don't want people to override this, it should use the super method
-        return super.hashCode();
-    }
 }

@@ -31,7 +31,6 @@ import java.util.List;
  * The {@link ElectricSmeltery} is an electric version of the standard {@link Smeltery}.
  *
  * @author TheBusyBiscuit
- *
  */
 public class ElectricSmeltery extends ASpeedableContainer implements NotHopperable {
     private static final int[] border = {4, 5, 6, 7, 8, 13, 31, 40, 41, 42, 43, 44};
@@ -51,8 +50,8 @@ public class ElectricSmeltery extends ASpeedableContainer implements NotHopperab
             @Override
             public boolean canOpen(Block b, Player p) {
                 return p.hasPermission("slimefun.inventory.bypass")
-                        || Slimefun.getProtectionManager()
-                                .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK);
+                       || Slimefun.getProtectionManager()
+                               .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override
@@ -99,7 +98,7 @@ public class ElectricSmeltery extends ASpeedableContainer implements NotHopperab
         };
     }
 
-    
+
     private Comparator<Integer> compareSlots(DirtyChestMenu menu) {
         return Comparator.comparingInt(slot -> menu.getItemInSlot(slot).getAmount());
     }
@@ -144,12 +143,7 @@ public class ElectricSmeltery extends ASpeedableContainer implements NotHopperab
 
     @Override
     public int[] getInputSlots() {
-        return new int[] {10, 11, 19, 20, 28, 29};
-    }
-
-    @Override
-    public int[] getOutputSlots() {
-        return super.getOutputSlots();
+        return new int[]{10, 11, 19, 20, 28, 29};
     }
 
     @Override

@@ -20,9 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.function.UnaryOperator;
 
 /**

@@ -10,7 +10,6 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 
 /**

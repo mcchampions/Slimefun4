@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.geo;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunChunkData;
-import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.events.GEOResourceGenerationEvent;

@@ -134,16 +134,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
     }
 
     /**
-     * This method returns the size of this {@link BlockMenuPreset}.
-     * If the size has not been determined yet, this will return -1.
-     *
-     * @return The size of this {@link BlockMenuPreset}
-     */
-    public int getSize() {
-        return super.getSize();
-    }
-
-    /**
      * This returns the title of this {@link BlockMenuPreset}, the title will
      * be visible in every {@link InventoryView} for any menu created using this {@link BlockMenuPreset}.
      *
