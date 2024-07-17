@@ -17,6 +17,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
+@Deprecated
 public class BlockStorageMigrator implements IMigrator {
     @Getter
     private static final BlockStorageMigrator instance = new BlockStorageMigrator();

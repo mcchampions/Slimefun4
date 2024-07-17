@@ -14,6 +14,7 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
+@Deprecated
 public class PlayerProfileMigrator implements IMigrator {
     @Getter
     private static final PlayerProfileMigrator instance = new PlayerProfileMigrator();

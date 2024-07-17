@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+@Deprecated
 class MigratorUtil {
     protected static boolean createDirBackup(File dir) {
         try {

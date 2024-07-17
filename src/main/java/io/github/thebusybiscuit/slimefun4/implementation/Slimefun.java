@@ -3,8 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation;
 import city.norain.slimefun4.SlimefunExtended;
 import city.norain.slimefun4.timings.SQLProfiler;
 import com.xzavier0722.mc.plugin.slimefun4.chat.PlayerChatCatcher;
-import com.xzavier0722.mc.plugin.slimefun4.storage.migrator.BlockStorageMigrator;
-import com.xzavier0722.mc.plugin.slimefun4.storage.migrator.PlayerProfileMigrator;
 import com.xzavier0722.mc.plugin.slimefuncomplib.ICompatibleSlimefun;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.bakedlibs.dough.protection.ProtectionManager;
@@ -211,19 +209,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         registry.load(this);
 
         logger.log(Level.INFO, "正在加载数据库...");
-        if (PlayerProfileMigrator.getInstance().hasOldData()
-            || BlockStorageMigrator.getInstance().hasOldData()) {
-            Slimefun.logger().warning("====================================================");
-            Slimefun.logger().warning("\n");
-            Slimefun.logger().log(Level.WARNING, "!!! 检测到使用文件储存的旧玩家数据 !!!");
-            Slimefun.logger().warning("请在服务器加载完成后, 使用 /sf migrate confirm 进行迁移!");
-            Slimefun.logger().warning("如果不迁移, 你将会丢失先前版本的数据!!!");
-            Slimefun.logger().warning("\n");
-            Slimefun.logger().warning("需要使用 MySQL 数据库的用户, 请关服后修改两个配置文件");
-            Slimefun.logger().warning("block-storage.yml 和 profile-storage.yml");
-            Slimefun.logger().warning("\n");
-            Slimefun.logger().warning("====================================================");
-        }
         databaseManager.init();
 
         // Set up localization
