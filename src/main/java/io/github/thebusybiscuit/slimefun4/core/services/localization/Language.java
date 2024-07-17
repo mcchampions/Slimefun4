@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Server;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -43,6 +44,8 @@ public final class Language {
      */
     @Getter
     private final ItemStack item;
+    @Getter
+    @Setter
     private double progress = -1;
 
     /**

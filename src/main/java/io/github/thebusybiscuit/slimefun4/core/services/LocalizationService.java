@@ -56,15 +56,7 @@ public class LocalizationService extends SlimefunLocalization {
             defaultLanguage = new Language(
                     serverDefaultLanguage, "11b3188fd44902f72602bd7c2141f5a70673a411adb3d81862c69e536166b");
             defaultLanguage.setFile(LanguageFile.MESSAGES, getConfig().getConfiguration());
-
             loadEmbeddedLanguages();
-
-            String language = getConfig().getString(LANGUAGE_PATH);
-
-            if (language == null) {
-                language = serverDefaultLanguage;
-            }
-
             initLanguage();
             save();
         } else {

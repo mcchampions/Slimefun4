@@ -24,6 +24,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
  *
  */
 public class SlimefunCommand implements CommandExecutor, Listener {
+    @Getter
     private boolean registered = false;
     @Getter
     private final Slimefun plugin;
