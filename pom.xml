@@ -30,12 +30,6 @@
         <spigot.javadocs>https://hub.spigotmc.org/javadocs/spigot/</spigot.javadocs>
     </properties>
 
-    <issueManagement>
-        <!-- Bug Tracker -->
-        <system>GitHub Issues</system>
-        <url>https://github.com/Slimefun/Slimefun4/issues</url>
-    </issueManagement>
-
     <licenses>
         <license>
             <!-- License -->
