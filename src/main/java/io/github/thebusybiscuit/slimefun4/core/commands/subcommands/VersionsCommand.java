@@ -76,7 +76,8 @@ class VersionsCommand extends SubCommand {
                     .append("""
 
                             请不要将此版本信息截图到 Discord/Github 反馈 Bug
-                            优先到汉化魔改页面反馈
+                            也不要将此版本信息截图到 汉化版Github 反馈 Bug
+                            优先到魔改版本页面反馈
                             """)
                     .color(ChatColor.RED);
 
