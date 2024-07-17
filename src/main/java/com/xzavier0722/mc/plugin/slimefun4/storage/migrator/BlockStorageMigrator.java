@@ -37,7 +37,7 @@ public class BlockStorageMigrator implements IMigrator {
 
     @Override
     public boolean hasOldData() {
-        return !MigratorUtil.checkMigrateMark() && (hasBlockData() || chunk.exists());
+        return false;
     }
 
     @Override

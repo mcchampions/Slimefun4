@@ -31,8 +31,7 @@ public class PlayerProfileMigrator implements IMigrator {
 
     @Override
     public boolean hasOldData() {
-        return !MigratorUtil.checkMigrateMark()
-                && (playerFolder.exists() && playerFolder.listFiles() != null && playerFolder.listFiles().length > 0);
+        return false;
     }
 
     /**
