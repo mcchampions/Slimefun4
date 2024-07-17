@@ -11,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 
+@Deprecated
 public class MigrateCommand extends SubCommand {
     MigrateCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "migrate", true);
