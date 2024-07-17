@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import java.lang.reflect.Field;
 import java.util.List;
 
+@SuppressWarnings("UnstableApiUsage")
 public class HighVersionUtils {
     public static DamageSource newDamageSource(String type) {
         return DamageSource.builder(getDamageType(type)).build();

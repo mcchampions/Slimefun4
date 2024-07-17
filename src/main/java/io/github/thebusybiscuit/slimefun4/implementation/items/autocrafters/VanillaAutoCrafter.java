@@ -52,6 +52,7 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
         super(itemGroup, item, recipeType, recipe);
     }
 
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public @Nullable AbstractRecipe getSelectedRecipe(Block b) {
         BlockState state = PaperLib.getBlockState(b, false).getState();
