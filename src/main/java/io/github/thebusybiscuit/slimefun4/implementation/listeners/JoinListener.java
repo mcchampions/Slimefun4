@@ -28,10 +28,6 @@ public class JoinListener implements Listener {
         final var p = e.getPlayer();
 
         PlayerProfile.get(p, playerProfile -> {
-            Slimefun.getDatabaseManager()
-                    .getProfileDataController()
-                    .updateUsername(p.getUniqueId().toString(), p.getName());
-
             final ItemStack[] armorContents = p.getInventory().getArmorContents();
             final HashedArmorpiece[] hashedArmorpieces = playerProfile.getArmor();
             for (int i = 0; i < 4; i++) {

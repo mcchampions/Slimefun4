@@ -43,6 +43,10 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
             List<Enchantment> enchantments = new ArrayList<>();
 
             for (Enchantment enchantment : Enchantment.values()) {
+                if (!mat.isItem()) {
+                    continue;
+                }
+
                 if (enchantment.equals(Enchantment.BINDING_CURSE) || enchantment.equals(Enchantment.VANISHING_CURSE)) {
                     continue;
                 }

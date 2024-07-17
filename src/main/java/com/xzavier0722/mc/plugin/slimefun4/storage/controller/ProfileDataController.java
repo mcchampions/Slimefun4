@@ -52,6 +52,12 @@ public class ProfileDataController extends ADataController {
             return null;
         }
 
+        // check player name changed or not
+        var currentPlayerName = p.getName();
+        if (currentPlayerName != null && !currentPlayerName.equals(result.get(0).get(FieldKey.PLAYER_NAME))) {
+            updateUsername(uuid, currentPlayerName);
+        }
+
         var bNum = result.get(0).getInt(FieldKey.BACKPACK_NUMBER);
 
         var researches = new HashSet<Research>();
@@ -323,6 +329,7 @@ public class ProfileDataController extends ADataController {
 
         var data = new RecordSet();
         data.put(FieldKey.PLAYER_NAME, newName);
+        data.put(FieldKey.PLAYER_UUID, uuid);
 
         scheduleWriteTask(new UUIDKey(DataScope.NONE, uuid), key, data, false);
     }

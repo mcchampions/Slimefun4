@@ -32,7 +32,6 @@ import java.util.function.Consumer;
  *
  * @author TheBusyBiscuit
  * @author Walshy
- *
  */
 @SerializableAs("ItemStack")
 public class SlimefunItemStack extends ItemStack {
@@ -44,7 +43,11 @@ public class SlimefunItemStack extends ItemStack {
     private String texture = null;
 
     public SlimefunItemStack(String id, ItemStack item) {
-        super(item);
+        super(item.getType(), item.getAmount());
+
+        if (item.hasItemMeta()) {
+            setItemMeta(item.getItemMeta());
+        }
         if (Slimefun.instance() == null) {
             throw new PrematureCodeException(
                     "A SlimefunItemStack must never be be created before your Plugin was enabled.");
@@ -221,11 +224,8 @@ public class SlimefunItemStack extends ItemStack {
      * If no item was found or the found {@link SlimefunItem} is not of the requested type,
      * the method will return null.
      *
-     * @param <T>
-     *            The type of {@link SlimefunItem} to cast this to
-     * @param type
-     *            The {@link Class} of the target {@link SlimefunItem}
-     *
+     * @param <T>  The type of {@link SlimefunItem} to cast this to
+     * @param type The {@link Class} of the target {@link SlimefunItem}
      * @return The {@link SlimefunItem} this {@link SlimefunItem} represents, casted to the given type
      */
     public @Nullable <T extends SlimefunItem> T getItem(Class<T> type) {
