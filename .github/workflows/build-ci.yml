@@ -27,14 +27,14 @@ jobs:
           java-package: jdk
           architecture: x64
           cache: maven
+      - name: Update version
+        run: node ./.github/updateVersion.js
       - name: Clean cache
         run: mvn clean
       - name: Build Slimefun
         run: mvn -B package --errors
       - name: Maven Dependency Tree Dependency Submission
         uses: advanced-security/maven-dependency-submission-action@v4.1.0
-      - name: Rename File
-        run: mv target/Slimefun-*.jar target/Slimefun-${{ github.run_id }}.jar
       - name: Delete useless files
         run: | 
           rm -rf target/classes target/maven-archiver target/maven-status
