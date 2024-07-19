@@ -121,17 +121,17 @@ public class ChestMenu extends SlimefunInventoryHolder {
      * @return The ChestMenu Instance
      */
     public ChestMenu addItem(int slot, ItemStack item) {
-        // do shallow copy due to Paper ItemStack system change
-        // See also: https://github.com/PaperMC/Paper/pull/10852
-        ItemStack clone = item == null ? null : new ItemStack(item.getType(), item.getAmount());
-
-        if (clone != null && item.hasItemMeta()) {
-            clone.setItemMeta(item.getItemMeta());
-        }
-
+        /**
+         * // do shallow copy due to Paper ItemStack system change
+         * // See also: https://github.com/PaperMC/Paper/pull/10852
+         * ItemStack clone = item == null ? null : new ItemStack(item.getType(), item.getAmount());
+         *
+         * if (clone != null && item.hasItemMeta()) {
+         * clone.setItemMeta(item.getItemMeta());
+         * }*/
         setSize((int) (Math.max(getSize(), Math.ceil((slot + 1) / 9d) * 9)));
-        this.items.set(slot, clone);
-        this.inventory.setItem(slot, clone);
+        this.items.set(slot, item);
+        this.inventory.setItem(slot, item);
         return this;
     }
 

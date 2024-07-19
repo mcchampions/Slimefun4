@@ -45,6 +45,7 @@ public class ProfileDataController extends ADataController {
 
         var key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addField(FieldKey.PLAYER_BACKPACK_NUM);
+        key.addField(FieldKey.PLAYER_NAME);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
 
         var result = getData(key);
