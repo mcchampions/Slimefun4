@@ -43,6 +43,11 @@
     <!-- Well, any that aren't found on maven-central. -->
     <repositories>
         <repository>
+            <!-- ItemsAdder and Dough-->
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
             <!-- Spigot-API -->
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
@@ -51,11 +56,6 @@
             <!-- PaperLib -->
             <id>paper-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <!-- ItemsAdder -->
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
         </repository>
         <repository>
             <!-- WorldEdit -->
@@ -251,11 +251,9 @@
 
         <!-- Shaded packages -->
         <dependency>
-            <groupId>com.github.starwishsama.dough</groupId>
-            <artifactId>dough-api</artifactId>
-            <!-- 等上游修bug后再更新 -->
-            <version>f266e39d48</version>
-            <scope>compile</scope>
+            <groupId>com.github.StarWishsama</groupId>
+            <artifactId>dough</artifactId>
+            <version>1.3.0.1</version>
         </dependency>
         <dependency>
             <groupId>io.papermc</groupId>
