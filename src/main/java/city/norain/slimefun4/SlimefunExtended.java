@@ -32,14 +32,6 @@ public final class SlimefunExtended {
         }
 
         if (Slimefun.getConfigManager().isBypassEnvironmentCheck()) {
-            sf.getLogger().log(Level.WARNING, "#######################################################");
-            sf.getLogger().log(Level.WARNING, "");
-            sf.getLogger().log(Level.WARNING, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            sf.getLogger().log(Level.WARNING, "检测到你禁用了环境兼容性检查!");
-            sf.getLogger().log(Level.WARNING, "未通过兼容性检查将无法受到反馈支持.");
-            sf.getLogger().log(Level.WARNING, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            sf.getLogger().log(Level.WARNING, "");
-            sf.getLogger().log(Level.WARNING, "#######################################################");
             return true;
         } else {
             return !EnvironmentChecker.checkIncompatiblePlugins(sf.getLogger());
