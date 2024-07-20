@@ -128,8 +128,6 @@ public enum HeadTexture {
     private final UUID uuid;
 
     HeadTexture(String texture) {
-        
-
         this.texture = texture;
         this.uuid = UUID.nameUUIDFromBytes(texture.getBytes(StandardCharsets.UTF_8));
     }

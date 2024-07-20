@@ -13,7 +13,6 @@ public class MigrateCommand extends SubCommand {
         super(plugin, cmd, "migrate", true);
     }
 
-
     @Override
     protected String getDescription() {
         return "废弃指令";
