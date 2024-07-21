@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.SlimefunGuideItem;
 import java.util.Optional;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -27,7 +27,7 @@ import org.bukkit.inventory.ItemStack;
 public final class SlimefunGuide {
     private SlimefunGuide() {}
 
-    
+
     public static ItemStack getItem(SlimefunGuideMode design) {
         return Slimefun.getRegistry().getSlimefunGuide(design).getItem();
     }
@@ -121,7 +121,7 @@ public final class SlimefunGuide {
      *
      * @return The default {@link SlimefunGuideMode}.
      */
-    
+
     public static SlimefunGuideMode getDefaultMode() {
         return SlimefunGuideMode.SURVIVAL_MODE;
     }

@@ -37,7 +37,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
@@ -90,13 +90,13 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      */
     protected final NamespacedKey recipeEnabledKey;
 
-    
+
     protected final int[] background = {
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 15, 16, 17, 18, 19, 23, 25, 26, 27, 28, 32, 33, 34, 35, 36, 37, 38, 39,
         40, 41, 42, 43, 44
     };
 
-    
+
 
     protected AbstractAutoCrafter(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -552,9 +552,9 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return This method will return the current instance of {@link AContainer}, so that it can be chained.
      */
-    
+
     public final AbstractAutoCrafter setCapacity(int capacity) {
-        
+
 
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
@@ -572,7 +572,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return This method will return the current instance of {@link AContainer}, so that it can be chained.
      */
-    
+
     public final AbstractAutoCrafter setEnergyConsumption(int energyConsumption) {
         this.energyConsumed = energyConsumption;
         return this;

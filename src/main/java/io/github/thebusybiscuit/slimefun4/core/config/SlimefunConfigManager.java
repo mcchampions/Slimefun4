@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 
@@ -48,9 +49,11 @@ public class SlimefunConfigManager {
     @Getter
     private boolean useMoneyUnlock;
 
+    @Setter
     @Getter
     private boolean showVanillaRecipes;
 
+    @Setter
     @Getter
     private boolean showHiddenItemGroupsInSearch;
 
@@ -258,11 +261,4 @@ public class SlimefunConfigManager {
         return talismanActionBarMessages;
     }
 
-    public void setShowVanillaRecipes(boolean enabled) {
-        showVanillaRecipes = enabled;
-    }
-
-    public void setShowHiddenItemGroupsInSearch(boolean enabled) {
-        showHiddenItemGroupsInSearch = enabled;
-    }
 }

@@ -1,7 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

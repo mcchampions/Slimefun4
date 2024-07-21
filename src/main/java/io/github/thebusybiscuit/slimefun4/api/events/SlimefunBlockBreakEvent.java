@@ -2,8 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import lombok.Getter;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

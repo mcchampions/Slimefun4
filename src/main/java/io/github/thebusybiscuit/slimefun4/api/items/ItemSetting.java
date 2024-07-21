@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 
@@ -143,7 +142,7 @@ public class ItemSetting<T> {
             if (validateInput(newValue)) {
                 this.value = newValue;
             } else {
-                
+
                 item.warn("发现在 Items.yml 中有无效的物品设置!"
                         + "\n  在 \""
                         + item.getId()
@@ -155,7 +154,7 @@ public class ItemSetting<T> {
                         + " 不是一个有效值!"
                         + "\n"
                         + getErrorMessage());
-                
+
             }
         } else {
             this.value = defaultValue;
@@ -163,7 +162,7 @@ public class ItemSetting<T> {
                     ? "null"
                     : configuredValue.getClass().getSimpleName();
 
-            
+
             item.warn("发现在 Items.yml 中有无效的物品设置!"
                     + "\n请只设置有效的值."
                     + "\n  在 \""
@@ -176,7 +175,7 @@ public class ItemSetting<T> {
                     + "\" 但填写了: \""
                     + found
                     + "\"");
-            
+
         }
     }
 

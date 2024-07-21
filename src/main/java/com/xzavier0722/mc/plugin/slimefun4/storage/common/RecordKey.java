@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class RecordKey extends ScopeKey {
     private final Set<FieldKey> fields;
@@ -34,7 +33,7 @@ public class RecordKey extends ScopeKey {
         changed = true;
     }
 
-    
+
     public Set<FieldKey> getFields() {
         return Collections.unmodifiableSet(fields);
     }
@@ -48,7 +47,7 @@ public class RecordKey extends ScopeKey {
         addCondition(key, val ? "1" : "0");
     }
 
-    
+
     public List<Pair<FieldKey, String>> getConditions() {
         return Collections.unmodifiableList(conditions);
     }

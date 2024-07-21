@@ -14,7 +14,7 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.Collection;
 import java.util.UUID;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;
@@ -61,7 +61,7 @@ public class MinerAndroid extends ProgrammableAndroid {
     }
 
     @Override
-    
+
     public AndroidType getAndroidType() {
         return AndroidType.MINER;
     }

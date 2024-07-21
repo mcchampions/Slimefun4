@@ -4,7 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.papermc.lib.PaperLib;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
@@ -68,7 +68,7 @@ public class VanillaInventoryDropHandler<T extends BlockState & InventoryHolder>
         }
     }
 
-    
+
     protected Inventory getInventory(T inventoryHolder) {
         if (inventoryHolder instanceof Chest chest) {
             return chest.getBlockInventory();

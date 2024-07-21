@@ -11,7 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -28,7 +28,7 @@ public class FortuneCookie extends SimpleSlimefunItem<ItemConsumptionHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    
+
     @Override
     public ItemConsumptionHandler getItemHandler() {
         return (e, p, item) -> {

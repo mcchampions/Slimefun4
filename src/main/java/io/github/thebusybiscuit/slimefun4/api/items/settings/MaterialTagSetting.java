@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.Material;

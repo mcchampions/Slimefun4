@@ -14,7 +14,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Slimefu
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.Optional;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;

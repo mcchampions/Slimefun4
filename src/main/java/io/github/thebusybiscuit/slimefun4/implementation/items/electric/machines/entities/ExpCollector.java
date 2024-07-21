@@ -16,7 +16,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.KnowledgeFlask;
 import java.util.Iterator;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -50,7 +50,7 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
         addItemHandler(onPlace(), onBreak());
     }
 
-    
+
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
@@ -63,7 +63,7 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
         };
     }
 
-    
+
     private ItemHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override

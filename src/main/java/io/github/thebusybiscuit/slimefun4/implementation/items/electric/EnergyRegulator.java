@@ -12,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNet;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -35,7 +34,7 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
         addItemHandler(onBreak());
     }
 
-    
+
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -45,7 +44,7 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
         };
     }
 
-    
+
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override

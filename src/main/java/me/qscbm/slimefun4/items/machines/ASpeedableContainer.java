@@ -23,9 +23,9 @@ import org.bukkit.inventory.ItemStack;
 /**
  * 可提速的机器
  */
+@Setter
 @Getter
 public abstract class ASpeedableContainer extends AContainer implements Speedable {
-    @Setter
     private int speedLimit = 10;
 
     protected ASpeedableContainer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

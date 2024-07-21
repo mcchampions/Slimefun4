@@ -23,7 +23,7 @@ import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -83,7 +83,7 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
         return processor;
     }
 
-    
+
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -246,7 +246,7 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
      * @return This method will return the current instance of {@link AGenerator}, so that can be chained.
      */
     public final AGenerator setCapacity(int capacity) {
-        
+
 
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;

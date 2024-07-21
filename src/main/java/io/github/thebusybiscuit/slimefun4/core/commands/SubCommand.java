@@ -3,7 +3,7 @@ package io.github.thebusybiscuit.slimefun4.core.commands;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Map;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.HelpCommand;
@@ -39,7 +39,7 @@ public abstract class SubCommand {
      *
      * @return The name of this {@link SubCommand}
      */
-    
+
     public final String getName() {
         return name;
     }
@@ -59,7 +59,7 @@ public abstract class SubCommand {
 
     public abstract void onExecute(CommandSender sender, String[] args);
 
-    
+
     protected String getDescription() {
         return "commands." + getName();
     }

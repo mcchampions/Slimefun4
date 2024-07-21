@@ -13,7 +13,7 @@ import java.util.EnumSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Biome;
 
@@ -186,7 +186,7 @@ public class BiomeMapParser<T> {
      *
      * @return The resulting {@link BiomeMap}
      */
-    
+
     public BiomeMap<T> buildBiomeMap() {
         BiomeMap<T> biomeMap = new BiomeMap<>(key);
         biomeMap.putAll(map);

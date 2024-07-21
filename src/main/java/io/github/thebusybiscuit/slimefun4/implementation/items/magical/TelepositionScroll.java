@@ -9,7 +9,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -33,7 +32,7 @@ public class TelepositionScroll extends SimpleSlimefunItem<ItemUseHandler> {
         addItemSetting(radius);
     }
 
-    
+
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

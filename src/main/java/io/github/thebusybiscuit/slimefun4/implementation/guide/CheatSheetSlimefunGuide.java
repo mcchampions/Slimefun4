@@ -11,7 +11,7 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.SlimefunGuideItem;
 import java.util.LinkedList;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -41,7 +41,7 @@ public class CheatSheetSlimefunGuide extends SurvivalSlimefunGuide {
      *
      * @return a {@link List} of visible {@link ItemGroup} instances
      */
-    
+
     @Override
     protected List<ItemGroup> getVisibleItemGroups(Player p, PlayerProfile profile) {
         List<ItemGroup> groups = new LinkedList<>();

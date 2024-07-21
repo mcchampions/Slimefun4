@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.gps.GPSNetwork;
 import io.github.thebusybiscuit.slimefun4.api.gps.TeleportationManager;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -24,8 +25,26 @@ import org.bukkit.event.player.PlayerEvent;
 public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
 
+    /**
+     * -- SETTER --
+     *  This sets the
+     *  of the waypoint.
+     *  The
+     *  may never be null!
+     *
+     * @param loc The {@link Location} to set
+     */
+    @Setter
     @Getter
     private Location location;
+    /**
+     * -- SETTER --
+     *  This sets the name of the waypoint to the given argument.
+     *
+     * @param name
+     *            The name for this waypoint
+     */
+    @Setter
     @Getter
     private String name;
 
@@ -40,26 +59,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
         this.deathpoint = name.startsWith("player:death ");
     }
 
-    /**
-     * This sets the {@link Location} of the waypoint.
-     * The {@link Location} may never be null!
-     *
-     * @param loc The {@link Location} to set
-     */
-    public void setLocation(Location loc) {
-        this.location = loc;
-    }
-
-    /**
-     * This sets the name of the waypoint to the given argument.
-     *
-     * @param name
-     *            The name for this waypoint
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean isCancelled() {
         return cancelled;
@@ -70,12 +69,12 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
         this.cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

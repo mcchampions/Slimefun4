@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.settings;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.talismans.MagicianTalisman;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.TalismanListener;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.enchantments.Enchantment;

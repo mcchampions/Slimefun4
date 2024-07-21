@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -165,7 +165,7 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
         recipe.show(menu, task);
     }
 
-    
+
     private List<Recipe> getRecipesFor(ItemStack item) {
         List<Recipe> recipes = new ArrayList<>();
 

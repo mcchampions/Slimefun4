@@ -26,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
@@ -103,7 +102,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      *
      * @return A {@link Collection} of every {@link ClimbableSurface}
      */
-    
+
     public Collection<ClimbableSurface> getClimbableSurfaces() {
         return surfaces.values();
     }
@@ -150,7 +149,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return speed;
     }
 
-    
+
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -179,7 +178,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         };
     }
 
-    
+
     private ItemStack getOtherHandItem(Player p, EquipmentSlot hand) {
         if (hand == EquipmentSlot.HAND) {
             return p.getInventory().getItemInOffHand();
@@ -248,7 +247,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-    
+
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
@@ -260,7 +259,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return display;
     }
 
-    
+
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.climbing-pick";

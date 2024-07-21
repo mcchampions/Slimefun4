@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * This class stores some startup warnings we occasionally need to print.

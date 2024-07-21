@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -90,7 +90,7 @@ public class LocalizationService extends SlimefunLocalization {
     }
 
     @Override
-    
+
     public Collection<Language> getLanguages() {
         return languages.values();
     }

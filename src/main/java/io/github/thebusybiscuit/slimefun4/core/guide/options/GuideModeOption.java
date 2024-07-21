@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -17,19 +17,19 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
-    
+
     @Override
     public SlimefunAddon getAddon() {
         return Slimefun.instance();
     }
 
-    
+
     @Override
     public NamespacedKey getKey() {
         return new NamespacedKey(Slimefun.instance(), "guide_mode");
     }
 
-    
+
     @Override
     public Optional<ItemStack> getDisplayItem(Player p, ItemStack guide) {
         if (!p.hasPermission("slimefun.cheat.items")) {
@@ -79,7 +79,7 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
         SlimefunGuideSettings.openSettings(p, guide);
     }
 
-    
+
     private SlimefunGuideMode getNextMode(Player p, SlimefunGuideMode mode) {
         if (p.hasPermission("slimefun.cheat.items")) {
             if (mode == SlimefunGuideMode.SURVIVAL_MODE) {
@@ -92,7 +92,7 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
         }
     }
 
-    
+
     @Override
     public Optional<SlimefunGuideMode> getSelectedOption(Player p, ItemStack guide) {
         if (SlimefunUtils.isItemSimilar(guide, SlimefunGuide.getItem(SlimefunGuideMode.CHEAT_MODE), true, false)) {

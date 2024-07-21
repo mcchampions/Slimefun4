@@ -9,7 +9,6 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionTyp
 import java.util.EnumMap;
 import java.util.Map;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;

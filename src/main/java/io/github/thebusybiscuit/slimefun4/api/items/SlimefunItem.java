@@ -21,6 +21,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.GlobalItemHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.VanillaItem;
 import lombok.Getter;
+import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -31,7 +32,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.Permission;
 
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collection;
@@ -95,6 +95,15 @@ public class SlimefunItem implements Placeable {
 
     @Getter
     private ItemStack[] recipe;
+    /**
+     * -- SETTER --
+     *  Sets the
+     *  for this
+     * .
+     *
+     * @param type The {@link RecipeType} for this {@link SlimefunItem}
+     */
+    @Setter
     @Getter
     private RecipeType recipeType;
     protected ItemStack recipeOutput;
@@ -491,14 +500,14 @@ public class SlimefunItem implements Placeable {
 
         // Check for an illegal stack size
         if (itemStackTemplate.getAmount() != 1) {
-            
+
             warn("This item has an illegal stack size: "
                     + itemStackTemplate.getAmount()
                     + ". An Item size of 1 is recommended. Please inform the author(s) of "
                     + addon.getName()
                     + " to fix this. Crafting Results with amounts of higher should be handled"
                     + " via the recipeOutput parameter!");
-            
+
         }
 
         // Add it to the list of enabled items
@@ -640,15 +649,6 @@ public class SlimefunItem implements Placeable {
         }
 
         this.recipe = recipe;
-    }
-
-    /**
-     * Sets the {@link RecipeType} for this {@link SlimefunItem}.
-     *
-     * @param type The {@link RecipeType} for this {@link SlimefunItem}
-     */
-    public void setRecipeType(RecipeType type) {
-        this.recipeType = type;
     }
 
     /**

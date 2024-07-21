@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.RainbowTickHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -31,7 +30,7 @@ public class RainbowBlock extends SimpleSlimefunItem<RainbowTickHandler> {
         this.ticker = ticker;
     }
 
-    
+
     @Override
     public RainbowTickHandler getItemHandler() {
         return ticker;

@@ -12,7 +12,6 @@ import me.qscbm.slimefun4.items.machines.Speedable;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 
 public class OverclockModule extends SimpleSlimefunItem<ItemUseHandler> {

@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.api.exceptions;
 
 import io.github.thebusybiscuit.slimefun4.utils.biomes.BiomeMap;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.NamespacedKey;
 
 import java.io.Serial;

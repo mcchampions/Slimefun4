@@ -205,7 +205,6 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.qscbm.slimefun4.items.tools.OverclockModule;
 import org.bukkit.DyeColor;
@@ -236,7 +235,6 @@ public final class SlimefunItemSetup {
         registeredItems = true;
         DefaultItemGroups itemGroups = new DefaultItemGroups();
 
-         (We will need to refactor this one day)
         new SlimefunItem(
                         itemGroups.weapons,
                         SlimefunItems.GRANDMAS_WALKING_STICK,

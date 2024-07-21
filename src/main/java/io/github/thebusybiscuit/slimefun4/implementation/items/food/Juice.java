@@ -12,7 +12,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -55,7 +55,7 @@ public class Juice extends SimpleSlimefunItem<ItemConsumptionHandler> {
         }
     }
 
-    
+
     @Override
     public ItemConsumptionHandler getItemHandler() {
         return (e, p, item) -> {

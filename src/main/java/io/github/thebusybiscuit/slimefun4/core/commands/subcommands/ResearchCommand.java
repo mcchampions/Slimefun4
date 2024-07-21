@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -108,7 +108,7 @@ class ResearchCommand extends SubCommand {
                 .sendMessage(p, "commands.research.reset", true, msg -> msg.replace(PLACEHOLDER_PLAYER, p.getName()));
     }
 
-    
+
     private Optional<Research> getResearchFromString(String input) {
         for (Research research : Slimefun.getRegistry().getResearches()) {
             if (research.getKey().toString().equalsIgnoreCase(input)) {
@@ -117,7 +117,7 @@ class ResearchCommand extends SubCommand {
         }
 
         for (Research research : Slimefun.getRegistry().getResearches()) {
-            if (research.getName().toString().equals(input)) {
+            if (research.getName().equals(input)) {
                 return Optional.of(research);
             }
         }

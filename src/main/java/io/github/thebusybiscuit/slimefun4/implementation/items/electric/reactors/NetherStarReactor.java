@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -52,13 +51,13 @@ public abstract class NetherStarReactor extends Reactor {
         return SlimefunItems.NETHER_ICE_COOLANT_CELL;
     }
 
-    
+
     @Override
     public ItemStack getFuelIcon() {
         return new ItemStack(Material.NETHER_STAR);
     }
 
-    
+
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.NETHER_STAR);

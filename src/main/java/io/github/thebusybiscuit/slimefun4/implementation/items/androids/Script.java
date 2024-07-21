@@ -12,7 +12,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.io.File;
 import java.util.*;
 import java.util.logging.Level;
@@ -67,7 +66,7 @@ public final class Script {
      *
      * @return The code for this {@link Script}
      */
-    
+
     public String getSourceCode() {
         return code;
     }
@@ -105,7 +104,7 @@ public final class Script {
                 && !downvoters.contains(p.getUniqueId().toString());
     }
 
-    
+
     ItemStack getAsItemStack(ProgrammableAndroid android, Player p) {
         List<String> lore = new LinkedList<>();
         lore.add("&7作者 &f" + getAuthor());
@@ -126,7 +125,7 @@ public final class Script {
         return new CustomItemStack(android.getItem(), "&b" + getName(), lore.toArray(new String[0]));
     }
 
-    
+
     private String getScriptRatingPercentage() {
         float percentage = getRating();
         return NumberUtils.getColorFromPercentage(percentage) + String.valueOf(percentage) + ChatColor.WHITE + "% ";
@@ -191,7 +190,7 @@ public final class Script {
         config.save();
     }
 
-    
+
     public static List<Script> getUploadedScripts(AndroidType androidType) {
         List<Script> scripts = new LinkedList<>();
 

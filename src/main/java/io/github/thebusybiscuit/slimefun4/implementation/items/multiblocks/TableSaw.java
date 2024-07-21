@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
@@ -44,7 +44,7 @@ public class TableSaw extends MultiBlockMachine {
     private final ItemSetting<Boolean> canUseSlimefunItems = new ItemSetting<>(this, "can-use-slimefun-items", true);
 
     public TableSaw(ItemGroup group, SlimefunItemStack item) {
-        
+
         super(
                 group,
                 item,
@@ -60,7 +60,7 @@ public class TableSaw extends MultiBlockMachine {
                     null
                 },
                 BlockFace.SELF);
-        
+
 
         for (Material log : Tag.LOGS.getValues()) {
             Optional<Material> planks = getPlanks(log);

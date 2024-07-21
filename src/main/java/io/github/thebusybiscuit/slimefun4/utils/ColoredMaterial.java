@@ -14,8 +14,6 @@ import java.util.List;
  * @see SlimefunTag
  */
 public enum ColoredMaterial {
-     (We want this to stay formatted like this)
-
     /**
      * This {@link List} contains all wool colors ordered by their appearance ingame.
      */
@@ -192,7 +190,7 @@ public enum ColoredMaterial {
         Material.BLACK_SHULKER_BOX
     });
 
-    
+
 
     private final List<Material> list;
 
@@ -206,12 +204,12 @@ public enum ColoredMaterial {
         list = List.of(materials);
     }
 
-    
+
     public List<Material> asList() {
         return list;
     }
 
-    
+
     public Material get(int index) {
         return list.get(index);
     }

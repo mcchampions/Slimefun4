@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.AndroidInstance;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.block.Block;
@@ -58,12 +57,12 @@ public class AndroidMineEvent extends Event implements Cancellable {
         cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

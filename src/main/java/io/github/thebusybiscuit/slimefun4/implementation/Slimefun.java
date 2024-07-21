@@ -878,7 +878,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     public static Set<Plugin> getInstalledAddons() {
         String pluginName = instance.getName();
 
-         - Collect any Plugin that (soft)-depends on Slimefun
         return Arrays.stream(instance.getServer().getPluginManager().getPlugins())
                 .filter(plugin -> {
                     PluginDescriptionFile description = plugin.getDescription();
@@ -886,7 +885,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                             || description.getSoftDepend().contains(pluginName);
                 })
                 .collect(Collectors.toSet());
-        
+
     }
 
     /**

@@ -17,7 +17,7 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.World.Environment;
@@ -53,7 +53,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         return recipes;
     }
 
-    
+
     private List<ItemStack> getMachineRecipes() {
         List<ItemStack> items = new LinkedList<>();
 
@@ -100,7 +100,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         return items;
     }
 
-    
+
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {

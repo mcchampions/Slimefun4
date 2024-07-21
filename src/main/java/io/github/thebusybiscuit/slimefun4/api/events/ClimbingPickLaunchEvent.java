@@ -2,9 +2,8 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.tools.ClimbingPick;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -24,6 +23,15 @@ import org.bukkit.util.Vector;
 public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
 
+    /**
+     * -- SETTER --
+     *  Use this to change the velocity
+     *  applied to the
+     * .
+     *
+     * @param velocity The {@link Vector} velocity to apply
+     */
+    @Setter
     @Getter
     private Vector velocity;
     @Getter
@@ -43,15 +51,6 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
         this.pick = pick;
         this.itemStack = itemStack;
         this.block = block;
-    }
-
-    /**
-     * Use this to change the velocity {@link Vector} applied to the {@link Player}.
-     *
-     * @param velocity The {@link Vector} velocity to apply
-     */
-    public void setVelocity(Vector velocity) {
-        this.velocity = velocity;
     }
 
     @Override

@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.listeners.BackpackListe
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.inventory.Inventory;
@@ -68,7 +67,7 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
         return !(itemAsSlimefunItem instanceof SlimefunBackpack);
     }
 
-    
+
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

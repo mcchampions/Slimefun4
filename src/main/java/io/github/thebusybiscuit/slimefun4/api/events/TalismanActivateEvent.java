@@ -1,9 +1,9 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.talismans.Talisman;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
@@ -20,6 +20,15 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
     @Getter
     private final Talisman talisman;
     private final ItemStack talismanItemStack;
+    /**
+     * -- SETTER --
+     *  Only applies if
+     *  is true.
+     *
+     * @param preventConsumption
+     * 		Whether the {@link ItemStack} should not be consumed.
+     */
+    @Setter
     private boolean preventConsumption = false;
     private boolean cancelled = false;
 
@@ -54,16 +63,6 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
      */
     public boolean preventsConsumption() {
         return this.preventConsumption;
-    }
-
-    /**
-     * Only applies if {@link Talisman#isConsumable()} is true.
-     *
-     * @param preventConsumption
-     * 		Whether the {@link ItemStack} should not be consumed.
-     */
-    public void setPreventConsumption(boolean preventConsumption) {
-        this.preventConsumption = preventConsumption;
     }
 
     @Override

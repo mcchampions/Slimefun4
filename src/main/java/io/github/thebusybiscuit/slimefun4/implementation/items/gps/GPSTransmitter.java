@@ -15,7 +15,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import java.util.List;
 import java.util.UUID;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -40,7 +40,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         return capacity;
     }
 
-    
+
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
@@ -53,7 +53,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         };
     }
 
-    
+
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
             @Override
@@ -69,7 +69,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
 
     public abstract int getEnergyConsumption();
 
-    
+
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
@@ -93,7 +93,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         };
     }
 
-    
+
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;

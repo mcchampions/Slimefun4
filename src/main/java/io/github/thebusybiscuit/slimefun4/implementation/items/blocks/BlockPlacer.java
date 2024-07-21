@@ -19,7 +19,7 @@ import io.papermc.lib.PaperLib;
 import io.papermc.lib.features.blockstatesnapshot.BlockStateSnapshotResult;
 import java.util.List;
 import java.util.UUID;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -59,7 +59,7 @@ public class BlockPlacer extends SlimefunItem {
         addItemHandler(new VanillaInventoryDropHandler<>(Dispenser.class));
     }
 
-    
+
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
@@ -72,7 +72,7 @@ public class BlockPlacer extends SlimefunItem {
         };
     }
 
-    
+
     private BlockDispenseHandler onBlockDispense() {
         return (e, dispenser, facedBlock, machine) -> {
             if (!hasPermission(dispenser, facedBlock)) {

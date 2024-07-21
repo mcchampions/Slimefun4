@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -84,13 +84,13 @@ public class RadioactiveItem extends SlimefunItem implements Radioactive, NotPla
         addItemHandler(onRightClick());
     }
 
-    
+
     private ItemUseHandler onRightClick() {
         return PlayerRightClickEvent::cancel;
     }
 
     @Override
-    
+
     public Radioactivity getRadioactivity() {
         return radioactivity;
     }

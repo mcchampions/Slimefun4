@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.event.block.BlockEvent;
@@ -37,7 +37,7 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
         addItemHandler(onPlace());
     }
 
-    
+
     private BlockUseHandler onInteract() {
         return e -> {
             if (!allowSpawnEggs.getValue()
@@ -48,7 +48,7 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
         };
     }
 
-    
+
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(true) {
             @Override
@@ -77,7 +77,7 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
         };
     }
 
-    
+
     @Override
     public Collection<ItemStack> getDrops() {
         /*

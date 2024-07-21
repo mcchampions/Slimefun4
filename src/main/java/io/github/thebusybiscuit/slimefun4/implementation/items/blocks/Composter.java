@@ -14,7 +14,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -64,7 +64,7 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
         return items;
     }
 
-    
+
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {
@@ -115,7 +115,7 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
         }
     }
 
-    
+
     private Optional<Inventory> findOutputChest(Block b, ItemStack output) {
         return OutputChest.findOutputChestFor(b, output);
     }

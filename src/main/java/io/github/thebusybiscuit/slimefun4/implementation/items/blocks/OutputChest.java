@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.VanillaInventoryDropHandler;
 import io.papermc.lib.PaperLib;
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -28,12 +28,12 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class OutputChest extends SlimefunItem {
-    
+
     private static final BlockFace[] possibleFaces = {
         BlockFace.UP, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST
     };
 
-    
+
 
     public OutputChest(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -41,7 +41,7 @@ public class OutputChest extends SlimefunItem {
         addItemHandler(new VanillaInventoryDropHandler<>(Chest.class));
     }
 
-    
+
     public static Optional<Inventory> findOutputChestFor(Block b, ItemStack item) {
         for (BlockFace face : possibleFaces) {
             Block potentialOutput = b.getRelative(face);

@@ -7,7 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.settings.GoldPanDrop;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

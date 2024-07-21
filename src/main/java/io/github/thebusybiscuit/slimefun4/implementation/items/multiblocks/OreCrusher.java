@@ -16,7 +16,6 @@ import io.papermc.lib.PaperLib;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -124,7 +123,7 @@ public class OreCrusher extends MultiBlockMachine {
     public void postRegister() {
         super.postRegister();
 
-        
+
         displayRecipes.addAll(Arrays.asList(
                 new ItemStack(Material.COAL_ORE), doubleOres.getCoal(),
                 new ItemStack(Material.LAPIS_ORE), doubleOres.getLapisLazuli(),
@@ -132,7 +131,7 @@ public class OreCrusher extends MultiBlockMachine {
                 new ItemStack(Material.DIAMOND_ORE), doubleOres.getDiamond(),
                 new ItemStack(Material.EMERALD_ORE), doubleOres.getEmerald(),
                 new ItemStack(Material.NETHER_QUARTZ_ORE), doubleOres.getNetherQuartz()));
-        
+
 
         // Gold ore variants (1.16+)
         displayRecipes.add(new ItemStack(Material.NETHER_GOLD_ORE));
@@ -150,14 +149,14 @@ public class OreCrusher extends MultiBlockMachine {
         displayRecipes.add(new ItemStack(Material.RAW_GOLD));
         displayRecipes.add(SlimefunItems.GOLD_DUST);
 
-        
+
         displayRecipes.addAll(Arrays.asList(
                     new ItemStack(Material.DEEPSLATE_COAL_ORE), doubleOres.getCoal(),
                     new ItemStack(Material.DEEPSLATE_LAPIS_ORE), doubleOres.getLapisLazuli(),
                     new ItemStack(Material.DEEPSLATE_REDSTONE_ORE), doubleOres.getRedstone(),
                     new ItemStack(Material.DEEPSLATE_DIAMOND_ORE), doubleOres.getDiamond(),
                     new ItemStack(Material.DEEPSLATE_EMERALD_ORE), doubleOres.getEmerald()));
-            
+
 
         // More deepslate ores and copper ore
         displayRecipes.add(new ItemStack(Material.DEEPSLATE_IRON_ORE));

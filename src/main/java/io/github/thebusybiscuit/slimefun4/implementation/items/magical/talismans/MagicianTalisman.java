@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -79,14 +78,14 @@ public class MagicianTalisman extends Talisman {
      */
     @Nullable public TalismanEnchantment getRandomEnchantment(
             ItemStack item, Set<Enchantment> existingEnchantments) {
-        
+
         List<TalismanEnchantment> enabled = enchantments.stream()
                 .filter(e -> (isEnchantmentBookAllowed() && item.getType() == Material.BOOK)
                         || e.getEnchantment().canEnchantItem(item))
                 .filter(e -> hasConflicts(existingEnchantments, e))
                 .filter(TalismanEnchantment::getValue)
                 .toList();
-        
+
 
         return enabled.isEmpty()
                 ? null

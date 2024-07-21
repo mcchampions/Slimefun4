@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.ChatColor;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.CreatureSpawner;
@@ -41,7 +41,7 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      *
      * @return An {@link Optional} describing the result
      */
-    
+
     public Optional<EntityType> getEntityType(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
 
@@ -73,7 +73,7 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      *
      * @return An {@link ItemStack} for this {@link SlimefunItem} holding that {@link EntityType}
      */
-    
+
     public ItemStack getItemForEntityType(EntityType type) {
         if (type == null) {
             // Fixes #4209

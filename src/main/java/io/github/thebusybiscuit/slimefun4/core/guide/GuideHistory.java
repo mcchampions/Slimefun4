@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -24,6 +25,14 @@ import org.bukkit.inventory.ItemStack;
 public class GuideHistory {
     private final PlayerProfile profile;
     private final Deque<GuideEntry<?>> queue = new LinkedList<>();
+    /**
+     * -- SETTER --
+     *  This method sets the page of the main menu of this
+     *
+     * @param page
+     *            The current page of the main menu that should be stored
+     */
+    @Setter
     @Getter
     private int mainMenuPage = 1;
 
@@ -42,18 +51,6 @@ public class GuideHistory {
      */
     public void clear() {
         queue.clear();
-    }
-
-    /**
-     * This method sets the page of the main menu of this {@link GuideHistory}
-     *
-     * @param page
-     *            The current page of the main menu that should be stored
-     */
-    public void setMainMenuPage(int page) {
-        
-
-        mainMenuPage = page;
     }
 
     /**
@@ -105,7 +102,7 @@ public class GuideHistory {
     }
 
     private <T> void refresh(T object, int page) {
-        
+
 
         GuideEntry<?> lastEntry = getLastEntry(false);
 

@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.exceptions;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.plugin.Plugin;
 
 import java.io.Serial;

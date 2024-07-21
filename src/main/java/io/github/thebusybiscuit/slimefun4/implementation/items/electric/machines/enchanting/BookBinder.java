@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -131,7 +131,7 @@ public class BookBinder extends AContainer {
         return "BOOK_BINDER";
     }
 
-    
+
     private Map<Enchantment, Integer> combineEnchantments(
             Map<Enchantment, Integer> ech1, Map<Enchantment, Integer> ech2) {
         Map<Enchantment, Integer> enchantments = new HashMap<>(ech1);

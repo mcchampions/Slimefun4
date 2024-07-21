@@ -11,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.listeners.AncientAltarL
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AncientAltarTask;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;

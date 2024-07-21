@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.BlockPlacer;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.block.Block;
@@ -50,7 +49,7 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
      *
      * @return The placed {@link ItemStack}
      */
-    
+
     public ItemStack getItemStack() {
         return placedItem;
     }
@@ -92,12 +91,12 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
         locked = true;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

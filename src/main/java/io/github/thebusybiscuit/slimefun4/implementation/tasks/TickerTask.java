@@ -13,9 +13,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -54,6 +54,7 @@ public class TickerTask implements Runnable {
     private boolean halted = false;
     private boolean running = false;
 
+    @Setter
     private volatile boolean paused = false;
 
     /**
@@ -224,7 +225,7 @@ public class TickerTask implements Runnable {
      *
      * @return A {@link Map} representation of all ticking {@link Location Locations}
      */
-    
+
     public Map<ChunkPosition, Set<Location>> getLocations() {
         return Collections.unmodifiableMap(tickingLocations);
     }
@@ -240,7 +241,7 @@ public class TickerTask implements Runnable {
      *
      * @return A {@link Set} of all ticking {@link Location Locations}
      */
-    
+
     public Set<Location> getLocations(Chunk chunk) {
         Set<Location> locations = tickingLocations.getOrDefault(new ChunkPosition(chunk), new HashSet<>());
         return Collections.unmodifiableSet(locations);
@@ -284,7 +285,4 @@ public class TickerTask implements Runnable {
         }
     }
 
-    public void setPaused(boolean isPaused) {
-        paused = isPaused;
-    }
 }

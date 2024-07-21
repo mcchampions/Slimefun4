@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Teleporter;
 import java.util.Objects;
 import java.util.UUID;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -104,7 +103,7 @@ public class Waypoint {
      *
      * @deprecated Use {@link #getOwnerId()} instead
      */
-    
+
     @Deprecated
     public PlayerProfile getOwner() {
         // This is jank and should never actually return null
@@ -127,7 +126,7 @@ public class Waypoint {
      *
      * @return The {@link ItemStack} icon for this {@link Waypoint}
      */
-    
+
     public ItemStack getIcon() {
         return Slimefun.getGPSNetwork().getIcon(name, location.getWorld().getEnvironment());
     }

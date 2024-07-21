@@ -18,7 +18,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 
 public class CargoManager extends SlimefunItem implements HologramOwner, NotRotatable {
@@ -28,7 +27,7 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
         addItemHandler(onBreak());
     }
 
-    
+
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override

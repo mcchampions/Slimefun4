@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * This variation of {@link ItemSetting} allows you to allow {@link Enum} constants to be
@@ -27,7 +26,7 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
         this.enumClass = enumClass;
     }
 
-    
+
     @Override
     protected String getErrorMessage() {
         String values = Arrays.stream(getAllowedValues()).map(Enum::name).collect(Collectors.joining(", "));
@@ -40,7 +39,7 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
      *
      * @return An array of allowed {@link Enum} constants
      */
-    
+
     public T[] getAllowedValues() {
         return enumClass.getEnumConstants();
     }
@@ -50,7 +49,7 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
      *
      * @return The value as an {@link Enum} constant
      */
-    
+
     public T getAsEnumConstant() {
         return Enum.valueOf(enumClass, getValue());
     }

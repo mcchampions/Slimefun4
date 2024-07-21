@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.autocrafters.Enha
 import io.github.thebusybiscuit.slimefun4.implementation.items.autocrafters.VanillaAutoCrafter;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.Multimeter;
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.GameRule;
 import org.bukkit.Keyed;
 import org.bukkit.block.Block;

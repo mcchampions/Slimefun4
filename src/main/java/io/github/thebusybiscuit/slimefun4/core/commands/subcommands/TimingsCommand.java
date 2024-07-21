@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
@@ -90,7 +90,7 @@ class TimingsCommand extends SubCommand {
         return false;
     }
 
-    
+
     private PerformanceInspector inspectorOf(CommandSender sender, boolean verbose, SummaryOrderType orderType) {
         if (sender instanceof Player player) {
             return new PlayerPerformanceInspector(player, orderType);

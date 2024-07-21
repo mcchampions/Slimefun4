@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Bukkit;
@@ -74,7 +73,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
                 }
 
                 for (Entity n : ground.getChunk().getEntities()) {
-                    
+
                     if (n instanceof LivingEntity
                             && n.getType() != EntityType.ARMOR_STAND
                             && !n.getUniqueId().equals(p.getUniqueId())
@@ -82,7 +81,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
                             && pushedEntities.add(n.getUniqueId())) {
                         pushEntity(p, n);
                     }
-                    
+
                 }
             }
 
@@ -107,10 +106,10 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         // Fixes #3086 - Too close to Player, knockback may be NaN.
         double minPlayerDistanceSquared = MIN_PLAYER_DISTANCE * MIN_PLAYER_DISTANCE;
 
-        
+
         return entityLocation.distanceSquared(groundLocation) < maxGroundDistanceSquared
                 && playerLocation.distanceSquared(entityLocation) > minPlayerDistanceSquared;
-        
+
     }
 
     private void pushEntity(Player p, Entity entity) {

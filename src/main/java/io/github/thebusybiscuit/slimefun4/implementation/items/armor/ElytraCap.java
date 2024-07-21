@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.ElytraImpactListener;
 import io.github.thebusybiscuit.slimefun4.utils.UnbreakingAlgorithm;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.GameMode;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -49,7 +49,7 @@ public class ElytraCap extends SlimefunArmorPiece implements DamageableItem, Pro
         return UnbreakingAlgorithm.ARMOR.evaluate(unbreakingLevel);
     }
 
-    
+
     @Override
     public ProtectionType[] getProtectionTypes() {
         return new ProtectionType[] {ProtectionType.FLYING_INTO_WALL};
@@ -60,7 +60,7 @@ public class ElytraCap extends SlimefunArmorPiece implements DamageableItem, Pro
         return false;
     }
 
-    
+
     @Override
     public NamespacedKey getArmorSetId() {
         return key;

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
@@ -62,7 +62,7 @@ public abstract class AContainer extends SlimefunItem
         addItemHandler(onBlockBreak());
     }
 
-    
+
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -134,7 +134,7 @@ public abstract class AContainer extends SlimefunItem
      *
      * @return The title of the {@link Inventory} of this {@link AContainer}
      */
-    
+
     public String getInventoryTitle() {
         return getItemName();
     }
@@ -190,7 +190,7 @@ public abstract class AContainer extends SlimefunItem
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setCapacity(int capacity) {
-        
+
 
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
@@ -209,7 +209,7 @@ public abstract class AContainer extends SlimefunItem
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setProcessingSpeed(int speed) {
-        
+
 
         this.processingSpeed = speed;
         return this;
@@ -266,7 +266,7 @@ public abstract class AContainer extends SlimefunItem
      *
      * @return The identifier of this machine
      */
-    
+
     public abstract String getMachineIdentifier();
 
     /**

@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.core.services.profiler.inspectors;
 
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.PerformanceInspector;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SummaryOrderType;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 

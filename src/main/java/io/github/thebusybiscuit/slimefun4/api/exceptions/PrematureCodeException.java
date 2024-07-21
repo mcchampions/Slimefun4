@@ -1,7 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.api.exceptions;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import java.io.Serial;
 
 /**

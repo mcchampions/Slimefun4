@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.networks.cargo.CargoNet;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Location;
@@ -49,7 +49,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         return true;
     }
 
-    
+
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -63,7 +63,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         };
     }
 
-    
+
     protected abstract int[] getBorder();
 
     @Override

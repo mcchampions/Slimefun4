@@ -3,9 +3,9 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import java.util.Optional;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -25,8 +25,26 @@ import org.bukkit.inventory.ItemStack;
 public class SlimefunItemSpawnEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
 
+    /**
+     * -- SETTER --
+     *  This sets the
+     *  on where to drop this item.
+     *
+     * @param location
+     *            The {@link Location} where to drop the {@link ItemStack}
+     */
+    @Setter
     @Getter
     private Location location;
+    /**
+     * -- SETTER --
+     *  This method sets the
+     *  that should be dropped.
+     *
+     * @param itemStack
+     *            The {@link ItemStack} to drop
+     */
+    @Setter
     @Getter
     private ItemStack itemStack;
     private boolean cancelled;
@@ -54,28 +72,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      */
     public Optional<Player> getPlayer() {
         return Optional.ofNullable(player);
-    }
-
-    /**
-     * This sets the {@link Location} on where to drop this item.
-     *
-     * @param location
-     *            The {@link Location} where to drop the {@link ItemStack}
-     */
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    /**
-     * This method sets the {@link ItemStack} that should be dropped.
-     *
-     * @param itemStack
-     *            The {@link ItemStack} to drop
-     */
-    public void setItemStack(ItemStack itemStack) {
-        
-
-        this.itemStack = itemStack;
     }
 
     @Override

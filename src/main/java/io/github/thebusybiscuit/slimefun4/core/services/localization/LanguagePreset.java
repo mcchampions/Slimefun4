@@ -1,7 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.services.localization;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 

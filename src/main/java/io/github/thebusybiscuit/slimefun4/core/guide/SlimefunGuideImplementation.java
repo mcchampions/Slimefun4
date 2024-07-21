@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.core.guide.options.SlimefunGuideSettin
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.guide.SurvivalSlimefunGuide;
 import java.util.function.Consumer;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -31,7 +31,7 @@ public interface SlimefunGuideImplementation {
      *
      * @return The mode this {@link SlimefunGuideImplementation} represents
      */
-    
+
     SlimefunGuideMode getMode();
 
     /**
@@ -41,7 +41,7 @@ public interface SlimefunGuideImplementation {
      *
      * @return The {@link ItemStack} representation for this {@link SlimefunGuideImplementation}
      */
-    
+
     ItemStack getItem();
 
     void openMainMenu(PlayerProfile profile, int page);

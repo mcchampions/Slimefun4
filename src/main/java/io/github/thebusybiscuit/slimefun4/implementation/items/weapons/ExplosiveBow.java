@@ -9,7 +9,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 
 import java.util.Collection;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Bukkit;

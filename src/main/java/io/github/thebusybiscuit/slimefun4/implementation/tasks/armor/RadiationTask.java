@@ -12,7 +12,7 @@ import io.github.thebusybiscuit.slimefun4.utils.RadiationUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;

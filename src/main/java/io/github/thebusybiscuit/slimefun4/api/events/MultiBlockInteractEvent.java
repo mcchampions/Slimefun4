@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlock;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.block.Block;
@@ -45,12 +44,12 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
         this.cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

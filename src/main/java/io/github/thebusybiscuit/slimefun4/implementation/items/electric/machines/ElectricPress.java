@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.qscbm.slimefun4.items.machines.ASpeedableContainer;
 import org.bukkit.Material;

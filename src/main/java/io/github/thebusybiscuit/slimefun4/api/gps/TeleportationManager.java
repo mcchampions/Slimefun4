@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -95,7 +95,7 @@ public final class TeleportationManager {
                     Location l = waypoint.getLocation();
                     double time = NumberUtils.reparseDouble(0.5 * getTeleportationTime(complexity, source, l));
 
-                    
+
                     String[] lore = {
                         "",
                         "&8\u21E8 &7"
@@ -113,7 +113,7 @@ public final class TeleportationManager {
                         "",
                         "&8\u21E8 &c" + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.tooltip")
                     };
-                    
+
 
                     menu.addItem(
                             slot,

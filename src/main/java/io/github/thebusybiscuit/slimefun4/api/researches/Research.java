@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -43,6 +43,7 @@ public class Research implements Keyed {
     private boolean enabled = true;
     @Getter
     private int levelCost;
+    @Setter
     @Getter
     private double currencyCost;
 
@@ -221,7 +222,7 @@ public class Research implements Keyed {
      *
      * @return The current instance of {@link Research}
      */
-    
+
     public Research addItems(ItemStack... items) {
         for (ItemStack item : items) {
             SlimefunItem sfItem = SlimefunItem.getByItem(item);
@@ -239,7 +240,7 @@ public class Research implements Keyed {
      *
      * @return The Slimefun items bound to this {@link Research}.
      */
-    
+
     public List<SlimefunItem> getAffectedItems() {
         return items;
     }
@@ -410,7 +411,7 @@ public class Research implements Keyed {
      * @param key the {@link NamespacedKey} of the {@link Research} you are looking for
      * @return An {@link Optional} with or without the found {@link Research}
      */
-    
+
     public static Optional<Research> getResearch(@Nullable NamespacedKey key) {
         if (key == null) {
             return Optional.empty();
@@ -441,7 +442,4 @@ public class Research implements Keyed {
         return "Research (" + getKey() + ')';
     }
 
-    public void setCurrencyCost(double currencyCost) {
-        this.currencyCost = currencyCost;
-    }
 }

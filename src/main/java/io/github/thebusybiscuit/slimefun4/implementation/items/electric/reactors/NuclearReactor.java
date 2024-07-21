@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +31,7 @@ public abstract class NuclearReactor extends Reactor {
         registerFuel(new MachineFuel(1500, SlimefunItems.BOOSTED_URANIUM, null));
     }
 
-    
+
     @Override
     public ItemStack getProgressBar() {
         return SlimefunItems.LAVA_CRYSTAL;
@@ -43,7 +42,7 @@ public abstract class NuclearReactor extends Reactor {
         return SlimefunItems.REACTOR_COOLANT_CELL;
     }
 
-    
+
     @Override
     public ItemStack getFuelIcon() {
         return SlimefunItems.URANIUM;

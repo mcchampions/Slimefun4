@@ -24,7 +24,7 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.OptionalInt;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
@@ -181,7 +181,7 @@ public class GEOMiner extends SlimefunItem
         }
     }
 
-    
+
     private BlockPlaceHandler onBlockPlace() {
         return new BlockPlaceHandler(false) {
             @Override
@@ -191,7 +191,7 @@ public class GEOMiner extends SlimefunItem
         };
     }
 
-    
+
     private BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -208,19 +208,19 @@ public class GEOMiner extends SlimefunItem
         };
     }
 
-    
+
     @Override
     public int[] getInputSlots() {
         return new int[0];
     }
 
-    
+
     @Override
     public int[] getOutputSlots() {
         return OUTPUT_SLOTS;
     }
 
-    
+
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new LinkedList<>();
@@ -239,7 +239,7 @@ public class GEOMiner extends SlimefunItem
         return "guide.tooltips.recipes.miner";
     }
 
-    
+
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;

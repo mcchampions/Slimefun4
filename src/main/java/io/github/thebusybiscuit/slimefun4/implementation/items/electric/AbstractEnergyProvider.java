@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
@@ -49,7 +48,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
      *
      * @return The title of the {@link Inventory} of this {@link AbstractEnergyProvider}
      */
-    
+
     public String getInventoryTitle() {
         return getItemName();
     }
@@ -62,7 +61,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
      *
      * @return The {@link ItemStack} to use as the progress bar
      */
-    
+
     public abstract ItemStack getProgressBar();
 
     /**
@@ -78,7 +77,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
     protected abstract void registerDefaultFuelTypes();
 
     @Override
-    
+
     public final EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.GENERATOR;
     }
@@ -92,7 +91,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
         return "guide.tooltips.recipes.generator";
     }
 
-    
+
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> list = new ArrayList<>();

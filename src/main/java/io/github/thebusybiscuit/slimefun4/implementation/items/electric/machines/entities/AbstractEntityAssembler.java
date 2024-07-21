@@ -19,7 +19,7 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
@@ -113,7 +113,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         addItemHandler(onPlace(), onBreak());
     }
 
-    
+
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(true) {
             @Override
@@ -134,7 +134,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         };
     }
 
-    
+
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
             @Override
@@ -186,7 +186,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         });
     }
 
-    
+
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {

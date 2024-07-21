@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public abstract class ASlimefunDataContainer {
     @Getter
@@ -56,13 +55,13 @@ public abstract class ASlimefunDataContainer {
         }
     }
 
-    
+
     public Map<String, String> getAllData() {
         checkData();
         return Collections.unmodifiableMap(data);
     }
 
-    
+
     public Set<String> getDataKeys() {
         checkData();
         return Collections.unmodifiableSet(data.keySet());

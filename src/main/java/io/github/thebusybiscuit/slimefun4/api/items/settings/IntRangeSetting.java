@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.items.settings;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * This variation of {@link ItemSetting} allows you to define an {@link Integer} range
@@ -20,13 +19,13 @@ public class IntRangeSetting extends ItemSetting<Integer> {
 
     public IntRangeSetting(SlimefunItem item, String key, int min, int defaultValue, int max) {
         super(item, key, defaultValue);
-        
+
 
         this.min = min;
         this.max = max;
     }
 
-    
+
     @Override
     protected String getErrorMessage() {
         return "Only whole numbers from " + min + '-' + max + "(inclusive) are allowed!";

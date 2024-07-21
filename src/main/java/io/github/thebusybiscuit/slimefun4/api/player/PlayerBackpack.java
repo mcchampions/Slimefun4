@@ -13,7 +13,6 @@ import java.util.OptionalInt;
 import java.util.UUID;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -227,7 +226,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
      *
      * @return The {@link Inventory} of this {@link PlayerBackpack}
      */
-    
+
     public Inventory getInventory() {
         return inventory;
     }

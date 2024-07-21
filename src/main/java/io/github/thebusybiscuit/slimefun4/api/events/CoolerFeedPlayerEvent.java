@@ -1,9 +1,9 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Cooler;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -27,6 +27,20 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
     @Getter
     private final ItemStack coolerItem;
 
+    /**
+     * -- SETTER --
+     *  This sets the
+     *  that should be "consumed".
+     *  The
+     *  must be a potion.
+     *  The
+     *  will receive the
+     *  of the
+     *  provided potion upon consumption.
+     *
+     * @param item The new {@link ItemStack}
+     */
+    @Setter
     private ItemStack consumedItem;
     private boolean cancelled;
 
@@ -44,23 +58,9 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      *
      * @return The {@link ItemStack} that was consumed
      */
-    
+
     public ItemStack getConsumedItem() {
         return consumedItem.clone();
-    }
-
-    /**
-     * This sets the {@link ItemStack} that should be "consumed".
-     * The {@link ItemStack} must be a potion.
-     * The {@link Player} will receive the {@link PotionEffect PotionEffects} of the
-     * provided potion upon consumption.
-     *
-     * @param item The new {@link ItemStack}
-     */
-    public void setConsumedItem(ItemStack item) {
-        
-
-        this.consumedItem = item;
     }
 
     @Override
@@ -73,12 +73,12 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
         this.cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

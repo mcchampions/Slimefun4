@@ -17,7 +17,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

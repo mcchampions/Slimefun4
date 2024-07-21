@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -125,7 +125,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         return processor;
     }
 
-    
+
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -270,7 +270,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         }
     }
 
-    
+
     protected ReactorMode getReactorMode(Location l) {
         ReactorMode mode = ReactorMode.GENERATOR;
 
@@ -299,7 +299,7 @@ public abstract class Reactor extends AbstractEnergyProvider
      *
      * @return The {@link ItemStack} used as the fuel icon for this {@link Reactor}.
      */
-    
+
     public abstract ItemStack getFuelIcon();
 
     /**
@@ -322,7 +322,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         return new int[] {19, 28, 37};
     }
 
-    
+
     public int[] getCoolantSlots() {
         return needsCooling() ? new int[] {25, 34, 43} : new int[0];
     }

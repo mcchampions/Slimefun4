@@ -12,7 +12,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEntityType;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
@@ -68,7 +68,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         return index;
     }
 
-    
+
     protected ItemUseHandler getItemUseHandler() {
         return e -> {
             Player p = e.getPlayer();
@@ -102,7 +102,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         };
     }
 
-    
+
     private ToolUseHandler getToolUseHandler() {
         return (e, tool, fortune, drops) -> {
             // Multi Tools cannot be used as shears
@@ -111,7 +111,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         };
     }
 
-    
+
     private EntityInteractHandler getEntityInteractionHandler() {
         return (e, item, offhand) -> {
             // Fixes #2217 - Prevent them from being used to shear entities

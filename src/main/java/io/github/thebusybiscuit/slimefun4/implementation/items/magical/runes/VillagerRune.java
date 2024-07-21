@@ -12,7 +12,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.GameMode;
 import org.bukkit.Particle;
 import org.bukkit.SoundCategory;

@@ -11,7 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.Collection;
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Effect;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;

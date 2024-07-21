@@ -18,7 +18,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Keyed;
 import org.bukkit.Material;

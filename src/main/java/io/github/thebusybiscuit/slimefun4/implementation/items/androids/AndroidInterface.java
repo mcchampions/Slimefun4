@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockDispenseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.VanillaInventoryDropHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.block.Dispenser;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,7 +26,7 @@ public class AndroidInterface extends SimpleSlimefunItem<BlockDispenseHandler> {
         addItemHandler(new VanillaInventoryDropHandler<>(Dispenser.class));
     }
 
-    
+
     @Override
     public BlockDispenseHandler getItemHandler() {
         return (e, d, block, machine) -> e.setCancelled(true);

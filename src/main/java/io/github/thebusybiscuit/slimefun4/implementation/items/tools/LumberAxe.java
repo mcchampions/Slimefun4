@@ -12,7 +12,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Axis;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -40,7 +40,7 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
         addItemHandler(onBlockBreak(), onItemUse());
     }
 
-    
+
     private ToolUseHandler onBlockBreak() {
         return (e, tool, fortune, drops) -> {
             if (!e.getPlayer().isSneaking() && Tag.LOGS.isTagged(e.getBlock().getType())) {
@@ -58,7 +58,7 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
         };
     }
 
-    
+
     public ItemUseHandler onItemUse() {
         return e -> {
             if (e.getClickedBlock().isPresent() && !e.getPlayer().isSneaking()) {

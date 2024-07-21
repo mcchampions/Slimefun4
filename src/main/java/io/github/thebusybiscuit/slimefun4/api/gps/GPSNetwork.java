@@ -23,7 +23,6 @@ import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 
 /**
@@ -403,7 +402,7 @@ public class GPSNetwork {
      *
      * @return A {@link Set} with all {@link Location Locations} of transmitters for this {@link UUID}
      */
-    
+
     public Set<Location> getTransmitters(UUID uuid) {
         return transmitters.getOrDefault(uuid, new HashSet<>());
     }
@@ -414,7 +413,7 @@ public class GPSNetwork {
      *
      * @return The {@link TeleportationManager} for this {@link GPSNetwork}
      */
-    
+
     public TeleportationManager getTeleportationManager() {
         return teleportation;
     }

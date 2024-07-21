@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Material;
@@ -23,7 +22,7 @@ public class CombustionGenerator extends AGenerator implements NotDiagonallyRota
         registerFuel(new MachineFuel(90, SlimefunItems.FUEL_BUCKET));
     }
 
-    
+
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.FLINT_AND_STEEL);

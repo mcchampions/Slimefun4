@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -30,7 +29,7 @@ public class Teleporter extends SimpleSlimefunItem<BlockPlaceHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    
+
     @Override
     public BlockPlaceHandler getItemHandler() {
         return new BlockPlaceHandler(false) {

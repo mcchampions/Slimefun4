@@ -12,9 +12,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.ChatColor;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -42,6 +42,19 @@ public class ItemGroup implements Keyed {
     protected final ItemStack item;
     @Getter
     protected int tier;
+    /**
+     * -- SETTER --
+     *  This method will set if this
+     *  will
+     *  allow
+     * s from other addons to
+     *  be added, without a warning, into the group. False by default.
+     *  If set to true, Slimefun will not warn about items being added.
+     *
+     * @param crossAddonItemGroup
+     *                          Whether items from another addon are allowable
+     */
+    @Setter
     @Getter
     protected boolean crossAddonItemGroup = false;
 
@@ -300,19 +313,6 @@ public class ItemGroup implements Keyed {
         }
 
         return false;
-    }
-
-    /**
-     * This method will set if this {@link ItemGroup} will
-     * allow {@link SlimefunItem}s from other addons to
-     * be added, without a warning, into the group. False by default.
-     * If set to true, Slimefun will not warn about items being added.
-     *
-     * @param crossAddonItemGroup
-     *                          Whether items from another addon are allowable
-     */
-    public void setCrossAddonItemGroup(boolean crossAddonItemGroup) {
-        this.crossAddonItemGroup = crossAddonItemGroup;
     }
 
     @Override

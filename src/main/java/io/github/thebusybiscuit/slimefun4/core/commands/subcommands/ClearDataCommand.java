@@ -7,7 +7,7 @@ import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -89,7 +89,7 @@ public class ClearDataCommand extends SubCommand {
         }
     }
 
-    
+
     @Override
     public String getDescription() {
         return "commands.cleardata.description";

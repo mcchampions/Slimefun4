@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientAltar;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.AncientAltarListener;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AncientAltarTask;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -46,7 +45,7 @@ public class AncientAltarCraftEvent extends PlayerEvent implements Cancellable {
      *
      * @return the main altar's block {@link Block}
      */
-    
+
     public Block getAltarBlock() {
         return block;
     }
@@ -56,7 +55,7 @@ public class AncientAltarCraftEvent extends PlayerEvent implements Cancellable {
      *
      * @return the {@link ItemStack} that would be dropped by the {@link AncientAltar}
      */
-    
+
     public ItemStack getItem() {
         return output;
     }
@@ -85,12 +84,12 @@ public class AncientAltarCraftEvent extends PlayerEvent implements Cancellable {
         cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

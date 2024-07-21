@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.Function;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -113,7 +113,7 @@ class PerformanceSummary {
         }
     }
 
-    
+
     private TextComponent summarizeAsTextComponent(
             int count,
             String prefix,
@@ -152,7 +152,7 @@ class PerformanceSummary {
         return component;
     }
 
-    
+
     private String summarizeAsString(
             PerformanceInspector inspector,
             int count,
@@ -188,7 +188,7 @@ class PerformanceSummary {
         return builder.toString();
     }
 
-    
+
     private String getPerformanceRating() {
         StringBuilder builder = new StringBuilder();
         builder.append(NumberUtils.getColorFromPercentage(100 - Math.min(percentage, 100)));

@@ -14,6 +14,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Stream;
+
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import net.guizhanss.slimefun4.utils.WikiUtils;
@@ -95,11 +97,11 @@ public final class PostSetup {
      * @return The amount of {@link SlimefunItem SlimefunItems} added by Slimefun itself
      */
     private static int countNonAddonItems() {
-        
+
         return (int) Slimefun.getRegistry().getEnabledSlimefunItems().stream()
                 .filter(item -> item.getAddon() instanceof Slimefun)
                 .count();
-        
+
     }
 
     private static void loadOreGrinderRecipes() {
@@ -205,8 +207,7 @@ public final class PostSetup {
     }
 
     private static boolean isDust(ItemStack item) {
-        SlimefunItem sfItem = SlimefunItem.getByItem(item);
-        return sfItem != null && sfItem.getId().endsWith("_DUST");
+        return SlimefunUtils.isDust(item);
     }
 
     private static void registerMachineRecipe(String machine, int seconds, ItemStack[] input, ItemStack[] output) {

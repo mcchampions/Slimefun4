@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import org.bukkit.Location;
 import org.bukkit.block.Block;

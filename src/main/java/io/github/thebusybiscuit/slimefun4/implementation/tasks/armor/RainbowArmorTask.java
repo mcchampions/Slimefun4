@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.tasks.armor;
 import io.github.thebusybiscuit.slimefun4.api.items.HashedArmorpiece;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.RainbowArmorPiece;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

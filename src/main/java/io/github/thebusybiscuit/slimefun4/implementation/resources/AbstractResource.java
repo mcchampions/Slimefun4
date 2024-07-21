@@ -6,7 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.biomes.BiomeMap;
 import java.util.logging.Level;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
@@ -37,19 +37,19 @@ abstract class AbstractResource implements GEOResource {
     }
 
     @Override
-    
+
     public NamespacedKey getKey() {
         return key;
     }
 
     @Override
-    
+
     public String getName() {
         return defaultName;
     }
 
     @Override
-    
+
     public ItemStack getItem() {
         return item.clone();
     }

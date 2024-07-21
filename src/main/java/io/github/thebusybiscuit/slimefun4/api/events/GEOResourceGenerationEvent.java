@@ -11,8 +11,6 @@ import org.bukkit.block.Biome;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 /**
  * This {@link Event} is fired whenever a {@link GEOResource} is being freshly generated.
  * This only occurs when a {@link GEOScanner} queries the {@link Chunk} for a {@link GEOResource}
@@ -91,7 +89,7 @@ public class GEOResourceGenerationEvent extends Event {
      *
      * @return The {@link Environment} of this generation
      */
-    
+
     public Environment getEnvironment() {
         return world.getEnvironment();
     }

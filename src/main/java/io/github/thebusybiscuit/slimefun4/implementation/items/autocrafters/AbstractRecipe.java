@@ -7,9 +7,9 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.AsyncRecipeChoice
 import java.util.Collection;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
@@ -61,8 +61,16 @@ public abstract class AbstractRecipe {
      *  This returns whether or not this recipe has been enabled.
      *  A disabled recipe will not be crafted.
      *
+     * -- SETTER --
+     *  This method enables or disables this recipe.
+     *  A disabled recipe will not be crafted.
+     *
+     * @param enabled
+     *            Whether this recipe is enabled
+
 
      */
+    @Setter
     private boolean enabled = true;
 
     /**
@@ -76,17 +84,6 @@ public abstract class AbstractRecipe {
     protected AbstractRecipe(Collection<Predicate<ItemStack>> ingredients, ItemStack result) {
         this.ingredients = ingredients;
         this.result = result;
-    }
-
-    /**
-     * This method enables or disables this recipe.
-     * A disabled recipe will not be crafted.
-     *
-     * @param enabled
-     *            Whether this recipe is enabled
-     */
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     /**

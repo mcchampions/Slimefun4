@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import java.util.UUID;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -23,6 +24,18 @@ public class AsyncProfileLoadEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
     private final UUID uniqueId;
+    /**
+     * -- SETTER --
+     *  This method can be used to inject your custom
+     *  implementations.
+     *  However, the passed
+     *  must have the same
+     *  as the original one!
+     *
+     * @param profile
+     *            The {@link PlayerProfile}
+     */
+    @Setter
     @Getter
     private PlayerProfile profile;
 
@@ -33,28 +46,17 @@ public class AsyncProfileLoadEvent extends Event {
         this.profile = profile;
     }
 
-    
+
     public UUID getPlayerUUID() {
         return uniqueId;
     }
 
-    /**
-     * This method can be used to inject your custom {@link PlayerProfile} implementations.
-     * However, the passed {@link PlayerProfile} must have the same {@link UUID} as the original one!
-     *
-     * @param profile
-     *            The {@link PlayerProfile}
-     */
-    public void setProfile(PlayerProfile profile) {
-        this.profile = profile;
-    }
 
-    
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

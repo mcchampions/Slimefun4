@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEff
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
@@ -41,7 +41,7 @@ public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefu
      *
      * @return An immutable {@link Set} of cured {@link PotionEffect PotionEffects}
      */
-    
+
     public Set<PotionEffectType> getCuredEffects() {
         return Collections.unmodifiableSet(curedEffects);
     }

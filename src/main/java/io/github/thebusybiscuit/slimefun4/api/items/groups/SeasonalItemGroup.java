@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.items.groups;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import java.time.LocalDate;
 import java.time.Month;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import lombok.Getter;
 import org.bukkit.NamespacedKey;

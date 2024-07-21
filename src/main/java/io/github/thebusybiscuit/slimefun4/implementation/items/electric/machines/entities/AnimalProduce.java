@@ -1,7 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.entities;
 
 import java.util.function.Predicate;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;

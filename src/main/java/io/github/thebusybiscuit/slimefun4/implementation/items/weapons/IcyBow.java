@@ -4,8 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BowShootHandler;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -27,7 +25,7 @@ public class IcyBow extends SlimefunBow {
         super(itemGroup, item, recipe);
     }
 
-    
+
     @Override
     public BowShootHandler onShoot() {
         return (e, n) -> {

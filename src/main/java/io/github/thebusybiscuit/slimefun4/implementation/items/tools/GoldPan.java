@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -126,13 +126,13 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
         return item != null ? item : new ItemStack(Material.AIR);
     }
 
-    
+
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.gold-pan";
     }
 
-    
+
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -168,7 +168,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return the {@link EntityInteractHandler} of this {@link SlimefunItem}
      */
-    
+
     public EntityInteractHandler onEntityInteract() {
         return (e, item, offHand) -> {
             if (!(e.getRightClicked() instanceof ItemFrame)) {
@@ -177,7 +177,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
         };
     }
 
-    
+
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> recipes = new ArrayList<>();

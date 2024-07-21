@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -20,7 +20,7 @@ public class GPSControlPanel extends SimpleSlimefunItem<BlockUseHandler> impleme
         super(itemGroup, item, recipeType, recipe);
     }
 
-    
+
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {

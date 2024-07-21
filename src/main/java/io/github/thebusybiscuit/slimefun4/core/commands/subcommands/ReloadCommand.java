@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.commands.subcommands;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.qscbm.slimefun4.services.LanguageService;
 import org.bukkit.command.CommandSender;
@@ -19,7 +18,7 @@ public class ReloadCommand extends SubCommand {
         super(plugin, cmd, "reload", false);
     }
 
-    
+
     @Override
     protected String getDescription() {
         return "commands.reload.description";

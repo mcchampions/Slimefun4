@@ -22,8 +22,6 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 /**
  * The Boots of the Stomper are boots which damage nearby enemies whenever the {@link Player}
  * takes fall damage.
@@ -86,7 +84,7 @@ public class StomperBoots extends SlimefunItem {
      *
      * @return A {@link Vector} to determine the velocity for our {@link Entity}
      */
-    
+
     protected Vector getShockwave(Location origin, Location target) {
         // As the distance approaches zero we might slip into a "division by zero" when normalizing
         if (origin.distanceSquared(target) < 0.05) {

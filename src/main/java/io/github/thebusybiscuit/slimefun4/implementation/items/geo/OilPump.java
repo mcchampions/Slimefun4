@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -75,13 +74,13 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
         };
     }
 
-    
+
     @Override
     public List<ItemStack> getDisplayRecipes() {
         return Arrays.asList(emptyBucket, SlimefunItems.OIL_BUCKET);
     }
 
-    
+
     @Override
     public String getMachineIdentifier() {
         return "OIL_PUMP";
