@@ -46,26 +46,32 @@ public enum Instruction {
     /**
      * This will make the {@link ProgrammableAndroid} go forward.
      */
+    /*
     GO_FORWARD(AndroidType.NON_FIGHTER, HeadTexture.SCRIPT_FORWARD, (android, b, inv, face) -> {
         Block target = b.getRelative(face);
         android.move(b, face, target);
     }),
+    */
 
     /**
      * This will make the {@link ProgrammableAndroid} go up.
      */
+    /*
     GO_UP(AndroidType.NON_FIGHTER, HeadTexture.SCRIPT_UP, (android, b, inv, face) -> {
         Block target = b.getRelative(BlockFace.UP);
         android.move(b, face, target);
     }),
+    */
 
     /**
      * This will make the {@link ProgrammableAndroid} go down.
      */
+    /*
     GO_DOWN(AndroidType.NON_FIGHTER, HeadTexture.SCRIPT_DOWN, (android, b, inv, face) -> {
         Block target = b.getRelative(BlockFace.DOWN);
         android.move(b, face, target);
     }),
+    */
 
     /**
      * This will make the {@link ProgrammableAndroid} rotate to the left side.
@@ -111,28 +117,37 @@ public enum Instruction {
      * This will make a {@link MinerAndroid} dig the {@link Block} above
      * and then move itself to that new {@link Location}.
      */
+    /*
     MOVE_AND_DIG_UP(AndroidType.MINER, HeadTexture.SCRIPT_DIG_UP, (android, b, inv, face) -> {
         Block target = b.getRelative(BlockFace.UP);
         android.moveAndDig(b, inv, face, target);
     }),
+     */
 
     /**
      * This will make a {@link MinerAndroid} dig the {@link Block} ahead
      * and then move itself to that new {@link Location}.
      */
+
+    /*
     MOVE_AND_DIG_FORWARD(AndroidType.MINER, HeadTexture.SCRIPT_DIG_FORWARD, (android, b, inv, face) -> {
         Block target = b.getRelative(face);
         android.moveAndDig(b, inv, face, target);
     }),
 
+     */
+
     /**
      * This will make a {@link MinerAndroid} dig the {@link Block} below
      * and then move itself to that new {@link Location}.
      */
+    /*
     MOVE_AND_DIG_DOWN(AndroidType.MINER, HeadTexture.SCRIPT_DIG_DOWN, (android, b, inv, face) -> {
         Block target = b.getRelative(BlockFace.DOWN);
         android.moveAndDig(b, inv, face, target);
     }),
+    
+     */
 
     /**
      * This will make a {@link ButcherAndroid} attack any {@link LivingEntity}
