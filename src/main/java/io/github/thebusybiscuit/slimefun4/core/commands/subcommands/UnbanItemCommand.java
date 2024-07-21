@@ -16,7 +16,6 @@ import org.bukkit.command.ConsoleCommandSender;
 public class UnbanItemCommand extends SubCommand {
     private static final String PLACEHOLDER_ITEM = "%item%";
 
-    @ParametersAreNonnullByDefault
     public UnbanItemCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "unbanitem", false);
     }

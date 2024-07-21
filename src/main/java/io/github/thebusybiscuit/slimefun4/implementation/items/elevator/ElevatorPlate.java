@@ -58,7 +58,6 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
      */
     private final Set<UUID> users = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
     public ElevatorPlate(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -145,7 +144,6 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         return floors;
     }
 
-    @ParametersAreNonnullByDefault
     public void openInterface(Player p, Block b) {
         if (users.remove(p.getUniqueId())) {
             return;
@@ -160,7 +158,6 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         });
     }
 
-    @ParametersAreNonnullByDefault
     private void openFloorSelector(Block b, List<ElevatorFloor> floors, Player p, int page) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "machines.ELEVATOR.pick-a-floor"));
         menu.setEmptySlotsClickable(false);
@@ -170,7 +167,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         for (int i = 0; i < Math.min(GUI_SIZE, floors.size() - index); i++) {
             ElevatorFloor floor = floors.get(index + i);
 
-            // @formatter:off
+            
             if (floor.getAltitude() == b.getY()) {
                 menu.addItem(
                         i,
@@ -205,7 +202,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                             return false;
                         });
             }
-            // @formatter:on
+            
         }
 
         int pages = 1 + (floors.size() / GUI_SIZE);
@@ -231,7 +228,6 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
     private void teleport(Player player, ElevatorFloor floor) {
         Slimefun.runSync(() -> {
             users.add(player.getUniqueId());
@@ -259,7 +255,6 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         });
     }
 
-    @ParametersAreNonnullByDefault
     public void openEditor(Player p, Block b) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "machines.ELEVATOR.editor-title"));
 

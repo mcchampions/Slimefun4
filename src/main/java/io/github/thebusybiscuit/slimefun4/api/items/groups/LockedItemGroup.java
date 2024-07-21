@@ -46,7 +46,6 @@ public class LockedItemGroup extends ItemGroup {
      *            The parent categories for this group
      *
      */
-    @ParametersAreNonnullByDefault
     public LockedItemGroup(NamespacedKey key, ItemStack item, NamespacedKey... parents) {
         this(key, item, 3, parents);
     }
@@ -64,7 +63,6 @@ public class LockedItemGroup extends ItemGroup {
      *            The parent categories for this group
      *
      */
-    @ParametersAreNonnullByDefault
     public LockedItemGroup(NamespacedKey key, ItemStack item, int tier, NamespacedKey... parents) {
         super(key, item, tier);
 

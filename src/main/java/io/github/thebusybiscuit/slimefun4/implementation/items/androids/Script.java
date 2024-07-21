@@ -234,7 +234,6 @@ public final class Script {
         }
     }
 
-    @ParametersAreNonnullByDefault
     public static void upload(Player p, AndroidType androidType, int id, String name, String code) {
         Config config =
                 new Config("plugins/Slimefun/scripts/" + androidType.name() + '/' + p.getName() + ' ' + id + ".sfs");

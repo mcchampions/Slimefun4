@@ -34,7 +34,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
     private final ItemSpawnReason itemSpawnReason;
     private final Player player;
 
-    @ParametersAreNonnullByDefault
     public SlimefunItemSpawnEvent(
             @Nullable Player player, Location location, ItemStack itemStack, ItemSpawnReason itemSpawnReason) {
         this.location = location;
@@ -44,7 +43,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
         this.player = player;
     }
 
-    @ParametersAreNonnullByDefault
     public SlimefunItemSpawnEvent(Location location, ItemStack itemStack, ItemSpawnReason itemSpawnReason) {
         this(null, location, itemStack, itemSpawnReason);
     }

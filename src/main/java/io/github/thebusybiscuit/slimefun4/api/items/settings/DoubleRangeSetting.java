@@ -18,7 +18,6 @@ public class DoubleRangeSetting extends ItemSetting<Double> {
     private final double min;
     private final double max;
 
-    @ParametersAreNonnullByDefault
     public DoubleRangeSetting(SlimefunItem item, String key, double min, double defaultValue, double max) {
         super(item, key, defaultValue);
         

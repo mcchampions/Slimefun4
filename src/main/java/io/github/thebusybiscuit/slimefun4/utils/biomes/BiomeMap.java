@@ -51,7 +51,6 @@ public class BiomeMap<T> implements Keyed {
      * @param namespacedKey
      *            The {@link NamespacedKey} for this {@link BiomeMap}
      */
-    @ParametersAreNonnullByDefault
     public BiomeMap(NamespacedKey namespacedKey) {
         this.namespacedKey = namespacedKey;
     }
@@ -114,7 +113,6 @@ public class BiomeMap<T> implements Keyed {
         return "BiomeMap " + dataMap;
     }
 
-    @ParametersAreNonnullByDefault
     public static <T> BiomeMap<T> fromJson(
             NamespacedKey key, String json, BiomeDataConverter<T> valueConverter) throws BiomeMapException {
         // All parameters are validated by the Parser.
@@ -123,7 +121,6 @@ public class BiomeMap<T> implements Keyed {
         return parser.buildBiomeMap();
     }
 
-    @ParametersAreNonnullByDefault
     public static <T> BiomeMap<T> fromJson(
             NamespacedKey key, String json, BiomeDataConverter<T> valueConverter, boolean isLenient)
             throws BiomeMapException {
@@ -134,7 +131,6 @@ public class BiomeMap<T> implements Keyed {
         return parser.buildBiomeMap();
     }
 
-    @ParametersAreNonnullByDefault
     public static <T> BiomeMap<T> fromResource(
             NamespacedKey key, JavaPlugin plugin, String path, BiomeDataConverter<T> valueConverter)
             throws BiomeMapException {
@@ -146,19 +142,16 @@ public class BiomeMap<T> implements Keyed {
         }
     }
 
-    @ParametersAreNonnullByDefault
     public static BiomeMap<Integer> getIntMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
             throws BiomeMapException {
         return fromResource(key, plugin, path, JsonElement::getAsInt);
     }
 
-    @ParametersAreNonnullByDefault
     public static BiomeMap<Long> getLongMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
             throws BiomeMapException {
         return fromResource(key, plugin, path, JsonElement::getAsLong);
     }
 
-    @ParametersAreNonnullByDefault
     public static BiomeMap<String> getStringMapFromResource(NamespacedKey key, JavaPlugin plugin, String path)
             throws BiomeMapException {
         return fromResource(key, plugin, path, JsonElement::getAsString);

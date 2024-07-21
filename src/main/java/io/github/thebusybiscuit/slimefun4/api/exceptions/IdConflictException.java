@@ -23,7 +23,6 @@ public class IdConflictException extends RuntimeException {
      * @param item2
      *            The second {@link SlimefunItem} with this id
      */
-    @ParametersAreNonnullByDefault
     public IdConflictException(SlimefunItem item1, SlimefunItem item2) {
         super("Two items have conflicting ids: " + item1 + " and " + item2);
     }

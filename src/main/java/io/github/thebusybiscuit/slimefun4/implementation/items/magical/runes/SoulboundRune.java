@@ -36,7 +36,6 @@ import org.bukkit.inventory.ItemStack;
 public class SoulboundRune extends SimpleSlimefunItem<ItemDropHandler> {
     private static final double RANGE = 1.5;
 
-    @ParametersAreNonnullByDefault
     public SoulboundRune(ItemGroup itemGroup, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(itemGroup, item, type, recipe);
     }

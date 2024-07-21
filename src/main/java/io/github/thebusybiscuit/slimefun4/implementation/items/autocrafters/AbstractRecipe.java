@@ -73,7 +73,6 @@ public abstract class AbstractRecipe {
      * @param result
      *            The resulting {@link ItemStack}
      */
-    @ParametersAreNonnullByDefault
     protected AbstractRecipe(Collection<Predicate<ItemStack>> ingredients, ItemStack result) {
         this.ingredients = ingredients;
         this.result = result;

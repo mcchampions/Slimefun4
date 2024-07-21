@@ -19,12 +19,10 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ElementalRune extends SlimefunItem {
-    @ParametersAreNonnullByDefault
     public ElementalRune(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe) {
         this(itemGroup, item, recipe, null);
     }
 
-    @ParametersAreNonnullByDefault
     public ElementalRune(
             ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, @Nullable ItemStack recipeResult) {
         super(itemGroup, item, RecipeType.ANCIENT_ALTAR, recipe, recipeResult);

@@ -21,12 +21,10 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class WitherProofBlock extends SlimefunItem implements WitherProof {
-    @ParametersAreNonnullByDefault
     public WitherProofBlock(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @ParametersAreNonnullByDefault
     public WitherProofBlock(
             ItemGroup itemGroup,
             SlimefunItemStack item,

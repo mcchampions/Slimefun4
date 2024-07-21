@@ -254,14 +254,12 @@ public enum Instruction {
     private final AndroidType type;
     private final AndroidAction method;
 
-    @ParametersAreNonnullByDefault
     Instruction(AndroidType type, HeadTexture head, @Nullable AndroidAction method) {
         this.type = type;
         this.item = SlimefunUtils.getCustomHead(head.getTexture());
         this.method = method;
     }
 
-    @ParametersAreNonnullByDefault
     Instruction(AndroidType type, HeadTexture head) {
         this(type, head, null);
     }
@@ -270,7 +268,6 @@ public enum Instruction {
         return type;
     }
 
-    @ParametersAreNonnullByDefault
     public void execute(ProgrammableAndroid android, Block b, BlockMenu inventory, BlockFace face) {
          method.perform(android, b, inventory, face);
     }

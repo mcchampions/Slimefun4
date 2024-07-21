@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class EnderBoots extends SlimefunItem {
-    @ParametersAreNonnullByDefault
     public EnderBoots(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

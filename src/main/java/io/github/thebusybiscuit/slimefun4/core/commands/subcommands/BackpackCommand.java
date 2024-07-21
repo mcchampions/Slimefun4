@@ -30,7 +30,6 @@ import org.bukkit.entity.Player;
 class BackpackCommand extends SubCommand {
     private static final int DISPLAY_START_SLOT = 9;
 
-    @ParametersAreNonnullByDefault
     BackpackCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "backpack", false);
     }

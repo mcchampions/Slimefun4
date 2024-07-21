@@ -19,7 +19,6 @@ public class InteractionResult {
      *
      * @param successful Whether the interaction was successful or not.
      */
-    @ParametersAreNonnullByDefault
     public InteractionResult(boolean successful) {
         this.interactionSuccessful = successful;
     }

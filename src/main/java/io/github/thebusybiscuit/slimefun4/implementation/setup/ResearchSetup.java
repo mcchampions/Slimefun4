@@ -955,7 +955,6 @@ public final class ResearchSetup {
 
     }
 
-    @ParametersAreNonnullByDefault
     private static void register(String key, int id, String name, int defaultCost, ItemStack... items) {
         Research research = new Research(new NamespacedKey(Slimefun.instance(), key), id, name, defaultCost);
 
@@ -970,7 +969,6 @@ public final class ResearchSetup {
         research.register();
     }
 
-    @ParametersAreNonnullByDefault
     private static void register(String key, int id, String name, int defaultCost, String... items) {
         Research research = new Research(new NamespacedKey(Slimefun.instance(), key), id, name, defaultCost);
 

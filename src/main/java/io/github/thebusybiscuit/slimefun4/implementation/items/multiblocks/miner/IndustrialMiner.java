@@ -51,10 +51,9 @@ public class IndustrialMiner extends MultiBlockMachine {
     @Getter
     private final int range;
 
-    @ParametersAreNonnullByDefault
     public IndustrialMiner(
             ItemGroup itemGroup, SlimefunItemStack item, Material baseMaterial, boolean silkTouch, int range) {
-        // @formatter:off
+        
         super(
                 itemGroup,
                 item,
@@ -70,7 +69,7 @@ public class IndustrialMiner extends MultiBlockMachine {
                     new ItemStack(baseMaterial)
                 },
                 BlockFace.UP);
-        // @formatter:on
+        
 
         this.oreDictionary = OreDictionary.getInstance();
         this.range = range;

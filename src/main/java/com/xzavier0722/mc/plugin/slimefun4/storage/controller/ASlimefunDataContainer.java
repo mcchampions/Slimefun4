@@ -15,13 +15,11 @@ public abstract class ASlimefunDataContainer {
     private final Map<String, String> data;
     private volatile boolean isDataLoaded = false;
 
-    @ParametersAreNonnullByDefault
     public ASlimefunDataContainer(String key) {
         this.key = key;
         data = new ConcurrentHashMap<>();
     }
 
-    @ParametersAreNonnullByDefault
     public ASlimefunDataContainer(String key, ASlimefunDataContainer other) {
         this.key = key;
         this.data = other.data;

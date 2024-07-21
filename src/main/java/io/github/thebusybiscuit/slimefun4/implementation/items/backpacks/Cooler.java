@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class Cooler extends SlimefunBackpack {
-    @ParametersAreNonnullByDefault
     public Cooler(int size, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(size, itemGroup, item, recipeType, recipe);
     }

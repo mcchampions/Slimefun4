@@ -15,7 +15,6 @@ import org.bukkit.command.ConsoleCommandSender;
 public class ClearDataCommand extends SubCommand {
     public static final List<String> ValidClearTypes = List.of("block", "oil");
 
-    @ParametersAreNonnullByDefault
     public ClearDataCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "cleardata", false);
     }

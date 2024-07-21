@@ -95,11 +95,11 @@ public final class PostSetup {
      * @return The amount of {@link SlimefunItem SlimefunItems} added by Slimefun itself
      */
     private static int countNonAddonItems() {
-        // @formatter:off
+        
         return (int) Slimefun.getRegistry().getEnabledSlimefunItems().stream()
                 .filter(item -> item.getAddon() instanceof Slimefun)
                 .count();
-        // @formatter:on
+        
     }
 
     private static void loadOreGrinderRecipes() {

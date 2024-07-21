@@ -33,7 +33,6 @@ public class LongFallBoots extends SlimefunArmorPiece {
      * @deprecated In RC-35, marked for removal in RC-36
      */
     @Deprecated
-    @ParametersAreNonnullByDefault
     public LongFallBoots(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -43,7 +42,6 @@ public class LongFallBoots extends SlimefunArmorPiece {
         this(itemGroup, item, recipeType, recipe, effects, SoundEffect.SLIME_BOOTS_FALL_SOUND);
     }
 
-    @ParametersAreNonnullByDefault
     public LongFallBoots(
             ItemGroup itemGroup,
             SlimefunItemStack item,

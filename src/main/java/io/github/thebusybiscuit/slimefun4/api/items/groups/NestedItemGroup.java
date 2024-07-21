@@ -22,12 +22,10 @@ public class NestedItemGroup extends FlexItemGroup {
     private static final int GROUP_SIZE = 36;
     private final List<SubItemGroup> subGroups = new ArrayList<>();
 
-    @ParametersAreNonnullByDefault
     public NestedItemGroup(NamespacedKey key, ItemStack item) {
         this(key, item, 3);
     }
 
-    @ParametersAreNonnullByDefault
     public NestedItemGroup(NamespacedKey key, ItemStack item, int tier) {
         super(key, item, tier);
     }
@@ -53,18 +51,15 @@ public class NestedItemGroup extends FlexItemGroup {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
     public boolean isVisible(Player p, PlayerProfile profile, SlimefunGuideMode mode) {
         return mode == SlimefunGuideMode.SURVIVAL_MODE;
     }
 
     @Override
-    @ParametersAreNonnullByDefault
     public void open(Player p, PlayerProfile profile, SlimefunGuideMode mode) {
         openGuide(p, profile, mode, 1);
     }
 
-    @ParametersAreNonnullByDefault
     private void openGuide(Player p, PlayerProfile profile, SlimefunGuideMode mode, int page) {
         GuideHistory history = profile.getGuideHistory();
 

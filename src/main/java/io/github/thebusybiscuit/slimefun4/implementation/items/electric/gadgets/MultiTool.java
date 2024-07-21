@@ -33,7 +33,6 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
     private final List<MultiToolMode> modes = new ArrayList<>();
     private final float capacity;
 
-    @ParametersAreNonnullByDefault
     public MultiTool(
             ItemGroup itemGroup,
             SlimefunItemStack item,

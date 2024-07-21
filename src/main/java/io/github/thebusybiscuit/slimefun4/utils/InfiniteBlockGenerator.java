@@ -97,7 +97,6 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private boolean hasSurroundingMaterials(Block b, Material... materials) {
         boolean[] matches = new boolean[materials.length];
         int count = 0;

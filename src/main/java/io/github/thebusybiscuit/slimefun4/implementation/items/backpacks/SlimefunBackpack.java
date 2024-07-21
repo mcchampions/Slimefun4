@@ -40,7 +40,6 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
      */
     private final int size;
 
-    @ParametersAreNonnullByDefault
     public SlimefunBackpack(
             int size, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

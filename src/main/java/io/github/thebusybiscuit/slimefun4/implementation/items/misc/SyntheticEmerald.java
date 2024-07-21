@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SyntheticEmerald extends SlimefunItem {
-    @ParametersAreNonnullByDefault
     public SyntheticEmerald(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

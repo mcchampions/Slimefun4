@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class AdvancedIndustrialMiner extends IndustrialMiner {
-    @ParametersAreNonnullByDefault
     public AdvancedIndustrialMiner(ItemGroup itemGroup, SlimefunItemStack item) {
         super(itemGroup, item, Material.DIAMOND_BLOCK, true, 5);
     }

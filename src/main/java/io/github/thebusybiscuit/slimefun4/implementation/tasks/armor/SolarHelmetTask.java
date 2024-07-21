@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public class SolarHelmetTask extends AbstractArmorTask {
     @Override
-    @ParametersAreNonnullByDefault
     protected void onPlayerTick(Player p, PlayerProfile profile) {
         if (hasSunlight(p)) {
             checkForSolarHelmet(p);

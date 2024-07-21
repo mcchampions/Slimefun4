@@ -31,7 +31,6 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
 
     private final ItemStack emptyBucket = new ItemStack(Material.BUCKET);
 
-    @ParametersAreNonnullByDefault
     public OilPump(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

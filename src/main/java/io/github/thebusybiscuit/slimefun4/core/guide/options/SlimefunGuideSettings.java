@@ -53,7 +53,6 @@ public final class SlimefunGuideSettings {
         options.add(option);
     }
 
-    @ParametersAreNonnullByDefault
     public static void openSettings(Player p, ItemStack guide) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "guide.title.settings"));
 
@@ -68,11 +67,10 @@ public final class SlimefunGuideSettings {
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
     private static void addHeader(Player p, ChestMenu menu, ItemStack guide) {
         LocalizationService locale = Slimefun.getLocalization();
 
-        // @formatter:off
+        
         menu.addItem(
                 0,
                 new CustomItemStack(
@@ -80,14 +78,14 @@ public final class SlimefunGuideSettings {
                         "&e\u21E6 " + locale.getMessage(p, "guide.back.title"),
                         "",
                         "&7" + locale.getMessage(p, "guide.back.guide")));
-        // @formatter:on
+        
 
         menu.addMenuClickHandler(0, (pl, slot, item, action) -> {
             SlimefunGuide.openGuide(pl, guide);
             return false;
         });
 
-        // @formatter:off
+        
         menu.addItem(
                 4,
                 new CustomItemStack(
@@ -102,9 +100,9 @@ public final class SlimefunGuideSettings {
                         "&fMinecraft: &a" + Bukkit.getBukkitVersion(),
                         "&fSlimefun: &a" + Slimefun.getVersion()),
                 ChestMenuUtils.getEmptyClickHandler());
-        // @formatter:on
+        
 
-        // @formatter:off
+        
         menu.addItem(
                 6,
                 new CustomItemStack(
@@ -117,7 +115,7 @@ public final class SlimefunGuideSettings {
                         "&7&o你可以考虑对项目做出贡献",
                         "",
                         "&7\u21E8 &e点击前往汉化版 GitHub 仓库"));
-        // @formatter:on
+        
 
         menu.addMenuClickHandler(6, (pl, slot, item, action) -> {
             pl.closeInventory();
@@ -125,7 +123,7 @@ public final class SlimefunGuideSettings {
             return false;
         });
 
-        // @formatter:off
+        
         menu.addItem(
                 8,
                 new CustomItemStack(
@@ -138,7 +136,7 @@ public final class SlimefunGuideSettings {
                         "&7并考虑成为一名编辑者!",
                         "",
                         "&7\u21E8 &e点击前往非官方中文 Wiki"));
-        // @formatter:on
+        
 
         menu.addMenuClickHandler(8, (pl, slot, item, action) -> {
             pl.closeInventory();
@@ -146,7 +144,7 @@ public final class SlimefunGuideSettings {
             return false;
         });
 
-        // @formatter:off
+        
         menu.addItem(
                 47,
                 new CustomItemStack(
@@ -160,7 +158,7 @@ public final class SlimefunGuideSettings {
                         "&7该服务器已安装附属插件: &b" + Slimefun.getInstalledAddons().size(),
                         "",
                         "&7\u21E8 &e点击查看 Slimefun4 可用的附属插件"));
-        // @formatter:on
+        
 
         menu.addMenuClickHandler(47, (pl, slot, item, action) -> {
             pl.closeInventory();
@@ -168,7 +166,7 @@ public final class SlimefunGuideSettings {
             return false;
         });
 
-        // @formatter:off
+        
         menu.addItem(
             49,
             new CustomItemStack(
@@ -178,7 +176,7 @@ public final class SlimefunGuideSettings {
                 "&7&oBug reports have to be made in English!",
                 "",
                 "&7\u21E8 &eClick to go to the Slimefun4 Bug Tracker"));
-        // @formatter:on
+        
 
         menu.addMenuClickHandler(49, (pl, slot, item, action) -> {
             pl.closeInventory();
@@ -196,7 +194,6 @@ public final class SlimefunGuideSettings {
                 });
     }
 
-    @ParametersAreNonnullByDefault
     private static void addConfigurableOptions(Player p, ChestMenu menu, ItemStack guide) {
         int i = 19;
 

@@ -49,7 +49,6 @@ import org.bukkit.util.Vector;
 public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> implements NotHopperable {
     public static final String ITEM_PREFIX = ChatColors.color("&dALTAR &3Probe - &e");
 
-    @ParametersAreNonnullByDefault
     public AncientPedestal(
             ItemGroup itemGroup,
             SlimefunItemStack item,

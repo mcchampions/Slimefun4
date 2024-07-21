@@ -53,7 +53,6 @@ public abstract class AContainer extends SlimefunItem
     private int energyCapacity = -1;
     private int processingSpeed = -1;
 
-    @ParametersAreNonnullByDefault
     protected AContainer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -80,7 +79,6 @@ public abstract class AContainer extends SlimefunItem
         };
     }
 
-    @ParametersAreNonnullByDefault
     protected AContainer(
             ItemGroup itemGroup,
             SlimefunItemStack item,

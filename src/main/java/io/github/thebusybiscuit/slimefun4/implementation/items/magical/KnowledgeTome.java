@@ -29,7 +29,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
-    @ParametersAreNonnullByDefault
     public KnowledgeTome(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

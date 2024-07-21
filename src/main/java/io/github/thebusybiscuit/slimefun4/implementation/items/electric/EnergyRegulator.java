@@ -29,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotRotatable {
-    @ParametersAreNonnullByDefault
     public EnergyRegulator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

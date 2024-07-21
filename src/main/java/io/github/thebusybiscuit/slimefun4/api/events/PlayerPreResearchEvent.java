@@ -33,7 +33,6 @@ public class PlayerPreResearchEvent extends Event implements Cancellable {
     private final SlimefunItem slimefunItem;
     private boolean cancelled;
 
-    @ParametersAreNonnullByDefault
     public PlayerPreResearchEvent(Player p, Research research, SlimefunItem slimefunItem) {
         this.player = p;
         this.research = research;

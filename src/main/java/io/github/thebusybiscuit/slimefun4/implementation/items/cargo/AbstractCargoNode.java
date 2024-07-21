@@ -34,7 +34,6 @@ import org.bukkit.inventory.ItemStack;
 abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> implements CargoNode {
     protected static final String FREQUENCY = "frequency";
 
-    @ParametersAreNonnullByDefault
     AbstractCargoNode(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -86,7 +85,6 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         };
     }
 
-    @ParametersAreNonnullByDefault
     protected void addChannelSelector(Block b, BlockMenu menu, int slotPrev, int slotCurrent, int slotNext) {
         int channel = getSelectedChannel(b);
 

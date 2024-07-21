@@ -25,14 +25,12 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
     private final Chunk chunk;
     private final Map<String, SlimefunBlockData> sfBlocks;
 
-    @ParametersAreNonnullByDefault
     SlimefunChunkData(Chunk chunk) {
         super(LocationUtils.getChunkKey(chunk));
         this.chunk = chunk;
         sfBlocks = new ConcurrentHashMap<>();
     }
 
-    @ParametersAreNonnullByDefault
     public SlimefunBlockData createBlockData(Location l, String sfId) {
         var lKey = LocationUtils.getLocKey(l);
         if (getBlockCacheInternal(lKey) != null) {
@@ -52,14 +50,12 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
     }
 
     @Nullable
-    @ParametersAreNonnullByDefault
     public SlimefunBlockData getBlockData(Location l) {
         checkData();
         return getBlockCacheInternal(LocationUtils.getLocKey(l));
     }
 
     @Nullable
-    @ParametersAreNonnullByDefault
     public SlimefunBlockData removeBlockData(Location l) {
         var lKey = LocationUtils.getLocKey(l);
         var re = removeBlockDataCacheInternal(lKey);
@@ -105,14 +101,12 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
         return re == INVALID_BLOCK_DATA ? null : re;
     }
 
-    @ParametersAreNonnullByDefault
     public void setData(String key, String val) {
         checkData();
         setCacheInternal(key, val, true);
         Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedChunkDataUpdate(this, key);
     }
 
-    @ParametersAreNonnullByDefault
     public void removeData(String key) {
         if (removeCacheInternal(key) != null) {
             Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedChunkDataUpdate(this, key);

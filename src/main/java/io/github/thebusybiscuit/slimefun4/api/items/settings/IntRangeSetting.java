@@ -18,7 +18,6 @@ public class IntRangeSetting extends ItemSetting<Integer> {
     private final int min;
     private final int max;
 
-    @ParametersAreNonnullByDefault
     public IntRangeSetting(SlimefunItem item, String key, int min, int defaultValue, int max) {
         super(item, key, defaultValue);
         

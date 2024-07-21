@@ -83,7 +83,6 @@ public class ProgrammableAndroid extends SlimefunItem
     @Getter
     private final int tier;
 
-    @ParametersAreNonnullByDefault
     public ProgrammableAndroid(
             ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -257,7 +256,6 @@ public class ProgrammableAndroid extends SlimefunItem
         });
     }
 
-    @ParametersAreNonnullByDefault
     public void openScript(Player p, Block b, String sourceCode) {
         ChestMenu menu =
                 new ChestMenu(ChatColor.DARK_AQUA + Slimefun.getLocalization().getMessage(p, "android.scripts.editor"));
@@ -368,7 +366,6 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
     private String addInstruction(String[] script, int index, Instruction instruction) {
         int i = 0;
         StringBuilder builder = new StringBuilder(Instruction.START.name() + '-');
@@ -520,7 +517,6 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
     private void uploadScript(Player p, Block b, int page) {
         String code = getScript(b.getLocation());
         int nextId = 1;
@@ -786,7 +782,6 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void executeInstruction(
             Instruction instruction, Block b, BlockMenu inv, SlimefunBlockData data, int index) {
         if ("true".equals(data.getData("paused"))) {
@@ -903,7 +898,6 @@ public class ProgrammableAndroid extends SlimefunItem
         return false;
     }
 
-    @ParametersAreNonnullByDefault
     private void consumeFuel(Block b, BlockMenu menu) {
         ItemStack item = menu.getItemInSlot(43);
 
@@ -946,7 +940,6 @@ public class ProgrammableAndroid extends SlimefunItem
         preset.addItem(34, getFuelSource().getItem(), ChestMenuUtils.getEmptyClickHandler());
     }
 
-    @ParametersAreNonnullByDefault
     public void addItems(Block b, ItemStack... items) {
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
@@ -957,7 +950,6 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    @ParametersAreNonnullByDefault
     protected void move(Block b, BlockFace face, Block block) {
         var blockData = StorageCacheUtils.getBlock(b.getLocation());
         OfflinePlayer owner = Bukkit.getOfflinePlayer(UUID.fromString(blockData.getData("owner")));

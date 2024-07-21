@@ -33,7 +33,6 @@ public class StormStaff extends LimitedUseItem {
 
     private static final NamespacedKey usageKey = new NamespacedKey(Slimefun.instance(), "stormstaff_usage");
 
-    @ParametersAreNonnullByDefault
     public StormStaff(ItemGroup group, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(group, item, recipeType, recipe);
 
@@ -70,7 +69,6 @@ public class StormStaff extends LimitedUseItem {
         };
     }
 
-    @ParametersAreNonnullByDefault
     private void useItem(Player p, ItemStack item, Location loc) {
         World world = loc.getWorld();
         if (world != null) {

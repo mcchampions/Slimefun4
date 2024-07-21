@@ -28,7 +28,6 @@ import org.bukkit.inventory.ItemStack;
 public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements RecipeDisplayItem {
     private final List<ItemStack> recipes;
 
-    @ParametersAreNonnullByDefault
     public Composter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -117,7 +116,6 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
     }
 
     
-    @ParametersAreNonnullByDefault
     private Optional<Inventory> findOutputChest(Block b, ItemStack output) {
         return OutputChest.findOutputChestFor(b, output);
     }

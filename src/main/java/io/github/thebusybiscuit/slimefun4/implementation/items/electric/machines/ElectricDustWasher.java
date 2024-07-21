@@ -27,7 +27,6 @@ public class ElectricDustWasher extends ASpeedableContainer {
     private final OreWasher oreWasher = SlimefunItems.ORE_WASHER.getItem(OreWasher.class);
     private final boolean legacyMode;
 
-    @ParametersAreNonnullByDefault
     public ElectricDustWasher(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

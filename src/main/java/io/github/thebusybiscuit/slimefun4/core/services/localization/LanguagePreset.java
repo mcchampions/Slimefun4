@@ -24,7 +24,6 @@ public enum LanguagePreset {
     @Getter
     private final TextDirection textDirection;
 
-    @ParametersAreNonnullByDefault
     LanguagePreset(String id, boolean releaseReady, TextDirection direction, String textureHash) {
         this.id = id;
         this.releaseReady = releaseReady;
@@ -32,17 +31,14 @@ public enum LanguagePreset {
         this.textDirection = direction;
     }
 
-    @ParametersAreNonnullByDefault
     LanguagePreset(String id, boolean releaseReady, String textureHash) {
         this(id, releaseReady, TextDirection.LEFT_TO_RIGHT, textureHash);
     }
 
-    @ParametersAreNonnullByDefault
     LanguagePreset(String id, TextDirection direction, String textureHash) {
         this(id, true, direction, textureHash);
     }
 
-    @ParametersAreNonnullByDefault
     LanguagePreset(String id, String textureHash) {
         this(id, true, textureHash);
     }

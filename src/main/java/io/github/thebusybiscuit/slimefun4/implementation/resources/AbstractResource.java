@@ -28,7 +28,6 @@ abstract class AbstractResource implements GEOResource {
     private final int maxDeviation;
     private final boolean geoMiner;
 
-    @ParametersAreNonnullByDefault
     AbstractResource(String key, String defaultName, ItemStack item, int maxDeviation, boolean geoMiner) {
         this.key = new NamespacedKey(Slimefun.instance(), key);
         this.defaultName = defaultName;
@@ -76,7 +75,6 @@ abstract class AbstractResource implements GEOResource {
      *
      * @return A {@link BiomeMap} for this resource
      */
-    @ParametersAreNonnullByDefault
     static BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
         try {
             return BiomeMap.fromResource(resource.getKey(), Slimefun.instance(), path, JsonElement::getAsInt);

@@ -30,7 +30,6 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
     private ItemStack consumedItem;
     private boolean cancelled;
 
-    @ParametersAreNonnullByDefault
     public CoolerFeedPlayerEvent(Player player, Cooler cooler, ItemStack coolerItem, ItemStack consumedItem) {
         super(player);
 

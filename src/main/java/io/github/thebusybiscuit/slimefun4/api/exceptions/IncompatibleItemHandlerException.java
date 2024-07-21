@@ -37,7 +37,6 @@ public class IncompatibleItemHandlerException extends RuntimeException {
      * @param handler
      *            The {@link ItemHandler} which someone tried to add
      */
-    @ParametersAreNonnullByDefault
     public IncompatibleItemHandlerException(String message, SlimefunItem item, ItemHandler handler) {
         super("The item handler type: \""
                 + handler.getIdentifier().getSimpleName()

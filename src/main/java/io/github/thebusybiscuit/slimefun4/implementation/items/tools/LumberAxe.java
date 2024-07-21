@@ -34,7 +34,6 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
     private static final int MAX_BROKEN = 100;
     private static final int MAX_STRIPPED = 20;
 
-    @ParametersAreNonnullByDefault
     public LumberAxe(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

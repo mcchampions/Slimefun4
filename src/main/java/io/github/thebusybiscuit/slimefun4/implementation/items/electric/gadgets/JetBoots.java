@@ -26,7 +26,6 @@ public class JetBoots extends SlimefunItem implements Rechargeable {
     private final double speed;
     private final float capacity;
 
-    @ParametersAreNonnullByDefault
     public JetBoots(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, double speed, float capacity) {
         super(itemGroup, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 

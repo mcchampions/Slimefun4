@@ -52,7 +52,6 @@ public enum Radioactivity {
     @Getter
     private final int exposureModifier;
 
-    @ParametersAreNonnullByDefault
     Radioactivity(ChatColor color, String displayName, int exposureModifier) {
         this.color = color;
         this.displayName = displayName;

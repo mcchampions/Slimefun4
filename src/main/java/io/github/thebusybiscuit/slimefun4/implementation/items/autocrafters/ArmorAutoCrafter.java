@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class ArmorAutoCrafter extends SlimefunAutoCrafter implements NotDiagonallyRotatable {
-    @ParametersAreNonnullByDefault
     public ArmorAutoCrafter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe, RecipeType.ARMOR_FORGE);
     }

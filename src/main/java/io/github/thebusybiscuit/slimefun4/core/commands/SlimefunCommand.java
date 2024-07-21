@@ -100,8 +100,8 @@ public class SlimefunCommand implements CommandExecutor, Listener {
      * @return A {@link List} containing every {@link SubCommand}
      */
     public List<String> getSubCommandNames() {
-        // @formatter:off
+        
         return commands.stream().map(SubCommand::getName).collect(Collectors.toList());
-        // @formatter:on
+        
     }
 }

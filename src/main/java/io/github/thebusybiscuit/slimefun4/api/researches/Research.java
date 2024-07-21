@@ -278,7 +278,6 @@ public class Research implements Keyed {
      *            The page number of where the {@link Player} was in the {@link ItemGroup};
      *
      */
-    @ParametersAreNonnullByDefault
     public void unlockFromGuide(
             SlimefunGuideImplementation guide,
             Player player,

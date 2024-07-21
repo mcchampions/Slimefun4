@@ -28,7 +28,6 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
     private final BlockFace clickedFace;
     private boolean cancelled;
 
-    @ParametersAreNonnullByDefault
     public MultiBlockInteractEvent(Player p, MultiBlock mb, Block clicked, BlockFace face) {
         super(p);
         this.multiBlock = mb;

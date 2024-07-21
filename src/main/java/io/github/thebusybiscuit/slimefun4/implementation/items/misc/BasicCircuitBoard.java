@@ -27,7 +27,6 @@ public class BasicCircuitBoard extends SimpleSlimefunItem<ItemUseHandler> implem
     private final ItemSetting<Boolean> dropSetting = new ItemSetting<>(this, "drop-from-golems", true);
     private final ItemSetting<Integer> chance = new IntRangeSetting(this, "golem-drop-chance", 0, 75, 100);
 
-    @ParametersAreNonnullByDefault
     public BasicCircuitBoard(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

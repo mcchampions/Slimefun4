@@ -72,7 +72,6 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void handleSlimefunArmor(Player p, ItemStack[] armor, HashedArmorpiece[] cachedArmor) {
         for (int slot = 0; slot < 4; slot++) {
             ItemStack item = armor[slot];

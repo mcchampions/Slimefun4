@@ -25,7 +25,6 @@ public abstract class SubCommand {
     private final String name;
     private final boolean hidden;
 
-    @ParametersAreNonnullByDefault
     protected SubCommand(Slimefun plugin, SlimefunCommand cmd, String name, boolean hidden) {
         this.plugin = plugin;
         this.cmd = cmd;

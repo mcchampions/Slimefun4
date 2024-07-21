@@ -22,7 +22,6 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 
 public class FarmerAndroid extends ProgrammableAndroid {
-    @ParametersAreNonnullByDefault
     public FarmerAndroid(
             ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, tier, item, recipeType, recipe);

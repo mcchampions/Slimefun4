@@ -27,7 +27,6 @@ public class RestoredBackpack extends SlimefunBackpack {
      * @param itemGroup
      *            the {@link ItemGroup} to bind this {@link SlimefunBackpack} to
      */
-    @ParametersAreNonnullByDefault
     public RestoredBackpack(ItemGroup itemGroup) {
         super(54, itemGroup, SlimefunItems.RESTORED_BACKPACK, RecipeType.NULL, new ItemStack[9]);
 

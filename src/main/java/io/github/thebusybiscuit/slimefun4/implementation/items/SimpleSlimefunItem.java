@@ -27,13 +27,11 @@ import org.bukkit.inventory.ItemStack;
  *            The Type of {@link ItemHandler} to add to this {@link SlimefunItem}
  */
 public abstract class SimpleSlimefunItem<T extends ItemHandler> extends SlimefunItem {
-    @ParametersAreNonnullByDefault
     protected SimpleSlimefunItem(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @ParametersAreNonnullByDefault
     protected SimpleSlimefunItem(
             ItemGroup itemGroup,
             SlimefunItemStack item,

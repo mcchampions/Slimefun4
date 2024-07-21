@@ -94,7 +94,6 @@ class PerformanceSummary {
         });
     }
 
-    @ParametersAreNonnullByDefault
     private void summarizeTimings(
             int count,
             String name,
@@ -115,7 +114,6 @@ class PerformanceSummary {
     }
 
     
-    @ParametersAreNonnullByDefault
     private TextComponent summarizeAsTextComponent(
             int count,
             String prefix,
@@ -155,7 +153,6 @@ class PerformanceSummary {
     }
 
     
-    @ParametersAreNonnullByDefault
     private String summarizeAsString(
             PerformanceInspector inspector,
             int count,

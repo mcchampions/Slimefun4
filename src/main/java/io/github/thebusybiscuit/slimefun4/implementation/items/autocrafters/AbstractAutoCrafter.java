@@ -90,15 +90,14 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      */
     protected final NamespacedKey recipeEnabledKey;
 
-    // @formatter:off
+    
     protected final int[] background = {
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 15, 16, 17, 18, 19, 23, 25, 26, 27, 28, 32, 33, 34, 35, 36, 37, 38, 39,
         40, 41, 42, 43, 44
     };
 
-    // @formatter:on
+    
 
-    @ParametersAreNonnullByDefault
     protected AbstractAutoCrafter(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -151,7 +150,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @param p
      *            The {@link Player} who clicked
      */
-    @ParametersAreNonnullByDefault
     public void onRightClick(Block b, Player p) {
         // Check if we have a valid chest below
         if (!isValidInventory(b.getRelative(BlockFace.DOWN))) {
@@ -251,12 +249,10 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return Whether the {@link Predicate} matches the {@link ItemStack}
      */
-    @ParametersAreNonnullByDefault
     protected boolean matches(ItemStack item, Predicate<ItemStack> predicate) {
         return predicate.test(item);
     }
 
-    @ParametersAreNonnullByDefault
     public boolean matchesAny(Inventory inv, Map<Integer, Integer> itemQuantities, Predicate<ItemStack> predicate) {
         ItemStack[] contents = inv.getContents();
 
@@ -363,7 +359,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @param recipe
      *            The {@link AbstractRecipe} to show them
      */
-    @ParametersAreNonnullByDefault
     protected void showRecipe(Player p, Block b, AbstractRecipe recipe) {
         ChestMenu menu = new ChestMenu(getItemName());
         menu.setPlayerInventoryClickable(false);
@@ -417,7 +412,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void setRecipeEnabled(Player p, Block b, boolean enabled) {
         p.closeInventory();
         SoundEffect.AUTO_CRAFTER_GUI_CLICK_SOUND.playFor(p);
@@ -435,7 +429,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void deleteRecipe(Player p, Block b) {
         setSelectedRecipe(b, null);
         p.closeInventory();

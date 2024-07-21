@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 public class FishermanAndroid extends ProgrammableAndroid {
     private final RandomizedSet<ItemStack> fishingLoot = new RandomizedSet<>();
 
-    @ParametersAreNonnullByDefault
     public FishermanAndroid(
             ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, tier, item, recipeType, recipe);

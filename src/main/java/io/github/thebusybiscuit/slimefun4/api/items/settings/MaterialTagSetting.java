@@ -33,7 +33,6 @@ public class MaterialTagSetting extends ItemSetting<List<String>> {
      */
     private final Tag<Material> defaultTag;
 
-    @ParametersAreNonnullByDefault
     public MaterialTagSetting(SlimefunItem item, String key, Tag<Material> defaultTag) {
         super(item, key, getAsStringList(defaultTag));
 

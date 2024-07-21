@@ -43,7 +43,6 @@ public class ReactorAccessPort extends SlimefunItem {
     private final int[] inputBorder = {15, 16, 17, 24, 26, 33, 35, 42, 44, 51, 52, 53};
     private final int[] outputBorder = {30, 31, 32, 39, 41, 48, 50};
 
-    @ParametersAreNonnullByDefault
     public ReactorAccessPort(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

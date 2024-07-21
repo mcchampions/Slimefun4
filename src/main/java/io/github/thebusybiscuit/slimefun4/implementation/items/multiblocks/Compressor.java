@@ -25,7 +25,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Compressor extends MultiBlockMachine {
-    @ParametersAreNonnullByDefault
     public Compressor(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,
@@ -103,7 +102,6 @@ public class Compressor extends MultiBlockMachine {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void craft(Player p, ItemStack output, Block dispenser, Inventory dispInv) {
         for (int i = 0; i < 4; i++) {
             int j = i;

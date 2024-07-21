@@ -42,7 +42,6 @@ public class GEOResourceGenerationEvent extends Event {
     @Getter
     private int value;
 
-    @ParametersAreNonnullByDefault
     public GEOResourceGenerationEvent(World world, Biome biome, int x, int z, GEOResource resource, int value) {
         this.world = world;
         this.biome = biome;

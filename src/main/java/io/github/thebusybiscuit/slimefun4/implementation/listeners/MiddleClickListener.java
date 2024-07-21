@@ -73,7 +73,6 @@ public class MiddleClickListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private boolean isActualMiddleClick(InventoryCreativeEvent e, Block b) {
         /*
          * On a middle click outside the user inventory, cursor will be set

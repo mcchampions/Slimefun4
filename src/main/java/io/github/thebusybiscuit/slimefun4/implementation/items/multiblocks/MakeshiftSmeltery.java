@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class MakeshiftSmeltery extends AbstractSmeltery {
-    @ParametersAreNonnullByDefault
     public MakeshiftSmeltery(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,

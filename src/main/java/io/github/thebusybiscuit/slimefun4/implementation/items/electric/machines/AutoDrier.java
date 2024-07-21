@@ -28,7 +28,6 @@ import org.bukkit.inventory.ItemStack;
 public class AutoDrier extends ASpeedableContainer implements RecipeDisplayItem, NotHopperable {
     private List<ItemStack> recipeList;
 
-    @ParametersAreNonnullByDefault
     public AutoDrier(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

@@ -25,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
 public class Freezer extends ASpeedableContainer implements RecipeDisplayItem {
     private final ItemSetting<Boolean> useVanillaRatios = new ItemSetting<>(this, "use-vanilla-ratios", false);
 
-    @ParametersAreNonnullByDefault
     public Freezer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         addItemSetting(useVanillaRatios);

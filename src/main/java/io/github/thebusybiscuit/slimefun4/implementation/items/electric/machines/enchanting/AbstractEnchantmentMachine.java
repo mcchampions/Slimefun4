@@ -38,7 +38,6 @@ abstract class AbstractEnchantmentMachine extends AContainer {
             new IntRangeSetting(this, "enchant-limit", 0, 10, Short.MAX_VALUE);
     private final ItemSetting<Boolean> useEnchantLimit = new ItemSetting<>(this, "use-enchant-limit", false);
 
-    @ParametersAreNonnullByDefault
     protected AbstractEnchantmentMachine(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

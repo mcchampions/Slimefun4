@@ -72,6 +72,5 @@ public abstract class AbstractArmorTask implements Runnable {
      * @param profile
      *            The {@link Player}'s {@link PlayerProfile}
      */
-    @ParametersAreNonnullByDefault
     protected abstract void onPlayerTick(Player p, PlayerProfile profile);
 }

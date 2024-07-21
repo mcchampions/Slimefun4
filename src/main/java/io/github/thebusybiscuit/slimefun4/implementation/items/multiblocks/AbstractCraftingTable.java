@@ -34,7 +34,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 abstract class AbstractCraftingTable extends MultiBlockMachine {
-    @ParametersAreNonnullByDefault
     AbstractCraftingTable(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, BlockFace trigger) {
         super(itemGroup, item, recipe, trigger);
     }
@@ -61,7 +60,6 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
     }
 
     // Return: true if upgrade from existing backpack, else false
-    @ParametersAreNonnullByDefault
     protected boolean upgradeBackpack(
             Player p, Inventory inv, SlimefunBackpack backpack, ItemStack output, Runnable onReadyCb) {
         ItemStack input = null;

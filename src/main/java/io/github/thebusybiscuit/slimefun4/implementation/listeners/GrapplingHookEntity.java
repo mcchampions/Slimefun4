@@ -18,7 +18,6 @@ final class GrapplingHookEntity {
     private final Arrow arrow;
     private final Entity leashTarget;
 
-    @ParametersAreNonnullByDefault
     GrapplingHookEntity(Player p, Arrow arrow, Entity leashTarget, boolean dropItem, boolean wasConsumed) {
         this.arrow = arrow;
         this.wasConsumed = wasConsumed;

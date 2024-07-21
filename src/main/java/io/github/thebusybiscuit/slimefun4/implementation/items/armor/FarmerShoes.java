@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class FarmerShoes extends SlimefunItem {
-    @ParametersAreNonnullByDefault
     public FarmerShoes(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

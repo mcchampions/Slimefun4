@@ -66,7 +66,6 @@ public class Talisman extends SlimefunItem {
     @Getter
     protected final int chance;
 
-    @ParametersAreNonnullByDefault
     public Talisman(
             SlimefunItemStack item,
             ItemStack[] recipe,
@@ -77,7 +76,6 @@ public class Talisman extends SlimefunItem {
         this(item, recipe, consumable, cancelEvent, messageSuffix, 100, effects);
     }
 
-    @ParametersAreNonnullByDefault
     public Talisman(
             SlimefunItemStack item,
             ItemStack[] recipe,
@@ -87,7 +85,6 @@ public class Talisman extends SlimefunItem {
         this(item, recipe, true, true, messageSuffix, chance, effects);
     }
 
-    @ParametersAreNonnullByDefault
     public Talisman(
             SlimefunItemStack item,
             ItemStack[] recipe,
@@ -99,7 +96,6 @@ public class Talisman extends SlimefunItem {
         this(TALISMANS_ITEMGROUP, item, recipe, consumable, cancelEvent, messageSuffix, chance, effects);
     }
 
-    @ParametersAreNonnullByDefault
     protected Talisman(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -168,22 +164,18 @@ public class Talisman extends SlimefunItem {
         }
     }
 
-    @ParametersAreNonnullByDefault
     public static boolean trigger(Event e, SlimefunItemStack stack) {
         return trigger(e, stack.getItem(), true);
     }
 
-    @ParametersAreNonnullByDefault
     public static boolean trigger(Event e, SlimefunItemStack stack, boolean sendMessage) {
         return trigger(e, stack.getItem(), sendMessage);
     }
 
-    @ParametersAreNonnullByDefault
     public static boolean trigger(Event e, SlimefunItem item) {
         return trigger(e, item, true);
     }
 
-    @ParametersAreNonnullByDefault
     public static boolean trigger(Event e, SlimefunItem item, boolean sendMessage) {
         if (!(item instanceof Talisman talisman)) {
             return false;
@@ -229,7 +221,6 @@ public class Talisman extends SlimefunItem {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private static void activateTalisman(
             Event e, Player p, Inventory inv, Talisman talisman, ItemStack talismanItem, boolean sendMessage) {
         TalismanActivateEvent talismanEvent = new TalismanActivateEvent(p, talisman, talismanItem);
@@ -248,7 +239,6 @@ public class Talisman extends SlimefunItem {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private static void consumeItem(Inventory inv, Talisman talisman, ItemStack talismanItem) {
         if (talisman.isConsumable()) {
             ItemStack[] contents = inv.getContents();
@@ -262,14 +252,12 @@ public class Talisman extends SlimefunItem {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private static void applyTalismanEffects(Player p, Talisman talisman) {
         for (PotionEffect effect : talisman.getEffects()) {
             p.addPotionEffect(effect);
         }
     }
 
-    @ParametersAreNonnullByDefault
     private static void cancelEvent(Event e, Talisman talisman) {
         if (e instanceof Cancellable cancellable && talisman.isEventCancelled()) {
             cancellable.setCancelled(true);

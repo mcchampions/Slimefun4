@@ -160,7 +160,6 @@ public abstract class SlimefunLocalization implements Keyed {
         return LanguageService.MESSAGES_MAP.get(key);
     }
 
-    @ParametersAreNonnullByDefault
     public List<String> getMessages(Player p, String key, UnaryOperator<String> function) {
         List<String> messages = getMessages(p, key);
         messages.replaceAll(function);
@@ -233,12 +232,10 @@ public abstract class SlimefunLocalization implements Keyed {
         sendMessage(recipient, key, true);
     }
 
-    @ParametersAreNonnullByDefault
     public void sendMessage(CommandSender recipient, String key, UnaryOperator<String> function) {
         sendMessage(recipient, key, true, function);
     }
 
-    @ParametersAreNonnullByDefault
     public void sendMessage(CommandSender recipient, String key, boolean addPrefix, UnaryOperator<String> function) {
         String prefix = addPrefix ? getChatPrefix() : "";
 
@@ -265,7 +262,6 @@ public abstract class SlimefunLocalization implements Keyed {
         }
     }
 
-    @ParametersAreNonnullByDefault
     public void sendMessages(CommandSender recipient, String key, boolean addPrefix, UnaryOperator<String> function) {
         String prefix = addPrefix ? getChatPrefix() : "";
 
@@ -282,7 +278,6 @@ public abstract class SlimefunLocalization implements Keyed {
         }
     }
 
-    @ParametersAreNonnullByDefault
     public void sendMessages(CommandSender recipient, String key, UnaryOperator<String> function) {
         sendMessages(recipient, key, true, function);
     }

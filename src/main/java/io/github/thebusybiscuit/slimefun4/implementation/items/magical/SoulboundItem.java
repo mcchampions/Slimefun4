@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class SoulboundItem extends SlimefunItem implements Soulbound, NotPlaceable {
-    @ParametersAreNonnullByDefault
     public SoulboundItem(ItemGroup itemGroup, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(itemGroup, item, type, recipe);
     }

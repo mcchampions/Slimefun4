@@ -60,7 +60,6 @@ public class ErrorReport<T extends Throwable> {
      * @param printer
      *            A custom {@link Consumer} to add more details.
      */
-    @ParametersAreNonnullByDefault
     public ErrorReport(T throwable, SlimefunAddon addon, Consumer<PrintStream> printer) {
         this.throwable = throwable;
         this.addon = addon;
@@ -79,7 +78,6 @@ public class ErrorReport<T extends Throwable> {
      * @param item
      *            The {@link SlimefunItem} responsible.
      */
-    @ParametersAreNonnullByDefault
     public ErrorReport(T throwable, Location l, SlimefunItem item) {
         this(throwable, item.getAddon(), stream -> {
             stream.println("Block Info:");
@@ -129,7 +127,6 @@ public class ErrorReport<T extends Throwable> {
      * @param item
      *            The {@link SlimefunItem} responsible.
      */
-    @ParametersAreNonnullByDefault
     public ErrorReport(T throwable, SlimefunItem item) {
         this(throwable, item.getAddon(), stream -> {
             stream.println("SlimefunItem:");

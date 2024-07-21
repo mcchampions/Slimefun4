@@ -11,7 +11,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 class TeleporterCommand extends SubCommand {
-    @ParametersAreNonnullByDefault
     TeleporterCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "teleporter", false);
     }

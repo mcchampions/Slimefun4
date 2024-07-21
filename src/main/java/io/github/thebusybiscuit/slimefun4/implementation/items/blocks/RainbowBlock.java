@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
 public class RainbowBlock extends SimpleSlimefunItem<RainbowTickHandler> {
     private final RainbowTickHandler ticker;
 
-    @ParametersAreNonnullByDefault
     public RainbowBlock(
             ItemGroup itemGroup,
             SlimefunItemStack item,

@@ -20,7 +20,6 @@ public class PrematureCodeException extends RuntimeException {
      *
      * @param message An error message to display
      */
-    @ParametersAreNonnullByDefault
     public PrematureCodeException(String message) {
         super("Slimefun code was invoked before Slimefun finished loading: " + message);
     }

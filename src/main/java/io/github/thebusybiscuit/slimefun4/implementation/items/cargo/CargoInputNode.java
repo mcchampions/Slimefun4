@@ -23,7 +23,6 @@ public class CargoInputNode extends AbstractFilterNode {
     private static final String ROUND_ROBIN_MODE = "round-robin";
     private static final String SMART_FILL_MODE = "smart-fill";
 
-    @ParametersAreNonnullByDefault
     public CargoInputNode(
             ItemGroup itemGroup,
             SlimefunItemStack item,

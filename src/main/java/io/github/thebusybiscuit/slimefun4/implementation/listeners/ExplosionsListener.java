@@ -82,7 +82,6 @@ public class ExplosionsListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void handleExplosion(BlockBreakHandler handler, Block block) {
         if (handler.isExplosionAllowed(block)) {
             block.setType(Material.AIR);

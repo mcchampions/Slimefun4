@@ -236,7 +236,7 @@ public final class SlimefunItemSetup {
         registeredItems = true;
         DefaultItemGroups itemGroups = new DefaultItemGroups();
 
-        // @formatter:off (We will need to refactor this one day)
+         (We will need to refactor this one day)
         new SlimefunItem(
                         itemGroups.weapons,
                         SlimefunItems.GRANDMAS_WALKING_STICK,
@@ -7962,7 +7962,6 @@ public final class SlimefunItemSetup {
                 .register(plugin);
     }
 
-    @ParametersAreNonnullByDefault
     private static void registerArmorSet(
             ItemGroup itemGroup,
             ItemStack baseComponent,

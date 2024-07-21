@@ -64,38 +64,32 @@ public final class SlimefunGuide {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private static void openMainMenuAsync(Player player, SlimefunGuideMode mode, int selectedPage) {
         if (!PlayerProfile.get(player, profile -> Slimefun.runSync(() -> openMainMenu(profile, mode, selectedPage)))) {
             Slimefun.getLocalization().sendMessage(player, "messages.opening-guide");
         }
     }
 
-    @ParametersAreNonnullByDefault
     public static void openMainMenu(PlayerProfile profile, SlimefunGuideMode mode, int selectedPage) {
         Slimefun.getRegistry().getSlimefunGuide(mode).openMainMenu(profile, selectedPage);
     }
 
-    @ParametersAreNonnullByDefault
     public static void openItemGroup(
             PlayerProfile profile, ItemGroup itemGroup, SlimefunGuideMode mode, int selectedPage) {
         Slimefun.getRegistry().getSlimefunGuide(mode).openItemGroup(profile, itemGroup, selectedPage);
     }
 
-    @ParametersAreNonnullByDefault
     public static void openSearch(PlayerProfile profile, String input, SlimefunGuideMode mode, boolean addToHistory) {
         SlimefunGuideImplementation guide = Slimefun.getRegistry().getSlimefunGuide(mode);
         guide.openSearch(profile, input, addToHistory);
     }
 
-    @ParametersAreNonnullByDefault
     public static void displayItem(PlayerProfile profile, ItemStack item, boolean addToHistory) {
         Slimefun.getRegistry()
                 .getSlimefunGuide(SlimefunGuideMode.SURVIVAL_MODE)
                 .displayItem(profile, item, 0, addToHistory);
     }
 
-    @ParametersAreNonnullByDefault
     public static void displayItem(PlayerProfile profile, SlimefunItem item, boolean addToHistory) {
         Slimefun.getRegistry()
                 .getSlimefunGuide(SlimefunGuideMode.SURVIVAL_MODE)

@@ -19,13 +19,11 @@ import org.bukkit.potion.PotionEffect;
  */
 public class SlimefunArmorTask extends AbstractArmorTask {
     @Override
-    @ParametersAreNonnullByDefault
     protected void onPlayerTick(Player p, PlayerProfile profile) {
         ItemStack[] armor = p.getInventory().getArmorContents();
         updateAndHandleArmor(p, armor, profile.getArmor());
     }
 
-    @ParametersAreNonnullByDefault
     private void updateAndHandleArmor(Player p, ItemStack[] armor, HashedArmorpiece[] cachedArmor) {
         for (int slot = 0; slot < 4; slot++) {
             ItemStack item = armor[slot];
@@ -65,7 +63,6 @@ public class SlimefunArmorTask extends AbstractArmorTask {
      * @param armorPiece
      *            The actual {@link ItemStack} of the armor piece
      */
-    @ParametersAreNonnullByDefault
     protected void onArmorPieceTick(Player p, SlimefunArmorPiece sfArmorPiece, ItemStack armorPiece) {
         for (PotionEffect effect : sfArmorPiece.getPotionEffects()) {
             p.removePotionEffect(effect.getType());

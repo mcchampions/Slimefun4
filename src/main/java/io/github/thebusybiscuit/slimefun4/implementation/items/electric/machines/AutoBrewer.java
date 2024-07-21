@@ -50,7 +50,6 @@ public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
         fermentations.put(PotionType.NIGHT_VISION, PotionType.INVISIBILITY);
     }
 
-    @ParametersAreNonnullByDefault
     public AutoBrewer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -97,7 +96,6 @@ public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private @Nullable ItemStack brew(Material input, Material potionType, PotionMeta potion) {
         PotionType type = potion.getBasePotionType();
         if (type == PotionType.WATER) {

@@ -61,7 +61,6 @@ public class AncientAltarListener implements Listener {
     private final List<Block> altars = new ArrayList<>();
     private final Set<UUID> removedItems = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
     public AncientAltarListener(Slimefun plugin, AncientAltar altar, AncientPedestal pedestal) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
@@ -202,7 +201,6 @@ public class AncientAltarListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void startRitual(Player p, Block b, List<Block> pedestals, ItemStack catalyst) {
         List<ItemStack> input = new ArrayList<>();
 

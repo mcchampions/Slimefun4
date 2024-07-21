@@ -229,7 +229,6 @@ public class BlockListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void callToolHandler(BlockBreakEvent e, ItemStack item, int fortune, List<ItemStack> drops) {
         SlimefunItem tool = SlimefunItem.getByItem(item);
 
@@ -242,7 +241,6 @@ public class BlockListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void callBlockHandler(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
         var loc = e.getBlock().getLocation();
         SlimefunItem sfItem = StorageCacheUtils.getSfItem(loc);
@@ -259,7 +257,6 @@ public class BlockListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void dropItems(BlockBreakEvent e, List<ItemStack> drops) {
         if (!drops.isEmpty()) {
             // Fixes #2560
@@ -291,7 +288,6 @@ public class BlockListener implements Listener {
      * @param block  The {@link Block} that was broken
      * @param item   The {@link ItemStack} that was used to break the {@link Block}
      */
-    @ParametersAreNonnullByDefault
     private void checkForSensitiveBlockAbove(Player player, Block block, ItemStack item) {
         Block blockAbove = block.getRelative(BlockFace.UP);
 
@@ -347,7 +343,6 @@ public class BlockListener implements Listener {
      *      The amount of times this has been recursively called
      */
     /*
-    @ParametersAreNonnullByDefault
     private void checkForSensitiveBlocks(Block block, Integer count, boolean isDropItems) {
         *if (count >= Bukkit.getServer().getMaxChainedNeighborUpdates()) {
          * return;
@@ -384,7 +379,6 @@ public class BlockListener implements Listener {
      * @return
      *      Whether the {@link BlockData} would be supported at the given {@link Block}
      */
-    @ParametersAreNonnullByDefault
     private boolean isSupported(BlockData blockData, Block block) {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
             return blockData.isSupported(block);

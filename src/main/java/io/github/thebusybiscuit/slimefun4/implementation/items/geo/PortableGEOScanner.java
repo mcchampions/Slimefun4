@@ -12,7 +12,6 @@ import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
 public class PortableGEOScanner extends SimpleSlimefunItem<ItemUseHandler> {
-    @ParametersAreNonnullByDefault
     public PortableGEOScanner(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

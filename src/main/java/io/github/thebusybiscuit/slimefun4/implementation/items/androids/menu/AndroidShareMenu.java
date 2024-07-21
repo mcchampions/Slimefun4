@@ -46,7 +46,6 @@ public final class AndroidShareMenu {
      * @param p player
      * @param b android
      */
-    @ParametersAreNonnullByDefault
     public static void openShareMenu(Player p, Block b) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage("android.access-manager.title"));
 
@@ -122,7 +121,6 @@ public final class AndroidShareMenu {
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
     private static void addPlayer(Player owner, OfflinePlayer p, Block android, List<String> users) {
         if (users.contains(p.getUniqueId().toString())) {
             Slimefun.getLocalization()
@@ -144,7 +142,6 @@ public final class AndroidShareMenu {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private static void removePlayer(Player owner, OfflinePlayer p, Block android, List<String> users) {
         if (users.contains(p.getUniqueId().toString())) {
             users.remove(p.getUniqueId().toString());
@@ -206,7 +203,6 @@ public final class AndroidShareMenu {
      * @param uuid user's UUID
      * @return user trusted status
      */
-    @ParametersAreNonnullByDefault
     public static boolean isTrustedUser(Block b, UUID uuid) {
         Optional<String> trustUsers = getSharedUserData(b.getState());
 

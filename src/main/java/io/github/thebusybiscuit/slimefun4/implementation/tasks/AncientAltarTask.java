@@ -55,7 +55,6 @@ public class AncientAltarTask implements Runnable {
     private int stage;
     private final Player player;
 
-    @ParametersAreNonnullByDefault
     public AncientAltarTask(
             AncientAltarListener listener,
             Block altar,

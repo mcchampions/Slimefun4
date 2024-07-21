@@ -56,7 +56,6 @@ class MiningTask implements Runnable {
     private int x;
     private int z;
 
-    @ParametersAreNonnullByDefault
     MiningTask(IndustrialMiner miner, UUID owner, Block chest, Block[] pistons, Block start, Block end) {
         this.miner = miner;
         this.owner = owner;

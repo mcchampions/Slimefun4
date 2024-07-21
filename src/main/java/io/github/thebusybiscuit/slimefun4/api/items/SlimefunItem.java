@@ -160,7 +160,6 @@ public class SlimefunItem implements Placeable {
      * @param recipe
      *            An Array representing the recipe of this {@link SlimefunItem}
      */
-    @ParametersAreNonnullByDefault
     public SlimefunItem(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         this(itemGroup, item, recipeType, recipe, null);
     }
@@ -179,7 +178,6 @@ public class SlimefunItem implements Placeable {
      * @param recipeOutput
      *            The result of crafting this item
      */
-    @ParametersAreNonnullByDefault
     public SlimefunItem(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -195,7 +193,6 @@ public class SlimefunItem implements Placeable {
     }
 
     // Previously deprecated constructor, now only for internal purposes
-    @ParametersAreNonnullByDefault
     protected SlimefunItem(ItemGroup itemGroup, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe) {
         this.itemGroup = itemGroup;
         this.itemStackTemplate = item;
@@ -494,14 +491,14 @@ public class SlimefunItem implements Placeable {
 
         // Check for an illegal stack size
         if (itemStackTemplate.getAmount() != 1) {
-            // @formatter:off
+            
             warn("This item has an illegal stack size: "
                     + itemStackTemplate.getAmount()
                     + ". An Item size of 1 is recommended. Please inform the author(s) of "
                     + addon.getName()
                     + " to fix this. Crafting Results with amounts of higher should be handled"
                     + " via the recipeOutput parameter!");
-            // @formatter:on
+            
         }
 
         // Add it to the list of enabled items
@@ -885,7 +882,6 @@ public class SlimefunItem implements Placeable {
      * @param <T>      The type of {@link ItemHandler} to call.
      * @return Whether or not an {@link ItemHandler} was found.
      */
-    @ParametersAreNonnullByDefault
     public <T extends ItemHandler> boolean callItemHandler(Class<T> c, Consumer<T> callable) {
         Optional<ItemHandler> handler = itemHandlers.get(c);
 
@@ -935,7 +931,6 @@ public class SlimefunItem implements Placeable {
      *
      * @param message The message to send
      */
-    @ParametersAreNonnullByDefault
     public void info(String message) {
         String msg = this + ": " + message;
         addon.getLogger().log(Level.INFO, msg);
@@ -948,7 +943,6 @@ public class SlimefunItem implements Placeable {
      *
      * @param message The message to send
      */
-    @ParametersAreNonnullByDefault
     public void warn(String message) {
         String msg = this + ": " + message;
         addon.getLogger().log(Level.WARNING, msg);
@@ -966,7 +960,6 @@ public class SlimefunItem implements Placeable {
      * @param message   The message to display alongside this Stacktrace
      * @param throwable The {@link Throwable} to throw as a stacktrace.
      */
-    @ParametersAreNonnullByDefault
     public void error(String message, Throwable throwable) {
         addon.getLogger().log(Level.SEVERE, "Item \"{0}\" from {1} v{2} has caused an Error!", new Object[]{
                 id, addon.getName(), addon.getPluginVersion()
@@ -986,7 +979,6 @@ public class SlimefunItem implements Placeable {
      *
      * @param player The {@link Player} to inform.
      */
-    @ParametersAreNonnullByDefault
     public void sendDeprecationWarning(Player player) {
         Slimefun.getLocalization().sendMessage(player, "messages.deprecated-item");
     }

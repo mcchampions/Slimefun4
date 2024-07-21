@@ -55,7 +55,6 @@ public class ItemGroup implements Keyed {
      * @param item
      *            The {@link ItemStack} that is used to display this {@link ItemGroup}
      */
-    @ParametersAreNonnullByDefault
     public ItemGroup(NamespacedKey key, ItemStack item) {
         this(key, item, 3);
     }
@@ -73,7 +72,6 @@ public class ItemGroup implements Keyed {
      *            in
      *            the {@link SlimefunGuide}
      */
-    @ParametersAreNonnullByDefault
     public ItemGroup(NamespacedKey key, ItemStack item, int tier) {
         this.item = item;
         this.key = key;

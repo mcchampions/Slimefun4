@@ -26,7 +26,6 @@ public class BiomeMapException extends Exception {
      * @param message
      *            The message to display
      */
-    @ParametersAreNonnullByDefault
     public BiomeMapException(NamespacedKey key, String message) {
         super("Biome Map '" + key + "' has been misconfigured: " + message);
     }
@@ -40,7 +39,6 @@ public class BiomeMapException extends Exception {
      * @param cause
      *            The {@link Throwable} which has caused this to happen
      */
-    @ParametersAreNonnullByDefault
     public BiomeMapException(NamespacedKey key, Throwable cause) {
         super("Biome Map '" + key + "' has been misconfigured (" + cause.getMessage() + ')', cause);
     }

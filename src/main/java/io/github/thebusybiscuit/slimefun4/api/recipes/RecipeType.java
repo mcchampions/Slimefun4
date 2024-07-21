@@ -259,12 +259,10 @@ public class RecipeType implements Keyed {
         return getKey().hashCode();
     }
 
-    @ParametersAreNonnullByDefault
     private static void registerBarterDrop(ItemStack[] recipe, ItemStack output) {
         Slimefun.getRegistry().getBarteringDrops().add(output);
     }
 
-    @ParametersAreNonnullByDefault
     private static void registerMobDrop(ItemStack[] recipe, ItemStack output) {
         String mob = ChatColor.stripColor(recipe[4].getItemMeta().getDisplayName())
                 .toUpperCase(Locale.ROOT)

@@ -25,7 +25,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class PressureChamber extends MultiBlockMachine {
-    @ParametersAreNonnullByDefault
     public PressureChamber(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,
@@ -87,7 +86,6 @@ public class PressureChamber extends MultiBlockMachine {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void craft(Player p, Block b, ItemStack output, Inventory dispInv, Block dispenser) {
         for (int i = 0; i < 4; i++) {
             int j = i;

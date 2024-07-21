@@ -22,7 +22,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
  * @author TheBusyBiscuit
  */
 public final class FireworkUtils {
-    // @formatter:off
+    
     private static final Color[] COLORS = {
         Color.AQUA,
         Color.BLACK,
@@ -42,7 +42,7 @@ public final class FireworkUtils {
         Color.WHITE,
         Color.YELLOW
     };
-    // @formatter:on
+    
 
     private static final EntityType firework;
 

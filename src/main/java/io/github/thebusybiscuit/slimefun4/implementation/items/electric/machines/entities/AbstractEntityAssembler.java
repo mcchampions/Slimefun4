@@ -59,7 +59,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
 
     private int lifetime = 0;
 
-    @ParametersAreNonnullByDefault
     protected AbstractEntityAssembler(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

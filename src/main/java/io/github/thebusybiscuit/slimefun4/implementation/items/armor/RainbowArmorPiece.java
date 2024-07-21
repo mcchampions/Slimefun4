@@ -38,7 +38,6 @@ public class RainbowArmorPiece extends SlimefunArmorPiece {
      * @param recipe An Array representing the recipe of this {@link RainbowArmorPiece}
      * @param dyeColors An Array representing the {@link DyeColor}s this {@link RainbowArmorPiece} will cycle between
      */
-    @ParametersAreNonnullByDefault
     public RainbowArmorPiece(
             ItemGroup itemGroup,
             SlimefunItemStack item,

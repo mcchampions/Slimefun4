@@ -37,7 +37,6 @@ public class VanillaItem extends SlimefunItem {
      * @param recipe
      *            the recipe to obtain this {@link VanillaItem}
      */
-    @ParametersAreNonnullByDefault
     public VanillaItem(ItemGroup itemGroup, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, id, recipeType, recipe);
 

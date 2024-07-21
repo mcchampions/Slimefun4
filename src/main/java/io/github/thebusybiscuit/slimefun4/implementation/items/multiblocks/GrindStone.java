@@ -25,7 +25,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class GrindStone extends MultiBlockMachine {
-    @ParametersAreNonnullByDefault
     public GrindStone(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,

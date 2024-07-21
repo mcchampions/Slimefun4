@@ -24,7 +24,6 @@ public class MeatJerky extends SimpleSlimefunItem<ItemConsumptionHandler> {
     private final ItemSetting<Integer> saturation =
             new IntRangeSetting(this, "saturation-level", 0, 6, Integer.MAX_VALUE);
 
-    @ParametersAreNonnullByDefault
     public MeatJerky(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

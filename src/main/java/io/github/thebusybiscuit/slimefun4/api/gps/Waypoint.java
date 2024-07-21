@@ -74,7 +74,6 @@ public class Waypoint {
      * @deprecated Use {@link #Waypoint(UUID, String, Location, String)} instead
      */
     @Deprecated
-    @ParametersAreNonnullByDefault
     public Waypoint(PlayerProfile profile, String id, Location loc, String name) {
         this(profile.getUUID(), id, loc, name);
     }
@@ -91,7 +90,6 @@ public class Waypoint {
      * @param name
      *            The name of this {@link Waypoint}
      */
-    @ParametersAreNonnullByDefault
     public Waypoint(UUID ownerId, String id, Location loc, String name) {
         this.ownerId = ownerId;
         this.id = id;

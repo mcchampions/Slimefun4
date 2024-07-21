@@ -60,12 +60,10 @@ public final class TeleportationManager {
      * @param b
      *            {@link Block} from where the {@link Player} is being teleported
      */
-    @ParametersAreNonnullByDefault
     public void openTeleporterGUI(Player p, UUID ownerUUID, Block b) {
         openTeleporterGUI(p, ownerUUID, b, Slimefun.getGPSNetwork().getNetworkComplexity(ownerUUID));
     }
 
-    @ParametersAreNonnullByDefault
     public void openTeleporterGUI(Player p, UUID ownerUUID, Block b, int complexity) {
         if (teleporterUsers.add(p.getUniqueId())) {
             SoundEffect.TELEPORTATION_MANAGER_OPEN_GUI.playFor(p);
@@ -97,7 +95,7 @@ public final class TeleportationManager {
                     Location l = waypoint.getLocation();
                     double time = NumberUtils.reparseDouble(0.5 * getTeleportationTime(complexity, source, l));
 
-                    // @formatter:off
+                    
                     String[] lore = {
                         "",
                         "&8\u21E8 &7"
@@ -115,7 +113,7 @@ public final class TeleportationManager {
                         "",
                         "&8\u21E8 &c" + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.tooltip")
                     };
-                    // @formatter:on
+                    
 
                     menu.addItem(
                             slot,
@@ -135,7 +133,6 @@ public final class TeleportationManager {
         }
     }
 
-    @ParametersAreNonnullByDefault
     public void teleport(UUID uuid, int complexity, Location source, Location destination, boolean resistance) {
         teleporterUsers.add(uuid);
 
@@ -178,7 +175,6 @@ public final class TeleportationManager {
         return Math.max(1, unsafeTime);
     }
 
-    @ParametersAreNonnullByDefault
     private int distanceSquared(Location source, Location destination) {
         if (source.getWorld().getUID().equals(destination.getWorld().getUID())) {
             int distance = (int) source.distanceSquared(destination);
@@ -208,7 +204,6 @@ public final class TeleportationManager {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void updateProgress(
             UUID uuid, int speed, int progress, Location source, Location destination, boolean resistance) {
         Player p = Bukkit.getPlayer(uuid);
@@ -241,7 +236,6 @@ public final class TeleportationManager {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void onTeleport(Player p, Location destination, boolean success, boolean resistance) {
         /*
          * This needs to run on the main Thread so we force it, as

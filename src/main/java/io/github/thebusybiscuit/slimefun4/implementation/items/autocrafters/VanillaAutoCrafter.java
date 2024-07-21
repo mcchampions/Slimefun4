@@ -47,7 +47,6 @@ import org.bukkit.persistence.PersistentDataType;
  *
  */
 public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagonallyRotatable {
-    @ParametersAreNonnullByDefault
     public VanillaAutoCrafter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -122,7 +121,6 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void offerRecipe(
             Player p, Block b, List<Recipe> recipes, int index, ChestMenu menu, AsyncRecipeChoiceTask task) {
         menu.replaceExistingItem(46, ChestMenuUtils.getPreviousButton(p, index + 1, recipes.size()));

@@ -41,7 +41,6 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
     private final ItemSetting<Boolean> allowWaterInNether = new ItemSetting<>(this, "allow-water-in-nether", false);
     private final List<ItemStack> recipes;
 
-    @ParametersAreNonnullByDefault
     public Crucible(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -133,7 +132,6 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         };
     }
 
-    @ParametersAreNonnullByDefault
     private boolean craft(Player p, ItemStack input) {
         for (int i = 0; i < recipes.size(); i += 2) {
             ItemStack catalyst = recipes.get(i);
@@ -215,7 +213,6 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         runPostTask(block, water ? SoundEffect.CRUCIBLE_PLACE_WATER_SOUND : SoundEffect.CRUCIBLE_PLACE_LAVA_SOUND, 1);
     }
 
-    @ParametersAreNonnullByDefault
     private void runPostTask(Block block, SoundEffect sound, int times) {
         if (!(block.getBlockData() instanceof Levelled le)) {
             SoundEffect.CRUCIBLE_BLOCK_BREAK_SOUND.playAt(block);

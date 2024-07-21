@@ -20,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
  * @see RainbowTickHandler
  */
 public class TeleporterPylon extends RainbowBlock {
-    @ParametersAreNonnullByDefault
     public TeleporterPylon(
             ItemGroup itemGroup,
             SlimefunItemStack item,

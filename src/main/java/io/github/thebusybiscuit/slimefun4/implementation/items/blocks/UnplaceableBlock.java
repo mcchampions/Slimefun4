@@ -24,12 +24,10 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class UnplaceableBlock extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
-    @ParametersAreNonnullByDefault
     public UnplaceableBlock(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @ParametersAreNonnullByDefault
     public UnplaceableBlock(
             ItemGroup itemGroup,
             SlimefunItemStack item,

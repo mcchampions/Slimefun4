@@ -42,7 +42,6 @@ public class GoldIngot extends SlimefunItem {
      */
     private final int caratRating;
 
-    @ParametersAreNonnullByDefault
     public GoldIngot(
             ItemGroup itemGroup, int caratRating, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

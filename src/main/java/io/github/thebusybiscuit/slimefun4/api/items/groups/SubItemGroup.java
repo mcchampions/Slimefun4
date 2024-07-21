@@ -20,12 +20,10 @@ import org.bukkit.inventory.ItemStack;
 public class SubItemGroup extends ItemGroup {
     private final NestedItemGroup parentItemGroup;
 
-    @ParametersAreNonnullByDefault
     public SubItemGroup(NamespacedKey key, NestedItemGroup parent, ItemStack item) {
         this(key, parent, item, 3);
     }
 
-    @ParametersAreNonnullByDefault
     public SubItemGroup(NamespacedKey key, NestedItemGroup parent, ItemStack item, int tier) {
         super(key, item, tier);
 

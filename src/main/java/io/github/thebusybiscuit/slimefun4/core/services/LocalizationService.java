@@ -148,7 +148,6 @@ public class LocalizationService extends SlimefunLocalization {
         save();
     }
 
-    @ParametersAreNonnullByDefault
     private void copyToDefaultLanguage(String language, LanguageFile file) {
         FileConfiguration config = getConfigurationFromStream(file.getFilePath(language), null);
         defaultLanguage.setFile(file, config);

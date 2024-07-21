@@ -35,7 +35,6 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
 
     private boolean cancelled;
 
-    @ParametersAreNonnullByDefault
     public ClimbingPickLaunchEvent(
             Player player, Vector velocity, ClimbingPick pick, ItemStack itemStack, Block block) {
         super(player);

@@ -34,7 +34,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class MagicalZombiePills extends SimpleSlimefunItem<EntityInteractHandler> implements NotPlaceable {
-    @ParametersAreNonnullByDefault
     public MagicalZombiePills(
             ItemGroup itemGroup,
             SlimefunItemStack item,

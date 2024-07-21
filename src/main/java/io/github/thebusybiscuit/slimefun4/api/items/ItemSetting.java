@@ -36,7 +36,6 @@ public class ItemSetting<T> {
      * @param defaultValue
      *            The default value for this {@link ItemSetting}
      */
-    @ParametersAreNonnullByDefault
     public ItemSetting(SlimefunItem item, String key, T defaultValue) {
         this.item = item;
         this.key = key;
@@ -144,7 +143,7 @@ public class ItemSetting<T> {
             if (validateInput(newValue)) {
                 this.value = newValue;
             } else {
-                // @formatter:off
+                
                 item.warn("发现在 Items.yml 中有无效的物品设置!"
                         + "\n  在 \""
                         + item.getId()
@@ -156,7 +155,7 @@ public class ItemSetting<T> {
                         + " 不是一个有效值!"
                         + "\n"
                         + getErrorMessage());
-                // @formatter:on
+                
             }
         } else {
             this.value = defaultValue;
@@ -164,7 +163,7 @@ public class ItemSetting<T> {
                     ? "null"
                     : configuredValue.getClass().getSimpleName();
 
-            // @formatter:off
+            
             item.warn("发现在 Items.yml 中有无效的物品设置!"
                     + "\n请只设置有效的值."
                     + "\n  在 \""
@@ -177,7 +176,7 @@ public class ItemSetting<T> {
                     + "\" 但填写了: \""
                     + found
                     + "\"");
-            // @formatter:on
+            
         }
     }
 

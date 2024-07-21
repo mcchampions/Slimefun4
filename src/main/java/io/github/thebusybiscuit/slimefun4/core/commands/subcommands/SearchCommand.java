@@ -12,7 +12,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 class SearchCommand extends SubCommand {
-    @ParametersAreNonnullByDefault
     SearchCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "search", false);
     }

@@ -12,7 +12,6 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 class StatsCommand extends SubCommand {
-    @ParametersAreNonnullByDefault
     StatsCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "stats", false);
     }

@@ -42,7 +42,6 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
     private static final int ENERGY_CONSUMPTION = 10;
     private static final String DATA_KEY = "stored-exp";
 
-    @ParametersAreNonnullByDefault
     public ExpCollector(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

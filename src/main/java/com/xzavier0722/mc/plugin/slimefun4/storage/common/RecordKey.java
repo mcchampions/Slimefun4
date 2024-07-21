@@ -15,24 +15,20 @@ public class RecordKey extends ScopeKey {
     private volatile boolean changed = true;
     private final boolean unique = false;
 
-    @ParametersAreNonnullByDefault
     public RecordKey(DataScope scope) {
         this(scope, new HashSet<>());
     }
 
-    @ParametersAreNonnullByDefault
     public RecordKey(DataScope scope, Set<FieldKey> fields) {
         this(scope, fields, new LinkedList<>());
     }
 
-    @ParametersAreNonnullByDefault
     public RecordKey(DataScope scope, Set<FieldKey> fields, List<Pair<FieldKey, String>> conditions) {
         super(scope);
         this.fields = fields.isEmpty() ? fields : new HashSet<>(fields);
         this.conditions = conditions.isEmpty() ? conditions : new LinkedList<>(conditions);
     }
 
-    @ParametersAreNonnullByDefault
     public void addField(FieldKey field) {
         fields.add(field);
         changed = true;
@@ -43,13 +39,11 @@ public class RecordKey extends ScopeKey {
         return Collections.unmodifiableSet(fields);
     }
 
-    @ParametersAreNonnullByDefault
     public void addCondition(FieldKey key, String val) {
         conditions.add(new Pair<>(key, val));
         changed = true;
     }
 
-    @ParametersAreNonnullByDefault
     public void addCondition(FieldKey key, boolean val) {
         addCondition(key, val ? "1" : "0");
     }

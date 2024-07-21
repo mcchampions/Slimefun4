@@ -27,7 +27,6 @@ import org.bukkit.inventory.ItemStack;
 public class EasterEgg extends SimpleSlimefunItem<ItemUseHandler> {
     private final ItemStack[] gifts;
 
-    @ParametersAreNonnullByDefault
     public EasterEgg(
             ItemGroup itemGroup,
             SlimefunItemStack item,

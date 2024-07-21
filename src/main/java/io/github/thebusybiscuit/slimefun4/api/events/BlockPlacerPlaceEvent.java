@@ -38,7 +38,6 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
      * @param block
      *            The placed {@link Block}
      */
-    @ParametersAreNonnullByDefault
     public BlockPlacerPlaceEvent(Block blockPlacer, ItemStack placedItem, Block block) {
         super(block);
 

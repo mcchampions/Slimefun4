@@ -198,7 +198,6 @@ public class GrapplingHookListener implements Listener {
         return activeHooks.containsKey(uuid);
     }
 
-    @ParametersAreNonnullByDefault
     public void addGrapplingHook(
             Player p, Arrow arrow, Bat bat, boolean dropItem, long despawnTicks, boolean wasConsumed) {
         GrapplingHookEntity hook = new GrapplingHookEntity(p, arrow, bat, dropItem, wasConsumed);

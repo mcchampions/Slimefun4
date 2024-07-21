@@ -146,7 +146,6 @@ public class HologramsService {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private boolean hasHologramData(PersistentDataContainer container, BlockPosition position) {
         if (container.has(persistentDataKey, PersistentDataType.LONG)) {
             long value = container.get(persistentDataKey, PersistentDataType.LONG);

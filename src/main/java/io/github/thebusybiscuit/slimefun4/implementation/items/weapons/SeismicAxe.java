@@ -48,7 +48,6 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
     private static final float MAX_GROUND_DISTANCE = 1.5F;
     private static final int RANGE = 10;
 
-    @ParametersAreNonnullByDefault
     public SeismicAxe(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -75,7 +74,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
                 }
 
                 for (Entity n : ground.getChunk().getEntities()) {
-                    // @formatter:off
+                    
                     if (n instanceof LivingEntity
                             && n.getType() != EntityType.ARMOR_STAND
                             && !n.getUniqueId().equals(p.getUniqueId())
@@ -83,7 +82,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
                             && pushedEntities.add(n.getUniqueId())) {
                         pushEntity(p, n);
                     }
-                    // @formatter:on
+                    
                 }
             }
 
@@ -93,7 +92,6 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         };
     }
 
-    @ParametersAreNonnullByDefault
     private void createJumpingBlock(Block ground, int index) {
         Location loc = ground.getRelative(BlockFace.UP).getLocation().add(0.5, 0.0, 0.5);
         FallingBlock block = ground.getWorld().spawnFallingBlock(loc, ground.getBlockData());
@@ -102,7 +100,6 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         block.setMetadata("seismic_axe", new FixedMetadataValue(Slimefun.instance(), "fake_block"));
     }
 
-    @ParametersAreNonnullByDefault
     private boolean canReach(Location playerLocation, Location entityLocation, Location groundLocation) {
         // Too far away from ground
         double maxGroundDistanceSquared = MAX_GROUND_DISTANCE * MAX_GROUND_DISTANCE;
@@ -110,13 +107,12 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         // Fixes #3086 - Too close to Player, knockback may be NaN.
         double minPlayerDistanceSquared = MIN_PLAYER_DISTANCE * MIN_PLAYER_DISTANCE;
 
-        // @formatter:off
+        
         return entityLocation.distanceSquared(groundLocation) < maxGroundDistanceSquared
                 && playerLocation.distanceSquared(entityLocation) > minPlayerDistanceSquared;
-        // @formatter:on
+        
     }
 
-    @ParametersAreNonnullByDefault
     private void pushEntity(Player p, Entity entity) {
         // Only damage players when PVP is enabled, other entities are fine.
         if (entity.getType() != EntityType.PLAYER || p.getWorld().getPVP()) {

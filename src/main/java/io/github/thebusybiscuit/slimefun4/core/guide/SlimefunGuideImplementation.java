@@ -44,22 +44,16 @@ public interface SlimefunGuideImplementation {
     
     ItemStack getItem();
 
-    @ParametersAreNonnullByDefault
     void openMainMenu(PlayerProfile profile, int page);
 
-    @ParametersAreNonnullByDefault
     void openItemGroup(PlayerProfile profile, ItemGroup group, int page);
 
-    @ParametersAreNonnullByDefault
     void openSearch(PlayerProfile profile, String input, boolean addToHistory);
 
-    @ParametersAreNonnullByDefault
     void displayItem(PlayerProfile profile, ItemStack item, int index, boolean addToHistory);
 
-    @ParametersAreNonnullByDefault
     void displayItem(PlayerProfile profile, SlimefunItem item, boolean addToHistory);
 
-    @ParametersAreNonnullByDefault
     default void unlockItem(Player p, SlimefunItem sfitem, Consumer<Player> callback) {
         Research research = sfitem.getResearch();
 

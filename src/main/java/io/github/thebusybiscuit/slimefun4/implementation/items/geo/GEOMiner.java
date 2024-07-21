@@ -67,7 +67,6 @@ public class GEOMiner extends SlimefunItem
     private int energyCapacity = -1;
     private int processingSpeed = -1;
 
-    @ParametersAreNonnullByDefault
     public GEOMiner(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

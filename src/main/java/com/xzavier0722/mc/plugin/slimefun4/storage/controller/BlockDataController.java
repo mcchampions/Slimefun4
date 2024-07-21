@@ -214,7 +214,6 @@ public class BlockDataController extends ADataController {
      * @return {@link SlimefunBlockData}
      */
     @Nullable
-    @ParametersAreNonnullByDefault
     public SlimefunBlockData getBlockData(Location l) {
         checkDestroy();
         if (chunkDataLoadMode.readCacheOnly()) {

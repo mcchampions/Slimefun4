@@ -123,7 +123,6 @@ public class TickerTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void tickChunk(ChunkPosition chunk, Set<BlockTicker> tickers, Set<Location> locations) {
         try {
             // Only continue if the Chunk is actually loaded
@@ -180,7 +179,6 @@ public class TickerTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void tickBlock(Location l, Block b, SlimefunItem item, SlimefunBlockData data, long timestamp) {
         try {
             item.getBlockTicker().tick(b, item, data);
@@ -191,7 +189,6 @@ public class TickerTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void reportErrors(Location l, SlimefunItem item, Throwable x) {
         BlockPosition position = new BlockPosition(l);
         int errors = bugs.getOrDefault(position, 0) + 1;

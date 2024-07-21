@@ -24,7 +24,6 @@ class EnderTalisman extends Talisman {
             3,
             Talisman.TALISMANS_ITEMGROUP.getKey());
 
-    @ParametersAreNonnullByDefault
     public EnderTalisman(Talisman parent, SlimefunItemStack item) {
         super(
                 ENDER_TALISMANS_ITEMGROUP,

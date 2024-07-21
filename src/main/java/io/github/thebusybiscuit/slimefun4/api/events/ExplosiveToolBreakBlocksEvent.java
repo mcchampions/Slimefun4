@@ -33,7 +33,6 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
     private final List<Block> additionalBlocks;
     private boolean cancelled;
 
-    @ParametersAreNonnullByDefault
     public ExplosiveToolBreakBlocksEvent(
             Player player, Block block, List<Block> blocks, ItemStack item, ExplosiveTool explosiveTool) {
         super(player);

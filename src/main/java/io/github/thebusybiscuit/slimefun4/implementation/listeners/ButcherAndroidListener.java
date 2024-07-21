@@ -77,7 +77,6 @@ public class ButcherAndroidListener implements Listener {
      * @param entityType
      *            The {@link EntityType} of the killed entity
      */
-    @ParametersAreNonnullByDefault
     private void addExtraDrops(List<ItemStack> drops, EntityType entityType) {
         Random random = ThreadLocalRandom.current();
 

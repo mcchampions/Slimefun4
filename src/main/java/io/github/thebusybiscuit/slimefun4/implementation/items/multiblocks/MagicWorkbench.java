@@ -25,7 +25,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class MagicWorkbench extends AbstractCraftingTable {
-    @ParametersAreNonnullByDefault
     public MagicWorkbench(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,
@@ -82,7 +81,6 @@ public class MagicWorkbench extends AbstractCraftingTable {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void craft(Inventory inv, Block dispenser, Player p, Block b, ItemStack output) {
         Inventory fakeInv = createVirtualInventory(inv);
         Inventory outputInv = findOutputInventory(output, dispenser, inv, fakeInv);

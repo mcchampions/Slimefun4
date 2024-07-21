@@ -46,7 +46,6 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
     private int energyProducedPerTick = -1;
     private int energyCapacity = -1;
 
-    @ParametersAreNonnullByDefault
     protected AGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

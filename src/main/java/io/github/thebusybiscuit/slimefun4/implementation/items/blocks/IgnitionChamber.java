@@ -34,13 +34,12 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class IgnitionChamber extends SlimefunItem {
-    // @formatter:off
+    
     private static final BlockFace[] ADJACENT_FACES = {BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST
     };
 
-    // @formatter:on
+    
 
-    @ParametersAreNonnullByDefault
     public IgnitionChamber(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -60,7 +59,6 @@ public class IgnitionChamber extends SlimefunItem {
      *         This will return <code>false</code> when there is no
      *         chamber or no flint and steel present
      */
-    @ParametersAreNonnullByDefault
     public static boolean useFlintAndSteel(Player p, Block smelteryBlock) {
         Inventory inv = findIgnitionChamber(smelteryBlock);
 

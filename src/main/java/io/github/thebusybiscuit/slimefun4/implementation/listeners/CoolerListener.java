@@ -36,7 +36,6 @@ public class CoolerListener implements Listener {
     private final Slimefun plugin;
     private final Cooler cooler;
 
-    @ParametersAreNonnullByDefault
     public CoolerListener(Slimefun plugin, Cooler cooler) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 

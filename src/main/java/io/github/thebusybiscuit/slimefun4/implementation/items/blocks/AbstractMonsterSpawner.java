@@ -28,7 +28,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public abstract class AbstractMonsterSpawner extends SlimefunItem {
-    @ParametersAreNonnullByDefault
     AbstractMonsterSpawner(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

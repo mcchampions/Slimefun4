@@ -49,7 +49,6 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
     private final ItemSetting<Boolean> damageOnUse = new ItemSetting<>(this, "damage-on-use", true);
     private final ItemSetting<Boolean> callExplosionEvent = new ItemSetting<>(this, "call-explosion-event", false);
 
-    @ParametersAreNonnullByDefault
     public ExplosiveTool(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -73,7 +72,6 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         };
     }
 
-    @ParametersAreNonnullByDefault
     private void breakBlocks(
             BlockBreakEvent e, Player p, ItemStack item, Block b, List<Block> blocks, List<ItemStack> drops) {
         List<Block> blocksToDestroy = new ArrayList<>();
@@ -162,7 +160,6 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void breakBlock(BlockBreakEvent event, Player player, ItemStack item, Block block, List<ItemStack> drops) {
         Slimefun.getProtectionManager().logAction(player, block, Interaction.BREAK_BLOCK);
         Material material = block.getType();

@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class PersonalActivationPlate extends AbstractTeleporterPlate {
-    @ParametersAreNonnullByDefault
     public PersonalActivationPlate(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -43,7 +42,6 @@ public class PersonalActivationPlate extends AbstractTeleporterPlate {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
     public boolean hasAccess(Player p, Block b) {
         return p.getUniqueId().toString().equals(StorageCacheUtils.getData(b.getLocation(), "owner"));
     }

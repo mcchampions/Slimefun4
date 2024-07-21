@@ -36,7 +36,6 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
         implements InventoryBlock, RecipeDisplayItem, EnergyNetProvider {
     protected final Set<MachineFuel> fuelTypes = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
     protected AbstractEnergyProvider(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

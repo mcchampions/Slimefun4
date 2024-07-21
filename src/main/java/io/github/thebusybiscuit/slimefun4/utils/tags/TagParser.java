@@ -130,7 +130,6 @@ public class TagParser implements Keyed {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void parsePrimitiveValue(
             String value, Set<Material> materials, Set<Tag<Material>> tags, boolean throwException)
             throws TagMisconfigurationException {
@@ -177,7 +176,6 @@ public class TagParser implements Keyed {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void parseComplexValue(JsonObject entry, Set<Material> materials, Set<Tag<Material>> tags)
             throws TagMisconfigurationException {
         JsonElement id = entry.get("id");

@@ -26,7 +26,6 @@ public class Jetpack extends SlimefunItem implements Rechargeable {
     private final double thrust;
     private final float capacity;
 
-    @ParametersAreNonnullByDefault
     public Jetpack(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, double thrust, float capacity) {
         super(itemGroup, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 

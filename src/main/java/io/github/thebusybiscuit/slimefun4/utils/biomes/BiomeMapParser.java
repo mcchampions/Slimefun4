@@ -53,7 +53,6 @@ public class BiomeMapParser<T> {
      * @param valueConverter
      *            A function to convert {@link JsonElement}s into your desired data type
      */
-    @ParametersAreNonnullByDefault
     public BiomeMapParser(NamespacedKey key, BiomeDataConverter<T> valueConverter) {
         this.key = key;
         this.valueConverter = valueConverter;

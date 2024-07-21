@@ -32,7 +32,6 @@ import org.bukkit.inventory.ItemStack;
 public class PickaxeOfVeinMining extends SimpleSlimefunItem<ToolUseHandler> {
     private final ItemSetting<Integer> maxBlocks = new IntRangeSetting(this, "max-blocks", 1, 16, Integer.MAX_VALUE);
 
-    @ParametersAreNonnullByDefault
     public PickaxeOfVeinMining(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         addItemSetting(maxBlocks);
@@ -51,7 +50,6 @@ public class PickaxeOfVeinMining extends SimpleSlimefunItem<ToolUseHandler> {
         };
     }
 
-    @ParametersAreNonnullByDefault
     private void breakBlocks(Player p, List<Block> blocks, int fortune, ItemStack tool) {
         for (Block b : blocks) {
             if (Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.BREAK_BLOCK)) {

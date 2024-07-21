@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
 public class OrganicFertilizer extends SlimefunItem {
     public static final int OUTPUT = 2;
 
-    @ParametersAreNonnullByDefault
     public OrganicFertilizer(ItemGroup itemGroup, SlimefunItemStack item, SlimefunItemStack ingredient) {
         super(
                 itemGroup,

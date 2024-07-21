@@ -40,7 +40,6 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      * @param orderType
      *            The {@link SummaryOrderType} of the timings
      */
-    @ParametersAreNonnullByDefault
     public ConsolePerformanceInspector(CommandSender console, boolean verbose, SummaryOrderType orderType) {
         this.console = console;
         this.verbose = verbose;

@@ -48,7 +48,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     protected final List<ItemStack> displayRecipes;
     protected final MultiBlock multiblock;
 
-    @ParametersAreNonnullByDefault
     protected MultiBlockMachine(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -64,7 +63,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
         registerDefaultRecipes(displayRecipes);
     }
 
-    @ParametersAreNonnullByDefault
     protected MultiBlockMachine(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, BlockFace trigger) {
         this(itemGroup, item, recipe, new ItemStack[0], trigger);
     }
@@ -159,12 +157,10 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
      *
      * @return The target {@link Inventory}
      */
-    @ParametersAreNonnullByDefault
     protected @Nullable Inventory findOutputInventory(ItemStack adding, Block dispBlock, Inventory dispInv) {
         return findOutputInventory(adding, dispBlock, dispInv, dispInv);
     }
 
-    @ParametersAreNonnullByDefault
     protected @Nullable Inventory findOutputInventory(
             ItemStack product, Block dispBlock, Inventory dispInv, Inventory placeCheckerInv) {
         Optional<Inventory> outputChest = OutputChest.findOutputChestFor(dispBlock, product);
@@ -192,7 +188,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
      *            The {@link Inventory} of our {@link Container}
      *
      */
-    @ParametersAreNonnullByDefault
     protected void handleCraftedItem(ItemStack outputItem, Block block, Inventory blockInv) {
         Inventory outputInv = findOutputInventory(outputItem, block, blockInv);
 

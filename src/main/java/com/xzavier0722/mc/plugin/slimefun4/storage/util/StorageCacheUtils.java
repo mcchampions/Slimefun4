@@ -21,35 +21,29 @@ import org.bukkit.Location;
 public class StorageCacheUtils {
     private static final Set<SlimefunBlockData> loadingData = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
     public static boolean hasBlock(Location l) {
         return getBlock(l) != null;
     }
 
-    @ParametersAreNonnullByDefault
     @Nullable public static SlimefunBlockData getBlock(Location l) {
         return Slimefun.getDatabaseManager().getBlockDataController().getBlockDataFromCache(l);
     }
 
-    @ParametersAreNonnullByDefault
     public static boolean isBlock(Location l, String id) {
         var blockData = getBlock(l);
         return blockData != null && id.equals(blockData.getSfId());
     }
 
-    @ParametersAreNonnullByDefault
     @Nullable public static SlimefunItem getSfItem(Location l) {
         var blockData = getBlock(l);
         return blockData == null ? null : SlimefunItem.getById(blockData.getSfId());
     }
 
-    @ParametersAreNonnullByDefault
     @Nullable public static String getData(Location loc, String key) {
         var blockData = getBlock(loc);
         return blockData == null ? null : blockData.getData(key);
     }
 
-    @ParametersAreNonnullByDefault
     public static void setData(Location loc, String key, String val) {
         var block = getBlock(loc);
         Preconditions.checkNotNull(block);
@@ -57,12 +51,10 @@ public class StorageCacheUtils {
         block.setData(key, val);
     }
 
-    @ParametersAreNonnullByDefault
     public static void removeData(Location loc, String key) {
         getBlock(loc).removeData(key);
     }
 
-    @ParametersAreNonnullByDefault
     @Nullable public static BlockMenu getMenu(Location loc) {
         var blockData = getBlock(loc);
         if (blockData == null) {

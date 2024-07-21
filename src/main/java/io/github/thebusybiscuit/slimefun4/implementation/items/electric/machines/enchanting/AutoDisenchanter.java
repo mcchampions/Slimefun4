@@ -40,7 +40,6 @@ import org.bukkit.inventory.meta.Repairable;
  *
  */
 public class AutoDisenchanter extends AbstractEnchantmentMachine {
-    @ParametersAreNonnullByDefault
     public AutoDisenchanter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -78,7 +77,6 @@ public class AutoDisenchanter extends AbstractEnchantmentMachine {
         return null;
     }
 
-    @ParametersAreNonnullByDefault
     private @Nullable MachineRecipe disenchant(BlockMenu menu, ItemStack item, ItemStack book) {
         Map<Enchantment, Integer> enchantments = new HashMap<>();
 
@@ -128,7 +126,6 @@ public class AutoDisenchanter extends AbstractEnchantmentMachine {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void transferEnchantments(ItemStack item, ItemStack book, Map<Enchantment, Integer> enchantments) {
         ItemMeta itemMeta = item.getItemMeta();
         ItemMeta bookMeta = book.getItemMeta();

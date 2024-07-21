@@ -36,7 +36,6 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      * @param blockPlaced  The {@link Block} placed by the {@link Player}
      * @param slimefunItem The {@link SlimefunItem} within the {@link ItemStack}
      */
-    @ParametersAreNonnullByDefault
     public SlimefunBlockPlaceEvent(Player player, ItemStack placedItem, Block blockPlaced, SlimefunItem slimefunItem) {
         super();
 

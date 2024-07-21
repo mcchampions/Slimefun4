@@ -37,7 +37,6 @@ public class InfusedHopper extends SimpleSlimefunItem<BlockTicker> {
     private final ItemSetting<Boolean> toggleable = new ItemSetting<>(this, "toggleable-with-redstone", false);
     private final ItemSetting<Double> radius = new DoubleRangeSetting(this, "radius", 0.1, 3.5, Double.MAX_VALUE);
 
-    @ParametersAreNonnullByDefault
     public InfusedHopper(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

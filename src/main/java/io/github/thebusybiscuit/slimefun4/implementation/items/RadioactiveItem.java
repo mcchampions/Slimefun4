@@ -46,7 +46,6 @@ public class RadioactiveItem extends SlimefunItem implements Radioactive, NotPla
      * @param recipe
      *            The recipe of how to craft this {@link SlimefunItem}
      */
-    @ParametersAreNonnullByDefault
     public RadioactiveItem(
             ItemGroup itemGroup,
             Radioactivity radioactivity,
@@ -72,7 +71,6 @@ public class RadioactiveItem extends SlimefunItem implements Radioactive, NotPla
      * @param recipeOutput
      *            The recipe output
      */
-    @ParametersAreNonnullByDefault
     public RadioactiveItem(
             ItemGroup itemGroup,
             Radioactivity radioactivity,

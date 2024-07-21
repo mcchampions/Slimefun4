@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
 public class NetherGoldPan extends GoldPan {
     private final Set<Material> inputMaterials = new HashSet<>(Arrays.asList(Material.SOUL_SAND, Material.SOUL_SOIL));
 
-    @ParametersAreNonnullByDefault
     public NetherGoldPan(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

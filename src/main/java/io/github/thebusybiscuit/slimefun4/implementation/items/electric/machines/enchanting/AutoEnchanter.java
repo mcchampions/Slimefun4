@@ -38,7 +38,6 @@ public class AutoEnchanter extends AbstractEnchantmentMachine {
     private final ItemSetting<Boolean> overrideExistingEnchantsLvl =
             new ItemSetting<>(this, "override-existing-enchants-lvl", false);
 
-    @ParametersAreNonnullByDefault
     public AutoEnchanter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -78,8 +77,7 @@ public class AutoEnchanter extends AbstractEnchantmentMachine {
         return null;
     }
 
-    @Nullable @ParametersAreNonnullByDefault
-    protected MachineRecipe enchant(BlockMenu menu, ItemStack target, ItemStack enchantedBook) {
+    @Nullable protected MachineRecipe enchant(BlockMenu menu, ItemStack target, ItemStack enchantedBook) {
         // Call an event so other Plugins can modify it.
         AsyncAutoEnchanterProcessEvent event = new AsyncAutoEnchanterProcessEvent(target, enchantedBook, menu);
         Bukkit.getPluginManager().callEvent(event);

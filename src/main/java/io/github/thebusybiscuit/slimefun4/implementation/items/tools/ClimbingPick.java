@@ -59,7 +59,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     private final Map<Material, ClimbableSurface> surfaces = new EnumMap<>(Material.class);
     private final Set<UUID> users = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
     public ClimbingPick(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         addItemSetting(dualWielding, damageOnUse);
@@ -181,7 +180,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     }
 
     
-    @ParametersAreNonnullByDefault
     private ItemStack getOtherHandItem(Player p, EquipmentSlot hand) {
         if (hand == EquipmentSlot.HAND) {
             return p.getInventory().getItemInOffHand();
@@ -190,7 +188,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void climb(Player p, EquipmentSlot hand, ItemStack item, Block block) {
         double power = getClimbingSpeed(item, block.getType());
 
@@ -214,7 +211,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void swing(Player p, Block b, EquipmentSlot hand, ItemStack item) {
         if (isDualWieldingEnabled()) {
             if (ThreadLocalRandom.current().nextBoolean()) {
@@ -242,7 +238,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return damageOnUse.getValue();
     }
 
-    @ParametersAreNonnullByDefault
     private void playAnimation(Player p, Block b, EquipmentSlot hand) {
         p.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());
 

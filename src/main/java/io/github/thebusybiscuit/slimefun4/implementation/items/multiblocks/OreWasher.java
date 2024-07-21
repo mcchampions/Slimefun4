@@ -33,7 +33,7 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class OreWasher extends MultiBlockMachine {
-    // @formatter:off
+    
     private final ItemStack[] dusts = new ItemStack[] {
         SlimefunItems.IRON_DUST,
         SlimefunItems.GOLD_DUST,
@@ -45,13 +45,12 @@ public class OreWasher extends MultiBlockMachine {
         SlimefunItems.LEAD_DUST,
         SlimefunItems.SILVER_DUST
     };
-    // @formatter:on
+    
 
     private final boolean legacyMode;
 
-    @ParametersAreNonnullByDefault
     public OreWasher(ItemGroup itemGroup, SlimefunItemStack item) {
-        // @formatter:off
+        
         super(
                 itemGroup,
                 item,
@@ -61,7 +60,7 @@ public class OreWasher extends MultiBlockMachine {
                     null, new ItemStack(Material.CAULDRON), null
                 },
                 BlockFace.SELF);
-        // @formatter:on
+        
 
         legacyMode = Slimefun.getCfg().getBoolean("options.legacy-ore-washer");
     }
@@ -162,7 +161,6 @@ public class OreWasher extends MultiBlockMachine {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void removeItem(
             Player p,
             Block b,

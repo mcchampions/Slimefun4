@@ -22,7 +22,6 @@ import org.bukkit.inventory.PlayerInventory;
  *
  */
 public class MagicEyeOfEnder extends SimpleSlimefunItem<ItemUseHandler> {
-    @ParametersAreNonnullByDefault
     public MagicEyeOfEnder(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -42,11 +41,11 @@ public class MagicEyeOfEnder extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     private boolean hasArmor(PlayerInventory inv) {
-        // @formatter:off
+        
         return SlimefunUtils.isItemSimilar(inv.getHelmet(), SlimefunItems.ENDER_HELMET, true)
                 && SlimefunUtils.isItemSimilar(inv.getChestplate(), SlimefunItems.ENDER_CHESTPLATE, true)
                 && SlimefunUtils.isItemSimilar(inv.getLeggings(), SlimefunItems.ENDER_LEGGINGS, true)
                 && SlimefunUtils.isItemSimilar(inv.getBoots(), SlimefunItems.ENDER_BOOTS, true);
-        // @formatter:on
+        
     }
 }

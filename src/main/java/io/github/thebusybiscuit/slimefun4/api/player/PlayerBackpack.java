@@ -199,7 +199,6 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         meta.setDisplayName(ChatColors.color(bp.name));
     }
 
-    @ParametersAreNonnullByDefault
     public PlayerBackpack(
             OfflinePlayer owner, UUID uuid, String name, int id, int size, @Nullable ItemStack[] contents) {
         if (size < 9 || size > 54 || size % 9 != 0) {

@@ -38,7 +38,6 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
     private final NamespacedKey defaultUsageKey;
     private int maxUseCount = -1;
 
-    @ParametersAreNonnullByDefault
     protected LimitedUseItem(ItemGroup group, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(group, item, recipeType, recipe);
 
@@ -90,7 +89,6 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
         }
     }
 
-    @ParametersAreNonnullByDefault
     protected void damageItem(Player p, ItemStack item) {
         if (item.getAmount() > 1) {
             item.setAmount(item.getAmount() - 1);
@@ -124,7 +122,6 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void updateItemLore(ItemStack item, ItemMeta meta, int usesLeft) {
         List<String> lore = meta.getLore();
 

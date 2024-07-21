@@ -21,7 +21,6 @@ class GiveCommand extends SubCommand {
     private static final String PLACEHOLDER_ITEM = "%item%";
     private static final String PLACEHOLDER_AMOUNT = "%amount%";
 
-    @ParametersAreNonnullByDefault
     GiveCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "give", false);
     }

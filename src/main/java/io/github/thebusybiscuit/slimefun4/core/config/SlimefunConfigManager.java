@@ -70,8 +70,7 @@ public class SlimefunConfigManager {
         researchesConfig = getConfig(plugin, "Researches", () -> new Config(plugin, "Researches.yml"));
     }
 
-    @Nullable @ParametersAreNonnullByDefault
-    private Config getConfig(Slimefun plugin, String name, Supplier<Config> supplier) {
+    @Nullable private Config getConfig(Slimefun plugin, String name, Supplier<Config> supplier) {
         try {
             return supplier.get();
         } catch (Exception x) {

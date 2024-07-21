@@ -23,7 +23,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class ArmorForge extends AbstractCraftingTable {
-    @ParametersAreNonnullByDefault
     public ArmorForge(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,
@@ -84,7 +83,6 @@ public class ArmorForge extends AbstractCraftingTable {
         return true;
     }
 
-    @ParametersAreNonnullByDefault
     private void craft(Player p, ItemStack output, Inventory inv, Block dispenser) {
         Inventory fakeInv = createVirtualInventory(inv);
         Inventory outputInv = findOutputInventory(output, dispenser, inv, fakeInv);

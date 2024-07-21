@@ -228,7 +228,6 @@ public class GPSNetwork {
      *
      * @return An icon for this waypoint
      */
-    @ParametersAreNonnullByDefault
     public ItemStack getIcon(String name, Environment environment) {
         if (name.startsWith("player:death ")) {
             return HeadTexture.DEATHPOINT.getAsItemStack();
@@ -241,7 +240,6 @@ public class GPSNetwork {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private String getStatusText(Player player, int complexity) {
         if (complexity > 0) {
             return "&2&l" + Slimefun.getLocalization().getMessage(player, "gps.status-online");

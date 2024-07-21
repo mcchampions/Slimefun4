@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class WitherAssembler extends AbstractEntityAssembler<Wither> {
-    @ParametersAreNonnullByDefault
     public WitherAssembler(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

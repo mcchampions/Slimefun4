@@ -29,7 +29,6 @@ public class MagicianTalisman extends Talisman {
             new ItemSetting<>(this, "allow-enchantment-books", false);
     private final Set<TalismanEnchantment> enchantments = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
     public MagicianTalisman(SlimefunItemStack item, ItemStack[] recipe) {
         super(item, recipe, false, false, "magician", 80);
 
@@ -80,21 +79,20 @@ public class MagicianTalisman extends Talisman {
      */
     @Nullable public TalismanEnchantment getRandomEnchantment(
             ItemStack item, Set<Enchantment> existingEnchantments) {
-        // @formatter:off
+        
         List<TalismanEnchantment> enabled = enchantments.stream()
                 .filter(e -> (isEnchantmentBookAllowed() && item.getType() == Material.BOOK)
                         || e.getEnchantment().canEnchantItem(item))
                 .filter(e -> hasConflicts(existingEnchantments, e))
                 .filter(TalismanEnchantment::getValue)
                 .toList();
-        // @formatter:on
+        
 
         return enabled.isEmpty()
                 ? null
                 : enabled.get(ThreadLocalRandom.current().nextInt(enabled.size()));
     }
 
-    @ParametersAreNonnullByDefault
     private boolean hasConflicts(Set<Enchantment> enchantments, TalismanEnchantment ench) {
         for (Enchantment existing : enchantments) {
             if (existing.conflictsWith(ench.getEnchantment())) {

@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class BirthdayCake extends SlimefunItem implements NotPlaceable {
-    @ParametersAreNonnullByDefault
     public BirthdayCake(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

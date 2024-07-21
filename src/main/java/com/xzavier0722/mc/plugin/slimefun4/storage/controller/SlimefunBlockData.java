@@ -20,35 +20,30 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
     @Getter
     private volatile boolean pendingRemove = false;
 
-    @ParametersAreNonnullByDefault
     SlimefunBlockData(Location location, String sfId) {
         super(LocationUtils.getLocKey(location));
         this.location = location;
         this.sfId = sfId;
     }
 
-    @ParametersAreNonnullByDefault
     SlimefunBlockData(Location location, SlimefunBlockData other) {
         super(LocationUtils.getLocKey(location), other);
         this.location = location;
         this.sfId = other.sfId;
     }
 
-    @ParametersAreNonnullByDefault
     public void setData(String key, String val) {
         checkData();
         setCacheInternal(key, val, true);
         Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedBlockDataUpdate(this, key);
     }
 
-    @ParametersAreNonnullByDefault
     public void removeData(String key) {
         if (removeCacheInternal(key) != null || !isDataLoaded()) {
             Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedBlockDataUpdate(this, key);
         }
     }
 
-    @ParametersAreNullableByDefault
     void setBlockMenu(BlockMenu blockMenu) {
         menu = blockMenu;
     }

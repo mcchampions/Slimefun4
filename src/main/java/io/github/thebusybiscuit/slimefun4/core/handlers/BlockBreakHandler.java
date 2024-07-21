@@ -47,15 +47,12 @@ public abstract class BlockBreakHandler implements ItemHandler {
         this.allowExplosions = allowExplosions;
     }
 
-    @ParametersAreNonnullByDefault
     public abstract void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops);
 
-    @ParametersAreNonnullByDefault
     public void onExplode(Block b, List<ItemStack> drops) {
         // This can be overridden, if necessary
     }
 
-    @ParametersAreNonnullByDefault
     public void onAndroidBreak(AndroidMineEvent e) {
         // This can be overridden, if necessary
     }

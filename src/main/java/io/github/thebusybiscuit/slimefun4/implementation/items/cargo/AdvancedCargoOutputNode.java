@@ -19,7 +19,6 @@ public class AdvancedCargoOutputNode extends AbstractFilterNode {
         45, 46, 47, 48, 49, 50, 51, 52, 53
     };
 
-    @ParametersAreNonnullByDefault
     public AdvancedCargoOutputNode(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe, null);

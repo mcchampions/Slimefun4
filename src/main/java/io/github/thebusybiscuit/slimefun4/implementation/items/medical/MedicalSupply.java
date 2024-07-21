@@ -20,7 +20,6 @@ public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefu
     private final Set<PotionEffectType> curedEffects = new HashSet<>();
     private final int healAmount;
 
-    @ParametersAreNonnullByDefault
     protected MedicalSupply(
             ItemGroup itemGroup, int healAmount, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

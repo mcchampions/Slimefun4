@@ -41,7 +41,6 @@ public class GEOScanner extends SimpleSlimefunItem<BlockUseHandler> implements N
         };
     }
 
-    @ParametersAreNonnullByDefault
     private boolean hasAccess(Player p, Location l) {
         return p.hasPermission("slimefun.gps.bypass")
                 || (Slimefun.getProtectionManager().hasPermission(p, l, Interaction.INTERACT_BLOCK));

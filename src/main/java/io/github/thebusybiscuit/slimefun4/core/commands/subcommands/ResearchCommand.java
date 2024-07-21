@@ -16,7 +16,6 @@ class ResearchCommand extends SubCommand {
     private static final String PLACEHOLDER_PLAYER = "%player%";
     private static final String PLACEHOLDER_RESEARCH = "%research%";
 
-    @ParametersAreNonnullByDefault
     ResearchCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "research", false);
     }
@@ -72,7 +71,6 @@ class ResearchCommand extends SubCommand {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void giveResearch(CommandSender sender, Player p, String input) {
         Optional<Research> research = getResearchFromString(input);
 
@@ -89,7 +87,6 @@ class ResearchCommand extends SubCommand {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void researchAll(CommandSender sender, PlayerProfile profile, Player p) {
         for (Research res : Slimefun.getRegistry().getResearches()) {
             if (!profile.hasUnlocked(res)) {
@@ -102,7 +99,6 @@ class ResearchCommand extends SubCommand {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void reset(PlayerProfile profile, Player p) {
         for (Research research : Slimefun.getRegistry().getResearches()) {
             profile.setResearched(research, false);

@@ -34,7 +34,6 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
     // We wanna strip the Slimefun Item id here
     private static final ItemStack organicFertilizer = ItemStackWrapper.wrap(SlimefunItems.FERTILIZER);
 
-    @ParametersAreNonnullByDefault
     public TreeGrowthAccelerator(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -67,13 +66,11 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private boolean tryToBoostGrowth(Block machine, BlockMenu inv, Block sapling) {
         // On 1.17+ we can actually simulate bonemeal :O
         return applyBoneMeal(machine, sapling, inv);
     }
 
-    @ParametersAreNonnullByDefault
     private boolean applyBoneMeal(Block machine, Block sapling, BlockMenu inv) {
         for (int slot : getInputSlots()) {
             if (isFertilizer(inv.getItemInSlot(slot))) {
@@ -97,7 +94,6 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
         return false;
     }
 
-    @ParametersAreNonnullByDefault
     private boolean updateSaplingData(Block machine, Block block, BlockMenu inv, Sapling sapling) {
         for (int slot : getInputSlots()) {
             if (isFertilizer(inv.getItemInSlot(slot))) {

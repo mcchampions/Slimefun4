@@ -20,7 +20,6 @@ class TimingsCommand extends SubCommand {
     private static final String FLAG_PREFIX = "--";
     private final Set<String> flags = new HashSet<>(Arrays.asList("verbose", "avg", "low"));
 
-    @ParametersAreNonnullByDefault
     TimingsCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "timings", false);
     }
@@ -62,7 +61,6 @@ class TimingsCommand extends SubCommand {
         Slimefun.getProfiler().requestSummary(inspector);
     }
 
-    @ParametersAreNonnullByDefault
     private boolean hasInvalidFlags(CommandSender sender, String[] args) {
         boolean hasInvalidFlags = false;
 
@@ -81,7 +79,6 @@ class TimingsCommand extends SubCommand {
         return hasInvalidFlags;
     }
 
-    @ParametersAreNonnullByDefault
     private boolean hasFlag(String[] args, String flag) {
         // We start at 1 because args[0] will be "timings".
         for (int i = 1; i < args.length; i++) {
@@ -94,7 +91,6 @@ class TimingsCommand extends SubCommand {
     }
 
     
-    @ParametersAreNonnullByDefault
     private PerformanceInspector inspectorOf(CommandSender sender, boolean verbose, SummaryOrderType orderType) {
         if (sender instanceof Player player) {
             return new PlayerPerformanceInspector(player, orderType);

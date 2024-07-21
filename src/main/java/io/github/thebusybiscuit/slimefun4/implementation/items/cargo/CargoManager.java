@@ -22,7 +22,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 
 public class CargoManager extends SlimefunItem implements HologramOwner, NotRotatable {
-    @ParametersAreNonnullByDefault
     public CargoManager(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

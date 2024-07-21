@@ -42,7 +42,6 @@ public class SeasonalItemGroup extends ItemGroup {
      * @param item
      *            The display item for this {@link ItemGroup}
      */
-    @ParametersAreNonnullByDefault
     public SeasonalItemGroup(NamespacedKey key, Month month, int tier, ItemStack item) {
         super(key, item, tier);
 

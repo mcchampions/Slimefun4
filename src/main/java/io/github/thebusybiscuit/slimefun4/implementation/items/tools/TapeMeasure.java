@@ -33,7 +33,6 @@ public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements N
     private final NamespacedKey key = new NamespacedKey(Slimefun.instance(), "anchor");
     private final DecimalFormat format = new DecimalFormat("##.###");
 
-    @ParametersAreNonnullByDefault
     public TapeMeasure(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -55,7 +54,6 @@ public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements N
         };
     }
 
-    @ParametersAreNonnullByDefault
     private void setAnchor(Player p, ItemStack item, Block block) {
         ItemMeta meta = item.getItemMeta();
 
@@ -74,7 +72,6 @@ public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements N
         item.setItemMeta(meta);
     }
 
-    @ParametersAreNonnullByDefault
     private void measure(Player p, ItemStack item, Block block) {
         OptionalDouble distance = getDistance(p, item, block);
 
@@ -86,7 +83,6 @@ public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements N
         }
     }
 
-    @ParametersAreNonnullByDefault
     public Optional<Location> getAnchor(Player p, ItemStack item) {
         ItemMeta meta = item.getItemMeta();
 
@@ -112,7 +108,6 @@ public class TapeMeasure extends SimpleSlimefunItem<ItemUseHandler> implements N
         }
     }
 
-    @ParametersAreNonnullByDefault
     public OptionalDouble getDistance(Player p, ItemStack item, Block block) {
         Optional<Location> anchor = getAnchor(p, item);
 

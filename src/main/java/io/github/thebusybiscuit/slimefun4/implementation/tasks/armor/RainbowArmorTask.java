@@ -23,7 +23,6 @@ public class RainbowArmorTask extends AbstractArmorTask {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
     protected void onPlayerTick(Player p, PlayerProfile profile) {
         for (int i = 0; i < 4; i++) {
             ItemStack item = p.getInventory().getArmorContents()[i];
@@ -41,7 +40,6 @@ public class RainbowArmorTask extends AbstractArmorTask {
         }
     }
 
-    @ParametersAreNonnullByDefault
     private void updateRainbowArmor(ItemStack itemStack, RainbowArmorPiece armorPiece) {
         Color[] colors = armorPiece.getColors();
         Color newColor = colors[(int) (currentColorIndex % colors.length)];

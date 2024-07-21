@@ -484,7 +484,6 @@ public final class SlimefunUtils {
      * @param player          The player that caused this {@link SlimefunItemSpawnEvent}
      * @return The dropped {@link Item} (or null if the {@link SlimefunItemSpawnEvent} was cancelled)
      */
-    @ParametersAreNonnullByDefault
     public static @Nullable Item spawnItem(Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset, @Nullable Player player) {
         SlimefunItemSpawnEvent event = new SlimefunItemSpawnEvent(player, loc, item, reason);
         Slimefun.instance().getServer().getPluginManager().callEvent(event);
@@ -513,7 +512,6 @@ public final class SlimefunUtils {
      * @param addRandomOffset Whether a random offset should be added (see {@link World#dropItemNaturally(Location, ItemStack)})
      * @return The dropped {@link Item} (or null if the {@link SlimefunItemSpawnEvent} was cancelled)
      */
-    @ParametersAreNonnullByDefault
     public static @Nullable Item spawnItem(Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset) {
         return spawnItem(loc, item, reason, addRandomOffset, null);
     }
@@ -528,7 +526,6 @@ public final class SlimefunUtils {
      * @param reason The {@link ItemSpawnReason} why the item is being dropped
      * @return The dropped {@link Item} (or null if the {@link SlimefunItemSpawnEvent} was cancelled)
      */
-    @ParametersAreNonnullByDefault
     public static @Nullable Item spawnItem(Location loc, ItemStack item, ItemSpawnReason reason) {
         return spawnItem(loc, item, reason, false);
     }

@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class EnhancedAutoCrafter extends SlimefunAutoCrafter implements NotDiagonallyRotatable {
-    @ParametersAreNonnullByDefault
     public EnhancedAutoCrafter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe, RecipeType.ENHANCED_CRAFTING_TABLE);
     }

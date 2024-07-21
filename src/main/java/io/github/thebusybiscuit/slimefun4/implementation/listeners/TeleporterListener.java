@@ -30,13 +30,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
  *
  */
 public class TeleporterListener implements Listener {
-    // @formatter:off
+    
     private final BlockFace[] faces = {
         BlockFace.NORTH, BlockFace.NORTH_EAST, BlockFace.EAST, BlockFace.SOUTH_EAST,
         BlockFace.SOUTH, BlockFace.SOUTH_WEST, BlockFace.WEST, BlockFace.NORTH_WEST
     };
 
-    // @formatter:on
+    
 
     public TeleporterListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

@@ -40,7 +40,6 @@ public class SlimefunAutoCrafter extends AbstractAutoCrafter {
      */
     private final RecipeType targetRecipeType;
 
-    @ParametersAreNonnullByDefault
     protected SlimefunAutoCrafter(
             ItemGroup itemGroup,
             SlimefunItemStack item,

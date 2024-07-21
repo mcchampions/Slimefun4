@@ -27,7 +27,6 @@ import org.bukkit.inventory.ItemStack;
 public class ChristmasPresent extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
     private final ItemStack[] gifts;
 
-    @ParametersAreNonnullByDefault
     public ChristmasPresent(
             ItemGroup itemGroup,
             SlimefunItemStack item,

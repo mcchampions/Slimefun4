@@ -38,7 +38,6 @@ class VersionsCommand extends SubCommand {
      */
     private static final String JAVA_VERSION_NOTICE = "在 Minecraft 1.17 发布时需要 Java 16+!";
 
-    @ParametersAreNonnullByDefault
     VersionsCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "versions", false);
     }
@@ -53,7 +52,7 @@ class VersionsCommand extends SubCommand {
             String serverSoftware = PaperLib.isSpigot() && !PaperLib.isPaper() ? "Spigot" : Bukkit.getName();
             ComponentBuilder builder = new ComponentBuilder();
 
-            // @formatter:off
+            
             builder.append("Slimefun 运行的服务器环境:\n")
                     .color(ChatColor.GRAY)
                     .append(serverSoftware)
@@ -64,7 +63,7 @@ class VersionsCommand extends SubCommand {
                     .color(ChatColor.GREEN)
                     .append(Slimefun.getVersion() + '\n')
                     .color(ChatColor.DARK_GREEN);
-            // @formatter:on
+            
 
             addJavaVersion(builder);
             builder.append("\nSlimefun检测到的MC版本为"+ Slimefun.getMinecraftVersion().getName() + "\n");
@@ -99,7 +98,7 @@ class VersionsCommand extends SubCommand {
         int version = NumberUtils.getJavaVersion();
 
         if (version < RECOMMENDED_JAVA_VERSION) {
-            // @formatter:off
+            
             builder.append("Java " + version)
                     .color(ChatColor.RED)
                     .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {
@@ -111,7 +110,7 @@ class VersionsCommand extends SubCommand {
                     }))
                     .append("\n")
                     .event((HoverEvent) null);
-            // @formatter:on
+            
         } else {
             builder.append("Java ")
                     .color(ChatColor.GREEN)
@@ -147,7 +146,7 @@ class VersionsCommand extends SubCommand {
                 String authors = String.join(", ", plugin.getDescription().getAuthors());
 
                 if (plugin instanceof SlimefunAddon addon && addon.getBugTrackerURL() != null) {
-                    // @formatter:off
+                    
                     hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {
                         new TextComponent(new ComponentBuilder()
                                 .append("作者: ")
@@ -157,11 +156,11 @@ class VersionsCommand extends SubCommand {
                                 .color(ChatColor.GOLD)
                                 .create())
                     });
-                    // @formatter:on
+                    
 
                     clickEvent = new ClickEvent(ClickEvent.Action.OPEN_URL, addon.getBugTrackerURL());
                 } else {
-                    // @formatter:off
+                    
                     hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {
                         new TextComponent(new ComponentBuilder()
                                 .append("作者: ")
@@ -169,14 +168,14 @@ class VersionsCommand extends SubCommand {
                                 .color(ChatColor.YELLOW)
                                 .create())
                     });
-                    // @formatter:on
+                    
                 }
             } else {
                 primaryColor = ChatColor.RED;
                 secondaryColor = ChatColor.DARK_RED;
 
                 if (plugin instanceof SlimefunAddon addon && addon.getBugTrackerURL() != null) {
-                    // @formatter:off
+                    
                     hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {
                         new TextComponent(new ComponentBuilder()
                                 .append("此插件已被禁用.\n检查后台是否有报错.")
@@ -185,7 +184,7 @@ class VersionsCommand extends SubCommand {
                                 .color(ChatColor.DARK_RED)
                                 .create())
                     });
-                    // @formatter:on
+                    
 
                     if (addon.getBugTrackerURL() != null) {
                         clickEvent = new ClickEvent(ClickEvent.Action.OPEN_URL, addon.getBugTrackerURL());
@@ -197,7 +196,7 @@ class VersionsCommand extends SubCommand {
                 }
             }
 
-            // @formatter:off
+            
             // We need to reset the hover event or it's added to all components
             builder.append("\n  " + plugin.getName())
                     .color(primaryColor)
@@ -208,7 +207,7 @@ class VersionsCommand extends SubCommand {
                     .append("")
                     .event((ClickEvent) null)
                     .event((HoverEvent) null);
-            // @formatter:on
+            
         }
     }
 }

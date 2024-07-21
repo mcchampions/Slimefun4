@@ -33,7 +33,6 @@ public class RadiationTask extends AbstractArmorTask {
     private final RadiationSymptom[] symptoms = RadiationSymptom.values();
 
     @Override
-    @ParametersAreNonnullByDefault
     protected void onPlayerTick(Player p, PlayerProfile profile) {
         if (withinGracePeriod(p)) {
             // Player is within their grace period and shouldn't have radiation effects applied.
