@@ -146,7 +146,7 @@ public enum Instruction {
         Block target = b.getRelative(BlockFace.DOWN);
         android.moveAndDig(b, inv, face, target);
     }),
-    
+
      */
 
     /**
