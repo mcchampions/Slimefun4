@@ -2346,12 +2346,7 @@ public final class SlimefunItems {
     public static final SlimefunItemStack DEBUG_FISH = new SlimefunItemStack(
             "DEBUG_FISH",
             Material.SALMON,
-            "&3这鱼多少钱?",
-            "",
-            "&e右键 &r任意方块以查看它的方块数据",
-            "&e左键 &r破坏方块",
-            "&eShift + 左键 &r任意方块以清除它的方块数据",
-            "&eShift + 右键 &r放置一个占位符方块");
+            "");
 
     public static final SlimefunItemStack NETHER_ICE = new SlimefunItemStack(
             "NETHER_ICE",
