@@ -10,6 +10,7 @@ import java.util.concurrent.ThreadFactory;
  * @author TheBusyBiscuit
  * @see SlimefunProfiler
  */
+@Deprecated
 record SlimefunThreadFactory(int threadCount) implements ThreadFactory {
     /**
      * This constructs a new {@link SlimefunThreadFactory} with the given {@link Thread} count.

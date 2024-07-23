@@ -13,11 +13,8 @@ import org.bukkit.command.ConsoleCommandSender;
  * @author TheBusyBiscuit
  *
  */
+@Deprecated
 public class ConsolePerformanceInspector implements PerformanceInspector {
-    /**
-     * Our reference to the actual underlying {@link CommandSender}.
-     */
-    private final CommandSender console;
 
     /**
      * Whether a summary will be verbose or trimmed of.
@@ -40,7 +37,6 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      *            The {@link SummaryOrderType} of the timings
      */
     public ConsolePerformanceInspector(CommandSender console, boolean verbose, SummaryOrderType orderType) {
-        this.console = console;
         this.verbose = verbose;
         this.orderType = orderType;
     }
@@ -50,8 +46,7 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      */
     @Override
     public boolean isValid() {
-        // The console is always "online".
-        return true;
+        return false;
     }
 
     /**
@@ -74,7 +69,5 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      * {@inheritDoc}
      */
     @Override
-    public void sendMessage(String msg) {
-        console.sendMessage(msg);
-    }
+    public void sendMessage(String msg) {}
 }

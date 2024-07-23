@@ -6,4 +6,5 @@
  * {@link io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem SlimefunItems} that cause lag or performance
  * drops.
  */
+@Deprecated
 package io.github.thebusybiscuit.slimefun4.core.services.profiler;

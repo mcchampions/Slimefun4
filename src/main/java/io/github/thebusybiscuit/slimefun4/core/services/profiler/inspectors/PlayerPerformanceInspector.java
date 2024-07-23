@@ -3,9 +3,8 @@ package io.github.thebusybiscuit.slimefun4.core.services.profiler.inspectors;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.PerformanceInspector;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SummaryOrderType;
 import java.util.UUID;
-import javax.annotation.Nullable;
+
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 /**
@@ -15,11 +14,8 @@ import org.bukkit.entity.Player;
  * @author TheBusyBiscuit
  *
  */
+@Deprecated
 public class PlayerPerformanceInspector implements PerformanceInspector {
-    /**
-     * Our reference to the {@link UUID} of the {@link Player}.
-     */
-    private final UUID uuid;
 
     /**
      * The order type of the timings.
@@ -35,15 +31,7 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
      *            The {@link SummaryOrderType} of the timings
      */
     public PlayerPerformanceInspector(Player player, SummaryOrderType orderType) {
-        this.uuid = player.getUniqueId();
         this.orderType = orderType;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    private @Nullable Player getPlayer() {
-        return Bukkit.getPlayer(uuid);
     }
 
     /**
@@ -51,8 +39,7 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
      */
     @Override
     public boolean isValid() {
-        Player player = getPlayer();
-        return player != null && player.isOnline();
+       return false;
     }
 
     /**
@@ -75,19 +62,7 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
      * {@inheritDoc}
      */
     @Override
-    public void sendMessage(String msg) {
-        Player player = getPlayer();
+    public void sendMessage(String msg) {}
 
-        if (player != null) {
-            player.sendMessage(msg);
-        }
-    }
-
-    public void sendMessage(TextComponent component) {
-        Player player = getPlayer();
-
-        if (player != null) {
-            player.spigot().sendMessage(component);
-        }
-    }
+    public void sendMessage(TextComponent component) {}
 }
