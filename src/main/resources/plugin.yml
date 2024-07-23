@@ -74,9 +74,6 @@ permissions:
   slimefun.command.charge:
     description: Allows you to do /sf charge
     default: op
-  slimefun.command.debug:
-    description: Allows you to do /sf debug
-    default: op
   slimefun.command.reload:
     description: Allows you to do /sf reload
     default: op
