@@ -18,7 +18,7 @@ import java.util.List;
 public final class SlimefunSubCommands {
     private SlimefunSubCommands() {}
 
-    
+
     public static Collection<SubCommand> getAllCommands(SlimefunCommand cmd) {
         Slimefun plugin = cmd.getPlugin();
         List<SubCommand> commands = new LinkedList<>();
@@ -30,7 +30,6 @@ public final class SlimefunSubCommands {
         commands.add(new GiveCommand(plugin, cmd));
         commands.add(new ResearchCommand(plugin, cmd));
         commands.add(new StatsCommand(plugin, cmd));
-        commands.add(new TimingsCommand(plugin, cmd));
         commands.add(new TeleporterCommand(plugin, cmd));
         commands.add(new OpenGuideCommand(plugin, cmd));
         commands.add(new SearchCommand(plugin, cmd));

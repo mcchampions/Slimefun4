@@ -16,6 +16,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+@Deprecated
 class TimingsCommand extends SubCommand {
     private static final String FLAG_PREFIX = "--";
     private final Set<String> flags = new HashSet<>(Arrays.asList("verbose", "avg", "low"));
