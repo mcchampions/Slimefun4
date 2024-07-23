@@ -18,8 +18,6 @@ import org.bukkit.entity.Player;
 
 @Deprecated
 class TimingsCommand extends SubCommand {
-    private static final String FLAG_PREFIX = "--";
-    private final Set<String> flags = new HashSet<>(Arrays.asList("verbose", "avg", "low"));
 
     TimingsCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "timings", false);
@@ -32,71 +30,6 @@ class TimingsCommand extends SubCommand {
 
     @Override
     public void onExecute(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("slimefun.command.timings") && !(sender instanceof ConsoleCommandSender)) {
-            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
-            return;
-        }
 
-        if (hasInvalidFlags(sender, args)) {
-            return;
-        }
-
-        boolean verbose = hasFlag(args, "verbose");
-
-        if (verbose && sender instanceof Player) {
-            Slimefun.getLocalization().sendMessage(sender, "commands.timings.verbose-player", true);
-            return;
-        }
-
-        SummaryOrderType orderType = SummaryOrderType.HIGHEST;
-
-        if (hasFlag(args, "avg")) {
-            orderType = SummaryOrderType.AVERAGE;
-        } else if (hasFlag(args, "low")) {
-            orderType = SummaryOrderType.LOWEST;
-        }
-
-        Slimefun.getLocalization().sendMessage(sender, "commands.timings.please-wait", true);
-
-        PerformanceInspector inspector = inspectorOf(sender, verbose, orderType);
-        Slimefun.getProfiler().requestSummary(inspector);
-    }
-
-    private boolean hasInvalidFlags(CommandSender sender, String[] args) {
-        boolean hasInvalidFlags = false;
-
-        // We start at 1 because args[0] will be "timings".
-        for (int i = 1; i < args.length; i++) {
-            String argument = args[i].toLowerCase(Locale.ROOT);
-
-            if (argument.startsWith(FLAG_PREFIX) && !flags.contains(argument.substring(2))) {
-                hasInvalidFlags = true;
-                Slimefun.getLocalization()
-                        .sendMessage(
-                                sender, "commands.timings.unknown-flag", true, msg -> msg.replace("%flag%", argument));
-            }
-        }
-
-        return hasInvalidFlags;
-    }
-
-    private boolean hasFlag(String[] args, String flag) {
-        // We start at 1 because args[0] will be "timings".
-        for (int i = 1; i < args.length; i++) {
-            if (args[i].equalsIgnoreCase(FLAG_PREFIX + flag)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
-    private PerformanceInspector inspectorOf(CommandSender sender, boolean verbose, SummaryOrderType orderType) {
-        if (sender instanceof Player player) {
-            return new PlayerPerformanceInspector(player, orderType);
-        } else {
-            return new ConsolePerformanceInspector(sender, verbose, orderType);
-        }
     }
 }

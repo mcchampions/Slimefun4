@@ -47,9 +47,6 @@ permissions:
   slimefun.android.upload-script:
     description: Allows you to upload an Android Script
     default: op
-  slimefun.command.timings:
-    description: Allows you to do /sf timings
-    default: op
   slimefun.command.teleporter:
     description: Allows you to do /sf teleporter
     default: op
@@ -82,9 +79,6 @@ permissions:
     default: op
   slimefun.command.reload:
     description: Allows you to do /sf reload
-    default: op
-  slimefun.command.migrate:
-    description: Allows you to do /sf migrate
     default: op
   slimefun.command.blockdata:
     description: Allows you to do /sf blockdata
