@@ -33,9 +33,7 @@ public final class Debug {
      * @param msg
      *            The message to log
      */
-    public static void log(TestCase testCase, String msg) {
-        log(testCase.toString(), msg, new Object[0]);
-    }
+    public static void log(TestCase testCase, String msg) {}
 
     /**
      * Log a variable message if the {@link TestCase} is currently enabled.
@@ -47,9 +45,7 @@ public final class Debug {
      * @param vars
      *            The variables to replace, use "{}" in the message and have it replaced with a specified thing
      */
-    public static void log(TestCase testCase, String msg, Object... vars) {
-        log(testCase.toString(), msg, vars);
-    }
+    public static void log(TestCase testCase, String msg, Object... vars) {}
 
     /**
      * Log a message if the test case is currently enabled.
@@ -59,9 +55,7 @@ public final class Debug {
      * @param msg
      *            The message to log
      */
-    public static void log(String test, String msg) {
-        log(test, msg, new Object[0]);
-    }
+    public static void log(String test, String msg) {}
 
     /**
      * Log a message if the test case is currently enabled.
@@ -73,18 +67,7 @@ public final class Debug {
      * @param vars
      *            The variables to replace, use "{}" in the message and have it replaced with a specified thing
      */
-    public static void log(String test, String msg, Object... vars) {
-        if (!testCase.contains(test)) {
-            return;
-        }
-
-        if (vars.length > 0) {
-            String formatted = formatMessage(msg, vars);
-            Slimefun.logger().log(Level.INFO, "[DEBUG {0}] {1}", new Object[] {test, formatted});
-        } else {
-            Slimefun.logger().log(Level.INFO, "[DEBUG {0}] {1}", new Object[] {test, msg});
-        }
-    }
+    public static void log(String test, String msg, Object... vars) {}
 
     /**
      * Format the message. Replace "{}" with the supplied variable. This is quick and works great.
