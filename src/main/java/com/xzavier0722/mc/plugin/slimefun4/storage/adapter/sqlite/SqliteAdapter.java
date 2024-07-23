@@ -17,13 +17,11 @@ import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlC
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlCommonAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlUtils;
-import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
-import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataType;
-import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordKey;
-import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
+import com.xzavier0722.mc.plugin.slimefun4.storage.common.*;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
     @Override
@@ -45,13 +43,13 @@ public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
 
         var valStr = new StringBuilder();
         var flag = false;
-        for (var field : fields) {
+        for (Map.Entry<FieldKey, String> entry : data.entrySet()) {
             if (flag) {
                 valStr.append(", ");
             } else {
                 flag = true;
             }
-            valStr.append(SqlUtils.toSqlValStr(field, data.get(field)));
+            valStr.append(SqlUtils.toSqlValStr(entry.getKey(), entry.getValue()));
         }
 
         var updateFields = key.getFields();
