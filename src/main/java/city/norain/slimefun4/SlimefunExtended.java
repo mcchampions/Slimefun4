@@ -1,13 +1,10 @@
 package city.norain.slimefun4;
 
-import city.norain.slimefun4.listener.SlimefunMigrateListener;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
 import lombok.Getter;
 
 public final class SlimefunExtended {
-    private static SlimefunMigrateListener migrateListener = new SlimefunMigrateListener();
-
     @Getter
     private static boolean databaseDebugMode = false;
 
@@ -44,13 +41,9 @@ public final class SlimefunExtended {
         checkDebug();
 
         VaultIntegration.register(sf);
-
-        migrateListener.register(sf);
     }
 
     public static void shutdown() {
-        migrateListener = null;
-
         VaultIntegration.cleanup();
 
         databaseDebugMode = false;
