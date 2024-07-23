@@ -47,11 +47,6 @@ public class SlimefunItemInteractListener implements Listener {
     @EventHandler
     public void onRightClick(PlayerInteractEvent e) {
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            // Exclude the Debug Fish here because it is handled in a seperate Listener
-            if (SlimefunUtils.isItemSimilar(e.getItem(), SlimefunItems.DEBUG_FISH, true)) {
-                return;
-            }
-
             // Fixes #4087 - Prevents players from interacting with a block that is about to be deleted
             // We especially don't want to open inventories as that can cause duplication
             if (e.getClickedBlock() != null

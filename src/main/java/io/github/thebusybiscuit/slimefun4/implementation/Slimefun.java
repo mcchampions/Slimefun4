@@ -543,7 +543,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         new ItemDropListener(this);
         new DeathpointListener(this);
         new ExplosionsListener(this);
-        new DebugFishListener(this);
         new FireworksListener(this);
         new WitherListener(this);
         new IronGolemListener(this);
