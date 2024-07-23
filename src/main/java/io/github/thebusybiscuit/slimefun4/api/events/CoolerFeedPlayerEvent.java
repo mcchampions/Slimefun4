@@ -37,7 +37,6 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      *  of the
      *  provided potion upon consumption.
      *
-     * @param item The new {@link ItemStack}
      */
     @Setter
     private ItemStack consumedItem;

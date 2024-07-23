@@ -1,7 +1,5 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.migrator;
 
-import java.io.File;
-
 import lombok.Getter;
 
 @Deprecated

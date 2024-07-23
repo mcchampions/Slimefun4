@@ -51,8 +51,6 @@ public class ItemGroup implements Keyed {
      *  be added, without a warning, into the group. False by default.
      *  If set to true, Slimefun will not warn about items being added.
      *
-     * @param crossAddonItemGroup
-     *                          Whether items from another addon are allowable
      */
     @Setter
     @Getter

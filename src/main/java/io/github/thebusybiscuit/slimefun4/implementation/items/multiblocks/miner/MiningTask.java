@@ -38,7 +38,7 @@ import org.bukkit.inventory.ItemStack;
  * @see AdvancedIndustrialMiner
  *
  */
-class MiningTask implements Runnable {
+public class MiningTask implements Runnable {
     private final IndustrialMiner miner;
     private final UUID owner;
 
@@ -208,7 +208,7 @@ class MiningTask implements Runnable {
                 }
 
                 nextColumn();
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 Slimefun.logger()
                         .log(
                                 Level.SEVERE,
@@ -370,7 +370,7 @@ class MiningTask implements Runnable {
                 // The piston has been destroyed
                 stop(MinerStoppingReason.STRUCTURE_DESTROYED);
             }
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             Slimefun.logger()
                     .log(
                             Level.SEVERE,

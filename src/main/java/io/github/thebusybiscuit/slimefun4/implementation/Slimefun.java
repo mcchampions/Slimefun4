@@ -264,7 +264,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                     // This try/catch should prevent buggy Spigot builds from blocking item loading
                     try {
                         recipeService.refresh();
-                    } catch (Exception | LinkageError x) {
+                    } catch (RuntimeException | LinkageError x) {
                         logger.log(
                                 Level.SEVERE,
                                 x,
@@ -281,7 +281,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         // Setting up our commands
         try {
             command.register();
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             logger.log(Level.SEVERE, "An Exception occurred while registering the /slimefun command", x);
         }
 
@@ -469,7 +469,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                  */
                 return false;
             }
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             getLogger()
                     .log(
                             Level.SEVERE,
@@ -609,7 +609,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private void loadItems() {
         try {
             SlimefunItemSetup.setup(this);
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             getLogger()
                     .log(
                             Level.SEVERE,
@@ -624,7 +624,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private void loadResearches() {
         try {
             ResearchSetup.setupResearches();
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             getLogger()
                     .log(
                             Level.SEVERE,

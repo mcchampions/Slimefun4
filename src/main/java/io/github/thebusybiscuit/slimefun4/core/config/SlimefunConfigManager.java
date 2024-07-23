@@ -76,7 +76,7 @@ public class SlimefunConfigManager {
     @Nullable private Config getConfig(Slimefun plugin, String name, Supplier<Config> supplier) {
         try {
             return supplier.get();
-        } catch (Exception x) {
+        } catch (RuntimeException x) {
             plugin.getLogger()
                     .log(
                             Level.SEVERE,
@@ -117,7 +117,7 @@ public class SlimefunConfigManager {
 
             // researchesConfig.setDefaultValue("researches.auto-convert", false);
             // researchAutoConvert = researchesConfig.getBoolean("researches.auto-convert");
-        } catch (Exception x) {
+        } catch (RuntimeException x) {
             plugin.getLogger()
                     .log(
                             Level.SEVERE,
@@ -152,7 +152,7 @@ public class SlimefunConfigManager {
                         research.disable();
                     }
                 }
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 plugin.getLogger()
                         .log(
                                 Level.SEVERE,
@@ -183,7 +183,7 @@ public class SlimefunConfigManager {
                 for (ItemSetting<?> setting : item.getItemSettings()) {
                     setting.reload();
                 }
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 item.error("Something went wrong while updating the settings for this item!", x);
                 isSuccessful = false;
             }
@@ -191,7 +191,7 @@ public class SlimefunConfigManager {
             // Reload permissions
             try {
                 Slimefun.getPermissionsService().update(item, false);
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 item.error("Something went wrong while updating the permission node for this item!", x);
                 isSuccessful = false;
             }

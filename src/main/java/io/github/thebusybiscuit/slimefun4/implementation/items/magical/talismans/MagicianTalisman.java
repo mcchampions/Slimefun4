@@ -38,7 +38,7 @@ public class MagicianTalisman extends Talisman {
                 for (int i = 1; i <= enchantment.getMaxLevel(); i++) {
                     enchantments.add(new TalismanEnchantment(this, enchantment, i));
                 }
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 Slimefun.logger()
                         .log(
                                 Level.SEVERE,
@@ -54,7 +54,7 @@ public class MagicianTalisman extends Talisman {
                 // Fixes #3007 - This is a Set, so every Enchantment should only be contained in here once.
                 addItemSetting(enchantments.toArray(new ItemSetting[0]));
             }
-        } catch (Exception x) {
+        } catch (RuntimeException x) {
             Slimefun.logger()
                     .log(
                             Level.SEVERE,

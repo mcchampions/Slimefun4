@@ -112,7 +112,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                 } else if (!group.isHidden(p)) {
                     groups.add(group);
                 }
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 SlimefunAddon addon = group.getAddon();
 
                 if (addon != null) {
@@ -623,7 +623,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                 if (itemstack != null && itemstack.getType() != Material.BARRIER) {
                     displayItem(profile, itemstack, 0, true);
                 }
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 printErrorMessage(pl, x);
             }
             return false;

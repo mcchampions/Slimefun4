@@ -69,7 +69,7 @@ public class BlockDataService implements Keyed {
                 PersistentDataContainer container = tileState.getPersistentDataContainer();
                 container.set(namespacedKey, PersistentDataType.STRING, value);
                 state.update();
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 Slimefun.logger().log(Level.SEVERE, "Please check if your Server Software is up to date!");
 
                 String serverSoftware = PaperLib.isSpigot() && !PaperLib.isPaper() ? "Spigot" : Bukkit.getName();

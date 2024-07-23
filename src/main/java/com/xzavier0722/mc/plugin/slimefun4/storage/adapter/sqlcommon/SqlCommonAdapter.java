@@ -1,6 +1,5 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon;
 
-import city.norain.slimefun4.timings.entry.SQLEntry;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
@@ -30,8 +29,6 @@ public abstract class SqlCommonAdapter<T extends ISqlCommonConfig> implements ID
     }
 
     protected List<RecordSet> executeQuery(String sql) {
-        var entry = new SQLEntry(sql);
-
         try (var conn = ds.getConnection()) {
             return SqlUtils.execQuery(conn, sql);
         } catch (SQLException e) {

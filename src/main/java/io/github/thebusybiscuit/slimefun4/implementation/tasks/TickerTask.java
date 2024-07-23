@@ -111,7 +111,7 @@ public class TickerTask implements Runnable {
             }
 
             reset();
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.logger()
                     .log(
                             Level.SEVERE,
@@ -171,7 +171,7 @@ public class TickerTask implements Runnable {
                 }
 
                 tickers.add(item.getBlockTicker());
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 reportErrors(l, item, x);
             }
         }
@@ -180,7 +180,7 @@ public class TickerTask implements Runnable {
     private void tickBlock(Location l, Block b, SlimefunItem item, SlimefunBlockData data, long timestamp) {
         try {
             item.getBlockTicker().tick(b, item, data);
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             reportErrors(l, item, x);
         }
     }

@@ -101,7 +101,6 @@ public class SlimefunItem implements Placeable {
      *  for this
      * .
      *
-     * @param type The {@link RecipeType} for this {@link SlimefunItem}
      */
     @Setter
     @Getter
@@ -448,7 +447,7 @@ public class SlimefunItem implements Placeable {
                 info("Item was registered during runtime.");
                 load();
             }
-        } catch (Exception x) {
+        } catch (RuntimeException x) {
             error("Registering " + this + " has failed!", x);
         }
     }
@@ -888,7 +887,7 @@ public class SlimefunItem implements Placeable {
         if (handler.isPresent()) {
             try {
                 callable.accept(c.cast(handler.get()));
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 error("Could not pass \"" + c.getSimpleName() + "\" for " + this, x);
             }
 

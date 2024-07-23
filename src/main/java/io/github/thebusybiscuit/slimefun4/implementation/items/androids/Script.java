@@ -220,7 +220,7 @@ public final class Script {
                     if (config.contains("code") && config.contains("author")) {
                         scripts.add(new Script(config));
                     }
-                } catch (Exception x) {
+                } catch (RuntimeException x) {
                     Slimefun.logger()
                             .log(
                                     Level.SEVERE,

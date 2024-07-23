@@ -29,8 +29,6 @@ public class GuideHistory {
      * -- SETTER --
      *  This method sets the page of the main menu of this
      *
-     * @param page
-     *            The current page of the main menu that should be stored
      */
     @Setter
     @Getter

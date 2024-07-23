@@ -299,7 +299,7 @@ public class Talisman extends SlimefunItem {
                     // Send the message via chat
                     Slimefun.getLocalization().sendMessage(p, messageKey, true);
                 }
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 error("An Exception was thrown while trying to send a Talisman message", x);
             }
         }

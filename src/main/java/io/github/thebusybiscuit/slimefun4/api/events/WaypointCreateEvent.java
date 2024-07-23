@@ -32,7 +32,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
      *  The
      *  may never be null!
      *
-     * @param loc The {@link Location} to set
      */
     @Setter
     @Getter
@@ -41,8 +40,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
      * -- SETTER --
      *  This sets the name of the waypoint to the given argument.
      *
-     * @param name
-     *            The name for this waypoint
      */
     @Setter
     @Getter

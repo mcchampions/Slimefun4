@@ -9,7 +9,6 @@ import javax.annotation.Nullable;
 
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Ageable;
@@ -43,8 +42,8 @@ public enum Instruction {
      */
     WAIT(AndroidType.NONE, HeadTexture.SCRIPT_WAIT),
 
-    /**
-     * This will make the {@link ProgrammableAndroid} go forward.
+    /*
+      This will make the {@link ProgrammableAndroid} go forward.
      */
     /*
     GO_FORWARD(AndroidType.NON_FIGHTER, HeadTexture.SCRIPT_FORWARD, (android, b, inv, face) -> {
@@ -53,8 +52,8 @@ public enum Instruction {
     }),
     */
 
-    /**
-     * This will make the {@link ProgrammableAndroid} go up.
+    /*
+      This will make the {@link ProgrammableAndroid} go up.
      */
     /*
     GO_UP(AndroidType.NON_FIGHTER, HeadTexture.SCRIPT_UP, (android, b, inv, face) -> {
@@ -63,8 +62,8 @@ public enum Instruction {
     }),
     */
 
-    /**
-     * This will make the {@link ProgrammableAndroid} go down.
+    /*
+      This will make the {@link ProgrammableAndroid} go down.
      */
     /*
     GO_DOWN(AndroidType.NON_FIGHTER, HeadTexture.SCRIPT_DOWN, (android, b, inv, face) -> {
@@ -113,9 +112,9 @@ public enum Instruction {
         android.dig(b, inv, target);
     }),
 
-    /**
-     * This will make a {@link MinerAndroid} dig the {@link Block} above
-     * and then move itself to that new {@link Location}.
+    /*
+      This will make a {@link MinerAndroid} dig the {@link Block} above
+      and then move itself to that new {@link Location}.
      */
     /*
     MOVE_AND_DIG_UP(AndroidType.MINER, HeadTexture.SCRIPT_DIG_UP, (android, b, inv, face) -> {
@@ -124,9 +123,9 @@ public enum Instruction {
     }),
      */
 
-    /**
-     * This will make a {@link MinerAndroid} dig the {@link Block} ahead
-     * and then move itself to that new {@link Location}.
+    /*
+      This will make a {@link MinerAndroid} dig the {@link Block} ahead
+      and then move itself to that new {@link Location}.
      */
 
     /*
@@ -137,9 +136,9 @@ public enum Instruction {
 
      */
 
-    /**
-     * This will make a {@link MinerAndroid} dig the {@link Block} below
-     * and then move itself to that new {@link Location}.
+    /*
+      This will make a {@link MinerAndroid} dig the {@link Block} below
+      and then move itself to that new {@link Location}.
      */
     /*
     MOVE_AND_DIG_DOWN(AndroidType.MINER, HeadTexture.SCRIPT_DIG_DOWN, (android, b, inv, face) -> {

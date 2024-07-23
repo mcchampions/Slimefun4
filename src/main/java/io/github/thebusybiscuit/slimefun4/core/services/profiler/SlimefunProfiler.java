@@ -1,28 +1,17 @@
 package io.github.thebusybiscuit.slimefun4.core.services.profiler;
 
-import com.google.common.util.concurrent.AtomicDouble;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.TickerTask;
-import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
+
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Level;
+
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
-import org.bukkit.scheduler.BukkitScheduler;
 
 /**
  * The {@link SlimefunProfiler} works closely to the {@link TickerTask} and is

@@ -126,7 +126,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return super.addMenuClickHandler(slot, handler);
     }
 
-    
+
     public ChestMenu setSize(int size) {
         checkIfLocked();
 
@@ -143,12 +143,12 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return inventoryTitle;
     }
 
-    
+
     public Set<Integer> getPresetSlots() {
         return occupiedSlots;
     }
 
-    
+
     public Set<Integer> getInventorySlots() {
         Set<Integer> emptySlots = new HashSet<>();
 
@@ -200,7 +200,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
 
             try {
                 newInstance(menu, l.getBlock());
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 getSlimefunItem().error("An Error occurred while trying to create a BlockMenu", x);
             }
         });
@@ -212,7 +212,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *
      * @return Our identifier
      */
-    
+
     public String getID() {
         return id;
     }
@@ -222,7 +222,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *
      * @return The associated {@link SlimefunItem}
      */
-    
+
     public SlimefunItem getSlimefunItem() {
         return SlimefunItem.getById(id);
     }

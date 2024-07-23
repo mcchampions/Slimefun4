@@ -92,7 +92,7 @@ public class PlayerProfile {
                     Location loc = waypointsFile.getLocation(key);
                     waypoints.add(new Waypoint(this, key, loc, waypointName));
                 }
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 Slimefun.logger()
                         .log(
                                 Level.WARNING,

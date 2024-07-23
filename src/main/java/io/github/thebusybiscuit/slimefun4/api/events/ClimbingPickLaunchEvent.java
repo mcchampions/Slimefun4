@@ -29,7 +29,6 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
      *  applied to the
      * .
      *
-     * @param velocity The {@link Vector} velocity to apply
      */
     @Setter
     @Getter

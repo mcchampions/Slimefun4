@@ -65,7 +65,7 @@ class CargoNetworkTask implements Runnable {
 
                 // This will prevent this timings from showing up for the Cargo Manager
             }
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.logger()
                     .log(
                             Level.SEVERE,

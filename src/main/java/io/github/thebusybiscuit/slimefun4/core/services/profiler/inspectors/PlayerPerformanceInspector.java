@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.core.services.profiler.inspectors;
 
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.PerformanceInspector;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SummaryOrderType;
-import java.util.UUID;
 
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;

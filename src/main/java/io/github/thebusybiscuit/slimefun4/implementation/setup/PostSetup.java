@@ -46,7 +46,7 @@ public final class PostSetup {
             } else {
                 try {
                     item.load();
-                } catch (Exception | LinkageError x) {
+                } catch (RuntimeException | LinkageError x) {
                     item.error("Failed to properly load this Item", x);
                 }
             }

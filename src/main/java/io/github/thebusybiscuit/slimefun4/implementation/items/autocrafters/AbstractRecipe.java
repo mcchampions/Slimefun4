@@ -60,13 +60,11 @@ public abstract class AbstractRecipe {
      * -- GETTER --
      *  This returns whether or not this recipe has been enabled.
      *  A disabled recipe will not be crafted.
-     *
+     * <p>
      * -- SETTER --
      *  This method enables or disables this recipe.
      *  A disabled recipe will not be crafted.
      *
-     * @param enabled
-     *            Whether this recipe is enabled
 
 
      */

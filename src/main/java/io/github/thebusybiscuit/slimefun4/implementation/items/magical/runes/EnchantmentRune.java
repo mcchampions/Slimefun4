@@ -68,7 +68,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
                             () -> {
                                 try {
                                     addRandomEnchantment(p, item);
-                                } catch (Exception x) {
+                                } catch (RuntimeException x) {
                                     error("An Exception occurred while trying to apply an Enchantment Rune", x);
                                 }
                             },

@@ -35,7 +35,7 @@ public interface EnergyNetComponent extends ItemAttribute {
      *
      * @return The {@link EnergyNetComponentType} this {@link SlimefunItem} represents.
      */
-    
+
     EnergyNetComponentType getEnergyComponentType();
 
     /**
@@ -142,7 +142,7 @@ public interface EnergyNetComponent extends ItemAttribute {
      *            The new charge
      */
     default void setCharge(Location l, int charge) {
-        
+
 
         try {
             int capacity = getCapacity();
@@ -172,7 +172,7 @@ public interface EnergyNetComponent extends ItemAttribute {
                     }
                 }
             }
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.logger()
                     .log(
                             Level.SEVERE,
@@ -185,7 +185,7 @@ public interface EnergyNetComponent extends ItemAttribute {
     }
 
     default void addCharge(Location l, int charge) {
-        
+
 
         try {
             int capacity = getCapacity();
@@ -205,7 +205,7 @@ public interface EnergyNetComponent extends ItemAttribute {
                     }
                 }
             }
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.logger()
                     .log(
                             Level.SEVERE,
@@ -218,7 +218,7 @@ public interface EnergyNetComponent extends ItemAttribute {
     }
 
     default void removeCharge(Location l, int charge) {
-        
+
 
         try {
             int capacity = getCapacity();
@@ -238,7 +238,7 @@ public interface EnergyNetComponent extends ItemAttribute {
                     }
                 }
             }
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.logger()
                     .log(
                             Level.SEVERE,

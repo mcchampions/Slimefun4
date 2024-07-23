@@ -152,7 +152,7 @@ class ItemFilter implements Predicate<ItemStack> {
                         }
                     }
                 }
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 item.error("Something went wrong while updating the ItemFilter for this cargo node.", x);
             }
         }
@@ -186,7 +186,7 @@ class ItemFilter implements Predicate<ItemStack> {
             return false;
         }
 
-        
+
         /*
          * An empty Filter does not need to be iterated over.
          * We can just return our default value in this scenario.

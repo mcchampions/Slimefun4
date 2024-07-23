@@ -141,7 +141,7 @@ public class IntegrationsManager {
         try {
             // Load Protection plugin integrations
             protectionManager = new ProtectionManager(plugin);
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.logger()
                     .log(
                             Level.WARNING,
@@ -211,7 +211,7 @@ public class IntegrationsManager {
             try {
                 // Run our callback
                 consumer.accept(integration);
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 Slimefun.logger().log(Level.WARNING, "Maybe consider updating {0} or Slimefun?", pluginName);
                 Slimefun.logger().log(Level.WARNING, x, () -> "Failed to hook into " + pluginName + " v" + version);
             }
@@ -245,7 +245,7 @@ public class IntegrationsManager {
         if (isItemsAdderInstalled) {
             try {
                 return CustomBlock.byAlreadyPlaced(block) != null;
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 logError("ItemsAdder", x);
             }
         }
@@ -267,7 +267,7 @@ public class IntegrationsManager {
         if (isItemsAdderInstalled) {
             try {
                 return ItemsAdder.isCustomItem(item);
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 logError("ItemsAdder", x);
             }
         }
@@ -288,7 +288,7 @@ public class IntegrationsManager {
         if (isMcMMOInstalled) {
             try {
                 SkillUtils.removeAbilityBuff(item);
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 logError("mcMMO", x);
             }
         }

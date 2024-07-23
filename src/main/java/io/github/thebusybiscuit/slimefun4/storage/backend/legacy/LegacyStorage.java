@@ -48,7 +48,7 @@ public class LegacyStorage implements Storage {
                     Location loc = waypointsFile.getLocation(key);
                     waypoints.add(new Waypoint(uuid, key, loc, waypointName));
                 }
-            } catch (Exception x) {
+            } catch (RuntimeException x) {
                 Slimefun.logger()
                         .log(
                                 Level.WARNING,

@@ -30,8 +30,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *  This sets the
      *  on where to drop this item.
      *
-     * @param location
-     *            The {@link Location} where to drop the {@link ItemStack}
      */
     @Setter
     @Getter
@@ -41,8 +39,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *  This method sets the
      *  that should be dropped.
      *
-     * @param itemStack
-     *            The {@link ItemStack} to drop
      */
     @Setter
     @Getter

@@ -1,11 +1,9 @@
 package io.github.thebusybiscuit.slimefun4.core.debug;
 
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import javax.annotation.Nullable;
 
 /**

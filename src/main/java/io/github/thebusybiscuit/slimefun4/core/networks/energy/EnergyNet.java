@@ -299,7 +299,7 @@ public class EnergyNet extends Network implements HologramOwner {
                 } else {
                     supply = MathUtil.saturatedAdd(supply, energy);
                 }
-            } catch (Exception | LinkageError throwable) {
+            } catch (RuntimeException | LinkageError throwable) {
                 explodedBlocks.add(loc);
                 new ErrorReport<>(throwable, loc, item);
             }

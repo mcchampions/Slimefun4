@@ -498,7 +498,7 @@ public class ProgrammableAndroid extends SlimefunItem
                             setScript(b.getLocation(), script.getSourceCode());
                             openScriptEditor(player, b);
                         }
-                    } catch (Exception x) {
+                    } catch (RuntimeException x) {
                         Slimefun.logger()
                                 .log(
                                         Level.SEVERE,

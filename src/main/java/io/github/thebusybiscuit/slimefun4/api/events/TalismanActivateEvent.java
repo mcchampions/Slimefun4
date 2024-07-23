@@ -25,8 +25,6 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
      *  Only applies if
      *  is true.
      *
-     * @param preventConsumption
-     * 		Whether the {@link ItemStack} should not be consumed.
      */
     @Setter
     private boolean preventConsumption = false;

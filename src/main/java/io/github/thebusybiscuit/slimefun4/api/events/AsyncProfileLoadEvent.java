@@ -32,8 +32,6 @@ public class AsyncProfileLoadEvent extends Event {
      *  must have the same
      *  as the original one!
      *
-     * @param profile
-     *            The {@link PlayerProfile}
      */
     @Setter
     @Getter

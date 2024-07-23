@@ -162,7 +162,7 @@ public class SlimefunItemInteractListener implements Listener {
                             });
                 }
             }
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             item.error("An Exception was caught while trying to open the Inventory", x);
         }
     }

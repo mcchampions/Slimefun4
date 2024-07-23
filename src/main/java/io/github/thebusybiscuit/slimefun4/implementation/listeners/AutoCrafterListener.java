@@ -82,7 +82,7 @@ public class AutoCrafterListener implements Listener {
                 // Fixes 2896 - Forward the interaction before items get handled.
                 try {
                     crafter.onRightClick(clickedBlock.get(), e.getPlayer());
-                } catch (Exception | LinkageError x) {
+                } catch (RuntimeException | LinkageError x) {
                     crafter.error("Something went wrong while right-clicking an Auto-Crafter", x);
                 }
             }

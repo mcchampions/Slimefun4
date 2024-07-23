@@ -229,7 +229,7 @@ public class HologramsService {
                 if (hologram != null) {
                     consumer.accept(hologram);
                 }
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 Slimefun.logger().log(Level.SEVERE, "Hologram located at {0}", new BlockPosition(loc));
                 Slimefun.logger().log(Level.SEVERE, "Something went wrong while trying to update this hologram", x);
             }
@@ -265,7 +265,7 @@ public class HologramsService {
                 } else {
                     return false;
                 }
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 Slimefun.logger().log(Level.SEVERE, "Hologram located at {0}", new BlockPosition(loc));
                 Slimefun.logger().log(Level.SEVERE, "Something went wrong while trying to remove this hologram", x);
                 return false;

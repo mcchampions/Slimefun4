@@ -35,7 +35,7 @@ class McMMOIntegration implements Listener {
         // This registers blocks placed by the BlockPlacer as "player-placed"
         try {
             mcMMO.getPlaceStore().setTrue(e.getBlock());
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.getIntegrations().logError("mcMMO", x);
         }
     }
@@ -53,7 +53,7 @@ class McMMOIntegration implements Listener {
     public void onAutoDisenchant(AutoDisenchantEvent e) {
         try {
             SkillUtils.removeAbilityBuff(e.getItem());
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.getIntegrations().logError("mcMMO", x);
         }
     }

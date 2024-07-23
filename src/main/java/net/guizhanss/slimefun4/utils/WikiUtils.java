@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.utils.JsonUtils;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
@@ -63,7 +64,7 @@ public final class WikiUtils {
 
             plugin.getLogger()
                     .log(Level.INFO, MessageFormat.format("加载了 {0} 中 {1} 个物品的 Wiki 页面", plugin.getName(), count));
-        } catch (Exception e) {
+        } catch (IOException e) {
             plugin.getLogger().log(Level.SEVERE, MessageFormat.format("无法加载 {0} 的 wiki.json", plugin.getName()), e);
         }
     }
