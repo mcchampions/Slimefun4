@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  *
  * @author Walshy
  */
+@Deprecated
 public enum SummaryOrderType {
     /**
      * Sort by highest to the lowest total timings

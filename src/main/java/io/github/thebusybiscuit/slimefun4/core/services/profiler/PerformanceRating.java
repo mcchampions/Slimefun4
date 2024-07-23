@@ -15,6 +15,7 @@ import org.bukkit.ChatColor;
  * @see SlimefunProfiler
  *
  */
+@Deprecated
 public enum PerformanceRating implements Predicate<Float> {
     // Thresholds might change in the future!
 

@@ -10,6 +10,7 @@ import org.bukkit.Server;
  * @author TheBusyBiscuit
  *
  */
+@Deprecated
 public interface PerformanceInspector {
     /**
      * This returns whether this {@link PerformanceInspector} is still valid.
@@ -40,6 +41,6 @@ public interface PerformanceInspector {
      *
      * @return The order type for the summary of timings.
      */
-    
+
     SummaryOrderType getOrderType();
 }
