@@ -5,7 +5,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
 import com.zaxxer.hikari.HikariDataSource;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.sql.SQLException;
 import java.util.List;
 
