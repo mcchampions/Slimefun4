@@ -7716,8 +7716,6 @@ public final class SlimefunItemSetup {
                         })
                 .register(plugin);
 
-        MinecraftVersion minecraftVersion = Slimefun.getMinecraftVersion();
-
         new SlimefunItem(itemGroups.magicalArmor, SlimefunItems.BEE_HELMET, RecipeType.ARMOR_FORGE, new ItemStack[] {
                     SlimefunItems.GOLD_8K,
                     new ItemStack(Material.HONEY_BLOCK),

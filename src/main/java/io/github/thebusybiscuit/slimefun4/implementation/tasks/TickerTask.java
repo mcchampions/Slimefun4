@@ -161,13 +161,12 @@ public class TickerTask implements Runnable {
                             return;
                         }
                         Block b = l.getBlock();
-                        tickBlock(l, b, item, blockData, System.nanoTime());
+                        tickBlock(l, b, item, blockData);
                     });
                 } else {
-                    long timestamp = System.nanoTime();
                     item.getBlockTicker().update();
                     Block b = l.getBlock();
-                    tickBlock(l, b, item, blockData, timestamp);
+                    tickBlock(l, b, item, blockData);
                 }
 
                 tickers.add(item.getBlockTicker());
@@ -177,7 +176,7 @@ public class TickerTask implements Runnable {
         }
     }
 
-    private void tickBlock(Location l, Block b, SlimefunItem item, SlimefunBlockData data, long timestamp) {
+    private void tickBlock(Location l, Block b, SlimefunItem item, SlimefunBlockData data) {
         try {
             item.getBlockTicker().tick(b, item, data);
         } catch (RuntimeException | LinkageError x) {
