@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 import lombok.Getter;
 import org.bukkit.command.CommandSender;
 
+@Deprecated
 public class SQLProfiler {
     private final ThreadFactory threadFactory = r -> new Thread(r, "Slimefun SQL Profiler");
 
