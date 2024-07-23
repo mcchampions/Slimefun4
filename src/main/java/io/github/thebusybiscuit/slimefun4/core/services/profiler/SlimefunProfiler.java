@@ -36,6 +36,7 @@ import org.bukkit.scheduler.BukkitScheduler;
  * @see TickerTask
  *
  */
+@Deprecated
 public class SlimefunProfiler {
     /**
      * A minecraft server tick is 50ms and Slimefun ticks are stretched
@@ -252,7 +253,7 @@ public class SlimefunProfiler {
         requests.add(inspector);
     }
 
-    
+
     protected Map<String, Long> getByItem() {
         Map<String, Long> map = new HashMap<>();
 
@@ -263,7 +264,7 @@ public class SlimefunProfiler {
         return map;
     }
 
-    
+
     protected Map<String, Long> getByPlugin() {
         Map<String, Long> map = new HashMap<>();
 
@@ -274,7 +275,7 @@ public class SlimefunProfiler {
         return map;
     }
 
-    
+
     protected Map<String, Long> getByChunk() {
         Map<String, Long> map = new HashMap<>();
 
@@ -342,7 +343,7 @@ public class SlimefunProfiler {
      *
      * @return The current performance grade
      */
-    
+
     public PerformanceRating getPerformance() {
         float percentage = getPercentageOfTick();
 
@@ -355,7 +356,7 @@ public class SlimefunProfiler {
         return PerformanceRating.UNKNOWN;
     }
 
-    
+
     public String getTime() {
         return NumberUtils.getAsMillis(totalElapsedTime);
     }

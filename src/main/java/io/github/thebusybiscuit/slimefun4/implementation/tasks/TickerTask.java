@@ -90,7 +90,6 @@ public class TickerTask implements Runnable {
             }
 
             running = true;
-            Slimefun.getProfiler().start();
             Set<BlockTicker> tickers = new HashSet<>();
 
             // Run our ticker code
@@ -112,7 +111,6 @@ public class TickerTask implements Runnable {
             }
 
             reset();
-            Slimefun.getProfiler().stop();
         } catch (Exception | LinkageError x) {
             Slimefun.logger()
                     .log(
@@ -152,7 +150,6 @@ public class TickerTask implements Runnable {
 
             try {
                 if (item.getBlockTicker().isSynchronized()) {
-                    Slimefun.getProfiler().scheduleEntries(1);
                     item.getBlockTicker().update();
 
                     /*
@@ -167,7 +164,7 @@ public class TickerTask implements Runnable {
                         tickBlock(l, b, item, blockData, System.nanoTime());
                     });
                 } else {
-                    long timestamp = Slimefun.getProfiler().newEntry();
+                    long timestamp = System.nanoTime();
                     item.getBlockTicker().update();
                     Block b = l.getBlock();
                     tickBlock(l, b, item, blockData, timestamp);
@@ -185,8 +182,6 @@ public class TickerTask implements Runnable {
             item.getBlockTicker().tick(b, item, data);
         } catch (Exception | LinkageError x) {
             reportErrors(l, item, x);
-        } finally {
-            Slimefun.getProfiler().closeEntry(l, item, timestamp);
         }
     }
 

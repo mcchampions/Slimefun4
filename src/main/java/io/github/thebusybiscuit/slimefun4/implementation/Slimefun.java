@@ -336,7 +336,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         }
 
         SlimefunExtended.shutdown();
-        getSQLProfiler().stop();
 
         // Cancel all tasks from this plugin immediately
         Bukkit.getScheduler().cancelTasks(this);
@@ -355,9 +354,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
           () -> "Something went wrong while disabling the ticker task for Slimefun v"
           + getDescription().getVersion());
           }*/
-
-        // Kill our Profiler Threads
-        profiler.kill();
 
         // Save all Player Profiles that are still in memory
         PlayerProfile.iterator().forEachRemaining(profile -> {
@@ -839,10 +835,12 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link SlimefunProfiler}
      */
+    @Deprecated
     public static SlimefunProfiler getProfiler() {
         return instance.profiler;
     }
 
+    @Deprecated
     public static SQLProfiler getSQLProfiler() {
         return instance.sqlProfiler;
     }

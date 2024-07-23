@@ -138,12 +138,10 @@ public class EnergyNet extends Network implements HologramOwner {
     }
 
     public void tick(Block b, SlimefunBlockData blockData) {
-        AtomicLong timestamp = new AtomicLong(Slimefun.getProfiler().newEntry());
+        AtomicLong timestamp = new AtomicLong(System.nanoTime());
 
         if (!regulator.equals(b.getLocation())) {
             updateHologram(b, "&4检测到附近有其他调节器", blockData::isPendingRemove);
-            Slimefun.getProfiler()
-                    .closeEntry(b.getLocation(), SlimefunItems.ENERGY_REGULATOR.getItem(), timestamp.get());
             return;
         }
 
@@ -202,9 +200,6 @@ public class EnergyNet extends Network implements HologramOwner {
             storeRemainingEnergy(remainingEnergy);
             updateHologram(blockData, supply, demand);
         }
-
-        // We have subtracted the timings from Generators, so they do not show up twice.
-        Slimefun.getProfiler().closeEntry(b.getLocation(), SlimefunItems.ENERGY_REGULATOR.getItem(), timestamp.get());
     }
 
     private void storeRemainingEnergy(int remainingEnergy) {
@@ -263,7 +258,7 @@ public class EnergyNet extends Network implements HologramOwner {
         int supply = 0;
 
         for (Map.Entry<Location, EnergyNetProvider> entry : generators.entrySet()) {
-            long timestamp = Slimefun.getProfiler().newEntry();
+            long timestamp = System.nanoTime();
             Location loc = entry.getKey();
             EnergyNetProvider provider = entry.getValue();
             SlimefunItem item = (SlimefunItem) provider;
@@ -310,7 +305,7 @@ public class EnergyNet extends Network implements HologramOwner {
                 new ErrorReport<>(throwable, loc, item);
             }
 
-            long time = Slimefun.getProfiler().closeEntry(loc, item, timestamp);
+            long time = System.nanoTime() - timestamp;
             timings.accept(time);
         }
 
@@ -378,7 +373,7 @@ public class EnergyNet extends Network implements HologramOwner {
      *
      * @return The {@link EnergyNet} at that {@link Location}, or a new one
      */
-    
+
     public static EnergyNet getNetworkFromLocationOrCreate(Location l) {
         Optional<EnergyNet> energyNetwork = Slimefun.getNetworkManager().getNetworkFromLocation(l, EnergyNet.class);
 

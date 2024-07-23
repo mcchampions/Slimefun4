@@ -318,15 +318,10 @@ public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
     }
 
     private synchronized int executeUpdate(String sql) {
-        var entry = new SQLEntry(sql);
-        Slimefun.getSQLProfiler().recordEntry(entry);
-
         try (var conn = ds.getConnection()) {
             return SqlUtils.execUpdate(conn, sql);
         } catch (SQLException e) {
             throw new IllegalStateException("An exception thrown while executing sql: " + sql, e);
-        } finally {
-            Slimefun.getSQLProfiler().finishEntry(entry);
         }
     }
 }

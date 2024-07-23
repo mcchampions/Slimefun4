@@ -22,27 +22,20 @@ public abstract class SqlCommonAdapter<T extends ISqlCommonConfig> implements ID
     }
 
     protected void executeSql(String sql) {
-        var entry = new SQLEntry(sql);
-        Slimefun.getSQLProfiler().recordEntry(entry);
         try (var conn = ds.getConnection()) {
             SqlUtils.execSql(conn, sql);
         } catch (SQLException e) {
             throw new IllegalStateException("An exception thrown while executing sql: " + sql, e);
-        } finally {
-            Slimefun.getSQLProfiler().finishEntry(entry);
         }
     }
 
     protected List<RecordSet> executeQuery(String sql) {
         var entry = new SQLEntry(sql);
-        Slimefun.getSQLProfiler().recordEntry(entry);
 
         try (var conn = ds.getConnection()) {
             return SqlUtils.execQuery(conn, sql);
         } catch (SQLException e) {
             throw new IllegalStateException("An exception thrown while executing sql: " + sql, e);
-        } finally {
-            Slimefun.getSQLProfiler().finishEntry(entry);
         }
     }
 

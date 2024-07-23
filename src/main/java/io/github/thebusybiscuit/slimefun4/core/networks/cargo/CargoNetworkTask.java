@@ -9,6 +9,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,7 +39,6 @@ import org.bukkit.inventory.ItemStack;
  * @see CargoNet
  * @see CargoUtils
  * @see AbstractItemNetwork
- *
  */
 class CargoNetworkTask implements Runnable {
     private final NetworkManager manager;
@@ -58,23 +58,14 @@ class CargoNetworkTask implements Runnable {
 
     @Override
     public void run() {
-        long timestamp = System.nanoTime();
-
         try {
-            /*
-              All operations happen here: Everything gets iterated from the Input Nodes.
-              (Apart from ChestTerminal Buses)
-             */
-            SlimefunItem inputNode = SlimefunItems.CARGO_INPUT_NODE.getItem();
             for (Map.Entry<Location, Integer> entry : inputs.entrySet()) {
-                long nodeTimestamp = System.nanoTime();
                 Location input = entry.getKey();
                 Optional<Block> attachedBlock = network.getAttachedBlock(input);
 
                 attachedBlock.ifPresent(block -> routeItems(input, block, entry.getValue(), outputs));
 
                 // This will prevent this timings from showing up for the Cargo Manager
-                timestamp += Slimefun.getProfiler().closeEntry(entry.getKey(), inputNode, nodeTimestamp);
             }
         } catch (Exception | LinkageError x) {
             Slimefun.logger()
@@ -82,11 +73,8 @@ class CargoNetworkTask implements Runnable {
                             Level.SEVERE,
                             x,
                             () -> "An Exception was caught while ticking a Cargo network @ "
-                                    + new BlockPosition(network.getRegulator()));
+                                  + new BlockPosition(network.getRegulator()));
         }
-
-        // Submit a timings report
-        Slimefun.getProfiler().closeEntry(network.getRegulator(), SlimefunItems.CARGO_MANAGER.getItem(), timestamp);
     }
 
     private void routeItems(
@@ -141,7 +129,8 @@ class CargoNetworkTask implements Runnable {
         }
     }
 
-    @Nullable private ItemStack distributeItem(ItemStack stack, Location inputNode, List<Location> outputNodes) {
+    @Nullable
+    private ItemStack distributeItem(ItemStack stack, Location inputNode, List<Location> outputNodes) {
         ItemStack item = stack;
 
         var blockData = StorageCacheUtils.getBlock(inputNode);
@@ -194,10 +183,8 @@ class CargoNetworkTask implements Runnable {
      * This method sorts a given {@link Deque} of output node locations using a semi-accurate
      * round-robin method.
      *
-     * @param index
-     *            The round-robin index of the input node
-     * @param outputNodes
-     *            A {@link Deque} of {@link Location Locations} of the output nodes
+     * @param index       The round-robin index of the input node
+     * @param outputNodes A {@link Deque} of {@link Location Locations} of the output nodes
      */
     private void roundRobinSort(int index, Deque<Location> outputNodes) {
         if (index < outputNodes.size()) {
