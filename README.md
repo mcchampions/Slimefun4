@@ -1,5 +1,7 @@
 # Slimefun4 中文魔改版
 
+主打的是极简(更快)
+
 相比于中文版，做了如下改动:
 - 移除了部分无用代码
 - 添加了部分中文版没有的功能
@@ -10,9 +12,9 @@
 ## 兼容性测试(目前只测试能否正常启动)
 
 不过我没有删除太多东西(应该只删了贡献者和检查更新那些，运行中理论不会有问题)
- 
-- [x] | 炼金术自传 
-- [x] | Bump魔法 
+
+- [x] | 炼金术自传
+- [x] | Bump魔法
 - [x] | 魔法水晶编年史
 - [x] | 动力科技
 - [x] | 环保能源
@@ -37,6 +39,6 @@
 - [x] | 至尊研究院
 - [x] | 末地科技
 
-另外，插件还使用了 [textures.minecraft.net](https://www.minecraft.net/en-us) 以获取协作者的 Minecraft 皮肤。  
+另外，插件还使用了 [textures.minecraft.net](https://www.minecraft.net/en-us) 以获取协作者的 Minecraft 皮肤。
 请注意：Slimefun 与 `Mojang Studios` 或 Minecraft 无关。
 本项目是一个民间fork, 与简中汉化组与Slimefun官版无关.
