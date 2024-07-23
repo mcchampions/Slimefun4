@@ -27,19 +27,19 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
         this.author = plugin.getDescription().getAuthors().toString();
     }
 
-    
+
     @Override
     public String getIdentifier() {
         return "slimefun";
     }
 
-    
+
     @Override
     public String getVersion() {
         return version;
     }
 
-    
+
     @Override
     public String getAuthor() {
         return author;
@@ -126,7 +126,7 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
         }
 
         if (isPlaceholder(p, false, params, "timings_lag")) {
-            return Slimefun.getProfiler().getTime();
+            return "0";
         }
 
         if (isPlaceholder(p, false, params, "language") && p instanceof Player player) {
@@ -136,7 +136,7 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
         return null;
     }
 
-    
+
     private String getProfilePlaceholder(Player p) {
         return Slimefun.getLocalization().getMessage(p, "placeholderapi.profile-loading");
     }

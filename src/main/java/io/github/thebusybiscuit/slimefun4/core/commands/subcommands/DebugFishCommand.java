@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+@Deprecated
 class DebugFishCommand extends SubCommand {
     DebugFishCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "debug_fish", true);
