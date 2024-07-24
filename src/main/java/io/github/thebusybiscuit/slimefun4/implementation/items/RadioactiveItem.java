@@ -84,7 +84,6 @@ public class RadioactiveItem extends SlimefunItem implements Radioactive, NotPla
         addItemHandler(onRightClick());
     }
 
-
     private ItemUseHandler onRightClick() {
         return PlayerRightClickEvent::cancel;
     }

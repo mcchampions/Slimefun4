@@ -49,7 +49,6 @@ public class ElytraCap extends SlimefunArmorPiece implements DamageableItem, Pro
         return UnbreakingAlgorithm.ARMOR.evaluate(unbreakingLevel);
     }
 
-
     @Override
     public ProtectionType[] getProtectionTypes() {
         return new ProtectionType[] {ProtectionType.FLYING_INTO_WALL};
@@ -59,7 +58,6 @@ public class ElytraCap extends SlimefunArmorPiece implements DamageableItem, Pro
     public boolean isFullSetRequired() {
         return false;
     }
-
 
     @Override
     public NamespacedKey getArmorSetId() {

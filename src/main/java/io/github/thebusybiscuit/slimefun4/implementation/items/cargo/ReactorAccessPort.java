@@ -117,7 +117,6 @@ public class ReactorAccessPort extends SlimefunItem {
         };
     }
 
-
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -155,21 +154,17 @@ public class ReactorAccessPort extends SlimefunItem {
                 ChestMenuUtils.getEmptyClickHandler());
     }
 
-
     public int[] getInputSlots() {
         return new int[] {19, 28, 37, 25, 34, 43};
     }
-
 
     public int[] getFuelSlots() {
         return new int[] {19, 28, 37};
     }
 
-
     public int[] getCoolantSlots() {
         return new int[] {25, 34, 43};
     }
-
 
     public static int[] getOutputSlots() {
         return new int[] {40};

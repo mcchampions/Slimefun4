@@ -55,7 +55,6 @@ public class Juice extends SimpleSlimefunItem<ItemConsumptionHandler> {
         }
     }
 
-
     @Override
     public ItemConsumptionHandler getItemHandler() {
         return (e, p, item) -> {

@@ -91,7 +91,6 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
         return "guide.tooltips.recipes.generator";
     }
 
-
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> list = new ArrayList<>();

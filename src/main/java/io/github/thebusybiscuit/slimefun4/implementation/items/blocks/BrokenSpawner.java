@@ -26,7 +26,6 @@ public class BrokenSpawner extends AbstractMonsterSpawner implements NotPlaceabl
         addItemHandler(onRightClick());
     }
 
-
     private ItemUseHandler onRightClick() {
         return PlayerRightClickEvent::cancel;
     }

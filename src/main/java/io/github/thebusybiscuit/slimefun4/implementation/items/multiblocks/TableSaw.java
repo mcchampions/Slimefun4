@@ -44,7 +44,6 @@ public class TableSaw extends MultiBlockMachine {
     private final ItemSetting<Boolean> canUseSlimefunItems = new ItemSetting<>(this, "can-use-slimefun-items", true);
 
     public TableSaw(ItemGroup group, SlimefunItemStack item) {
-
         super(
                 group,
                 item,
@@ -60,7 +59,6 @@ public class TableSaw extends MultiBlockMachine {
                     null
                 },
                 BlockFace.SELF);
-
 
         for (Material log : Tag.LOGS.getValues()) {
             Optional<Material> planks = getPlanks(log);

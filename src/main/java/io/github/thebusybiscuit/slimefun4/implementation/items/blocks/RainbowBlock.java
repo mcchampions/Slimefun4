@@ -30,7 +30,6 @@ public class RainbowBlock extends SimpleSlimefunItem<RainbowTickHandler> {
         this.ticker = ticker;
     }
 
-
     @Override
     public RainbowTickHandler getItemHandler() {
         return ticker;

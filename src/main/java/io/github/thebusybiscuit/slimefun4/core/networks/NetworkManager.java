@@ -54,8 +54,6 @@ public class NetworkManager {
      *            Whether excess items from a {@link CargoNet} should be voided
      */
     public NetworkManager(int maxStepSize, boolean enableVisualizer, boolean deleteExcessItems) {
-
-
         this.enableVisualizer = enableVisualizer;
         this.deleteExcessItems = deleteExcessItems;
         maxNodes = maxStepSize;
@@ -111,7 +109,6 @@ public class NetworkManager {
         return Collections.unmodifiableList(networks);
     }
 
-
     public <T extends Network> Optional<T> getNetworkFromLocation(@Nullable Location l, Class<T> type) {
         if (l == null) {
             return Optional.empty();
@@ -125,7 +122,6 @@ public class NetworkManager {
 
         return Optional.empty();
     }
-
 
     public <T extends Network> List<T> getNetworksFromLocation(@Nullable Location l, Class<T> type) {
         if (l == null) {
@@ -172,8 +168,6 @@ public class NetworkManager {
      *            The {@link Location} to update
      */
     public void updateAllNetworks(Location l) {
-
-
         try {
             /*
              * No need to create a sublist and loop through it if

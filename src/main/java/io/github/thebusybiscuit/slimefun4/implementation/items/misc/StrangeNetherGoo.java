@@ -50,7 +50,6 @@ public class StrangeNetherGoo extends SimpleSlimefunItem<ItemUseHandler> impleme
         return chance.getValue();
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

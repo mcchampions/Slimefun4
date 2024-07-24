@@ -73,7 +73,6 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
                 }
 
                 for (Entity n : ground.getChunk().getEntities()) {
-
                     if (n instanceof LivingEntity
                             && n.getType() != EntityType.ARMOR_STAND
                             && !n.getUniqueId().equals(p.getUniqueId())
@@ -105,7 +104,6 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
 
         // Fixes #3086 - Too close to Player, knockback may be NaN.
         double minPlayerDistanceSquared = MIN_PLAYER_DISTANCE * MIN_PLAYER_DISTANCE;
-
 
         return entityLocation.distanceSquared(groundLocation) < maxGroundDistanceSquared
                 && playerLocation.distanceSquared(entityLocation) > minPlayerDistanceSquared;

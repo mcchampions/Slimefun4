@@ -67,7 +67,6 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
         return !(itemAsSlimefunItem instanceof SlimefunBackpack);
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

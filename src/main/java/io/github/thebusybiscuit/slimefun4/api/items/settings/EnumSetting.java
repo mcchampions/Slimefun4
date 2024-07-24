@@ -26,7 +26,6 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
         this.enumClass = enumClass;
     }
 
-
     @Override
     protected String getErrorMessage() {
         String values = Arrays.stream(getAllowedValues()).map(Enum::name).collect(Collectors.joining(", "));

@@ -198,7 +198,6 @@ public class TagParser implements Keyed {
         }
     }
 
-
     @Override
     public NamespacedKey getKey() {
         return key;

@@ -40,7 +40,6 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
         addItemHandler(onBlockBreak(), onItemUse());
     }
 
-
     private ToolUseHandler onBlockBreak() {
         return (e, tool, fortune, drops) -> {
             if (!e.getPlayer().isSneaking() && Tag.LOGS.isTagged(e.getBlock().getType())) {
@@ -57,7 +56,6 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
             }
         };
     }
-
 
     public ItemUseHandler onItemUse() {
         return e -> {

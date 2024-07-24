@@ -34,7 +34,6 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
         addItemHandler(onBreak());
     }
 
-
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -43,7 +42,6 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
             }
         };
     }
-
 
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {

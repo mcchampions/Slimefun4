@@ -44,16 +44,13 @@ public class AsyncProfileLoadEvent extends Event {
         this.profile = profile;
     }
 
-
     public UUID getPlayerUUID() {
         return uniqueId;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 
     @Override
     public HandlerList getHandlers() {

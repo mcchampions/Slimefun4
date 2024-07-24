@@ -15,7 +15,6 @@ import org.bukkit.entity.Player;
  */
 @Deprecated
 public class PlayerPerformanceInspector implements PerformanceInspector {
-
     /**
      * The order type of the timings.
      */

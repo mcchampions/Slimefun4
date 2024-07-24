@@ -62,7 +62,6 @@ public abstract class AContainer extends SlimefunItem
         addItemHandler(onBlockBreak());
     }
 
-
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -190,8 +189,6 @@ public abstract class AContainer extends SlimefunItem
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setCapacity(int capacity) {
-
-
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
             return this;
@@ -209,8 +206,6 @@ public abstract class AContainer extends SlimefunItem
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setProcessingSpeed(int speed) {
-
-
         this.processingSpeed = speed;
         return this;
     }

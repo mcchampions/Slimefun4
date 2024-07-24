@@ -113,7 +113,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         addItemHandler(onPlace(), onBreak());
     }
 
-
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(true) {
             @Override
@@ -133,7 +132,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
             }
         };
     }
-
 
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
@@ -185,7 +183,6 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
             return false;
         });
     }
-
 
     @Override
     public BlockTicker getItemHandler() {

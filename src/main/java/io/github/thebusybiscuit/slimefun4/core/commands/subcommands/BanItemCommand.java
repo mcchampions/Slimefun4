@@ -58,7 +58,6 @@ public class BanItemCommand extends SubCommand {
         }
     }
 
-
     @Override
     public String getDescription() {
         return "commands.banitem.description";

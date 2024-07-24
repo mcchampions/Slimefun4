@@ -33,7 +33,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class OreWasher extends MultiBlockMachine {
-
     private final ItemStack[] dusts = new ItemStack[] {
         SlimefunItems.IRON_DUST,
         SlimefunItems.GOLD_DUST,
@@ -46,11 +45,9 @@ public class OreWasher extends MultiBlockMachine {
         SlimefunItems.SILVER_DUST
     };
 
-
     private final boolean legacyMode;
 
     public OreWasher(ItemGroup itemGroup, SlimefunItemStack item) {
-
         super(
                 itemGroup,
                 item,
@@ -60,7 +57,6 @@ public class OreWasher extends MultiBlockMachine {
                     null, new ItemStack(Material.CAULDRON), null
                 },
                 BlockFace.SELF);
-
 
         legacyMode = Slimefun.getCfg().getBoolean("options.legacy-ore-washer");
     }

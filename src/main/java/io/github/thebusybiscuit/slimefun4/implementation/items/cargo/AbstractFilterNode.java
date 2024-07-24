@@ -49,7 +49,6 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         return true;
     }
 
-
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -62,7 +61,6 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
             }
         };
     }
-
 
     protected abstract int[] getBorder();
 

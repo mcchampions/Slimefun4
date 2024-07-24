@@ -29,7 +29,6 @@ public class Teleporter extends SimpleSlimefunItem<BlockPlaceHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-
     @Override
     public BlockPlaceHandler getItemHandler() {
         return new BlockPlaceHandler(false) {

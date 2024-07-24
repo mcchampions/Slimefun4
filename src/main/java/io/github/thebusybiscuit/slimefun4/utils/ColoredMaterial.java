@@ -190,8 +190,6 @@ public enum ColoredMaterial {
         Material.BLACK_SHULKER_BOX
     });
 
-
-
     private final List<Material> list;
 
     /**
@@ -204,11 +202,9 @@ public enum ColoredMaterial {
         list = List.of(materials);
     }
 
-
     public List<Material> asList() {
         return list;
     }
-
 
     public Material get(int index) {
         return list.get(index);

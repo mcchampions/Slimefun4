@@ -40,7 +40,6 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         return capacity;
     }
 
-
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
@@ -52,7 +51,6 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
             }
         };
     }
-
 
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
@@ -68,7 +66,6 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
     public abstract int getMultiplier(int y);
 
     public abstract int getEnergyConsumption();
-
 
     @Override
     public BlockTicker getItemHandler() {
@@ -92,7 +89,6 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
             }
         };
     }
-
 
     @Override
     public EnergyNetComponentType getEnergyComponentType() {

@@ -89,7 +89,6 @@ public class ClearDataCommand extends SubCommand {
         }
     }
 
-
     @Override
     public String getDescription() {
         return "commands.cleardata.description";

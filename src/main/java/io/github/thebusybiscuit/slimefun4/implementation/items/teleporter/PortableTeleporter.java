@@ -34,7 +34,6 @@ public class PortableTeleporter extends SimpleSlimefunItem<ItemUseHandler> imple
         addItemSetting(cost);
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

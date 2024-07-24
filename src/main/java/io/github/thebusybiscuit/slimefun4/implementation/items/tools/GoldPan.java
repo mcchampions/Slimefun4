@@ -126,12 +126,10 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
         return item != null ? item : new ItemStack(Material.AIR);
     }
 
-
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.gold-pan";
     }
-
 
     @Override
     public ItemUseHandler getItemHandler() {
@@ -176,7 +174,6 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
             }
         };
     }
-
 
     @Override
     public List<ItemStack> getDisplayRecipes() {

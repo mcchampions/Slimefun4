@@ -66,7 +66,6 @@ public abstract class AbstractRecipe {
      *  A disabled recipe will not be crafted.
      *
 
-
      */
     @Setter
     private boolean enabled = true;

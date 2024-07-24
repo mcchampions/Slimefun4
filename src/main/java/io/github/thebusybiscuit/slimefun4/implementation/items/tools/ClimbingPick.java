@@ -149,7 +149,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return speed;
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
@@ -177,7 +176,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
             }
         };
     }
-
 
     private ItemStack getOtherHandItem(Player p, EquipmentSlot hand) {
         if (hand == EquipmentSlot.HAND) {
@@ -247,7 +245,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
@@ -258,7 +255,6 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
 
         return display;
     }
-
 
     @Override
     public String getLabelLocalPath() {

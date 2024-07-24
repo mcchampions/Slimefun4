@@ -125,7 +125,6 @@ public abstract class Reactor extends AbstractEnergyProvider
         return processor;
     }
 
-
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -270,7 +269,6 @@ public abstract class Reactor extends AbstractEnergyProvider
         }
     }
 
-
     protected ReactorMode getReactorMode(Location l) {
         ReactorMode mode = ReactorMode.GENERATOR;
 
@@ -321,7 +319,6 @@ public abstract class Reactor extends AbstractEnergyProvider
     public int[] getFuelSlots() {
         return new int[] {19, 28, 37};
     }
-
 
     public int[] getCoolantSlots() {
         return needsCooling() ? new int[] {25, 34, 43} : new int[0];

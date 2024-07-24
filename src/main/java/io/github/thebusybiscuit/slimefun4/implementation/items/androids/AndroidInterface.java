@@ -26,7 +26,6 @@ public class AndroidInterface extends SimpleSlimefunItem<BlockDispenseHandler> {
         addItemHandler(new VanillaInventoryDropHandler<>(Dispenser.class));
     }
 
-
     @Override
     public BlockDispenseHandler getItemHandler() {
         return (e, d, block, machine) -> e.setCancelled(true);

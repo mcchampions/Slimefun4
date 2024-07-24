@@ -209,7 +209,6 @@ public class TickerTask implements Runnable {
         halted = true;
     }
 
-
     public Map<ChunkPosition, Set<Location>> getLocations() {
         Map<ChunkPosition, Set<Location>> map = new HashMap<>();
         Set<Map.Entry<String, Map<ChunkPosition, Set<Location>>>> set = tickingLocations.entrySet();

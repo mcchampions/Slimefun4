@@ -17,18 +17,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
-
     @Override
     public SlimefunAddon getAddon() {
         return Slimefun.instance();
     }
 
-
     @Override
     public NamespacedKey getKey() {
         return new NamespacedKey(Slimefun.instance(), "guide_mode");
     }
-
 
     @Override
     public Optional<ItemStack> getDisplayItem(Player p, ItemStack guide) {
@@ -79,7 +76,6 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
         SlimefunGuideSettings.openSettings(p, guide);
     }
 
-
     private SlimefunGuideMode getNextMode(Player p, SlimefunGuideMode mode) {
         if (p.hasPermission("slimefun.cheat.items")) {
             if (mode == SlimefunGuideMode.SURVIVAL_MODE) {
@@ -91,7 +87,6 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
             return SlimefunGuideMode.SURVIVAL_MODE;
         }
     }
-
 
     @Override
     public Optional<SlimefunGuideMode> getSelectedOption(Player p, ItemStack guide) {

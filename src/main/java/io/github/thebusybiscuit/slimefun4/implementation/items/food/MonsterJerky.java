@@ -24,7 +24,6 @@ public class MonsterJerky extends SimpleSlimefunItem<ItemConsumptionHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-
     @Override
     public ItemConsumptionHandler getItemHandler() {
         return (e, p, item) -> Slimefun.runSync(

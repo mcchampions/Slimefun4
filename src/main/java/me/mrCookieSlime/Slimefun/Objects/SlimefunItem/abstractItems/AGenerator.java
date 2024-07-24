@@ -83,7 +83,6 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
         return processor;
     }
 
-
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -246,8 +245,6 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
      * @return This method will return the current instance of {@link AGenerator}, so that can be chained.
      */
     public final AGenerator setCapacity(int capacity) {
-
-
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
             return this;

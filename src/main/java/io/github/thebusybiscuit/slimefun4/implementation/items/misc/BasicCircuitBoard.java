@@ -42,7 +42,6 @@ public class BasicCircuitBoard extends SimpleSlimefunItem<ItemUseHandler> implem
         return dropSetting.getValue();
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return PlayerRightClickEvent::cancel;

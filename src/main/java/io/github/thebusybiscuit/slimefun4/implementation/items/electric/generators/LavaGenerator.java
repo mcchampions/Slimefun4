@@ -20,7 +20,6 @@ public class LavaGenerator extends AGenerator implements NotDiagonallyRotatable 
         registerFuel(new MachineFuel(40, new ItemStack(Material.LAVA_BUCKET)));
     }
 
-
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.FLINT_AND_STEEL);

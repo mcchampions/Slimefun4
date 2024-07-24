@@ -32,7 +32,6 @@ public class RecordKey extends ScopeKey {
         changed = true;
     }
 
-
     public Set<FieldKey> getFields() {
         return Collections.unmodifiableSet(fields);
     }
@@ -45,7 +44,6 @@ public class RecordKey extends ScopeKey {
     public void addCondition(FieldKey key, boolean val) {
         addCondition(key, val ? "1" : "0");
     }
-
 
     public List<Pair<FieldKey, String>> getConditions() {
         return Collections.unmodifiableList(conditions);

@@ -25,7 +25,6 @@ public class GPSMarkerTool extends SimpleSlimefunItem<ItemUseHandler> implements
         super(itemGroup, item, recipeType, recipe);
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

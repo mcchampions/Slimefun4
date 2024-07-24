@@ -64,8 +64,6 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
      * @return The {@link LimitedUseItem} for chaining of setters
      */
     public final LimitedUseItem setMaxUseCount(int count) {
-
-
         maxUseCount = count;
         return this;
     }

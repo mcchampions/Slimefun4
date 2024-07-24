@@ -53,7 +53,6 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         return recipes;
     }
 
-
     private List<ItemStack> getMachineRecipes() {
         List<ItemStack> items = new LinkedList<>();
 
@@ -99,7 +98,6 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
 
         return items;
     }
-
 
     @Override
     public BlockUseHandler getItemHandler() {

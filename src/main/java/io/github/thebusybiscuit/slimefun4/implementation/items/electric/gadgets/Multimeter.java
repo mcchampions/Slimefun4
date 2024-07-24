@@ -30,7 +30,6 @@ public class Multimeter extends SimpleSlimefunItem<ItemUseHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

@@ -27,7 +27,6 @@ import org.bukkit.inventory.ItemStack;
 public final class SlimefunGuide {
     private SlimefunGuide() {}
 
-
     public static ItemStack getItem(SlimefunGuideMode design) {
         return Slimefun.getRegistry().getSlimefunGuide(design).getItem();
     }

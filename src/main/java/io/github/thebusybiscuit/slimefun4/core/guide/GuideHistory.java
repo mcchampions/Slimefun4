@@ -100,8 +100,6 @@ public class GuideHistory {
     }
 
     private <T> void refresh(T object, int page) {
-
-
         GuideEntry<?> lastEntry = getLastEntry(false);
 
         if (lastEntry != null && lastEntry.getIndexedObject().equals(object)) {

@@ -126,7 +126,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return super.addMenuClickHandler(slot, handler);
     }
 
-
     public ChestMenu setSize(int size) {
         checkIfLocked();
 
@@ -143,11 +142,9 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return inventoryTitle;
     }
 
-
     public Set<Integer> getPresetSlots() {
         return occupiedSlots;
     }
-
 
     public Set<Integer> getInventorySlots() {
         Set<Integer> emptySlots = new HashSet<>();

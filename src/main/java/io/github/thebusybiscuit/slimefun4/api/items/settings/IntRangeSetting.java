@@ -20,11 +20,9 @@ public class IntRangeSetting extends ItemSetting<Integer> {
     public IntRangeSetting(SlimefunItem item, String key, int min, int defaultValue, int max) {
         super(item, key, defaultValue);
 
-
         this.min = min;
         this.max = max;
     }
-
 
     @Override
     protected String getErrorMessage() {

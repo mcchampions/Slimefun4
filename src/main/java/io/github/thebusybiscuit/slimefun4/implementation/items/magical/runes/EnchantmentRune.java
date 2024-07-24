@@ -58,7 +58,6 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         }
     }
 
-
     @Override
     public ItemDropHandler getItemHandler() {
         return (e, p, item) -> {

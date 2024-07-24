@@ -63,11 +63,9 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
         this.cancelled = cancel;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 
     @Override
     public HandlerList getHandlers() {

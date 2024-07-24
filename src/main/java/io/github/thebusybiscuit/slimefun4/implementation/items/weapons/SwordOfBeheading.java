@@ -51,7 +51,6 @@ public class SwordOfBeheading extends SimpleSlimefunItem<EntityKillHandler> {
         addItemSetting(chanceZombie, chanceSkeleton, chanceWitherSkeleton, chanceCreeper, chancePiglin, chancePlayer);
     }
 
-
     @Override
     public EntityKillHandler getItemHandler() {
         return (e, entity, killer, item) -> {

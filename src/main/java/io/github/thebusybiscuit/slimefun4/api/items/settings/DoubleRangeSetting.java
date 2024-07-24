@@ -20,11 +20,9 @@ public class DoubleRangeSetting extends ItemSetting<Double> {
     public DoubleRangeSetting(SlimefunItem item, String key, double min, double defaultValue, double max) {
         super(item, key, defaultValue);
 
-
         this.min = min;
         this.max = max;
     }
-
 
     @Override
     protected String getErrorMessage() {

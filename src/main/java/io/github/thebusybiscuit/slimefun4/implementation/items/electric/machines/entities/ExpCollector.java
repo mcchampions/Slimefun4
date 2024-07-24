@@ -50,7 +50,6 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
         addItemHandler(onPlace(), onBreak());
     }
 
-
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
@@ -62,7 +61,6 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
             }
         };
     }
-
 
     private ItemHandler onBreak() {
         return new SimpleBlockBreakHandler() {

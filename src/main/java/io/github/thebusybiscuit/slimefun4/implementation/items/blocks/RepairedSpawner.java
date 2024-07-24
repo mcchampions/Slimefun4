@@ -37,7 +37,6 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
         addItemHandler(onPlace());
     }
 
-
     private BlockUseHandler onInteract() {
         return e -> {
             if (!allowSpawnEggs.getValue()
@@ -47,7 +46,6 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
             }
         };
     }
-
 
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(true) {
@@ -76,7 +74,6 @@ public class RepairedSpawner extends AbstractMonsterSpawner {
             }
         };
     }
-
 
     @Override
     public Collection<ItemStack> getDrops() {

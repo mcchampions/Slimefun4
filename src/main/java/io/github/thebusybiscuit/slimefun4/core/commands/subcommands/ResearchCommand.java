@@ -108,7 +108,6 @@ class ResearchCommand extends SubCommand {
                 .sendMessage(p, "commands.research.reset", true, msg -> msg.replace(PLACEHOLDER_PLAYER, p.getName()));
     }
 
-
     private Optional<Research> getResearchFromString(String input) {
         for (Research research : Slimefun.getRegistry().getResearches()) {
             if (research.getKey().toString().equalsIgnoreCase(input)) {

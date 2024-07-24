@@ -18,7 +18,6 @@ public class ReloadCommand extends SubCommand {
         super(plugin, cmd, "reload", false);
     }
 
-
     @Override
     protected String getDescription() {
         return "commands.reload.description";

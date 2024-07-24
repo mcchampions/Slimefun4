@@ -41,7 +41,6 @@ public class AutoBreeder extends SlimefunItem implements InventoryBlock, EnergyN
         createPreset(this, this::constructMenu);
     }
 
-
     private ItemHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override

@@ -499,7 +499,6 @@ public class SlimefunItem implements Placeable {
 
         // Check for an illegal stack size
         if (itemStackTemplate.getAmount() != 1) {
-
             warn("This item has an illegal stack size: "
                     + itemStackTemplate.getAmount()
                     + ". An Item size of 1 is recommended. Please inform the author(s) of "

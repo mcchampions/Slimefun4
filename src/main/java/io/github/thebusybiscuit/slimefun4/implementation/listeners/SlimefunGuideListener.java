@@ -75,7 +75,6 @@ public class SlimefunGuideListener implements Listener {
         }
     }
 
-
     private Result tryOpenGuide(Player p, PlayerRightClickEvent e, SlimefunGuideMode layout) {
         ItemStack item = e.getItem();
         if (SlimefunUtils.isItemSimilar(item, SlimefunGuide.getItem(layout), false, false)) {

@@ -91,11 +91,9 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
         locked = true;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 
     @Override
     public HandlerList getHandlers() {

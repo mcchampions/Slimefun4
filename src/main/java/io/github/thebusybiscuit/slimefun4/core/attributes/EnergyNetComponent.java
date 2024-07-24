@@ -183,8 +183,6 @@ public interface EnergyNetComponent extends ItemAttribute {
     }
 
     default void addCharge(Location l, int charge) {
-
-
         try {
             int capacity = getCapacity();
 
@@ -216,8 +214,6 @@ public interface EnergyNetComponent extends ItemAttribute {
     }
 
     default void removeCharge(Location l, int charge) {
-
-
         try {
             int capacity = getCapacity();
 

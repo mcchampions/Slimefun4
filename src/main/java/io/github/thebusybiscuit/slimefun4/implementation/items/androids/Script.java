@@ -104,7 +104,6 @@ public final class Script {
                 && !downvoters.contains(p.getUniqueId().toString());
     }
 
-
     ItemStack getAsItemStack(ProgrammableAndroid android, Player p) {
         List<String> lore = new LinkedList<>();
         lore.add("&7作者 &f" + getAuthor());
@@ -124,7 +123,6 @@ public final class Script {
 
         return new CustomItemStack(android.getItem(), "&b" + getName(), lore.toArray(new String[0]));
     }
-
 
     private String getScriptRatingPercentage() {
         float percentage = getRating();
@@ -189,7 +187,6 @@ public final class Script {
         config.setValue(path, list);
         config.save();
     }
-
 
     public static List<Script> getUploadedScripts(AndroidType androidType) {
         List<Script> scripts = new LinkedList<>();

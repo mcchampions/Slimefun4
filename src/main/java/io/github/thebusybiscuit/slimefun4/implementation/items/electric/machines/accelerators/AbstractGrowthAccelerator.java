@@ -31,7 +31,6 @@ public abstract class AbstractGrowthAccelerator extends SlimefunItem implements 
         createPreset(this, this::constructMenu);
     }
 
-
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override

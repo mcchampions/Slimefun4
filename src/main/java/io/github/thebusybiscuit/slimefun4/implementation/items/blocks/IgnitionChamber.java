@@ -34,11 +34,8 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 public class IgnitionChamber extends SlimefunItem {
-
     private static final BlockFace[] ADJACENT_FACES = {BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST
     };
-
-
 
     public IgnitionChamber(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

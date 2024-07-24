@@ -27,18 +27,15 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
         this.author = plugin.getDescription().getAuthors().toString();
     }
 
-
     @Override
     public String getIdentifier() {
         return "slimefun";
     }
 
-
     @Override
     public String getVersion() {
         return version;
     }
-
 
     @Override
     public String getAuthor() {
@@ -135,7 +132,6 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
 
         return null;
     }
-
 
     private String getProfilePlaceholder(Player p) {
         return Slimefun.getLocalization().getMessage(p, "placeholderapi.profile-loading");

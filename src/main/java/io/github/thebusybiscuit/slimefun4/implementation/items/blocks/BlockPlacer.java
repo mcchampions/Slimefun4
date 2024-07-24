@@ -59,7 +59,6 @@ public class BlockPlacer extends SlimefunItem {
         addItemHandler(new VanillaInventoryDropHandler<>(Dispenser.class));
     }
 
-
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
@@ -71,7 +70,6 @@ public class BlockPlacer extends SlimefunItem {
             }
         };
     }
-
 
     private BlockDispenseHandler onBlockDispense() {
         return (e, dispenser, facedBlock, machine) -> {

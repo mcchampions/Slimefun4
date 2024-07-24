@@ -69,7 +69,6 @@ public final class SlimefunGuideSettings {
     private static void addHeader(Player p, ChestMenu menu, ItemStack guide) {
         LocalizationService locale = Slimefun.getLocalization();
 
-
         menu.addItem(
                 0,
                 new CustomItemStack(
@@ -78,12 +77,10 @@ public final class SlimefunGuideSettings {
                         "",
                         "&7" + locale.getMessage(p, "guide.back.guide")));
 
-
         menu.addMenuClickHandler(0, (pl, slot, item, action) -> {
             SlimefunGuide.openGuide(pl, guide);
             return false;
         });
-
 
         menu.addItem(
                 4,
@@ -100,8 +97,6 @@ public final class SlimefunGuideSettings {
                         "&fSlimefun: &a" + Slimefun.getVersion()),
                 ChestMenuUtils.getEmptyClickHandler());
 
-
-
         menu.addItem(
                 6,
                 new CustomItemStack(
@@ -115,13 +110,11 @@ public final class SlimefunGuideSettings {
                         "",
                         "&7\u21E8 &e点击前往汉化版 GitHub 仓库"));
 
-
         menu.addMenuClickHandler(6, (pl, slot, item, action) -> {
             pl.closeInventory();
             ChatUtils.sendURL(pl, "https://github.com/mcchampions/Slimefun4");
             return false;
         });
-
 
         menu.addItem(
                 8,
@@ -136,13 +129,11 @@ public final class SlimefunGuideSettings {
                         "",
                         "&7\u21E8 &e点击前往非官方中文 Wiki"));
 
-
         menu.addMenuClickHandler(8, (pl, slot, item, action) -> {
             pl.closeInventory();
             ChatUtils.sendURL(pl, "https://slimefun-wiki.guizhanss.cn/");
             return false;
         });
-
 
         menu.addItem(
                 47,
@@ -158,13 +149,11 @@ public final class SlimefunGuideSettings {
                         "",
                         "&7\u21E8 &e点击查看 Slimefun4 可用的附属插件"));
 
-
         menu.addMenuClickHandler(47, (pl, slot, item, action) -> {
             pl.closeInventory();
             ChatUtils.sendURL(pl, "https://slimefun-wiki.guizhanss.cn/Addons");
             return false;
         });
-
 
         menu.addItem(
             49,
@@ -175,7 +164,6 @@ public final class SlimefunGuideSettings {
                 "&7&oBug reports have to be made in English!",
                 "",
                 "&7\u21E8 &eClick to go to the Slimefun4 Bug Tracker"));
-
 
         menu.addMenuClickHandler(49, (pl, slot, item, action) -> {
             pl.closeInventory();

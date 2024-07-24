@@ -74,12 +74,10 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
         };
     }
 
-
     @Override
     public List<ItemStack> getDisplayRecipes() {
         return Arrays.asList(emptyBucket, SlimefunItems.OIL_BUCKET);
     }
-
 
     @Override
     public String getMachineIdentifier() {

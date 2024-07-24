@@ -25,11 +25,9 @@ public class SteelThruster extends SlimefunItem {
         addItemHandler(onRightClickBlock(), onRightClickEntity());
     }
 
-
     private ItemUseHandler onRightClickBlock() {
         return PlayerRightClickEvent::cancel;
     }
-
 
     private EntityInteractHandler onRightClickEntity() {
         return (e, item, hand) -> {

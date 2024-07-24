@@ -52,7 +52,6 @@ class VersionsCommand extends SubCommand {
             String serverSoftware = PaperLib.isSpigot() && !PaperLib.isPaper() ? "Spigot" : Bukkit.getName();
             ComponentBuilder builder = new ComponentBuilder();
 
-
             builder.append("Slimefun 运行的服务器环境:\n")
                     .color(ChatColor.GRAY)
                     .append(serverSoftware)
@@ -63,7 +62,6 @@ class VersionsCommand extends SubCommand {
                     .color(ChatColor.GREEN)
                     .append(Slimefun.getVersion() + '\n')
                     .color(ChatColor.DARK_GREEN);
-
 
             addJavaVersion(builder);
             builder.append("\nSlimefun检测到的MC版本为"+ Slimefun.getMinecraftVersion().getName() + "\n");
@@ -98,7 +96,6 @@ class VersionsCommand extends SubCommand {
         int version = NumberUtils.getJavaVersion();
 
         if (version < RECOMMENDED_JAVA_VERSION) {
-
             builder.append("Java " + version)
                     .color(ChatColor.RED)
                     .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {
@@ -146,7 +143,6 @@ class VersionsCommand extends SubCommand {
                 String authors = String.join(", ", plugin.getDescription().getAuthors());
 
                 if (plugin instanceof SlimefunAddon addon && addon.getBugTrackerURL() != null) {
-
                     hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {
                         new TextComponent(new ComponentBuilder()
                                 .append("作者: ")
@@ -157,10 +153,8 @@ class VersionsCommand extends SubCommand {
                                 .create())
                     });
 
-
                     clickEvent = new ClickEvent(ClickEvent.Action.OPEN_URL, addon.getBugTrackerURL());
                 } else {
-
                     hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {
                         new TextComponent(new ComponentBuilder()
                                 .append("作者: ")
@@ -175,7 +169,6 @@ class VersionsCommand extends SubCommand {
                 secondaryColor = ChatColor.DARK_RED;
 
                 if (plugin instanceof SlimefunAddon addon && addon.getBugTrackerURL() != null) {
-
                     hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {
                         new TextComponent(new ComponentBuilder()
                                 .append("此插件已被禁用.\n检查后台是否有报错.")
@@ -184,7 +177,6 @@ class VersionsCommand extends SubCommand {
                                 .color(ChatColor.DARK_RED)
                                 .create())
                     });
-
 
                     if (addon.getBugTrackerURL() != null) {
                         clickEvent = new ClickEvent(ClickEvent.Action.OPEN_URL, addon.getBugTrackerURL());
@@ -195,7 +187,6 @@ class VersionsCommand extends SubCommand {
                             new TextComponent[] {new TextComponent("插件已被禁用. 可以看看后台是否有报错.")});
                 }
             }
-
 
             // We need to reset the hover event or it's added to all components
             builder.append("\n  " + plugin.getName())

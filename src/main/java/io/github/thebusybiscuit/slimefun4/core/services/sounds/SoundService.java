@@ -28,7 +28,6 @@ public class SoundService {
     public SoundService(Slimefun plugin) {
         config = new Config(plugin, "sounds.yml");
 
-
         config.getConfiguration()
                 .options()
                 .header("""
@@ -36,7 +35,6 @@ This file is used to assign the sounds which Slimefun will play.
 You can fully customize any sound you want and even change their pitch
 and volume. To disable a sound, simply set the volume to zero.
 """);
-
 
         config.getConfiguration().options().copyHeader();
     }

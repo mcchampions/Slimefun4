@@ -20,7 +20,6 @@ public class GEOScanner extends SimpleSlimefunItem<BlockUseHandler> implements N
         super(itemGroup, item, recipeType, recipe);
     }
 
-
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {

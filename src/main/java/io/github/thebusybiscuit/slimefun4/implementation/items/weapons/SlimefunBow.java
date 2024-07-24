@@ -27,6 +27,5 @@ public abstract class SlimefunBow extends SlimefunItem {
         addItemHandler(onShoot());
     }
 
-
     public abstract BowShootHandler onShoot();
 }

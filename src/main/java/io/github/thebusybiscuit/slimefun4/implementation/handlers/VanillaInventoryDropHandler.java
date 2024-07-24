@@ -68,7 +68,6 @@ public class VanillaInventoryDropHandler<T extends BlockState & InventoryHolder>
         }
     }
 
-
     protected Inventory getInventory(T inventoryHolder) {
         if (inventoryHolder instanceof Chest chest) {
             return chest.getBlockInventory();

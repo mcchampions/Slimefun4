@@ -95,7 +95,6 @@ public final class TeleportationManager {
                     Location l = waypoint.getLocation();
                     double time = NumberUtils.reparseDouble(0.5 * getTeleportationTime(complexity, source, l));
 
-
                     String[] lore = {
                         "",
                         "&8\u21E8 &7"
@@ -113,7 +112,6 @@ public final class TeleportationManager {
                         "",
                         "&8\u21E8 &c" + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.tooltip")
                     };
-
 
                     menu.addItem(
                             slot,

@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 interface OreDictionary {
-
     ItemStack getDrops(Material material, Random random);
 
     static OreDictionary forVersion(MinecraftVersion version) {

@@ -42,7 +42,6 @@ public class PlayerPreResearchEvent extends Event implements Cancellable {
         return handlers;
     }
 
-
     @Override
     public HandlerList getHandlers() {
         return getHandlerList();

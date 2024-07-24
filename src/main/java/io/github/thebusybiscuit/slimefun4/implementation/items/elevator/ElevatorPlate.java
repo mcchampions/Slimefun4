@@ -167,7 +167,6 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         for (int i = 0; i < Math.min(GUI_SIZE, floors.size() - index); i++) {
             ElevatorFloor floor = floors.get(index + i);
 
-
             if (floor.getAltitude() == b.getY()) {
                 menu.addItem(
                         i,

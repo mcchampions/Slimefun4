@@ -63,7 +63,6 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         createPreset(this, this::constructMenu);
     }
 
-
     private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
@@ -246,7 +245,6 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
 
         return false;
     }
-
 
     @Override
     public BlockTicker getItemHandler() {

@@ -68,7 +68,6 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         return index;
     }
 
-
     protected ItemUseHandler getItemUseHandler() {
         return e -> {
             Player p = e.getPlayer();
@@ -102,7 +101,6 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         };
     }
 
-
     private ToolUseHandler getToolUseHandler() {
         return (e, tool, fortune, drops) -> {
             // Multi Tools cannot be used as shears
@@ -110,7 +108,6 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
             e.setCancelled(true);
         };
     }
-
 
     private EntityInteractHandler getEntityInteractionHandler() {
         return (e, item, offhand) -> {

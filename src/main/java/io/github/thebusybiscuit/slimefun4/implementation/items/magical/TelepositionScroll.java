@@ -32,7 +32,6 @@ public class TelepositionScroll extends SimpleSlimefunItem<ItemUseHandler> {
         addItemSetting(radius);
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {

@@ -64,7 +64,6 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
         return items;
     }
 
-
     @Override
     public BlockUseHandler getItemHandler() {
         return e -> {
@@ -114,7 +113,6 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
             b.getWorld().dropItemNaturally(loc, output);
         }
     }
-
 
     private Optional<Inventory> findOutputChest(Block b, ItemStack output) {
         return OutputChest.findOutputChestFor(b, output);

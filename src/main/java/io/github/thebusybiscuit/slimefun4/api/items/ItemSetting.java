@@ -142,7 +142,6 @@ public class ItemSetting<T> {
             if (validateInput(newValue)) {
                 this.value = newValue;
             } else {
-
                 item.warn("发现在 Items.yml 中有无效的物品设置!"
                         + "\n  在 \""
                         + item.getId()
@@ -161,7 +160,6 @@ public class ItemSetting<T> {
             String found = configuredValue == null
                     ? "null"
                     : configuredValue.getClass().getSimpleName();
-
 
             item.warn("发现在 Items.yml 中有无效的物品设置!"
                     + "\n请只设置有效的值."

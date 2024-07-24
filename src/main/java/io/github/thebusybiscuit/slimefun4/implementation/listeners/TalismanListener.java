@@ -188,7 +188,6 @@ public class TalismanListener implements Listener {
         }
     }
 
-
     private Collection<ItemStack> getExtraDrops(LivingEntity entity, Collection<ItemStack> drops) {
         List<ItemStack> items = new ArrayList<>(drops);
 

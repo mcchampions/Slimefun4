@@ -55,12 +55,10 @@ public abstract class ASlimefunDataContainer {
         }
     }
 
-
     public Map<String, String> getAllData() {
         checkData();
         return Collections.unmodifiableMap(data);
     }
-
 
     public Set<String> getDataKeys() {
         checkData();

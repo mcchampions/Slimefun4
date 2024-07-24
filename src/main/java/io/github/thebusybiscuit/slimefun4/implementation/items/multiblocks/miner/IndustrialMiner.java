@@ -52,7 +52,6 @@ public class IndustrialMiner extends MultiBlockMachine {
 
     public IndustrialMiner(
             ItemGroup itemGroup, SlimefunItemStack item, Material baseMaterial, boolean silkTouch, int range) {
-
         super(
                 itemGroup,
                 item,
@@ -68,7 +67,6 @@ public class IndustrialMiner extends MultiBlockMachine {
                     new ItemStack(baseMaterial)
                 },
                 BlockFace.UP);
-
 
         this.oreDictionary = OreDictionary.getInstance();
         this.range = range;
@@ -134,8 +132,6 @@ public class IndustrialMiner extends MultiBlockMachine {
      *            The item that shall be consumed
      */
     public void addFuelType(int ores, ItemStack item) {
-
-
         fuelTypes.add(new MachineFuel(ores / 2, item));
     }
 

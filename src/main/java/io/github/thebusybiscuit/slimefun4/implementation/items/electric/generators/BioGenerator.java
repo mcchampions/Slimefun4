@@ -90,7 +90,6 @@ public class BioGenerator extends AGenerator {
         }
     }
 
-
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.GOLDEN_HOE);

@@ -15,7 +15,6 @@ import org.bukkit.command.ConsoleCommandSender;
  */
 @Deprecated
 public class ConsolePerformanceInspector implements PerformanceInspector {
-
     /**
      * Whether a summary will be verbose or trimmed of.
      */

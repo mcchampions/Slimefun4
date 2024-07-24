@@ -14,7 +14,6 @@ class GuideEntry<T> {
         this.page = page;
     }
 
-
     public T getIndexedObject() {
         return object;
     }

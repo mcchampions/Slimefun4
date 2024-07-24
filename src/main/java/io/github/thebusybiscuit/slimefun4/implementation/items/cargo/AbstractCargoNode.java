@@ -69,7 +69,6 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         };
     }
 
-
     @Override
     public BlockPlaceHandler getItemHandler() {
         return new BlockPlaceHandler(false) {

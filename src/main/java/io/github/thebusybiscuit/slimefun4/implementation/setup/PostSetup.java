@@ -97,7 +97,6 @@ public final class PostSetup {
      * @return The amount of {@link SlimefunItem SlimefunItems} added by Slimefun itself
      */
     private static int countNonAddonItems() {
-
         return (int) Slimefun.getRegistry().getEnabledSlimefunItems().stream()
                 .filter(item -> item.getAddon() instanceof Slimefun)
                 .count();

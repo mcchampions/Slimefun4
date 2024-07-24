@@ -58,11 +58,9 @@ public class SlimefunProfiler {
         return new HashMap<>();
     }
 
-
     protected Map<String, Long> getByPlugin() {
         return new HashMap<>();
     }
-
 
     protected Map<String, Long> getByChunk() {
         return new HashMap<>();
@@ -93,7 +91,6 @@ public class SlimefunProfiler {
     public PerformanceRating getPerformance() {
         return PerformanceRating.UNKNOWN;
     }
-
 
     public String getTime() {
         return "0ms";

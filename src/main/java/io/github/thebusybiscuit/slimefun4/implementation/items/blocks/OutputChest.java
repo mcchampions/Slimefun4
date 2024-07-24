@@ -28,19 +28,15 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class OutputChest extends SlimefunItem {
-
     private static final BlockFace[] possibleFaces = {
         BlockFace.UP, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST
     };
-
-
 
     public OutputChest(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
         addItemHandler(new VanillaInventoryDropHandler<>(Chest.class));
     }
-
 
     public static Optional<Inventory> findOutputChestFor(Block b, ItemStack item) {
         for (BlockFace face : possibleFaces) {

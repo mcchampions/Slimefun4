@@ -181,7 +181,6 @@ public class GEOMiner extends SlimefunItem
         }
     }
 
-
     private BlockPlaceHandler onBlockPlace() {
         return new BlockPlaceHandler(false) {
             @Override
@@ -190,7 +189,6 @@ public class GEOMiner extends SlimefunItem
             }
         };
     }
-
 
     private BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
@@ -208,18 +206,15 @@ public class GEOMiner extends SlimefunItem
         };
     }
 
-
     @Override
     public int[] getInputSlots() {
         return new int[0];
     }
 
-
     @Override
     public int[] getOutputSlots() {
         return OUTPUT_SLOTS;
     }
-
 
     @Override
     public List<ItemStack> getDisplayRecipes() {
@@ -238,7 +233,6 @@ public class GEOMiner extends SlimefunItem
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.miner";
     }
-
 
     @Override
     public EnergyNetComponentType getEnergyComponentType() {

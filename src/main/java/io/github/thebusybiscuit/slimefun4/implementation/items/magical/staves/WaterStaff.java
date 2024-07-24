@@ -23,7 +23,6 @@ public class WaterStaff extends SimpleSlimefunItem<ItemUseHandler> {
         super(itemGroup, item, recipeType, recipe);
     }
 
-
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
