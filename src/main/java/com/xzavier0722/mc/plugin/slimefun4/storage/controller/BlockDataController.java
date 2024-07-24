@@ -146,7 +146,7 @@ public class BlockDataController extends ADataController {
 
     public SlimefunBlockData createBlock(Location l, String sfId) {
         checkDestroy();
-        var re = getChunkDataCache(l.getChunk(), true).createBlockData(l, sfId);
+        SlimefunBlockData re = getChunkDataCache(l.getChunk(), true).createBlockData(l, sfId);
         if (Slimefun.getRegistry().getTickerBlocks().contains(sfId)) {
             Slimefun.getTickerTask().enableTicker(l);
         }
