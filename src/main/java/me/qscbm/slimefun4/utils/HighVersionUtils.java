@@ -1,6 +1,5 @@
 package me.qscbm.slimefun4.utils;
 
-import io.papermc.lib.PaperLib;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.damage.DamageSource;
@@ -10,7 +9,6 @@ import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-import java.awt.print.Paper;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -54,6 +52,6 @@ public class HighVersionUtils {
     }
 
     public static BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> blockList, float yield) {
-        return new BlockExplodeEvent(block, PaperLib.getBlockState(block, false).getState(), blockList, yield);
+        return new BlockExplodeEvent(block, block.getState(), blockList, yield);
     }
 }
