@@ -45,6 +45,8 @@ public class CargoTickerTask implements Runnable {
             new ArrayBlockingQueue<>(3), Executors.defaultThreadFactory(),
             new ThreadPoolExecutor.CallerRunsPolicy());
 
+    private boolean initialized = false;
+
     @Override
     public void run() {
         if (paused) {
@@ -132,6 +134,9 @@ public class CargoTickerTask implements Runnable {
     }
 
     public void enableTicker(Location l) {
+        if (!initialized) {
+            initialized = true;
+        }
         World world = l.getWorld();
         String name = world.getName();
         Map<ChunkPosition, Set<Location>> map =

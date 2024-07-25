@@ -45,6 +45,7 @@ import io.github.thebusybiscuit.slimefun4.integrations.IntegrationsManager;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import io.papermc.lib.PaperLib;
+import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.services.LanguageService;
 import me.qscbm.slimefun4.tasks.CargoTickerTask;
@@ -137,6 +138,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final SlimefunBowListener bowListener = new SlimefunBowListener();
 
     // fork
+    @Getter
     private final CargoTickerTask cargoTickerTask = new CargoTickerTask();
     /**
      * Our default constructor for {@link Slimefun}.
@@ -346,6 +348,8 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         // Finishes all started movements/removals of block data
         ticker.setPaused(true);
         ticker.halt();
+        cargoTickerTask.setPaused(true);
+        cargoTickerTask.halt();
         /*try {
           ticker.halt();
           ticker.run();
