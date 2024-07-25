@@ -32,10 +32,6 @@ public final class ChargeUtils {
     private ChargeUtils() {}
 
     public static void setCharge(ItemMeta meta, float charge, float capacity) {
-        
-        
-        
-
         BigDecimal decimal = BigDecimal.valueOf(charge).setScale(2, RoundingMode.HALF_UP);
         float value = decimal.floatValue();
 

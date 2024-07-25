@@ -168,11 +168,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     }
 
     public static boolean isOwnerOnline(ItemMeta meta) {
-        if (Slimefun.getCfg().getBoolean("backpack.allow-open-when-owner-offline")) {
-            return true;
-        }
-        var ownerUuid = PlayerBackpack.getOwnerUUID(meta);
-        return ownerUuid.isEmpty() || Bukkit.getPlayer(UUID.fromString(ownerUuid.get())) != null;
+        return true;
     }
 
     private static void setPdc(ItemMeta meta, String bpUuid, String ownerUuid) {

@@ -134,7 +134,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
 
             // Skip ticking if the threshold is not reached. The delay is not same as minecraft tick,
             // but it's based on 'custom-ticker-delay' config.
-            if (tickDelayThreshold < Slimefun.getCfg().getInt("networks.cargo-ticker-delay")) {
+            if (tickDelayThreshold < Slimefun.getConfigManager().getCargoTickerDelay()) {
                 tickDelayThreshold++;
                 return;
             }

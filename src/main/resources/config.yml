@@ -11,7 +11,6 @@
 #                             将会提升性能
 #    log-duplicate-block-entries - 是否输出发现重复方块的警告
 #    burn-players-when-radioactive - 是否在当玩家暴露在辐射中时灼烧玩家
-#    drop-excess-sf-give-items - 是否在背包已满时使用命令给予 Slimefun 物品直接掉落溢出的物品
 #    backup-data - 自动备份数据
 #    bypass-environment-check - 跳过兼容性检查 (注意: 打开后将不予接受问题反馈)
 options:
@@ -30,9 +29,7 @@ options:
   enable-translations: true
   log-duplicate-block-entries: true
   burn-players-when-radioactive: true
-  drop-excess-sf-give-items: false
   backup-data: true
-  drop-block-creative: true
   bypass-environment-check: false
 
 guide:
@@ -69,10 +66,6 @@ networks:
 talismans:
   use-actionbar: true
 
-backpack:
-  # 背包所有者离线时是否允许背包被打开
-  allow-open-when-owner-offline: true
-
 research-ranks:
   - 小鸡
   - 牛牛君
@@ -98,7 +91,7 @@ research-ranks:
   - 杰出魔术师
   - 笨拙巫师
   - 巫师
-  - 普通巫师 
+  - 普通巫师
   - 特技巫师
   - 杰出巫师
   - 卓越巫师

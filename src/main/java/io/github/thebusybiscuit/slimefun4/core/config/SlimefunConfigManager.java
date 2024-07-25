@@ -66,6 +66,9 @@ public class SlimefunConfigManager {
     @Getter
     private boolean bypassEnvironmentCheck;
 
+    @Getter
+    private int cargoTickerDelay;
+
     public SlimefunConfigManager(Slimefun plugin) {
         this.plugin = plugin;
         pluginConfig = getConfig(plugin, "config", () -> new Config(plugin));
@@ -114,9 +117,10 @@ public class SlimefunConfigManager {
             bypassEnvironmentCheck = pluginConfig.getBoolean("options.bypass-environment-check");
 
             researchCurrencyCostConvertRate = pluginConfig.getDouble("researches.currency-cost-convert-rate");
-
             // researchesConfig.setDefaultValue("researches.auto-convert", false);
             // researchAutoConvert = researchesConfig.getBoolean("researches.auto-convert");
+
+            cargoTickerDelay = pluginConfig.getInt("networks.cargo-ticker-delay");
         } catch (RuntimeException x) {
             plugin.getLogger()
                     .log(

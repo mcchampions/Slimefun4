@@ -8,7 +8,7 @@
     <artifactId>Slimefun</artifactId>
 
     <!-- Our default version will be UNOFFICIAL, this will prevent auto updates -->
-    <!-- from overriding our local test file -->
+    <!-- from overriding our local Test file -->
     <version>UNOFFICIAL</version>
     <inceptionYear>2013</inceptionYear>
     <packaging>jar</packaging>

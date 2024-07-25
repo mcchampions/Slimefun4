@@ -79,7 +79,7 @@ class GiveCommand extends SubCommand {
                         .replace(PLACEHOLDER_AMOUNT, String.valueOf(amount)));
                 Map<Integer, ItemStack> excess =
                         p.getInventory().addItem(new CustomItemStack(sfItem.getItem(), amount));
-                if (Slimefun.getCfg().getBoolean("options.drop-excess-sf-give-items") && !excess.isEmpty()) {
+                if (!excess.isEmpty()) {
                     for (ItemStack is : excess.values()) {
                         p.getWorld().dropItem(p.getLocation(), is);
                     }

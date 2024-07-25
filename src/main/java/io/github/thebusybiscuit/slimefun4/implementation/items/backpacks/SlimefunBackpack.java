@@ -72,11 +72,6 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
         return e -> {
             e.cancel();
 
-            if (!PlayerBackpack.isOwnerOnline(e.getItem().getItemMeta())) {
-                Slimefun.getLocalization().sendMessage(e.getPlayer(), "backpack.not-backpack-owner");
-                return;
-            }
-
             BackpackListener listener = Slimefun.getBackpackListener();
 
             listener.openBackpack(e.getPlayer(), e.getItem(), this);

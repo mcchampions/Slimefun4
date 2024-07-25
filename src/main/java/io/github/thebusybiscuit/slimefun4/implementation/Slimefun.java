@@ -47,6 +47,7 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import io.papermc.lib.PaperLib;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.services.LanguageService;
+import me.qscbm.slimefun4.tasks.CargoTickerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -135,6 +136,8 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final BackpackListener backpackListener = new BackpackListener();
     private final SlimefunBowListener bowListener = new SlimefunBowListener();
 
+    // fork
+    private final CargoTickerTask cargoTickerTask = new CargoTickerTask();
     /**
      * Our default constructor for {@link Slimefun}.
      */
@@ -301,7 +304,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         autoSavingService.start(this, config.getInt("options.auto-save-delay-in-minutes"));
         hologramsService.start();
         ticker.start(this);
-
+        cargoTickerTask.start(this);
         logger.log(Level.INFO, "正在加载第三方插件支持...");
         integrations.start();
 
@@ -897,10 +900,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
     public static @Nullable BukkitTask runSync(Runnable runnable, long delay) {
-        if (instance == null || !instance.isEnabled()) {
-            return null;
-        }
-
         return instance.getServer().getScheduler().runTaskLater(instance, runnable, delay);
     }
 
@@ -914,11 +913,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @param runnable The {@link Runnable} to run
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
-    public static @Nullable BukkitTask runSync(Runnable runnable) {
-        if (instance == null || !instance.isEnabled()) {
-            return null;
-        }
-
+    public static BukkitTask runSync(Runnable runnable) {
         return instance.getServer().getScheduler().runTask(instance, runnable);
     }
 

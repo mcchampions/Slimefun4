@@ -135,12 +135,11 @@ public class TickerTask implements Runnable {
     }
 
     private void tickLocation(Set<BlockTicker> tickers, Location l) {
-        var blockData = StorageCacheUtils.getBlock(l);
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
         if (blockData == null || !blockData.isDataLoaded() || blockData.isPendingRemove()) {
             return;
         }
         SlimefunItem item = SlimefunItem.getById(blockData.getSfId());
-
         if (item != null && item.getBlockTicker() != null) {
             if (item.isDisabledIn(l.getWorld())) {
                 return;
@@ -171,7 +170,9 @@ public class TickerTask implements Runnable {
             } catch (RuntimeException x) {
                 reportErrors(l, item, x);
             }
+            return;
         }
+        disableTicker(l);
     }
 
     private void tickBlock(Location l, Block b, SlimefunItem item, SlimefunBlockData data) {

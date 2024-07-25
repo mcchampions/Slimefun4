@@ -1,10 +1,4 @@
 ---
-sf-cn:
-  timings:
-    started: '&a性能分析器已启动.'
-    running: '&a性能分析器正在运行中, 如需获取数据请停止后查阅.'
-    stopped: '&a性能分析器已停止, 请在此处查看报告: &f{0}'
-    warning: '&c在生成性能报告时出现问题! 请查看后台报错了解更多详情.'
 commands:
   help: 显示帮助文本
   cheat: 通过作弊模式直接拿取 Slimefun 物品
@@ -44,17 +38,6 @@ commands:
     description: 为你手持的物品充电
     charge-success: 充电完成!
     not-rechargeable: 这个物品不能充电!
-  timings:
-    description: Slimefun 及其附属插件的性能报告
-    please-wait: '&e请稍等一会...结果马上就来!'
-    verbose-player: '&4该标记不能对玩家使用!'
-    unknown-flag: '&4未知标记: &c%flag%'
-  debug:
-    description: '输出调试日志以供开发者使用'
-    current: '&7当前测试项: &6%test_case%'
-    none-running: '&7当前没有运行的测试项!'
-    running: '&7正在调试模式中运行该测试项: &6%test%'
-    disabled: '&7已禁用调试模式'
   reload:
     description: "重载 Slimefun 配置文件"
     success: "&a成功重载配置文件."
@@ -327,7 +310,6 @@ backpack:
   already-open: '&c抱歉, 这个背包已在别处打开了!'
   no-stack: '&c你不能同时手持两个背包'
   set-name: '&e请输入背包名称'
-  not-backpack-owner: '&c该背包的所有者不在线，你无权使用!'
   not-original-item: '&c输入名字时请不要切换手上的物品!'
 workbench:
   not-enhanced: '&4你不能在普通的工作台上使用 Slimefun 物品'
