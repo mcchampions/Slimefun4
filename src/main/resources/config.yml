@@ -25,7 +25,6 @@ options:
   legacy-ore-washer: false
   legacy-dust-washer: false
   legacy-ore-grinder: true
-  language: zh-CN
   enable-translations: true
   log-duplicate-block-entries: true
   burn-players-when-radioactive: true
