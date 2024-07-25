@@ -94,13 +94,13 @@ public class TickerTask implements Runnable {
 
             // Run our ticker code
             if (!halted) {
-                for (Map.Entry<String, Map<ChunkPosition, Set<Location>>> entry : tickingLocations.entrySet()) {
-                    CompletableFuture.runAsync(() -> {
-                        for (Map.Entry<ChunkPosition, Set<Location>> e : entry.getValue().entrySet()) {
-                            tickChunk(e.getKey(), tickers, e.getValue());
-                        }
-                    }, executor);
-                }
+                Set<Map.Entry<String, Map<ChunkPosition, Set<Location>>>> set = tickingLocations.entrySet();
+                CompletableFuture<?>[] cfArr = set.stream().map(entry -> CompletableFuture.runAsync(() -> {
+                    for (Map.Entry<ChunkPosition, Set<Location>> e : entry.getValue().entrySet()) {
+                        tickChunk(e.getKey(), tickers, e.getValue());
+                    }
+                }, executor)).toArray(CompletableFuture[]::new);
+                CompletableFuture.allOf(cfArr).join();
             }
 
             // Start a new tick cycle for every BlockTicker
