@@ -24,7 +24,7 @@ public class VersionEventsUtils {
 
     public static BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> blockList, float yield) {
         return Slimefun.getMinecraftVersion()
-                .isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? HighVersionUtils.newBlockExplodeEvent(block, blockList, yield) : LowerVersionUtils.newBlockExplodeEvent(block, blockList, yield);
+                .isAtLeast(MinecraftVersion.MINECRAFT_1_21) ? HighVersionUtils.newBlockExplodeEvent(block, blockList, yield) : LowerVersionUtils.newBlockExplodeEvent(block, blockList, yield);
     }
 
 }

@@ -2,6 +2,7 @@ package me.qscbm.slimefun4.utils;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.damage.DamageSource;
 import org.bukkit.damage.DamageType;
 import org.bukkit.entity.Entity;
@@ -10,6 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -52,6 +54,25 @@ public class HighVersionUtils {
     }
 
     public static BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> blockList, float yield) {
-        return new BlockExplodeEvent(block, block.getState(), blockList, yield);
+        try {
+            Class<Enum> clazz = (Class<Enum>)Class.forName("org.bukkit.ExplosionResult");
+            Enum[] enumConstants = clazz.getEnumConstants();
+            Enum e = null;
+            for (Enum enumConstant : enumConstants) {
+                if (enumConstant.name().equalsIgnoreCase("DESTROY")) {
+                    e = enumConstant;
+                    break;
+                }
+            }
+            if (e == null) {
+                throw new RuntimeException();
+            }
+            Class<BlockExplodeEvent> c = BlockExplodeEvent.class;
+            return c.getConstructor(Block.class, BlockState.class,List.class, float.class, clazz)
+                    .newInstance(block, block.getState(), blockList, yield, e);
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException |
+                 IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
