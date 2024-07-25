@@ -8,17 +8,18 @@ import io.github.thebusybiscuit.slimefun4.api.ErrorReport;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
 import lombok.Getter;
 import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -33,7 +34,7 @@ public class TickerTask implements Runnable {
     /**
      * This Map holds all currently actively ticking locations.
      */
-    private final Map<String, Map<ChunkPosition, Set<Location>>> tickingLocations = new ConcurrentHashMap<>();
+    private final Map<ChunkPosition, Set<Location>> tickingLocations = new ConcurrentHashMap<>();
 
     /**
      * This Map tracks how many bugs have occurred in a given Location .
@@ -73,10 +74,6 @@ public class TickerTask implements Runnable {
         running = false;
     }
 
-    private final ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 8, 10, TimeUnit.SECONDS,
-            new ArrayBlockingQueue<>(3), Executors.defaultThreadFactory(),
-            new ThreadPoolExecutor.CallerRunsPolicy());
-
     @Override
     public void run() {
         if (paused) {
@@ -94,12 +91,8 @@ public class TickerTask implements Runnable {
 
             // Run our ticker code
             if (!halted) {
-                for (Map.Entry<String, Map<ChunkPosition, Set<Location>>> entry : tickingLocations.entrySet()) {
-                    CompletableFuture.runAsync(() -> {
-                        for (Map.Entry<ChunkPosition, Set<Location>> e : entry.getValue().entrySet()) {
-                            tickChunk(e.getKey(), tickers, e.getValue());
-                        }
-                    }, executor);
+                for (Map.Entry<ChunkPosition, Set<Location>> entry : tickingLocations.entrySet()) {
+                    tickChunk(entry.getKey(), tickers, entry.getValue());
                 }
             }
 
@@ -211,17 +204,21 @@ public class TickerTask implements Runnable {
     }
 
     public Map<ChunkPosition, Set<Location>> getLocations() {
-        Map<ChunkPosition, Set<Location>> map = new HashMap<>();
-        Set<Map.Entry<String, Map<ChunkPosition, Set<Location>>>> set = tickingLocations.entrySet();
-        for (Map.Entry<String, Map<ChunkPosition, Set<Location>>> entry : set) {
-            map.putAll(entry.getValue());
-        }
-        return map;
+        return tickingLocations;
     }
 
+    /**
+     * This method returns a <strong>read-only</strong> {@link Set}
+     * of all ticking {@link Location Locations} in a given {@link Chunk}.
+     * The {@link Chunk} does not have to be loaded.
+     * If no {@link Location} is present, the returned {@link Set} will be empty.
+     *
+     * @param chunk The {@link Chunk}
+     * @return A {@link Set} of all ticking {@link Location Locations}
+     */
+
     public Set<Location> getLocations(Chunk chunk) {
-        return tickingLocations.get(chunk.getWorld().getName()).getOrDefault(
-                new ChunkPosition(chunk), new HashSet<>());
+        return tickingLocations.getOrDefault(new ChunkPosition(chunk), new HashSet<>());
     }
 
     /**
@@ -230,14 +227,9 @@ public class TickerTask implements Runnable {
      * @param l The {@link Location} to activate
      */
     public void enableTicker(Location l) {
-        World world = l.getWorld();
-        String name = world.getName();
-        Map<ChunkPosition, Set<Location>> map =
-                tickingLocations.computeIfAbsent(name,
-                        k -> new ConcurrentHashMap<>());
-        ChunkPosition cp = new ChunkPosition(world, l.getBlockX() >> 4, l.getBlockZ() >> 4);
-        map.computeIfAbsent(
-                        cp,
+        tickingLocations
+                .computeIfAbsent(
+                        new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4),
                         k -> ConcurrentHashMap.newKeySet())
                 .add(l);
     }
@@ -249,18 +241,14 @@ public class TickerTask implements Runnable {
      * @param l The {@link Location} to remove
      */
     public void disableTicker(Location l) {
-        World world = l.getWorld();
-        ChunkPosition chunk = new ChunkPosition(world, l.getBlockX() >> 4, l.getBlockZ() >> 4);
-        Map<ChunkPosition, Set<Location>> map =
-                tickingLocations.get(world.getName());
-        if (map != null) {
-            Set<Location> locations = map.get(chunk);
-            if (locations != null) {
-                locations.remove(l);
+        ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);
+        Set<Location> locations = tickingLocations.get(chunk);
 
-                if (locations.isEmpty()) {
-                    map.remove(chunk);
-                }
+        if (locations != null) {
+            locations.remove(l);
+
+            if (locations.isEmpty()) {
+                tickingLocations.remove(chunk);
             }
         }
     }

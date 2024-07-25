@@ -142,6 +142,8 @@ public interface EnergyNetComponent extends ItemAttribute {
      *            The new charge
      */
     default void setCharge(Location l, int charge) {
+
+
         try {
             int capacity = getCapacity();
 
