@@ -15,6 +15,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.qscbm.slimefun4.handlers.CargoTicker;
+import me.qscbm.slimefun4.tasks.BaseTickerTask;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -78,5 +79,9 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
                         }
                     }
                 });
+    }
+    @Override
+    public BaseTickerTask getTickerTask() {
+        return Slimefun.instance().getCargoTickerTask();
     }
 }

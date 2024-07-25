@@ -23,6 +23,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.VanillaItem;
 import lombok.Getter;
 import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
+import me.qscbm.slimefun4.tasks.BaseTickerTask;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -1130,5 +1131,9 @@ public class SlimefunItem implements Placeable {
      */
     public boolean loadDataByDefault() {
         return ticking;
+    }
+
+    public BaseTickerTask getTickerTask() {
+        return Slimefun.getTickerTask();
     }
 }

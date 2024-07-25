@@ -181,7 +181,7 @@ public class BlockDataController extends ADataController {
     public void removeBlock(Location l) {
         checkDestroy();
 
-        var removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
+        SlimefunBlockData removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
         if (removed == null) {
             return;
         }
@@ -482,13 +482,9 @@ public class BlockDataController extends ADataController {
                 }
             }
 
-            var sfItem = SlimefunItem.getById(blockData.getSfId());
+            SlimefunItem sfItem = SlimefunItem.getById(blockData.getSfId());
             if (sfItem != null && sfItem.isTicking()) {
-                if (blockData.getSfId().equalsIgnoreCase("CARGO_MANAGER")) {
-                    Slimefun.instance().getCargoTickerTask().enableTicker(blockData.getLocation());
-                } else {
-                    Slimefun.getTickerTask().enableTicker(blockData.getLocation());
-                }
+                sfItem.getTickerTask().enableTicker(blockData.getLocation());
             }
         } finally {
             lock.unlock(key);

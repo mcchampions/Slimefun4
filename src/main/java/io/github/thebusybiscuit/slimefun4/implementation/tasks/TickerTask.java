@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.api.ErrorReport;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -18,6 +17,7 @@ import java.util.logging.Level;
 import lombok.Getter;
 import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
+import me.qscbm.slimefun4.tasks.BaseTickerTask;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -30,7 +30,7 @@ import org.bukkit.scheduler.BukkitScheduler;
  * @author TheBusyBiscuit
  * @see BlockTicker
  */
-public class TickerTask implements Runnable {
+public class TickerTask extends BaseTickerTask {
     /**
      * This Map holds all currently actively ticking locations.
      */
@@ -60,6 +60,7 @@ public class TickerTask implements Runnable {
      *
      * @param plugin The instance of our {@link Slimefun}
      */
+    @Override
     public void start(Slimefun plugin) {
         this.tickRate = Slimefun.getCfg().getInt("URID.custom-ticker-delay");
 
@@ -199,6 +200,7 @@ public class TickerTask implements Runnable {
         }
     }
 
+    @Override
     public void halt() {
         halted = true;
     }
@@ -226,6 +228,7 @@ public class TickerTask implements Runnable {
      *
      * @param l The {@link Location} to activate
      */
+    @Override
     public void enableTicker(Location l) {
         tickingLocations
                 .computeIfAbsent(
@@ -240,6 +243,7 @@ public class TickerTask implements Runnable {
      *
      * @param l The {@link Location} to remove
      */
+    @Override
     public void disableTicker(Location l) {
         ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);
         Set<Location> locations = tickingLocations.get(chunk);

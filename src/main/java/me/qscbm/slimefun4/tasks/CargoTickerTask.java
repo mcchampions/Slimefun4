@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.concurrent.*;
 import java.util.logging.Level;
 
-public class CargoTickerTask implements Runnable {
+public class CargoTickerTask extends BaseTickerTask {
     private final Map<String, Map<ChunkPosition, Set<Location>>> tickingLocations = new ConcurrentHashMap<>();
 
     @Getter
@@ -44,8 +44,6 @@ public class CargoTickerTask implements Runnable {
     private final ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 10, TimeUnit.SECONDS,
             new ArrayBlockingQueue<>(3), Executors.defaultThreadFactory(),
             new ThreadPoolExecutor.CallerRunsPolicy());
-
-    private boolean initialized = false;
 
     @Override
     public void run() {
@@ -134,9 +132,6 @@ public class CargoTickerTask implements Runnable {
     }
 
     public void enableTicker(Location l) {
-        if (!initialized) {
-            initialized = true;
-        }
         World world = l.getWorld();
         String name = world.getName();
         Map<ChunkPosition, Set<Location>> map =
