@@ -25,7 +25,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+
 import me.qscbm.slimefun4.utils.VersionEventsUtils;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -58,7 +62,6 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
     public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             Player p = e.getPlayer();
-
             if (!p.isSneaking()) {
                 Block b = e.getBlock();
 
@@ -67,6 +70,10 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
 
                 List<Block> blocks = findBlocks(b);
                 breakBlocks(e, p, tool, b, blocks, drops);
+                SlimefunItem sfItem = StorageCacheUtils.getSfItem(b.getLocation());
+                if (sfItem == null || sfItem.useVanillaBlockBreaking()) {
+                    drops.addAll(b.getDrops(tool));
+                }
             }
         };
     }
@@ -80,26 +87,10 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
             Bukkit.getServer().getPluginManager().callEvent(blockExplodeEvent);
 
             if (!blockExplodeEvent.isCancelled()) {
-                for (Block block : blockExplodeEvent.blockList()) {
-                    if (canBreak(p, block)) {
-                        if (Slimefun.getIntegrations().isCustomBlock(block)) {
-                            drops.addAll(CustomBlock.byAlreadyPlaced(block).getLoot());
-                            CustomBlock.remove(block.getLocation());
-                        }
-                        blocksToDestroy.add(block);
-                    }
-                }
+                addBlocksToDestroy(blockExplodeEvent.blockList(), p, blocksToDestroy, drops);
             }
         } else {
-            for (Block block : blocks) {
-                if (canBreak(p, block)) {
-                    if (Slimefun.getIntegrations().isCustomBlock(block)) {
-                        drops.addAll(CustomBlock.byAlreadyPlaced(block).getLoot());
-                        CustomBlock.remove(block.getLocation());
-                    }
-                    blocksToDestroy.add(block);
-                }
-            }
+            addBlocksToDestroy(blocks, p, blocksToDestroy, drops);
         }
 
         ExplosiveToolBreakBlocksEvent event = new ExplosiveToolBreakBlocksEvent(p, b, blocksToDestroy, item, this);
@@ -119,6 +110,19 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         if (!event.isCancelled()) {
             for (Block block : blocksToDestroy) {
                 breakBlock(e, p, item, block, drops);
+            }
+        }
+    }
+
+
+    private void addBlocksToDestroy(List<Block> blocks, Player p, List<Block> blocksToDestroy, List<ItemStack> drops) {
+        for (Block block : blocks) {
+            if (canBreak(p, block)) {
+                if (Slimefun.getIntegrations().isCustomBlock(block)) {
+                    drops.addAll(CustomBlock.byAlreadyPlaced(block).getLoot());
+                    CustomBlock.remove(block.getLocation());
+                }
+                blocksToDestroy.add(block);
             }
         }
     }
