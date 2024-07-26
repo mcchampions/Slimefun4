@@ -25,9 +25,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
 import me.qscbm.slimefun4.utils.VersionEventsUtils;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -60,6 +58,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
     public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             Player p = e.getPlayer();
+
             if (!p.isSneaking()) {
                 Block b = e.getBlock();
 
