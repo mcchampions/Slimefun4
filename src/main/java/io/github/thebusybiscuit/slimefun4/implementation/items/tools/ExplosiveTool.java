@@ -59,18 +59,17 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         return (e, tool, fortune, drops) -> {
             Player p = e.getPlayer();
 
+            Block b = e.getBlock();
             if (!p.isSneaking()) {
-                Block b = e.getBlock();
-
                 b.getWorld().createExplosion(b.getLocation(), 0);
                 SoundEffect.EXPLOSIVE_TOOL_EXPLODE_SOUND.playAt(b);
 
                 List<Block> blocks = findBlocks(b);
                 breakBlocks(e, p, tool, b, blocks, drops);
-                SlimefunItem sfItem = StorageCacheUtils.getSfItem(b.getLocation());
-                if (sfItem == null || sfItem.useVanillaBlockBreaking()) {
-                    drops.addAll(b.getDrops(tool));
-                }
+            }
+            SlimefunItem sfItem = StorageCacheUtils.getSfItem(b.getLocation());
+            if (sfItem == null || sfItem.useVanillaBlockBreaking()) {
+                drops.addAll(b.getDrops(tool));
             }
         };
     }
