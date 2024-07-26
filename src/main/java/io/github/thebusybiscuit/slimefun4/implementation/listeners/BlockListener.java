@@ -19,7 +19,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

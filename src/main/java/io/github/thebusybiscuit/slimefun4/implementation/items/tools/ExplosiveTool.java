@@ -28,8 +28,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.qscbm.slimefun4.utils.VersionEventsUtils;
 
-import javax.annotation.Nonnull;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
