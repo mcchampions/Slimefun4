@@ -55,7 +55,7 @@ public class CargoNodeListener implements Listener {
         return SlimefunItem.getByItem(item) instanceof CargoNode;
     }
 
-    private boolean isContainer(@Nonnull Block block) {
+    private boolean isContainer(Block block) {
         return block.getState() instanceof Container
                 || Slimefun.getDatabaseManager().getBlockDataController().getBlockData(block.getLocation()) != null;
     }
