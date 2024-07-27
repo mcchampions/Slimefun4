@@ -119,12 +119,6 @@ public class Research implements Keyed {
         return Slimefun.getConfigManager().isResearchingEnabled() && enabled;
     }
 
-    /**
-     * Gets the ID of this {@link Research}.
-     * This is the old way of identifying Researches, use a {@link NamespacedKey} in the future.
-     *
-     * @return The ID of this {@link Research}
-     */
     public int getID() {
         return id;
     }
