@@ -127,7 +127,6 @@ public class Research implements Keyed {
      *
      * @return The ID of this {@link Research}
      */
-    @Deprecated
     public int getID() {
         return id;
     }
