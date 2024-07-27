@@ -1,5 +1,6 @@
 package me.qscbm.slimefun4.utils;
 
+import io.github.bakedlibs.dough.reflection.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -10,12 +11,35 @@ import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
 public class HighVersionUtils {
+    private static final Class<Enum<?>> explosionResultClass;
+    private static final Constructor<BlockExplodeEvent> blockExplodeEventConstructor;
+    private static Enum<?> destroyEnum = null;
+    static {
+        try {
+            explosionResultClass = (Class<Enum<?>>)Class.forName("org.bukkit.ExplosionResult");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        blockExplodeEventConstructor = ReflectionUtils.getConstructor(BlockExplodeEvent.class,Block.class, BlockState.class,List.class, float.class, explosionResultClass);
+        Enum<?>[] enums = explosionResultClass.getEnumConstants();
+
+        for (Enum<?> field : enums) {
+            if (field.name().equalsIgnoreCase("destroy")) {
+                destroyEnum = field;
+                break;
+            }
+        }
+        if (destroyEnum == null) {
+            throw new RuntimeException();
+        }
+    }
     public static DamageSource newDamageSource(String type) {
         return DamageSource.builder(getDamageType(type)).build();
     }
@@ -55,23 +79,8 @@ public class HighVersionUtils {
 
     public static BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> blockList, float yield) {
         try {
-            Class<Enum> clazz = (Class<Enum>)Class.forName("org.bukkit.ExplosionResult");
-            Enum[] enumConstants = clazz.getEnumConstants();
-            Enum e = null;
-            for (Enum enumConstant : enumConstants) {
-                if (enumConstant.name().equalsIgnoreCase("DESTROY")) {
-                    e = enumConstant;
-                    break;
-                }
-            }
-            if (e == null) {
-                throw new RuntimeException();
-            }
-            Class<BlockExplodeEvent> c = BlockExplodeEvent.class;
-            return c.getConstructor(Block.class, BlockState.class,List.class, float.class, clazz)
-                    .newInstance(block, block.getState(), blockList, yield, e);
-        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException |
-                 IllegalAccessException e) {
+            return blockExplodeEventConstructor.newInstance(block, block.getState(), blockList, yield, destroyEnum);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }
