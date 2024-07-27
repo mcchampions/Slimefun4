@@ -17,14 +17,23 @@ import java.util.List;
  * 事实上这里的版本判断完全可以替换为移除时的版本
  */
 public class VersionEventsUtils {
+    public static VersionEventsConstructor versionEventsConstructor;
+
+    static {
+        if (Slimefun.getMinecraftVersion()
+                .isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
+            versionEventsConstructor = new HighVersionEventsConstructor();
+        } else {
+            versionEventsConstructor = new VersionEventsConstructor();
+        }
+    }
+
     public static EntityDamageByEntityEvent newEntityDamageByEntityEvent(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, String type, double damage) {
-        return Slimefun.getMinecraftVersion()
-                .isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? HighVersionUtils.newEntityDamageByEntityEvent(damager, damagee, cause, type, damage) : LowerVersionUtils.newEntityDamageByEntityEvent(damager, damagee, cause, damage);
+        return versionEventsConstructor.newEntityDamageByEntityEvent(damager, damagee, cause, type, damage);
     }
 
     public static BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> blockList, float yield) {
-        return Slimefun.getMinecraftVersion()
-                .isAtLeast(MinecraftVersion.MINECRAFT_1_21) ? HighVersionUtils.newBlockExplodeEvent(block, blockList, yield) : LowerVersionUtils.newBlockExplodeEvent(block, blockList, yield);
+        return versionEventsConstructor.newBlockExplodeEvent(block, blockList, yield);
     }
 
 }
