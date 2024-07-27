@@ -123,8 +123,6 @@ public class Research implements Keyed {
      * Gets the ID of this {@link Research}.
      * This is the old way of identifying Researches, use a {@link NamespacedKey} in the future.
      *
-     * @deprecated Numeric Ids for Researches are deprecated, use {@link #getKey()} for identification instead.
-     *
      * @return The ID of this {@link Research}
      */
     public int getID() {
