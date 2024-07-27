@@ -43,7 +43,6 @@ public final class SlimefunGuideSettings {
         options.add(new GuideModeOption());
         options.add(new FireworksOption());
         options.add(new LearningAnimationOption());
-        options.add(new PlayerLanguageOption());
     }
 
     private SlimefunGuideSettings() {}
