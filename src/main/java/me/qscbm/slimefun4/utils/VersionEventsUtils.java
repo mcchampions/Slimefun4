@@ -35,5 +35,4 @@ public class VersionEventsUtils {
     public static BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> blockList, float yield) {
         return versionEventsConstructor.newBlockExplodeEvent(block, blockList, yield);
     }
-
 }
