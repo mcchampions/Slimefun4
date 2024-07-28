@@ -25,8 +25,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
-        <!-- Spigot properties -->
-        <spigot.version>1.20.6</spigot.version>
+        <!-- Paper properties -->
+        <paper.version>1.18.2</paper.version>
     </properties>
 
     <licenses>
@@ -186,6 +186,18 @@
                     </java>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <paperweight-mappings-namespace>spigot</paperweight-mappings-namespace>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
 
         <resources>
@@ -227,9 +239,9 @@
     <dependencies>
         <!-- Hard dependencies -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>${spigot.version}-R0.1-SNAPSHOT</version>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>${paper.version}-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 

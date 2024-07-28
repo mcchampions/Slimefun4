@@ -184,11 +184,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         long timestamp = System.nanoTime();
         Logger logger = getLogger();
 
-        // Check if Paper (<3) is installed
-        if (PaperLib.isPaper()) {
-            logger.log(Level.INFO, "检测到你正在使用 Paper 服务端! 性能优化已应用.");
-        }
-
         // Check if CS-CoreLib is installed (it is no longer needed)
         if (getServer().getPluginManager().getPlugin("CS-CoreLib") != null) {
             StartupWarnings.discourageCSCoreLib(logger);
