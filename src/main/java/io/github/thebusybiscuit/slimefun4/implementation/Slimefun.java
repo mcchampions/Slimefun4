@@ -558,7 +558,9 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         new MiningAndroidListener(this);
         new NetworkListener(this, networkManager);
         new HopperListener(this);
-        new TalismanListener(this);
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
+            new TalismanListener(this);
+        }
         new SoulboundListener(this);
         new AutoCrafterListener(this);
         new SlimefunItemHitListener(this);

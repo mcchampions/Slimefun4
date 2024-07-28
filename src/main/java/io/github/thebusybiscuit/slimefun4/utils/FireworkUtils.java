@@ -22,7 +22,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
  * @author TheBusyBiscuit
  */
 public final class FireworkUtils {
-    
+
     private static final Color[] COLORS = {
         Color.AQUA,
         Color.BLACK,
@@ -42,15 +42,15 @@ public final class FireworkUtils {
         Color.WHITE,
         Color.YELLOW
     };
-    
+
 
     private static final EntityType firework;
 
     static {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)) {
-            firework = EntityType.FIREWORK_ROCKET;
+            firework = EntityType.valueOf("FIREWORK_ROCKET");
         } else {
-            firework = EntityType.valueOf("FIREWORK");
+            firework = EntityType.FIREWORK;
         }
     }
 
