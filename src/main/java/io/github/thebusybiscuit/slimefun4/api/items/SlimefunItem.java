@@ -24,6 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.qscbm.slimefun4.tasks.BaseTickerTask;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -382,7 +383,7 @@ public class SlimefunItem implements Placeable {
 
             Slimefun.getRegistry().getAllSlimefunItems().add(this);
             Slimefun.getRegistry().getSlimefunItemIds().put(id, this);
-            Slimefun.getRegistry().getSlimefunItemNames().put(itemStackTemplate.getItemMeta().getDisplayName(), this);
+            Slimefun.getRegistry().getSlimefunItemNames().put(getItemNormalName(), this);
 
             // Items that are "not-configurable" cannot be configured.
             if (!(this instanceof NotConfigurable)) {
@@ -868,6 +869,11 @@ public class SlimefunItem implements Placeable {
         return ItemUtils.getItemName(itemStackTemplate);
     }
 
+    public final String getItemNormalName() {
+        String name = getItemName();
+        return TextComponent.fromLegacy(name).toPlainText();
+    }
+
     /**
      * This method returns a Set of item handlers associated with this Item.
      *
@@ -1090,7 +1096,7 @@ public class SlimefunItem implements Placeable {
     }
 
     public static @Nullable SlimefunItem getByName(String name) {
-        return Slimefun.getRegistry().getSlimefunItemIds().get(name);
+        return Slimefun.getRegistry().getSlimefunItemNames().get(name);
     }
 
     /**
