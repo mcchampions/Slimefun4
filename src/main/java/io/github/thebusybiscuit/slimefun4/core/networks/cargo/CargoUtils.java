@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import io.papermc.lib.PaperLib;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
@@ -31,7 +30,6 @@ import java.util.Map;
  * @author TheBusyBiscuit
  * @author Walshy
  * @author DNx5
- *
  */
 final class CargoUtils {
     /**
@@ -43,15 +41,14 @@ final class CargoUtils {
      * This is a utility class and should not be instantiated.
      * Therefore we just hide the public constructor.
      */
-    private CargoUtils() {}
+    private CargoUtils() {
+    }
 
     /**
      * This is a performance-saving shortcut to quickly test whether a given
      * {@link Block} might be an {@link InventoryHolder} or not.
      *
-     * @param block
-     *            The {@link Block} to check
-     *
+     * @param block The {@link Block} to check
      * @return Whether this {@link Block} represents a {@link BlockState} that is an {@link InventoryHolder}
      */
     static boolean hasInventory(@Nullable Block block) {
@@ -64,51 +61,52 @@ final class CargoUtils {
         return SlimefunTag.CARGO_SUPPORTED_STORAGE_BLOCKS.isTagged(type);
     }
 
-    
+
     static int[] getInputSlotRange(Inventory inv, @Nullable ItemStack item) {
         if (inv instanceof FurnaceInventory) {
             if (item != null && item.getType().isFuel()) {
                 if (isSmeltable(item, true)) {
                     // Any non-smeltable items should not land in the upper slot
-                    return new int[] {0, 2};
+                    return new int[]{0, 2};
                 } else {
-                    return new int[] {1, 2};
+                    return new int[]{1, 2};
                 }
             } else {
-                return new int[] {0, 1};
+                return new int[]{0, 1};
             }
         } else if (inv instanceof BrewerInventory) {
             if (isPotion(item)) {
                 // Slots for potions
-                return new int[] {0, 3};
+                return new int[]{0, 3};
             } else if (item != null && item.getType() == Material.BLAZE_POWDER) {
                 // Blaze Powder slot
-                return new int[] {4, 5};
+                return new int[]{4, 5};
             } else {
                 // Input slot
-                return new int[] {3, 4};
+                return new int[]{3, 4};
             }
         } else {
             // Slot 0-size
-            return new int[] {0, inv.getSize()};
+            return new int[]{0, inv.getSize()};
         }
     }
 
-    
+
     static int[] getOutputSlotRange(Inventory inv) {
         if (inv instanceof FurnaceInventory) {
             // Slot 2-3
-            return new int[] {2, 3};
+            return new int[]{2, 3};
         } else if (inv instanceof BrewerInventory) {
             // Slot 0-3
-            return new int[] {0, 3};
+            return new int[]{0, 3};
         } else {
             // Slot 0-size
-            return new int[] {0, inv.getSize()};
+            return new int[]{0, inv.getSize()};
         }
     }
 
-    @Nullable static ItemStack withdraw(
+    @Nullable
+    static ItemStack withdraw(
             AbstractItemNetwork network,
             Map<Location, Inventory> inventories,
             Block node,
@@ -124,7 +122,7 @@ final class CargoUtils {
                     return withdrawFromVanillaInventory(network, node, template, inventory);
                 }
 
-                BlockState state = PaperLib.getBlockState(target, false).getState();
+                BlockState state = target.getState(false);
 
                 if (state instanceof InventoryHolder inventoryHolder) {
                     inventory = inventoryHolder.getInventory();
@@ -147,7 +145,7 @@ final class CargoUtils {
             ItemStackWrapper wrapperItemInSlot = ItemStackWrapper.wrap(is);
 
             if (SlimefunUtils.isItemSimilar(wrapperItemInSlot, wrapperTemplate, true)
-                    && matchesFilter(network, node, wrapperItemInSlot)) {
+                && matchesFilter(network, node, wrapperItemInSlot)) {
                 if (is.getAmount() > template.getAmount()) {
                     is.setAmount(is.getAmount() - template.getAmount());
                     menu.replaceExistingItem(slot, is);
@@ -162,7 +160,8 @@ final class CargoUtils {
         return null;
     }
 
-    @Nullable static ItemStack withdrawFromVanillaInventory(
+    @Nullable
+    static ItemStack withdrawFromVanillaInventory(
             AbstractItemNetwork network, Block node, ItemStack template, Inventory inv) {
         ItemStack[] contents = inv.getContents();
         int[] range = getOutputSlotRange(inv);
@@ -180,7 +179,7 @@ final class CargoUtils {
 
             ItemStackWrapper wrapperInSlot = ItemStackWrapper.wrap(itemInSlot);
             if (SlimefunUtils.isItemSimilar(wrapperInSlot, wrapper, true, false)
-                    && matchesFilter(network, node, wrapperInSlot)) {
+                && matchesFilter(network, node, wrapperInSlot)) {
                 if (itemInSlot.getAmount() > template.getAmount()) {
                     itemInSlot.setAmount(itemInSlot.getAmount() - template.getAmount());
                     return template;
@@ -195,7 +194,8 @@ final class CargoUtils {
         return null;
     }
 
-    @Nullable static ItemStackAndInteger withdraw(
+    @Nullable
+    static ItemStackAndInteger withdraw(
             AbstractItemNetwork network, Map<Location, Inventory> inventories, Block node, Block target) {
         DirtyChestMenu menu = getChestMenu(target);
 
@@ -218,7 +218,7 @@ final class CargoUtils {
             Inventory inventory = inventories.get(target.getLocation());
 
             if (inventory == null) {
-                BlockState state = PaperLib.getBlockState(target, false).getState();
+                BlockState state = target.getState(false);
                 if (!(state instanceof InventoryHolder holder)) {
                     return null;
                 }
@@ -237,7 +237,8 @@ final class CargoUtils {
         return null;
     }
 
-    @Nullable private static ItemStackAndInteger withdrawFromVanillaInventory(
+    @Nullable
+    private static ItemStackAndInteger withdrawFromVanillaInventory(
             AbstractItemNetwork network, Block node, Inventory inv) {
         ItemStack[] contents = inv.getContents();
         int[] range = getOutputSlotRange(inv);
@@ -256,7 +257,8 @@ final class CargoUtils {
         return null;
     }
 
-    @Nullable static ItemStack insert(
+    @Nullable
+    static ItemStack insert(
             AbstractItemNetwork network,
             Map<Location, Inventory> inventories,
             Block node,
@@ -264,7 +266,7 @@ final class CargoUtils {
             boolean smartFill,
             ItemStack stack,
             ItemStackWrapper wrapper) {
-        
+
         if (!matchesFilter(network, node, stack)) {
             return stack;
         }
@@ -276,7 +278,7 @@ final class CargoUtils {
                 Inventory inventory = inventories.get(target.getLocation());
 
                 if (inventory == null) {
-                    BlockState state = PaperLib.getBlockState(target, false).getState();
+                    BlockState state = target.getState(false);
                     if (!(state instanceof InventoryHolder holder)) {
                         return stack;
                     }
@@ -337,7 +339,8 @@ final class CargoUtils {
         return stack;
     }
 
-    @Nullable private static ItemStack insertIntoVanillaInventory(
+    @Nullable
+    private static ItemStack insertIntoVanillaInventory(
             ItemStack stack, ItemStackWrapper wrapper, boolean smartFill, Inventory inv) {
         /*
          * If the Inventory does not accept this Item Type, bounce the item back.
@@ -390,7 +393,8 @@ final class CargoUtils {
         return stack;
     }
 
-    @Nullable static DirtyChestMenu getChestMenu(Block block) {
+    @Nullable
+    static DirtyChestMenu getChestMenu(Block block) {
         return StorageCacheUtils.getMenu(block.getLocation());
     }
 
@@ -408,11 +412,8 @@ final class CargoUtils {
      * For the current applicational purposes a quick check for any wooden logs is sufficient.
      * Otherwise the "lazyness" can be turned off in the future.
      *
-     * @param stack
-     *            The {@link ItemStack} to test
-     * @param lazy
-     *            Whether or not to perform a "lazy" but performance-saving check
-     *
+     * @param stack The {@link ItemStack} to test
+     * @param lazy  Whether or not to perform a "lazy" but performance-saving check
      * @return Whether the given {@link ItemStack} can be smelted or not
      */
     private static boolean isSmeltable(@Nullable ItemStack stack, boolean lazy) {
@@ -438,7 +439,7 @@ final class CargoUtils {
      *
      * @return The slots where the {@link ItemFilter} section for a cargo node sits
      */
-    
+
     public static int[] getFilteringSlots() {
         return FILTER_SLOTS;
     }

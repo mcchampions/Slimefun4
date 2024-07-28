@@ -63,7 +63,7 @@ public class EnhancedFurnaceListener implements Listener {
 
         if (sfItem instanceof EnhancedFurnace enhancedFurnace
                 && !enhancedFurnace.isDisabledIn(e.getBlock().getWorld())) {
-            BlockState state = PaperLib.getBlockState(e.getBlock(), false).getState();
+            BlockState state = e.getBlock().getState(false);
 
             if (state instanceof Furnace furnace) {
                 FurnaceInventory inventory = furnace.getInventory();

@@ -66,7 +66,7 @@ public class PickaxeOfContainment extends SimpleSlimefunItem<ToolUseHandler> {
             spawner = (AbstractMonsterSpawner) SlimefunItems.BROKEN_SPAWNER.getItem();
         }
 
-        BlockState state = PaperLib.getBlockState(b, false).getState();
+        BlockState state = b.getState(false);
 
         if (state instanceof CreatureSpawner creatureSpawner) {
             EntityType entityType = creatureSpawner.getSpawnedType();

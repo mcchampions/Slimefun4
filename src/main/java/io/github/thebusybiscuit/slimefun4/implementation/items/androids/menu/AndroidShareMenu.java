@@ -221,7 +221,7 @@ public final class AndroidShareMenu {
         } catch (RuntimeException x) {
             Slimefun.logger().log(Level.SEVERE, "Please check if your Server Software is up to date!");
 
-            String serverSoftware = PaperLib.isSpigot() && !PaperLib.isPaper() ? "Spigot" : Bukkit.getName();
+            String serverSoftware = Bukkit.getName();
             Slimefun.logger()
                     .log(
                             Level.SEVERE,

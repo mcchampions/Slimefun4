@@ -52,7 +52,7 @@ public class MagicWorkbench extends AbstractCraftingTable {
             return;
         }
 
-        BlockState state = PaperLib.getBlockState(possibleDispener, false).getState();
+        BlockState state = possibleDispener.getState(false);
 
         if (state instanceof Dispenser dispenser) {
             Inventory inv = dispenser.getInventory();

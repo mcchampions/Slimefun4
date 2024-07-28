@@ -50,7 +50,7 @@ public class OutputChest extends SlimefunItem {
                 if (slimefunItem instanceof OutputChest && !slimefunItem.isDisabledIn(b.getWorld())) {
                     // Found the output chest! Now, let's check if we can fit the product in it.
                     BlockState state =
-                            PaperLib.getBlockState(potentialOutput, false).getState();
+                            potentialOutput.getState(false);
 
                     if (state instanceof Chest chest) {
                         Inventory inv = chest.getInventory();

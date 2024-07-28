@@ -8,8 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.VanillaInventoryDropHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import io.papermc.lib.PaperLib;
-import io.papermc.lib.features.blockstatesnapshot.BlockStateSnapshotResult;
+
 import java.util.concurrent.ThreadLocalRandom;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Material;
@@ -68,7 +67,7 @@ public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
         return 1 + bonus;
     }
 
-    
+
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
@@ -78,17 +77,11 @@ public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
                     // The Furnace has been destroyed, we can clear the block data
                     Slimefun.getDatabaseManager().getBlockDataController().removeBlock(b.getLocation());
                 } else {
-                    BlockStateSnapshotResult result = PaperLib.getBlockState(b, false);
-                    BlockState state = result.getState();
+                    BlockState state = b.getState(false);
 
                     // Check if the BlockState is a Furnace and cooking something
                     if (state instanceof Furnace furnace && furnace.getCookTime() > 0) {
                         setProgress(furnace);
-
-                        // Only update if necessary
-                        if (result.isSnapshot()) {
-                            state.update(true, false);
-                        }
                     }
                 }
             }

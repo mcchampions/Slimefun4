@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
-import io.papermc.lib.PaperLib;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -214,8 +214,7 @@ public final class TeleportationManager {
                         20,
                         60,
                         20);
-                PaperLib.teleportAsync(p, destination)
-                        .thenAccept(success -> onTeleport(p, destination, success, resistance));
+                p.teleportAsync(destination).thenAccept(success -> onTeleport(p, destination, success, resistance));
             } else {
                 p.sendTitle(
                         ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleporting")),

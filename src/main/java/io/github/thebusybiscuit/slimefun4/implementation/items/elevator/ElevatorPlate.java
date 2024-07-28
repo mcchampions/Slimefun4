@@ -15,6 +15,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.papermc.lib.PaperLib;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -173,14 +174,14 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                         new CustomItemStack(
                                 Material.COMPASS,
                                 ChatColor.GRAY.toString()
-                                        + floor.getNumber()
-                                        + ". "
-                                        + ChatColor.BLACK
-                                        + floor.getName(),
+                                + floor.getNumber()
+                                + ". "
+                                + ChatColor.BLACK
+                                + floor.getName(),
                                 Slimefun.getLocalization().getMessage(p, "machines.ELEVATOR.current-floor")
-                                        + ' '
-                                        + ChatColor.WHITE
-                                        + floor.getName()),
+                                + ' '
+                                + ChatColor.WHITE
+                                + floor.getName()),
                         ChestMenuUtils.getEmptyClickHandler());
             } else {
                 menu.addItem(
@@ -188,14 +189,14 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                         new CustomItemStack(
                                 Material.PAPER,
                                 ChatColor.GRAY.toString()
-                                        + floor.getNumber()
-                                        + ". "
-                                        + ChatColor.BLACK
-                                        + floor.getName(),
+                                + floor.getNumber()
+                                + ". "
+                                + ChatColor.BLACK
+                                + floor.getName(),
                                 Slimefun.getLocalization().getMessage(p, "machines.ELEVATOR.click-to-teleport")
-                                        + ' '
-                                        + ChatColor.WHITE
-                                        + floor.getName()),
+                                + ' '
+                                + ChatColor.WHITE
+                                + floor.getName()),
                         (player, slot, itemStack, clickAction) -> {
                             teleport(player, floor);
                             return false;
@@ -246,7 +247,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                     yaw,
                     player.getEyeLocation().getPitch());
 
-            PaperLib.teleportAsync(player, destination).thenAccept(teleported -> {
+            player.teleportAsync(destination).thenAccept(teleported -> {
                 if (teleported) {
                     player.sendTitle(ChatColor.WHITE + ChatColors.color(floor.getName()), null, 20, 60, 20);
                 }

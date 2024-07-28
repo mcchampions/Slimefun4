@@ -53,7 +53,7 @@ public class SlimefunAutoCrafter extends AbstractAutoCrafter {
 
     @Override
     @Nullable public AbstractRecipe getSelectedRecipe(Block b) {
-        BlockState state = PaperLib.getBlockState(b, false).getState();
+        BlockState state = b.getState(false);
 
         if (state instanceof Skull skull) {
             // Read the stored value from persistent data storage

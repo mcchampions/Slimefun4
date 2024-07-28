@@ -838,7 +838,7 @@ public class ProgrammableAndroid extends SlimefunItem
     protected void depositItems(BlockMenu menu, Block facedBlock) {
         if (facedBlock.getType() == Material.DISPENSER
             && StorageCacheUtils.isBlock(facedBlock.getLocation(), "ANDROID_INTERFACE_ITEMS")) {
-            BlockState state = PaperLib.getBlockState(facedBlock, false).getState();
+            BlockState state = facedBlock.getState(false);
 
             if (state instanceof Dispenser dispenser) {
                 for (int slot : getOutputSlots()) {
@@ -862,7 +862,7 @@ public class ProgrammableAndroid extends SlimefunItem
     protected void refuel(BlockMenu menu, Block facedBlock) {
         if (facedBlock.getType() == Material.DISPENSER
             && StorageCacheUtils.isBlock(facedBlock.getLocation(), "ANDROID_INTERFACE_FUEL")) {
-            BlockState state = PaperLib.getBlockState(facedBlock, false).getState();
+            BlockState state = facedBlock.getState(false);
 
             if (state instanceof Dispenser dispenser) {
                 for (int slot = 0; slot < 9; slot++) {

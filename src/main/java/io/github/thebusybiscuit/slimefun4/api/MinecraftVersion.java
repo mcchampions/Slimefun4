@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.api;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import org.bukkit.Server;
 
@@ -105,37 +104,10 @@ public enum MinecraftVersion {
         this.virtual = virtual;
     }
 
-    /**
-     * This tests if the given minecraft version number matches with this
-     * {@link MinecraftVersion}.
-     * <p>
-     * You can obtain the version number by doing {@link PaperLib#getMinecraftVersion()}.
-     * It is equivalent to the "major" version
-     * <p>
-     * Example: {@literal "1.13"} returns {@literal 13}
-     *
-     * @param minecraftVersion The {@link Integer} version to match
-     * @return Whether this {@link MinecraftVersion} matches the specified version id
-     */
     public boolean isMinecraftVersion(int minecraftVersion) {
         return this.isMinecraftVersion(minecraftVersion, -1);
     }
 
-    /**
-     * This tests if the given minecraft version matches with this
-     * {@link MinecraftVersion}.
-     * <p>
-     * You can obtain the version number by doing {@link PaperLib#getMinecraftVersion()}.
-     * It is equivalent to the "major" version<br />
-     * You can obtain the patch version by doing {@link PaperLib#getMinecraftPatchVersion()}.
-     * It is equivalent to the "minor" version
-     * <p>
-     * Example: {@literal "1.13"} returns {@literal 13}<br />
-     * Exampe: {@literal "1.13.2"} returns {@literal 13_2}
-     *
-     * @param minecraftVersion The {@link Integer} version to match
-     * @return Whether this {@link MinecraftVersion} matches the specified version id
-     */
     public boolean isMinecraftVersion(int minecraftVersion, int patchVersion) {
         if (isVirtual()) {
             return false;

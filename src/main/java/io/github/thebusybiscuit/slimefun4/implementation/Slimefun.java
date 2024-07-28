@@ -44,11 +44,11 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SolarHelmet
 import io.github.thebusybiscuit.slimefun4.integrations.IntegrationsManager;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.services.LanguageService;
 import me.qscbm.slimefun4.tasks.CargoTickerTask;
+import me.qscbm.slimefun4.utils.VersionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -437,15 +437,9 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      */
     private boolean isVersionUnsupported() {
         try {
-            // First check if they still use the unsupported CraftBukkit software.
-            if (!PaperLib.isSpigot() && Bukkit.getName().equals("CraftBukkit")) {
-                StartupWarnings.invalidServerSoftware(getLogger());
-                return true;
-            }
-
             // Now check the actual Version of Minecraft
-            int version = PaperLib.getMinecraftVersion();
-            int patchVersion = PaperLib.getMinecraftPatchVersion();
+            int version = VersionUtils.getMinecraftVersion();
+            int patchVersion = VersionUtils.getMinecraftPatchVersion();
 
             if (version > 0) {
                 // Check all supported versions of Minecraft

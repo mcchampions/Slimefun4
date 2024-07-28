@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.core.services;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import io.papermc.lib.PaperLib;
 import java.util.Optional;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
@@ -72,7 +71,7 @@ public class BlockDataService implements Keyed {
             } catch (RuntimeException x) {
                 Slimefun.logger().log(Level.SEVERE, "Please check if your Server Software is up to date!");
 
-                String serverSoftware = PaperLib.isSpigot() && !PaperLib.isPaper() ? "Spigot" : Bukkit.getName();
+                String serverSoftware = Bukkit.getName();
                 Slimefun.logger()
                         .log(
                                 Level.SEVERE,
@@ -96,7 +95,7 @@ public class BlockDataService implements Keyed {
      * @return The stored value
      */
     public Optional<String> getBlockData(Block b) {
-        BlockState state = PaperLib.getBlockState(b, false).getState();
+        BlockState state = b.getState(false);
         PersistentDataContainer container = getPersistentDataContainer(state);
 
         if (container != null) {

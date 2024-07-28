@@ -35,17 +35,6 @@ final class StartupWarnings {
         logger.log(Level.SEVERE, BORDER);
     }
 
-    static void invalidServerSoftware(Logger logger) {
-        logger.log(Level.SEVERE, BORDER);
-        logger.log(Level.SEVERE, PREFIX + "Slimefun 未被正确安装!");
-        logger.log(Level.SEVERE, PREFIX + "我们不再支持 CraftBukkit 服务端了!");
-        logger.log(Level.SEVERE, PREFIX);
-        logger.log(Level.SEVERE, PREFIX + "Slimefun 需要你使用 Spigot, Paper");
-        logger.log(Level.SEVERE, PREFIX + "或者 Spigot/Paper 分支的任意服务端.");
-        logger.log(Level.SEVERE, PREFIX + "(我们推荐 Paper)");
-        logger.log(Level.SEVERE, BORDER);
-    }
-
     static void oldJavaVersion(Logger logger, int recommendedJavaVersion) {
         int javaVersion = NumberUtils.getJavaVersion();
 
