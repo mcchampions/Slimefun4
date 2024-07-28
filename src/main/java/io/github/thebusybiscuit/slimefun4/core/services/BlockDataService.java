@@ -57,10 +57,6 @@ public class BlockDataService implements Keyed {
      *            The value to store
      */
     public void setBlockData(Block b, String value) {
-        /*
-          Don't use PaperLib here, it seems to be quite buggy in block-placing scenarios
-          and it would be too tedious to check for individual build versions to circumvent this.
-         */
         BlockState state = b.getState();
 
         if (state instanceof TileState tileState) {

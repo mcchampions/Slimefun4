@@ -24,7 +24,8 @@ import lombok.Getter;
 import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.qscbm.slimefun4.tasks.BaseTickerTask;
-import net.md_5.bungee.api.chat.TextComponent;
+import me.qscbm.slimefun4.utils.TextUtils;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -870,8 +871,8 @@ public class SlimefunItem implements Placeable {
     }
 
     public final String getItemNormalName() {
-        String name = getItemName();
-        return TextComponent.fromLegacy(name).toPlainText();
+        Component c = itemStackTemplate.displayName();
+        return TextUtils.toPlainText(c);
     }
 
     /**
