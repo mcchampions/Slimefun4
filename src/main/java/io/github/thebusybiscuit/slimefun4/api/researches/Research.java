@@ -20,6 +20,7 @@ import javax.annotation.Nullable;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -149,7 +150,7 @@ public class Research implements Keyed {
      * @return The unlocalized, decolorized name for this {@link Research}
      */
     public String getUnlocalizedName() {
-        return ChatColor.stripColor(name);
+        return TextUtils.toPlainText(TextUtils.fromText(name));
     }
 
     /**

@@ -8,6 +8,9 @@ import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.ArrayList;
 import java.util.List;
+
+import me.qscbm.slimefun4.utils.TextUtils;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -26,15 +29,15 @@ public class SlimefunGuideItem extends ItemStack {
         super(Material.ENCHANTED_BOOK);
 
         ItemMeta meta = getItemMeta();
-        meta.setDisplayName(ChatColors.color(name));
+        meta.displayName(TextUtils.fromText(name));
 
-        List<String> lore = new ArrayList<>();
+        List<Component> lore = new ArrayList<>();
         SlimefunGuideMode type = implementation.getMode();
-        lore.add(type == SlimefunGuideMode.CHEAT_MODE ? ChatColors.color("&4&l仅限管理员使用") : "");
-        lore.add(ChatColors.color("&e右键 &8\u21E8 &7浏览物品"));
-        lore.add(ChatColors.color("&eShift + 右键 &8\u21E8 &7打开 设置 / 关于"));
+        lore.add(type == SlimefunGuideMode.CHEAT_MODE ? TextUtils.fromText("&4&l仅限管理员使用") : Component.empty());
+        lore.add(TextUtils.fromText("&e右键 &8\u21E8 &7浏览物品"));
+        lore.add(TextUtils.fromText("&eShift + 右键 &8\u21E8 &7打开 设置 / 关于"));
 
-        meta.setLore(lore);
+        meta.lore(lore);
 
         PersistentDataAPI.setString(meta, Slimefun.getRegistry().getGuideDataKey(), type.name());
         Slimefun.getItemTextureService().setTexture(meta, "SLIMEFUN_GUIDE");

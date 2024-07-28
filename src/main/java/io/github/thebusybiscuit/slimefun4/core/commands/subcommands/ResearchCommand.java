@@ -116,7 +116,7 @@ class ResearchCommand extends SubCommand {
         }
 
         for (Research research : Slimefun.getRegistry().getResearches()) {
-            if (research.getName().equals(input)) {
+            if (research.getUnlocalizedName().equals(input)) {
                 return Optional.of(research);
             }
         }
