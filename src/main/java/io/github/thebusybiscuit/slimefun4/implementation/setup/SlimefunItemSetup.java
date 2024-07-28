@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.setup;
 
 import com.xzavier0722.mc.plugin.slimefun4.autocrafter.CrafterSmartPort;
 import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

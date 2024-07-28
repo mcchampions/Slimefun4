@@ -1,21 +1,11 @@
 package io.github.thebusybiscuit.slimefun4.core.guide.options;
 
 import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
-import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.api.events.PlayerLanguageChangeEvent;
-import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
-import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
-import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Optional;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -39,7 +29,7 @@ class PlayerLanguageOption implements SlimefunGuideOption<String> {
 
     @Override
     public void onClick(Player p, ItemStack guide) {
-        openLanguageSelection(p, guide);
+        openLanguageSelection(p);
     }
 
     @Override
@@ -56,7 +46,7 @@ class PlayerLanguageOption implements SlimefunGuideOption<String> {
         }
     }
 
-    private void openLanguageSelection(Player p, ItemStack guide) {
+    private void openLanguageSelection(Player p) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "guide.title.languages"));
 
         menu.open(p);
