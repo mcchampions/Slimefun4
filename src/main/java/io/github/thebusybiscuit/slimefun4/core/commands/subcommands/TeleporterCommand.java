@@ -27,7 +27,6 @@ class TeleporterCommand extends SubCommand {
                                     player.getLocation().getBlock().getRelative(BlockFace.DOWN),
                                     999999999);
                 } else if (args.length == 2) {
-                    @SuppressWarnings("deprecation")
                     OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[1]);
 
                     if (targetPlayer.getName() != null) {

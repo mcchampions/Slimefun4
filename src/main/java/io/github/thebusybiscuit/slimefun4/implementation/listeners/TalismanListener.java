@@ -359,7 +359,7 @@ public class TalismanListener implements Listener {
                 return;
             }
 
-            Material type = e.getState().getType();
+            Material type = e.getBlockState().getType();
 
             // Handle double drops for Miner Talisman
             doubleTalismanDrops(e, SlimefunItems.TALISMAN_MINER, SlimefunTag.MINER_TALISMAN_TRIGGERS, type, meta);

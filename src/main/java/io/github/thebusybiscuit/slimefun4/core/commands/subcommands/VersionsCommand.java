@@ -19,7 +19,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * This is our class for the /sf versions subcommand.
@@ -33,11 +32,11 @@ class VersionsCommand extends SubCommand {
         super(plugin, cmd, "versions", false);
     }
 
-    int version = NumberUtils.getJavaVersion();
+    final int version = NumberUtils.getJavaVersion();
 
 
-    String serverSoftware = Bukkit.getName();
-    ComponentBuilder<TextComponent, TextComponent.Builder> component = Component.text()
+    final String serverSoftware = Bukkit.getName();
+    final ComponentBuilder<TextComponent, TextComponent.Builder> component = Component.text()
             .append(Component.text("Slimefun 运行的服务器环境:").color(NamedTextColor.GRAY))
             .appendNewline()
             .append(Component.text(serverSoftware).color(NamedTextColor.GREEN))

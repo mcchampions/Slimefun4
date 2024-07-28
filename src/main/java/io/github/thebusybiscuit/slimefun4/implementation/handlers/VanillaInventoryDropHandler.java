@@ -2,7 +2,7 @@ package io.github.thebusybiscuit.slimefun4.implementation.handlers;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
-import io.papermc.lib.PaperLib;
+
 import java.util.List;
 
 import org.bukkit.block.Block;

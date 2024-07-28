@@ -12,7 +12,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AsyncRecipeChoiceTask;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import io.papermc.lib.PaperLib;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -51,7 +51,6 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @SuppressWarnings("UnstableApiUsage")
     @Override
     public @Nullable AbstractRecipe getSelectedRecipe(Block b) {
         BlockState state = b.getState(false);

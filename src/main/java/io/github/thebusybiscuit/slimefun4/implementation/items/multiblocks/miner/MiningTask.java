@@ -8,7 +8,7 @@ import io.github.bakedlibs.dough.scheduling.TaskQueue;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
-import io.papermc.lib.PaperLib;
+
 import java.util.UUID;
 import java.util.logging.Level;
 
