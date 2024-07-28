@@ -143,10 +143,6 @@
                             <pattern>org.apache.commons.lang</pattern>
                             <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.commons.lang</shadedPattern>
                         </relocation>
-                        <relocation>
-                            <pattern>net.guizhanss.guizhanlib</pattern>
-                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.guizhanlib</shadedPattern>
-                        </relocation>
                     </relocations>
 
                     <!-- Exclude unneeded metadata files from shaded dependencies -->
@@ -168,35 +164,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.diffplug.spotless</groupId>
-                <artifactId>spotless-maven-plugin</artifactId>
-                <version>2.43.0</version>
-                <configuration>
-                    <java>
-                        <palantirJavaFormat>
-                            <version>2.38.0</version>
-                            <style>PALANTIR</style>
-                        </palantirJavaFormat>
-
-                        <removeUnusedImports />
-                        <formatAnnotations />
-                    </java>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.4.1</version>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <paperweight-mappings-namespace>spigot</paperweight-mappings-namespace>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
             </plugin>
         </plugins>
 
@@ -437,20 +404,6 @@
             <groupId>com.github.Xzavier0722</groupId>
             <artifactId>SlimefunCompLib</artifactId>
             <version>b7a2bd8</version>
-            <scope>compile</scope>
-        </dependency>
-        <!-- Auto updater lib -->
-
-        <dependency>
-            <groupId>net.guizhanss</groupId>
-            <artifactId>GuizhanLib-common</artifactId>
-            <version>1.6.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.guizhanss</groupId>
-            <artifactId>GuizhanLib-updater</artifactId>
-            <version>1.6.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

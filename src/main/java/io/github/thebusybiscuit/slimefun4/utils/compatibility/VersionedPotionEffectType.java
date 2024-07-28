@@ -21,32 +21,32 @@ public class VersionedPotionEffectType {
     static {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
 
-        SLOWNESS = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.SLOWNESS : getKey("SLOW");
+        SLOWNESS = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.SLOW : getKey("SLOWNESS");
 
-        HASTE = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.HASTE : getKey("FAST_DIGGING");
+        HASTE = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.FAST_DIGGING : getKey("HASTE");
 
         MINING_FATIGUE = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
-                ? PotionEffectType.MINING_FATIGUE
-                : getKey("SLOW_DIGGING");
+                ? PotionEffectType.SLOW_DIGGING
+                : getKey("MINING_FATIGUE");
 
         STRENGTH = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
-                ? PotionEffectType.STRENGTH
-                : getKey("INCREASE_DAMAGE");
+                ? PotionEffectType.INCREASE_DAMAGE
+                : getKey("STRENGTH");
 
         INSTANT_HEALTH =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.INSTANT_HEALTH : getKey("HEAL");
+                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.HEAL : getKey("INSTANT_HEALTH");
 
         INSTANT_DAMAGE =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.INSTANT_DAMAGE : getKey("HARM");
+                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.HARM : getKey("INSTANT_DAMAGE");
 
         JUMP_BOOST =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.JUMP_BOOST : getKey("JUMP");
+                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.JUMP : getKey("JUMP_BOOST");
 
-        NAUSEA = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.NAUSEA : getKey("CONFUSION");
+        NAUSEA = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionEffectType.CONFUSION : getKey("NAUSEA");
 
         RESISTANCE = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
-                ? PotionEffectType.RESISTANCE
-                : getKey("DAMAGE_RESISTANCE");
+                ? PotionEffectType.DAMAGE_RESISTANCE
+                : getKey("RESISTANCE");
     }
 
     @Nullable private static PotionEffectType getKey(String key) {

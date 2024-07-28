@@ -16,10 +16,10 @@ public class VersionedEntityType {
 
         // MUSHROOM_COW is renamed to MOOSHROOM in 1.20.5
         MOOSHROOM =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? EntityType.MOOSHROOM : getKey("MUSHROOM_COW");
+                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? EntityType.MUSHROOM_COW : getKey("MOOSHROOM");
 
         // SNOWMAN is renamed to SNOW_GOLEM in 1.20.5
-        SNOW_GOLEM = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? EntityType.SNOW_GOLEM : getKey("SNOWMAN");
+        SNOW_GOLEM = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? EntityType.SNOWMAN : getKey("SNOW_GOLEM");
     }
 
     @Nullable private static EntityType getKey(String key) {
