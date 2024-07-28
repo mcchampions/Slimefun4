@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import javax.annotation.Nullable;
 import org.bukkit.inventory.ItemFlag;
 
+@SuppressWarnings("deprecation")
 public class VersionedItemFlag {
     public static final ItemFlag HIDE_ADDITIONAL_TOOLTIP;
 

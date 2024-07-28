@@ -8,6 +8,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class VersionEventsConstructor {
     public EntityDamageByEntityEvent newEntityDamageByEntityEvent(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, String type, double damage) {
         return new EntityDamageByEntityEvent(damager, damagee, cause, damage);
