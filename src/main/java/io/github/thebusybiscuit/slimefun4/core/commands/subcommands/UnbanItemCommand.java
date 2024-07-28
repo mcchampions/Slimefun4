@@ -23,7 +23,7 @@ public class UnbanItemCommand extends SubCommand {
     public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.unbanitem") || sender instanceof ConsoleCommandSender) {
             if (args.length >= 2) {
-                SlimefunItem item = SlimefunItem.getById(args[1]);
+                SlimefunItem item = SlimefunItem.getByName(args[1]);
                 if (item != null) {
                     item.enable();
                     Slimefun.getItemCfg().setValue(args[1] + ".enabled", true);

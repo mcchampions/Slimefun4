@@ -34,7 +34,7 @@ class GiveCommand extends SubCommand {
                 if (player.isPresent()) {
                     Player p = player.get();
 
-                    SlimefunItem sfItem = SlimefunItem.getById(args[2].toUpperCase(Locale.ROOT));
+                    SlimefunItem sfItem = SlimefunItem.getByName(args[2]);
 
                     if (sfItem != null) {
                         giveItem(sender, p, sfItem, args);

@@ -25,7 +25,7 @@ public class BanItemCommand extends SubCommand {
     public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.banitem") || sender instanceof ConsoleCommandSender) {
             if (args.length >= 2) {
-                SlimefunItem item = SlimefunItem.getById(args[1]);
+                SlimefunItem item = SlimefunItem.getByName(args[1]);
                 if (item != null) {
                     banItem(item, sender);
                     return;

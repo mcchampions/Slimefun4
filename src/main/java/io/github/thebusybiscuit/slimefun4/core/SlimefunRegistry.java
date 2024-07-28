@@ -35,6 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class SlimefunRegistry {
     private final Map<String, SlimefunItem> slimefunIds = new HashMap<>();
+    private final Map<String, SlimefunItem> slimefunNames = new HashMap<>();
     private final List<SlimefunItem> slimefunItems = new ArrayList<>();
     private final List<SlimefunItem> enabledItems = new ArrayList<>();
     private final Set<SlimefunItem> disableItems = new HashSet<>();
@@ -114,7 +115,7 @@ public final class SlimefunRegistry {
     public Set<SlimefunItem> getDisabledSlimefunItemsToSet() {
         return disableItems;
     }
-    
+
     /**
      * This {@link List} contains every disabled {@link SlimefunItem}.
      *
@@ -197,6 +198,10 @@ public final class SlimefunRegistry {
 
     public Map<String, SlimefunItem> getSlimefunItemIds() {
         return slimefunIds;
+    }
+
+    public Map<String, SlimefunItem> getSlimefunItemNames() {
+        return slimefunNames;
     }
 
 

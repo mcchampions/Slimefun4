@@ -382,6 +382,7 @@ public class SlimefunItem implements Placeable {
 
             Slimefun.getRegistry().getAllSlimefunItems().add(this);
             Slimefun.getRegistry().getSlimefunItemIds().put(id, this);
+            Slimefun.getRegistry().getSlimefunItemNames().put(itemStackTemplate.getItemMeta().getDisplayName(), this);
 
             // Items that are "not-configurable" cannot be configured.
             if (!(this instanceof NotConfigurable)) {
@@ -1086,6 +1087,10 @@ public class SlimefunItem implements Placeable {
      */
     public static @Nullable SlimefunItem getById(String id) {
         return Slimefun.getRegistry().getSlimefunItemIds().get(id);
+    }
+
+    public static @Nullable SlimefunItem getByName(String name) {
+        return Slimefun.getRegistry().getSlimefunItemIds().get(name);
     }
 
     /**

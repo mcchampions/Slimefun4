@@ -33,7 +33,7 @@ class SlimefunTabCompleter implements TabCompleter {
                 return createReturnList(getSlimefunItems(), args[1]);
             } else if (args[0].equalsIgnoreCase("unbanitem")) {
                 Set<String> set = Slimefun.getRegistry().getDisabledSlimefunItemsToSet().stream()
-                        .map(SlimefunItem::getId)
+                        .map(SlimefunItem::getItemName)
                         .collect(Collectors.toSet());
                 return createReturnList(set, args[1]);
             } else if (args[0].equalsIgnoreCase("cleardata")) {
@@ -106,12 +106,12 @@ class SlimefunTabCompleter implements TabCompleter {
     }
 
 
-    private Set<String> getSlimefunItems() {
+    protected Set<String> getSlimefunItems() {
         List<SlimefunItem> items = Slimefun.getRegistry().getEnabledSlimefunItems();
         Set<String> set = new HashSet<>(items.size());
 
         for (SlimefunItem item : items) {
-            set.add(item.getId());
+            set.add(item.getItemName());
         }
 
         return set;
