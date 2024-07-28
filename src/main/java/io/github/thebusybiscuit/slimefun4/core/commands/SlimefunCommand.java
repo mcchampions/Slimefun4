@@ -3,10 +3,8 @@ package io.github.thebusybiscuit.slimefun4.core.commands;
 import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.core.commands.subcommands.SlimefunSubCommands;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -28,7 +26,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
     private boolean registered = false;
     @Getter
     private final Slimefun plugin;
-    private final List<SubCommand> commands = new LinkedList<>();
+    private final List<SubCommand> commands = new ArrayList<>();
     @Getter
     private final Map<SubCommand, Integer> commandUsage = new HashMap<>();
 
@@ -100,8 +98,10 @@ public class SlimefunCommand implements CommandExecutor, Listener {
      * @return A {@link List} containing every {@link SubCommand}
      */
     public List<String> getSubCommandNames() {
-        
         return commands.stream().map(SubCommand::getName).collect(Collectors.toList());
-        
+    }
+
+    public Set<String> getSubCommandNamesToSet() {
+        return commands.stream().map(SubCommand::getName).collect(Collectors.toSet());
     }
 }

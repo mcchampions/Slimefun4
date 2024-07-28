@@ -434,6 +434,7 @@ public class SlimefunItem implements Placeable {
                     }
                 }
                 this.itemHandlers.clear();
+                Slimefun.getRegistry().getDisabledSlimefunItemsToSet().add(this);
             }
 
             // Lock the SlimefunItemStack from any accidental manipulations
@@ -465,6 +466,7 @@ public class SlimefunItem implements Placeable {
         state = ItemState.ENABLED;
 
         Slimefun.getRegistry().getEnabledSlimefunItems().add(this);
+        Slimefun.getRegistry().getDisabledSlimefunItemsToSet().remove(this);
     }
 
     /**
@@ -481,6 +483,7 @@ public class SlimefunItem implements Placeable {
         state = ItemState.DISABLED;
 
         Slimefun.getRegistry().getEnabledSlimefunItems().remove(this);
+        Slimefun.getRegistry().getDisabledSlimefunItemsToSet().add(this);
     }
 
     /**
@@ -511,6 +514,7 @@ public class SlimefunItem implements Placeable {
 
         // Add it to the list of enabled items
         Slimefun.getRegistry().getEnabledSlimefunItems().add(this);
+        Slimefun.getRegistry().getDisabledSlimefunItemsToSet().remove(this);
 
         // Load our Item Handlers
         loadItemHandlers();

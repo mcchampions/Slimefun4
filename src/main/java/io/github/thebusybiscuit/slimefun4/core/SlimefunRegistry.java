@@ -37,6 +37,7 @@ public final class SlimefunRegistry {
     private final Map<String, SlimefunItem> slimefunIds = new HashMap<>();
     private final List<SlimefunItem> slimefunItems = new ArrayList<>();
     private final List<SlimefunItem> enabledItems = new ArrayList<>();
+    private final Set<SlimefunItem> disableItems = new HashSet<>();
 
     private final List<ItemGroup> categories = new ArrayList<>();
     private final List<MultiBlock> multiblocks = new LinkedList<>();
@@ -86,7 +87,7 @@ public final class SlimefunRegistry {
      *
      * @return {@link List} containing every enabled {@link ItemGroup}
      */
-    
+
     public List<ItemGroup> getAllItemGroups() {
         return categories;
     }
@@ -101,6 +102,20 @@ public final class SlimefunRegistry {
     }
 
     /**
+     * This {@link List} contains every <strong>enabled</strong> {@link SlimefunItem}.
+     *
+     * @return A {@link List} containing every enabled {@link SlimefunItem}
+     */
+
+    public List<SlimefunItem> getEnabledSlimefunItems() {
+        return enabledItems;
+    }
+
+    public Set<SlimefunItem> getDisabledSlimefunItemsToSet() {
+        return disableItems;
+    }
+    
+    /**
      * This {@link List} contains every disabled {@link SlimefunItem}.
      *
      * @return A {@link List} containing every disabled{@link SlimefunItem}
@@ -113,23 +128,13 @@ public final class SlimefunRegistry {
     }
 
     /**
-     * This {@link List} contains every <strong>enabled</strong> {@link SlimefunItem}.
-     *
-     * @return A {@link List} containing every enabled {@link SlimefunItem}
-     */
-    
-    public List<SlimefunItem> getEnabledSlimefunItems() {
-        return enabledItems;
-    }
-
-    /**
      * This method returns a {@link Set} containing the {@link UUID} of every
      * {@link Player} who is currently unlocking a {@link Research}.
      *
      * @return A {@link Set} holding the {@link UUID} from every {@link Player}
      *         who is currently unlocking a {@link Research}
      */
-    
+
     public Set<UUID> getCurrentlyResearchingPlayers() {
         return researchingPlayers;
     }
@@ -139,7 +144,7 @@ public final class SlimefunRegistry {
      *
      * @return A {@link List} containing every enabled {@link MultiBlock}
      */
-    
+
     public List<MultiBlock> getMultiBlocks() {
         return multiblocks;
     }
@@ -157,7 +162,7 @@ public final class SlimefunRegistry {
      *
      * @return The corresponding {@link SlimefunGuideImplementation}
      */
-    
+
     public SlimefunGuideImplementation getSlimefunGuide(SlimefunGuideMode mode) {
         SlimefunGuideImplementation guide = guides.get(mode);
 
@@ -174,32 +179,32 @@ public final class SlimefunRegistry {
      *
      * @return A {@link Set} of bartering drops
      */
-    
+
     public Set<ItemStack> getBarteringDrops() {
         return barterDrops;
     }
 
-    
+
     public Set<SlimefunItem> getRadioactiveItems() {
         return radioactive;
     }
 
-    
+
     public Set<String> getTickerBlocks() {
         return tickers;
     }
 
-    
+
     public Map<String, SlimefunItem> getSlimefunItemIds() {
         return slimefunIds;
     }
 
-    
+
     public Map<String, BlockMenuPreset> getMenuPresets() {
         return blockMenuPresets;
     }
 
-    
+
     public Map<UUID, PlayerProfile> getPlayerProfiles() {
         return profiles;
     }
@@ -212,17 +217,17 @@ public final class SlimefunRegistry {
         return geoResources;
     }
 
-    
+
     public NamespacedKey getSoulboundDataKey() {
         return soulboundKey;
     }
 
-    
+
     public NamespacedKey getItemChargeDataKey() {
         return itemChargeKey;
     }
 
-    
+
     public NamespacedKey getGuideDataKey() {
         return guideKey;
     }

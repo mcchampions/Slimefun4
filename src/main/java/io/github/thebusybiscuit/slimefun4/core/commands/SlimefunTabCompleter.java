@@ -3,14 +3,11 @@ package io.github.thebusybiscuit.slimefun4.core.commands;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -26,23 +23,23 @@ class SlimefunTabCompleter implements TabCompleter {
         this.command = command;
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length == 1) {
-            return createReturnList(command.getSubCommandNames(), args[0]);
+            return createReturnList(command.getSubCommandNamesToSet(), args[0]);
         } else if (args.length == 2) {
             if (args[0].equalsIgnoreCase("banitem")) {
                 return createReturnList(getSlimefunItems(), args[1]);
             } else if (args[0].equalsIgnoreCase("unbanitem")) {
-                List<String> list = Slimefun.getRegistry().getDisabledSlimefunItems().stream()
+                Set<String> set = Slimefun.getRegistry().getDisabledSlimefunItemsToSet().stream()
                         .map(SlimefunItem::getId)
-                        .collect(Collectors.toList());
-                return createReturnList(list, args[1]);
+                        .collect(Collectors.toSet());
+                return createReturnList(set, args[1]);
             } else if (args[0].equalsIgnoreCase("cleardata")) {
-                List<String> list = new ArrayList<>(
-                        Bukkit.getWorlds().stream().map(WorldInfo::getName).toList());
-                list.add("*");
-                return createReturnList(list, args[1]);
+                Set<String> set = Bukkit.getWorlds().stream().map(WorldInfo::getName).collect(Collectors.toSet());
+                set.add("*");
+                return createReturnList(set, args[1]);
             }
             return null;
         } else if (args.length == 3) {
@@ -61,7 +58,7 @@ class SlimefunTabCompleter implements TabCompleter {
 
                 return createReturnList(suggestions, args[2]);
             } else if (args[0].equalsIgnoreCase("cleardata")) {
-                return createReturnList(List.of("block", "oil", "*"), args[2]);
+                return createReturnList(Arrays.asList("block", "oil", "*"), args[2]);
             } else {
                 // Returning null will make it fallback to the default arguments (all online players)
                 return null;
@@ -74,28 +71,11 @@ class SlimefunTabCompleter implements TabCompleter {
         }
     }
 
-    /***
-     * Returns a sublist from a given list containing items that start with the given string if string is not empty
-     *
-     * @param list
-     *            The list to process
-     * @param string
-     *            The typed string
-     * @return Sublist if string is not empty
-     */
-    private List<String> createReturnList(List<String> list, String string) {
-        if (string.isEmpty()) {
-            if (list.size() >= MAX_SUGGESTIONS) {
-                return list.subList(0, MAX_SUGGESTIONS);
-            } else {
-                return list;
-            }
-        }
-
+    private List<String> createReturnList(Set<String> set, String string) {
         String input = string.toLowerCase(Locale.ROOT);
         List<String> returnList = new LinkedList<>();
 
-        for (String item : list) {
+        for (String item : set) {
             if (item.toLowerCase(Locale.ROOT).contains(input)) {
                 returnList.add(item);
 
@@ -110,15 +90,30 @@ class SlimefunTabCompleter implements TabCompleter {
         return returnList;
     }
 
-    
-    private List<String> getSlimefunItems() {
-        List<SlimefunItem> items = Slimefun.getRegistry().getEnabledSlimefunItems();
-        List<String> list = new ArrayList<>(items.size());
+    private List<String> createReturnList(List<String> list, String string) {
+        String input = string.toLowerCase(Locale.ROOT);
+        List<String> returnList = new LinkedList<>();
 
-        for (SlimefunItem item : items) {
-            list.add(item.getId());
+        for (String item : list) {
+            if (item.toLowerCase(Locale.ROOT).contains(input)) {
+                returnList.add(item);
+            } else if (item.equalsIgnoreCase(input)) {
+                return Collections.emptyList();
+            }
         }
 
-        return list;
+        return returnList;
+    }
+
+
+    private Set<String> getSlimefunItems() {
+        List<SlimefunItem> items = Slimefun.getRegistry().getEnabledSlimefunItems();
+        Set<String> set = new HashSet<>(items.size());
+
+        for (SlimefunItem item : items) {
+            set.add(item.getId());
+        }
+
+        return set;
     }
 }
