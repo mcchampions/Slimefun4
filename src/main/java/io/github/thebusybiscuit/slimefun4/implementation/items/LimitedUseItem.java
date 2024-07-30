@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items;
 
 import io.github.bakedlibs.dough.common.ChatColors;
+import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -142,14 +143,13 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
 
     @Override
     public boolean canStack(ItemMeta itemMetaOne, ItemMeta itemMetaTwo) {
-        if (Slimefun.getItemDataService().getItemData(itemMetaOne) != Slimefun.getItemDataService().getItemData(itemMetaTwo)) {
+        if (!Slimefun.getItemDataService().getItemData(itemMetaOne).equals(Slimefun.getItemDataService().getItemData(itemMetaTwo))) {
             return false;
         }
+
         NamespacedKey key = getStorageKey();
-        PersistentDataContainer pdc1 = itemMetaOne.getPersistentDataContainer();
-        int usesLeft1 = pdc1.getOrDefault(key, PersistentDataType.INTEGER, getMaxUseCount());
-        PersistentDataContainer pdc2 = itemMetaTwo.getPersistentDataContainer();
-        int usesLeft2 = pdc2.getOrDefault(key, PersistentDataType.INTEGER, getMaxUseCount());
+        int usesLeft1 = PersistentDataAPI.getInt(itemMetaOne, key);
+        int usesLeft2 = PersistentDataAPI.getInt(itemMetaTwo, key);
         return usesLeft1 == usesLeft2;
     }
 }
