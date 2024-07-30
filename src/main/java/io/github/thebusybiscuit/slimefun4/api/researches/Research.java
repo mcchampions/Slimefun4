@@ -149,7 +149,7 @@ public class Research implements Keyed {
      * @return The unlocalized, decolorized name for this {@link Research}
      */
     public String getUnlocalizedName() {
-        return TextUtils.toPlainText(TextUtils.fromText(name));
+       return name;
     }
 
     /**
