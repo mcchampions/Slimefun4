@@ -22,7 +22,6 @@ import lombok.Getter;
 import lombok.Setter;
 import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;

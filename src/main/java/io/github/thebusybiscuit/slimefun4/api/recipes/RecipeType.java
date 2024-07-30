@@ -20,7 +20,6 @@ import java.util.function.BiConsumer;
 import javax.annotation.Nullable;
 
 import me.qscbm.slimefun4.utils.TextUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

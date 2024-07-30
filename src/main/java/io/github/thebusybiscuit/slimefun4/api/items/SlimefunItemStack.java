@@ -12,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import lombok.Getter;
 import me.qscbm.slimefun4.utils.TextUtils;
 import net.kyori.adventure.text.Component;
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.configuration.serialization.SerializableAs;
