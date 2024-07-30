@@ -920,4 +920,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         return instance.chatCatcher;
     }
 
+    public static BukkitTask runAsync(Runnable runnable) {
+        return instance.getServer().getScheduler().runTask(instance,runnable);
+    }
 }

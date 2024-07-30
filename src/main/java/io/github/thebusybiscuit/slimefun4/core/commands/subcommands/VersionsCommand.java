@@ -67,12 +67,7 @@ class VersionsCommand extends SubCommand {
     @Override
     public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.versions") || sender instanceof ConsoleCommandSender) {
-            /*
-             * After all these years... Spigot still displays as "CraftBukkit".
-             * so we will just fix this inconsistency for them :)
-             */
-
-            Slimefun.instance().getServer().getScheduler().runTaskAsynchronously(Slimefun.instance(), () -> {
+            Slimefun.runAsync(() -> {
 
                 Collection<Plugin> addons = Slimefun.getInstalledAddons();
 
