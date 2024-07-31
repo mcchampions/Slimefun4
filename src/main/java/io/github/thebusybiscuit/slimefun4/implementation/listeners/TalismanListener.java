@@ -20,18 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.AbstractArrow;
-import org.bukkit.entity.AbstractHorse;
-import org.bukkit.entity.Allay;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.ChestedHorse;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Ravager;
-import org.bukkit.entity.Steerable;
-import org.bukkit.entity.Trident;
+import org.bukkit.entity.*;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -168,7 +157,7 @@ public class TalismanListener implements Listener {
         /*
          * Return because allay is so cute, DO NOT KILL THEM.
          */
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19) && entity instanceof Allay) {
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19) && entity.getType() == EntityType.ALLAY) {
             return;
         }
 

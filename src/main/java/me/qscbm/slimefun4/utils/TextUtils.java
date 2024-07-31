@@ -5,9 +5,17 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
+import java.util.regex.Pattern;
+
 public class TextUtils {
+    private static final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)" + String.valueOf('§') + "[0-9A-FK-ORX]");
+
     public static String toPlainText(Component component) {
         return PlainTextComponentSerializer.plainText().serialize(component);
+    }
+
+    public static String toPlainText(String text) {
+        return STRIP_COLOR_PATTERN.matcher(text).replaceAll("");
     }
 
     public static String toLegacyText(Component component) {
@@ -15,6 +23,6 @@ public class TextUtils {
     }
 
     public static TextComponent fromText(String text) {
-       return LegacyComponentSerializer.legacyAmpersand().deserialize(text);
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(text);
     }
 }
