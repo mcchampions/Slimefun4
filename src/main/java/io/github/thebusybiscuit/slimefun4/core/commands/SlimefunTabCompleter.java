@@ -53,7 +53,7 @@ class SlimefunTabCompleter implements TabCompleter {
                 suggestions.add("reset");
 
                 for (Research research : researches) {
-                    suggestions.add(research.getName());
+                    suggestions.add(research.getNormalName());
                 }
 
                 return createReturnList(suggestions, args[2]);

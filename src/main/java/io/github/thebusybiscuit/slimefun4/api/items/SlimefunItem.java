@@ -825,8 +825,7 @@ public class SlimefunItem implements Placeable {
     }
 
     public final String getItemNormalName() {
-        Component c = itemStackTemplate.displayName();
-        return TextUtils.toPlainText(c);
+        return TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName());
     }
 
     /**

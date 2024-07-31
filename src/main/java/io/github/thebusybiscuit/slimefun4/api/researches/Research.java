@@ -134,13 +134,16 @@ public class Research implements Keyed {
      * @return The localized Name of this {@link Research}.
      */
     public String getName(Player p) {
-        String localized = Slimefun.getLocalization().getResearchName(p, key);
-        return localized != null ? localized : name;
+        return getName();
     }
 
     public String getName() {
         String localized = Slimefun.getLocalization().getResearchName(null, key);
         return localized != null ? localized : name;
+    }
+
+    public String getNormalName() {
+        return TextUtils.toPlainText(getName());
     }
 
     /**
