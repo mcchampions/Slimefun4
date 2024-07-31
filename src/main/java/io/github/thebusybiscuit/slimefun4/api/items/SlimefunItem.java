@@ -501,17 +501,12 @@ public class SlimefunItem implements Placeable {
             itemGroup.register(addon);
         }
 
-        // Send out deprecation warnings for any classes or interfaces
-        checkForDeprecations(getClass());
-
         // Check for an illegal stack size
         if (itemStackTemplate.getAmount() != 1) {
-            warn("This item has an illegal stack size: "
+            warn("无效物品数量: "
                     + itemStackTemplate.getAmount()
-                    + ". An Item size of 1 is recommended. Please inform the author(s) of "
-                    + addon.getName()
-                    + " to fix this. Crafting Results with amounts of higher should be handled"
-                    + " via the recipeOutput parameter!");
+                    + "  "
+                    + addon.getName());
 
         }
 
@@ -535,12 +530,6 @@ public class SlimefunItem implements Placeable {
             // Check if the validation caused an exception.
             if (exception.isPresent()) {
                 throw exception.get();
-            } else {
-                /*
-                 * Make developers or at least Server admins aware that an Item
-                 * is using a deprecated ItemHandler
-                 */
-                checkForDeprecations(handler.getClass());
             }
 
             /*
@@ -587,41 +576,6 @@ public class SlimefunItem implements Placeable {
 
         if (conflictingItem != null) {
             throw new IdConflictException(this, conflictingItem);
-        }
-    }
-
-    /**
-     * This method checks recursively for all {@link Class} parents to look for any {@link Deprecated}
-     * elements.
-     * <p>
-     * If a {@link Deprecated} element was found, a warning message will be printed.
-     *
-     * @param c The {@link Class} from which to start this operation.
-     */
-    private void checkForDeprecations(@Nullable Class<?> c) {
-        /*
-         * We do not wanna throw an Exception here since this could also mean that.
-         * We have reached the end of the Class hierarchy
-         */
-        if (c != null) {
-            // Check if this Class is deprecated
-            if (c.isAnnotationPresent(Deprecated.class)) {
-                warn("The inherited Class \""
-                     + c.getName()
-                     + "\" has been deprecated. Check the documentation for more details!");
-            }
-
-            for (Class<?> parent : c.getInterfaces()) {
-                // Check if this Interface is deprecated
-                if (parent.isAnnotationPresent(Deprecated.class)) {
-                    warn("The implemented Interface \""
-                         + parent.getName()
-                         + "\" has been deprecated. Check the documentation for more details!");
-                }
-            }
-
-            // Recursively lookup the super class
-            checkForDeprecations(c.getSuperclass());
         }
     }
 
@@ -957,11 +911,6 @@ public class SlimefunItem implements Placeable {
     public void warn(String message) {
         String msg = this + ": " + message;
         addon.getLogger().log(Level.WARNING, msg);
-
-        if (addon.getBugTrackerURL() != null) {
-            // We can prompt the server operator to report it to the addon's bug tracker
-            addon.getLogger().log(Level.WARNING, "You can report this warning here: {0}", addon.getBugTrackerURL());
-        }
     }
 
     /**
@@ -975,11 +924,6 @@ public class SlimefunItem implements Placeable {
         addon.getLogger().log(Level.SEVERE, "Item \"{0}\" from {1} v{2} has caused an Error!", new Object[]{
                 id, addon.getName(), addon.getPluginVersion()
         });
-
-        if (addon.getBugTrackerURL() != null) {
-            // We can prompt the server operator to report it to the addon's bug tracker
-            addon.getLogger().log(Level.SEVERE, "You can report it here: {0}", addon.getBugTrackerURL());
-        }
 
         addon.getLogger().log(Level.SEVERE, message, throwable);
     }

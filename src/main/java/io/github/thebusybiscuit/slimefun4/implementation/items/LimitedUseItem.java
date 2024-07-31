@@ -80,10 +80,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
 
     @Override
     public void register(SlimefunAddon addon) {
-        if (getMaxUseCount() < 1) {
-            warn("The use count has not been configured correctly. It needs to be at least 1. The Item was"
-                    + " disabled.");
-        } else {
+        if (getMaxUseCount() >= 1) {
             super.register(addon);
         }
     }
