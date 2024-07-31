@@ -268,7 +268,7 @@ public class RecipeType implements Keyed {
     }
 
     private static void registerMobDrop(ItemStack[] recipe, ItemStack output) {
-        String mob = TextUtils.toPlainText(recipe[4].getItemMeta().displayName())
+        String mob = TextUtils.toPlainText(recipe[4].getItemMeta().getDisplayName())
                 .toUpperCase(Locale.ROOT)
                 .replace(' ', '_');
         EntityType entity = EntityType.valueOf(mob);
