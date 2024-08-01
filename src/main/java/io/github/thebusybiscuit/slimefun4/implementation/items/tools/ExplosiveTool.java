@@ -58,17 +58,17 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
     public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             Player p = e.getPlayer();
-
             Block b = e.getBlock();
+
+            SlimefunItem sfItem = StorageCacheUtils.getSfItem(b.getLocation());
+            if (sfItem == null || sfItem.useVanillaBlockBreaking()) {
+                drops.addAll(b.getDrops(tool));
+            }
             if (!p.isSneaking()) {
                 b.getWorld().createExplosion(b.getLocation(), 0);
                 SoundEffect.EXPLOSIVE_TOOL_EXPLODE_SOUND.playAt(b);
 
                 List<Block> blocks = findBlocks(b);
-
-                if (!StorageCacheUtils.hasBlock(b.getLocation())) {
-                    blocks.add(b);
-                }
 
                 breakBlocks(e, p, tool, b, blocks, drops);
             }
@@ -183,7 +183,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
                      * 若为叶子则尝试获取该处的 SlimefunItem，若能获取得到则此处应为异域花园植物，将叶子处直接设置为 AIR 并移除该处 Slimefun 方块数据。
                      */
                     if (Bukkit.getPluginManager().isPluginEnabled("ExoticGarden")
-                            && block.getType().equals(Material.PLAYER_HEAD)) {
+                        && block.getType().equals(Material.PLAYER_HEAD)) {
                         Location leavesLocation = blockLocation.clone();
                         leavesLocation.setY(leavesLocation.getY() - 1);
 
