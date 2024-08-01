@@ -2,6 +2,8 @@ package me.qscbm.slimefun4.utils;
 
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.utils.compatibillty.HighVersionEventsConstructor;
+import me.qscbm.slimefun4.utils.compatibillty.VersionEventsConstructor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.block.BlockExplodeEvent;

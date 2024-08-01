@@ -1,4 +1,4 @@
-package me.qscbm.slimefun4.utils;
+package me.qscbm.slimefun4.utils.compatibillty;
 
 import io.github.bakedlibs.dough.reflection.ReflectionUtils;
 import org.bukkit.block.Block;

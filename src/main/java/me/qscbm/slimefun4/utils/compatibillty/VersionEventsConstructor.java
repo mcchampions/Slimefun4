@@ -1,4 +1,4 @@
-package me.qscbm.slimefun4.utils;
+package me.qscbm.slimefun4.utils.compatibillty;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
