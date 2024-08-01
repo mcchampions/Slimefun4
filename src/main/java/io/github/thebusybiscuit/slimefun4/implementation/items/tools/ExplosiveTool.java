@@ -26,11 +26,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.qscbm.slimefun4.utils.VersionEventsUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Tag;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -61,7 +57,8 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
             Block b = e.getBlock();
 
             SlimefunItem sfItem = StorageCacheUtils.getSfItem(b.getLocation());
-            if (sfItem == null || sfItem.useVanillaBlockBreaking()) {
+            if (e.getPlayer().getGameMode() == GameMode.CREATIVE &&
+                (sfItem == null || sfItem.useVanillaBlockBreaking())) {
                 drops.addAll(b.getDrops(tool));
             }
             if (!p.isSneaking()) {
