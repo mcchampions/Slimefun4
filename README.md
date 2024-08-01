@@ -9,6 +9,7 @@
 - 优化部分代码
 - 移除了1.16与1.17的支持
 - 新增物品类型：可加速的机器(消耗电的机器，如充电台那些，简介中带有可加速即可)
+- 移除了对原生Spigot服务端的支持，仅支持Paper及其下游服务端
 ## 兼容性测试(目前只测试能否正常启动)
 
 不过我没有删除太多东西(应该只删了贡献者和检查更新那些，运行中理论不会有问题)
@@ -39,6 +40,7 @@
 - [x] | 至尊研究院
 - [x] | 末地科技
 
-另外，插件还使用了 [textures.minecraft.net](https://www.minecraft.net/en-us) 以获取协作者的 Minecraft 皮肤。
+~~另外，插件还使用了 [textures.minecraft.net](https://www.minecraft.net/en-us) 以获取协作者的 Minecraft 皮肤~~。
+
 请注意：Slimefun 与 `Mojang Studios` 或 Minecraft 无关。
 本项目是一个民间fork, 与简中汉化组与Slimefun官版无关.
