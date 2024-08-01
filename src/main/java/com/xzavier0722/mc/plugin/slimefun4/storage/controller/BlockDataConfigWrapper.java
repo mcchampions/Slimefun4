@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.Nullable;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.configuration.file.FileConfiguration;
 
 @Deprecated
@@ -28,13 +27,13 @@ public class BlockDataConfigWrapper extends Config {
         return blockData.getData(path);
     }
 
-    
+
     @Override
     public Set<String> getKeys() {
         return new HashSet<>(blockData.getAllData().keySet());
     }
 
-    
+
     @Override
     public Set<String> getKeys(String path) {
         return getKeys();
@@ -63,7 +62,7 @@ public class BlockDataConfigWrapper extends Config {
     @Override
     public void setDefaultValue(String path, @Nullable Object value) {
         if (!(value instanceof String str)) {
-            throw new NotImplementedException();
+            throw new RuntimeException();
         }
         if (getString(path) == null) {
             blockData.setData(path, str);
@@ -73,7 +72,7 @@ public class BlockDataConfigWrapper extends Config {
     @Override
     public void setValue(String path, Object value) {
         if (!(value instanceof String str)) {
-            throw new NotImplementedException();
+            throw new RuntimeException();
         }
         blockData.setData(path, str);
     }

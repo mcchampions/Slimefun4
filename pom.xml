@@ -47,14 +47,8 @@
             <url>https://jitpack.io</url>
         </repository>
         <repository>
-            <!-- Spigot-API -->
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
-        </repository>
-        <repository>
-            <!-- PaperLib -->
-            <id>paper-repo</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
             <!-- WorldEdit -->
@@ -130,18 +124,6 @@
                         <relocation>
                             <pattern>io.github.bakedlibs.dough</pattern>
                             <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.dough</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>io.papermc.lib</pattern>
-                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.paperlib</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>kong.unirest</pattern>
-                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.unirest</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>org.apache.commons.lang</pattern>
-                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.commons.lang</shadedPattern>
                         </relocation>
                     </relocations>
 
@@ -234,26 +216,6 @@
             <version>9df17dff66</version>
         </dependency>
         <dependency>
-            <groupId>io.papermc</groupId>
-            <artifactId>paperlib</artifactId>
-            <version>1.0.8</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.konghq</groupId>
-            <artifactId>unirest-java</artifactId>
-            <version>3.14.5</version>
-            <scope>compile</scope>
-
-            <exclusions>
-                <exclusion>
-                    <!-- No need to shade Gson, Spigot does that already -->
-                    <groupId>com.google.code.gson</groupId>
-                    <artifactId>gson</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>5.1.0</version>
@@ -298,7 +260,7 @@
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
             <artifactId>mcMMO</artifactId>
-            <version>2.1.225</version>
+            <version>2.1.230</version>
             <scope>provided</scope>
 
             <exclusions>
@@ -390,14 +352,6 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <!-- TODO: Remove this dependency -->
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-            <scope>compile</scope>
         </dependency>
         <!-- Slimefun Compatibility Lib -->
         <dependency>
