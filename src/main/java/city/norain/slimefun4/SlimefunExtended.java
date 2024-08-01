@@ -35,7 +35,7 @@ public final class SlimefunExtended {
         }
     }
 
-    public static void register(Slimefun sf) {
+    public static void init(Slimefun sf) {
         EnvironmentChecker.scheduleSlimeGlueCheck(sf);
 
         checkDebug();

@@ -20,7 +20,7 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
     private final Constructor<BlockExplodeEvent> blockExplodeEventConstructor;
     private Enum<?> destroyEnum = null;
 
-    HighVersionEventsConstructor() {
+    public HighVersionEventsConstructor() {
         Class<Enum<?>> explosionResultClass;
         try {
             explosionResultClass = (Class<Enum<?>>) Class.forName("org.bukkit.ExplosionResult");

@@ -251,6 +251,10 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
         // All Slimefun Listeners
         logger.log(Level.INFO, "正在注册监听器...");
+
+        // Inject downstream extra staff
+        SlimefunExtended.init(this);
+
         registerListeners();
 
         // Initiating various Stuff and all items with a slight delay (0ms after the Server finished
@@ -564,9 +568,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         new PiglinListener(this);
         new SmithingTableListener(this);
         new JoinListener(this);
-
-        // Inject downstream extra staff
-        SlimefunExtended.register(this);
 
         // Item-specific Listeners
         new CoolerListener(this, (Cooler) SlimefunItems.COOLER.getItem());
