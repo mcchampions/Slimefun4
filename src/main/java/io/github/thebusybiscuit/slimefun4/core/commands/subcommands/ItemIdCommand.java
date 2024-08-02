@@ -5,16 +5,18 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.hover.content.Text;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 class ItemIdCommand extends SubCommand {
+    HoverEvent<Component> hoverEvent = HoverEvent.showText(Component.text("点击复制到剪切板"));
+
+    Component msg = Component.text("该物品的ID为: ");
     protected ItemIdCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "id", false);
     }
@@ -27,15 +29,12 @@ class ItemIdCommand extends SubCommand {
                 if (item.getType() != Material.AIR) {
                     var sfItem = SlimefunItem.getByItem(item);
                     if (sfItem != null) {
-                        var sfId = sfItem.getId();
-                        var msg = new TextComponent("该物品的ID为: ");
-                        var idMsg = new TextComponent(sfId);
-                        idMsg.setUnderlined(true);
-                        idMsg.setItalic(true);
-                        idMsg.setColor(ChatColor.GRAY);
-                        idMsg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("点击复制到剪贴板")));
-                        idMsg.setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, sfId));
-                        sender.spigot().sendMessage(msg, idMsg);
+                        String sfId = sfItem.getId();
+                        Component idMsg = Component.text(sfId)
+                                        .color(NamedTextColor.GRAY);
+                        
+                        idMsg = idMsg.clickEvent(ClickEvent.copyToClipboard(sfId));
+                        sender.sendMessage(msg.append(idMsg));
                     } else {
                         Slimefun.getLocalization().sendMessage(sender, "messages.invalid-item-in-hand", true);
                     }
