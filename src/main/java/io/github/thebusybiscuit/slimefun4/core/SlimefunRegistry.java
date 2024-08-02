@@ -122,10 +122,7 @@ public final class SlimefunRegistry {
      * @return A {@link List} containing every disabled{@link SlimefunItem}
      */
     public List<SlimefunItem> getDisabledSlimefunItems() {
-        List<SlimefunItem> allItems = new ArrayList<>(getAllSlimefunItems());
-        List<SlimefunItem> enabledItems = getEnabledSlimefunItems();
-        allItems.removeAll(enabledItems);
-        return allItems;
+        return disableItems.stream().toList();
     }
 
     /**

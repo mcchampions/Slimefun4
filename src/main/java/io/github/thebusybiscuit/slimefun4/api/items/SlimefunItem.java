@@ -25,7 +25,6 @@ import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.qscbm.slimefun4.tasks.BaseTickerTask;
 import me.qscbm.slimefun4.utils.TextUtils;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
