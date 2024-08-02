@@ -32,7 +32,7 @@ class ItemIdCommand extends SubCommand {
                         String sfId = sfItem.getId();
                         Component idMsg = Component.text(sfId)
                                         .color(NamedTextColor.GRAY);
-                        
+
                         idMsg = idMsg.clickEvent(ClickEvent.copyToClipboard(sfId));
                         sender.sendMessage(msg.append(idMsg));
                     } else {
