@@ -20,7 +20,6 @@ public class VersionUtils {
     private static final int MINECRAFT_PATCH_VERSION;
     private static final int MINECRAFT_PRE_RELEASE_VERSION;
     private static final int MINECRAFT_RELEASE_CANDIDATE_VERSION;
-    private static Method GET_TOP_INVENTORY = null;
     static {
         Matcher matcher = VERSION_PATTERN.matcher(BUKKIT_VERSION);
         int version = 0;
@@ -31,11 +30,7 @@ public class VersionUtils {
             MatchResult matchResult = matcher.toMatchResult();
             try {
                 version = Integer.parseInt(matchResult.group(2), 10);
-                GET_TOP_INVENTORY =
-                        Class.forName("org.bukkit.inventory.InventoryView").getMethod("getTopInventory");
-                GET_TOP_INVENTORY.setAccessible(true);
-            } catch (Exception ignored) {
-            }
+            } catch (Exception ignored) {}
             if (matchResult.groupCount() >= 3) {
                 try {
                     patchVersion = Integer.parseInt(matchResult.group(3), 10);
@@ -58,22 +53,6 @@ public class VersionUtils {
         MINECRAFT_PATCH_VERSION = patchVersion;
         MINECRAFT_PRE_RELEASE_VERSION = preReleaseVersion;
         MINECRAFT_RELEASE_CANDIDATE_VERSION = releaseCandidateVersion;
-    }
-
-    public static Inventory getTopInventory(InventoryEvent event) {
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
-            return event.getView().getTopInventory();
-        } else {
-            if (GET_TOP_INVENTORY == null) {
-                throw new IllegalStateException("Unable to get top inventory: missing method");
-            }
-
-            try {
-                return (Inventory) GET_TOP_INVENTORY.invoke(event.getView());
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     public static String getBukkitVersion() {
