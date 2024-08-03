@@ -13,7 +13,7 @@ public class VersionedItemFlag {
     static {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
 
-        HIDE_ADDITIONAL_TOOLTIP = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
+        HIDE_ADDITIONAL_TOOLTIP = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
                 ? ItemFlag.HIDE_POTION_EFFECTS
                 : getKey("HIDE_ADDITIONAL_TOOLTIP");
     }

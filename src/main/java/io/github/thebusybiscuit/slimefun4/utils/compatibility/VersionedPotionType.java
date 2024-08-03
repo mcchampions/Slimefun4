@@ -17,15 +17,15 @@ public class VersionedPotionType {
     static {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
 
-        LEAPING = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.JUMP : getKey("LEAPING");
+        LEAPING = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.JUMP : getKey("LEAPING");
 
-        SWIFTNESS = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.SPEED : getKey("SWIFTNESS");
+        SWIFTNESS = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.SPEED : getKey("SWIFTNESS");
 
-        HEALING = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.INSTANT_HEAL : getKey("HEALING");
+        HEALING = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.INSTANT_HEAL : getKey("HEALING");
 
-        HARMING = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.INSTANT_DAMAGE : getKey("HARMING");
+        HARMING = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.INSTANT_DAMAGE : getKey("HARMING");
 
-        REGENERATION = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.REGEN : getKey("REGENERATION");
+        REGENERATION = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.REGEN : getKey("REGENERATION");
     }
 
     @Nullable private static PotionType getKey(String key) {

@@ -21,31 +21,31 @@ public class VersionedEnchantment {
 
         // DIG_SPEED is renamed to EFFICIENCY in 1.20.5
         EFFICIENCY =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Enchantment.DIG_SPEED : getKey("EFFICIENCY");
+                !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Enchantment.DIG_SPEED : getKey("EFFICIENCY");
 
         // DURABILITY is renamed to UNBREAKING in 1.20.5
         UNBREAKING =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Enchantment.DURABILITY : getKey("UNBREAKING");
+                !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Enchantment.DURABILITY : getKey("UNBREAKING");
 
         // PROTECTION_ENVIRONMENTAL is renamed to PROTECTION in 1.20.5
-        PROTECTION = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
+        PROTECTION = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
                 ? Enchantment.PROTECTION_ENVIRONMENTAL
                 : getKey("PROTECTION");
 
         // DAMAGE_ALL is renamed to SHARPNESS in 1.20.5
-        SHARPNESS = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Enchantment.DAMAGE_ALL : getKey("SHARPNESS");
+        SHARPNESS = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Enchantment.DAMAGE_ALL : getKey("SHARPNESS");
 
         // LUCK is renamed to LUCK_OF_THE_SEA in 1.20.5
         LUCK_OF_THE_SEA =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Enchantment.LUCK : getKey("LUCK_OF_THE_SEA");
+                !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Enchantment.LUCK : getKey("LUCK_OF_THE_SEA");
 
         // WATER_WORKER is renamed to AQUA_AFFINITY in 1.20.5
-        AQUA_AFFINITY = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
+        AQUA_AFFINITY = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
                 ? Enchantment.WATER_WORKER
                 : getKey("AQUA_AFFINITY");
 
         // LOOT_BONUS_BLOCKS is renamed to FORTUNE in 1.20.5
-        FORTUNE = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
+        FORTUNE = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
                 ? Enchantment.LOOT_BONUS_BLOCKS
                 : getKey("FORTUNE");
     }

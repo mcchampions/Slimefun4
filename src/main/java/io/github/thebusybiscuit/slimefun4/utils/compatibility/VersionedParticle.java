@@ -21,32 +21,32 @@ public class VersionedParticle {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
 
         // REDSTONE is renamed to DUST in 1.20.5
-        DUST = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.REDSTONE : getKey("DUST");
+        DUST = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.REDSTONE : getKey("DUST");
 
         // SMOKE_NORMAL is renamed to SMOKE in 1.20.5
-        SMOKE = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.SMOKE_NORMAL : getKey("SMOKE");
+        SMOKE = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.SMOKE_NORMAL : getKey("SMOKE");
 
         // VILLAGER_HAPPY is renamed to HAPPY_VILLAGER in 1.20.5
-        HAPPY_VILLAGER = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
+        HAPPY_VILLAGER = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
                 ? Particle.VILLAGER_HAPPY
                 : getKey("HAPPY_VILLAGER");
 
         // CRIT_MAGIC is renamed to ENCHANTED_HIT in 1.20.5
         ENCHANTED_HIT =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.CRIT_MAGIC : getKey("ENCHANTED_HIT");
+                !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.CRIT_MAGIC : getKey("ENCHANTED_HIT");
 
         // EXPLOSION_LARGE is renamed to EXPLOSION in 1.20.5
         EXPLOSION =
-                version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.EXPLOSION_LARGE : getKey("EXPLOSION");
+                !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.EXPLOSION_LARGE : getKey("EXPLOSION");
 
         // SPELL_WITCH is renamed to WITCH in 1.20.5
-        WITCH = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.SPELL_WITCH : getKey("WITCH");
+        WITCH = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.SPELL_WITCH : getKey("WITCH");
 
         // FIREWORKS_SPARK is renamed to FIREWORK in 1.20.5
-        FIREWORK = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.FIREWORKS_SPARK : getKey("FIREWORK");
+        FIREWORK = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.FIREWORKS_SPARK : getKey("FIREWORK");
 
         // ENCHANTMENT_TABLE is renamed to ENCHANT in 1.20.5
-        ENCHANT = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.ENCHANTMENT_TABLE : getKey("ENCHANT");
+        ENCHANT = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.ENCHANTMENT_TABLE : getKey("ENCHANT");
     }
 
     @Nullable private static Particle getKey(String key) {
