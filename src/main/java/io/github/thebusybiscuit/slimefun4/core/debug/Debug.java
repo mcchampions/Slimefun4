@@ -66,7 +66,7 @@ public final class Debug {
      *            The variables to replace, use "{}" in the message and have it replaced with a specified thing
      */
     public static void log(String test, String msg, Object... vars) {}
-    
+
     /**
      * Set the current test case for this server.
      * This will enable debug logging for this specific case which can be helpful by Slimefun or addon developers.
