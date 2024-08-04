@@ -20,10 +20,7 @@ public class VersionedEvent {
     public BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> affectedBlock, float yield) {
         return VersionEventsUtils.newBlockExplodeEvent(block, affectedBlock, yield);
     }
-
-    /**
-     * See <a href="https://www.spigotmc.org/threads/inventoryview-changed-to-interface-backwards-compatibility.651754/">...</a>
-     */
+    
     public Inventory getTopInventory(InventoryEvent event) {
         return event.getView().getTopInventory();
     }
