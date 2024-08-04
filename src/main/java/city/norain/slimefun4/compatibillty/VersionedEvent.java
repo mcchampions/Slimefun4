@@ -16,7 +16,6 @@ public class VersionedEvent {
     public void init() {
 
     }
-
     public BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> affectedBlock, float yield) {
         return VersionEventsUtils.newBlockExplodeEvent(block, affectedBlock, yield);
     }
