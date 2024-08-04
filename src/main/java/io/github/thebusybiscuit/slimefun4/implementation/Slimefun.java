@@ -158,7 +158,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
         if (initialized) {
             getLogger().log(Level.WARNING, "不支持热重载, 请重启服务器");
-            getLogger().log(Level.WARNING, "如果要重新加载变动的配置文件, 请使用 /sf reload");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }

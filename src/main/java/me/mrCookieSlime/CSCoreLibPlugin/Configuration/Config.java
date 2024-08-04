@@ -186,7 +186,5 @@ public class Config {
     /**
      * Reloads the Configuration File
      */
-    public void reload() {
-        this.config = YamlConfiguration.loadConfiguration(this.file);
-    }
+    public void reload() {}
 }
