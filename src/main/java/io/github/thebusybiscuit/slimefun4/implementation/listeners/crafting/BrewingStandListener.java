@@ -31,7 +31,7 @@ public class BrewingStandListener implements SlimefunCraftingListener {
     @EventHandler(ignoreCancelled = true)
     public void onPreBrew(InventoryClickEvent e) {
         Inventory clickedInventory = e.getClickedInventory();
-        Inventory topInventory = VersionEventsUtils.getTopInventory(e);
+        Inventory topInventory = e.getView().getTopInventory();
 
         if (clickedInventory != null
                 && topInventory.getType() == InventoryType.BREWING

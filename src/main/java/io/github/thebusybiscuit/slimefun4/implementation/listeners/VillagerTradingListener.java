@@ -30,8 +30,8 @@ public class VillagerTradingListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onPreTrade(InventoryClickEvent e) {
-        Inventory clickedInventory = VersionEventsUtils.getClickedInventory(e);
-        Inventory topInventory = VersionEventsUtils.getTopInventory(e);
+        Inventory clickedInventory = e.getClickedInventory();
+        Inventory topInventory = e.getView().getTopInventory();
 
         if (clickedInventory != null && topInventory.getType() == InventoryType.MERCHANT) {
             if (e.getAction() == InventoryAction.HOTBAR_SWAP) {
