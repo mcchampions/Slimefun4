@@ -22,21 +22,9 @@ import java.util.List;
  * 如果上游更新相关的工具类会迁移保证适配附属
  */
 public class VersionEventsUtils {
-    private static final Method GET_TOP_INVENTORY;
-    private static final Method GET_CLICKED_INVENTORY;
     public static VersionEventsConstructor versionEventsConstructor;
 
     static {
-        try {
-            GET_TOP_INVENTORY =
-                    Class.forName("org.bukkit.inventory.InventoryView").getMethod("getTopInventory");
-            GET_CLICKED_INVENTORY = Class.forName("org.bukkit.event.inventory.InventoryClickEvent")
-                    .getMethod("getClickedInventory");
-            GET_CLICKED_INVENTORY.setAccessible(true);
-            GET_TOP_INVENTORY.setAccessible(true);
-        } catch (NoSuchMethodException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
         if (Slimefun.getMinecraftVersion()
                 .isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
             versionEventsConstructor = new HighVersionEventsConstructor();
@@ -54,6 +42,8 @@ public class VersionEventsUtils {
     }
 
     public static Inventory getTopInventory(InventoryEvent event) {
+        /*
+        我使用1.20.4编译, 无需理会
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
             return event.getView().getTopInventory();
         } else {
@@ -67,9 +57,13 @@ public class VersionEventsUtils {
                 throw new RuntimeException(e);
             }
         }
+         */
+        return event.getView().getTopInventory();
     }
 
     public static Inventory getClickedInventory(InventoryClickEvent event) {
+        /*
+        我使用1.20.4编译, 无需理会
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
             return event.getClickedInventory();
         } else {
@@ -83,5 +77,7 @@ public class VersionEventsUtils {
                 throw new RuntimeException(e);
             }
         }
+         */
+        return event.getClickedInventory();
     }
 }
