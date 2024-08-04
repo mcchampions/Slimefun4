@@ -47,7 +47,7 @@ class SlimefunTabCompleter implements TabCompleter {
                 return createReturnList(getSlimefunItems(), args[2]);
             } else if (args[0].equalsIgnoreCase("research")) {
                 List<Research> researches = Slimefun.getRegistry().getResearches();
-                List<String> suggestions = new LinkedList<>();
+                Set<String> suggestions = new HashSet<>();
 
                 suggestions.add("all");
                 suggestions.add("reset");

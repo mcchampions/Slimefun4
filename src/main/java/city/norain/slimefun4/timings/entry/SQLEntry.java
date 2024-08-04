@@ -1,5 +1,6 @@
 package city.norain.slimefun4.timings.entry;
 
+@Deprecated
 public class SQLEntry implements TimingEntry {
     private final String sql;
 
