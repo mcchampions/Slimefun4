@@ -6,13 +6,7 @@ import lombok.Getter;
 
 public final class SlimefunExtended {
     @Getter
-    private static boolean databaseDebugMode = false;
-
-    private static void checkDebug() {
-        if ("true".equals(System.getProperty("slimefun.database.debug"))) {
-            databaseDebugMode = true;
-        }
-    }
+    private final static boolean databaseDebugMode = false;
 
     public static boolean checkEnvironment(Slimefun sf) {
         if (EnvironmentChecker.checkHybridServer()) {
@@ -38,14 +32,10 @@ public final class SlimefunExtended {
     public static void init(Slimefun sf) {
         EnvironmentChecker.scheduleSlimeGlueCheck(sf);
 
-        checkDebug();
-
         VaultIntegration.register(sf);
     }
 
     public static void shutdown() {
         VaultIntegration.cleanup();
-
-        databaseDebugMode = false;
     }
 }
