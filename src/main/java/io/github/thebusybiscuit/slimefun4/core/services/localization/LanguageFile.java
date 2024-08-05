@@ -24,13 +24,13 @@ public enum LanguageFile {
         this.fileName = fileName;
     }
 
-    
+
     public String getFilePath(Language language) {
         return getFilePath(language.getId());
     }
 
-    
+
     public String getFilePath(String languageId) {
-        return "/languages/" + languageId + '/' + fileName;
+        return "/languages/zh-CN/" + fileName;
     }
 }

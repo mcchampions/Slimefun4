@@ -20,7 +20,7 @@ public class VersionedEvent {
     public BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> affectedBlock, float yield) {
         return VersionEventsUtils.newBlockExplodeEvent(block, affectedBlock, yield);
     }
-    
+
     public Inventory getTopInventory(InventoryEvent event) {
         return event.getView().getTopInventory();
     }

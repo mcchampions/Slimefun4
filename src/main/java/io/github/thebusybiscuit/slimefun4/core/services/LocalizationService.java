@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.core.services;
 
 import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.LanguageFile;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.LanguagePreset;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
@@ -35,7 +36,7 @@ public class LocalizationService extends SlimefunLocalization {
     private static final String LANGUAGE_PATH = "language";
 
     // All supported languages are stored in this LinkedHashMap, it is Linked so we keep the order
-    private final Map<String, Language> languages = new LinkedHashMap<>();
+    private final Map<String, Language> languages = new HashMap<>();
     private final boolean translationsEnabled;
     private final Slimefun plugin;
     private final String prefix;
@@ -54,7 +55,7 @@ public class LocalizationService extends SlimefunLocalization {
             translationsEnabled = Slimefun.getCfg().getBoolean("options.enable-translations");
 
             defaultLanguage = new Language(
-                    serverDefaultLanguage, "11b3188fd44902f72602bd7c2141f5a70673a411adb3d81862c69e536166b");
+                    LanguagePreset.CHINESE_CHINA.getLanguageCode(), LanguagePreset.CHINESE_CHINA.getTexture());
             defaultLanguage.setFile(LanguageFile.MESSAGES, getConfig().getConfiguration());
             loadEmbeddedLanguages();
             initLanguage();
@@ -135,7 +136,7 @@ public class LocalizationService extends SlimefunLocalization {
         getConfig().setValue(LANGUAGE_PATH, "zh-CN");
 
         // Loading in the defaults from our resources folder
-        String path = "/languages/" + "zh-CN" + "/messages.yml";
+        String path = "/languages/zh-CN/messages.yml";
 
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(plugin.getClass().getResourceAsStream(path), StandardCharsets.UTF_8))) {

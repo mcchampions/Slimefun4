@@ -44,7 +44,6 @@ public class LanguageService {
         loadResources();
         long end = System.currentTimeMillis();
         Slimefun.logger().log(Level.INFO,"加载完毕,耗时:" + (end - start) + "ms");
-        language.files.clear();
     }
 
     public void loadResearches() {

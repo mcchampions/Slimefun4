@@ -123,7 +123,7 @@ public abstract class SlimefunLocalization implements Keyed {
         if (fallback != null) {
             return fallback;
         } else {
-            throw new IllegalStateException("Fallback file: \"" + file.getFilePath("en") + "\" is missing!");
+            throw new IllegalStateException("Fallback file: \"" + file.getFilePath("zh-CN") + "\" is missing!");
         }
     }
 

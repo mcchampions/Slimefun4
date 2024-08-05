@@ -68,16 +68,10 @@ public abstract class SubCommand {
      * If the given {@link CommandSender} is a {@link Player}, the description
      * will be localized with the currently selected {@link Language} of that {@link Player}.
      *
-     * @param sender
-     *            The {@link CommandSender} who requested the description
-     *
+     * @param sender The {@link CommandSender} who requested the description
      * @return A possibly localized description of this {@link SubCommand}
      */
     public String getDescription(CommandSender sender) {
-        if (sender instanceof Player player) {
-            return Slimefun.getLocalization().getMessage(player, getDescription());
-        } else {
-            return Slimefun.getLocalization().getMessage(getDescription());
-        }
+        return Slimefun.getLocalization().getMessage(getDescription());
     }
 }
