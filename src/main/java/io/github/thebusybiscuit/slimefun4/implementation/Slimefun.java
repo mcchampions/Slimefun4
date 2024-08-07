@@ -48,7 +48,6 @@ import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.services.LanguageService;
 import me.qscbm.slimefun4.tasks.CargoTickerTask;
-import me.qscbm.slimefun4.utils.VersionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -61,7 +60,6 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.util.*;
@@ -157,10 +155,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         }
         initialized = true;
 
-        if (isVersionUnsupported()) {
-            // We wanna ensure that the Server uses a compatible version of Minecraft.
-            getServer().getPluginManager().disablePlugin(this);
-        } else if (!SlimefunExtended.checkEnvironment(this)) {
+        if (!SlimefunExtended.checkEnvironment(this)) {
             // We want to ensure that the Server uses a compatible server software and have no
             // incompatible plugins
             getServer().getPluginManager().disablePlugin(this);
@@ -412,55 +407,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      */
     public static Logger logger() {
         return instance.getLogger();
-    }
-
-    /**
-     * This method checks for the {@link MinecraftVersion} of the {@link Server}.
-     * If the version is unsupported, a warning will be printed to the console.
-     *
-     * @return Whether the {@link MinecraftVersion} is unsupported
-     */
-    private boolean isVersionUnsupported() {
-        try {
-            // Now check the actual Version of Minecraft
-            int version = VersionUtils.getMinecraftVersion();
-            int patchVersion = VersionUtils.getMinecraftPatchVersion();
-
-            if (version > 0) {
-                // Check all supported versions of Minecraft
-                for (MinecraftVersion supportedVersion : MinecraftVersion.values()) {
-                    if (supportedVersion.isMinecraftVersion(version, patchVersion)) {
-                        minecraftVersion = supportedVersion;
-                        return false;
-                    }
-                }
-
-                // Looks like you are using an unsupported Minecraft Version
-                StartupWarnings.invalidMinecraftVersion(
-                        getLogger(), version, getDescription().getVersion());
-                return true;
-            } else {
-                getLogger().log(Level.WARNING, "我们无法识别你正在使用的 Minecraft 版本 (1.{0}.x)", version);
-
-                /*
-                 * If we are unsure about it, we will assume "supported".
-                 * They could be using a non-Bukkit based Software which still
-                 * might support Bukkit-based plugins.
-                 * Use at your own risk in this case.
-                 */
-                return false;
-            }
-        } catch (RuntimeException | LinkageError x) {
-            getLogger()
-                    .log(
-                            Level.SEVERE,
-                            x,
-                            () -> "错误: 无法识别服务器 Minecraft 版本, Slimefun v"
-                                  + getDescription().getVersion());
-
-            // We assume "unsupported" if something went wrong.
-            return true;
-        }
     }
 
     /**
