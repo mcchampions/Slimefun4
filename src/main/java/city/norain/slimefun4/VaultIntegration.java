@@ -31,16 +31,10 @@ public class VaultIntegration {
     }
 
     public static double getPlayerBalance(OfflinePlayer p) {
-        Objects.requireNonNull(p, "Player cannot be null!");
-        Objects.requireNonNull(econ, "Vault instance cannot be null!");
-
         return econ.getBalance(p);
     }
 
     public static void withdrawPlayer(OfflinePlayer p, double withdraw) {
-        Objects.requireNonNull(p, "Player cannot be null!");
-        Objects.requireNonNull(econ, "Vault instance cannot be null!");
-
         econ.withdrawPlayer(p, withdraw);
     }
 
