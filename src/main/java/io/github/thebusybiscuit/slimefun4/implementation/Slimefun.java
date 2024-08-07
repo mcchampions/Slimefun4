@@ -183,13 +183,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private void onPluginStart() {
         long timestamp = System.nanoTime();
         Logger logger = getLogger();
-
-        // Check if CS-CoreLib is installed (it is no longer needed)
-        if (getServer().getPluginManager().getPlugin("CS-CoreLib") != null) {
-            StartupWarnings.discourageCSCoreLib(logger);
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
+        
 
         // Encourage newer Java version
         if (NumberUtils.getJavaVersion() < RECOMMENDED_JAVA_VERSION) {
