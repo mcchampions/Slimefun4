@@ -48,6 +48,7 @@ import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.services.LanguageService;
 import me.qscbm.slimefun4.tasks.CargoTickerTask;
+import me.qscbm.slimefun4.utils.VersionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -154,7 +155,19 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
             return;
         }
         initialized = true;
+        int version = VersionUtils.getMinecraftVersion();
+        int patchVersion = VersionUtils.getMinecraftPatchVersion();
 
+        if (version > 0) {
+            // Check all supported versions of Minecraft
+            for (MinecraftVersion supportedVersion : MinecraftVersion.values()) {
+                if (supportedVersion.isMinecraftVersion(version, patchVersion)) {
+                    minecraftVersion = supportedVersion;
+                    break;
+                }
+                throw new RuntimeException();
+            }
+        }
         if (!SlimefunExtended.checkEnvironment(this)) {
             // We want to ensure that the Server uses a compatible server software and have no
             // incompatible plugins
