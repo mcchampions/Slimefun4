@@ -396,8 +396,20 @@ public final class SlimefunUtils {
             }
         }
 
-        if (itemMeta instanceof PotionMeta && sfitemMeta instanceof PotionMeta) {
-            return ((PotionMeta) itemMeta).getBasePotionType().equals(((PotionMeta) sfitemMeta).getBasePotionType());
+        if (itemMeta instanceof PotionMeta potionMeta && sfitemMeta instanceof PotionMeta sfPotionMeta) {
+            if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)) {
+                if (!potionMeta.hasBasePotionType() && !sfPotionMeta.hasBasePotionType()) {
+                    return true;
+                }
+
+                return potionMeta.hasBasePotionType()
+                        && sfPotionMeta.hasBasePotionType()
+                        && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+            } else if (Slimefun.getMinecraftVersion().isMinecraftVersion(20, 2)) {
+                return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+            } else {
+                return potionMeta.getBasePotionData().equals(sfPotionMeta.getBasePotionData());
+            }
         }
         return true;
     }
