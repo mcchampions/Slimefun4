@@ -4,6 +4,7 @@ import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
+import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunItemSpawnEvent;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
@@ -398,12 +399,14 @@ public final class SlimefunUtils {
 
         if (itemMeta instanceof PotionMeta potionMeta && sfitemMeta instanceof PotionMeta sfPotionMeta) {
             if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)) {
-                if (!potionMeta.hasBasePotionType() && !sfPotionMeta.hasBasePotionType()) {
+                //noinspection ConstantValue
+                if (potionMeta.getBasePotionType() == null && sfPotionMeta.getBasePotionType() == null) {
                     return true;
                 }
 
-                return potionMeta.hasBasePotionType()
-                        && sfPotionMeta.hasBasePotionType()
+                //noinspection ConstantValue
+                return potionMeta.getBasePotionType() != null
+                        && sfPotionMeta.getBasePotionType() != null
                         && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
             } else if (Slimefun.getMinecraftVersion().isMinecraftVersion(20, 2)) {
                 return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());

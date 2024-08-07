@@ -25,7 +25,7 @@ public class Config {
      */
     @Getter
     private final File file;
-    private FileConfiguration config;
+    private final FileConfiguration config;
 
     /**
      * Creates a new Config Object for the specified File

@@ -1,13 +1,7 @@
 package me.qscbm.slimefun4.utils;
 
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.Bukkit;
-import org.bukkit.event.inventory.InventoryEvent;
-import org.bukkit.inventory.Inventory;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;

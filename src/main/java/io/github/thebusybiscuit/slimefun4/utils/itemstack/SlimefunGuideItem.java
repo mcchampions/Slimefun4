@@ -23,7 +23,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @see SlimefunGuideImplementation
  */
 public class SlimefunGuideItem extends ItemStack {
-    public static List<Component> lore = new ArrayList<>();
+    public static final List<Component> lore = new ArrayList<>();
 
     static {
         lore.add(TextUtils.fromText("&e右键 &8\u21E8 &7浏览物品"));

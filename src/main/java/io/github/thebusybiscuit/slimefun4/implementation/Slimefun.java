@@ -61,6 +61,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.util.*;
@@ -894,7 +895,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @param delay    The delay for this task
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
-    public static @Nullable BukkitTask runSync(Runnable runnable, long delay) {
+    public static BukkitTask runSync(Runnable runnable, long delay) {
         return instance.getServer().getScheduler().runTaskLater(instance, runnable, delay);
     }
 

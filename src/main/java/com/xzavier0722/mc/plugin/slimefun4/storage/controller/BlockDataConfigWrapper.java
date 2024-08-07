@@ -28,13 +28,13 @@ public class BlockDataConfigWrapper extends Config {
         return blockData.getData(path);
     }
 
-    
+
     @Override
     public Set<String> getKeys() {
         return new HashSet<>(blockData.getAllData().keySet());
     }
 
-    
+
     @Override
     public Set<String> getKeys(String path) {
         return getKeys();
@@ -82,5 +82,7 @@ public class BlockDataConfigWrapper extends Config {
     public void save(File file) {}
 
     @Override
-    public void reload() {}
+    public void reload() {
+        super.reload();
+    }
 }

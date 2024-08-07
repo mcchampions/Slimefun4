@@ -2,8 +2,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import me.qscbm.slimefun4.utils.VersionEventsUtils;
-import me.qscbm.slimefun4.utils.VersionUtils;
 import org.bukkit.block.BrewingStand;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
