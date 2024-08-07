@@ -2,16 +2,15 @@ package city.norain.slimefun4;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 
 class EnvironmentChecker {
-    private static final List<String> UNSUPPORTED_PLUGINS = List.of(
-            "BedrockTechnology", "SlimefunFix", "SlimefunBugFixer", "Slimefunbookfix", "PlaceItemsOnGroundRebuilt");
-
     static boolean checkIncompatiblePlugins(Logger logger) {
-        List<String> plugins = UNSUPPORTED_PLUGINS.stream()
+        List<String> plugins = Set.of("BedrockTechnology", "SlimefunFix", "SlimefunBugFixer",
+                        "Slimefunbookfix", "PlaceItemsOnGroundRebuilt").stream()
                 .filter(name -> Bukkit.getServer().getPluginManager().isPluginEnabled(name))
                 .toList();
 
