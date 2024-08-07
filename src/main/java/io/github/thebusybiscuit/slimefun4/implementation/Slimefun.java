@@ -77,13 +77,6 @@ import java.util.stream.Collectors;
  */
 public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompatibleSlimefun {
     /**
-     * This is the Java version we recommend server owners to use.
-     * This does not necessarily mean that it's the minimum version
-     * required to run Slimefun.
-     */
-    private static final int RECOMMENDED_JAVA_VERSION = 17;
-
-    /**
      * Our static instance of {@link Slimefun}.
      * Make sure to clean this up in {@link #onDisable()}!
      */
@@ -183,12 +176,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private void onPluginStart() {
         long timestamp = System.nanoTime();
         Logger logger = getLogger();
-        
-
-        // Encourage newer Java version
-        if (NumberUtils.getJavaVersion() < RECOMMENDED_JAVA_VERSION) {
-            StartupWarnings.oldJavaVersion(logger, RECOMMENDED_JAVA_VERSION);
-        }
 
         // If the server has no "data-storage" folder, it's _probably_ a new install. So mark it for
         // metrics.

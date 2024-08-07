@@ -18,12 +18,6 @@ final class StartupWarnings {
 
     private StartupWarnings() {}
 
-    static void discourageCSCoreLib(Logger logger) {
-        logger.log(Level.SEVERE, BORDER);
-        logger.log(Level.SEVERE, PREFIX + "请卸载 CS-CoreLib。");
-        logger.log(Level.SEVERE, BORDER);
-    }
-
     static void invalidMinecraftVersion(Logger logger, int majorVersion, String slimefunVersion) {
         logger.log(Level.SEVERE, BORDER);
         logger.log(Level.SEVERE, PREFIX + "Slimefun 未被正确安装!");
