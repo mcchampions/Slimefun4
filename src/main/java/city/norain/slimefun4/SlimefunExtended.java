@@ -9,22 +9,21 @@ public final class SlimefunExtended {
     private final static boolean databaseDebugMode = false;
 
     public static boolean checkEnvironment(Slimefun sf) {
-        if (EnvironmentChecker.checkHybridServer()) {
-            sf.getLogger().log(Level.WARNING, "#######################################################");
-            sf.getLogger().log(Level.WARNING, "");
-            sf.getLogger().log(Level.WARNING, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            sf.getLogger().log(Level.WARNING, "检测到正在使用混合端, Slimefun 将会被禁用!");
-            sf.getLogger().log(Level.WARNING, "混合端已被多个用户报告有使用问题,");
-            sf.getLogger().log(Level.WARNING, "强制绕过检测将不受任何反馈支持.");
-            sf.getLogger().log(Level.WARNING, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            sf.getLogger().log(Level.WARNING, "");
-            sf.getLogger().log(Level.WARNING, "#######################################################");
-            return false;
-        }
-
         if (Slimefun.getConfigManager().isBypassEnvironmentCheck()) {
             return true;
         } else {
+            if (EnvironmentChecker.checkHybridServer()) {
+                sf.getLogger().log(Level.WARNING, "#######################################################");
+                sf.getLogger().log(Level.WARNING, "");
+                sf.getLogger().log(Level.WARNING, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                sf.getLogger().log(Level.WARNING, "检测到正在使用混合端, Slimefun 将会被禁用!");
+                sf.getLogger().log(Level.WARNING, "混合端已被多个用户报告有使用问题,");
+                sf.getLogger().log(Level.WARNING, "强制绕过检测将不受任何反馈支持.");
+                sf.getLogger().log(Level.WARNING, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                sf.getLogger().log(Level.WARNING, "");
+                sf.getLogger().log(Level.WARNING, "#######################################################");
+                return false;
+            }
             return !EnvironmentChecker.checkIncompatiblePlugins(sf.getLogger());
         }
     }
