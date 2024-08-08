@@ -3,6 +3,7 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+import io.github.bakedlibs.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.ExplosiveToolBreakBlocksEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunBlockBreakEvent;
@@ -19,6 +20,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -109,7 +111,7 @@ public class BlockListener implements Listener {
                 e.setCancelled(true);
             } else {
                 if (e.getBlock().getBlockData() instanceof Rotatable rotatable
-                        && !(rotatable.getRotation() == BlockFace.UP || rotatable.getRotation() == BlockFace.DOWN)) {
+                    && !(rotatable.getRotation() == BlockFace.UP || rotatable.getRotation() == BlockFace.DOWN)) {
                     BlockFace rotation = null;
 
                     if (sfItem instanceof NotCardinallyRotatable && sfItem instanceof NotDiagonallyRotatable) {
@@ -163,11 +165,11 @@ public class BlockListener implements Listener {
         var heldItem = e.getPlayer().getInventory().getItemInMainHand();
         var block = e.getBlock();
         var blockData = StorageCacheUtils.getBlock(block.getLocation());
+        var sfItem = SlimefunItem.getById(blockData.getSfId());
 
         // If there is a Slimefun Block here, call our BreakEvent and, if cancelled, cancel this event
         // and return
         if (blockData != null) {
-            var sfItem = SlimefunItem.getById(blockData.getSfId());
             SlimefunBlockBreakEvent breakEvent =
                     new SlimefunBlockBreakEvent(e.getPlayer(), heldItem, e.getBlock(), sfItem);
             Bukkit.getPluginManager().callEvent(breakEvent);
@@ -191,7 +193,7 @@ public class BlockListener implements Listener {
             checkForSensitiveBlockAbove(e.getPlayer(), e.getBlock(), heldItem);
 
             if (blockData == null || blockData.isPendingRemove()) {
-                dropItems(e, drops);
+                dropItems(e, heldItem, block, sfItem, drops);
                 return;
             }
 
@@ -210,7 +212,7 @@ public class BlockListener implements Listener {
                                 return;
                             }
                             e.setDropItems(true);
-                            dropItems(e, drops);
+                            dropItems(e, heldItem, block, sfItem, drops);
                         },
                         true);
                 return;
@@ -220,7 +222,7 @@ public class BlockListener implements Listener {
             if (e.isCancelled()) {
                 blockData.setPendingRemove(false);
             }
-            dropItems(e, drops);
+            dropItems(e, heldItem, block, sfItem, drops);
 
             // Checks for vanilla sensitive blocks everywhere
             // checkForSensitiveBlocks(e.getBlock(), 0, e.isDropItems());
@@ -255,13 +257,20 @@ public class BlockListener implements Listener {
         }
     }
 
-    private void dropItems(BlockBreakEvent e, List<ItemStack> drops) {
+    private void dropItems(
+            BlockBreakEvent e, ItemStack item, Block block, @Nullable SlimefunItem sfBlock, List<ItemStack> drops) {
         if (!drops.isEmpty()) {
             // Fixes #2560
             if (e.isDropItems()) {
                 // Disable normal block drops
                 e.setDropItems(false);
 
+                // Fixes #4051
+                if (sfBlock == null) {
+                    block.breakNaturally(item);
+                }
+
+                // The list only contains other drops, not those from the block itself, so we still need to handle those
                 for (ItemStack drop : drops) {
                     // Prevent null or air from being dropped
                     if (drop != null && drop.getType() != Material.AIR) {
@@ -304,7 +313,7 @@ public class BlockListener implements Listener {
                     sfItem.callItemHandler(
                             BlockBreakHandler.class, handler -> handler.onPlayerBreak(dummyEvent, item, drops));
                     controller.removeBlock(loc);
-                    dropItems(dummyEvent, drops);
+                    dropItems(dummyEvent, item, block, sfItem, drops);
                 } else {
                     blockData.setPendingRemove(true);
                     controller.loadBlockDataAsync(blockData, new IAsyncReadCallback<>() {
@@ -318,7 +327,7 @@ public class BlockListener implements Listener {
                             sfItem.callItemHandler(
                                     BlockBreakHandler.class, handler -> handler.onPlayerBreak(dummyEvent, item, drops));
                             controller.removeBlock(loc);
-                            dropItems(dummyEvent, drops);
+                            dropItems(dummyEvent, item, block, sfItem, drops);
                         }
                     });
                 }
@@ -367,12 +376,9 @@ public class BlockListener implements Listener {
      * This method checks if the {@link BlockData} would be
      * supported at the given {@link Block}.
      *
-     * @param blockData
-     *      The {@link BlockData} to check
-     * @param block
-     *      The {@link Block} the {@link BlockData} would be at
-     * @return
-     *      Whether the {@link BlockData} would be supported at the given {@link Block}
+     * @param blockData The {@link BlockData} to check
+     * @param block     The {@link Block} the {@link BlockData} would be at
+     * @return Whether the {@link BlockData} would be supported at the given {@link Block}
      */
     private boolean isSupported(BlockData blockData, Block block) {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
