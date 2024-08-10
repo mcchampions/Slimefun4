@@ -102,12 +102,6 @@ public final class SlimefunRegistry {
         return slimefunItems;
     }
 
-    /**
-     * This {@link List} contains every <strong>enabled</strong> {@link SlimefunItem}.
-     *
-     * @return A {@link List} containing every enabled {@link SlimefunItem}
-     */
-
     public List<SlimefunItem> getEnabledSlimefunItems() {
         return enabledItems;
     }

@@ -165,7 +165,7 @@ public class BlockListener implements Listener {
         var heldItem = e.getPlayer().getInventory().getItemInMainHand();
         var block = e.getBlock();
         var blockData = StorageCacheUtils.getBlock(block.getLocation());
-        var sfItem = SlimefunItem.getById(blockData.getSfId());
+        var sfItem = blockData == null ? null : SlimefunItem.getById(blockData.getSfId());
 
         // If there is a Slimefun Block here, call our BreakEvent and, if cancelled, cancel this event
         // and return
