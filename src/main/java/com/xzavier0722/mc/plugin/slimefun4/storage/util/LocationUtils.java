@@ -39,7 +39,7 @@ public class LocationUtils {
 
     public static Chunk toChunk(World w, String cKey) {
         var loc = cKey.split(";")[1].split(":");
-        return w.getChunkAt(Integer.parseInt(loc[0]), Integer.parseInt(loc[1]), false);
+        return w.getChunkAtAsync(Integer.parseInt(loc[0]), Integer.parseInt(loc[1]), false).join();
     }
 
     public static boolean isSameWorld(World w1, World w2) {
