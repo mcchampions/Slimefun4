@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
+import city.norain.slimefun4.SlimefunExtended;
 import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
 import io.github.bakedlibs.dough.skins.PlayerHead;
@@ -408,7 +409,7 @@ public final class SlimefunUtils {
                 return potionMeta.getBasePotionType() != null
                         && sfPotionMeta.getBasePotionType() != null
                         && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
-            } else if (Slimefun.getMinecraftVersion().isMinecraftVersion(20, 2)) {
+            } else if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
                 return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
             } else {
                 return potionMeta.getBasePotionData().equals(sfPotionMeta.getBasePotionData());
