@@ -165,8 +165,10 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                     minecraftVersion = supportedVersion;
                     break;
                 }
-                throw new RuntimeException();
             }
+        }
+        if (minecraftVersion == MinecraftVersion.UNKNOWN) {
+            throw new RuntimeException("不支持的版本" + version + "." + patchVersion);
         }
         if (!SlimefunExtended.checkEnvironment(this)) {
             // We want to ensure that the Server uses a compatible server software and have no
