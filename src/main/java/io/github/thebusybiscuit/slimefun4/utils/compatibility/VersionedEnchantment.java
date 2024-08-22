@@ -13,8 +13,8 @@ public class VersionedEnchantment {
     public static final Enchantment PROTECTION;
     public static final Enchantment SHARPNESS;
     public static final Enchantment LUCK_OF_THE_SEA;
-    public static final Enchantment.WATER_WORKER;
-    public static final Enchantment.LOOT_BONUS_BLOCKS;
+    public static final Enchantment AQUA_AFFINITY;
+    public static final Enchantment FORTUNE;
 
     static {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
@@ -29,7 +29,7 @@ public class VersionedEnchantment {
 
         // PROTECTION_ENVIRONMENTAL is renamed to PROTECTION in 1.20.5
         PROTECTION = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)
-                ? Enchantment.PROTECTION_ENVIRONMENTAL_ENVIRONMENTAL
+                ? Enchantment.PROTECTION_ENVIRONMENTAL
                 : getKey("PROTECTION");
 
         // DAMAGE_ALL is renamed to SHARPNESS in 1.20.5
