@@ -71,8 +71,9 @@ public abstract class ASpeedableContainer extends AContainer implements Speedabl
                 }
             }
         } else {
-            MachineRecipe next = findNextRecipe(inv).clone();
-            if (next != null) {
+            MachineRecipe recipe = findNextRecipe(inv);
+            if (recipe != null) {
+                MachineRecipe next = recipe.clone();
                 int speed = getIncreasedSpeed(data);
                 next.setTicks(next.getTicks() / speed);
                 currentOperation = new CraftingOperation(next);
