@@ -824,7 +824,7 @@ public class SlimefunItem implements Placeable {
     }
 
     public final String getItemNormalName() {
-        return TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName());
+        return TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ","_");
     }
 
     /**
