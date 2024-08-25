@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import me.qscbm.slimefun4.items.machines.Speedable;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Optional;
@@ -31,15 +32,16 @@ public class OverclockModule extends SimpleSlimefunItem<ItemUseHandler> {
                 SlimefunBlockData blockData = Slimefun.getDatabaseManager()
                         .getBlockDataController().getBlockData(block.getLocation());
                 SlimefunItem item = sfBlock.get();
-
+                Player player = e.getPlayer();
                 if (item instanceof Speedable machine) {
                     if (!machine.speedUp(blockData)) {
-                        e.getPlayer().sendMessage("超频倍率已达上限: " + machine.getSpeedLimit() + "x");
+                        player.sendMessage("超频倍率已达上限: " + machine.getSpeedLimit() + "x");
                     } else {
-                        e.getPlayer().sendMessage("超频机器成功, 目前倍率: " + machine.getIncreasedSpeed(blockData) + "x");
+                        player.sendMessage("超频机器成功, 目前倍率: " + machine.getIncreasedSpeed(blockData) + "x");
+                        e.getItem().setAmount(e.getItem().getAmount() - 1);
                     }
                 } else {
-                    e.getPlayer().sendMessage("该机器无法超频");
+                    player.sendMessage("该机器无法超频");
                 }
             }
         };

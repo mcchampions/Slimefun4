@@ -99,10 +99,9 @@ public class SlimefunItem implements Placeable {
     private ItemStack[] recipe;
     /**
      * -- SETTER --
-     *  Sets the
-     *  for this
+     * Sets the
+     * for this
      * .
-     *
      */
     @Setter
     @Getter
@@ -111,33 +110,30 @@ public class SlimefunItem implements Placeable {
 
     /**
      * -- GETTER --
-     *  This returns whether or not this
-     *  is allowed to be used in
-     *  an
+     * This returns whether or not this
+     * is allowed to be used in
+     * an
      * .
-     *
      */
     @Getter
     protected boolean enchantable = true;
     /**
      * -- GETTER --
-     *  This returns whether or not this
-     *  is allowed to be used in
-     *  an
+     * This returns whether or not this
+     * is allowed to be used in
+     * an
      * .
-     *
      */
     @Getter
     protected boolean disenchantable = true;
     protected boolean hidden = false;
     /**
      * -- GETTER --
-     *  This method returns whether or not this
-     *  is allowed to
-     *  be used in a Crafting Table.
-     *  Items of type
-     *  may be used in workbenches for example.
-     *
+     * This method returns whether or not this
+     * is allowed to
+     * be used in a Crafting Table.
+     * Items of type
+     * may be used in workbenches for example.
      */
     @Getter
     protected boolean useableInWorkbench = false;
@@ -150,25 +146,22 @@ public class SlimefunItem implements Placeable {
 
     /**
      * -- GETTER --
-     *  This returns whether or not we are scheduling a ticking task for this block.
-     *
+     * This returns whether or not we are scheduling a ticking task for this block.
      */
     @Getter
     private boolean ticking = false;
     @Getter
     private BlockTicker blockTicker;
 
+    private String normalItemName;
+
     /**
      * This creates a new {@link SlimefunItem} from the given arguments.
      *
-     * @param itemGroup
-     *            The {@link ItemGroup} this {@link SlimefunItem} belongs to
-     * @param item
-     *            The {@link SlimefunItemStack} that describes the visual features of our {@link SlimefunItem}
-     * @param recipeType
-     *            the {@link RecipeType} that determines how this {@link SlimefunItem} is crafted
-     * @param recipe
-     *            An Array representing the recipe of this {@link SlimefunItem}
+     * @param itemGroup  The {@link ItemGroup} this {@link SlimefunItem} belongs to
+     * @param item       The {@link SlimefunItemStack} that describes the visual features of our {@link SlimefunItem}
+     * @param recipeType the {@link RecipeType} that determines how this {@link SlimefunItem} is crafted
+     * @param recipe     An Array representing the recipe of this {@link SlimefunItem}
      */
     public SlimefunItem(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         this(itemGroup, item, recipeType, recipe, null);
@@ -177,16 +170,11 @@ public class SlimefunItem implements Placeable {
     /**
      * This creates a new {@link SlimefunItem} from the given arguments.
      *
-     * @param itemGroup
-     *            The {@link ItemGroup} this {@link SlimefunItem} belongs to
-     * @param item
-     *            The {@link SlimefunItemStack} that describes the visual features of our {@link SlimefunItem}
-     * @param recipeType
-     *            the {@link RecipeType} that determines how this {@link SlimefunItem} is crafted
-     * @param recipe
-     *            An Array representing the recipe of this {@link SlimefunItem}
-     * @param recipeOutput
-     *            The result of crafting this item
+     * @param itemGroup    The {@link ItemGroup} this {@link SlimefunItem} belongs to
+     * @param item         The {@link SlimefunItemStack} that describes the visual features of our {@link SlimefunItem}
+     * @param recipeType   the {@link RecipeType} that determines how this {@link SlimefunItem} is crafted
+     * @param recipe       An Array representing the recipe of this {@link SlimefunItem}
+     * @param recipeOutput The result of crafting this item
      */
     public SlimefunItem(
             ItemGroup itemGroup,
@@ -200,6 +188,7 @@ public class SlimefunItem implements Placeable {
         this.recipeType = recipeType;
         this.recipe = recipe;
         this.recipeOutput = recipeOutput;
+        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ","_");
     }
 
     // Previously deprecated constructor, now only for internal purposes
@@ -209,6 +198,7 @@ public class SlimefunItem implements Placeable {
         this.id = id;
         this.recipeType = recipeType;
         this.recipe = recipe;
+        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ","_");
     }
 
     /**
@@ -503,9 +493,9 @@ public class SlimefunItem implements Placeable {
         // Check for an illegal stack size
         if (itemStackTemplate.getAmount() != 1) {
             warn("无效物品数量: "
-                    + itemStackTemplate.getAmount()
-                    + "  "
-                    + addon.getName());
+                 + itemStackTemplate.getAmount()
+                 + "  "
+                 + addon.getName());
 
         }
 
@@ -824,7 +814,7 @@ public class SlimefunItem implements Placeable {
     }
 
     public final String getItemNormalName() {
-        return TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ","_");
+        return TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ", "_");
     }
 
     /**
