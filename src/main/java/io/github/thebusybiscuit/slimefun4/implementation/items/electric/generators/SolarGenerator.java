@@ -99,8 +99,7 @@ public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
             // Performance optimization for daytime-only solar generators
             if (!isDaytime && getNightEnergy() < 1) {
                 return 0;
-            } else if (!world.isChunkLoaded(l.getBlockX() >> 4, l.getBlockZ() >> 4)
-                    || l.getBlock().getLightFromSky() < 15) {
+            } else if (!world.isChunkLoaded(l.getBlockX() >> 4, l.getBlockZ() >> 4)) {
                 return 0;
             } else {
                 return isDaytime ? getDayEnergy() : getNightEnergy();
