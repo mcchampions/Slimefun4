@@ -71,8 +71,9 @@ public class WitherAssembler extends AbstractEntityAssembler<Wither> {
 
     @Override
     public Wither spawnEntity(Location l) {
-        //直接生成一个下界之星掉落物
-        l.getWorld().dropItem(l, new ItemStack(Material.NETHER_STAR));
+        if (l.getWorld() != null) {
+            l.getWorld().dropItem(l, new ItemStack(Material.NETHER_STAR));
+        }
         return null;
     }
 }
