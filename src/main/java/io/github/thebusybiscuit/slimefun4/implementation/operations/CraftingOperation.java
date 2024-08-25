@@ -32,7 +32,6 @@ public class CraftingOperation implements MachineOperation {
 
     @Override
     public void addProgress(int num) {
-        
         currentTicks += num;
     }
 
