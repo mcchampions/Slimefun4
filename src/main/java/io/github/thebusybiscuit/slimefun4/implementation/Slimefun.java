@@ -509,6 +509,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         new BeeWingsListener(this, (BeeWings) SlimefunItems.BEE_WINGS.getItem());
         new PiglinListener(this);
         new SmithingTableListener(this);
+        new VanillaCrafterListener(this);
         new JoinListener(this);
 
         // Item-specific Listeners

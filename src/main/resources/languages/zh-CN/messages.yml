@@ -303,6 +303,8 @@ workbench:
   not-enhanced: '&4你不能在普通的工作台上使用 Slimefun 物品'
 cauldron:
   no-discoloring: '&4你不能用炼药锅洗去 Slimefun 物品的颜色'
+crafter:
+  not-working: '&4你不能在合成机上用 Slimefun 物品合成'
 gps:
   deathpoint: '&4死亡点 &7%date%'
   status-online: '在线'
