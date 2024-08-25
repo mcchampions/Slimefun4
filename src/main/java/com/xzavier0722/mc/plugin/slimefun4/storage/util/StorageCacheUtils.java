@@ -46,8 +46,9 @@ public class StorageCacheUtils {
 
     public static void setData(Location loc, String key, String val) {
         var block = getBlock(loc);
-        Preconditions.checkNotNull(block);
-
+        if (block == null) {
+            return;
+        }
         block.setData(key, val);
     }
 
