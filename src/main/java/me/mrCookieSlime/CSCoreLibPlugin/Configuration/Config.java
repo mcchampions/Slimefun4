@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Set;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -61,6 +62,8 @@ public class Config {
         this.file = new File(path);
         this.config = YamlConfiguration.loadConfiguration(this.file);
     }
+
+    public Config() {}
 
     /**
      * Converts this Config Object into a plain FileConfiguration Object
