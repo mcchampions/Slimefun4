@@ -376,7 +376,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
 
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization()
                 .getMessage(p, "guide.search.inventory")
-                .replace("%item%", ChatUtils.crop(ChatColor.WHITE, input)));
+                + " &f" + input);
         String searchTerm = input.toLowerCase(Locale.ROOT);
 
         if (addToHistory) {
@@ -395,7 +395,6 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
             }
 
             if (!slimefunItem.isHidden()
-                    && isItemGroupAccessible(p, slimefunItem)
                     && isSearchFilterApplicable(slimefunItem, searchTerm)) {
                 ItemStack itemstack = new CustomItemStack(slimefunItem.getItem(), meta -> {
                     ItemGroup itemGroup = slimefunItem.getItemGroup();
@@ -429,14 +428,9 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         menu.open(p);
     }
 
-    private boolean isItemGroupAccessible(Player p, SlimefunItem slimefunItem) {
-        return Slimefun.getConfigManager().isShowHiddenItemGroupsInSearch()
-                || slimefunItem.getItemGroup().isAccessible(p);
-    }
-
     private boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm) {
         String itemName = slimefunItem.getItemNormalName();
-        return !itemName.isEmpty() && itemName.contains(searchTerm);
+        return itemName.contains(searchTerm);
     }
 
     @Override

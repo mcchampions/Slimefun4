@@ -51,7 +51,7 @@ guide:
     message: '&b今天要搜些什么?'
     name: '&7搜索...'
     tooltip: '&b单击搜索物品'
-    inventory: '正在搜索: %item%'
+    inventory: '正在搜索: '
   tooltips:
     open-itemgroup: '单击打开'
     versions-notice: '在反馈问题时这些很重要!'
