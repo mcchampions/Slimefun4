@@ -10,16 +10,7 @@ import lombok.Getter;
 
 public final class SlimefunExtended {
     @Getter
-    private static boolean databaseDebugMode = false;
-
-    @Getter
     private static MinecraftVersion minecraftVersion;
-
-    private static void checkDebug() {
-        if ("true".equals(System.getProperty("slimefun.database.debug"))) {
-            databaseDebugMode = true;
-        }
-    }
 
     public static boolean checkEnvironment(Slimefun sf) {
         try {
