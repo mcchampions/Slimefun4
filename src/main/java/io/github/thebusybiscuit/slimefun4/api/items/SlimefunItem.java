@@ -153,7 +153,7 @@ public class SlimefunItem implements Placeable {
     @Getter
     private BlockTicker blockTicker;
 
-    private String normalItemName;
+    private final String normalItemName;
 
     /**
      * This creates a new {@link SlimefunItem} from the given arguments.

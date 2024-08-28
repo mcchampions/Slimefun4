@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
-import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -80,12 +78,6 @@ abstract class AbstractItemNetwork extends Network {
         }
 
         connectorCache.remove(node);
-    }
-
-    private void handleWithdraw(DirtyChestMenu menu, List<ItemStackAndInteger> items, Location l) {
-        for (int slot : menu.getPreset().getSlotsAccessedByItemTransport(menu, ItemTransportFlow.WITHDRAW, null)) {
-            filter(menu.getItemInSlot(slot), items, l);
-        }
     }
 
     private void filter(@Nullable ItemStack stack, List<ItemStackAndInteger> items, Location node) {
