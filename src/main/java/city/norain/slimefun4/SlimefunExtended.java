@@ -23,9 +23,6 @@ public final class SlimefunExtended {
         if (Slimefun.getConfigManager().isBypassEnvironmentCheck()) {
             return true;
         } else {
-            if (EnvironmentChecker.checkHybridServer()) {
-                sf.getLogger().log(Level.WARNING, "检测到正在使用混合端, Slimefun 将会被禁用!");
-            }
             return !EnvironmentChecker.checkIncompatiblePlugins(sf.getLogger());
         }
     }

@@ -1,6 +1,5 @@
 package city.norain.slimefun4;
 
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
