@@ -246,12 +246,27 @@ public final class SlimefunUtils {
         return isItemSimilar(item, sfitem, checkLore, checkAmount, checkDistinctiveItem, true);
     }
 
-    public static boolean isSlimefunItemSimilar(SlimefunItemStack sfItem, ItemStack item) {
+    public static boolean isSlimefunItemSimilar(SlimefunItemStack sfItem, ItemStack item,boolean checkLore) {
         ItemStack tempStack = SlimefunItem.getByItem(item).getItem();
         if (tempStack == null) {
             return false;
         }
         SlimefunItemStack sfItemStack = (SlimefunItemStack) tempStack;
+        if (checkLore) {
+            List<String> lores1 = sfItem.getLore();
+            List<String> lores2 = item.getLore();
+            if (lores1 == null || lores2 == null) {
+                return false;
+            }
+            if (lores1.size() != lores2.size()) {
+                return false;
+            }
+            for (int i = 0;i<lores1.size();i++) {
+                if (!lores1.get(i).equals(lores2.get(i))) {
+                    return false;
+                }
+            }
+        }
         if (sfItem.getItemId().equals(sfItemStack.getItemId())) {
             if (sfItem instanceof DistinctiveItem && sfItemStack instanceof DistinctiveItem distinctiveItem) {
                 return distinctiveItem.canStack(sfItem.getItemMeta(), item.getItemMeta());
@@ -267,7 +282,7 @@ public final class SlimefunUtils {
         } else if (sfitem == null || item.getType() != sfitem.getType() || checkAmount && item.getAmount() < sfitem.getAmount()) {
             return false;
         } else if (checkDistinctiveItem && sfitem instanceof SlimefunItemStack stackOne && item instanceof SlimefunItemStack stackTwo) {
-            return isSlimefunItemSimilar(stackOne, stackTwo);
+            return isSlimefunItemSimilar(stackOne, stackTwo,checkLore);
         } else if (item.hasItemMeta()) {
             ItemMeta itemMeta = item.getItemMeta();
 

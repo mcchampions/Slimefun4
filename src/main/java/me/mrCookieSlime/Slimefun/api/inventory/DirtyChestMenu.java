@@ -203,7 +203,7 @@ public class DirtyChestMenu extends ChestMenu {
                 int maxStackSize =
                         Math.min(stack.getMaxStackSize(), toInventory().getMaxStackSize());
                 if (stack.getAmount() < maxStackSize) {
-                    if (!SlimefunUtils.isSlimefunItemSimilar((SlimefunItemStack) SlimefunItem.getByItem(item).getItem(), stack)) {
+                    if (!SlimefunUtils.isSlimefunItemSimilar((SlimefunItemStack) SlimefunItem.getByItem(item).getItem(), stack, true)) {
                         continue;
                     }
 
