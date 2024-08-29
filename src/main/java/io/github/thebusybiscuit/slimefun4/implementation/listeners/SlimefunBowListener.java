@@ -40,7 +40,7 @@ public class SlimefunBowListener implements Listener {
      *
      * @return A {@link HashMap} with all actively tracked {@link Arrow Arrows}
      */
-    
+
     public Map<UUID, SlimefunBow> getProjectileData() {
         return projectiles;
     }

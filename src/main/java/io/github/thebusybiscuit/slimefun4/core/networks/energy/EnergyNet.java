@@ -140,14 +140,14 @@ public class EnergyNet extends Network implements HologramOwner {
         AtomicLong timestamp = new AtomicLong(System.nanoTime());
 
         if (!regulator.equals(b.getLocation())) {
-            updateHologram(b, "&4检测到附近有其他调节器", blockData::isPendingRemove);
+            updateHologram(b, "§4检测到附近有其他调节器", blockData::isPendingRemove);
             return;
         }
 
         super.tick();
 
         if (connectorNodes.isEmpty() && terminusNodes.isEmpty()) {
-            updateHologram(b, "&4找不到能源网络", blockData::isPendingRemove);
+            updateHologram(b, "§4找不到能源网络", blockData::isPendingRemove);
         } else {
             int supply = tickAllGenerators(timestamp::getAndAdd) + tickAllCapacitors();
             int remainingEnergy = supply;
@@ -330,7 +330,7 @@ public class EnergyNet extends Network implements HologramOwner {
         if (demand > supply) {
             String netLoss = NumberUtils.getCompactDouble(demand - supply);
             updateHologram(
-                    data.getLocation().getBlock(), "&4&l- &c" + netLoss + " &7J &e\u26A1", data::isPendingRemove);
+                    data.getLocation().getBlock(), "§4&l- &c" + netLoss + " &7J &e\u26A1", data::isPendingRemove);
         } else {
             String netGain = NumberUtils.getCompactDouble(supply - demand);
             updateHologram(

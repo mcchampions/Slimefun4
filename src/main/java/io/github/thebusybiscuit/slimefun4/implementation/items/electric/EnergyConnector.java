@@ -47,7 +47,7 @@ public class EnergyConnector extends SimpleSlimefunItem<BlockUseHandler> impleme
             if (EnergyNet.getNetworkFromLocation(b.getLocation()) != null) {
                 p.sendMessage(ChatColors.color("&7连接状态: " + "&2\u2714"));
             } else {
-                p.sendMessage(ChatColors.color("&7连接状态: " + "&4\u2718"));
+                p.sendMessage(ChatColors.color("&7连接状态: " + "§4\u2718"));
             }
         };
     }

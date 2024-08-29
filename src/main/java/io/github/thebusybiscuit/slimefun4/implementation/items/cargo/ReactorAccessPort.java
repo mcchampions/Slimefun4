@@ -150,7 +150,7 @@ public class ReactorAccessPort extends SlimefunItem {
         preset.addItem(
                 7,
                 new CustomItemStack(
-                        SlimefunItems.REACTOR_COOLANT_CELL, "&b冷却剂", "", "&r这里可以放入冷却剂", "&4如果没有冷却剂, 你的反应堆", "&4将会爆炸"),
+                        SlimefunItems.REACTOR_COOLANT_CELL, "&b冷却剂", "", "&r这里可以放入冷却剂", "§4如果没有冷却剂, 你的反应堆", "§4将会爆炸"),
                 ChestMenuUtils.getEmptyClickHandler());
     }
 

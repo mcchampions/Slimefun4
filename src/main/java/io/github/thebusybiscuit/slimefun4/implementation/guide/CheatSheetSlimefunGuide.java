@@ -28,7 +28,7 @@ public class CheatSheetSlimefunGuide extends SurvivalSlimefunGuide {
     private final ItemStack item;
 
     public CheatSheetSlimefunGuide() {
-        item = new SlimefunGuideItem(this, "&cSlimefun 指南 &4(作弊模式)");
+        item = new SlimefunGuideItem(this, "&cSlimefun 指南 §4(作弊模式)");
     }
 
     /**

@@ -162,8 +162,8 @@ public class GPSNetwork {
                         SlimefunItems.GPS_CONTROL_PANEL,
                         "&7网络信息",
                         "",
-                        "&8\u21E8 &7状态: " + getStatusText(p, complexity),
-                        "&8\u21E8 &7复杂度: &f" + complexity));
+                        "§8\u21E8 &7状态: " + getStatusText(p, complexity),
+                        "§8\u21E8 &7复杂度: &f" + complexity));
         menu.addMenuClickHandler(4, ChestMenuUtils.getEmptyClickHandler());
 
         menu.addItem(
@@ -196,13 +196,13 @@ public class GPSNetwork {
                         new CustomItemStack(
                                 SlimefunItems.GPS_TRANSMITTER,
                                 "&bGPS 发射器",
-                                "&8\u21E8 &7世界: &f" + l.getWorld().getName(),
-                                "&8\u21E8 &7X: &f" + l.getX(),
-                                "&8\u21E8 &7Y: &f" + l.getY(),
-                                "&8\u21E8 &7Z: &f" + l.getZ(),
+                                "§8\u21E8 &7世界: &f" + l.getWorld().getName(),
+                                "§8\u21E8 &7X: &f" + l.getX(),
+                                "§8\u21E8 &7Y: &f" + l.getY(),
+                                "§8\u21E8 &7Z: &f" + l.getZ(),
                                 "",
-                                "&8\u21E8 &7信号强度: &f" + transmitter.getMultiplier(l.getBlockY()),
-                                "&8\u21E8 &7延迟: &f" + NumberUtils.roundDecimalNumber(1000D / l.getY()) + "ms"));
+                                "§8\u21E8 &7信号强度: &f" + transmitter.getMultiplier(l.getBlockY()),
+                                "§8\u21E8 &7延迟: &f" + NumberUtils.roundDecimalNumber(1000D / l.getY()) + "ms"));
                 menu.addMenuClickHandler(slot, ChestMenuUtils.getEmptyClickHandler());
 
                 index++;
@@ -243,7 +243,7 @@ public class GPSNetwork {
         if (complexity > 0) {
             return "&2&l" + Slimefun.getLocalization().getMessage(player, "gps.status-online");
         } else {
-            return "&4&l" + Slimefun.getLocalization().getMessage(player, "gps.status-offline");
+            return "§4&l" + Slimefun.getLocalization().getMessage(player, "gps.status-offline");
         }
     }
 
@@ -277,8 +277,8 @@ public class GPSNetwork {
                             SlimefunItems.GPS_CONTROL_PANEL,
                             "&7网络信息",
                             "",
-                            "&8\u21E8 &7状态: " + (complexity > 0 ? "&2&l在线" : "&4&l离线"),
-                            "&8\u21E8 &7复杂度: &f" + complexity));
+                            "§8\u21E8 &7状态: " + (complexity > 0 ? "&2&l在线" : "§4&l离线"),
+                            "§8\u21E8 &7复杂度: &f" + complexity));
             menu.addMenuClickHandler(4, ChestMenuUtils.getEmptyClickHandler());
 
             menu.addItem(
@@ -302,12 +302,12 @@ public class GPSNetwork {
                         new CustomItemStack(
                                 waypoint.getIcon(),
                                 waypoint.getName().replace("player:death ", ""),
-                                "&8\u21E8 &7世界: &f" + l.getWorld().getName(),
-                                "&8\u21E8 &7X: &f" + l.getX(),
-                                "&8\u21E8 &7Y: &f" + l.getY(),
-                                "&8\u21E8 &7Z: &f" + l.getZ(),
+                                "§8\u21E8 &7世界: &f" + l.getWorld().getName(),
+                                "§8\u21E8 &7X: &f" + l.getX(),
+                                "§8\u21E8 &7Y: &f" + l.getY(),
+                                "§8\u21E8 &7Z: &f" + l.getZ(),
                                 "",
-                                "&8\u21E8 &cClick to delete"));
+                                "§8\u21E8 &cClick to delete"));
                 menu.addMenuClickHandler(slot, (pl, s, item, action) -> {
                     profile.removeWaypoint(waypoint);
                     SoundEffect.GPS_NETWORK_OPEN_PANEL_SOUND.playFor(p);

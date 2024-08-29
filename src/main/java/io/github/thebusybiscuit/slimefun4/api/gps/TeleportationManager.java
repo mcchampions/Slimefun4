@@ -97,20 +97,20 @@ public final class TeleportationManager {
 
                     String[] lore = {
                         "",
-                        "&8\u21E8 &7"
+                        "§8\u21E8 &7"
                                 + Slimefun.getLocalization().getResourceString(p, "tooltips.world")
                                 + ": &f"
                                 + l.getWorld().getName(),
-                        "&8\u21E8 &7X: &f" + l.getX(),
-                        "&8\u21E8 &7Y: &f" + l.getY(),
-                        "&8\u21E8 &7Z: &f" + l.getZ(),
-                        "&8\u21E8 &7"
+                        "§8\u21E8 &7X: &f" + l.getX(),
+                        "§8\u21E8 &7Y: &f" + l.getY(),
+                        "§8\u21E8 &7Z: &f" + l.getZ(),
+                        "§8\u21E8 &7"
                                 + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.time")
                                 + ": &f"
                                 + time
                                 + "s",
                         "",
-                        "&8\u21E8 &c" + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.tooltip")
+                        "§8\u21E8 &c" + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.tooltip")
                     };
 
                     menu.addItem(

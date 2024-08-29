@@ -258,7 +258,7 @@ public abstract class Reactor extends AbstractEnergyProvider
 
         if (needsCooling()) {
             preset.addItem(
-                    7, new CustomItemStack(getCoolant(), "&b冷却剂", "", "&f在此处放入冷却剂", "&4没有了冷却剂, 你的反应堆", "&4将会瞬间爆炸"));
+                    7, new CustomItemStack(getCoolant(), "&b冷却剂", "", "&f在此处放入冷却剂", "§4没有了冷却剂, 你的反应堆", "§4将会瞬间爆炸"));
         } else {
             preset.addItem(7, new CustomItemStack(Material.BARRIER, "&b冷却剂", "", "&f在此处放入冷却剂"));
 

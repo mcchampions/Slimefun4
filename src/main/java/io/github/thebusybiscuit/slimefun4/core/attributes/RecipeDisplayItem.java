@@ -34,15 +34,15 @@ public interface RecipeDisplayItem extends ItemAttribute {
      *
      * @return The recipes to display in the {@link SlimefunGuide}
      */
-    
+
     List<ItemStack> getDisplayRecipes();
 
-    
+
     default String getLabelLocalPath() {
         return "guide.tooltips.recipes.machine";
     }
 
-    
+
     default String getRecipeSectionLabel(Player p) {
         return "&7\u21E9 " + Slimefun.getLocalization().getMessage(p, getLabelLocalPath()) + " \u21E9";
     }

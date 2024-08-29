@@ -121,7 +121,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
 
     public void tick(Block b, SlimefunBlockData blockData) {
         if (!regulator.equals(b.getLocation())) {
-            updateHologram(b, "&4发现附近有多个货运网络调节机", blockData::isPendingRemove);
+            updateHologram(b, "§4发现附近有多个货运网络调节机", blockData::isPendingRemove);
             return;
         }
 

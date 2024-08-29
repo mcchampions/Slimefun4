@@ -168,7 +168,7 @@ public class PerWorldSettingsService {
         config.save();
     }
 
-    
+
     private Set<String> loadWorldFromConfig(World world) {
         String name = world.getName();
         Optional<Set<String>> optional = disabledItems.get(world.getUID());
@@ -236,7 +236,7 @@ public class PerWorldSettingsService {
      *
      * @return The corresponding {@link Config}
      */
-    
+
     private Config getConfig(World world) {
         return new Config(plugin, "world-settings/" + world.getName() + ".yml");
     }

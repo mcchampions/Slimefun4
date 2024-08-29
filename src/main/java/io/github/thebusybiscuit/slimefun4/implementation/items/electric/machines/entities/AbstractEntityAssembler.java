@@ -152,7 +152,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         var blockData = StorageCacheUtils.getBlock(b.getLocation());
         String val;
         if (blockData == null || (val = blockData.getData(KEY_ENABLED)) == null || val.equals(String.valueOf(false))) {
-            menu.replaceExistingItem(22, new CustomItemStack(Material.GUNPOWDER, "&7是否可用: &4\u2718", "", "&e> 单击开启机器"));
+            menu.replaceExistingItem(22, new CustomItemStack(Material.GUNPOWDER, "&7是否可用: §4\u2718", "", "&e> 单击开启机器"));
             menu.addMenuClickHandler(22, (p, slot, item, action) -> {
                 StorageCacheUtils.setData(b.getLocation(), KEY_ENABLED, String.valueOf(true));
                 updateBlockInventory(menu, b);

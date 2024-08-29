@@ -56,7 +56,7 @@ public class CargoInputNode extends AbstractFilterNode {
                     24,
                     new CustomItemStack(
                             SlimefunUtils.getCustomHead(HeadTexture.ENERGY_REGULATOR.getTexture()),
-                            "&7轮循模式: &4\u2718",
+                            "&7轮循模式: §4\u2718",
                             "",
                             "&e> 单击启用轮循模式",
                             "&e(物品将会在信道中平均分配)"));
@@ -90,7 +90,7 @@ public class CargoInputNode extends AbstractFilterNode {
                     16,
                     new CustomItemStack(
                             Material.WRITABLE_BOOK,
-                            "&7\"智能填充\" 模式: &4\u2718",
+                            "&7\"智能填充\" 模式: §4\u2718",
                             "",
                             "&e> 单击启用",
                             "",

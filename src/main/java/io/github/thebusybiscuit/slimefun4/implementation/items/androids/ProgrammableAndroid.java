@@ -119,7 +119,7 @@ public class ProgrammableAndroid extends SlimefunItem
                     return false;
                 });
 
-                menu.replaceExistingItem(17, new CustomItemStack(HeadTexture.SCRIPT_PAUSE.getAsItemStack(), "&4暂停运行"));
+                menu.replaceExistingItem(17, new CustomItemStack(HeadTexture.SCRIPT_PAUSE.getAsItemStack(), "§4暂停运行"));
                 menu.addMenuClickHandler(17, (p, slot, item, action) -> {
                     StorageCacheUtils.setData(b.getLocation(), "paused", "true");
                     Slimefun.getLocalization().sendMessage(p, "android.stopped", true);
@@ -129,7 +129,7 @@ public class ProgrammableAndroid extends SlimefunItem
                 menu.replaceExistingItem(
                         16,
                         new CustomItemStack(
-                                HeadTexture.ENERGY_REGULATOR.getAsItemStack(), "&b内存核心", "", "&8\u21E8 &7单击打开脚本编辑器"));
+                                HeadTexture.ENERGY_REGULATOR.getAsItemStack(), "&b内存核心", "", "§8\u21E8 &7单击打开脚本编辑器"));
                 menu.addMenuClickHandler(16, (p, slot, item, action) -> {
                     StorageCacheUtils.setData(b.getLocation(), "paused", "true");
                     Slimefun.getLocalization().sendMessage(p, "android.stopped", true);
@@ -566,7 +566,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.addItem(
                 3,
                 new CustomItemStack(
-                        HeadTexture.SCRIPT_NEW.getAsItemStack(), "&4> 创建新脚本", "", "&c删除你正在使用的脚本", "&c并创建一个全新的空白脚本"));
+                        HeadTexture.SCRIPT_NEW.getAsItemStack(), "§4> 创建新脚本", "", "&c删除你正在使用的脚本", "&c并创建一个全新的空白脚本"));
         menu.addMenuClickHandler(3, (pl, slot, item, action) -> {
             openScript(pl, b, DEFAULT_SCRIPT);
             return false;
@@ -715,7 +715,7 @@ public class ProgrammableAndroid extends SlimefunItem
             ItemStack item = fuel.getInput().clone();
             ItemMeta im = item.getItemMeta();
             List<String> lore = new ArrayList<>();
-            lore.add(ChatColors.color("&8\u21E8 &7剩余 " + NumberUtils.getTimeLeft(fuel.getTicks() / 2)));
+            lore.add(ChatColors.color("§8\u21E8 &7剩余 " + NumberUtils.getTimeLeft(fuel.getTicks() / 2)));
             im.setLore(lore);
             item.setItemMeta(im);
             list.add(item);

@@ -110,10 +110,10 @@ public final class Script {
         lore.add("");
         lore.add("&7下载量: &f" + getDownloads());
         lore.add("&7评分: " + getScriptRatingPercentage());
-        lore.add("&a" + getUpvotes() + " \u263A &7| &4\u2639 " + getDownvotes());
+        lore.add("&a" + getUpvotes() + " \u263A &7| §4\u2639 " + getDownvotes());
         lore.add("");
         lore.add("&e左键 &f下载脚本");
-        lore.add("&4(将会覆盖你现有的脚本!)");
+        lore.add("§4(将会覆盖你现有的脚本!)");
 
         if (canRate(p)) {
             lore.add("");

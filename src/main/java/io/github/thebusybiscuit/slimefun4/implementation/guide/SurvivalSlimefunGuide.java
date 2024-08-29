@@ -211,7 +211,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                     index,
                     new CustomItemStack(
                             Material.BARRIER,
-                            "&4"
+                            "§4"
                                     + Slimefun.getLocalization().getMessage(p, "guide.locked")
                                     + " &7- &f"
                                     + group.getItem(p).getItemMeta().getDisplayName(),
@@ -321,7 +321,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                             ChestMenuUtils.getNoPermissionItem(),
                             "&f" + ItemUtils.getItemName(sfitem.getItem()),
                             "&7" + sfitem.getId(),
-                            "&4&l" + Slimefun.getLocalization().getMessage(p, "guide.locked"),
+                            "§4&l" + Slimefun.getLocalization().getMessage(p, "guide.locked"),
                             "",
                             "&a> 单击解锁",
                             "",
@@ -483,7 +483,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                 null,
                 null,
                 null,
-                new CustomItemStack(Material.BARRIER, "&4We are somehow unable to show you this Recipe :/"),
+                new CustomItemStack(Material.BARRIER, "§4We are somehow unable to show you this Recipe :/"),
                 null,
                 null,
                 null,
@@ -719,7 +719,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                     : new CustomItemStack(
                             Material.BARRIER,
                             ItemUtils.getItemName(item),
-                            "&4&l" + Slimefun.getLocalization().getMessage(p, "guide.locked"),
+                            "§4&l" + Slimefun.getLocalization().getMessage(p, "guide.locked"),
                             "",
                             lore);
         } else {

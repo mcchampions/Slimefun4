@@ -19,7 +19,7 @@ import java.util.Locale;
  *
  */
 public final class LoreBuilder {
-    public static final String HAZMAT_SUIT_REQUIRED = "&8\u21E8 &4需要防化服!";
+    public static final String HAZMAT_SUIT_REQUIRED = "§8\u21E8 §4需要防化服!";
     public static final String RAINBOW = "&d轮番展现彩虹的颜色!";
     public static final String RIGHT_CLICK_TO_USE = "&e右键&7 使用";
     public static final String RIGHT_CLICK_TO_OPEN = "&e右键&7 打开";
@@ -38,7 +38,7 @@ public final class LoreBuilder {
     }
 
     public static String speed(float speed) {
-        return "&8\u21E8 &b\u26A1 &7速度: &b" + speed + 'x';
+        return "§8\u21E8 &b\u26A1 &7速度: &b" + speed + 'x';
     }
 
     public static String powerBuffer(int power) {
@@ -50,15 +50,15 @@ public final class LoreBuilder {
     }
 
     public static String power(int power, String suffix) {
-        return "&8\u21E8 &e\u26A1 &7" + power + " J" + suffix;
+        return "§8\u21E8 &e\u26A1 &7" + power + " J" + suffix;
     }
 
     public static String powerCharged(int charge, int capacity) {
-        return "&8\u21E8 &e\u26A1 &7" + charge + " / " + capacity + " J";
+        return "§8\u21E8 &e\u26A1 &7" + charge + " / " + capacity + " J";
     }
 
     public static String material(String material) {
-        return "&8\u21E8 &7材料: &b" + material;
+        return "§8\u21E8 &7材料: &b" + material;
     }
 
     public static String hunger(double value) {

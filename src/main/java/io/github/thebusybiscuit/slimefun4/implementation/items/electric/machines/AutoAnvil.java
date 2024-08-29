@@ -35,7 +35,7 @@ public class AutoAnvil extends ASpeedableContainer {
         return new ItemStack(Material.IRON_PICKAXE);
     }
 
-    
+
     @Override
     public String getMachineIdentifier() {
         return "AUTO_ANVIL";

@@ -20,19 +20,19 @@ import org.bukkit.inventory.ItemStack;
  * @author martinbrom
  */
 class LearningAnimationOption implements SlimefunGuideOption<Boolean> {
-    
+
     @Override
     public SlimefunAddon getAddon() {
         return Slimefun.instance();
     }
 
-    
+
     @Override
     public NamespacedKey getKey() {
         return new NamespacedKey(Slimefun.instance(), "research_learning_animation");
     }
 
-    
+
     @Override
     public Optional<ItemStack> getDisplayItem(Player p, ItemStack guide) {
         SlimefunConfigManager cfgManager = Slimefun.getConfigManager();

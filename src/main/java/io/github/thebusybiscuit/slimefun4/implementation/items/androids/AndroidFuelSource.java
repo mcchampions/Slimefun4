@@ -37,8 +37,8 @@ public enum AndroidFuelSource {
      *
      * @return An {@link ItemStack} to display
      */
-    
+
     public ItemStack getItem() {
-        return new CustomItemStack(HeadTexture.GENERATOR.getAsItemStack(), "&8\u21E9 &c燃料输入槽 &8\u21E9", lore);
+        return new CustomItemStack(HeadTexture.GENERATOR.getAsItemStack(), "§8\u21E9 &c燃料输入槽 §8\u21E9", lore);
     }
 }

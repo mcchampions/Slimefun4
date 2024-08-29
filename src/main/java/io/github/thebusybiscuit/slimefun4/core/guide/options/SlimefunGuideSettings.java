@@ -158,7 +158,7 @@ public final class SlimefunGuideSettings {
             49,
             new CustomItemStack(
                 Material.REDSTONE_TORCH,
-                "&4" + locale.getMessage(p, "guide.title.bugs"),
+                "§4" + locale.getMessage(p, "guide.title.bugs"),
                 "",
                 "&7&oBug reports have to be made in English!",
                 "",

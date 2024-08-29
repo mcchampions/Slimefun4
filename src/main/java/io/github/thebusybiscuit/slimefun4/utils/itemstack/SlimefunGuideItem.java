@@ -26,8 +26,8 @@ public class SlimefunGuideItem extends ItemStack {
     public static final List<Component> lore = new ArrayList<>();
 
     static {
-        lore.add(TextUtils.fromText("&e右键 &8\u21E8 &7浏览物品"));
-        lore.add(TextUtils.fromText("&eShift + 右键 &8\u21E8 &7打开 设置 / 关于"));
+        lore.add(TextUtils.fromText("&e右键 §8\u21E8 &7浏览物品"));
+        lore.add(TextUtils.fromText("&eShift + 右键 §8\u21E8 &7打开 设置 / 关于"));
     }
 
     public SlimefunGuideItem(SlimefunGuideImplementation implementation, String name) {

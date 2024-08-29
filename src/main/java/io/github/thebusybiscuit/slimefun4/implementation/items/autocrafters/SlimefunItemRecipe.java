@@ -30,7 +30,7 @@ class SlimefunItemRecipe extends AbstractRecipe {
         this.item = item;
     }
 
-    
+
     private static Collection<Predicate<ItemStack>> getInputs(SlimefunItem item) {
         List<Predicate<ItemStack>> predicates = new ArrayList<>();
 

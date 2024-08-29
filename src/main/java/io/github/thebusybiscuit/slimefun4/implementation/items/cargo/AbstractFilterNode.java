@@ -102,7 +102,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
                 return false;
             });
         } else {
-            menu.replaceExistingItem(15, new CustomItemStack(Material.BLACK_WOOL, "&7模式: &8黑名单", "", "&e> 单击切换至白名单"));
+            menu.replaceExistingItem(15, new CustomItemStack(Material.BLACK_WOOL, "&7模式: §8黑名单", "", "&e> 单击切换至白名单"));
             menu.addMenuClickHandler(15, (p, slot, item, action) -> {
                 StorageCacheUtils.setData(b.getLocation(), FILTER_TYPE, "whitelist");
                 updateBlockMenu(menu, b);
@@ -122,7 +122,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
             });
         } else {
             menu.replaceExistingItem(
-                    25, new CustomItemStack(Material.MAP, "&7匹配在物品名称底下的文字: &4\u2718", "", "&e> 单击关闭匹配文字"));
+                    25, new CustomItemStack(Material.MAP, "&7匹配在物品名称底下的文字: §4\u2718", "", "&e> 单击关闭匹配文字"));
             menu.addMenuClickHandler(25, (p, slot, item, action) -> {
                 StorageCacheUtils.setData(b.getLocation(), FILTER_LORE, String.valueOf(true));
                 updateBlockMenu(menu, b);

@@ -29,9 +29,9 @@ commands:
     reset-target: '&c你的研究进度已被重置'
   backpack:
     description: 获取你丢失的背包
-    invalid-id: '&4背包 ID 必须为非负数!'
-    player-never-joined: '&4找不到叫这个名字的玩家!'
-    backpack-does-not-exist: '&4该玩家没有任何背包!'
+    invalid-id: '§4背包 ID 必须为非负数!'
+    player-never-joined: '§4找不到叫这个名字的玩家!'
+    backpack-does-not-exist: '§4该玩家没有任何背包!'
     searching: '&e查询中...'
     restored-backpack-given: '&a你的背包已被恢复并且已经放入了你的物品栏!'
   charge:
@@ -63,7 +63,7 @@ guide:
       gold-pan: '你可以获得的资源'
       climbing-pick: '你可以攀爬的平面'
   cheat:
-    no-multiblocks: '&4你不能在作弊模式下获得多方块结构的机器, 必须按书中所示建造!'
+    no-multiblocks: '§4你不能在作弊模式下获得多方块结构的机器, 必须按书中所示建造!'
   pages:
     previous: '上一页'
     next: '下一页'
@@ -97,7 +97,7 @@ guide:
         click: '&e单击禁用解锁研究动画'
       disabled:
         text:
-          - '&b解锁动画: &4禁用'
+          - '&b解锁动画: §4禁用'
           - ''
           - '&7现在你可以选择是否'
           - '&7跳过解锁物品研究'
@@ -117,29 +117,29 @@ actionbar:
   radiation: '&6辐射暴露等级：&c%level%&7/&e100'
 messages:
   android-no-permission: "&c你的机器人在某个你没有权限的领地/地皮中无法工作, 机器人已自动暂停运行."
-  not-researched: '&4你的知识还不足以理解这个物品. &c你需要先解锁 &f"%item%"&f'
-  not-enough-xp: '&4你没有足够的经验来解锁这个研究'
+  not-researched: '§4你的知识还不足以理解这个物品. &c你需要先解锁 &f"%item%"&f'
+  not-enough-xp: '§4你没有足够的经验来解锁这个研究'
   unlocked: '&b成功解锁研究 &7"%research%"'
-  only-players: '&4这个指令只能在游戏内使用'
-  unknown-player: '&4未知玩家: &c%player%'
-  no-permission: '&4你没有足够的权限这么做'
-  usage: '&4用法: &c%usage%'
-  not-online: '&4%player% &c不在线'
-  invalid-item: '&4%item% &c不是一个有效的物品名!'
-  invalid-amount: '&4%amount% &ci不是一个有效的数字 : 它必须大于 0!'
+  only-players: '§4这个指令只能在游戏内使用'
+  unknown-player: '§4未知玩家: &c%player%'
+  no-permission: '§4你没有足够的权限这么做'
+  usage: '§4用法: &c%usage%'
+  not-online: '§4%player% &c不在线'
+  invalid-item: '§4%item% &c不是一个有效的物品名!'
+  invalid-amount: '§4%amount% &ci不是一个有效的数字 : 它必须大于 0!'
   invalid-item-in-hand: '&e你手中拿的不是粘液科技的物品!'
   given-item: '&b你获得了 &a%amount% &7"%item%&7"'
   give-item: '&b成功给予玩家 %player% &a%amount% &7"%item%&7"'
-  invalid-research: '&4%research% &c不是一个有效的研究名!'
+  invalid-research: '§4%research% &c不是一个有效的研究名!'
   give-research: '&b你成功解锁了玩家 %player% 的研究 &7"%research%&7"'
   hungry: '&c你太饿了, 先吃点东西再试试吧!'
-  disabled-in-world: '&4&l这个物品在此世界已被禁用'
-  disabled-item: '&4&l这个物品已经被禁用了! 你是怎么得到它的?'
-  no-tome-yourself: '&c你不能对你自己使用 &4学识巨著 &c...'
+  disabled-in-world: '§4&l这个物品在此世界已被禁用'
+  disabled-item: '§4&l这个物品已经被禁用了! 你是怎么得到它的?'
+  no-tome-yourself: '&c你不能对你自己使用 §4学识巨著 &c...'
   multimeter: '&b已储存的能源: &3%stored% &b/ &3%capacity%'
-  piglin-barter: '&4你不能使用 Slimefun 的物品和猪灵易物'
+  piglin-barter: '§4你不能使用 Slimefun 的物品和猪灵易物'
   bee-suit-slow-fall: '&e你的蜂翅将会让你安全缓降'
-  deprecated-item: '&4该物品已被弃用，将在不久后从 Slimefun 中移除。'
+  deprecated-item: '§4该物品已被弃用，将在不久后从 Slimefun 中移除。'
   researching-is-disabled: '&c该服务器已禁用研究，所有物品都已解锁！'
   multi-tool:
     mode-change: '&b%device% 的模式已切换为: &9%mode%'
@@ -200,12 +200,12 @@ messages:
     distance: '&7距离已测量, &e为: %distance%'
     anchor-set: '&a成功在 &e %anchor% &a设置了测量起点'
   climbing-pick:
-    dual-wielding: '&4你需要双手拿着攀岩镐才能使用!'
+    dual-wielding: '§4你需要双手拿着攀岩镐才能使用!'
     wrong-material: '&c你不能爬上这个平面. 查看指南书了解详情!'
   fire-extinguish: '&7你灭掉了身上的火'
   cannot-place: '&c你不能在这里放置方块!'
   no-pvp: '&c你不能在这里攻击其他玩家!'
-  radiation: '&4你已经暴露在致命的辐射之下! &c快把辐射物品丢掉或者穿上防化服!'
+  radiation: '§4你已经暴露在致命的辐射之下! &c快把辐射物品丢掉或者穿上防化服!'
   opening-guide: '&b正在打开指南书, 请稍等...'
   opening-backpack: '&b正在打开背包, 请稍等....'
   no-iron-golem-heal: '&c这不是铁锭. 不能用来治疗铁傀儡!'
@@ -238,17 +238,17 @@ machines:
   ignition-chamber-no-flint: '&c自动点火机缺少打火石.'
   inventory-empty: '&6你成功制造了一台多方块结构的机器. 将物品按合成配方放入发射器内, 然后再右键我一次合成!'
   ANCIENT_ALTAR:
-    not-enough-pedestals: '&4古代基座不足. 目前已摆放的基座数: &c(%pedestals% / 8)'
-    unknown-catalyst: '&4无效的催化剂! &c请按照合成配方正确摆放物品!'
-    unknown-recipe: '&4未知合成表! &c请按照合成配方正确摆放物品!'
+    not-enough-pedestals: '§4古代基座不足. 目前已摆放的基座数: &c(%pedestals% / 8)'
+    unknown-catalyst: '§4无效的催化剂! &c请按照合成配方正确摆放物品!'
+    unknown-recipe: '§4未知合成表! &c请按照合成配方正确摆放物品!'
   ANCIENT_PEDESTAL:
-    obstructed: '&4基座被挡住了! &c把基座上面的东西移开!'
-    in-use: "&4基座上还有东西没拿下来!"
+    obstructed: '§4基座被挡住了! &c把基座上面的东西移开!'
+    in-use: "§4基座上还有东西没拿下来!"
   HOLOGRAM_PROJECTOR:
     enter-text: '&7请写下想显示在全息文本上的话. &r(支持颜色代码)'
     inventory-title: '全息图像编辑器'
   ELEVATOR:
-    no-destinations: '&4找不到上下楼'
+    no-destinations: '§4找不到上下楼'
     pick-a-floor: '&3- 选择一个楼层 -'
     current-floor: '&e你现在所在的楼层:'
     click-to-teleport: '&e单击 &7传送至楼层:'
@@ -258,7 +258,7 @@ machines:
   TELEPORTER:
     teleporting: '&3传送中...'
     teleported: '&3传送成功!'
-    cancelled: '&4传送被取消!'
+    cancelled: '§4传送被取消!'
     invulnerability: '&b&l你获得了 30 秒的无敌效果!'
     gui:
       title: '你的传送点'
@@ -269,9 +269,9 @@ machines:
     transmitters: '信号发射机详情'
     waypoints: '传送点列表'
   CARGO_NODES:
-    must-be-placed: '&4货运节点必须放置在箱子或机器上!'
+    must-be-placed: '§4货运节点必须放置在箱子或机器上!'
     connected: '&2已连接！'
-    not-connected: '&4未连接！'
+    not-connected: '§4未连接！'
   INDUSTRIAL_MINER:
     no-fuel: '&c你的工业矿机没有燃料了! 将燃料放入它上面的箱子里.'
     piston-facing: '&c你的工业矿机需要放置一个向上的活塞!'
@@ -279,54 +279,54 @@ machines:
     destroyed: '&c你的工业矿机被拆除了.'
     already-running: '&c这个工业矿机正在运行!'
     full-chest: '&c你的工业矿机的箱子已经满了!'
-    no-permission: '&4你没有权限操作这台工业矿机!'
+    no-permission: '§4你没有权限操作这台工业矿机!'
     finished: '&e你的工业矿机采矿已完成! 总共开采了 %ores% 个矿石!'
   TABLE_SAW:
     no-slimefun-item: '&c你不能在台锯 (Table Saw) 上使用 Slimefun 物品!'
 anvil:
-  not-working: '&4你不能在铁砧里使用 Slimefun 的物品'
-  mcmmo-salvaging: '&4你不能分解 Slimefun 物品!'
+  not-working: '§4你不能在铁砧里使用 Slimefun 的物品'
+  mcmmo-salvaging: '§4你不能分解 Slimefun 物品!'
 brewing_stand:
-  not-working: '&4你不能在酿造台中使用 Slimefun 物品!'
+  not-working: '§4你不能在酿造台中使用 Slimefun 物品!'
 cartography_table:
-  not-working: '&4你不能在制图台中使用 Slimefun 物品!'
+  not-working: '§4你不能在制图台中使用 Slimefun 物品!'
 smithing_table:
-  not-working: '&4你不能使用 Slimefun 物品作为锻造材料!'
+  not-working: '§4你不能使用 Slimefun 物品作为锻造材料!'
 villagers:
-  no-trading: '&4你不能用 Slimefun 的物品和村民交易!'
+  no-trading: '§4你不能用 Slimefun 的物品和村民交易!'
 backpack:
   already-open: '&c抱歉, 这个背包已在别处打开了!'
   no-stack: '&c你不能同时手持两个背包'
   set-name: '&e请输入背包名称'
   not-original-item: '&c输入名字时请不要切换手上的物品!'
 workbench:
-  not-enhanced: '&4你不能在普通的工作台上使用 Slimefun 物品'
+  not-enhanced: '§4你不能在普通的工作台上使用 Slimefun 物品'
 cauldron:
-  no-discoloring: '&4你不能用炼药锅洗去 Slimefun 物品的颜色'
+  no-discoloring: '§4你不能用炼药锅洗去 Slimefun 物品的颜色'
 crafter:
-  not-working: '&4你不能在合成机上用 Slimefun 物品合成'
+  not-working: '§4你不能在合成机上用 Slimefun 物品合成'
 gps:
-  deathpoint: '&4死亡点 &7%date%'
+  deathpoint: '§4死亡点 &7%date%'
   status-online: '在线'
   status-offline: '离线'
   waypoint:
     new: '&e给你的路径点起个名字吧 &7(支持彩色代码!)'
     added: '&a成功添加了新的传送点'
-    max: '&4你已到达设置传送点个数的最大上限'
-    duplicate: '&4已经有相同名字的传送点了: &f%waypoint%'
+    max: '§4你已到达设置传送点个数的最大上限'
+    duplicate: '§4已经有相同名字的传送点了: &f%waypoint%'
   insufficient-complexity:
-    - '&4GPS 网络复杂度不足: &c%complexity%'
-    - '&4a) 你还没有设置一个 GPS 网络'
-    - '&4b) 你的 GPS 网络复杂度不够, 多放置几个 GPS 信号发射机'
+    - '§4GPS 网络复杂度不足: &c%complexity%'
+    - '§4a) 你还没有设置一个 GPS 网络'
+    - '§4b) 你的 GPS 网络复杂度不够, 多放置几个 GPS 信号发射机'
   geo:
-    scan-required: '&4需要先进行自然资源扫描! &c请先使用自然资源扫描器!'
+    scan-required: '§4需要先进行自然资源扫描! &c请先使用自然资源扫描器!'
 inventory:
-  no-access: '&4你没有权限使用这个方块'
+  no-access: '§4你没有权限使用这个方块'
 android:
   started: '&7机器人正在依照脚本运行'
   stopped: '&7机器人停止了运行'
   scripts:
-    already-uploaded: '&4你已经上传过这个脚本了.'
+    already-uploaded: '§4你已经上传过这个脚本了.'
     editor: '脚本编辑器'
     too-long: '&c脚本长度已达上限, 你不能再编辑了!'
     instructions:
@@ -344,10 +344,10 @@ android:
       MOVE_AND_DIG_UP: '&b向上挖并移动'
       MOVE_AND_DIG_FORWARD: '&b向前挖并移动'
       MOVE_AND_DIG_DOWN: '&b向下挖并移动'
-      ATTACK_MOBS_ANIMALS: '&4攻击 &c(怪物 & 动物)'
-      ATTACK_MOBS: '&4攻击 &c(怪物)'
-      ATTACK_ANIMALS: '&4攻击 &c(动物)'
-      ATTACK_ANIMALS_ADULT: '&4攻击 &c(成年动物)'
+      ATTACK_MOBS_ANIMALS: '§4攻击 &c(怪物 & 动物)'
+      ATTACK_MOBS: '§4攻击 &c(怪物)'
+      ATTACK_ANIMALS: '§4攻击 &c(动物)'
+      ATTACK_ANIMALS_ADULT: '§4攻击 &c(成年动物)'
       CHOP_TREE: '&c砍树并补种树苗'
       CATCH_FISH: '&b钓鱼'
       FARM_FORWARD: '&b自动采收并补种作物'
@@ -364,11 +364,11 @@ android:
       - '&b上传中...'
       - '&a脚本上传成功!'
     rating:
-      own: '&4你不能评价你自己的脚本!'
-      already: '&4你已经给这个脚本留下评价了!'
+      own: '§4你不能评价你自己的脚本!'
+      already: '§4你已经给这个脚本留下评价了!'
   access-manager:
     title: '&b机器人权限管理器'
-    subtitle: '&8⇨ &7单击打开管理器'
+    subtitle: '§8⇨ &7单击打开管理器'
 
     menu:
       add-player-title: '&a添加信任玩家'
