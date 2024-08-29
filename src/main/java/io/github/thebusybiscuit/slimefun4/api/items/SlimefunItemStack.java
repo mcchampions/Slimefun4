@@ -94,12 +94,7 @@ public class SlimefunItemStack extends ItemStack {
             }
 
             if (lore.length > 0) {
-                List<Component> lines = new ArrayList<>();
-
-                for (String line : lore) {
-                    lines.add(TextUtils.fromText(line));
-                }
-                im.lore(lines);
+                im.setLore(Arrays.stream(lore).toList());
             }
         });
     }
@@ -116,12 +111,7 @@ public class SlimefunItemStack extends ItemStack {
             }
 
             if (lore.length > 0) {
-                List<Component> lines = new ArrayList<>();
-
-                for (String line : lore) {
-                    lines.add(TextUtils.fromText(line));
-                }
-                im.lore(lines);
+                im.setLore(Arrays.stream(lore).toList());
             }
 
             if (im instanceof LeatherArmorMeta leatherArmorMeta) {
@@ -146,12 +136,7 @@ public class SlimefunItemStack extends ItemStack {
             }
 
             if (lore.length > 0) {
-                List<Component> lines = new ArrayList<>();
-
-                for (String line : lore) {
-                    lines.add(TextUtils.fromText(line));
-                }
-                im.lore(lines);
+                im.setLore(Arrays.stream(lore).toList());
             }
 
             if (im instanceof PotionMeta potionMeta) {
