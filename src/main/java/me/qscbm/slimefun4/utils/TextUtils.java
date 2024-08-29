@@ -8,7 +8,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import java.util.regex.Pattern;
 
 public class TextUtils {
-    private static final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)" + '§' + "[0-9A-FK-ORX]");
+    private static final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)[§&][0-9A-FK-ORX]");
 
     public static String toPlainText(Component component) {
         return PlainTextComponentSerializer.plainText().serialize(component);
