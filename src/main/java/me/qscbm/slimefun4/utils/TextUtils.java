@@ -23,6 +23,9 @@ public class TextUtils {
     }
 
     public static TextComponent fromText(String text) {
-        return LegacyComponentSerializer.legacyAmpersand().deserialize(text);
+        if (text.contains("&") && !text.contains("§")) {
+            return LegacyComponentSerializer.legacyAmpersand().deserialize(text);
+        }
+        return LegacyComponentSerializer.legacySection().deserialize(text);
     }
 }
