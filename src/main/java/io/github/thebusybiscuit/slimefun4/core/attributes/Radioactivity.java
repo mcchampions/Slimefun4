@@ -57,7 +57,7 @@ public enum Radioactivity {
     }
 
     public String getLore() {
-        return "§a\u2622§7 辐射等级: " + color + displayName;
+        return ChatColor.GREEN + "\u2622" + ChatColor.GRAY + " 辐射等级: " + color + displayName;
     }
 
     /**
