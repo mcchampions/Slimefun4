@@ -317,7 +317,7 @@ public final class SlimefunUtils {
                  */
                 ItemMeta sfItemMeta = sfitem.getItemMeta();
                 String possibleItemId = Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
-                String sfItemId = Slimefun.getItemDataService().getItemData(sfItemMeta).get();
+                String sfItemId = Slimefun.getItemDataService().getItemData(sfItemMeta).orElse(null);
                 // Prioritize SlimefunItem id comparison over ItemMeta comparison
                 if (possibleItemId != null && possibleItemId.equals(sfItemId)) {
                     /*
