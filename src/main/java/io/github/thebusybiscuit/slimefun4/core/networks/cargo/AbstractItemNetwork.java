@@ -10,6 +10,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
@@ -42,16 +43,18 @@ abstract class AbstractItemNetwork extends Network {
     protected Optional<Block> getAttachedBlock(Location l) {
         if (l.getWorld().isChunkLoaded(l.getBlockX() >> 4, l.getBlockZ() >> 4)) {
             Block block = l.getBlock();
-            BlockFace cached = connectorCache.get(l);
+            if (block.getType() == Material.PLAYER_WALL_HEAD) {
+                BlockFace cached = connectorCache.get(l);
 
-            if (cached != null) {
-                return Optional.of(block.getRelative(cached));
+                if (cached != null) {
+                    return Optional.of(block.getRelative(cached));
+                }
+
+                BlockFace face =
+                        ((Directional) block.getBlockData()).getFacing().getOppositeFace();
+                connectorCache.put(l, face);
+                return Optional.of(block.getRelative(face));
             }
-
-            BlockFace face =
-                    ((Directional) block.getBlockData()).getFacing().getOppositeFace();
-            connectorCache.put(l, face);
-            return Optional.of(block.getRelative(face));
         }
 
         return Optional.empty();
