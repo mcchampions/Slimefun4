@@ -69,7 +69,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         var blockData = StorageCacheUtils.getBlock(e.getBlock().getLocation());
         blockData.setData("index", "0");
         blockData.setData(FILTER_TYPE, "whitelist");
-        blockData.setData(FILTER_LORE, String.valueOf(true));
+        blockData.setData(FILTER_LORE, String.valueOf(false));
         blockData.setData("filter-durability", String.valueOf(false));
     }
 
