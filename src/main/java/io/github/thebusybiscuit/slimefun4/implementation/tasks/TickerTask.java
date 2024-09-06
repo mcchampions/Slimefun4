@@ -33,6 +33,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class TickerTask extends BaseTickerTask {
     /**
      * This Map holds all currently actively ticking locations.
+     * The value of this map (Set entries) MUST be thread-safe and mutable.
      */
     private final Map<ChunkPosition, Set<Location>> tickingLocations = new ConcurrentHashMap<>();
 
@@ -218,7 +219,6 @@ public class TickerTask extends BaseTickerTask {
      * @param chunk The {@link Chunk}
      * @return A {@link Set} of all ticking {@link Location Locations}
      */
-
     public Set<Location> getLocations(Chunk chunk) {
         return tickingLocations.getOrDefault(new ChunkPosition(chunk), new HashSet<>());
     }
@@ -230,11 +230,27 @@ public class TickerTask extends BaseTickerTask {
      */
     @Override
     public void enableTicker(Location l) {
-        tickingLocations
-                .computeIfAbsent(
-                        new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4),
-                        k -> ConcurrentHashMap.newKeySet())
-                .add(l);
+        ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);
+
+            /*
+              Note that all the values in #tickingLocations must be thread-safe.
+              Thus, the choice is between the CHM KeySet or a synchronized set.
+              The CHM KeySet was chosen since it at least permits multiple concurrent
+              reads without blocking.
+            */
+        Set<Location> newValue = ConcurrentHashMap.newKeySet();
+        Set<Location> oldValue = tickingLocations.putIfAbsent(chunk, newValue);
+
+        /*
+         * This is faster than doing computeIfAbsent(...)
+         * on a ConcurrentHashMap because it won't block the Thread for too long
+         */
+        //noinspection ReplaceNullCheck
+        if (oldValue != null) {
+            oldValue.add(l);
+        } else {
+            newValue.add(l);
+        }
     }
 
     /**
