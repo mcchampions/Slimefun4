@@ -232,18 +232,18 @@ public class TickerTask extends BaseTickerTask {
     public void enableTicker(Location l) {
         ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);
 
-            /*
-              Note that all the values in #tickingLocations must be thread-safe.
-              Thus, the choice is between the CHM KeySet or a synchronized set.
-              The CHM KeySet was chosen since it at least permits multiple concurrent
-              reads without blocking.
-            */
+        /*
+          Note that all the values in #tickingLocations must be thread-safe.
+          Thus, the choice is between the CHM KeySet or a synchronized set.
+          The CHM KeySet was chosen since it at least permits multiple concurrent
+          reads without blocking.
+        */
         Set<Location> newValue = ConcurrentHashMap.newKeySet();
         Set<Location> oldValue = tickingLocations.putIfAbsent(chunk, newValue);
 
         /*
-         * This is faster than doing computeIfAbsent(...)
-         * on a ConcurrentHashMap because it won't block the Thread for too long
+           This is faster than doing computeIfAbsent(...)
+           on a ConcurrentHashMap because it won't block the Thread for too long
          */
         //noinspection ReplaceNullCheck
         if (oldValue != null) {
