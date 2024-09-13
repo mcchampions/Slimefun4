@@ -24,9 +24,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
     private final String inventoryTitle;
     private final String id;
 
-    // -1 means "automatically update according to the contents"
-    private int size = -1;
-
     private boolean locked;
 
     protected BlockMenuPreset(@Nonnull String id, @Nonnull String title) {
@@ -146,15 +143,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
     public ChestMenu setSize(int size) {
         checkIfLocked();
 
-        if (size % 9 == 0 && size >= 0 && size < 55) {
-            this.size = size;
-            return this;
-        } else {
-            throw new IllegalArgumentException(
-                    "The size of a BlockMenuPreset must be a multiple of 9 and within the bounds 0-54,"
-                            + " received: "
-                            + size);
-        }
+        return super.setSize(size);
     }
 
     /**
@@ -164,11 +153,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * @return The size of this {@link BlockMenuPreset}
      */
     public int getSize() {
-        return size;
-    }
-
-    private boolean isSizeAutomaticallyInferred() {
-        return size == -1;
+        return super.getSize();
     }
 
     /**
@@ -197,7 +182,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
                 }
             }
         } else {
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < getSize(); i++) {
                 if (!occupiedSlots.contains(i)) {
                     emptySlots.add(i);
                 }
@@ -210,12 +195,12 @@ public abstract class BlockMenuPreset extends ChestMenu {
     protected void clone(@Nonnull DirtyChestMenu menu) {
         menu.setPlayerInventoryClickable(true);
 
+        if (isSizeAutomaticallyInferred()) {
+            menu.addItem(getSize() - 1, null);
+        } else menu.setSize(getSize());
+
         for (int slot : occupiedSlots) {
             menu.addItem(slot, getItemInSlot(slot));
-        }
-
-        if (size > -1) {
-            menu.addItem(size - 1, null);
         }
 
         if (menu instanceof BlockMenu blockMenu) {

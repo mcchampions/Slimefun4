@@ -3,6 +3,7 @@ package io.github.thebusybiscuit.slimefun4.core.commands.subcommands;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
+import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import javax.annotation.Nonnull;
 import org.bukkit.command.CommandSender;
@@ -47,10 +48,23 @@ public class DebugCommand extends SubCommand {
 
         switch (test.toLowerCase()) {
             case "disable", "off" -> {
+                if (Slimefun.getSQLProfiler().isProfiling()) {
+                    Slimefun.getSQLProfiler().stop();
+                }
+
                 Debug.disableTestCase();
                 Slimefun.getLocalization().sendMessage(sender, "commands.debug.disabled");
             }
             default -> {
+                if (TestCase.DATABASE.toString().equals(test)) {
+                    if (Slimefun.getSQLProfiler().isProfiling()) {
+                        Slimefun.getLocalization().sendMessage(sender, "sf-cn.timings.running");
+                    } else {
+                        Slimefun.getSQLProfiler().start();
+                        Slimefun.getSQLProfiler().subscribe(sender);
+                        Slimefun.getLocalization().sendMessage(sender, "sf-cn.timings.started");
+                    }
+                }
                 Debug.addTestCase(test);
                 Slimefun.getLocalization()
                         .sendMessage(sender, "commands.debug.running", msg -> msg.replace("%test%", test));

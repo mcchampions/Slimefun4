@@ -26,6 +26,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AsyncRecipeChoiceTask;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.SlimefunGuideItem;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -405,7 +406,10 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                     ItemGroup itemGroup = slimefunItem.getItemGroup();
                     meta.setLore(Arrays.asList(
                             "", ChatColor.DARK_GRAY + "\u21E8 " + ChatColor.WHITE + itemGroup.getDisplayName(p)));
-                    meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_POTION_EFFECTS);
+                    meta.addItemFlags(
+                            ItemFlag.HIDE_ATTRIBUTES,
+                            ItemFlag.HIDE_ENCHANTS,
+                            VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
                 });
 
                 menu.addItem(index, itemstack);

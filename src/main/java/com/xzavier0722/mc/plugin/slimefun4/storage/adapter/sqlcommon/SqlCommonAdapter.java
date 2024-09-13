@@ -1,14 +1,12 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon;
 
-import city.norain.slimefun4.utils.SimpleTimer;
+import city.norain.slimefun4.timings.entry.SQLEntry;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
 import com.zaxxer.hikari.HikariDataSource;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
-import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.sql.SQLException;
-import java.time.Duration;
 import java.util.List;
 
 public abstract class SqlCommonAdapter<T extends ISqlCommonConfig> implements IDataSourceAdapter<T> {
@@ -24,30 +22,27 @@ public abstract class SqlCommonAdapter<T extends ISqlCommonConfig> implements ID
     }
 
     protected void executeSql(String sql) {
-        var timer = new SimpleTimer();
-
+        var entry = new SQLEntry(sql);
+        Slimefun.getSQLProfiler().recordEntry(entry);
         try (var conn = ds.getConnection()) {
             SqlUtils.execSql(conn, sql);
         } catch (SQLException e) {
             throw new IllegalStateException("An exception thrown while executing sql: " + sql, e);
         } finally {
-            if (timer.isTimeout(Duration.ofSeconds(2))) { // FIXME: hardcode slow sql check duration
-                Debug.log(TestCase.DATABASE, "Detected slow sql costs {}, sql: {}", timer.durationStr(), sql);
-            }
+            Slimefun.getSQLProfiler().finishEntry(entry);
         }
     }
 
     protected List<RecordSet> executeQuery(String sql) {
-        var timer = new SimpleTimer();
+        var entry = new SQLEntry(sql);
+        Slimefun.getSQLProfiler().recordEntry(entry);
 
         try (var conn = ds.getConnection()) {
             return SqlUtils.execQuery(conn, sql);
         } catch (SQLException e) {
             throw new IllegalStateException("An exception thrown while executing sql: " + sql, e);
         } finally {
-            if (timer.isTimeout(Duration.ofSeconds(2))) { // FIXME: hardcode slow sql check duration
-                Debug.log(TestCase.DATABASE, "Detected slow sql costs {}, sql: {}", timer.durationStr(), sql);
-            }
+            Slimefun.getSQLProfiler().finishEntry(entry);
         }
     }
 

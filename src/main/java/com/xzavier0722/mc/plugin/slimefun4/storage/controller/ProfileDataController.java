@@ -46,11 +46,18 @@ public class ProfileDataController extends ADataController {
 
         var key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addField(FieldKey.PLAYER_BACKPACK_NUM);
+        key.addField(FieldKey.PLAYER_NAME);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
 
         var result = getData(key);
         if (result.isEmpty()) {
             return null;
+        }
+
+        // check player name changed or not
+        var currentPlayerName = p.getName();
+        if (currentPlayerName != null && !currentPlayerName.equals(result.get(0).get(FieldKey.PLAYER_NAME))) {
+            updateUsername(uuid, currentPlayerName);
         }
 
         var bNum = result.get(0).getInt(FieldKey.BACKPACK_NUMBER);
@@ -297,6 +304,18 @@ public class ProfileDataController extends ADataController {
 
     public void getPlayerUuidAsync(String pName, IAsyncReadCallback<UUID> callback) {
         scheduleReadTask(() -> invokeCallback(callback, getPlayerUuid(pName)));
+    }
+
+    public void updateUsername(String uuid, String newName) {
+        var key = new RecordKey(DataScope.PLAYER_PROFILE);
+        key.addField(FieldKey.PLAYER_NAME);
+        key.addCondition(FieldKey.PLAYER_UUID, uuid);
+
+        var data = new RecordSet();
+        data.put(FieldKey.PLAYER_NAME, newName);
+        data.put(FieldKey.PLAYER_UUID, uuid);
+
+        scheduleWriteTask(new UUIDKey(DataScope.NONE, uuid), key, data, false);
     }
 
     private static RecordSet getRecordSet(PlayerBackpack bp) {

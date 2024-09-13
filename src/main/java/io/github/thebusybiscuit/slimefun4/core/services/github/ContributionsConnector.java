@@ -1,5 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.core.services.github;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +11,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import kong.unirest.JsonNode;
-import kong.unirest.json.JSONArray;
-import kong.unirest.json.JSONObject;
 
 class ContributionsConnector extends GitHubConnector {
 
@@ -87,11 +87,11 @@ class ContributionsConnector extends GitHubConnector {
     }
 
     @Override
-    public void onSuccess(@Nonnull JsonNode response) {
+    public void onSuccess(@Nonnull JsonElement response) {
         finished = true;
 
-        if (response.isArray()) {
-            computeContributors(response.getArray());
+        if (response.isJsonArray()) {
+            computeContributors(response.getAsJsonArray());
         } else {
             Slimefun.logger()
                     .log(Level.WARNING, "Received an unusual answer from GitHub, possibly a timeout? ({0})", response);
@@ -121,13 +121,13 @@ class ContributionsConnector extends GitHubConnector {
         return parameters;
     }
 
-    private void computeContributors(@Nonnull JSONArray array) {
-        for (int i = 0; i < array.length(); i++) {
-            JSONObject object = array.getJSONObject(i);
+    private void computeContributors(@Nonnull JsonArray array) {
+        for (JsonElement element : array) {
+            JsonObject object = element.getAsJsonObject();
 
-            String name = object.getString("login");
-            int commits = object.getInt("contributions");
-            String profile = object.getString("html_url");
+            String name = object.get("login").getAsString();
+            int commits = object.get("contributions").getAsInt();
+            String profile = object.get("html_url").getAsString();
 
             if (!ignoredAccounts.contains(name)) {
                 String username = aliases.getOrDefault(name, name);

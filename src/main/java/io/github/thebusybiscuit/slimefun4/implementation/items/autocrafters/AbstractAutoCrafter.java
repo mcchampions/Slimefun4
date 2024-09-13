@@ -23,6 +23,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.AsyncRecipeChoice
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import io.papermc.lib.PaperLib;
@@ -45,7 +46,6 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
@@ -242,7 +242,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
                 if (craft(interactor, recipe)) {
                     // We are done crafting!
                     Location loc = b.getLocation().add(0.5, 0.8, 0.5);
-                    b.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, loc, 6);
+                    b.getWorld().spawnParticle(VersionedParticle.HAPPY_VILLAGER, loc, 6);
                     removeCharge(b.getLocation(), getEnergyConsumption());
                 }
             }

@@ -24,26 +24,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: 17
+          java-version: ${{ vars.JAVA_CI_VERSION }}
           java-package: jdk
           architecture: x64
-
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+          cache: 'maven'
 
       - name: Codestyle Check
-        run: mvn -B spotless:check compile --errors
-
-      - name: Build with Maven
-        run: mvn package
+        run: mvn -s .mvn/settings.xml -B spotless:check compile --errors
 
       # Setup for the preview build
       - name: Environment Setup
@@ -54,10 +45,10 @@ jobs:
           echo "SHORT_COMMIT_HASH=$SHORT_COMMIT_HASH" >> "$GITHUB_ENV"
           echo "SHORT_COMMIT_HASH=$SHORT_COMMIT_HASH" >> "$GITHUB_OUTPUT"
           echo "JAR_VERSION=$JAR_VERSION" >> "$GITHUB_ENV"
-          sed -i "s/<version>5.0-SNAPSHOT<\/version>/<version>$JAR_VERSION<\/version>/g" pom.xml
+          sed -i "s/<version>UNOFFICIAL<\/version>/<version>$JAR_VERSION<\/version>/g" pom.xml
 
       - name: Build with Maven
-        run: mvn clean package
+        run: mvn -s .mvn/settings.xml package --errors
 
       - name: Upload the artifact
         uses: actions/upload-artifact@v3

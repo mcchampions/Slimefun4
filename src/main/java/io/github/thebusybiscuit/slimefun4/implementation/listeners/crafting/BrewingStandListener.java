@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting;
 
+import city.norain.slimefun4.compatibillty.VersionedEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import javax.annotation.Nonnull;
@@ -32,7 +33,7 @@ public class BrewingStandListener implements SlimefunCraftingListener {
     @EventHandler(ignoreCancelled = true)
     public void onPreBrew(InventoryClickEvent e) {
         Inventory clickedInventory = e.getClickedInventory();
-        Inventory topInventory = e.getView().getTopInventory();
+        Inventory topInventory = VersionedEvent.getTopInventory(e);
 
         if (clickedInventory != null
                 && topInventory.getType() == InventoryType.BREWING

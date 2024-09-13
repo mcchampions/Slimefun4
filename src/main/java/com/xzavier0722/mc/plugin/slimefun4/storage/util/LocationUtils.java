@@ -1,5 +1,6 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.util;
 
+import city.norain.slimefun4.SlimefunExtended;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -39,7 +40,11 @@ public class LocationUtils {
 
     public static Chunk toChunk(World w, String cKey) {
         var loc = cKey.split(";")[1].split(":");
-        return w.getChunkAt(Integer.parseInt(loc[0]), Integer.parseInt(loc[1]), false);
+        if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 19, 4)) {
+            return w.getChunkAt(Integer.parseInt(loc[0]), Integer.parseInt(loc[1]), false);
+        } else {
+            return w.getChunkAt(Integer.parseInt(loc[0]), Integer.parseInt(loc[1]));
+        }
     }
 
     public static boolean isSameWorld(World w1, World w2) {

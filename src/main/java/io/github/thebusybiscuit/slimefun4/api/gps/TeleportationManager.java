@@ -9,6 +9,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Telepo
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
 import io.papermc.lib.PaperLib;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,6 @@ import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 /**
  * The {@link TeleportationManager} handles the process of teleportation for a {@link Player}
@@ -257,7 +257,7 @@ public final class TeleportationManager {
             if (success) {
                 // Apply Resistance Effect, if enabled
                 if (resistance) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 20));
+                    p.addPotionEffect(new PotionEffect(VersionedPotionEffectType.RESISTANCE, 600, 20));
                     Slimefun.getLocalization().sendMessage(p, "machines.TELEPORTER.invulnerability");
                 }
 

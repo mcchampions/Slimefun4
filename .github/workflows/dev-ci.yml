@@ -20,14 +20,14 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: 17
+          java-version: ${{ vars.JAVA_CI_VERSION }}
           java-package: jdk
           architecture: x64
           cache: maven
       - name: Codestyle check
-        run: mvn -B spotless:check --errors
+        run: mvn -s .mvn/settings.xml -B spotless:check --errors
       - name: Build Slimefun
-        run: mvn -B package --errors
+        run: mvn -s .mvn/settings.xml -B package --errors
       - name: Mask Output
         run: |
           echo "::add-mask::$CF_API_TOKEN"

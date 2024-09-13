@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.talismans.MagicianTalisman;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.talismans.Talisman;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.TalismanEnchantment;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -326,7 +327,7 @@ public class TalismanListener implements Listener {
 
         // Wizard Talisman
         if (!enchantments.containsKey(Enchantment.SILK_TOUCH)
-                && Enchantment.LOOT_BONUS_BLOCKS.canEnchantItem(e.getItem())
+                && VersionedEnchantment.FORTUNE.canEnchantItem(e.getItem())
                 && Talisman.trigger(e, SlimefunItems.TALISMAN_WIZARD)) {
             // Randomly lower some enchantments
             for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
@@ -336,7 +337,7 @@ public class TalismanListener implements Listener {
             }
 
             // Give an extra Fortune boost (Lvl 3 - 5)
-            enchantments.put(Enchantment.LOOT_BONUS_BLOCKS, random.nextInt(3) + 3);
+            enchantments.put(VersionedEnchantment.FORTUNE, random.nextInt(3) + 3);
         }
     }
 
@@ -378,7 +379,7 @@ public class TalismanListener implements Listener {
             Collection<Item> drops = e.getItems();
 
             if (Talisman.trigger(e, talismanItemStack, false)) {
-                int dropAmount = getAmountWithFortune(type, meta.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS));
+                int dropAmount = getAmountWithFortune(type, meta.getEnchantLevel(VersionedEnchantment.FORTUNE));
 
                 // Keep track of whether we actually doubled the drops or not
                 boolean doubledDrops = false;

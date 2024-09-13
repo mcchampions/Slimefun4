@@ -87,8 +87,12 @@ class SlimefunTabCompleter implements TabCompleter {
      */
     @Nonnull
     private List<String> createReturnList(@Nonnull List<String> list, @Nonnull String string) {
-        if (string.length() == 0) {
-            return list;
+        if (string.isEmpty()) {
+            if (list.size() >= MAX_SUGGESTIONS) {
+                return list.subList(0, MAX_SUGGESTIONS);
+            } else {
+                return list;
+            }
         }
 
         String input = string.toLowerCase(Locale.ROOT);

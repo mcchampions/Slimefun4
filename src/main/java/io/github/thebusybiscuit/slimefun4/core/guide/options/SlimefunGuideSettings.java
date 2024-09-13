@@ -158,7 +158,7 @@ public final class SlimefunGuideSettings {
 
         menu.addMenuClickHandler(6, (pl, slot, item, action) -> {
             pl.closeInventory();
-            ChatUtils.sendURL(pl, "https://github.com/StarwishSama/Slimefun4");
+            ChatUtils.sendURL(pl, "https://github.com/SlimefunGuguProject/Slimefun4");
             return false;
         });
 
@@ -223,7 +223,7 @@ public final class SlimefunGuideSettings {
 
             menu.addMenuClickHandler(49, (pl, slot, item, action) -> {
                 pl.closeInventory();
-                ChatUtils.sendURL(pl, "https://github.com/StarWishsama/Slimefun4/issues");
+                ChatUtils.sendURL(pl, "https://github.com/SlimefunGuguProject/Slimefun4/issues");
                 return false;
             });
         } else {

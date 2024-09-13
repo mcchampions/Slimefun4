@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
+import city.norain.slimefun4.SlimefunExtended;
 import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
 import io.github.bakedlibs.dough.skins.PlayerHead;
@@ -361,9 +362,7 @@ public final class SlimefunUtils {
                         .getItemData(possibleSfItemMeta)
                         .orElse(null);
                 // Prioritize SlimefunItem id comparison over ItemMeta comparison
-                if (id != null && id.equals(possibleItemId)) {
-                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  Item IDs matched!");
-
+                if (id != null && possibleItemId != null) {
                     /*
                      * PR #3417
                      *
@@ -374,14 +373,20 @@ public final class SlimefunUtils {
                     if (optionalDistinctive.isPresent()) {
                         return optionalDistinctive.get().canStack(possibleSfItemMeta, itemMeta);
                     }
-                    return true;
+
+                    var match = id.equals(possibleItemId);
+
+                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  Use Item ID match: {}", match);
+
+                    return match;
                 } else {
                     Debug.log(
                             TestCase.CARGO_INPUT_TESTING,
-                            "  Item IDs don't match, checking meta {} == {} (lore: {})",
+                            "  one of item have no Slimefun ID, checking meta {} == {} (lore: {})",
                             itemMeta,
                             possibleSfItemMeta,
                             checkLore);
+
                     return equalsItemMeta(itemMeta, possibleSfItemMeta, checkLore, checkCustomModelData);
                 }
             } else if (sfitem.hasItemMeta()) {
@@ -411,14 +416,14 @@ public final class SlimefunUtils {
 
     private static boolean equalsItemMeta(
             @Nonnull ItemMeta itemMeta, @Nonnull ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
-        return equalsItemMeta(itemMeta, itemMetaSnapshot, checkLore, true);
+        return equalsItemMeta(itemMeta, itemMetaSnapshot, checkLore, false);
     }
 
     private static boolean equalsItemMeta(
             @Nonnull ItemMeta itemMeta,
             @Nonnull ItemMetaSnapshot itemMetaSnapshot,
             boolean checkLore,
-            boolean bypassCustomModelCheck) {
+            boolean checkCustomModelCheck) {
         Optional<String> displayName = itemMetaSnapshot.getDisplayName();
 
         if (itemMeta.hasDisplayName() != displayName.isPresent()) {
@@ -437,7 +442,7 @@ public final class SlimefunUtils {
             }
         }
 
-        if (bypassCustomModelCheck) {
+        if (!checkCustomModelCheck) {
             return true;
         }
 
@@ -460,12 +465,14 @@ public final class SlimefunUtils {
             @Nonnull ItemMeta itemMeta,
             @Nonnull ItemMeta sfitemMeta,
             boolean checkLore,
-            boolean bypassCustomModelCheck) {
+            boolean checkCustomModelCheck) {
         if (itemMeta.hasDisplayName() != sfitemMeta.hasDisplayName()) {
+            Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing has display name failed");
             return false;
         } else if (itemMeta.hasDisplayName()
                 && sfitemMeta.hasDisplayName()
                 && !itemMeta.getDisplayName().equals(sfitemMeta.getDisplayName())) {
+            Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing display name failed");
             return false;
         } else if (checkLore) {
             boolean hasItemMetaLore = itemMeta.hasLore();
@@ -473,14 +480,16 @@ public final class SlimefunUtils {
 
             if (hasItemMetaLore && hasSfItemMetaLore) {
                 if (!equalsLore(itemMeta.getLore(), sfitemMeta.getLore())) {
+                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing lore failed");
                     return false;
                 }
             } else if (hasItemMetaLore != hasSfItemMetaLore) {
+                Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing has lore failed");
                 return false;
             }
         }
 
-        if (!bypassCustomModelCheck) {
+        if (checkCustomModelCheck) {
             // Fixes #3133: name and lore are not enough
             boolean hasItemMetaCustomModelData = itemMeta.hasCustomModelData();
             boolean hasSfItemMetaCustomModelData = sfitemMeta.hasCustomModelData();
@@ -493,9 +502,23 @@ public final class SlimefunUtils {
             }
         }
 
-        if (itemMeta instanceof PotionMeta && sfitemMeta instanceof PotionMeta) {
-            return ((PotionMeta) itemMeta).getBasePotionData().equals(((PotionMeta) sfitemMeta).getBasePotionData());
+        if (itemMeta instanceof PotionMeta potionMeta && sfitemMeta instanceof PotionMeta sfPotionMeta) {
+            if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)) {
+                if (!potionMeta.hasBasePotionType() && !sfPotionMeta.hasBasePotionType()) {
+                    return true;
+                }
+
+                return potionMeta.hasBasePotionType()
+                        && sfPotionMeta.hasBasePotionType()
+                        && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+            } else if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
+                return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+            } else {
+                return potionMeta.getBasePotionData().equals(sfPotionMeta.getBasePotionData());
+            }
         }
+
+        Debug.log(TestCase.CARGO_INPUT_TESTING, "  All meta checked.");
 
         return true;
     }

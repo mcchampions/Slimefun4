@@ -36,7 +36,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
 /**
@@ -214,7 +213,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
             case BUBBLE_COLUMN:
                 ItemStack waterBottle = new ItemStack(Material.POTION);
                 PotionMeta meta = (PotionMeta) waterBottle.getItemMeta();
-                meta.setBasePotionData(new PotionData(PotionType.WATER));
+                meta.setBasePotionType(PotionType.WATER);
                 waterBottle.setItemMeta(meta);
                 return waterBottle;
             default:

@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.groups.LockedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SeasonalItemGroup;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -82,7 +83,7 @@ public class ItemGroup implements Keyed {
         ItemMeta meta = item.getItemMeta();
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        meta.addItemFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
         this.item.setItemMeta(meta);
         this.tier = tier;
     }
@@ -185,9 +186,7 @@ public class ItemGroup implements Keyed {
         if (isRegistered()
                 && !isCrossAddonItemGroup()
                 && !item.getAddon().getName().equals(this.addon.getName())) {
-            item.warn("This item does not belong into ItemGroup "
-                    + this
-                    + " as that group belongs to "
+            item.warn("This item does not belong into ItemGroup " + this + " as that group belongs to "
                     + this.addon.getName());
         }
 
@@ -230,9 +229,7 @@ public class ItemGroup implements Keyed {
 
             meta.setLore(Arrays.asList(
                     "",
-                    ChatColor.GRAY
-                            + "\u21E8 "
-                            + ChatColor.GREEN
+                    ChatColor.GRAY + "\u21E8 " + ChatColor.GREEN
                             + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
         });
     }

@@ -115,9 +115,8 @@ public final class SlimefunRegistry {
      */
     public @Nonnull List<SlimefunItem> getDisabledSlimefunItems() {
         List<SlimefunItem> allItems = new ArrayList<>(getAllSlimefunItems());
-        List<SlimefunItem> enabledItems = getEnabledSlimefunItems();
-        allItems.removeAll(enabledItems);
-        return allItems;
+        return new ArrayList<>(
+                allItems.stream().filter(SlimefunItem::isDisabled).toList());
     }
 
     /**

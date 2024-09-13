@@ -531,7 +531,11 @@ public class BlockDataController extends ADataController {
             return;
         }
 
-        changed.forEach(slot -> scheduleDelayedBlockInvUpdate(blockData, slot));
+        changed.forEach(slot -> saveBlockInventorySlot(blockData, slot));
+    }
+
+    public void saveBlockInventorySlot(SlimefunBlockData blockData, int slot) {
+        scheduleDelayedBlockInvUpdate(blockData, slot);
     }
 
     public Set<SlimefunChunkData> getAllLoadedChunkData() {

@@ -15,8 +15,10 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.OptionalInt;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
@@ -246,7 +248,7 @@ public class ResourceManager {
      * @param block
      *            The {@link Block} which the scan starts at
      * @param page
-     *            The page to display
+     *            The zero-based page to display
      */
     public void scan(@Nonnull Player p, @Nonnull Block block, int page) {
         if (Slimefun.getGPSNetwork().getNetworkComplexity(p.getUniqueId()) < 600) {
@@ -282,12 +284,20 @@ public class ResourceManager {
         resources.sort(Comparator.comparing(a -> a.getName(p).toLowerCase(Locale.ROOT)));
 
         int index = 10;
-        int pages = (resources.size() - 1) / 36 + 1;
+        int pages = (int) (Math.ceil((double) resources.size() / 36) + 1);
+
+        Map<GEOResource, Integer> supplyMap = new HashMap<>();
+
+        // if resource is not generated, generate the first
+        resources.forEach(resource -> {
+            OptionalInt optional = getSupplies(resource, block.getWorld(), x, z);
+            int supplies = optional.orElseGet(() -> generate(resource, block.getWorld(), x, block.getY(), z));
+            supplyMap.put(resource, supplies);
+        });
 
         for (int i = page * 28; i < resources.size() && i < (page + 1) * 28; i++) {
             GEOResource resource = resources.get(i);
-            OptionalInt optional = getSupplies(resource, block.getWorld(), x, z);
-            int supplies = optional.orElseGet(() -> generate(resource, block.getWorld(), x, block.getY(), z));
+            int supplies = supplyMap.get(resource);
             String suffix = Slimefun.getLocalization()
                     .getResourceString(p, ChatUtils.checkPlurality("tooltips.unit", supplies));
 

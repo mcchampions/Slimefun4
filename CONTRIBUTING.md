@@ -1,10 +1,16 @@
-# 贡献代码指南
+# 贡献指南
 
-在向 Slimefun 汉化版提交代码前，你必须先阅读这个指南。
+在对 Slimefun 汉化版进行代码前，必须先阅读此贡献指南。
+
+# 设置环境
+
+我们提供了一个自动化格式检查系统，请使用 `mvn install` 进行初始化。
+
+本项目已经提供 `.editorconfig` 用于控制代码样式。如果你有自己的代码样式风格，请在对本仓库进行贡献前切换为当前仓库的风格配置。
 
 # 提交信息规范
 
-本项目强制使用 [约定式提交](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 的提交信息规范。
+本项目**强制使用** [约定式提交](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 的提交信息规范。
 
 > 简单来说, 你的提交信息需要包含以下内容:
 > 
@@ -18,6 +24,8 @@
 
 如果是修复请在主提交消息上声明，不必重复声明。
 
+我们支持的类型前缀正则如下：`(feat(ure)?|fix|docs|style|refactor|ci|chore|perf|build|test|revert|trans)`
+
 另外的, 如果是与翻译相关的提交，类型应为 trans。
 
 # 代码规范
@@ -26,12 +34,10 @@
 
 请不要过度缩减代码长度, 空格少了 Slimefun 也不会因此跑得更快.
 
-我们使用了 Spotless 作为代码格式化工具，你可以直接使用 `mvn spotless:check spotless:apply` 来自动格式化你的代码。
-
-如果你希望你的代码被合并至官方, 请遵守 Slimefun 主仓库的 [提交规范](https://github.com/Slimefun/Slimefun4/blob/master/CONTRIBUTING.md)
+我们使用了 Spotless 作为代码格式化工具，在提交前你**必须**使用 `mvn spotless:check spotless:apply` 来自动格式化你的代码，否则将会被格式检查器拦截 PR。
 
 # 提交代码类型
 
 你提交的代码可以是修复、新增内容和 API。
 
-下游代码现在支持提交 API 相关代码，开发者们可以通过 jitpack/GitHub Package 依赖汉化版的 Slimefun。
+下游代码现在支持提交 API 相关代码，开发者们可以通过 jitpack 依赖汉化版的 Slimefun。

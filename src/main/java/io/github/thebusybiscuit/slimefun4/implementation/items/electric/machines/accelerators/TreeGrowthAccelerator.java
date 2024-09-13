@@ -8,12 +8,12 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.Particle;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -94,7 +94,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
                 inv.consumeItem(slot);
                 sapling.getWorld()
                         .spawnParticle(
-                                Particle.VILLAGER_HAPPY,
+                                VersionedParticle.HAPPY_VILLAGER,
                                 sapling.getLocation().add(0.5D, 0.5D, 0.5D),
                                 4,
                                 0.1F,
@@ -119,7 +119,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
                 inv.consumeItem(slot);
                 block.getWorld()
                         .spawnParticle(
-                                Particle.VILLAGER_HAPPY,
+                                VersionedParticle.HAPPY_VILLAGER,
                                 block.getLocation().add(0.5D, 0.5D, 0.5D),
                                 4,
                                 0.1F,

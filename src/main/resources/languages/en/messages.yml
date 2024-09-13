@@ -363,6 +363,9 @@ workbench:
 cauldron:
   no-discoloring: '&4You cannot discolor Slimefun Armor'
 
+crafter:
+  not-working: '&4You cannot use a Slimefun item in crafter!'
+
 gps:
   deathpoint: '&4Deathpoint &7%date%'
   status-online: 'ONLINE'

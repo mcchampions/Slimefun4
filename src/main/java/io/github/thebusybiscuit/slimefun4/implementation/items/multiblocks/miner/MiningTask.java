@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.miner;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.bakedlibs.dough.inventory.InvUtils;
 import io.github.bakedlibs.dough.items.ItemUtils;
@@ -8,6 +7,7 @@ import io.github.bakedlibs.dough.protection.Interaction;
 import io.github.bakedlibs.dough.scheduling.TaskQueue;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.papermc.lib.PaperLib;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -18,7 +18,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -196,9 +195,8 @@ class MiningTask implements Runnable {
                         return;
                     }
 
-                    if (!StorageCacheUtils.hasBlock(b.getLocation())
-                            && miner.canMine(b)
-                            && push(miner.getOutcome(b.getType()))) {
+                    if (miner.canMine(b) && push(miner.getOutcome(b.getType()))) {
+                        // Not changed since this is supposed to be a natural sound.
                         furnace.getWorld().playEffect(furnace.getLocation(), Effect.STEP_SOUND, b.getType());
 
                         SoundEffect.MINING_TASK_SOUND.playAt(furnace);
@@ -349,7 +347,7 @@ class MiningTask implements Runnable {
         try {
             // Smoke Particles around the Chest for dramatic effect
             Location particleLoc = chest.getLocation().clone().add(0, -1, 0);
-            block.getWorld().spawnParticle(Particle.SMOKE_NORMAL, particleLoc, 20, 0.7, 0.7, 0.7, 0);
+            block.getWorld().spawnParticle(VersionedParticle.SMOKE, particleLoc, 20, 0.7, 0.7, 0.7, 0);
 
             if (block.getType() == Material.MOVING_PISTON) {
                 // Yeah it isn't really cool when this happens

@@ -9,6 +9,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.magical.staves.St
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ColoredFireworkStar;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -674,8 +675,8 @@ public final class SlimefunItems {
         GRANDPAS_WALKING_STICK.addUnsafeEnchantment(Enchantment.KNOCKBACK, 5);
 
         BLADE_OF_VAMPIRES.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 2);
-        BLADE_OF_VAMPIRES.addUnsafeEnchantment(Enchantment.DURABILITY, 4);
-        BLADE_OF_VAMPIRES.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
+        BLADE_OF_VAMPIRES.addUnsafeEnchantment(VersionedEnchantment.UNBREAKING, 4);
+        BLADE_OF_VAMPIRES.addUnsafeEnchantment(VersionedEnchantment.SHARPNESS, 2);
     }
 
     /*		Bows		*/
@@ -711,8 +712,8 @@ public final class SlimefunItems {
             "CLIMBING_PICK", Material.IRON_PICKAXE, "&b攀岩镐", "", "&f让你能够在右键后", "&f攀爬到指定平面上.", "&f附魔效率之后攀爬速度将会提升");
 
     static {
-        COBALT_PICKAXE.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-        COBALT_PICKAXE.addUnsafeEnchantment(Enchantment.DIG_SPEED, 6);
+        COBALT_PICKAXE.addUnsafeEnchantment(VersionedEnchantment.UNBREAKING, 10);
+        COBALT_PICKAXE.addUnsafeEnchantment(VersionedEnchantment.EFFICIENCY, 6);
     }
 
     /*		 Armor 		*/
@@ -906,7 +907,7 @@ public final class SlimefunItems {
     static {
         Map<Enchantment, Integer> cactusEnchs = new HashMap<>();
         cactusEnchs.put(Enchantment.THORNS, 3);
-        cactusEnchs.put(Enchantment.DURABILITY, 6);
+        cactusEnchs.put(VersionedEnchantment.UNBREAKING, 6);
 
         CACTUS_HELMET.addUnsafeEnchantments(cactusEnchs);
         CACTUS_CHESTPLATE.addUnsafeEnchantments(cactusEnchs);
@@ -914,8 +915,8 @@ public final class SlimefunItems {
         CACTUS_BOOTS.addUnsafeEnchantments(cactusEnchs);
 
         Map<Enchantment, Integer> damascusEnchs = new HashMap<>();
-        damascusEnchs.put(Enchantment.DURABILITY, 5);
-        damascusEnchs.put(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+        damascusEnchs.put(VersionedEnchantment.UNBREAKING, 5);
+        damascusEnchs.put(VersionedEnchantment.PROTECTION, 5);
 
         DAMASCUS_STEEL_HELMET.addUnsafeEnchantments(damascusEnchs);
         DAMASCUS_STEEL_CHESTPLATE.addUnsafeEnchantments(damascusEnchs);
@@ -923,8 +924,8 @@ public final class SlimefunItems {
         DAMASCUS_STEEL_BOOTS.addUnsafeEnchantments(damascusEnchs);
 
         Map<Enchantment, Integer> reinforcedEnchs = new HashMap<>();
-        reinforcedEnchs.put(Enchantment.DURABILITY, 9);
-        reinforcedEnchs.put(Enchantment.PROTECTION_ENVIRONMENTAL, 9);
+        reinforcedEnchs.put(VersionedEnchantment.UNBREAKING, 9);
+        reinforcedEnchs.put(VersionedEnchantment.PROTECTION, 9);
 
         REINFORCED_ALLOY_HELMET.addUnsafeEnchantments(reinforcedEnchs);
         REINFORCED_ALLOY_CHESTPLATE.addUnsafeEnchantments(reinforcedEnchs);
@@ -932,22 +933,22 @@ public final class SlimefunItems {
         REINFORCED_ALLOY_BOOTS.addUnsafeEnchantments(reinforcedEnchs);
 
         Map<Enchantment, Integer> gildedEnchs = new HashMap<>();
-        gildedEnchs.put(Enchantment.DURABILITY, 6);
-        gildedEnchs.put(Enchantment.PROTECTION_ENVIRONMENTAL, 8);
+        gildedEnchs.put(VersionedEnchantment.UNBREAKING, 6);
+        gildedEnchs.put(VersionedEnchantment.PROTECTION, 8);
 
         GILDED_IRON_HELMET.addUnsafeEnchantments(gildedEnchs);
         GILDED_IRON_CHESTPLATE.addUnsafeEnchantments(gildedEnchs);
         GILDED_IRON_LEGGINGS.addUnsafeEnchantments(gildedEnchs);
         GILDED_IRON_BOOTS.addUnsafeEnchantments(gildedEnchs);
 
-        GOLDEN_HELMET_12K.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-        GOLDEN_CHESTPLATE_12K.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-        GOLDEN_LEGGINGS_12K.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-        GOLDEN_BOOTS_12K.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
+        GOLDEN_HELMET_12K.addUnsafeEnchantment(VersionedEnchantment.UNBREAKING, 10);
+        GOLDEN_CHESTPLATE_12K.addUnsafeEnchantment(VersionedEnchantment.UNBREAKING, 10);
+        GOLDEN_LEGGINGS_12K.addUnsafeEnchantment(VersionedEnchantment.UNBREAKING, 10);
+        GOLDEN_BOOTS_12K.addUnsafeEnchantment(VersionedEnchantment.UNBREAKING, 10);
 
         Map<Enchantment, Integer> slimeEnchs = new HashMap<>();
-        slimeEnchs.put(Enchantment.DURABILITY, 4);
-        slimeEnchs.put(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+        slimeEnchs.put(VersionedEnchantment.UNBREAKING, 4);
+        slimeEnchs.put(VersionedEnchantment.PROTECTION, 2);
 
         SLIME_HELMET_STEEL.addUnsafeEnchantments(slimeEnchs);
         SLIME_CHESTPLATE_STEEL.addUnsafeEnchantments(slimeEnchs);
@@ -955,8 +956,8 @@ public final class SlimefunItems {
         SLIME_BOOTS_STEEL.addUnsafeEnchantments(slimeEnchs);
 
         Map<Enchantment, Integer> beeEnchs = new HashMap<>();
-        beeEnchs.put(Enchantment.DURABILITY, 4);
-        beeEnchs.put(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+        beeEnchs.put(VersionedEnchantment.UNBREAKING, 4);
+        beeEnchs.put(VersionedEnchantment.PROTECTION, 2);
 
         BEE_HELMET.addUnsafeEnchantments(beeEnchs);
         BEE_WINGS.addUnsafeEnchantments(beeEnchs);
@@ -1007,8 +1008,8 @@ public final class SlimefunItems {
     public static final SlimefunItemStack LAVA_CRYSTAL =
             new SlimefunItemStack("LAVA_CRYSTAL", HeadTexture.LAVA_CRYSTAL, "&4岩浆水晶");
     public static final SlimefunItemStack SALT = new SlimefunItemStack("SALT", Material.SUGAR, "&r盐");
-    public static final SlimefunItemStack CHEESE = new SlimefunItemStack("CHEESE", HeadTexture.CHEESE, "&r黄油");
-    public static final SlimefunItemStack BUTTER = new SlimefunItemStack("BUTTER", HeadTexture.BUTTER, "&r奶酪");
+    public static final SlimefunItemStack CHEESE = new SlimefunItemStack("CHEESE", HeadTexture.CHEESE, "&r奶酪");
+    public static final SlimefunItemStack BUTTER = new SlimefunItemStack("BUTTER", HeadTexture.BUTTER, "&r黄油");
     public static final SlimefunItemStack DUCT_TAPE =
             new SlimefunItemStack("DUCT_TAPE", HeadTexture.DUCT_TAPE, "&8强力胶布", "", "&r可以用这个在自动铁砧里", "&r修复物品");
     public static final SlimefunItemStack HEAVY_CREAM =
@@ -1401,10 +1402,10 @@ public final class SlimefunItems {
             LoreBuilder.usesLeft(StormStaff.MAX_USES));
 
     static {
-        STAFF_WIND.addUnsafeEnchantment(Enchantment.LUCK, 1);
+        STAFF_WIND.addUnsafeEnchantment(VersionedEnchantment.LUCK_OF_THE_SEA, 1);
         STAFF_FIRE.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 5);
-        STAFF_WATER.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
-        STAFF_STORM.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+        STAFF_WATER.addUnsafeEnchantment(VersionedEnchantment.AQUA_AFFINITY, 1);
+        STAFF_STORM.addUnsafeEnchantment(VersionedEnchantment.UNBREAKING, 1);
     }
 
     /*		 Machines 		*/

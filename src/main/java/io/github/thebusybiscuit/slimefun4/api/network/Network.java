@@ -13,6 +13,7 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 
@@ -226,7 +227,7 @@ public abstract class Network {
      */
     public void display() {
         if (manager.isVisualizerEnabled()) {
-            Slimefun.runSync(new NetworkVisualizer(this));
+            Slimefun.runSync(new NetworkVisualizer(this, Color.BLUE));
         }
     }
 

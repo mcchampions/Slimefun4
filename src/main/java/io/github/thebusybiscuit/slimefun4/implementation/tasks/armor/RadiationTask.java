@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectionType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RadiationSymptom;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.RadioactivityListener;
 import io.github.thebusybiscuit.slimefun4.utils.RadiationUtils;
 import java.util.HashMap;
@@ -52,7 +51,7 @@ public class RadiationTask extends AbstractArmorTask {
                     continue;
                 }
                 SlimefunItem sfItem = SlimefunItem.getByItem(item);
-                if (sfItem instanceof RadioactiveItem radioactiveItem) {
+                if (sfItem instanceof Radioactive radioactiveItem) {
                     exposureTotal += item.getAmount()
                             * radioactiveItem.getRadioactivity().getExposureModifier();
                 }

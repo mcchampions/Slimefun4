@@ -343,16 +343,16 @@ public class GEOMiner extends SlimefunItem
     }
 
     private void start(@Nonnull Block b, @Nonnull BlockMenu inv) {
+        boolean success = Slimefun.getRegistry().getGEOResources().values().isEmpty();
         for (GEOResource resource : Slimefun.getRegistry().getGEOResources().values()) {
             if (resource.isObtainableFromGEOMiner()) {
                 OptionalInt optional = Slimefun.getGPSNetwork()
                         .getResourceManager()
                         .getSupplies(resource, b.getWorld(), b.getX() >> 4, b.getZ() >> 4);
 
-                if (!optional.isPresent()) {
-                    updateHologram(b, "&4需要先进行地形扫描!");
-                    return;
-                }
+                if (optional.isEmpty()) continue;
+
+                success = true;
 
                 int supplies = optional.getAsInt();
                 if (supplies > 0) {
@@ -368,6 +368,11 @@ public class GEOMiner extends SlimefunItem
                     return;
                 }
             }
+        }
+
+        if (!success) {
+            updateHologram(b, "&4需要先进行地形扫描!");
+            return;
         }
 
         updateHologram(b, "&7开采完成");

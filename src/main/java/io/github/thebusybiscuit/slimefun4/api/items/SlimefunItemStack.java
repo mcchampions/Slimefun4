@@ -9,6 +9,7 @@ import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.WrongItemStackException;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -22,7 +23,6 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -47,7 +47,11 @@ public class SlimefunItemStack extends ItemStack {
     private String texture = null;
 
     public SlimefunItemStack(@Nonnull String id, @Nonnull ItemStack item) {
-        super(item);
+        super(item.getType(), item.getAmount());
+
+        if (item.hasItemMeta()) {
+            setItemMeta(item.getItemMeta());
+        }
 
         Validate.notNull(id, "The Item id must never be null!");
         Validate.isTrue(
@@ -165,7 +169,7 @@ public class SlimefunItemStack extends ItemStack {
                 potionMeta.addCustomEffect(effect, true);
 
                 if (effect.getType().equals(PotionEffectType.SATURATION)) {
-                    im.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+                    im.addItemFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
                 }
             }
         });

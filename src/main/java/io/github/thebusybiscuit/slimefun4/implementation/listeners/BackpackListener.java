@@ -160,6 +160,10 @@ public class BackpackListener implements Listener {
                     Slimefun.getLocalization().sendMessage(p, "backpack.not-original-item", true);
                     return;
                 }
+                if (item.getAmount() > 1) {
+                    Slimefun.getLocalization().sendMessage(p, "backpack.no-stack", true);
+                    return;
+                }
                 PlayerBackpack.bindItem(
                         item,
                         Slimefun.getDatabaseManager()

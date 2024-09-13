@@ -6,10 +6,10 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.inventory.ItemStack;
@@ -66,7 +66,7 @@ public abstract class CropGrowthAccelerator extends AbstractGrowthAccelerator {
 
                     crop.getWorld()
                             .spawnParticle(
-                                    Particle.VILLAGER_HAPPY,
+                                    VersionedParticle.HAPPY_VILLAGER,
                                     crop.getLocation().add(0.5D, 0.5D, 0.5D),
                                     4,
                                     0.1F,

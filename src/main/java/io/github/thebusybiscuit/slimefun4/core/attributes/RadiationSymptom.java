@@ -3,6 +3,7 @@ package io.github.thebusybiscuit.slimefun4.core.attributes;
 import com.google.common.base.Preconditions;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.RadiationUtils;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
 import javax.annotation.Nonnull;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -21,11 +22,11 @@ import org.bukkit.potion.PotionEffectType;
  * @see RadiationUtils
  */
 public enum RadiationSymptom {
-    SLOW(10, PotionEffectType.SLOW, 3),
+    SLOW(10, VersionedPotionEffectType.SLOWNESS, 3),
     WITHER_LOW(25, PotionEffectType.WITHER, 0),
     BLINDNESS(50, PotionEffectType.BLINDNESS, 4),
     WITHER_HIGH(75, PotionEffectType.WITHER, 3),
-    IMMINENT_DEATH(100, PotionEffectType.HARM, 49);
+    IMMINENT_DEATH(100, VersionedPotionEffectType.INSTANT_DAMAGE, 49);
 
     private final int minExposure;
     private final PotionEffect potionEffect;
