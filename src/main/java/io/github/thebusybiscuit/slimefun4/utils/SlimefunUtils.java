@@ -319,7 +319,10 @@ public final class SlimefunUtils {
                 String possibleItemId = Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
                 String sfItemId = Slimefun.getItemDataService().getItemData(sfItemMeta).orElse(null);
                 // Prioritize SlimefunItem id comparison over ItemMeta comparison
-                if (possibleItemId != null && possibleItemId.equals(sfItemId)) {
+                if (possibleItemId != null ) {
+                    if (!(possibleItemId.equals(sfItemId))) {
+                        return false;
+                    }
                     /*
                      * PR #3417
                      *
