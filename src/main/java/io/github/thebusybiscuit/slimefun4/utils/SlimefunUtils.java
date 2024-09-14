@@ -356,11 +356,12 @@ public final class SlimefunUtils {
     }
 
     public static boolean equalsItemMeta(ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
-        Optional<String> displayName = itemMetaSnapshot.getDisplayName();
+        Optional<Component> displayName = itemMetaSnapshot.displayName();
 
         if (itemMeta.hasDisplayName() != displayName.isPresent()) {
             return false;
-        } else if (itemMeta.hasDisplayName() && displayName.isPresent() && !itemMeta.getDisplayName().equals(displayName.get())) {
+        } else //noinspection DataFlowIssue
+            if (itemMeta.hasDisplayName() && displayName.isPresent() && !itemMeta.displayName().equals(displayName.get())) {
             return false;
         } else if (checkLore) {
             Optional<List<String>> itemLore = itemMetaSnapshot.getLore();
