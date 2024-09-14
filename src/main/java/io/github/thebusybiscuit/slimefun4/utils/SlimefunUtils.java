@@ -353,11 +353,7 @@ public final class SlimefunUtils {
         return Optional.empty();
     }
 
-    private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
-        return equalsItemMeta(itemMeta, itemMetaSnapshot, checkLore, false);
-    }
-
-    private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore, boolean checkCustomModelCheck) {
+    public static boolean equalsItemMeta(ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
         Optional<String> displayName = itemMetaSnapshot.getDisplayName();
 
         if (itemMeta.hasDisplayName() != displayName.isPresent()) {
@@ -372,10 +368,6 @@ public final class SlimefunUtils {
             } else if (itemMeta.hasLore() != itemLore.isPresent()) {
                 return false;
             }
-        }
-
-        if (checkCustomModelCheck) {
-            return true;
         }
 
         // Fixes #3133: name and lore are not enough
