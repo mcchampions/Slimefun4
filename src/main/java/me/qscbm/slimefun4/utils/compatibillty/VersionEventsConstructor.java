@@ -10,6 +10,7 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class VersionEventsConstructor {
+    @SuppressWarnings("removal")
     public EntityDamageByEntityEvent newEntityDamageByEntityEvent(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, String type, double damage) {
         return new EntityDamageByEntityEvent(damager, damagee, cause, damage);
     }
