@@ -9,6 +9,7 @@ public class ControllerHolder<T extends ADataController> {
     private final Map<StorageType, T> controllers;
 
     public static <CT extends ADataController> CT getController(Class<CT> clazz, StorageType type) {
+        //noinspection unchecked
         return ((ControllerHolder<CT>) holders.get(clazz)).get(type);
     }
 
@@ -19,6 +20,7 @@ public class ControllerHolder<T extends ADataController> {
     public static <CT extends ADataController> CT createController(Class<CT> clazz, StorageType type) {
         try {
             var re = clazz.getDeclaredConstructor().newInstance();
+            //noinspection unchecked
             ((ControllerHolder<CT>) holders.computeIfAbsent(clazz, k -> new ControllerHolder<CT>())).put(type, re);
             return re;
         } catch (Throwable e) {

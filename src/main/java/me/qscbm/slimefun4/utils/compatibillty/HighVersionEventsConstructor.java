@@ -23,6 +23,7 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
     public HighVersionEventsConstructor() {
         Class<Enum<?>> explosionResultClass;
         try {
+            //noinspection unchecked
             explosionResultClass = (Class<Enum<?>>) Class.forName("org.bukkit.ExplosionResult");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);

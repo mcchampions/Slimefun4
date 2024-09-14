@@ -63,6 +63,7 @@ public class LanguageService {
             if (v instanceof String s) {
                 MESSAGE_MAP.put(k, s);
             } else if (v instanceof List<?> l) {
+                //noinspection unchecked
                 MESSAGES_MAP.put(k, (List<String>) l);
             }
         });
@@ -95,6 +96,7 @@ public class LanguageService {
             if (v instanceof String s) {
                 RECIPE_NAME_MAP.put(k, s);
             } else if (v instanceof List<?> l) {
+                //noinspection unchecked
                 RECIPE_LORE_MAP.put(k, (List<String>) l);
             }
         });
