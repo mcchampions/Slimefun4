@@ -1,3 +1,5 @@
+// noinspection JSUnresolvedReference,NodeCoreCodingAssistance
+
 const fs = require('fs');
 
 let xml = fs.readFileSync('pom.xml', {

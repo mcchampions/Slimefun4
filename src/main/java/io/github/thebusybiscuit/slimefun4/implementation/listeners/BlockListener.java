@@ -185,6 +185,7 @@ public class BlockListener implements Listener {
             callToolHandler(e, heldItem, fortune, drops);
         }
 
+        //noinspection IsCancelled
         if (!e.isCancelled()) {
             // Checks for Slimefun sensitive blocks above, using Slimefun Tags
             // TODO: merge this with the vanilla sensitive block check (when 1.18- is dropped)
@@ -204,6 +205,7 @@ public class BlockListener implements Listener {
                         blockData,
                         () -> {
                             callBlockHandler(e, heldItem, drops);
+                            //noinspection IsCancelled
                             if (e.isCancelled()) {
                                 block.setType(type);
                                 blockData.setPendingRemove(false);
@@ -217,6 +219,7 @@ public class BlockListener implements Listener {
             }
 
             callBlockHandler(e, heldItem, drops);
+            //noinspection IsCancelled
             if (e.isCancelled()) {
                 blockData.setPendingRemove(false);
             }
