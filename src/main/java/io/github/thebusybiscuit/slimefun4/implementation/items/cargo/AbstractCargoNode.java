@@ -43,7 +43,7 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         super(itemGroup, item, recipeType, recipe, recipeOutput);
 
         new BlockMenuPreset(
-                getId(), TextUtils.toPlainText(item.getItemMeta().displayName())) {
+                getId(), item.getItemMetaSnapshot().getDisplayName().orElse("")) {
             @Override
             public void init() {
                 createBorder(this);
