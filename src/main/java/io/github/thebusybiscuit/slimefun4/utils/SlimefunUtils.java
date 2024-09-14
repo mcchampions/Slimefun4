@@ -19,6 +19,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.CapacitorTextureUpdateTask;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -247,14 +248,15 @@ public final class SlimefunUtils {
     }
 
     public static boolean isSlimefunItemSimilar(SlimefunItemStack sfItem, ItemStack item,boolean checkLore) {
-        ItemStack tempStack = SlimefunItem.getByItem(item).getItem();
-        if (tempStack == null) {
+        SlimefunItem sfI = SlimefunItem.getByItem(item);
+        if (sfI == null) {
             return false;
         }
+        ItemStack tempStack = sfI.getItem();
         SlimefunItemStack sfItemStack = (SlimefunItemStack) tempStack;
         if (checkLore) {
-            List<String> lores1 = sfItem.getLore();
-            List<String> lores2 = item.getLore();
+            List<Component> lores1 = sfItem.lore();
+            List<Component> lores2 = item.lore();
             if (lores1 == null || lores2 == null) {
                 return false;
             }
@@ -382,7 +384,8 @@ public final class SlimefunUtils {
     private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMeta sfitemMeta, boolean checkLore, boolean checkCustomModelCheck) {
         if (itemMeta.hasDisplayName() != sfitemMeta.hasDisplayName()) {
             return false;
-        } else if (itemMeta.hasDisplayName() && sfitemMeta.hasDisplayName() && !itemMeta.getDisplayName().equals(sfitemMeta.getDisplayName())) {
+        } else //noinspection DataFlowIssue
+            if (itemMeta.hasDisplayName() && sfitemMeta.hasDisplayName() && !itemMeta.displayName().equals(sfitemMeta.displayName())) {
             return false;
         } else if (checkLore) {
             boolean hasItemMetaLore = itemMeta.hasLore();
