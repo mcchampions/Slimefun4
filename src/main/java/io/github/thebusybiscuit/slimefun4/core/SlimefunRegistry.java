@@ -116,7 +116,7 @@ public final class SlimefunRegistry {
      * @return A {@link List} containing every disabled{@link SlimefunItem}
      */
     public List<SlimefunItem> getDisabledSlimefunItems() {
-        return disableItems.stream().toList();
+        return new ArrayList<>(disableItems);
     }
 
     /**
