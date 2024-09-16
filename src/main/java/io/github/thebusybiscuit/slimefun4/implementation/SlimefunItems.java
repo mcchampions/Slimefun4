@@ -498,31 +498,31 @@ public final class SlimefunItems {
     static {
         ItemMeta duralumin = DURALUMIN_MULTI_TOOL.getItemMeta();
         duralumin.setUnbreakable(true);
-        DURALUMIN_MULTI_TOOL.setItemMeta(duralumin);
+        DURALUMIN_MULTI_TOOL.setItemMeta(duralumin, true);
 
         ItemMeta solder = SOLDER_MULTI_TOOL.getItemMeta();
         solder.setUnbreakable(true);
-        SOLDER_MULTI_TOOL.setItemMeta(solder);
+        SOLDER_MULTI_TOOL.setItemMeta(solder, true);
 
         ItemMeta billon = BILLON_MULTI_TOOL.getItemMeta();
         billon.setUnbreakable(true);
-        BILLON_MULTI_TOOL.setItemMeta(billon);
+        BILLON_MULTI_TOOL.setItemMeta(billon, true);
 
         ItemMeta steel = STEEL_MULTI_TOOL.getItemMeta();
         steel.setUnbreakable(true);
-        STEEL_MULTI_TOOL.setItemMeta(steel);
+        STEEL_MULTI_TOOL.setItemMeta(steel, true);
 
         ItemMeta damascus = DAMASCUS_STEEL_MULTI_TOOL.getItemMeta();
         damascus.setUnbreakable(true);
-        DAMASCUS_STEEL_MULTI_TOOL.setItemMeta(damascus);
+        DAMASCUS_STEEL_MULTI_TOOL.setItemMeta(damascus, true);
 
         ItemMeta reinforced = REINFORCED_ALLOY_MULTI_TOOL.getItemMeta();
         reinforced.setUnbreakable(true);
-        REINFORCED_ALLOY_MULTI_TOOL.setItemMeta(reinforced);
+        REINFORCED_ALLOY_MULTI_TOOL.setItemMeta(reinforced, true);
 
         ItemMeta carbonado = CARBONADO_MULTI_TOOL.getItemMeta();
         carbonado.setUnbreakable(true);
-        CARBONADO_MULTI_TOOL.setItemMeta(carbonado);
+        CARBONADO_MULTI_TOOL.setItemMeta(carbonado, true);
     }
 
     /*		 Food 		*/

@@ -61,9 +61,7 @@ public class SlimefunItemStack extends ItemStack {
         Slimefun.getItemDataService().setItemData(meta, id);
         Slimefun.getItemTextureService().setTexture(meta, id);
 
-        setItemMeta(meta);
-        // 在初始化时调用方法优化性能
-        itemMetaSnapshot.getDisplayName();
+        setItemMeta(meta, true);
     }
 
     public SlimefunItemStack(String id, ItemStack item, Consumer<ItemMeta> consumer) {
@@ -71,7 +69,7 @@ public class SlimefunItemStack extends ItemStack {
 
         ItemMeta im = getItemMeta();
         consumer.accept(im);
-        setItemMeta(im);
+        setItemMeta(im, true);
     }
 
     public SlimefunItemStack(String id, Material type, Consumer<ItemMeta> consumer) {
@@ -240,6 +238,14 @@ public class SlimefunItemStack extends ItemStack {
         itemMetaSnapshot = new ItemMetaSnapshot(meta);
 
         return super.setItemMeta(meta);
+    }
+
+    public boolean setItemMeta(ItemMeta meta, boolean initDisplayName) {
+        boolean result = setItemMeta(meta);
+        if (initDisplayName) {
+            itemMetaSnapshot.getDisplayName();
+        }
+        return result;
     }
 
     @Override
