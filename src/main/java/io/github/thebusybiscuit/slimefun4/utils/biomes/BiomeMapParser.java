@@ -105,11 +105,8 @@ public class BiomeMapParser<T> {
         for (JsonElement element : json) {
             if (element instanceof JsonObject) {
                 readEntry(element.getAsJsonObject());
-            } else {
-                throw new BiomeMapException(
-                        key,
-                        "Unexpected array element: " + element.getClass().getSimpleName() + " - " + element);
             }
+            return;
         }
     }
 
@@ -130,17 +127,10 @@ public class BiomeMapParser<T> {
                 for (Biome biome : biomes) {
                     T prev = map.put(biome, value);
 
-                    // Check for duplicates
-                    if (prev != null) {
-                        throw new BiomeMapException(key, "Biome '" + biome.getKey() + "' is registered twice");
-                    }
+                    return;
                 }
-            } else {
-                throw new BiomeMapException(key, "Entry is missing a 'biomes' child of type array.");
             }
-        } else {
-            throw new BiomeMapException(key, "Entry is missing a 'value' child.");
-        }
+        } 
     }
 
     private Set<Biome> readBiomes(JsonArray array) throws BiomeMapException {
