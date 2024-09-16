@@ -20,6 +20,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPede
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.CapacitorTextureUpdateTask;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.*;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -46,7 +48,9 @@ import java.util.*;
  */
 public final class SlimefunUtils {
     private static final String NO_PICKUP_METADATA = "no_pickup";
-    private static final String SOULBOUND_LORE = ChatColor.GRAY + "灵魂绑定";
+    private static final Component SOULBOUND_LORE = Component.text().color(NamedTextColor.GRAY).content("灵魂绑定").build();
+
+    private static final String SOULBOUND_LORE_OLD = LegacyComponentSerializer.legacySection().serialize(SOULBOUND_LORE);
 
     private SlimefunUtils() {
     }
@@ -119,7 +123,7 @@ public final class SlimefunUtils {
                     return !sfItem.isDisabled();
                 }
             } else if (meta != null) {
-                return meta.hasLore() && meta.getLore().contains(SOULBOUND_LORE);
+                return meta.hasLore() && meta.lore().contains(SOULBOUND_LORE);
             }
         }
         return false;
@@ -166,7 +170,7 @@ public final class SlimefunUtils {
             container.remove(key);
         }
 
-        List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList<>();
+        List<Component> lore = meta.hasLore() ? meta.lore() : new ArrayList<>();
 
         if (makeSoulbound && !isSoulbound) {
             lore.add(SOULBOUND_LORE);
@@ -176,7 +180,7 @@ public final class SlimefunUtils {
             lore.remove(SOULBOUND_LORE);
         }
 
-        meta.setLore(lore);
+        meta.lore(lore);
         item.setItemMeta(meta);
     }
 
@@ -366,6 +370,7 @@ public final class SlimefunUtils {
         } else if (checkLore) {
             Optional<List<String>> itemLore = itemMetaSnapshot.getLore();
 
+            //noinspection DataFlowIssue
             if (itemMeta.hasLore() && itemLore.isPresent() && !equalsLore(itemMeta.getLore(), itemLore.get())) {
                 return false;
             } else if (itemMeta.hasLore() != itemLore.isPresent()) {
@@ -393,7 +398,8 @@ public final class SlimefunUtils {
             boolean hasSfItemMetaLore = sfitemMeta.hasLore();
 
             if (hasItemMetaLore && hasSfItemMetaLore) {
-                if (!equalsLore(itemMeta.getLore(), sfitemMeta.getLore())) {
+                //noinspection DataFlowIssue
+                if (!equalsLoreNew(itemMeta.lore(), sfitemMeta.lore())) {
                     return false;
                 }
             } else if (hasItemMetaLore != hasSfItemMetaLore) {
@@ -440,9 +446,9 @@ public final class SlimefunUtils {
      * @param lore2 The second lore
      * @return Whether the two lores are equal
      */
-    public static boolean equalsLore(List<String> lore1, List<String> lore2) {
-        List<String> longerList = lore1.size() > lore2.size() ? lore1 : lore2;
-        List<String> shorterList = lore1.size() > lore2.size() ? lore2 : lore1;
+    public static boolean equalsLoreNew(List<Component> lore1, List<Component> lore2) {
+        List<Component> longerList = lore1.size() > lore2.size() ? lore1 : lore2;
+        List<Component> shorterList = lore1.size() > lore2.size() ? lore2 : lore1;
 
         int a = 0;
         int b = 0;
@@ -472,7 +478,52 @@ public final class SlimefunUtils {
         return b == shorterList.size();
     }
 
+    /**
+     * This checks if the two provided lores are equal.
+     * This method will ignore any lines such as the soulbound one.
+     *
+     * @param lore1 The first lore
+     * @param lore2 The second lore
+     * @return Whether the two lores are equal
+     */
+    public static boolean equalsLore(List<String> lore1, List<String> lore2) {
+        List<String> longerList = lore1.size() > lore2.size() ? lore1 : lore2;
+        List<String> shorterList = lore1.size() > lore2.size() ? lore2 : lore1;
+
+        //noinspection DuplicatedCode
+        int a = 0;
+        int b = 0;
+
+        for (; a < longerList.size(); a++) {
+            if (isLineIgnored(longerList.get(a))) {
+                continue;
+            }
+
+            while (shorterList.size() > b && isLineIgnored(shorterList.get(b))) {
+                b++;
+            }
+
+            if (b >= shorterList.size()) {
+                return false;
+            } else if (longerList.get(a).equals(shorterList.get(b))) {
+                b++;
+            } else {
+                return false;
+            }
+        }
+
+        while (shorterList.size() > b && isLineIgnored(shorterList.get(b))) {
+            b++;
+        }
+
+        return b == shorterList.size();
+    }
+
     private static boolean isLineIgnored(String line) {
+        return line.equals(SOULBOUND_LORE_OLD);
+    }
+
+    private static boolean isLineIgnored(Component line) {
         return line.equals(SOULBOUND_LORE);
     }
 

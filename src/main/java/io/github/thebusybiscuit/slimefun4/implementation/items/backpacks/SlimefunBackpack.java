@@ -89,7 +89,8 @@ public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> impleme
         boolean hasLoreItem = itemMetaTwo.hasLore();
         boolean hasLoreSfItem = itemMetaOne.hasLore();
 
-        if (hasLoreItem && hasLoreSfItem && SlimefunUtils.equalsLore(itemMetaTwo.getLore(), itemMetaOne.getLore())) {
+        //noinspection DataFlowIssue
+        if (hasLoreItem && hasLoreSfItem && SlimefunUtils.equalsLoreNew(itemMetaTwo.lore(), itemMetaOne.lore())) {
             return true;
         }
         return !hasLoreItem && !hasLoreSfItem;
