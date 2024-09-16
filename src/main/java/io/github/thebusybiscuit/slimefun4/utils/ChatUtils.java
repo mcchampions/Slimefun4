@@ -89,9 +89,6 @@ public final class ChatUtils {
      *      if count is less than 0
      */
     public static String checkPlurality(String string, int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException("Argument count cannot be negative.");
-        }
         if (count == 1) {
             return string;
         }
