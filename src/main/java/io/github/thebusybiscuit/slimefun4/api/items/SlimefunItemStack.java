@@ -62,6 +62,8 @@ public class SlimefunItemStack extends ItemStack {
         Slimefun.getItemTextureService().setTexture(meta, id);
 
         setItemMeta(meta);
+        // 在初始化时调用方法优化性能
+        itemMetaSnapshot.getDisplayName();
     }
 
     public SlimefunItemStack(String id, ItemStack item, Consumer<ItemMeta> consumer) {
