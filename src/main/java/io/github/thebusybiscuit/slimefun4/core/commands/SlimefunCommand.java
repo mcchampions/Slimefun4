@@ -11,9 +11,7 @@ import lombok.Getter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 /**
  * This {@link CommandExecutor} holds the functionality of our {@code /slimefun} command.
@@ -40,6 +38,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
         this.plugin = plugin;
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public void register() {
         registered = true;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -81,14 +80,6 @@ public class SlimefunCommand implements CommandExecutor, Listener {
             if (!cmd.isHidden()) {
                 sender.sendMessage(ChatColors.color("&3/sf " + cmd.getName() + " &b") + cmd.getDescription(sender));
             }
-        }
-    }
-
-    @EventHandler
-    public void onCommand(PlayerCommandPreprocessEvent e) {
-        if (e.getMessage().equalsIgnoreCase("/help slimefun")) {
-            sendHelp(e.getPlayer());
-            e.setCancelled(true);
         }
     }
 
