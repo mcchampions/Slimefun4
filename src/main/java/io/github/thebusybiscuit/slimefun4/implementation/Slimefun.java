@@ -60,6 +60,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nullable;
@@ -76,7 +77,7 @@ import java.util.stream.Collectors;
  * @author TheBusyBiscuit
  */
 public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompatibleSlimefun {
-    
+
 
     /**
      * Our static instance of {@link Slimefun}.
@@ -133,6 +134,8 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final BackpackListener backpackListener = new BackpackListener();
     private final SlimefunBowListener bowListener = new SlimefunBowListener();
 
+    private static BukkitScheduler bukkitScheduler;
+
     // fork
     @Getter
     private final CargoTickerTask cargoTickerTask = new CargoTickerTask();
@@ -182,6 +185,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
             // The Environment has been validated.
             onPluginStart();
         }
+        bukkitScheduler = getServer().getScheduler();
     }
 
     /**
@@ -857,7 +861,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
     public static BukkitTask runSync(Runnable runnable) {
-        return instance.getServer().getScheduler().runTask(instance, runnable);
+        return bukkitScheduler.runTask(instance, runnable);
     }
 
     public File getFile() {
@@ -869,6 +873,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     }
 
     public static BukkitTask runAsync(Runnable runnable) {
-        return instance.getServer().getScheduler().runTask(instance, runnable);
+        return bukkitScheduler.runTask(instance, runnable);
     }
 }
