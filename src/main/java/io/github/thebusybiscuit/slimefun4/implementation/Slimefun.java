@@ -76,6 +76,8 @@ import java.util.stream.Collectors;
  * @author TheBusyBiscuit
  */
 public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompatibleSlimefun {
+    
+
     /**
      * Our static instance of {@link Slimefun}.
      * Make sure to clean this up in {@link #onDisable()}!
@@ -134,6 +136,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     // fork
     @Getter
     private final CargoTickerTask cargoTickerTask = new CargoTickerTask();
+
     /**
      * Our default constructor for {@link Slimefun}.
      */
@@ -822,7 +825,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                 .filter(plugin -> {
                     PluginDescriptionFile description = plugin.getDescription();
                     return description.getDepend().contains(pluginName)
-                            || description.getSoftDepend().contains(pluginName);
+                           || description.getSoftDepend().contains(pluginName);
                 })
                 .collect(Collectors.toSet());
 
@@ -866,6 +869,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     }
 
     public static BukkitTask runAsync(Runnable runnable) {
-        return instance.getServer().getScheduler().runTask(instance,runnable);
+        return instance.getServer().getScheduler().runTask(instance, runnable);
     }
 }
