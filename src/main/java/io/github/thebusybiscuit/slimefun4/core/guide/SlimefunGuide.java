@@ -32,7 +32,7 @@ public final class SlimefunGuide {
     }
 
     public static void openCheatMenu(Player p) {
-        openMainMenuAsync(p, SlimefunGuideMode.CHEAT_MODE, 1);
+        openMainMenuAsync(p, SlimefunGuideMode.CHEAT_MODE);
     }
 
     public static void openGuide(Player p, @Nullable ItemStack guide) {
@@ -59,12 +59,12 @@ public final class SlimefunGuide {
             SlimefunGuideImplementation guide = Slimefun.getRegistry().getSlimefunGuide(mode);
             profile.getGuideHistory().openLastEntry(guide);
         } else {
-            openMainMenuAsync(p, mode, 1);
+            openMainMenuAsync(p, mode);
         }
     }
 
-    private static void openMainMenuAsync(Player player, SlimefunGuideMode mode, int selectedPage) {
-        if (!PlayerProfile.get(player, profile -> Slimefun.runSync(() -> openMainMenu(profile, mode, selectedPage)))) {
+    private static void openMainMenuAsync(Player player, SlimefunGuideMode mode) {
+        if (!PlayerProfile.get(player, profile -> Slimefun.runSync(() -> openMainMenu(profile, mode, 1)))) {
             Slimefun.getLocalization().sendMessage(player, "messages.opening-guide");
         }
     }
