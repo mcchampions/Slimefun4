@@ -77,8 +77,6 @@ import java.util.stream.Collectors;
  * @author TheBusyBiscuit
  */
 public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompatibleSlimefun {
-
-
     /**
      * Our static instance of {@link Slimefun}.
      * Make sure to clean this up in {@link #onDisable()}!
