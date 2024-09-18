@@ -42,6 +42,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.RainbowArmo
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SlimefunArmorTask;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SolarHelmetTask;
 import io.github.thebusybiscuit.slimefun4.integrations.IntegrationsManager;
+import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;
@@ -86,7 +87,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
             6,
             10,
             TimeUnit.SECONDS,
-            new LinkedBlockingQueue<Runnable>()
+            new LinkedBlockingQueue<>()
     );
 
     /**
@@ -318,6 +319,10 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         logger.log(Level.INFO, "正在加载第三方插件支持...");
         integrations.start();
 
+        // 初始化 LoreBuilder
+        // noinspection ResultOfMethodCallIgnored
+        LoreBuilder.speed(1f);
+
         // Hooray!
         logger.log(Level.INFO, "Slimefun 完成加载, 耗时 {0}", getStartupTime(timestamp));
     }
@@ -344,9 +349,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     @Override
     public void onDisable() {
         // Slimefun never loaded successfully, so we don't even bother doing stuff here
-        if (instance() == null) {
-            return;
-        }
 
         SlimefunExtended.shutdown();
 
