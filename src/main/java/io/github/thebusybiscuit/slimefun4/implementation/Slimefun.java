@@ -66,6 +66,10 @@ import org.bukkit.scheduler.BukkitTask;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -77,6 +81,14 @@ import java.util.stream.Collectors;
  * @author TheBusyBiscuit
  */
 public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompatibleSlimefun {
+    private static final ThreadPoolExecutor MISC_EXECUTOR = new ThreadPoolExecutor(
+            4,
+            6,
+            10,
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<Runnable>()
+    );
+
     /**
      * Our static instance of {@link Slimefun}.
      * Make sure to clean this up in {@link #onDisable()}!
@@ -870,7 +882,11 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         return instance.chatCatcher;
     }
 
-    public static BukkitTask runAsync(Runnable runnable) {
-        return bukkitScheduler.runTask(instance, runnable);
+    public static BukkitTask runBukkitTaskAsync(Runnable runnable) {
+        return bukkitScheduler.runTaskAsynchronously(instance, runnable);
+    }
+
+    public static CompletableFuture<Void> runAsync(Runnable runnable) {
+        return CompletableFuture.runAsync(runnable, MISC_EXECUTOR);
     }
 }

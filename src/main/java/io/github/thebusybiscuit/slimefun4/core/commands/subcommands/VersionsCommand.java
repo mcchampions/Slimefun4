@@ -67,7 +67,7 @@ class VersionsCommand extends SubCommand {
     @Override
     public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.versions") || sender instanceof ConsoleCommandSender) {
-            Slimefun.runAsync(() -> {
+            Slimefun.runBukkitTaskAsync(() -> {
                 Collection<Plugin> addons = Slimefun.getInstalledAddons();
 
                 if (addons.isEmpty()) {
