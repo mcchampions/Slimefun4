@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
@@ -23,7 +25,7 @@ import org.bukkit.inventory.meta.FireworkEffectMeta;
 public class ColoredFireworkStar extends CustomItemStack {
     public ColoredFireworkStar(Color color, String name, String... lore) {
         super(Material.FIREWORK_STAR, im -> {
-            im.setDisplayName(ChatColors.color(name));
+            im.displayName(LegacyComponentSerializer.legacySection().deserialize(ChatColors.color(name)));
 
             ((FireworkEffectMeta) im)
                     .setEffect(FireworkEffect.builder()
@@ -32,13 +34,13 @@ public class ColoredFireworkStar extends CustomItemStack {
                             .build());
 
             if (lore.length > 0) {
-                List<String> lines = new ArrayList<>();
+                List<Component> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(ChatColors.color(line));
+                    lines.add(LegacyComponentSerializer.legacySection().deserialize(ChatColors.color(line)));
                 }
 
-                im.setLore(lines);
+                im.lore(lines);
             }
 
             im.addItemFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);

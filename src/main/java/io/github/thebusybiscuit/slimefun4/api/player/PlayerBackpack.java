@@ -8,6 +8,8 @@ import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.SlimefunBackpack;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.BackpackListener;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.UUID;
@@ -15,6 +17,10 @@ import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -39,6 +45,7 @@ import org.bukkit.persistence.PersistentDataType;
 public class PlayerBackpack extends SlimefunInventoryHolder {
     public static final String LORE_OWNER = "&7所有者: ";
     private static final String COLORED_LORE_OWNER = ChatColors.color(LORE_OWNER);
+    private static final String PLAIN_LORE_OWNER = "所有者: ";
     private static final NamespacedKey KEY_BACKPACK_UUID = new NamespacedKey(Slimefun.instance(), "B_UUID");
     private static final NamespacedKey KEY_OWNER_UUID = new NamespacedKey(Slimefun.instance(), "OWNER_UUID");
     @Getter
@@ -178,15 +185,18 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     }
 
     private static void setItem(ItemMeta meta, PlayerBackpack bp) {
-        var lore = meta.getLore();
+        List<Component> lore = meta.lore();
         for (var i = 0; i < lore.size(); i++) {
-            var line = lore.get(i);
-            if (COLORED_LORE_OWNER.equals(line)) {
-                lore.set(i, COLORED_LORE_OWNER + bp.getOwner().getName());
-                break;
+            Component line = lore.get(i);
+            if (line instanceof TextComponent tc) {
+                if (COLORED_LORE_OWNER.equals(tc.content())) {
+                    lore.set(i, new QsTextComponentImpl(PLAIN_LORE_OWNER + bp.getOwner().getName())
+                            .color(NamedTextColor.GRAY));
+                    break;
+                }
             }
         }
-        meta.setLore(lore);
+        meta.lore(lore);
 
         if (bp.name.isEmpty() || bp.name.isBlank()) {
             return;

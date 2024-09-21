@@ -18,6 +18,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -147,9 +151,12 @@ public class IndustrialMiner extends MultiBlockMachine {
         for (MachineFuel fuel : fuelTypes) {
             ItemStack item = fuel.getInput().clone();
             ItemMeta im = item.getItemMeta();
-            List<String> lore = new ArrayList<>();
-            lore.add(ChatColors.color("§8\u21E8 &7剩余最多 " + fuel.getTicks() + " 个矿石"));
-            im.setLore(lore);
+            List<Component> lore = new ArrayList<>();
+            lore.add(new QsTextComponentImpl("\u21E8 ").color(NamedTextColor.DARK_GRAY)
+                    .append(new QsTextComponentImpl("剩余最多 " + fuel.getTicks() + " 个矿石").color(
+                            NamedTextColor.GRAY
+                    )));
+            im.lore(lore);
             item.setItemMeta(im);
             list.add(item);
         }

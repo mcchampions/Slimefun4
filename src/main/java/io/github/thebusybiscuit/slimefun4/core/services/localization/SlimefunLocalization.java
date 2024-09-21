@@ -6,7 +6,9 @@ import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import me.qscbm.slimefun4.services.LanguageService;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -193,7 +195,7 @@ public abstract class SlimefunLocalization implements Keyed {
 
             // Set the display name if possible, else keep the default item name.
             if (displayName != null) {
-                meta.setDisplayName(ChatColor.AQUA + displayName);
+                meta.displayName(new QsTextComponentImpl(displayName).color(NamedTextColor.AQUA));
             }
 
             List<String> lore = LanguageService.RECIPE_LORE_MAP.get(key.getNamespace() + "." + key.getKey() + ".lore");

@@ -3,13 +3,17 @@ package io.github.thebusybiscuit.slimefun4.utils;
 import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -23,16 +27,17 @@ import org.bukkit.persistence.PersistentDataType;
  *
  * @author TheBusyBiscuit
  * @author WalshyDev
- *
  * @see Rechargeable
- *
  */
 public final class ChargeUtils {
-    private static final String LORE_PREFIX = ChatColors.color("§8\u21E8 §e\u26A1 §7");
+    private static final String LORE_PREFIX = ChatColors.color("§7");
     private static final Pattern REGEX =
-            Pattern.compile("(§c§o)?" + LORE_PREFIX + "[0-9.]+ / [0-9.]+ J",Pattern.CASE_INSENSITIVE);
+            Pattern.compile(LORE_PREFIX + "[0-9.]+ / [0-9.]+ J", Pattern.CASE_INSENSITIVE);
+    private static final Pattern REGEX_NEW =
+            Pattern.compile("[0-9.]+ / [0-9.]+ J", Pattern.CASE_INSENSITIVE);
 
-    private ChargeUtils() {}
+    private ChargeUtils() {
+    }
 
     public static void setCharge(ItemMeta meta, float charge, float capacity) {
         BigDecimal decimal = BigDecimal.valueOf(charge).setScale(2, RoundingMode.HALF_UP);
@@ -41,19 +46,56 @@ public final class ChargeUtils {
         NamespacedKey key = Slimefun.getRegistry().getItemChargeDataKey();
         meta.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, value);
 
-        List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList<>();
+        List<Component> lore = meta.hasLore() ? meta.lore() : new ArrayList<>();
         for (int i = 0; i < lore.size(); i++) {
-            String line = lore.get(i);
+            Component line = lore.get(i);
+            if (line instanceof TextComponent c) {
+                if (c.content().equals("\u21E8")) {
+                    List<Component> children = c.children();
+                    if (children.size() < 2) {
+                        continue;
+                    }
+                    TextComponent tc = (TextComponent) children.get(1);
+                    String content = tc.content();
+                    if (REGEX_NEW.matcher(content).matches()) {
+                        lore.set(i, new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
+                                .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW))
+                                .append(new QsTextComponentImpl(value + " / " + capacity + " J")
+                                        .color(NamedTextColor.GRAY)));
+                        meta.lore(lore);
+                        return;
+                    }
+                } else {
+                    if (c.content().isEmpty()) {
 
-            if (REGEX.matcher(line).matches()) {
-                lore.set(i, LORE_PREFIX + value + " / " + capacity + " J");
-                meta.setLore(lore);
-                return;
+                        List<Component> children = c.children();
+                        if (children.size() < 3) {
+                            continue;
+                        }
+
+                        TextComponent fc = (TextComponent) children.get(0);
+                        if (fc.content().equals("\u21E8 ")) {
+                            TextComponent tc = (TextComponent) children.get(2);
+                            String content = tc.content();
+                            if (REGEX_NEW.matcher(content).matches()) {
+                                lore.set(i, new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
+                                        .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW))
+                                        .append(new QsTextComponentImpl(value + " / " + capacity + " J")
+                                                .color(NamedTextColor.GRAY)));
+                                meta.lore(lore);
+                                return;
+                            }
+                        }
+                    }
+                }
             }
         }
 
-        lore.add(LORE_PREFIX + value + " / " + capacity + " J");
-        meta.setLore(lore);
+        lore.add(new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
+                .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW))
+                .append(new QsTextComponentImpl(value + " / " + capacity + " J")
+                        .color(NamedTextColor.GRAY)));
+        meta.lore(lore);
     }
 
     public static float getCharge(ItemMeta meta) {

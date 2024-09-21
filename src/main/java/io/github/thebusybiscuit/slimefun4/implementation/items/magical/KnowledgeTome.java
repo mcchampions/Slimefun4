@@ -14,6 +14,10 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import java.util.List;
 import java.util.UUID;
 
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -42,17 +46,20 @@ public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
             e.setUseBlock(Result.DENY);
 
             ItemMeta im = item.getItemMeta();
-            List<String> lore = im.getLore();
+            List<Component> lore = im.lore();
 
-            if (lore.get(1).isEmpty()) {
-                lore.set(0, ChatColors.color("&7主人: &b" + p.getName()));
-                lore.set(1, ChatColor.BLACK + "" + p.getUniqueId());
-                im.setLore(lore);
+            Component fc = lore.get(1);
+
+            if (!(fc instanceof TextComponent firstComponent)) return;
+
+            if (firstComponent.content().isEmpty()) {
+                lore.set(0, new QsTextComponentImpl("主人: ").color(NamedTextColor.GRAY)
+                        .append(new QsTextComponentImpl(p.getName()).color(NamedTextColor.GRAY)));
+                lore.set(1, new QsTextComponentImpl(p.getUniqueId().toString()).color(NamedTextColor.BLACK));
                 item.setItemMeta(im);
                 SoundEffect.TOME_OF_KNOWLEDGE_USE_SOUND.playFor(p);
             } else {
-                UUID uuid = UUID.fromString(
-                        ChatColor.stripColor(item.getItemMeta().getLore().get(1)));
+                UUID uuid = UUID.fromString(firstComponent.content());
 
                 if (p.getUniqueId().equals(uuid)) {
                     Slimefun.getLocalization().sendMessage(p, "messages.no-tome-yourself");

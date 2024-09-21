@@ -150,7 +150,7 @@ public class GPSNetwork {
         menu.addItem(2, new CustomItemStack(SlimefunItems.GPS_TRANSMITTER, im -> {
             im.setDisplayName(ChatColor.GRAY
                     + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.transmitters"));
-            im.setLore(null);
+            im.lore(null);
         }));
 
         menu.addMenuClickHandler(2, ChestMenuUtils.getEmptyClickHandler());
