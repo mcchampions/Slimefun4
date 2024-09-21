@@ -42,7 +42,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.RainbowArmo
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SlimefunArmorTask;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SolarHelmetTask;
 import io.github.thebusybiscuit.slimefun4.integrations.IntegrationsManager;
-import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;

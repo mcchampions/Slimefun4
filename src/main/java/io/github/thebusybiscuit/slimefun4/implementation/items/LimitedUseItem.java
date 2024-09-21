@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items;
 
-import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -14,8 +13,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.magical.staves.St
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import net.kyori.adventure.text.Component;
