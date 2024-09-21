@@ -8,6 +8,9 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -25,9 +28,9 @@ import org.bukkit.persistence.PersistentDataType;
  *
  */
 public final class ChargeUtils {
-    private static final String LORE_PREFIX = ChatColors.color("§8\u21E8 &e\u26A1 &7");
+    private static final String LORE_PREFIX = ChatColors.color("§8\u21E8 §e\u26A1 §7");
     private static final Pattern REGEX =
-            Pattern.compile(ChatColors.color("(&c&o)?" + LORE_PREFIX) + "[0-9.]+ / [0-9.]+ J");
+            Pattern.compile("(§c§o)?" + LORE_PREFIX + "[0-9.]+ / [0-9.]+ J",Pattern.CASE_INSENSITIVE);
 
     private ChargeUtils() {}
 

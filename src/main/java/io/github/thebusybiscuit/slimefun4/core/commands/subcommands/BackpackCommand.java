@@ -8,13 +8,16 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.RestoredBackpack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -145,11 +148,11 @@ class BackpackCommand extends SubCommand {
 
             var visualBackpack = SlimefunItems.RESTORED_BACKPACK.clone();
             var im = visualBackpack.getItemMeta();
-            im.setDisplayName(bp.getName().isEmpty() ? "背包 #" + bp.getId() : bp.getName());
-            var lore = new ArrayList<String>();
-            lore.add("");
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&a左键 获取此背包"));
-            im.setLore(lore);
+            im.displayName(new QsTextComponentImpl(bp.getName().isEmpty() ? "背包 #" + bp.getId() : bp.getName()));
+            var lore = new ArrayList<Component>();
+            lore.add(Component.empty());
+            lore.add(new QsTextComponentImpl("左键 获取此背包").color(NamedTextColor.GREEN));
+            im.lore(lore);
             visualBackpack.setItemMeta(im);
 
             menu.addItem(slot, visualBackpack);
