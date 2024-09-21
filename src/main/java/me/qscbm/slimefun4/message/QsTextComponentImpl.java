@@ -7,15 +7,12 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.Style;
 
 import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.util.MonkeyBars;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static java.util.Objects.requireNonNull;
 
 @SuppressWarnings({"UnstableApiUsage", "NullableProblems"})
 public class QsTextComponentImpl implements TextComponent {
