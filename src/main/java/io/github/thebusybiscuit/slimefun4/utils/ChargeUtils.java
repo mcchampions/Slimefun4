@@ -47,6 +47,10 @@ public final class ChargeUtils {
         meta.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, value);
 
         List<Component> lore = meta.hasLore() ? meta.lore() : new ArrayList<>();
+        Component newLine = new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
+                .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW))
+                .append(new QsTextComponentImpl(value + " / " + capacity + " J")
+                        .color(NamedTextColor.GRAY));
         for (int i = 0; i < lore.size(); i++) {
             Component line = lore.get(i);
             if (line instanceof TextComponent c) {
@@ -58,10 +62,7 @@ public final class ChargeUtils {
                     TextComponent tc = (TextComponent) children.get(1);
                     String content = tc.content();
                     if (REGEX_NEW.matcher(content).matches()) {
-                        lore.set(i, new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
-                                .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW))
-                                .append(new QsTextComponentImpl(value + " / " + capacity + " J")
-                                        .color(NamedTextColor.GRAY)));
+                        lore.set(i, newLine);
                         meta.lore(lore);
                         return;
                     }
@@ -78,10 +79,7 @@ public final class ChargeUtils {
                             TextComponent tc = (TextComponent) children.get(2);
                             String content = tc.content();
                             if (REGEX_NEW.matcher(content).matches()) {
-                                lore.set(i, new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
-                                        .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW))
-                                        .append(new QsTextComponentImpl(value + " / " + capacity + " J")
-                                                .color(NamedTextColor.GRAY)));
+                                lore.set(i, newLine);
                                 meta.lore(lore);
                                 return;
                             }
@@ -91,10 +89,7 @@ public final class ChargeUtils {
             }
         }
 
-        lore.add(new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
-                .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW))
-                .append(new QsTextComponentImpl(value + " / " + capacity + " J")
-                        .color(NamedTextColor.GRAY)));
+        lore.add(newLine);
         meta.lore(lore);
     }
 
