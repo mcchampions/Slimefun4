@@ -7,7 +7,6 @@ import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunItemSpawnEvent;
-import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -202,10 +201,6 @@ public final class SlimefunUtils {
      * @return An {@link ItemStack} with this Head texture
      */
     public static ItemStack getCustomHead(String texture) {
-        if (Slimefun.instance() == null) {
-            throw new PrematureCodeException("You cannot instantiate a custom head before Slimefun was loaded.");
-        }
-
         String base64 = texture;
 
         if (CommonPatterns.HEXADECIMAL.matcher(texture).matches()) {
