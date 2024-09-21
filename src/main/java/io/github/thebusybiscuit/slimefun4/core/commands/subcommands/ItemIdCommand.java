@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -27,7 +28,7 @@ class ItemIdCommand extends SubCommand {
                     var sfItem = SlimefunItem.getByItem(item);
                     if (sfItem != null) {
                         String sfId = sfItem.getId();
-                        Component idMsg = Component.text(sfId)
+                        Component idMsg = new QsTextComponentImpl(sfId)
                                         .color(NamedTextColor.GRAY);
                         idMsg = idMsg.clickEvent(ClickEvent.copyToClipboard(sfId));
                         sender.sendMessage(msg.append(idMsg));
