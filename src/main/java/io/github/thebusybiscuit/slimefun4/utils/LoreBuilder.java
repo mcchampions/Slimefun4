@@ -5,10 +5,12 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentBuilder;
 import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.ChatColor;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -81,5 +83,10 @@ public final class LoreBuilder {
 
     public static String usesLeft(int usesLeft) {
         return "§7还可以使用 §e" + usesLeft + " 次";
+    }
+
+    public static Component usesLeftNew(int usesLeft) {
+        return new QsTextComponentImpl("还可以使用 ").color(NamedTextColor.GRAY)
+                .append(new QsTextComponentImpl(usesLeft + " 次").color(NamedTextColor.YELLOW));
     }
 }
