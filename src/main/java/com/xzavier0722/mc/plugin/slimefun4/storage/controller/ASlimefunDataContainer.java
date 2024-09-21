@@ -16,7 +16,7 @@ public abstract class ASlimefunDataContainer {
 
     public ASlimefunDataContainer(String key) {
         this.key = key;
-        data = new CacheMap<>();
+        data = new CacheMap();
     }
 
     public ASlimefunDataContainer(String key, ASlimefunDataContainer other) {
