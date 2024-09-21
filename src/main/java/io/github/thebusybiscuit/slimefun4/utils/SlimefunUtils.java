@@ -427,6 +427,7 @@ public final class SlimefunUtils {
             } else if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
                 return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
             } else {
+                //noinspection deprecation
                 return potionMeta.getBasePotionData().equals(sfPotionMeta.getBasePotionData());
             }
         }
