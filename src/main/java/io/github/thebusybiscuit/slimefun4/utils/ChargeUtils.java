@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import me.qscbm.slimefun4.utils.TextUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -107,7 +108,7 @@ public final class ChargeUtils {
             for (String line : meta.getLore()) {
                 if (REGEX.matcher(line).matches()) {
                     String data =
-                            ChatColor.stripColor(PatternUtils.SLASH_SEPARATOR.split(line)[0]
+                            TextUtils.toPlainText(PatternUtils.SLASH_SEPARATOR.split(line)[0]
                                     .toLowerCase().replace(LORE_PREFIX, ""));
 
                     float loreValue = Float.parseFloat(data);
