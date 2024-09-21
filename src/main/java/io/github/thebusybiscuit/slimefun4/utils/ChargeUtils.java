@@ -30,11 +30,11 @@ import org.bukkit.persistence.PersistentDataType;
  * @see Rechargeable
  */
 public final class ChargeUtils {
-    private static final String LORE_PREFIX = ChatColors.color("§7");
+    private static final String LORE_PREFIX = ChatColors.color("§8\u21E8 §e\u26A1 §7");
     private static final Pattern REGEX =
             Pattern.compile(LORE_PREFIX + "[0-9.]+ / [0-9.]+ J", Pattern.CASE_INSENSITIVE);
     private static final Pattern REGEX_NEW =
-            Pattern.compile("[0-9.]+ / [0-9.]+ J", Pattern.CASE_INSENSITIVE);
+            Pattern.compile("[0-9.]+ / [0-9.]+ J");
 
     private ChargeUtils() {
     }
@@ -113,7 +113,8 @@ public final class ChargeUtils {
             for (String line : meta.getLore()) {
                 if (REGEX.matcher(line).matches()) {
                     String data =
-                            ChatColor.stripColor(PatternUtils.SLASH_SEPARATOR.split(line)[0].replace(LORE_PREFIX, ""));
+                            ChatColor.stripColor(PatternUtils.SLASH_SEPARATOR.split(line)[0]
+                                    .toLowerCase().replace(LORE_PREFIX, ""));
 
                     float loreValue = Float.parseFloat(data);
                     container.set(key, PersistentDataType.FLOAT, loreValue);
