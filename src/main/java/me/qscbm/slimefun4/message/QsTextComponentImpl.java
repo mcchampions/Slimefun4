@@ -114,6 +114,6 @@ public class QsTextComponentImpl implements TextComponent {
 
     @Override
     public Builder toBuilder() {
-        return null;
+        return Component.text();
     }
 }
