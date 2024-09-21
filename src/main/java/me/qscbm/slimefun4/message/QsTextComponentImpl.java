@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +33,7 @@ public class QsTextComponentImpl implements TextComponent {
     private String content;
 
     public QsTextComponentImpl(String content) {
-        this.children = new ArrayList<>();
+        this.children = Collections.emptyList();
         this.style = Style.empty();
         this.content = content;
     }
@@ -46,11 +47,17 @@ public class QsTextComponentImpl implements TextComponent {
     public QsTextComponentImpl append(final @NotNull ComponentLike like) {
         final Component component = like.asComponent();
         if (component == Component.empty()) return this;
+        if (children.equals(Collections.emptyList())) {
+            children = new ArrayList<>();
+        }
         children.add(component);
         return this;
     }
 
     public QsTextComponentImpl append(final @NotNull QsTextComponentImpl like) {
+        if (children.equals(Collections.emptyList())) {
+            children = new ArrayList<>();
+        }
         children.add(like);
         return this;
     }
@@ -87,9 +94,10 @@ public class QsTextComponentImpl implements TextComponent {
     @Override
     public boolean equals(final @Nullable Object other) {
         if (this == other) return true;
-        if (!(other instanceof QsTextComponentImpl that)) return false;
-        if (!super.equals(other)) return false;
-        return Objects.equals(this.content, that.content);
+        if (!(other instanceof TextComponent that)) return false;
+        return Objects.equals(this.children, that.children())
+               && Objects.equals(this.style, that.style()) &&
+            Objects.equals(this.content, that.content());
     }
 
     @Override
