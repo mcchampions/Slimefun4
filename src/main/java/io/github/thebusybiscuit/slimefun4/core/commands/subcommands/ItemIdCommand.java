@@ -7,15 +7,12 @@ import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 class ItemIdCommand extends SubCommand {
-    HoverEvent<Component> hoverEvent = HoverEvent.showText(Component.text("点击复制到剪切板"));
-
     final Component msg = Component.text("该物品的ID为: ");
     protected ItemIdCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "id", false);

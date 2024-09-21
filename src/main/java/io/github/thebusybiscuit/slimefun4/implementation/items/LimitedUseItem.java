@@ -13,9 +13,13 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.staves.StormStaff;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
+
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -119,21 +123,22 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
     }
 
     private void updateItemLore(ItemStack item, ItemMeta meta, int usesLeft) {
-        List<String> lore = meta.getLore();
-
-        String newLine = ChatColors.color(LoreBuilder.usesLeft(usesLeft));
-        if (lore != null && !lore.isEmpty()) {
+        List<Component> lores = meta.lore();
+        Component newLine = LoreBuilder.usesLeftNew(usesLeft);
+        if (lores != null && !lores.isEmpty()) {
             // find the correct line
-            for (int i = 0; i < lore.size(); i++) {
-                if (PatternUtils.USES_LEFT_LORE.matcher(lore.get(i)).matches()) {
-                    lore.set(i, newLine);
-                    meta.setLore(lore);
-                    item.setItemMeta(meta);
-                    return;
+            for (int i = 0; i < lores.size(); i++) {
+                if (lores.get(i) instanceof TextComponent component) {
+                    if (PatternUtils.USES_LEFT_LORE.matcher(component.content()).matches()) {
+                        lores.set(i, newLine);
+                        meta.lore(lores);
+                        item.setItemMeta(meta);
+                        return;
+                    }
                 }
             }
         } else {
-            meta.setLore(Collections.singletonList(newLine));
+            meta.lore(List.of(newLine));
             item.setItemMeta(meta);
         }
     }
