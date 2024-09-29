@@ -4,8 +4,6 @@ import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
-import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
-import io.github.thebusybiscuit.slimefun4.api.exceptions.WrongItemStackException;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
@@ -40,7 +38,6 @@ public class SlimefunItemStack extends ItemStack {
     @Getter
     private ItemMetaSnapshot itemMetaSnapshot;
 
-    private boolean locked = false;
     private String texture = null;
 
     public SlimefunItemStack(String id, ItemStack item) {
@@ -229,7 +226,6 @@ public class SlimefunItemStack extends ItemStack {
 
     @Override
     public boolean setItemMeta(ItemMeta meta) {
-        validate();
         itemMetaSnapshot = new ItemMetaSnapshot(meta);
 
         return super.setItemMeta(meta);
@@ -245,24 +241,12 @@ public class SlimefunItemStack extends ItemStack {
 
     @Override
     public void setType(Material type) {
-        validate();
         super.setType(type);
     }
 
     @Override
     public void setAmount(int amount) {
-        validate();
         super.setAmount(amount);
-    }
-
-    private void validate() {
-        if (locked) {
-            throw new WrongItemStackException(id + " is not mutable.");
-        }
-    }
-
-    public void lock() {
-        locked = true;
     }
 
     public Optional<String> getSkullTexture() {

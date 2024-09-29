@@ -429,11 +429,6 @@ public class SlimefunItem implements Placeable {
                 Slimefun.getRegistry().getDisabledSlimefunItemsToSet().add(this);
             }
 
-            // Lock the SlimefunItemStack from any accidental manipulations
-            if (itemStackTemplate instanceof SlimefunItemStack stack && isItemStackImmutable()) {
-                stack.lock();
-            }
-
             postRegister();
 
             // handle runtime-registrations / auto-loading
