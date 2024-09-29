@@ -11,10 +11,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-/**
- * @deprecated This interface is not designed to be used by addons. The entire inventory system will be replaced
- * eventually.
- */
 public interface InventoryBlock {
     /**
      * This method returns an {@link Array} of slots that serve as the input

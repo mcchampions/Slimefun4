@@ -15,10 +15,7 @@ import org.bukkit.plugin.Plugin;
 /**
  * An old {@link Listener} for CS-CoreLib
  *
- * @deprecated This is an old remnant of CS-CoreLib, the last bits of the past. They will be removed once everything is
- * updated.
  */
-@Deprecated
 public class MenuListener implements Listener {
     public MenuListener(Plugin plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

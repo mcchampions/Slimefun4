@@ -13,10 +13,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * An old remnant of CS-CoreLib.
  * This will be removed once we updated everything.
  * Don't look at the code, it will be gone soon, don't worry.
- *
- * @deprecated Only used by the legacy {@link BlockStorage} system.
  */
-@Deprecated
 public class Config {
     /**
      * -- GETTER --
