@@ -80,8 +80,4 @@ public class BlockDataConfigWrapper extends Config {
     @Override
     public void save(File file) {}
 
-    @Override
-    public void reload() {
-        super.reload();
-    }
 }
