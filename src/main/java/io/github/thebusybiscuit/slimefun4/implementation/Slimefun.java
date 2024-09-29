@@ -602,19 +602,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     }
 
     /**
-     * This private static method allows us to throw a proper {@link Exception}
-     * whenever someone tries to access a static method while the instance is null.
-     * This happens when the method is invoked before {@link #onEnable()} or after {@link #onDisable()}.
-     * <p>
-     * Use it whenever a null check is needed to avoid a non-descriptive {@link NullPointerException}.
-     */
-    private static void validateInstance() {
-        if (instance == null) {
-            throw new IllegalStateException("Cannot invoke static method, Slimefun instance is null.");
-        }
-    }
-
-    /**
      * This method returns out {@link MinecraftRecipeService} for Slimefun.
      * This service is responsible for finding/identifying {@link Recipe Recipes}
      * from vanilla Minecraft.

@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.ExplosiveToolBreakBlocksEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunBlockBreakEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunBlockPlaceEvent;
@@ -23,7 +22,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -372,23 +370,6 @@ public class BlockListener implements Listener {
          * state.update(true, false);
     }
     */
-
-    /**
-     * This method checks if the {@link BlockData} would be
-     * supported at the given {@link Block}.
-     *
-     * @param blockData The {@link BlockData} to check
-     * @param block     The {@link Block} the {@link BlockData} would be at
-     * @return Whether the {@link BlockData} would be supported at the given {@link Block}
-     */
-    private boolean isSupported(BlockData blockData, Block block) {
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
-            return blockData.isSupported(block);
-        } else {
-            // TODO: Make 1.16-1.18 version. BlockData::isSupported is 1.19+.
-            return true;
-        }
-    }
 
     private int getBonusDropsWithFortune(@Nullable ItemStack item, Block b) {
         int amount = 1;

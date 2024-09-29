@@ -8,7 +8,6 @@ import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.events.AsyncProfileLoadEvent;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
 import io.github.thebusybiscuit.slimefun4.api.items.HashedArmorpiece;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemState;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectionType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectiveArmor;
@@ -443,14 +442,6 @@ public class PlayerProfile {
 
     public boolean isInvalid() {
         return isInvalid;
-    }
-
-    // returns the amount of researches with at least 1 enabled item
-    private int nonEmptyResearches() {
-        return (int) Slimefun.getRegistry().getResearches().stream()
-                .filter(research ->
-                        research.getAffectedItems().stream().anyMatch(item -> item.getState() == ItemState.ENABLED))
-                .count();
     }
 
     private static void getOrCreate(OfflinePlayer p, Consumer<PlayerProfile> cb) {

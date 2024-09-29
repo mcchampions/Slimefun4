@@ -49,11 +49,6 @@ public class SlimefunItemStack extends ItemStack {
         if (item.hasItemMeta()) {
             setItemMeta(item.getItemMeta());
         }
-        if (Slimefun.instance() == null) {
-            throw new PrematureCodeException(
-                    "A SlimefunItemStack must never be be created before your Plugin was enabled.");
-        }
-
         this.id = id;
 
         ItemMeta meta = getItemMeta();

@@ -23,20 +23,4 @@ class EnvironmentChecker {
         return true;
     }
 
-    static boolean checkHybridServer() {
-        try {
-            Class.forName("cpw.mods.modlauncher.Launcher");
-            Class.forName("net.minecraftforge.server.console.TerminalHandler");
-
-            return true;
-        } catch (ClassNotFoundException ignored) {
-            if (Bukkit.getPluginCommand("mohist") != null) {
-                return true;
-            }
-
-            var serverVer = Bukkit.getVersion().toLowerCase();
-
-            return serverVer.contains("arclight") || serverVer.contains("mohist");
-        }
-    }
 }

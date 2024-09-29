@@ -2,12 +2,10 @@ package io.github.thebusybiscuit.slimefun4.core.networks.cargo;
 
 import io.github.thebusybiscuit.slimefun4.api.network.Network;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import javax.annotation.Nullable;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,7 +13,6 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Directional;
-import org.bukkit.inventory.ItemStack;
 
 /**
  * An abstract super class of {@link CargoNet} that handles
@@ -81,23 +78,6 @@ abstract class AbstractItemNetwork extends Network {
         }
 
         connectorCache.remove(node);
-    }
-
-    private void filter(@Nullable ItemStack stack, List<ItemStackAndInteger> items, Location node) {
-        if (stack != null && CargoUtils.matchesFilter(this, node.getBlock(), stack)) {
-            boolean add = true;
-
-            for (ItemStackAndInteger item : items) {
-                if (SlimefunUtils.isItemSimilar(stack, item.getItemStackWrapper(), true, false)) {
-                    add = false;
-                    item.add(stack.getAmount());
-                }
-            }
-
-            if (add) {
-                items.add(new ItemStackAndInteger(stack, stack.getAmount()));
-            }
-        }
     }
 
     protected ItemFilter getItemFilter(Block node) {

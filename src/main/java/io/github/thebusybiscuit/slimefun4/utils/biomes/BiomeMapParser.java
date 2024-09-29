@@ -125,12 +125,12 @@ public class BiomeMapParser<T> {
 
                 // Loop through all biome strings in this array
                 for (Biome biome : biomes) {
-                    T prev = map.put(biome, value);
+                    map.put(biome, value);
 
                     return;
                 }
             }
-        } 
+        }
     }
 
     private Set<Biome> readBiomes(JsonArray array) throws BiomeMapException {
