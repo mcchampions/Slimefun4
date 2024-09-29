@@ -14,7 +14,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.data.type.Sapling;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -83,30 +82,6 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
                         .spawnParticle(
                                 VersionedParticle.HAPPY_VILLAGER,
                                 sapling.getLocation().add(0.5D, 0.5D, 0.5D),
-                                4,
-                                0.1F,
-                                0.1F,
-                                0.1F);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean updateSaplingData(Block machine, Block block, BlockMenu inv, Sapling sapling) {
-        for (int slot : getInputSlots()) {
-            if (isFertilizer(inv.getItemInSlot(slot))) {
-                removeCharge(machine.getLocation(), ENERGY_CONSUMPTION);
-
-                sapling.setStage(sapling.getStage() + 1);
-                block.setBlockData(sapling, false);
-
-                inv.consumeItem(slot);
-                block.getWorld()
-                        .spawnParticle(
-                                VersionedParticle.HAPPY_VILLAGER,
-                                block.getLocation().add(0.5D, 0.5D, 0.5D),
                                 4,
                                 0.1F,
                                 0.1F,

@@ -263,10 +263,6 @@ public class RecipeType implements Keyed {
         Slimefun.getRegistry().getBarteringDrops().add(output);
     }
 
-    private static void registerBarterDrop(ItemStack output) {
-        Slimefun.getRegistry().getBarteringDrops().add(output);
-    }
-
     private static void registerMobDrop(ItemStack[] recipe, ItemStack output) {
         String mob = TextUtils.toPlainText(recipe[4].getItemMeta().getDisplayName())
                 .toUpperCase(Locale.ROOT)

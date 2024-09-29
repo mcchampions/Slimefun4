@@ -50,8 +50,6 @@ public class SlimefunProfiler {
      */
     public void stop() {}
 
-    private void finishReport() {}
-
     public void requestSummary(PerformanceInspector inspector) {}
 
     protected Map<String, Long> getByItem() {
@@ -66,15 +64,7 @@ public class SlimefunProfiler {
         return new HashMap<>();
     }
 
-    protected int getBlocksInChunk(String chunk) {
-        return 0;
-    }
-
     protected int getBlocksOfId(String id) {
-        return 0;
-    }
-
-    protected int getBlocksFromPlugin(String pluginName) {
         return 0;
     }
 
