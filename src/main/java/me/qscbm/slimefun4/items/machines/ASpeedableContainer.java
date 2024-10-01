@@ -41,7 +41,7 @@ public abstract class ASpeedableContainer extends AContainer implements Speedabl
         addItemHandler(new BlockTicker() {
             @Override
             public void tick(Block b, SlimefunItem sf, SlimefunBlockData data) {
-                ASpeedableContainer.this.tick(b,data);
+                ASpeedableContainer.this.tick(b, data);
             }
 
             @Override
@@ -56,20 +56,21 @@ public abstract class ASpeedableContainer extends AContainer implements Speedabl
         CraftingOperation currentOperation = getMachineProcessor().getOperation(b);
 
         if (currentOperation != null) {
-            if (takeCharge(b.getLocation())) {
-                if (!currentOperation.isFinished()) {
-                    getMachineProcessor().updateProgressBar(inv, 22, currentOperation);
-                    currentOperation.addProgress(1);
-                } else {
-                    inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
-
-                    for (ItemStack output : currentOperation.getResults()) {
-                        inv.pushItem(output.clone(), getOutputSlots());
-                    }
-
-                    getMachineProcessor().endOperation(b);
-                }
+            if (!takeCharge(b.getLocation())) {
+                return;
             }
+            if (!currentOperation.isFinished()) {
+                getMachineProcessor().updateProgressBar(inv, 22, currentOperation);
+                currentOperation.addProgress(1);
+                return;
+            }
+            inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
+
+            for (ItemStack output : currentOperation.getResults()) {
+                inv.pushItem(output.clone(), getOutputSlots());
+            }
+
+            getMachineProcessor().endOperation(b);
         } else {
             MachineRecipe recipe = findNextRecipe(inv);
             if (recipe != null) {

@@ -27,23 +27,24 @@ public class OverclockModule extends SimpleSlimefunItem<ItemUseHandler> {
             Optional<SlimefunItem> sfBlock = e.getSlimefunBlock();
             e.cancel();
 
-            if (sfBlock.isPresent() && blockOptional.isPresent()) {
-                Block block = blockOptional.get();
-                SlimefunBlockData blockData = Slimefun.getDatabaseManager()
-                        .getBlockDataController().getBlockData(block.getLocation());
-                SlimefunItem item = sfBlock.get();
-                Player player = e.getPlayer();
-                if (item instanceof Speedable machine) {
-                    if (!machine.speedUp(blockData)) {
-                        player.sendMessage("超频倍率已达上限: " + machine.getSpeedLimit() + "x");
-                    } else {
-                        player.sendMessage("超频机器成功, 目前倍率: " + machine.getIncreasedSpeed(blockData) + "x");
-                        e.getItem().setAmount(e.getItem().getAmount() - 1);
-                    }
-                } else {
-                    player.sendMessage("该机器无法超频");
-                }
+            if (sfBlock.isEmpty() || blockOptional.isEmpty()) {
+                return;
             }
+            Block block = blockOptional.get();
+            SlimefunBlockData blockData = Slimefun.getDatabaseManager()
+                    .getBlockDataController().getBlockData(block.getLocation());
+            SlimefunItem item = sfBlock.get();
+            Player player = e.getPlayer();
+            if (item instanceof Speedable machine) {
+                if (!machine.speedUp(blockData)) {
+                    player.sendMessage("超频倍率已达上限: " + machine.getSpeedLimit() + "x");
+                    return;
+                }
+                player.sendMessage("超频机器成功, 目前倍率: " + machine.getIncreasedSpeed(blockData) + "x");
+                e.getItem().setAmount(e.getItem().getAmount() - 1);
+                return;
+            }
+            player.sendMessage("该机器无法超频");
         };
     }
 }

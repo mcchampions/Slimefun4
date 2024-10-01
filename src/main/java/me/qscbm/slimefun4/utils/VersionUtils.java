@@ -28,8 +28,7 @@ public class VersionUtils {
             if (matchResult.groupCount() >= 3) {
                 try {
                     patchVersion = Integer.parseInt(matchResult.group(3), 10);
-                } catch (Exception ignored) {
-                }
+                } catch (Exception ignored) {}
             }
             if (matchResult.groupCount() >= 5) {
                 try {
@@ -39,8 +38,7 @@ public class VersionUtils {
                     } else {
                         releaseCandidateVersion = ver;
                     }
-                } catch (Exception ignored) {
-                }
+                } catch (Exception ignored) {}
             }
         }
         MINECRAFT_VERSION = version;
