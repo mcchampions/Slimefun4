@@ -404,18 +404,18 @@ public abstract class AContainer extends SlimefunItem
             }
 
             if (found.size() == recipe.getInput().length) {
-                if (!InvUtils.fitAll(inv.toInventory(), recipe.getOutput(), getOutputSlots())) {
-                    return null;
-                }
-
-                for (Map.Entry<Integer, Integer> entry : found.entrySet()) {
-                    inv.consumeItem(entry.getKey(), entry.getValue());
-                }
-
-                return recipe;
-            } else {
                 found.clear();
+                continue;
+            } 
+            if (!InvUtils.fitAll(inv.toInventory(), recipe.getOutput(), getOutputSlots())) {
+                return null;
             }
+
+            for (Map.Entry<Integer, Integer> entry : found.entrySet()) {
+                inv.consumeItem(entry.getKey(), entry.getValue());
+            }
+
+            return recipe;
         }
 
         return null;
