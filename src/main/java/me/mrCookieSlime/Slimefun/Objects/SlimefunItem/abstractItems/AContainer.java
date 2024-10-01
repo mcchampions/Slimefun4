@@ -20,6 +20,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOper
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -183,9 +184,7 @@ public abstract class AContainer extends SlimefunItem
      * This method <strong>must</strong> be called before registering the item
      * and only before registering.
      *
-     * @param capacity
-     *            The amount of energy this machine can store
-     *
+     * @param capacity The amount of energy this machine can store
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setCapacity(int capacity) {
@@ -200,9 +199,7 @@ public abstract class AContainer extends SlimefunItem
     /**
      * This sets the speed of this machine.
      *
-     * @param speed
-     *            The speed multiplier for this machine, must be above zero
-     *
+     * @param speed The speed multiplier for this machine, must be above zero
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setProcessingSpeed(int speed) {
@@ -213,9 +210,7 @@ public abstract class AContainer extends SlimefunItem
     /**
      * This method sets the energy consumed by this machine per tick.
      *
-     * @param energyConsumption
-     *            The energy consumed per tick
-     *
+     * @param energyConsumption The energy consumed per tick
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setEnergyConsumption(int energyConsumption) {
@@ -235,8 +230,8 @@ public abstract class AContainer extends SlimefunItem
         if (getEnergyConsumption() <= 0) {
             warn("The energy consumption has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '"
-                    + getClass().getSimpleName()
-                    + "#setEnergyConsumption(...)' before registering!");
+                 + getClass().getSimpleName()
+                 + "#setEnergyConsumption(...)' before registering!");
         }
 
         if (getSpeed() <= 0) {
@@ -292,12 +287,12 @@ public abstract class AContainer extends SlimefunItem
 
     @Override
     public int[] getInputSlots() {
-        return new int[] {19, 20};
+        return new int[]{19, 20};
     }
 
     @Override
     public int[] getOutputSlots() {
-        return new int[] {24, 25};
+        return new int[]{24, 25};
     }
 
     @Override
@@ -315,7 +310,7 @@ public abstract class AContainer extends SlimefunItem
     }
 
     public void registerRecipe(int seconds, ItemStack input, ItemStack output) {
-        registerRecipe(new MachineRecipe(seconds, new ItemStack[] {input}, new ItemStack[] {output}));
+        registerRecipe(new MachineRecipe(seconds, new ItemStack[]{input}, new ItemStack[]{output}));
     }
 
     @Override
@@ -338,38 +333,38 @@ public abstract class AContainer extends SlimefunItem
         CraftingOperation currentOperation = processor.getOperation(b);
 
         if (currentOperation != null) {
-            if (takeCharge(b.getLocation())) {
-                if (!currentOperation.isFinished()) {
-                    processor.updateProgressBar(inv, 22, currentOperation);
-                    currentOperation.addProgress(1);
-                } else {
-                    inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
-
-                    for (ItemStack output : currentOperation.getResults()) {
-                        inv.pushItem(output.clone(), getOutputSlots());
-                    }
-
-                    processor.endOperation(b);
-                }
+            if (!takeCharge(b.getLocation())) {
+                return;
             }
-        } else {
-            MachineRecipe next = findNextRecipe(inv);
-
-            if (next != null) {
-                currentOperation = new CraftingOperation(next);
-                processor.startOperation(b, currentOperation);
-
-                // Fixes #3534 - Update indicator immediately
+            if (!currentOperation.isFinished()) {
                 processor.updateProgressBar(inv, 22, currentOperation);
+                currentOperation.addProgress(1);
+                return;
             }
+            inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
+
+            for (ItemStack output : currentOperation.getResults()) {
+                inv.pushItem(output.clone(), getOutputSlots());
+            }
+
+            processor.endOperation(b);
+            return;
+        }
+        MachineRecipe next = findNextRecipe(inv);
+
+        if (next != null) {
+            currentOperation = new CraftingOperation(next);
+            processor.startOperation(b, currentOperation);
+
+            // Fixes #3534 - Update indicator immediately
+            processor.updateProgressBar(inv, 22, currentOperation);
         }
     }
 
     /**
      * This method will remove charge from a location if it is chargeable.
      *
-     * @param l
-     *            location to try to remove charge from
+     * @param l location to try to remove charge from
      * @return Whether charge was taken if its chargeable
      */
     protected boolean takeCharge(Location l) {
