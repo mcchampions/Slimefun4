@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -110,11 +109,12 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
 
     }
 
+    @SuppressWarnings("removal")
     private void pushEntity(Player p, Entity entity) {
         // Only damage players when PVP is enabled, other entities are fine.
         if (entity.getType() != EntityType.PLAYER || p.getWorld().getPVP()) {
-            EntityDamageByEntityEvent event = VersionEventsUtils.newEntityDamageByEntityEvent(
-                    p, entity, DamageCause.ENTITY_ATTACK, "PLAYER_ATTACK", DAMAGE);
+            EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(
+                    p, entity, DamageCause.ENTITY_ATTACK, DAMAGE);
             Bukkit.getPluginManager().callEvent(event);
 
             // Fixes #2207 - Only apply Vector if the Player is able to damage the entity

@@ -52,6 +52,7 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public EntityDamageByEntityEvent newEntityDamageByEntityEvent(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, String damageType, double damage) {
         return new EntityDamageByEntityEvent(damager, damagee, cause, newDamageSource(damageType, damager), damage);

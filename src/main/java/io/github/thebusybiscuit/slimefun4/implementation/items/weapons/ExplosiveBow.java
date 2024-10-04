@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 
 import java.util.Collection;
 
-import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.ArmorStand;
@@ -39,6 +38,7 @@ public class ExplosiveBow extends SlimefunBow {
         addItemSetting(range);
     }
 
+    @SuppressWarnings("removal")
     @Override
     public BowShootHandler onShoot() {
         return (e, target) -> {
@@ -60,8 +60,8 @@ public class ExplosiveBow extends SlimefunBow {
                 double damage = e.getDamage() * (1 - (distanceSquared / (2 * range.getValue() * range.getValue())));
 
                 if (!entity.getUniqueId().equals(target.getUniqueId())) {
-                    EntityDamageByEntityEvent event = VersionEventsUtils.newEntityDamageByEntityEvent(
-                            e.getDamager(), entity, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, "EXPLOSION", damage);
+                    EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(
+                            e.getDamager(), entity, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, damage);
                     Bukkit.getPluginManager().callEvent(event);
 
                     if (!event.isCancelled()) {

@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -40,6 +39,7 @@ public class StomperBoots extends SlimefunItem {
      * @param fallDamageEvent
      *            The {@link EntityDamageEvent} in which the {@link Player} has taken fall damage
      */
+    @SuppressWarnings("removal")
     public void stomp(EntityDamageEvent fallDamageEvent) {
         Player player = (Player) fallDamageEvent.getEntity();
         SoundEffect.STOMPER_BOOTS_STOMP_SOUND.playFor(player);
@@ -56,8 +56,8 @@ public class StomperBoots extends SlimefunItem {
                         || (player.getWorld().getPVP()
                                 && Slimefun.getProtectionManager()
                                         .hasPermission(player, entity.getLocation(), Interaction.ATTACK_PLAYER))) {
-                    EntityDamageByEntityEvent event = VersionEventsUtils.newEntityDamageByEntityEvent(
-                            player, entity, DamageCause.ENTITY_ATTACK,"PLAYER_ATTACK",fallDamageEvent.getDamage() / 2);
+                    EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(
+                            player, entity, DamageCause.ENTITY_ATTACK,fallDamageEvent.getDamage() / 2);
                     Bukkit.getPluginManager().callEvent(event);
 
                     if (!event.isCancelled()) {
