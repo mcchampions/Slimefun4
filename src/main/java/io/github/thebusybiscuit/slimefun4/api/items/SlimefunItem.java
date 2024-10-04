@@ -676,12 +676,6 @@ public class SlimefunItem implements Placeable {
      * @param handlers Any {@link ItemHandler} that should be added to this {@link SlimefunItem}
      */
     public final void addItemHandler(ItemHandler... handlers) {
-        // Make sure they are added before the item was registered.
-        if (state != ItemState.UNREGISTERED) {
-            throw new UnsupportedOperationException(
-                    "You cannot add an ItemHandler after the SlimefunItem was registered.");
-        }
-
         for (ItemHandler handler : handlers) {
             itemHandlers.put(handler.getIdentifier(), handler);
 
