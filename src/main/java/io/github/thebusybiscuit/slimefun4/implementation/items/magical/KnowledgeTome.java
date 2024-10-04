@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
@@ -28,7 +30,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  * from one {@link Player} to another.
  *
  * @author TheBusyBiscuit
- *
  */
 public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
     public KnowledgeTome(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -46,18 +47,20 @@ public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
             ItemMeta im = item.getItemMeta();
             List<Component> lore = im.lore();
 
-            Component fc = lore.get(1);
+            Component fc = lore.get(0);
 
             if (!(fc instanceof TextComponent firstComponent)) return;
 
-            if (firstComponent.content().isEmpty()) {
+            List<Component> list = firstComponent.children();
+            if (list.size() >= 2 && ((TextComponent) list.get(1)).content().equals("None")) {
                 lore.set(0, new QsTextComponentImpl("主人: ").color(NamedTextColor.GRAY)
                         .append(new QsTextComponentImpl(p.getName()).color(NamedTextColor.GRAY)));
                 lore.set(1, new QsTextComponentImpl(p.getUniqueId().toString()).color(NamedTextColor.BLACK));
+                im.lore(lore);
                 item.setItemMeta(im);
                 SoundEffect.TOME_OF_KNOWLEDGE_USE_SOUND.playFor(p);
             } else {
-                UUID uuid = UUID.fromString(firstComponent.content());
+                UUID uuid = UUID.fromString(((TextComponent) lore.get(1)).content());
 
                 if (p.getUniqueId().equals(uuid)) {
                     Slimefun.getLocalization().sendMessage(p, "messages.no-tome-yourself");
