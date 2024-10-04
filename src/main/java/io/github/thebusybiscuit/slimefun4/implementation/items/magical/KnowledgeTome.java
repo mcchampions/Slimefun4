@@ -73,10 +73,7 @@ public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
                                 research.unlock(p, true);
                             }
                         }));
-
-                if (p.getGameMode() != GameMode.CREATIVE) {
-                    ItemUtils.consumeItem(item, false);
-                }
+                ItemUtils.consumeItem(item, false);
             }
         };
     }
