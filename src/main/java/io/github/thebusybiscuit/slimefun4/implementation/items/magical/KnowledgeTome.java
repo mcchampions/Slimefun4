@@ -58,8 +58,12 @@ public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
                 item.setItemMeta(im);
                 SoundEffect.TOME_OF_KNOWLEDGE_USE_SOUND.playFor(p);
             } else {
-                UUID uuid = UUID.fromString(((TextComponent) lore.get(1)).content());
-
+                UUID uuid;
+                try {
+                    uuid = UUID.fromString(((TextComponent) lore.get(1)).content());
+                } catch (Exception ex) {
+                    return;
+                }
                 if (p.getUniqueId().equals(uuid)) {
                     Slimefun.getLocalization().sendMessage(p, "messages.no-tome-yourself");
                     return;
