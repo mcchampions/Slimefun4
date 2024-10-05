@@ -5,9 +5,11 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextUtils {
+    private static final Pattern COLOR_PATTERN = Pattern.compile("&([\\da-zA-Z])");
     private static final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)[§&][0-9A-FK-ORX]");
 
     public static String toPlainText(Component component) {
@@ -23,6 +25,6 @@ public class TextUtils {
     }
 
     public static TextComponent fromText(String text) {
-        return LegacyComponentSerializer.legacyAmpersand().deserialize(text.replaceAll("§", "&"));
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(COLOR_PATTERN.matcher(text).replaceAll("§$1"));
     }
 }
