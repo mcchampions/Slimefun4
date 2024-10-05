@@ -330,11 +330,11 @@ public class EnergyNet extends Network implements HologramOwner {
         if (demand > supply) {
             String netLoss = NumberUtils.getCompactDouble(demand - supply);
             updateHologram(
-                    data.getLocation().getBlock(), "§4&l- &c" + netLoss + " &7J &e\u26A1", data::isPendingRemove);
+                    data.getLocation().getBlock(), "§4§l- §c" + netLoss + " §7J §e\u26A1", data::isPendingRemove);
         } else {
             String netGain = NumberUtils.getCompactDouble(supply - demand);
             updateHologram(
-                    data.getLocation().getBlock(), "&2&l+ &a" + netGain + " &7J &e\u26A1", data::isPendingRemove);
+                    data.getLocation().getBlock(), "§2§l+ §a" + netGain + " §7J §e\u26A1", data::isPendingRemove);
         }
     }
 
