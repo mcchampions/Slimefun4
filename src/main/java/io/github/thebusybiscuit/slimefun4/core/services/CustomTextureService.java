@@ -49,6 +49,7 @@ public class CustomTextureService {
      * @param config
      *            The {@link Config} to read custom model data from
      */
+    @SuppressWarnings("deprecation")
     public CustomTextureService(Config config) {
         this.config = config;
         config.getConfiguration()
@@ -60,7 +61,7 @@ public class CustomTextureService {
                         0 means there is no data assigned to that item.
 
                         There is no official Slimefun resource pack at the moment.""");
-        config.getConfiguration().options().copyHeader(true);
+        config.getConfiguration().options().parseComments(true);
     }
 
     /**

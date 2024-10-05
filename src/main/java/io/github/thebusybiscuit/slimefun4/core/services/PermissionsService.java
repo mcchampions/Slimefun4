@@ -26,6 +26,7 @@ public class PermissionsService {
     private final Map<String, String> permissions = new HashMap<>();
     private final Config config;
 
+    @SuppressWarnings("deprecation")
     public PermissionsService(Slimefun plugin) {
         config = new Config(plugin, "permissions.yml");
 
@@ -39,7 +40,7 @@ to your desired permission node.
 You can also customize the text that is displayed when a Player does not have that permission.""");
 
 
-        config.getConfiguration().options().copyHeader(true);
+        config.getConfiguration().options().parseComments(true);
     }
 
     /**

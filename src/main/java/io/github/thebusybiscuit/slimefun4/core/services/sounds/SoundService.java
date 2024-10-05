@@ -25,6 +25,7 @@ public class SoundService {
      */
     private final Map<SoundEffect, SoundConfiguration> soundMap = new EnumMap<>(SoundEffect.class);
 
+    @SuppressWarnings("deprecation")
     public SoundService(Slimefun plugin) {
         config = new Config(plugin, "sounds.yml");
 
@@ -36,7 +37,7 @@ You can fully customize any sound you want and even change their pitch
 and volume. To disable a sound, simply set the volume to zero.
 """);
 
-        config.getConfiguration().options().copyHeader();
+        config.getConfiguration().options().parseComments(true);
     }
 
     /**

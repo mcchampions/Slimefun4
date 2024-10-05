@@ -168,7 +168,7 @@ public class PerWorldSettingsService {
         config.save();
     }
 
-
+    @SuppressWarnings("deprecation")
     private Set<String> loadWorldFromConfig(World world) {
         String name = world.getName();
         Optional<Set<String>> optional = disabledItems.get(world.getUID());
@@ -191,7 +191,7 @@ public class PerWorldSettingsService {
                             + " Guide.\n"
                             + "You won't be able to use these items either. Using them will result in a"
                             + " warning message.");
-            config.getConfiguration().options().copyHeader(true);
+            config.getConfiguration().options().parseComments(true);
             config.setDefaultValue("enabled", true);
 
             if (config.getBoolean("enabled")) {
