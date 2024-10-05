@@ -6,6 +6,7 @@ import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} gets called when a {@link Player} has switched their {@link Language}.
@@ -33,7 +34,7 @@ public class PlayerLanguageChangeEvent extends Event {
      *
      * @return The previous {@link Language} of our {@link Player}
      */
-    
+
     public Language getPreviousLanguage() {
         return from;
     }
@@ -43,7 +44,7 @@ public class PlayerLanguageChangeEvent extends Event {
      *
      * @return The new {@link Language}
      */
-    
+
     public Language getNewLanguage() {
         return to;
     }
@@ -53,7 +54,7 @@ public class PlayerLanguageChangeEvent extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

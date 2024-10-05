@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A {@link WaypointCreateEvent} is called when a {@link Player} creates a new waypoint.
@@ -71,7 +72,7 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

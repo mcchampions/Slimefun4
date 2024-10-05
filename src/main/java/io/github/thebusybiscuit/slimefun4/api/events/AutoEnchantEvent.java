@@ -6,6 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An {@link Event} that is called whenever an {@link AutoEnchanter} is trying to enchant
@@ -38,14 +39,14 @@ public class AutoEnchantEvent extends Event implements Cancellable {
         this.cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

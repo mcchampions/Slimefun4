@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * The {@link ReactorExplodeEvent} is called whenever a reactor explodes.
@@ -40,9 +41,9 @@ public class ReactorExplodeEvent extends Event {
         return handlers;
     }
 
-    
+
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

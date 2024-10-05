@@ -9,6 +9,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link PlayerEvent} is called when a {@link Player} activates a {@link Talisman}
@@ -74,7 +75,7 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 

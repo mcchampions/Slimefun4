@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is fired after {@link Slimefun} finishes loading the
@@ -17,14 +18,14 @@ public class SlimefunItemRegistryFinalizedEvent extends Event {
 
     public SlimefunItemRegistryFinalizedEvent() {}
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

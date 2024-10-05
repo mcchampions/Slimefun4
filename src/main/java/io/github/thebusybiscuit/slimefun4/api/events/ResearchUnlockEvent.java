@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is called whenever a {@link Player} unlocks a {@link Research}.
@@ -41,14 +42,14 @@ public class ResearchUnlockEvent extends Event implements Cancellable {
         this.cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

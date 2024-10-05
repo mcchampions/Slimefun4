@@ -9,6 +9,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is fired whenever a {@link SlimefunItem} is placed as a {@link Block} in the world.
@@ -67,7 +68,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

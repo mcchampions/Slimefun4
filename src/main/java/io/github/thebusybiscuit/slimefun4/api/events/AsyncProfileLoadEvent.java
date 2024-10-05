@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is called when the {@link PlayerProfile} of a {@link Player}
@@ -53,7 +54,7 @@ public class AsyncProfileLoadEvent extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

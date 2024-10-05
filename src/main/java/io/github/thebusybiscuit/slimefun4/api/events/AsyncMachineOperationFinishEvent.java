@@ -9,6 +9,7 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is fired whenever an {@link MachineProcessor} has completed a {@link MachineOperation}.
@@ -52,14 +53,14 @@ public class AsyncMachineOperationFinishEvent extends Event {
         return machineOperation;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

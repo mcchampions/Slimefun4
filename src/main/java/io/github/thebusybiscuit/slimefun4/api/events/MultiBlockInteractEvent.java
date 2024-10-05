@@ -10,6 +10,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is called when a {@link Player} interacts with a {@link MultiBlock}.
@@ -49,7 +50,7 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

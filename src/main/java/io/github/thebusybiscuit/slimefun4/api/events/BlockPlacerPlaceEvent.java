@@ -10,6 +10,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is fired whenever a {@link BlockPlacer} wants to place a {@link Block}.
@@ -96,7 +97,7 @@ public class BlockPlacerPlaceEvent extends BlockEvent implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

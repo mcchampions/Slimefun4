@@ -10,6 +10,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.block.Biome;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is fired whenever a {@link GEOResource} is being freshly generated.
@@ -99,7 +100,7 @@ public class GEOResourceGenerationEvent extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }
