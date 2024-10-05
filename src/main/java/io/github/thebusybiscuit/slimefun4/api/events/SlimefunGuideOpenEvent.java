@@ -7,6 +7,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This {@link Event} is called whenever a {@link Player} tries to open the Slimefun Guide book.
@@ -37,7 +38,7 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
      *
      * @return The {@link SlimefunGuideMode}
      */
-    
+
     public SlimefunGuideMode getGuideLayout() {
         return layout;
     }
@@ -62,14 +63,14 @@ public class SlimefunGuideOpenEvent extends Event implements Cancellable {
         this.cancelled = cancel;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }

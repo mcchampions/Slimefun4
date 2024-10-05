@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * The {@link PlayerRightClickEvent} is our custom version of the {@link PlayerInteractEvent}.
@@ -83,7 +84,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
      *
      * @return The original {@link PlayerInteractEvent}
      */
-    
+
     public PlayerInteractEvent getInteractEvent() {
         return event;
     }
@@ -95,7 +96,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
      *
      * @return The {@link ItemStack} that the {@link Player} right clicked with
      */
-    
+
     public ItemStack getItem() {
         return itemStack.orElse(new ItemStack(Material.AIR));
     }
@@ -104,7 +105,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
         return face;
     }
 
-    
+
     public Optional<SlimefunItem> getSlimefunItem() {
         if (!slimefunItem.isComputed()) {
             if (itemStack.isPresent()) {
@@ -117,7 +118,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
         return slimefunItem.getAsOptional();
     }
 
-    
+
     public Optional<SlimefunItem> getSlimefunBlock() {
         if (!slimefunBlock.isComputed()) {
             if (clickedBlock.isPresent()) {
@@ -140,12 +141,12 @@ public class PlayerRightClickEvent extends PlayerEvent {
         blockResult = Result.DENY;
     }
 
-    
+
     public Result useItem() {
         return itemResult;
     }
 
-    
+
     public Result useBlock() {
         return blockResult;
     }
@@ -158,14 +159,14 @@ public class PlayerRightClickEvent extends PlayerEvent {
         blockResult = result;
     }
 
-    
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    
+
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return getHandlerList();
     }
 }
