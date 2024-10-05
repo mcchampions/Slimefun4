@@ -145,7 +145,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
             if (line.startsWith("§7ID: ") && line.contains("#")) {
                 try {
                     return OptionalInt.of(Integer.parseInt(
-                            CommonPatterns.HASH.split(line.replace("§7ID: "), "")[1]));
+                            CommonPatterns.HASH.split(line.replace("§7ID: ", ""))[1]));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
