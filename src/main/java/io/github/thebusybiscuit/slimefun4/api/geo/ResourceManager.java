@@ -237,11 +237,11 @@ public class ResourceManager {
                         HeadTexture.MINECRAFT_CHUNK.getAsItemStack(),
                         ChatColor.YELLOW + Slimefun.getLocalization().getResourceString(p, "tooltips.chunk"),
                         "",
-                        "§8\u21E8 &7"
+                        "§8\u21E8 §7"
                                 + Slimefun.getLocalization().getResourceString(p, "tooltips.world")
                                 + ": "
                                 + block.getWorld().getName(),
-                        "§8\u21E8 &7X: " + x + " Z: " + z),
+                        "§8\u21E8 §7X: " + x + " Z: " + z),
                 ChestMenuUtils.getEmptyClickHandler());
         List<GEOResource> resources =
                 new ArrayList<>(Slimefun.getRegistry().getGEOResources().values());
@@ -266,7 +266,7 @@ public class ResourceManager {
                     .getResourceString(p, ChatUtils.checkPlurality("tooltips.unit", supplies));
 
             ItemStack item = new CustomItemStack(
-                    resource.getItem(), "&f" + resource.getName(p), "§8\u21E8 &e" + supplies + ' ' + suffix);
+                    resource.getItem(), "§f" + resource.getName(p), "§8\u21E8 §e" + supplies + ' ' + suffix);
 
             if (supplies > 1) {
                 item.setAmount(Math.min(supplies, item.getMaxStackSize()));

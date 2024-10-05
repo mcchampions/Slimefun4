@@ -43,7 +43,7 @@ import org.bukkit.persistence.PersistentDataType;
  * @see BackpackListener
  */
 public class PlayerBackpack extends SlimefunInventoryHolder {
-    public static final String LORE_OWNER = "&7所有者: ";
+    public static final String LORE_OWNER = "§7所有者: ";
     private static final String COLORED_LORE_OWNER = ChatColors.color(LORE_OWNER);
     private static final String PLAIN_LORE_OWNER = "所有者: ";
     private static final NamespacedKey KEY_BACKPACK_UUID = new NamespacedKey(Slimefun.instance(), "B_UUID");
@@ -88,11 +88,11 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         String uuid = "";
 
         for (String line : item.getItemMeta().getLore()) {
-            if (line.startsWith(ChatColors.color("&7ID: ")) && line.indexOf('#') != -1) {
+            if (line.startsWith("§7ID: ") && line.indexOf('#') != -1) {
                 String[] splitLine = CommonPatterns.HASH.split(line);
 
                 if (CommonPatterns.NUMERIC.matcher(splitLine[1]).matches()) {
-                    uuid = splitLine[0].replace(ChatColors.color("&7ID: "), "");
+                    uuid = splitLine[0].replace("§7ID: ", "");
                     id = OptionalInt.of(Integer.parseInt(splitLine[1]));
                 }
             }
@@ -142,10 +142,10 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         }
 
         for (String line : meta.getLore()) {
-            if (line.startsWith(ChatColors.color("&7ID: ")) && line.contains("#")) {
+            if (line.startsWith("§7ID: ") && line.contains("#")) {
                 try {
                     return OptionalInt.of(Integer.parseInt(
-                            CommonPatterns.HASH.split(line.replace(ChatColors.color("&7ID: "), ""))[1]));
+                            CommonPatterns.HASH.split(line.replace("§7ID: "), "")[1]));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -296,7 +296,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
      */
     private Inventory newInv() {
         return Bukkit.createInventory(
-                this, size, (name.isEmpty() ? "背包" : ChatColors.color(name + "&r")) + " [大小 " + size + "]");
+                this, size, (name.isEmpty() ? "背包" : name + "§r") + " [大小 " + size + "]");
     }
 
     private void updateInv() {

@@ -44,6 +44,6 @@ public interface RecipeDisplayItem extends ItemAttribute {
 
 
     default String getRecipeSectionLabel(Player p) {
-        return "&7\u21E9 " + Slimefun.getLocalization().getMessage(p, getLabelLocalPath()) + " \u21E9";
+        return "§7\u21E9 " + Slimefun.getLocalization().getMessage(p, getLabelLocalPath()) + " \u21E9";
     }
 }
