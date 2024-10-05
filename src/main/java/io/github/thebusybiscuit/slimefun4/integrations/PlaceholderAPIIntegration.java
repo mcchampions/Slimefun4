@@ -11,6 +11,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This is our integration for {@link PlaceholderAPI}.
@@ -28,17 +29,17 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
     }
 
     @Override
-    public String getIdentifier() {
+    public @NotNull String getIdentifier() {
         return "slimefun";
     }
 
     @Override
-    public String getVersion() {
+    public @NotNull String getVersion() {
         return version;
     }
 
     @Override
-    public String getAuthor() {
+    public @NotNull String getAuthor() {
         return author;
     }
 
