@@ -55,16 +55,14 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
 
     @Override
     public boolean validateInput(String input) {
-        if (!super.validateInput(input)) {
-            return false;
-        } else {
+        if (super.validateInput(input)) {
             for (Enum<T> value : getAllowedValues()) {
                 if (value.name().equals(input)) {
                     return true;
                 }
             }
 
-            return false;
         }
+        return false;
     }
 }
