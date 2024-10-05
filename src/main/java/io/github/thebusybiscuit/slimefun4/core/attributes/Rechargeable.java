@@ -96,8 +96,6 @@ public interface Rechargeable extends ItemAttribute {
      * @return Whether the given charge could be added successfully
      */
     default boolean addItemCharge(ItemStack item, float charge) {
-        
-
         if (item == null || item.getType() == Material.AIR) {
             throw new IllegalArgumentException("Cannot add Item charge for null or AIR");
         }
@@ -130,8 +128,6 @@ public interface Rechargeable extends ItemAttribute {
      * @return Whether the given charge could be removed successfully
      */
     default boolean removeItemCharge(ItemStack item, float charge) {
-        
-
         if (item == null || item.getType() == Material.AIR) {
             throw new IllegalArgumentException("Cannot remove Item charge for null or AIR");
         }
