@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.utils.itemstack;
 
-import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import org.bukkit.inventory.meta.FireworkEffectMeta;
 public class ColoredFireworkStar extends CustomItemStack {
     public ColoredFireworkStar(Color color, String name, String... lore) {
         super(Material.FIREWORK_STAR, im -> {
-            im.displayName(LegacyComponentSerializer.legacySection().deserialize(ChatColors.color(name)));
+            im.displayName(LegacyComponentSerializer.legacySection().deserialize(name));
 
             ((FireworkEffectMeta) im)
                     .setEffect(FireworkEffect.builder()
@@ -37,7 +36,7 @@ public class ColoredFireworkStar extends CustomItemStack {
                 List<Component> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(LegacyComponentSerializer.legacySection().deserialize(ChatColors.color(line)));
+                    lines.add(LegacyComponentSerializer.legacySection().deserialize(line));
                 }
 
                 im.lore(lines);
