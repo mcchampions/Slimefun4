@@ -303,20 +303,20 @@ public class PlayerProfile {
         float progress = Math.round(((unlockedResearches * 100.0F) / allResearches) * 100.0F) / 100.0F;
 
         sender.sendMessage("");
-        sender.sendMessage(ChatColors.color("&7玩家研究统计: &b" + owner.getName()));
+        sender.sendMessage("§7玩家研究统计: §b" + owner.getName());
         sender.sendMessage("");
-        sender.sendMessage(ChatColors.color("&7研究等级: " + ChatColor.AQUA + getTitle()));
-        sender.sendMessage(ChatColors.color("&7研究进度: "
+        sender.sendMessage("§7研究等级: " + ChatColor.AQUA + getTitle());
+        sender.sendMessage("§7研究进度: "
                 + NumberUtils.getColorFromPercentage(progress)
                 + progress
-                + " &r% "
+                + " §r% "
                 + ChatColor.YELLOW
                 + '('
                 + unlockedResearches
                 + " / "
                 + allResearches
-                + ')'));
-        sender.sendMessage(ChatColors.color("&7总花费经验等级: " + ChatColor.AQUA + levels));
+                + ')');
+        sender.sendMessage("§7总花费经验等级: " + ChatColor.AQUA + levels);
     }
 
     /**

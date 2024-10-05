@@ -195,7 +195,7 @@ public final class TeleportationManager {
         if (p != null) {
             p.sendTitle(
                     ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.cancelled")),
-                    ChatColors.color("&c&k40&f&c%"),
+                    "§c§k40§f§c%",
                     20,
                     60,
                     20);
@@ -210,7 +210,7 @@ public final class TeleportationManager {
             if (progress > 99) {
                 p.sendTitle(
                         ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleported")),
-                        ChatColors.color("&b100%"),
+                        "§b100%",
                         20,
                         60,
                         20);
@@ -218,7 +218,7 @@ public final class TeleportationManager {
             } else {
                 p.sendTitle(
                         ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleporting")),
-                        ChatColors.color("&b" + progress + "%"),
+                        "§b" + progress + "%",
                         0,
                         60,
                         0);

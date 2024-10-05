@@ -25,7 +25,7 @@ public final class ChatUtils {
         // way.
         sender.sendMessage("");
         Slimefun.getLocalization().sendMessage(sender, "messages.link-prompt", false);
-        sender.sendMessage(ChatColors.color("&7&o" + url));
+        sender.sendMessage("§7§o" + url);
         sender.sendMessage("");
     }
 
