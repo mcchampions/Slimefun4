@@ -18,6 +18,8 @@ import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
@@ -148,8 +150,7 @@ public class GPSNetwork {
         }
 
         menu.addItem(2, new CustomItemStack(SlimefunItems.GPS_TRANSMITTER, im -> {
-            im.setDisplayName(ChatColor.GRAY
-                    + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.transmitters"));
+            im.displayName(new QsTextComponentImpl(Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.transmitters")).color(NamedTextColor.GRAY));
             im.lore(null);
         }));
 
