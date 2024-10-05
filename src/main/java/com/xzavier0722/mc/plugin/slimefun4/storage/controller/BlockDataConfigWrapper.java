@@ -8,7 +8,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.configuration.file.FileConfiguration;
 
-@Deprecated
 public class BlockDataConfigWrapper extends Config {
     private final SlimefunBlockData blockData;
 
