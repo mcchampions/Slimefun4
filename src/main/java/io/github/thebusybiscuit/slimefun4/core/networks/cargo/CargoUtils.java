@@ -170,8 +170,7 @@ final class CargoUtils {
                 inventory = holder.getInventory();
                 inventories.put(target.getLocation(), inventory);
             }
-
-            var event = new CargoWithdrawEvent(node, target, inventory);
+            CargoWithdrawEvent event = new CargoWithdrawEvent(node, target, inventory);
             Bukkit.getPluginManager().callEvent(event);
             if (!event.isCancelled()) {
                 return withdrawFromVanillaInventory(network, node, inventory);
