@@ -6,7 +6,6 @@ import com.xzavier0722.mc.plugin.slimefuncomplib.event.cargo.CargoWithdrawEvent;
 import io.github.bakedlibs.dough.inventory.InvUtils;
 import io.github.bakedlibs.dough.reflection.ReflectionUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
