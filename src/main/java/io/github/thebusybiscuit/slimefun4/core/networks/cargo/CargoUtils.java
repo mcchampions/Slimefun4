@@ -4,11 +4,14 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.xzavier0722.mc.plugin.slimefuncomplib.event.cargo.CargoInsertEvent;
 import com.xzavier0722.mc.plugin.slimefuncomplib.event.cargo.CargoWithdrawEvent;
 import io.github.bakedlibs.dough.inventory.InvUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Bukkit;
@@ -65,7 +68,7 @@ final class CargoUtils {
     static int[] getInputSlotRange(Inventory inv, @Nullable ItemStack item) {
         if (inv instanceof FurnaceInventory) {
             if (item != null && item.getType().isFuel()) {
-                if (isSmeltable(item, true)) {
+                if (isSmeltable(item)) {
                     // Any non-smeltable items should not land in the upper slot
                     return new int[]{0, 2};
                 } else {
@@ -116,13 +119,29 @@ final class CargoUtils {
             if (event.isCancelled()) {
                 return null;
             }
+            BlockMenuPreset preset = menu.getPreset();
+            try {
+                for (int slot : preset.getSlotsAccessedByItemTransport(menu, ItemTransportFlow.WITHDRAW, null)) {
+                    ItemStack is = menu.getItemInSlot(slot);
 
-            for (int slot : menu.getPreset().getSlotsAccessedByItemTransport(menu, ItemTransportFlow.WITHDRAW, null)) {
-                ItemStack is = menu.getItemInSlot(slot);
+                    if (matchesFilter(network, node, is)) {
+                        menu.replaceExistingItem(slot, null);
+                        return new ItemStackAndInteger(is, slot);
+                    }
+                }
+            } catch (NullPointerException ex) {
+                SlimefunItem sfItem = preset.getSlimefunItem();
+                int[] slots;
+                if (sfItem instanceof InventoryBlock block) {
+                    slots = block.getOutputSlots();
+                    for (int slot : slots) {
+                        ItemStack is = menu.getItemInSlot(slot);
 
-                if (matchesFilter(network, node, is)) {
-                    menu.replaceExistingItem(slot, null);
-                    return new ItemStackAndInteger(is, slot);
+                        if (matchesFilter(network, node, is)) {
+                            menu.replaceExistingItem(slot, null);
+                            return new ItemStackAndInteger(is, slot);
+                        }
+                    }
                 }
             }
         } else if (hasInventory(target)) {
@@ -324,15 +343,10 @@ final class CargoUtils {
      * Otherwise the "lazyness" can be turned off in the future.
      *
      * @param stack The {@link ItemStack} to test
-     * @param lazy  Whether or not to perform a "lazy" but performance-saving check
      * @return Whether the given {@link ItemStack} can be smelted or not
      */
-    private static boolean isSmeltable(@Nullable ItemStack stack, boolean lazy) {
-        if (lazy) {
-            return stack != null && Tag.LOGS.isTagged(stack.getType());
-        } else {
-            return Slimefun.getMinecraftRecipeService().isSmeltable(stack);
-        }
+    private static boolean isSmeltable(@Nullable ItemStack stack) {
+        return stack != null && Tag.LOGS.isTagged(stack.getType());
     }
 
     private static boolean isPotion(@Nullable ItemStack item) {
