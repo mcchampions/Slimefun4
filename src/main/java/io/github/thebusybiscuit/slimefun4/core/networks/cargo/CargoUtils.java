@@ -4,6 +4,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.xzavier0722.mc.plugin.slimefuncomplib.event.cargo.CargoInsertEvent;
 import com.xzavier0722.mc.plugin.slimefuncomplib.event.cargo.CargoWithdrawEvent;
 import io.github.bakedlibs.dough.inventory.InvUtils;
+import io.github.bakedlibs.dough.reflection.ReflectionUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
@@ -23,6 +24,8 @@ import org.bukkit.block.BlockState;
 import org.bukkit.inventory.*;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -134,13 +137,24 @@ final class CargoUtils {
                 int[] slots;
                 if (sfItem instanceof InventoryBlock block) {
                     slots = block.getOutputSlots();
-                    for (int slot : slots) {
-                        ItemStack is = menu.getItemInSlot(slot);
-
-                        if (matchesFilter(network, node, is)) {
-                            menu.replaceExistingItem(slot, null);
-                            return new ItemStackAndInteger(is, slot);
+                } else {
+                    Method method = ReflectionUtils.getMethod(sfItem.getClass(), "getOutputSlots");
+                    if (method != null) {
+                        try {
+                            slots = (int[]) method.invoke(sfItem);
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                            throw new RuntimeException(e);
                         }
+                    } else {
+                        return null;
+                    }
+                }
+                for (int slot : slots) {
+                    ItemStack is = menu.getItemInSlot(slot);
+
+                    if (matchesFilter(network, node, is)) {
+                        menu.replaceExistingItem(slot, null);
+                        return new ItemStackAndInteger(is, slot);
                     }
                 }
             }
