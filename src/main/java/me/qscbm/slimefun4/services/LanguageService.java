@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
+@SuppressWarnings("DataFlowIssue")
 public class LanguageService {
     public static final HashMap<String, String> RESEARCH_NAME_MAP = new HashMap<>();
 
