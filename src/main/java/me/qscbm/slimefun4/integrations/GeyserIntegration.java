@@ -13,6 +13,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 对 Geyser 的头颅支持
+ * <p>
+ * 这个实现很委曲求全了
+ * <p>
+ * 如果使用API的话
+ * 那么无法加载附属物品——事件在附属加载完就已经结束了
+ * 如果改配置的话
+ * 那么需要重启之后才能生效
+ */
 public class GeyserIntegration {
     public void register() {
         Slimefun.logger().info("开始加载自定义粘液科技Geyser支持");
