@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 import java.util.logging.Level;
 
 import lombok.Getter;
+import me.qscbm.slimefun4.integrations.GeyserIntegration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Server;
@@ -138,6 +139,10 @@ public class IntegrationsManager {
      * This method is called when the {@link Server} has finished loading all its {@link Plugin Plugins}.
      */
     private void onServerStart() {
+        // Geyser Integration (custom skulls)
+        load("Geyser-Spigot", integration -> {
+            new GeyserIntegration().register();
+        });
         try {
             // Load Protection plugin integrations
             protectionManager = new ProtectionManager(plugin);
