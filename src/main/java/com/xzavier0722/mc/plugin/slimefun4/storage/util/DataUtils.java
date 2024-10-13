@@ -15,13 +15,14 @@ import java.util.logging.Level;
 
 public class DataUtils {
     public static String itemStack2String(ItemStack itemStack) {
-        
+
 
         var stream = new ByteArrayOutputStream();
         try (var bs = new BukkitObjectOutputStream(stream)) {
             bs.writeObject(itemStack);
             return Base64Coder.encodeLines(stream.toByteArray());
         } catch (IOException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
             return "";
         }
@@ -32,13 +33,13 @@ public class DataUtils {
             return null;
         }
 
-        
+
 
         var stream = new ByteArrayInputStream(Base64Coder.decodeLines(base64Str));
         try (var bs = new BukkitObjectInputStream(stream)) {
             var result = (ItemStack) bs.readObject();
 
-            
+
 
             if (result.getType().isAir()) {
                 Slimefun.logger().log(Level.WARNING, "反序列化数据库中的物品失败! 对应物品无法显示.");
@@ -46,6 +47,7 @@ public class DataUtils {
 
             return result;
         } catch (IOException | ClassNotFoundException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
             return null;
         }

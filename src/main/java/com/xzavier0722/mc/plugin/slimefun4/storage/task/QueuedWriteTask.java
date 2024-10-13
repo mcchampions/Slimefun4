@@ -31,6 +31,7 @@ public class QueuedWriteTask implements Runnable {
         try {
             onSuccess();
         } catch (Throwable e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
         }
     }

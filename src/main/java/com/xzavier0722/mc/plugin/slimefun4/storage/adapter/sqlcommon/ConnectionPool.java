@@ -92,6 +92,7 @@ public class ConnectionPool {
         try {
             conn.close();
         } catch (SQLException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
         }
     }

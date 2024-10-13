@@ -355,17 +355,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         ticker.halt();
         cargoTickerTask.setPaused(true);
         cargoTickerTask.halt();
-        /*try {
-          ticker.halt();
-          ticker.run();
-          } catch (Exception x) {
-          getLogger()
-          .log(
-          Level.SEVERE,
-          x,
-          () -> "Something went wrong while disabling the ticker task for Slimefun v"
-          + getDescription().getVersion());
-          }*/
 
         // Save all Player Profiles that are still in memory
         PlayerProfile.iterator().forEachRemaining(profile -> {

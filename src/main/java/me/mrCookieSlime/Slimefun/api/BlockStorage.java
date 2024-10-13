@@ -5,7 +5,9 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunChunkData;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import javax.annotation.Nullable;
+
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Chunk;
@@ -22,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
 public class BlockStorage {
     private static final Config emptyData = new EmptyBlockData();
 
-    @Nullable public static BlockStorage getStorage(World world) {
+    public static BlockStorage getStorage(World world) {
         return null;
     }
 
@@ -43,12 +45,11 @@ public class BlockStorage {
      * If the specified Block is registered in BlockStorage,
      * its data will be erased from it, regardless of the returned value.
      *
-     * @param block
-     *            the block to retrieve the ItemStack from
-     *
+     * @param block the block to retrieve the ItemStack from
      * @return the SlimefunItem's ItemStack corresponding to the block if it has one, otherwise null
      */
-    @Nullable public static ItemStack retrieve(Block block) {
+    @Nullable
+    public static ItemStack retrieve(Block block) {
         SlimefunItem item = check(block);
 
         if (item == null) {
@@ -127,12 +128,14 @@ public class BlockStorage {
         Slimefun.getDatabaseManager().getBlockDataController().removeBlock(l);
     }
 
-    @Nullable public static SlimefunItem check(Block b) {
+    @Nullable
+    public static SlimefunItem check(Block b) {
         String id = checkID(b);
         return id == null ? null : SlimefunItem.getById(id);
     }
 
-    @Nullable public static SlimefunItem check(Location l) {
+    @Nullable
+    public static SlimefunItem check(Location l) {
         String id = checkID(l);
         return id == null ? null : SlimefunItem.getById(id);
     }
@@ -142,11 +145,13 @@ public class BlockStorage {
         return id != null && id.equals(slimefunItem);
     }
 
-    @Nullable public static String checkID(Block b) {
+    @Nullable
+    public static String checkID(Block b) {
         return checkID(b.getLocation());
     }
 
-    @Nullable public static String checkID(Location l) {
+    @Nullable
+    public static String checkID(Location l) {
         return getLocationInfo(l, "id");
     }
 

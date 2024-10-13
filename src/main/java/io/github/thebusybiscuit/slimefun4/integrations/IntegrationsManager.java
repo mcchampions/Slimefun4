@@ -140,9 +140,7 @@ public class IntegrationsManager {
      */
     private void onServerStart() {
         // Geyser Integration (custom skulls)
-        load("Geyser-Spigot", integration -> {
-            new GeyserIntegration().register();
-        });
+        load("Geyser-Spigot", integration -> new GeyserIntegration().register());
         try {
             // Load Protection plugin integrations
             protectionManager = new ProtectionManager(plugin);

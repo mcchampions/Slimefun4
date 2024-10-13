@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
-import io.github.bakedlibs.dough.common.ChatColors;
 import java.util.regex.Pattern;
 
 /**

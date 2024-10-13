@@ -143,7 +143,7 @@ public class MinecraftRecipeService {
 
             return choices.toArray(new RecipeChoice[0]);
         } else {
-            return snapshot.getRecipeInput(recipe);
+            return RecipeSnapshot.getRecipeInput(recipe);
         }
     }
 

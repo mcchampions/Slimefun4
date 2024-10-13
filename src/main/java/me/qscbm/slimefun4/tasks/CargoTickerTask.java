@@ -115,6 +115,7 @@ public class CargoTickerTask extends BaseTickerTask {
             tickBlock(b, cargoManager, blockData);
             cargoManager.getTicker().startNewTick();
         } catch (RuntimeException x) {
+            //noinspection CallToPrintStackTrace
             x.printStackTrace();
         }
     }
@@ -123,6 +124,7 @@ public class CargoTickerTask extends BaseTickerTask {
         try {
             item.getTicker().tick(b, item, data);
         } catch (RuntimeException | LinkageError x) {
+            //noinspection CallToPrintStackTrace
             x.printStackTrace();
         }
     }

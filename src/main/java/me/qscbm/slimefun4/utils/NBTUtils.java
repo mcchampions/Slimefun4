@@ -1,6 +1,5 @@
 package me.qscbm.slimefun4.utils;
 
-import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import io.github.bakedlibs.dough.reflection.ReflectionUtils;

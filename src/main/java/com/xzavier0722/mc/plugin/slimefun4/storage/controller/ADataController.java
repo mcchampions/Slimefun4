@@ -107,6 +107,7 @@ public abstract class ADataController {
                 @Override
                 protected void onError(Throwable e) {
                     Slimefun.logger().log(Level.SEVERE, "执行写入操作时发生了一个异常: ");
+                    //noinspection CallToPrintStackTrace
                     e.printStackTrace();
                 }
             };

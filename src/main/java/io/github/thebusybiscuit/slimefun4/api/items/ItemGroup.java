@@ -343,7 +343,6 @@ public class ItemGroup implements Keyed {
      *
      * @return Whether this {@link ItemGroup} will be hidden to the given {@link Player}
      */
-    @Deprecated
     public boolean isHidden(Player p) {
         return !isVisible(p);
     }

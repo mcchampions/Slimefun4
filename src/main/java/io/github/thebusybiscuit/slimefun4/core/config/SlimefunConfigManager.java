@@ -114,8 +114,6 @@ public class SlimefunConfigManager {
             showHiddenItemGroupsInSearch = pluginConfig.getBoolean("guide.show-hidden-item-groups-in-search");
 
             researchCurrencyCostConvertRate = pluginConfig.getDouble("researches.currency-cost-convert-rate");
-            // researchesConfig.setDefaultValue("researches.auto-convert", false);
-            // researchAutoConvert = researchesConfig.getBoolean("researches.auto-convert");
 
             cargoTickerDelay = pluginConfig.getInt("networks.cargo-ticker-delay");
         } catch (RuntimeException x) {
