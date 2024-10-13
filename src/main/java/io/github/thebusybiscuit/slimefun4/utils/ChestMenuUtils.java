@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
+import net.kyori.adventure.text.Component;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -159,7 +160,7 @@ public final class ChestMenuUtils {
             damageable.setDamage(getDurability(item, timeLeft, time));
         }
 
-        im.setDisplayName(" ");
+        im.displayName(Component.empty());
         im.setLore(Arrays.asList(
                 getProgressBar(timeLeft, time), "", ChatColor.GRAY + NumberUtils.getTimeLeft(timeLeft / 2)));
         item.setItemMeta(im);
