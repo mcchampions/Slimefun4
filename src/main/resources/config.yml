@@ -29,7 +29,6 @@ options:
   log-duplicate-block-entries: true
   burn-players-when-radioactive: true
   backup-data: true
-  bypass-environment-check: false
 
 guide:
   # 是否在指南中展示原版物品合成配方

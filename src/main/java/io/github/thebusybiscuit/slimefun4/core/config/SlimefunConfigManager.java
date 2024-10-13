@@ -64,7 +64,7 @@ public class SlimefunConfigManager {
     private final boolean researchAutoConvert = false;
 
     @Getter
-    private boolean bypassEnvironmentCheck;
+    private final boolean bypassEnvironmentCheck = true;
 
     @Getter
     private int cargoTickerDelay;
@@ -114,7 +114,6 @@ public class SlimefunConfigManager {
             useMoneyUnlock = pluginConfig.getBoolean("researches.use-money-unlock");
             showVanillaRecipes = pluginConfig.getBoolean("guide.show-vanilla-recipes");
             showHiddenItemGroupsInSearch = pluginConfig.getBoolean("guide.show-hidden-item-groups-in-search");
-            bypassEnvironmentCheck = pluginConfig.getBoolean("options.bypass-environment-check");
 
             researchCurrencyCostConvertRate = pluginConfig.getDouble("researches.currency-cost-convert-rate");
             // researchesConfig.setDefaultValue("researches.auto-convert", false);

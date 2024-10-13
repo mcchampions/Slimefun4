@@ -20,11 +20,7 @@ public final class SlimefunExtended {
             return false;
         }
 
-        if (Slimefun.getConfigManager().isBypassEnvironmentCheck()) {
-            return true;
-        } else {
-            return !EnvironmentChecker.checkIncompatiblePlugins(sf.getLogger());
-        }
+        return true;
     }
 
     public static void init(Slimefun sf) {
