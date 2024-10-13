@@ -150,9 +150,7 @@ class CargoNetworkTask implements Runnable {
             roundRobinSort(index, tempDestinations);
             destinations = tempDestinations;
         } else {
-            // Using an ArrayList here since we won't need to sort the destinations
-            // The ArrayList has the best performance for iteration bar a primitive array
-            destinations = new ArrayList<>(outputNodes);
+            destinations = outputNodes;
         }
 
         for (Location output : destinations) {
