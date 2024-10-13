@@ -230,6 +230,6 @@ public final class SlimefunRegistry {
 
     @Deprecated
     public boolean isFreeCreativeResearchingEnabled() {
-        return Slimefun.getConfigManager().isFreeCreativeResearchingEnabled();
+        return false;
     }
 }

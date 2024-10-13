@@ -40,7 +40,6 @@ public class SlimefunConfigManager {
 
     private boolean automaticallyLoadItems;
     private boolean enableResearches;
-    private boolean freeCreativeResearches;
     private boolean researchFireworks;
     private boolean disableLearningAnimation;
     private boolean logDuplicateBlockEntries;
@@ -106,7 +105,6 @@ public class SlimefunConfigManager {
 
             researchesConfig.setDefaultValue("enable-researching", true);
             enableResearches = researchesConfig.getBoolean("enable-researching");
-            freeCreativeResearches = pluginConfig.getBoolean("researches.free-in-creative-mode");
             researchFireworks = pluginConfig.getBoolean("researches.enable-fireworks");
             disableLearningAnimation = pluginConfig.getBoolean("researches.disable-learning-animation");
             logDuplicateBlockEntries = pluginConfig.getBoolean("options.log-duplicate-block-entries");
@@ -235,12 +233,10 @@ public class SlimefunConfigManager {
         return enableResearches;
     }
 
-    public void setFreeCreativeResearchingEnabled(boolean enabled) {
-        freeCreativeResearches = enabled;
-    }
+    public void setFreeCreativeResearchingEnabled(boolean enabled) {}
 
     public boolean isFreeCreativeResearchingEnabled() {
-        return freeCreativeResearches;
+        return false;
     }
 
     public boolean isResearchFireworkEnabled() {

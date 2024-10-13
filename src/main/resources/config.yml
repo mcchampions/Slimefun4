@@ -39,8 +39,6 @@ guide:
   show-hidden-item-groups-in-search: false
 
 researches:
-  # 是否允许创造模式玩家免费解锁研究
-  free-in-creative-mode: true
   # 是否在解锁时燃放烟花
   enable-fireworks: true
   # 是否使用游戏币替代使用经验解锁

@@ -300,10 +300,7 @@ public class Research implements Keyed {
             canUnlock = p.getLevel() >= levelCost;
         }
 
-        boolean creativeResearch = p.getGameMode() == GameMode.CREATIVE
-                                   && Slimefun.getConfigManager().isFreeCreativeResearchingEnabled();
-
-        return creativeResearch || canUnlock;
+        return canUnlock;
     }
 
     /**
