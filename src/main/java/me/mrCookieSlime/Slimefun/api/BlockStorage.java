@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Deprecated: use {@link com.xzavier0722.mc.plugin.slimefun4.storage.controller.BlockDataController} instead
  */
-@Deprecated
 public class BlockStorage {
     private static final Config emptyData = new EmptyBlockData();
 
