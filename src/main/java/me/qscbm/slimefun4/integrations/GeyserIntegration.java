@@ -64,7 +64,7 @@ public class GeyserIntegration {
             config.setValue("skin-hashes", l);
             config.save();
             Slimefun.logger().info("成功加载" + successCount + "个自定义头颅");
-            Slimefun.logger().info("加载失败" + errorCount + "个自定义头颅");
+            Slimefun.logger().warning("加载失败" + errorCount + "个自定义头颅");
             Slimefun.logger().info("加载共耗时" + (System.nanoTime() - start) / 1000000 + "ms");
             Slimefun.logger().warning("完成加载自定义粘液科技Geyser支持,如果不生效请重启服务器");
         });
