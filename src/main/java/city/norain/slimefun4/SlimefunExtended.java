@@ -1,5 +1,6 @@
 package city.norain.slimefun4;
 
+import city.norain.slimefun4.utils.EnvUtil;
 import io.github.bakedlibs.dough.versions.MinecraftVersion;
 import io.github.bakedlibs.dough.versions.UnknownServerVersionException;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -24,6 +25,8 @@ public final class SlimefunExtended {
     }
 
     public static void init(Slimefun sf) {
+        EnvUtil.init(sf);
+
         VaultIntegration.register(sf);
     }
 

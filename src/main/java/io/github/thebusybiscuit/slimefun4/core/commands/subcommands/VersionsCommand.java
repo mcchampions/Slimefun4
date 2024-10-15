@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.commands.subcommands;
 
+import city.norain.slimefun4.utils.EnvUtil;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
@@ -15,6 +16,7 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -76,6 +78,7 @@ class VersionsCommand extends SubCommand {
                     sender.sendMessage(c);
                     return;
                 }
+                // @formatter:off
 
                 TextComponent c = component.append(Component.text("安装的附属插件").color(NamedTextColor.GRAY))
                         .append(Component.text("(" + addons.size() + ")").color(NamedTextColor.DARK_GRAY)).build();
@@ -85,7 +88,6 @@ class VersionsCommand extends SubCommand {
                     HoverEvent<Component> hoverEvent;
                     ClickEvent clickEvent = null;
                     TextColor primaryColor;
-
                     if (Bukkit.getPluginManager().isPluginEnabled(plugin)) {
                         primaryColor = NamedTextColor.GREEN;
                         String authors = String.join(", ", plugin.getDescription().getAuthors());
@@ -125,7 +127,7 @@ class VersionsCommand extends SubCommand {
                             .append(Component.text(" v" + v))
                             .appendSpace());
                 }
-               sender.sendMessage(c);
+                sender.sendMessage(c);
             });
         } else {
             Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
