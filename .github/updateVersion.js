@@ -7,5 +7,5 @@ let xml = fs.readFileSync('pom.xml', {
 });
 const sha = process.env.GITHUB_SHA.substring(0, 7);
 xml = xml.replace("<version>UNOFFICIAL</version>",
-    "<version>" + sha + "</version>");
+    "<version>qs-fork-" + sha + "</version>");
 fs.writeFileSync('pom.xml', xml)
