@@ -208,4 +208,6 @@ public class BlockStorage {
 
         Slimefun.getDatabaseManager().getBlockDataController().removeBlock(l);
     }
+
+    public static void saveChunks() {}
 }
