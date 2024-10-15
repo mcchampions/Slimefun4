@@ -44,3 +44,6 @@
 
 请注意：Slimefun 与 `Mojang Studios` 或 Minecraft 无关。
 本项目是一个民间fork, 与简中汉化组与Slimefun官版无关.
+
+## 变更日志
+[here](CHANGLOG.md)
