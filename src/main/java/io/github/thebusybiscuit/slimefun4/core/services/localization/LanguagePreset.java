@@ -33,10 +33,6 @@ public enum LanguagePreset {
         this(id, releaseReady, TextDirection.LEFT_TO_RIGHT, textureHash);
     }
 
-    LanguagePreset(String id, TextDirection direction, String textureHash) {
-        this(id, true, direction, textureHash);
-    }
-
     LanguagePreset(String id, String textureHash) {
         this(id, true, textureHash);
     }

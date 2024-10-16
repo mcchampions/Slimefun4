@@ -52,26 +52,6 @@ public class SlimefunProfiler {
 
     public void requestSummary(PerformanceInspector inspector) {}
 
-    protected Map<String, Long> getByItem() {
-        return new HashMap<>();
-    }
-
-    protected Map<String, Long> getByPlugin() {
-        return new HashMap<>();
-    }
-
-    protected Map<String, Long> getByChunk() {
-        return new HashMap<>();
-    }
-
-    protected int getBlocksOfId(String id) {
-        return 0;
-    }
-
-    protected float getPercentageOfTick() {
-        return 0;
-    }
-
     /**
      * This method returns the current {@link PerformanceRating}.
      *
