@@ -8,10 +8,16 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.geysermc.event.subscribe.Subscribe;
+import org.geysermc.geyser.api.GeyserApi;
+import org.geysermc.geyser.api.event.EventRegistrar;
+import org.geysermc.geyser.api.event.lifecycle.GeyserDefineCustomSkullsEvent;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 对 Geyser 的头颅支持
@@ -23,8 +29,11 @@ import java.util.List;
  * 如果改配置的话
  * 那么需要重启之后才能生效
  */
-public class GeyserIntegration {
+public class GeyserIntegration implements EventRegistrar {
+    private List<String> skullsHash = new ArrayList<>();
+
     public void register() {
+        GeyserApi.api().eventBus().register(this, this);
         Slimefun.runAsync(() -> {
             long start = System.nanoTime();
             Slimefun.logger().info("开始加载自定义粘液科技Geyser支持");
@@ -40,6 +49,7 @@ public class GeyserIntegration {
                 }
                 ItemMeta m = itemStack.getItemMeta();
                 if (!(m instanceof SkullMeta meta)) {
+                    Slimefun.logger().warning("[SlimefunGeyser支持]错误的ItemMetaType:" + m.getClass().getName());
                     errorCount++;
                     continue;
                 }
@@ -55,6 +65,7 @@ public class GeyserIntegration {
                 }
                 successCount++;
             }
+            skullsHash = l;
             String[] i = {"player-names", "player-uuids", "player-profiles"};
             for (String t : i) {
                 if (config.getStringList(t).isEmpty()) {
@@ -68,5 +79,11 @@ public class GeyserIntegration {
             Slimefun.logger().info("加载共耗时" + (System.nanoTime() - start) / 1000000 + "ms");
             Slimefun.logger().warning("完成加载自定义粘液科技Geyser支持,如果不生效请重启服务器");
         });
+    }
+
+    @Subscribe
+    public void onGeyserDefineCustomSkullsEvent(GeyserDefineCustomSkullsEvent e) {
+        skullsHash.forEach((h) ->
+                e.register(h, GeyserDefineCustomSkullsEvent.SkullTextureType.SKIN_HASH));
     }
 }
