@@ -52,7 +52,7 @@ public class RecordKey extends ScopeKey {
     @Override
     protected String getKeyStr() {
         if (changed) {
-            var re = new StringBuilder();
+            StringBuilder re = new StringBuilder();
             re.append(scope).append("/");
             conditions.forEach(c -> re.append(c.getFirstValue())
                     .append("=")
@@ -84,18 +84,18 @@ public class RecordKey extends ScopeKey {
             return false;
         }
 
-        var conditionSize = this.conditions.size();
+        int conditionSize = this.conditions.size();
         if (conditionSize != other.conditions.size()) {
             return false;
         }
 
-        for (var field : this.fields) {
+        for (FieldKey field : this.fields) {
             if (!other.fields.contains(field)) {
                 return false;
             }
         }
 
-        for (var i = 0; i < conditionSize; i++) {
+        for (int i = 0; i < conditionSize; i++) {
             if (!this.conditions.get(i).equals(other.conditions.get(i))) {
                 return false;
             }
