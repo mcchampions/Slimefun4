@@ -37,15 +37,7 @@ public class DataUtils {
 
         var stream = new ByteArrayInputStream(Base64Coder.decodeLines(base64Str));
         try (var bs = new BukkitObjectInputStream(stream)) {
-            var result = (ItemStack) bs.readObject();
-
-
-
-            if (result.getType().isAir()) {
-                Slimefun.logger().log(Level.WARNING, "反序列化数据库中的物品失败! 对应物品无法显示.");
-            }
-
-            return result;
+            return (ItemStack) bs.readObject();
         } catch (IOException | ClassNotFoundException e) {
             //noinspection CallToPrintStackTrace
             e.printStackTrace();
