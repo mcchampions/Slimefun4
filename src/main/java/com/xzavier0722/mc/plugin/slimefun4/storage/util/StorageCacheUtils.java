@@ -4,6 +4,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.Nullable;
@@ -24,27 +25,30 @@ public class StorageCacheUtils {
         return getBlock(l) != null;
     }
 
-    @Nullable public static SlimefunBlockData getBlock(Location l) {
+    @Nullable
+    public static SlimefunBlockData getBlock(Location l) {
         return Slimefun.getDatabaseManager().getBlockDataController().getBlockDataFromCache(l);
     }
 
     public static boolean isBlock(Location l, String id) {
-        var blockData = getBlock(l);
+        SlimefunBlockData blockData = getBlock(l);
         return blockData != null && id.equals(blockData.getSfId());
     }
 
-    @Nullable public static SlimefunItem getSfItem(Location l) {
-        var blockData = getBlock(l);
+    @Nullable
+    public static SlimefunItem getSfItem(Location l) {
+        SlimefunBlockData blockData = getBlock(l);
         return blockData == null ? null : SlimefunItem.getById(blockData.getSfId());
     }
 
-    @Nullable public static String getData(Location loc, String key) {
-        var blockData = getBlock(loc);
+    @Nullable
+    public static String getData(Location loc, String key) {
+        SlimefunBlockData blockData = getBlock(loc);
         return blockData == null ? null : blockData.getData(key);
     }
 
     public static void setData(Location loc, String key, String val) {
-        var block = getBlock(loc);
+        SlimefunBlockData block = getBlock(loc);
         if (block == null) {
             return;
         }
@@ -55,8 +59,9 @@ public class StorageCacheUtils {
         getBlock(loc).removeData(key);
     }
 
-    @Nullable public static BlockMenu getMenu(Location loc) {
-        var blockData = getBlock(loc);
+    @Nullable
+    public static BlockMenu getMenu(Location loc) {
+        SlimefunBlockData blockData = getBlock(loc);
         if (blockData == null) {
             return null;
         }
