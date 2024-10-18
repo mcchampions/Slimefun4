@@ -1,7 +1,6 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.util;
 
 import io.github.bakedlibs.dough.collections.Pair;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
@@ -10,35 +9,35 @@ public class InvStorageUtils {
     private static final Pair<ItemStack, Integer> emptyPair = new Pair<>(null, 0);
 
     public static Set<Integer> getChangedSlots(List<Pair<ItemStack, Integer>> snapshot, ItemStack[] currContent) {
-        var isEmptySnapshot = (snapshot == null || snapshot.isEmpty());
+        boolean isEmptySnapshot = (snapshot == null || snapshot.isEmpty());
         if (isEmptySnapshot && currContent == null) {
             return Collections.emptySet();
         }
 
-        var re = new HashSet<Integer>();
+        Set<Integer> re = new HashSet<>();
         if (isEmptySnapshot) {
-            for (var i = 0; i < currContent.length; i++) {
+            for (int i = 0; i < currContent.length; i++) {
                 re.add(i);
             }
             return re;
         }
 
         if (currContent == null) {
-            for (var i = 0; i < snapshot.size(); i++) {
+            for (int i = 0; i < snapshot.size(); i++) {
                 re.add(i);
             }
             return re;
         }
 
-        var size = currContent.length;
-        var snapshotSize = snapshot.size();
+        int size = currContent.length;
+        int snapshotSize = snapshot.size();
         if (snapshotSize > size) {
-            for (var i = size; i < snapshotSize; i++) {
+            for (int i = size; i < snapshotSize; i++) {
                 re.add(i);
             }
         }
 
-        for (var i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             Pair<ItemStack, Integer> each = i < snapshotSize ? snapshot.get(i) : emptyPair;
             ItemStack curr = currContent[i];
             if (curr == null) {
@@ -52,7 +51,6 @@ public class InvStorageUtils {
                 re.add(i);
             }
         }
-
 
         return re;
     }
