@@ -18,7 +18,7 @@ public class DataUtils {
 
 
         var stream = new ByteArrayOutputStream();
-        try (var bs = new BukkitObjectOutputStream(stream)) {
+        try (BukkitObjectOutputStream bs = new BukkitObjectOutputStream(stream)) {
             bs.writeObject(itemStack);
             return Base64Coder.encodeLines(stream.toByteArray());
         } catch (IOException e) {
@@ -32,9 +32,9 @@ public class DataUtils {
         if (base64Str == null || base64Str.isEmpty() || base64Str.isBlank()) {
             return null;
         }
-        
-        var stream = new ByteArrayInputStream(Base64Coder.decodeLines(base64Str));
-        try (var bs = new BukkitObjectInputStream(stream)) {
+
+        ByteArrayInputStream stream = new ByteArrayInputStream(Base64Coder.decodeLines(base64Str));
+        try (BukkitObjectInputStream bs = new BukkitObjectInputStream(stream)) {
             return (ItemStack) bs.readObject();
         } catch (IOException | ClassNotFoundException e) {
             //noinspection CallToPrintStackTrace
