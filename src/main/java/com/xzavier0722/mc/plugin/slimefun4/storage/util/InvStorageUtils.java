@@ -1,6 +1,7 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.util;
 
 import io.github.bakedlibs.dough.collections.Pair;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
@@ -38,8 +39,8 @@ public class InvStorageUtils {
         }
 
         for (var i = 0; i < size; i++) {
-            var each = i < snapshotSize ? snapshot.get(i) : emptyPair;
-            var curr = currContent[i];
+            Pair<ItemStack, Integer> each = i < snapshotSize ? snapshot.get(i) : emptyPair;
+            ItemStack curr = currContent[i];
             if (curr == null) {
                 if (each.getFirstValue() != null) {
                     re.add(i);
@@ -53,13 +54,12 @@ public class InvStorageUtils {
         }
 
 
-
         return re;
     }
 
     public static List<Pair<ItemStack, Integer>> getInvSnapshot(ItemStack[] invContents) {
-        var re = new ArrayList<Pair<ItemStack, Integer>>(invContents.length);
-        for (var each : invContents) {
+        List<Pair<ItemStack, Integer>> re = new ArrayList<>(invContents.length);
+        for (ItemStack each : invContents) {
             re.add(each == null ? emptyPair : new Pair<>(each, each.getAmount()));
         }
 
