@@ -15,8 +15,8 @@ public class LocationUtils {
     }
 
     public static Location toLocation(String lKey) {
-        var strArr = lKey.split(";");
-        var loc = strArr[1].split(":");
+        String[] strArr = lKey.split(";");
+        String[] loc = strArr[1].split(":");
         return new Location(
                 Bukkit.getWorld(strArr[0]),
                 Double.parseDouble(loc[0]),
@@ -26,19 +26,19 @@ public class LocationUtils {
 
     public static boolean isSameChunk(Chunk c1, Chunk c2) {
         return c1 == c2
-                || (isSameWorld(c1.getWorld(), c2.getWorld()) && c1.getX() == c2.getX() && c1.getZ() == c2.getZ());
+               || (isSameWorld(c1.getWorld(), c2.getWorld()) && c1.getX() == c2.getX() && c1.getZ() == c2.getZ());
     }
 
     public static boolean isSameLoc(Location l1, Location l2) {
         return l1 == l2
-                || (isSameChunk(l1.getChunk(), l2.getChunk())
-                        && l1.getBlockX() == l2.getBlockX()
-                        && l1.getBlockY() == l2.getBlockY()
-                        && l1.getBlockZ() == l2.getBlockZ());
+               || (isSameChunk(l1.getChunk(), l2.getChunk())
+                   && l1.getBlockX() == l2.getBlockX()
+                   && l1.getBlockY() == l2.getBlockY()
+                   && l1.getBlockZ() == l2.getBlockZ());
     }
 
     public static Chunk toChunk(World w, String cKey) {
-        var loc = cKey.split(";")[1].split(":");
+        String[] loc = cKey.split(";")[1].split(":");
         return w.getChunkAtAsync(Integer.parseInt(loc[0]), Integer.parseInt(loc[1]), false).join();
     }
 
@@ -52,13 +52,13 @@ public class LocationUtils {
         }
 
         return "[world="
-                + location.getWorld().getName()
-                + ",x="
-                + location.getX()
-                + ",y="
-                + location.getY()
-                + ",z="
-                + location.getZ()
-                + "]";
+               + location.getWorld().getName()
+               + ",x="
+               + location.getX()
+               + ",y="
+               + location.getY()
+               + ",z="
+               + location.getZ()
+               + "]";
     }
 }
