@@ -32,9 +32,7 @@ public class DataUtils {
         if (base64Str == null || base64Str.isEmpty() || base64Str.isBlank()) {
             return null;
         }
-
-
-
+        
         var stream = new ByteArrayInputStream(Base64Coder.decodeLines(base64Str));
         try (var bs = new BukkitObjectInputStream(stream)) {
             return (ItemStack) bs.readObject();
