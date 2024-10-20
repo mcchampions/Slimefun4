@@ -25,7 +25,7 @@ public final class SlimefunExtended {
     }
 
     public static void init(Slimefun sf) {
-        EnvUtil.init(sf);
+        EnvUtil.init();
 
         VaultIntegration.register(sf);
     }
