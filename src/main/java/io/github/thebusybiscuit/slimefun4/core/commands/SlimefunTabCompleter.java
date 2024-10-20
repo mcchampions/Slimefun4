@@ -6,46 +6,36 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.bukkit.generator.WorldInfo;
 
-class SlimefunTabCompleter implements TabCompleter {
-    private static final int MAX_SUGGESTIONS = 80;
-
-    private final SlimefunCommand command;
-
+public class SlimefunTabCompleter {
     public SlimefunTabCompleter(SlimefunCommand command) {
-        this.command = command;
     }
 
-    @Nullable
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-        if (args.length == 1) {
-            return createReturnList(command.getSubCommandNamesToSet(), args[0]);
-        } else if (args.length == 2) {
-            if (args[0].equalsIgnoreCase("banitem")) {
-                return createReturnList(getSlimefunItems(), args[1]);
-            } else if (args[0].equalsIgnoreCase("unbanitem")) {
+    public static List<String> onTabComplete(List<String> args) {
+        if (args.size() == 1) {
+            return createReturnList(Slimefun.getCommand().getSubCommandNamesToSet(), args.get(0));
+        } else if (args.size() == 2) {
+            if (args.get(0).equalsIgnoreCase("banitem")) {
+                return createReturnList(getSlimefunItems(), args.get(1));
+            } else if (args.get(0).equalsIgnoreCase("unbanitem")) {
                 Set<String> set = Slimefun.getRegistry().getDisabledSlimefunItemsToSet().stream()
                         .map(SlimefunItem::getItemNormalName)
                         .collect(Collectors.toSet());
-                return createReturnList(set, args[1]);
-            } else if (args[0].equalsIgnoreCase("cleardata")) {
+                return createReturnList(set, args.get(1));
+            } else if (args.get(0).equalsIgnoreCase("cleardata")) {
                 Set<String> set = Bukkit.getWorlds().stream().map(WorldInfo::getName).collect(Collectors.toSet());
                 set.add("*");
-                return createReturnList(set, args[1]);
+                return createReturnList(set, args.get(1));
             }
-            return null;
-        } else if (args.length == 3) {
-            if (args[0].equalsIgnoreCase("give")) {
-                return createReturnList(getSlimefunItems(), args[2]);
-            } else if (args[0].equalsIgnoreCase("research")) {
+            return getPlayerList(args.get(1));
+        } else if (args.size() == 3) {
+            if (args.get(0).equalsIgnoreCase("give")) {
+                return createReturnList(getSlimefunItems(), args.get(2));
+            } else if (args.get(0).equalsIgnoreCase("research")) {
                 List<Research> researches = Slimefun.getRegistry().getResearches();
                 Set<String> suggestions = new HashSet<>();
 
@@ -56,32 +46,30 @@ class SlimefunTabCompleter implements TabCompleter {
                     suggestions.add(research.getNormalName());
                 }
 
-                return createReturnList(suggestions, args[2]);
-            } else if (args[0].equalsIgnoreCase("cleardata")) {
-                return createReturnList(Arrays.asList("block", "oil", "*"), args[2]);
-            } else {
-                // Returning null will make it fallback to the default arguments (all online players)
-                return null;
+                return createReturnList(suggestions, args.get(2));
+            } else if (args.get(0).equalsIgnoreCase("cleardata")) {
+                return createReturnList(Arrays.asList("block", "oil", "*"), args.get(2));
             }
-        } else if (args.length == 4 && args[0].equalsIgnoreCase("give")) {
-            return createReturnList(Arrays.asList("1", "2", "4", "8", "16", "32", "64"), args[3]);
-        } else {
-            // Returning null will make it fallback to the default arguments (all online players)
-            return null;
+            return Collections.emptyList();
+        } else if (args.size() == 4 && args.get(0).equalsIgnoreCase("give")) {
+            return createReturnList(Arrays.asList("1", "2", "4", "8", "16", "32", "64"), args.get(3));
         }
+        return Slimefun.getCommand().getSubCommandNames();
     }
 
-    private List<String> createReturnList(Set<String> set, String string) {
+    @SuppressWarnings("deprecation")
+    public static List<String> getPlayerList(String input) {
+        return Bukkit.getOnlinePlayers().stream().map(Player::getDisplayName)
+                .filter(s -> s.contains(input)).collect(Collectors.toList());
+    }
+
+    public static List<String> createReturnList(Set<String> set, String string) {
         String input = string.toLowerCase(Locale.ROOT);
         List<String> returnList = new LinkedList<>();
 
         for (String item : set) {
             if (item.toLowerCase(Locale.ROOT).contains(input)) {
                 returnList.add(item);
-
-                if (returnList.size() >= MAX_SUGGESTIONS) {
-                    break;
-                }
             } else if (item.equalsIgnoreCase(input)) {
                 return Collections.emptyList();
             }
@@ -90,7 +78,7 @@ class SlimefunTabCompleter implements TabCompleter {
         return returnList;
     }
 
-    private List<String> createReturnList(List<String> list, String string) {
+    public static List<String> createReturnList(List<String> list, String string) {
         String input = string.toLowerCase(Locale.ROOT);
         List<String> returnList = new LinkedList<>();
 
@@ -106,7 +94,7 @@ class SlimefunTabCompleter implements TabCompleter {
     }
 
 
-    protected Set<String> getSlimefunItems() {
+    public static Set<String> getSlimefunItems() {
         List<SlimefunItem> items = Slimefun.getRegistry().getEnabledSlimefunItems();
         Set<String> set = new HashSet<>(items.size());
 

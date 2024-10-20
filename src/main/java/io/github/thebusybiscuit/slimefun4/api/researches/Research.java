@@ -124,7 +124,7 @@ public class Research implements Keyed {
     public String getName() {
         String localized = Slimefun.getLocalization().getResearchName(null, key);
         if (localized == null || localized.isEmpty()) {
-            localized = name == null ? key.toString().toLowerCase(Locale.ROOT) : name;
+            localized = name == null || name.isEmpty() ? key.toString().toLowerCase(Locale.ROOT) : name;
         }
         return localized;
     }

@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
+import me.qscbm.slimefun4.listeners.AsyncTabCompleteListener;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,9 +17,9 @@ import org.bukkit.event.Listener;
  * This {@link CommandExecutor} holds the functionality of our {@code /slimefun} command.
  *
  * @author TheBusyBiscuit
- *
  */
 public class SlimefunCommand implements CommandExecutor, Listener {
+    public static Set<String> COMMAND_ALIASES;
     @Getter
     private boolean registered = false;
     @Getter
@@ -30,8 +31,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
     /**
      * Creates a new instance of {@link SlimefunCommand}
      *
-     * @param plugin
-     *            The instance of our {@link Slimefun}
+     * @param plugin The instance of our {@link Slimefun}
      */
     public SlimefunCommand(Slimefun plugin) {
         this.plugin = plugin;
@@ -39,12 +39,18 @@ public class SlimefunCommand implements CommandExecutor, Listener {
 
     @SuppressWarnings("DataFlowIssue")
     public void register() {
+        if (registered) {
+            return;
+        }
         registered = true;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-
         plugin.getCommand("slimefun").setExecutor(this);
-        plugin.getCommand("slimefun").setTabCompleter(new SlimefunTabCompleter(this));
+        COMMAND_ALIASES = plugin.getServer().getPluginCommand("slimefun").getAliases().stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toSet());
+        Slimefun.logger().info("已加载" + COMMAND_ALIASES.size() + "个命令别名:" + COMMAND_ALIASES);
         commands.addAll(SlimefunSubCommands.getAllCommands(this));
+        plugin.getServer().getPluginManager().registerEvents(new AsyncTabCompleteListener(), plugin);
     }
 
     @Override
@@ -77,7 +83,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
 
         for (SubCommand cmd : commands) {
             if (!cmd.isHidden()) {
-                sender.sendMessage("§3/sf " + cmd.getName() + " §b"+ cmd.getDescription(sender));
+                sender.sendMessage("§3/sf " + cmd.getName() + " §b" + cmd.getDescription(sender));
             }
         }
     }
