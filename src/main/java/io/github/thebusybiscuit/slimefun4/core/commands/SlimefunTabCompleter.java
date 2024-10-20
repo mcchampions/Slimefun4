@@ -13,6 +13,7 @@ import org.bukkit.generator.WorldInfo;
 
 public class SlimefunTabCompleter {
     public static final List<String> COUNT_LIST = Arrays.asList("1", "2", "4", "8", "16", "32", "64");
+
     public SlimefunTabCompleter(SlimefunCommand command) {
     }
 
@@ -68,6 +69,9 @@ public class SlimefunTabCompleter {
                     return createReturnList(COUNT_LIST, args.get(3));
                 }
             }
+        }
+        if (size > 0) {
+            return Collections.emptyList();
         }
         return Slimefun.getCommand().getSubCommandNames();
     }
