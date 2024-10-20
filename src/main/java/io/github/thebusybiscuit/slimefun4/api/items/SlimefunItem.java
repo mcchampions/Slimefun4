@@ -940,14 +940,24 @@ public class SlimefunItem implements Placeable {
         } else if (isDisabled()) {
             // The Item has been disabled in the config
             if (sendMessage) {
-                Slimefun.getLocalization().sendMessage(p, "messages.disabled-item", true);
+                Slimefun.getLocalization()
+                        .sendMessage(
+                                p,
+                                "messages.disabled-item",
+                                true,
+                                msg -> msg.replace("%item_name%", TextUtils.toPlainText(getItemName())));
             }
 
             return false;
         } else if (!Slimefun.getWorldSettingsService().isEnabled(p.getWorld(), this)) {
             // The Item was disabled in the current World
             if (sendMessage) {
-                Slimefun.getLocalization().sendMessage(p, "messages.disabled-in-world", true);
+                Slimefun.getLocalization()
+                        .sendMessage(
+                                p,
+                                "messages.disabled-in-world",
+                                true,
+                                msg -> msg.replace("%item_name%", TextUtils.toPlainText(getItemName())));
             }
 
             return false;

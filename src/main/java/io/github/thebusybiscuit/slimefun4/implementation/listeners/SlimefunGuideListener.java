@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.core.guide.options.SlimefunGuideSettings;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
@@ -79,7 +80,15 @@ public class SlimefunGuideListener implements Listener {
         ItemStack item = e.getItem();
         if (SlimefunUtils.isItemSimilar(item, SlimefunGuide.getItem(layout), false, false)) {
             if (!Slimefun.getWorldSettingsService().isWorldEnabled(p.getWorld())) {
-                Slimefun.getLocalization().sendMessage(p, "messages.disabled-item", true);
+                Slimefun.getLocalization().sendMessage(p, "messages.disabled-item", true, msg -> {
+                    if (item.hasItemMeta()) {
+                        return msg.replace(
+                                "%item_name%",
+                                TextUtils.toPlainText(item.getItemMeta().getDisplayName()));
+                    } else {
+                        return msg;
+                    }
+                });
                 return Result.DENY;
             }
 

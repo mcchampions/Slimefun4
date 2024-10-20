@@ -1,6 +1,5 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
-import city.norain.slimefun4.utils.InventoryUtil;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
@@ -192,7 +191,7 @@ public class BlockDataController extends ADataController {
 
         var menu = removed.getBlockMenu();
         if (menu != null) {
-            InventoryUtil.closeInventory(menu.toInventory());
+            menu.lock();
         }
 
         if (Slimefun.getRegistry().getTickerBlocks().contains(removed.getSfId())) {
@@ -296,6 +295,13 @@ public class BlockDataController extends ADataController {
             hasTicker = true;
         }
 
+        BlockMenu menu = null;
+
+        if (blockData.isDataLoaded() && blockData.getBlockMenu() != null) {
+            menu = blockData.getBlockMenu();
+            menu.lock();
+        }
+
         var chunk = blockData.getLocation().getChunk();
         var chunkData = getChunkDataCache(chunk, false);
         if (chunkData != null) {
@@ -315,9 +321,9 @@ public class BlockDataController extends ADataController {
 
         chunkData.addBlockCacheInternal(newBlockData, true);
 
-        var menu = blockData.getBlockMenu();
         if (menu != null) {
             newBlockData.setBlockMenu(new BlockMenu(menu.getPreset(), target, menu.getInventory()));
+            menu.unlock();
         }
 
         key.addField(FieldKey.LOCATION);
