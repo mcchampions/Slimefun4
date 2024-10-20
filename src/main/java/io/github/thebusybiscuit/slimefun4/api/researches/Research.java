@@ -12,10 +12,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.setup.ResearchSetup;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
@@ -127,7 +124,7 @@ public class Research implements Keyed {
     public String getName() {
         String localized = Slimefun.getLocalization().getResearchName(null, key);
         if (localized == null || localized.isEmpty()) {
-            return name;
+            localized = name == null ? key.toString().toLowerCase(Locale.ROOT) : name;
         }
         return localized;
     }
