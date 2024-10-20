@@ -77,7 +77,7 @@ class VersionsCommand extends SubCommand {
                     sender.sendMessage(c);
                     return;
                 }
-                
+
                 TextComponent c = component.append(Component.text("安装的附属插件").color(NamedTextColor.GRAY))
                         .append(Component.text("(" + addons.size() + ")").color(NamedTextColor.DARK_GRAY)).build();
 
