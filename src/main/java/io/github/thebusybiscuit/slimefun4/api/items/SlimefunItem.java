@@ -945,7 +945,7 @@ public class SlimefunItem implements Placeable {
                                 p,
                                 "messages.disabled-item",
                                 true,
-                                msg -> msg.replace("%item_name%", TextUtils.toPlainText(getItemName())));
+                                msg -> msg.replace("%item_name%", getItemNormalName()));
             }
 
             return false;
@@ -957,7 +957,7 @@ public class SlimefunItem implements Placeable {
                                 p,
                                 "messages.disabled-in-world",
                                 true,
-                                msg -> msg.replace("%item_name%", TextUtils.toPlainText(getItemName())));
+                                msg -> msg.replace("%item_name%", getItemNormalName()));
             }
 
             return false;
