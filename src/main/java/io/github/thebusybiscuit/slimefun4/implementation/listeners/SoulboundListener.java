@@ -42,6 +42,9 @@ public class SoulboundListener implements Listener {
             }
         }
 
+        /*
+        In fact, it's unsafe, see https://github.com/SlimefunGuguProject/Slimefun4/issues/964
+
         // There shouldn't even be any items in there, but let's be extra safe!
         Map<Integer, ItemStack> existingItems = soulbound.get(p.getUniqueId());
 
@@ -50,6 +53,8 @@ public class SoulboundListener implements Listener {
         } else {
             existingItems.putAll(items);
         }
+        */
+        soulbound.put(p.getUniqueId(), items);
 
         // Remove soulbound items from our drops
         e.getDrops().removeIf(itemStack -> SlimefunUtils.isSoulbound(itemStack, p.getWorld()));
