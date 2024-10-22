@@ -11,13 +11,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.logging.Level;
 
 public class DataUtils {
     public static String itemStack2String(ItemStack itemStack) {
-
-
-        var stream = new ByteArrayOutputStream();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
         try (BukkitObjectOutputStream bs = new BukkitObjectOutputStream(stream)) {
             bs.writeObject(itemStack);
             return Base64Coder.encodeLines(stream.toByteArray());
