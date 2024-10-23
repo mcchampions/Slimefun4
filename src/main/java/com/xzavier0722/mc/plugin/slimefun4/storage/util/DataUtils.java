@@ -1,6 +1,7 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.util;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.utils.Base64Utils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
@@ -17,7 +18,7 @@ public class DataUtils {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         try (BukkitObjectOutputStream bs = new BukkitObjectOutputStream(stream)) {
             bs.writeObject(itemStack);
-            return Base64Coder.encodeLines(stream.toByteArray());
+            return Base64Utils.encodeLines(stream.toByteArray());
         } catch (IOException e) {
             //noinspection CallToPrintStackTrace
             e.printStackTrace();
