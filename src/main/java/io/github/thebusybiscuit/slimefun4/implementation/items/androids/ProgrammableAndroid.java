@@ -962,6 +962,16 @@ public class ProgrammableAndroid extends SlimefunItem
                 return;
             }
 
+            // Bro encountered a ghost 💀
+            if (StorageCacheUtils.hasBlock(block.getLocation())) {
+                var data = StorageCacheUtils.getBlock(block.getLocation());
+                if (data != null && !data.isPendingRemove()) {
+                    // Since it's a ghost, we just hunt it.
+                    Slimefun.getDatabaseManager().getBlockDataController().removeBlock(block.getLocation());
+                }
+                return;
+            }
+
             block.setBlockData(Material.PLAYER_HEAD.createBlockData(data -> {
                 if (data instanceof Rotatable rotatable) {
                     rotatable.setRotation(face.getOppositeFace());
