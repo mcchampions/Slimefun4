@@ -4,11 +4,14 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.ExternallyInteractable
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
 /**
  * This class represents the result of an interaction on an {@link ExternallyInteractable} item.
  */
+@Getter
 public class ItemInteractionResult extends InteractionResult {
     private final Set<ItemStack> resultItems = new HashSet<>();
 
@@ -50,12 +53,4 @@ public class ItemInteractionResult extends InteractionResult {
         return !this.resultItems.isEmpty();
     }
 
-    /**
-     * Returns the {@link ItemStack}(s) produced as a result of this interaction, if any.
-     *
-     * @return An unmodifiable {@link Set} of {@link ItemStack}(s) created due to the interaction.
-     */
-    public Set<ItemStack> getResultItems() {
-        return resultItems;
-    }
 }
