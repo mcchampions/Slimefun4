@@ -30,7 +30,7 @@ public class RecordSet {
     }
 
     public Map<FieldKey, String> getAll() {
-        return Collections.unmodifiableMap(data);
+        return data;
     }
 
     public String get(FieldKey key) {

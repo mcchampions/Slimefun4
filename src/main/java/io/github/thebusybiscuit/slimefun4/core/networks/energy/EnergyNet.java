@@ -12,6 +12,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.attributes.HologramOwner;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,6 +22,8 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.LongConsumer;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -31,13 +34,12 @@ import org.bukkit.block.Block;
  *
  * @author meiamsome
  * @author TheBusyBiscuit
- *
  * @see Network
  * @see EnergyNetComponent
  * @see EnergyNetProvider
  * @see EnergyNetComponentType
- *
  */
+@Getter
 public class EnergyNet extends Network implements HologramOwner {
     private static final int RANGE = 6;
 
@@ -52,33 +54,6 @@ public class EnergyNet extends Network implements HologramOwner {
     @Override
     public int getRange() {
         return RANGE;
-    }
-
-    /**
-     * This creates an immutable {@link Map} of {@link EnergyNetProvider}s within this {@link EnergyNet} instance.
-     *
-     * @return An immutable {@link Map} of generators
-     */
-    public Map<Location, EnergyNetProvider> getGenerators() {
-        return Collections.unmodifiableMap(generators);
-    }
-
-    /**
-     * This creates an immutable {@link Map} of {@link EnergyNetComponentType#CAPACITOR} {@link EnergyNetComponent}s within this {@link EnergyNet} instance.
-     *
-     * @return An immutable {@link Map} of capacitors
-     */
-    public Map<Location, EnergyNetComponent> getCapacitors() {
-        return Collections.unmodifiableMap(capacitors);
-    }
-
-    /**
-     * This creates an immutable {@link Map} of {@link EnergyNetComponentType#CONSUMER} {@link EnergyNetComponent}s within this {@link EnergyNet} instance.
-     *
-     * @return An immutable {@link Map} of consumers
-     */
-    public Map<Location, EnergyNetComponent> getConsumers() {
-        return Collections.unmodifiableMap(consumers);
     }
 
     @Override
@@ -127,7 +102,7 @@ public class EnergyNet extends Network implements HologramOwner {
                         generators.put(l, provider);
                     } else if (component instanceof SlimefunItem item) {
                         item.warn("This Item is marked as a GENERATOR but does not implement the interface"
-                                + " EnergyNetProvider!");
+                                  + " EnergyNetProvider!");
                     }
                     break;
                 default:
@@ -165,7 +140,7 @@ public class EnergyNet extends Network implements HologramOwner {
                 if (!((SlimefunItem) component).getId().equals(data.getSfId())) {
                     var newItem = SlimefunItem.getById(data.getSfId());
                     if (!(newItem instanceof EnergyNetComponent newComponent)
-                            || newComponent.getEnergyComponentType() != EnergyNetComponentType.CONSUMER) {
+                        || newComponent.getEnergyComponentType() != EnergyNetComponentType.CONSUMER) {
                         continue;
                     }
                     consumers.put(loc, newComponent);
@@ -338,7 +313,8 @@ public class EnergyNet extends Network implements HologramOwner {
         }
     }
 
-    @Nullable private static EnergyNetComponent getComponent(Location l) {
+    @Nullable
+    private static EnergyNetComponent getComponent(Location l) {
         SlimefunItem item = StorageCacheUtils.getSfItem(l);
 
         if (item instanceof EnergyNetComponent component) {
@@ -352,12 +328,11 @@ public class EnergyNet extends Network implements HologramOwner {
      * This attempts to get an {@link EnergyNet} from a given {@link Location}.
      * If no suitable {@link EnergyNet} could be found, {@code null} will be returned.
      *
-     * @param l
-     *            The target {@link Location}
-     *
+     * @param l The target {@link Location}
      * @return The {@link EnergyNet} at that {@link Location}, or {@code null}
      */
-    @Nullable public static EnergyNet getNetworkFromLocation(Location l) {
+    @Nullable
+    public static EnergyNet getNetworkFromLocation(Location l) {
         return Slimefun.getNetworkManager()
                 .getNetworkFromLocation(l, EnergyNet.class)
                 .orElse(null);
@@ -367,9 +342,7 @@ public class EnergyNet extends Network implements HologramOwner {
      * This attempts to get an {@link EnergyNet} from a given {@link Location}.
      * If no suitable {@link EnergyNet} could be found, a new one will be created.
      *
-     * @param l
-     *            The target {@link Location}
-     *
+     * @param l The target {@link Location}
      * @return The {@link EnergyNet} at that {@link Location}, or a new one
      */
 

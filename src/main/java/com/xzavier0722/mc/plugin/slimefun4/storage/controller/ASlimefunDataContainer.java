@@ -57,12 +57,12 @@ public abstract class ASlimefunDataContainer {
 
     public Map<String, String> getAllData() {
         checkData();
-        return Collections.unmodifiableMap(data);
+        return data;
     }
 
     public Set<String> getDataKeys() {
         checkData();
-        return Collections.unmodifiableSet(data.keySet());
+        return data.keySet();
     }
 
     @Nullable public String getData(String key) {
