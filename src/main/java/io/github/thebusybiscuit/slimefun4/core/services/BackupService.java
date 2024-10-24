@@ -84,16 +84,16 @@ public class BackupService implements Runnable {
 
     private void createBackup(ZipOutputStream output) throws IOException {
         if (Slimefun.getDatabaseManager().getProfileStorageType() == StorageType.SQLITE) {
-            addFile(output, new File("data-storage/Slimefun", "profile.db"), "");
+            addFile(output, new File("data-storage/Slimefun", "profile.db"));
         }
 
         if (Slimefun.getDatabaseManager().getBlockDataStorageType() == StorageType.SQLITE) {
-            addFile(output, new File("data-storage/Slimefun", "block-storage.db"), "");
+            addFile(output, new File("data-storage/Slimefun", "block-storage.db"));
         }
     }
 
-    private void addFile(ZipOutputStream output, File file, String path) throws IOException {
-        var entry = new ZipEntry(path + "/" + file.getName());
+    private void addFile(ZipOutputStream output, File file) throws IOException {
+        var entry = new ZipEntry("/" + file.getName());
         output.putNextEntry(entry);
 
         byte[] buffer = new byte[4096];
