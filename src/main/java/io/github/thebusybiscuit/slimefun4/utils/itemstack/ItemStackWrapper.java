@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.utils.itemstack;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +18,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  * @author TheBusyBiscuit
  * @author md5sha256
- *
  */
 public final class ItemStackWrapper extends ItemStack {
     private static final String ERROR_MESSAGE = "ItemStackWrappers are immutable and not intended for actual usage.";
@@ -52,13 +52,9 @@ public final class ItemStackWrapper extends ItemStack {
          * and then store that instead of creating a clone everytime.
          * This will significantly speed up any loop comparisons if used correctly.
          */
-        if (meta == null) {
-            throw new UnsupportedOperationException(
-                    "This ItemStack has no ItemMeta! Make sure to check ItemStack#hasItemMeta() before"
-                            + " accessing this method!");
-        } else {
-            return meta;
-        }
+
+        return meta;
+
     }
 
     @Override
@@ -76,7 +72,7 @@ public final class ItemStackWrapper extends ItemStack {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
     }
 
-    
+
     @Override
     public ItemStack clone() {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
@@ -106,8 +102,7 @@ public final class ItemStackWrapper extends ItemStack {
      * Creates an {@link ItemStackWrapper} of an {@link ItemStack}. This method
      * will not check if the passed {@link ItemStack} has already been wrapped
      *
-     * @param itemStack
-     *            The {@link ItemStack} to wrap
+     * @param itemStack The {@link ItemStack} to wrap
      * @return Returns an {@link ItemStackWrapper} of the passed {@link ItemStack}
      * @see #wrap(ItemStack)
      */
@@ -120,8 +115,7 @@ public final class ItemStackWrapper extends ItemStack {
      * will return the the casted reference of the passed {@link ItemStack} if it
      * is already an {@link ItemStackWrapper}
      *
-     * @param itemStack
-     *            The {@link ItemStack} to wrap
+     * @param itemStack The {@link ItemStack} to wrap
      * @return Returns an {@link ItemStackWrapper} of the passed {@link ItemStack}
      * @see #forceWrap(ItemStack)
      */
@@ -136,9 +130,7 @@ public final class ItemStackWrapper extends ItemStack {
     /**
      * This creates an {@link ItemStackWrapper} array from a given {@link ItemStack} array.
      *
-     * @param items
-     *            The array of {@link ItemStack ItemStacks} to transform
-     *
+     * @param items The array of {@link ItemStack ItemStacks} to transform
      * @return An {@link ItemStackWrapper} array
      */
     public static ItemStackWrapper[] wrapArray(ItemStack[] items) {
@@ -156,9 +148,7 @@ public final class ItemStackWrapper extends ItemStack {
     /**
      * This creates an {@link ItemStackWrapper} {@link List} from a given {@link ItemStack} {@link List} *
      *
-     * @param items
-     *            The {@link List} of {@link ItemStack ItemStacks} to transform
-     *
+     * @param items The {@link List} of {@link ItemStack ItemStacks} to transform
      * @return An {@link ItemStackWrapper} array
      */
     public static List<ItemStackWrapper> wrapList(List<ItemStack> items) {
