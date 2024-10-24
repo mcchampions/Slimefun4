@@ -13,7 +13,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.tools.ExplosiveSh
 import io.github.thebusybiscuit.slimefun4.implementation.items.tools.PickaxeOfTheSeeker;
 import io.github.thebusybiscuit.slimefun4.implementation.items.tools.PickaxeOfVeinMining;
 import io.github.thebusybiscuit.slimefun4.implementation.items.tools.SmeltersPickaxe;
-import java.util.Collections;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;

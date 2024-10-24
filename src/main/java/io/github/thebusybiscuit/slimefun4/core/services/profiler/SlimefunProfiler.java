@@ -5,9 +5,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.TickerTask;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Server;
