@@ -25,6 +25,7 @@ import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nullable;
 
+import lombok.Getter;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -45,6 +46,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements RecipeDisplayItem {
     private final RandomizedSet<ItemStack> randomizer = new RandomizedSet<>();
+    @Getter
     private final Set<Material> inputMaterials = new HashSet<>(List.of(Material.GRAVEL));
     private final Set<GoldPanDrop> drops = new HashSet<>();
 
@@ -64,15 +66,6 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
     @Deprecated(since = "RC-36")
     public Material getInputMaterial() {
         return Material.GRAVEL;
-    }
-
-    /**
-     * This method returns the target {@link Material Materials} for this {@link GoldPan}.
-     *
-     * @return The {@link Set} of {@link Material Materials} this {@link GoldPan} can be used on.
-     */
-    public Set<Material> getInputMaterials() {
-        return Collections.unmodifiableSet(inputMaterials);
     }
 
     /**

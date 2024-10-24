@@ -106,7 +106,7 @@ public class NetworkManager {
      */
 
     public List<Network> getNetworkList() {
-        return Collections.unmodifiableList(networks);
+        return networks;
     }
 
     public <T extends Network> Optional<T> getNetworkFromLocation(@Nullable Location l, Class<T> type) {

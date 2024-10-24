@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import lombok.Getter;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +18,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefunItem<T> {
+    @Getter
     private final Set<PotionEffectType> curedEffects = new HashSet<>();
     private final int healAmount;
 
@@ -34,16 +36,6 @@ public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefu
         curedEffects.add(VersionedPotionEffectType.NAUSEA);
         curedEffects.add(PotionEffectType.BLINDNESS);
         curedEffects.add(PotionEffectType.BAD_OMEN);
-    }
-
-    /**
-     * This returns the {@link PotionEffect PotionEffects} cured from this {@link MedicalSupply}.
-     *
-     * @return An immutable {@link Set} of cured {@link PotionEffect PotionEffects}
-     */
-
-    public Set<PotionEffectType> getCuredEffects() {
-        return Collections.unmodifiableSet(curedEffects);
     }
 
     /**

@@ -56,6 +56,6 @@ public class ItemInteractionResult extends InteractionResult {
      * @return An unmodifiable {@link Set} of {@link ItemStack}(s) created due to the interaction.
      */
     public Set<ItemStack> getResultItems() {
-        return Collections.unmodifiableSet(resultItems);
+        return resultItems;
     }
 }

@@ -137,7 +137,7 @@ public class SqlUtils {
                     row.readonly();
                     re.add(row);
                 }
-                return re == null ? Collections.emptyList() : Collections.unmodifiableList(re);
+                return re == null ? Collections.emptyList() : re;
             }
         }
     }

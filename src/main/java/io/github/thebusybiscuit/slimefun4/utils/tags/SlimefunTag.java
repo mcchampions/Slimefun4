@@ -362,7 +362,7 @@ public enum SlimefunTag implements Tag<Material> {
     @Override
     public Set<Material> getValues() {
         if (additionalTags.isEmpty()) {
-            return Collections.unmodifiableSet(includedMaterials);
+            return includedMaterials;
         } else {
             Set<Material> materials = EnumSet.noneOf(Material.class);
             materials.addAll(includedMaterials);
@@ -396,7 +396,7 @@ public enum SlimefunTag implements Tag<Material> {
      * @return An immutable {@link Set} of all sub tags.
      */
     public Set<Tag<Material>> getSubTags() {
-        return Collections.unmodifiableSet(additionalTags);
+        return additionalTags;
     }
 
     /**

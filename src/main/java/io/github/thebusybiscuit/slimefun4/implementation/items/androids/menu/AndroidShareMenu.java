@@ -8,11 +8,7 @@ import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Level;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
@@ -171,7 +167,7 @@ public final class AndroidShareMenu {
         String replacedText = value.replace("[", "").replace("]", "");
 
         if (replacedText.isEmpty()) {
-            return new ArrayList<>();
+            return Collections.emptyList();
         } else {
             return new ArrayList<>(Arrays.asList(replacedText.split(", ")));
         }

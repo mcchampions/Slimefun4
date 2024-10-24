@@ -1,14 +1,17 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.common;
 
 import io.github.bakedlibs.dough.collections.Pair;
-import java.util.Collections;
+import lombok.Getter;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 public class RecordKey extends ScopeKey {
+    @Getter
     private final Set<FieldKey> fields;
+    @Getter
     private final List<Pair<FieldKey, String>> conditions;
     private volatile String strKey = "";
     private volatile boolean changed = true;
@@ -32,10 +35,6 @@ public class RecordKey extends ScopeKey {
         changed = true;
     }
 
-    public Set<FieldKey> getFields() {
-        return Collections.unmodifiableSet(fields);
-    }
-
     public void addCondition(FieldKey key, String val) {
         conditions.add(new Pair<>(key, val));
         changed = true;
@@ -43,10 +42,6 @@ public class RecordKey extends ScopeKey {
 
     public void addCondition(FieldKey key, boolean val) {
         addCondition(key, val ? "1" : "0");
-    }
-
-    public List<Pair<FieldKey, String>> getConditions() {
-        return Collections.unmodifiableList(conditions);
     }
 
     @Override
