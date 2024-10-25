@@ -52,9 +52,7 @@ public final class ItemStackWrapper extends ItemStack {
          * and then store that instead of creating a clone everytime.
          * This will significantly speed up any loop comparisons if used correctly.
          */
-
         return meta;
-
     }
 
     @Override
