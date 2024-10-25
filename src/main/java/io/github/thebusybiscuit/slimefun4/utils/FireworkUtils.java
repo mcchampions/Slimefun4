@@ -41,8 +41,7 @@ public final class FireworkUtils {
         Color.WHITE,
         Color.YELLOW
     };
-
-
+    
     private static final EntityType firework;
 
     static {
