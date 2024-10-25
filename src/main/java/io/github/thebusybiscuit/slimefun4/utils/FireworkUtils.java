@@ -22,7 +22,6 @@ import org.bukkit.inventory.meta.FireworkMeta;
  * @author TheBusyBiscuit
  */
 public final class FireworkUtils {
-
     private static final Color[] COLORS = {
         Color.AQUA,
         Color.BLACK,
