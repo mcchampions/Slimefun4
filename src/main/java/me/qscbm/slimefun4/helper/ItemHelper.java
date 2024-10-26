@@ -1,6 +1,7 @@
 package me.qscbm.slimefun4.helper;
 
 import io.github.bakedlibs.dough.config.Config;
+import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
@@ -35,6 +36,6 @@ public class ItemHelper {
             return wrapper.getItemMeta().getDisplayName();
         }
         String type = wrapper.getType().name();
-        return ITEM_NAME_MAPPER.getOrDefault(type.toLowerCase(), "Unknown Item(" + type + ")");
+        return ITEM_NAME_MAPPER.getOrDefault(type.toLowerCase(), "Unknown Item(id:" + type + ")");
     }
 }
