@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 
 import java.util.HashMap;
@@ -30,15 +31,17 @@ public class ItemHelper {
             return TextUtils.toPlainText(sfItem.getDisplayName());
         }
         ItemStackWrapper wrapper = ItemStackWrapper.wrap(stack);
-        if (wrapper.hasItemMeta()) {
+        ItemMeta meta = wrapper.getItemMeta();
+        if (wrapper.hasItemMeta() && meta.hasDisplayName()) {
             //noinspection deprecation
-            return TextUtils.toPlainText(wrapper.getItemMeta().getDisplayName());
+            return TextUtils.toPlainText(meta.getDisplayName());
         }
 
         String type = wrapper.getType().name().toLowerCase(Locale.ROOT);
         if (type.contains("potion") || type.equals("tipped_arrow")) {
             //noinspection deprecation
-            String potion = ((PotionMeta) wrapper.getItemMeta()).getBasePotionData().getType().toString().toLowerCase();
+            String potion = ((PotionMeta) (meta == null ? stack.getItemMeta() : meta))
+                    .getBasePotionData().getType().toString().toLowerCase();
             if (!potion.isEmpty()) {
                 type = potion + "_" + type;
             }
