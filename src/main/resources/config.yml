@@ -14,7 +14,7 @@
 #    backup-data - 自动备份数据
 #    bypass-environment-check - 跳过兼容性检查 (注意: 打开后将不予接受问题反馈)
 options:
-  chat-prefix: '&a&lSlimefun 4 &7> '
+  chat-prefix: '§a§lSlimefun 4 §7> '
   armor-update-interval: 10
   enable-armor-effects: true
   enable-radiation: true
