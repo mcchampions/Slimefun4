@@ -5,7 +5,9 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * 聊天相关方法
@@ -20,7 +22,11 @@ public class ChatUtils {
      * @param message 消息
      */
     public static void sendMessage(CommandSender sender, String message) {
-        sender.sendMessage(Slimefun.getLocalization().getChatPrefix() + ChatColors.color(message));
+        if (sender instanceof Player) {
+            sender.sendMessage(Slimefun.getLocalization().getChatPrefix() + ChatColors.color(message));
+        } else {
+            sender.sendMessage(TextUtils.toPlainText(Slimefun.getLocalization().getChatPrefix() + message));
+        }
     }
 
     /**
