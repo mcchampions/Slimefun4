@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.localization.LanguagePre
 import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,9 +29,7 @@ import org.bukkit.entity.Player;
  * It is used for managing the {@link Language} of a {@link Player} and the entire {@link Server}.
  *
  * @author TheBusyBiscuit
- *
  * @see Language
- *
  */
 public class LocalizationService extends SlimefunLocalization {
     private static final String LANGUAGE_PATH = "language";
@@ -86,7 +85,8 @@ public class LocalizationService extends SlimefunLocalization {
     }
 
     @Override
-    @Nullable public Language getLanguage(String id) {
+    @Nullable
+    public Language getLanguage(String id) {
         return languages.get(id);
     }
 
@@ -105,9 +105,7 @@ public class LocalizationService extends SlimefunLocalization {
     /**
      * This returns whether the given {@link Language} is loaded or not.
      *
-     * @param id
-     *            The id of that {@link Language}
-     *
+     * @param id The id of that {@link Language}
      * @return Whether or not this {@link Language} is loaded
      */
     public boolean isLanguageLoaded(String id) {
@@ -121,7 +119,7 @@ public class LocalizationService extends SlimefunLocalization {
 
     @Override
     public Language getLanguage(Player p) {
-         return getLanguage("zh-CN");
+        return getLanguage("zh-CN");
     }
 
     private void initLanguage() {
@@ -149,7 +147,7 @@ public class LocalizationService extends SlimefunLocalization {
         save();
     }
 
-    private void copyToDefaultLanguage(String language, LanguageFile file) {
+    public void copyToDefaultLanguage(String language, LanguageFile file) {
         FileConfiguration config = getConfigurationFromStream(file.getFilePath(language), null);
         defaultLanguage.setFile(file, config);
     }
@@ -175,9 +173,7 @@ public class LocalizationService extends SlimefunLocalization {
      * The progress is determined by the amount of translated strings divided by the amount
      * of strings in the english {@link Language} file and multiplied by 100.0
      *
-     * @param lang
-     *            The {@link Language} to get the progress of
-     *
+     * @param lang The {@link Language} to get the progress of
      * @return A percentage {@code (0.0 - 100.0)} for the progress of translation of that {@link Language}
      */
     public double calculateProgress(Language lang) {

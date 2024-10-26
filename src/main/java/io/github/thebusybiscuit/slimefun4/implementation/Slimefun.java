@@ -47,15 +47,18 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;
 import lombok.NonNull;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
+import me.qscbm.slimefun4.helper.ItemHelper;
 import me.qscbm.slimefun4.services.LanguageService;
 import me.qscbm.slimefun4.tasks.CargoTickerTask;
 import me.qscbm.slimefun4.utils.VersionUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -130,6 +133,9 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final SlimefunProfiler profiler = new SlimefunProfiler();
     private final SQLProfiler sqlProfiler = new SQLProfiler();
     private final GPSNetwork gpsNetwork = new GPSNetwork(this);
+
+    @Getter
+    private static final ItemHelper itemHelper = new ItemHelper();
 
     // Even more things we need
     private NetworkManager networkManager;
@@ -223,7 +229,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         // Set up localization
         logger.log(Level.INFO, "正在加载语言文件...");
 
-        var config = cfgManager.getPluginConfig();
+        Config config = cfgManager.getPluginConfig();
         String chatPrefix = config.getString("options.chat-prefix");
         String serverDefaultLanguage = "zh-CN";
         local = new LocalizationService(this, chatPrefix, serverDefaultLanguage);
@@ -317,6 +323,10 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         cargoTickerTask.start(this);
         logger.log(Level.INFO, "正在加载第三方插件支持...");
         integrations.start();
+        logger.log(Level.INFO, "正在映射原版物品名称...");
+        itemHelper.load();
+        logger.log(Level.INFO, "共映射 {0} 个原版物品名称:", ItemHelper.ITEM_NAME_MAPPER.keySet().size());
+        logger.log(Level.INFO, itemHelper.getItemName(new ItemStack(Material.GRASS_BLOCK)) + "...");
 
         // Hooray!
         logger.log(Level.INFO, "Slimefun 完成加载, 耗时 {0}", getStartupTime(timestamp));

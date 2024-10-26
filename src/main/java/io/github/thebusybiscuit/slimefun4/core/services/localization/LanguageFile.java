@@ -4,10 +4,8 @@ package io.github.thebusybiscuit.slimefun4.core.services.localization;
  * This enum holds the different types of files each {@link Language} holds.
  *
  * @author TheBusyBiscuit
- *
  * @see Language
  * @see SlimefunLocalization
- *
  */
 public enum LanguageFile {
     MESSAGES("messages.yml"),

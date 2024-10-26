@@ -222,6 +222,8 @@
 
                     <include>languages/**/*.yml</include>
                     <include>git.properties</include>
+
+                    <include>vanilla_items.yml</include>
                 </includes>
             </resource>
 
