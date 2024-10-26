@@ -96,6 +96,3 @@ permissions:
   slimefun.gps.bypass:
     description: Allows you to open all GPS inventories
     default: op
-  slimefun.debugging:
-    description: Allows you to use the debugging tool from Slimefun
-    default: op
