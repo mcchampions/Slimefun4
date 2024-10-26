@@ -39,6 +39,9 @@ public class SlimefunTabCompleter {
                     set.add("*");
                     return createReturnList(set, args.get(1));
                 }
+                if (param.equalsIgnoreCase("calc")) {
+                    return createReturnList(getSlimefunItems(), args.get(1));
+                }
                 return getPlayerList(args.get(1));
             }
             case 3 -> {
@@ -61,6 +64,10 @@ public class SlimefunTabCompleter {
                 }
                 if (param.equalsIgnoreCase("cleardata")) {
                     return createReturnList(Arrays.asList("block", "oil", "*"), args.get(2));
+                }
+
+                if (param.equalsIgnoreCase("calc")) {
+                    return createReturnList(COUNT_LIST, args.get(2));
                 }
                 return Collections.emptyList();
             }

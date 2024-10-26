@@ -23,7 +23,7 @@ public class ChatUtils {
      */
     public static void sendMessage(CommandSender sender, String message) {
         if (sender instanceof Player) {
-            sender.sendMessage(Slimefun.getLocalization().getChatPrefix() + ChatColors.color(message));
+            sender.sendMessage(ChatColors.color(Slimefun.getLocalization().getChatPrefix() + message));
         } else {
             sender.sendMessage(TextUtils.toPlainText(Slimefun.getLocalization().getChatPrefix() + message));
         }

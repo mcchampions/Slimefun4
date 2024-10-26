@@ -3,6 +3,8 @@ package io.github.thebusybiscuit.slimefun4.core.commands.subcommands;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.commands.CalcCommand;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,6 +41,7 @@ public final class SlimefunSubCommands {
         commands.add(new BanItemCommand(plugin, cmd));
         commands.add(new UnbanItemCommand(plugin, cmd));
         commands.add(new ClearDataCommand(plugin, cmd));
+        commands.add(new CalcCommand(plugin,cmd));
         return commands;
     }
 }
