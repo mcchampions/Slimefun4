@@ -20,6 +20,8 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -158,7 +160,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         displayItem.setAmount(1);
 
         // Get the display name of the original Item in the Player's hand
-        String nametag = ItemUtils.getItemName(hand);
+        Component nametag = Bukkit.getItemFactory().displayName(hand);
 
         if (p.getGameMode() != GameMode.CREATIVE) {
             ItemUtils.consumeItem(hand, false);
@@ -172,7 +174,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
             entity.setInvulnerable(true);
             entity.setVelocity(new Vector(0, 0.1, 0));
             entity.setCustomNameVisible(true);
-            entity.setCustomName(nametag);
+            entity.customName(nametag);
             armorStand.setCustomName(displayName);
             armorStand.addPassenger(entity);
             SlimefunUtils.markAsNoPickup(entity, "altar_item");
