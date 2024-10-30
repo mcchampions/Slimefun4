@@ -17,12 +17,9 @@ import io.github.thebusybiscuit.slimefun4.implementation.listeners.AncientAltarL
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AncientAltarTask;
 import io.github.thebusybiscuit.slimefun4.utils.ArmorStandUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -42,9 +39,11 @@ import org.bukkit.util.Vector;
  * @author Redemption198
  * @author TheBusyBiscuit
  * @author JustAHuman
+ *
  * @see AncientAltar
  * @see AncientAltarListener
  * @see AncientAltarTask
+ *
  */
 public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> implements NotHopperable {
     public static final String ITEM_PREFIX = "§dALTAR §3Probe - §e";
@@ -138,20 +137,16 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
     }
 
     public ItemStack getOriginalItemStack(Item item) {
-        ItemStack itemStack = item.getItemStack();
-        ItemMeta im = itemStack.getItemMeta();
-        Component customName = item.customName();
-
-        ItemStack stack = new ItemStack(itemStack.getType(), itemStack.getAmount());
-        if (customName == null || !customName.equals(
-                im.hasDisplayName() ? im.displayName() : Bukkit.getItemFactory().displayName(itemStack))) {
-            im.displayName(customName);
-            stack.setItemMeta(im);
-
-            return stack;
-        }
-        im.displayName(null);
+        ItemStack stack = item.getItemStack().clone();
+        ItemMeta im = stack.getItemMeta();
+        String customName = item.getCustomName();
+        im.setDisplayName(null);
         stack.setItemMeta(im);
+
+        if (customName == null || !customName.equals(ItemUtils.getItemName(stack))) {
+            im.setDisplayName(customName);
+            stack.setItemMeta(im);
+        }
 
         return stack;
     }
