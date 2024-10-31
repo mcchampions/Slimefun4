@@ -9,7 +9,7 @@
 
     <!-- Our default version will be UNOFFICIAL, this will prevent auto updates -->
     <!-- from overriding our local Test file -->
-    <version>UNOFFICIAL</version>
+    <version>qs-fork-${git.commit.id.abbrev}</version>
     <inceptionYear>2013</inceptionYear>
     <packaging>jar</packaging>
 
