@@ -28,8 +28,6 @@ jobs:
           java-package: jdk
           architecture: x64
           cache: maven
-      - name: Update version
-        run: node ./.github/updateVersion.js
       - name: Clean cache
         run: mvn clean
       - name: Build Slimefun
