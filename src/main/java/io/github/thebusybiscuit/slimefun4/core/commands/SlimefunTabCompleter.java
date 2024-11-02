@@ -78,7 +78,7 @@ public class SlimefunTabCompleter {
             }
         }
         if (size > 0) {
-            return Collections.emptyList();
+            return getPlayerList(args.get(size - 1));
         }
         return Slimefun.getCommand().getSubCommandNames();
     }
