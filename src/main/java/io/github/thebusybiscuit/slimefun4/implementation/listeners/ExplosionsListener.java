@@ -39,9 +39,9 @@ public class ExplosionsListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityExplode(EntityExplodeEvent e) {
-        /**
-         * Wind charge **doesn't** break block but spigot still give us break list,
-         * so we just ignore it.
+        /*
+          Wind charge **doesn't** break block but spigot still give us break list,
+          so we just ignore it.
          */
         if (e.getEntityType() == EntityType.WIND_CHARGE) {
             return;
