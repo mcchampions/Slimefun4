@@ -60,11 +60,16 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     private boolean isInvalid = false;
 
     public static void getAsync(ItemStack item, Consumer<PlayerBackpack> callback, boolean runCbOnMainThread) {
-        if (item == null || !item.hasItemMeta() || !item.getItemMeta().hasLore()) {
+        ItemMeta im;
+        if (item == null || !item.hasItemMeta()) {
+            return;
+        }
+        im = item.getItemMeta();
+        if (!im.hasLore()) {
             return;
         }
 
-        var bUuid = getBackpackUUID(item.getItemMeta());
+        var bUuid = getBackpackUUID(im);
         if (bUuid.isPresent()) {
             Slimefun.getDatabaseManager()
                     .getProfileDataController()
@@ -86,8 +91,6 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         // Old backpack item
         OptionalInt id = OptionalInt.empty();
         String uuid = "";
-
-        ItemMeta im = item.getItemMeta();
         for (String line : im.getLore()) {
             if (line.startsWith("§7ID: ") && line.indexOf('#') != -1) {
                 String[] splitLine = CommonPatterns.HASH.split(line);
