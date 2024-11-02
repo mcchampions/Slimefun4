@@ -87,7 +87,8 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         OptionalInt id = OptionalInt.empty();
         String uuid = "";
 
-        for (String line : item.getItemMeta().getLore()) {
+        ItemMeta im = item.getItemMeta();
+        for (String line : im.getLore()) {
             if (line.startsWith("§7ID: ") && line.indexOf('#') != -1) {
                 String[] splitLine = CommonPatterns.HASH.split(line);
 
@@ -111,10 +112,9 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
 
                                 @Override
                                 public void onResult(PlayerBackpack result) {
-                                    var meta = item.getItemMeta();
-                                    meta.getPersistentDataContainer()
+                                    im.getPersistentDataContainer()
                                             .set(KEY_BACKPACK_UUID, PersistentDataType.STRING, result.uuid.toString());
-                                    item.setItemMeta(meta);
+                                    item.setItemMeta(im);
                                     // TODO: upgrade lore
                                     callback.accept(result);
                                 }
