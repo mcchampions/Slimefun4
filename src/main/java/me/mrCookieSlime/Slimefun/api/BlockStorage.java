@@ -25,7 +25,11 @@ public class BlockStorage {
     private static final Config emptyData = new EmptyBlockData();
 
     public static BlockStorage getStorage(World world) {
-        return null;
+        return new BlockStorage();
+    }
+
+    public static BlockStorage getOrCreate(World world) {
+        return new BlockStorage();
     }
 
     public static void store(Block block, ItemStack item) {
