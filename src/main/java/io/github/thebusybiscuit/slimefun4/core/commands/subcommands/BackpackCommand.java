@@ -64,7 +64,6 @@ class BackpackCommand extends SubCommand {
 
         if (args.length == 1) {
             openBackpackMenu(player, player);
-
             Slimefun.getLocalization().sendMessage(player, "commands.backpack.searching");
             return;
         }
