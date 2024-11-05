@@ -23,39 +23,39 @@ public class BanItemCommand extends SubCommand {
 
     @Override
     public void onExecute(CommandSender sender, String[] args) {
-        if (sender.hasPermission("slimefun.command.banitem") || sender instanceof ConsoleCommandSender) {
-            if (args.length >= 2) {
-                SlimefunItem item = SlimefunItem.getByName(args[1]);
-                if (item != null) {
-                    banItem(item, sender);
-                    return;
-                }
-                Slimefun.getLocalization()
-                        .sendMessage(
-                                sender, "messages.invalid-item", true, msg -> msg.replace(PLACEHOLDER_ITEM, args[1]));
-                return;
-            }
-            if (sender instanceof Player player) {
-                ItemStack itemOnHand = player.getInventory().getItemInMainHand();
-                if (!itemOnHand.getType().isAir()) {
-                    SlimefunItem item = SlimefunItem.getByItem(itemOnHand);
-                    if (item != null) {
-                        banItem(item, sender);
-                        return;
-                    }
-                }
-                Slimefun.getLocalization().sendMessage(sender, "invalid-item-in-hand", true);
+        if (!sender.hasPermission("slimefun.command.banitem") && !(sender instanceof ConsoleCommandSender)) {
+            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+            return;
+        }
+        if (args.length >= 2) {
+            SlimefunItem item = SlimefunItem.getByName(args[1]);
+            if (item != null) {
+                banItem(item, sender);
                 return;
             }
             Slimefun.getLocalization()
                     .sendMessage(
-                            sender,
-                            "messages.usage",
-                            true,
-                            msg -> msg.replace("%usage%", "/sf banitem <Slimefun Item>"));
-        } else {
-            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+                            sender, "messages.invalid-item", true, msg -> msg.replace(PLACEHOLDER_ITEM, args[1]));
+            return;
         }
+        if (sender instanceof Player player) {
+            ItemStack itemOnHand = player.getInventory().getItemInMainHand();
+            if (!itemOnHand.getType().isAir()) {
+                SlimefunItem item = SlimefunItem.getByItem(itemOnHand);
+                if (item != null) {
+                    banItem(item, sender);
+                    return;
+                }
+            }
+            Slimefun.getLocalization().sendMessage(sender, "invalid-item-in-hand", true);
+            return;
+        }
+        Slimefun.getLocalization()
+                .sendMessage(
+                        sender,
+                        "messages.usage",
+                        true,
+                        msg -> msg.replace("%usage%", "/sf banitem <Slimefun Item>"));
     }
 
     @Override
