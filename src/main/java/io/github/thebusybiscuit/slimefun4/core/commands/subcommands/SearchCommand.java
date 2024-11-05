@@ -27,7 +27,7 @@ class SearchCommand extends SubCommand {
             Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
             return;
         }
-        if (args.length > 1) {
+        if (args.length < 1) {
             Slimefun.getLocalization()
                     .sendMessage(
                             sender,
