@@ -35,7 +35,7 @@ class ResearchCommand extends SubCommand {
             return;
         }
 
-        if (args.length < 4) {
+        if (args.length < 3) {
             Slimefun.getLocalization()
                     .sendMessage(
                             sender,
