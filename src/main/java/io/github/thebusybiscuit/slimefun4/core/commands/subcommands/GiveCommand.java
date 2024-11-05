@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,7 +28,7 @@ class GiveCommand extends SubCommand {
 
     @Override
     public void onExecute(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("slimefun.cheat.items") && sender instanceof Player) {
+        if (!sender.hasPermission("slimefun.cheat.items") && !(sender instanceof ConsoleCommandSender)) {
             Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
             return;
         }
