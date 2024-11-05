@@ -14,14 +14,14 @@ class CheatCommand extends SubCommand {
 
     @Override
     public void onExecute(CommandSender sender, String[] args) {
-        if (sender instanceof Player player) {
-            if (sender.hasPermission("slimefun.cheat.items")) {
-                SlimefunGuide.openCheatMenu(player);
-            } else {
-                Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
-            }
-        } else {
+        if (!(sender instanceof Player player)) {
             Slimefun.getLocalization().sendMessage(sender, "messages.only-players", true);
+            return;
         }
+        if (!sender.hasPermission("slimefun.cheat.items")) {
+            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+            return;
+        } 
+        SlimefunGuide.openCheatMenu(player);
     }
 }
