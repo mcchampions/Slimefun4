@@ -38,7 +38,6 @@ class StatsCommand extends SubCommand {
                 return;
             }
             Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
-
             return;
         }
         if (sender instanceof Player player) {
