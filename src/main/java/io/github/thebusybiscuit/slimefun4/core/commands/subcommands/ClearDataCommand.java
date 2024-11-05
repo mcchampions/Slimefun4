@@ -30,7 +30,7 @@ public class ClearDataCommand extends SubCommand {
             Slimefun.getLocalization().sendMessage(sender, "commands.cleardata.confirm", true);
             return;
         }
-        if (args.length < 3 || args[3].equalsIgnoreCase("confirm")) {
+        if (args.length < 3 || !args[3].equalsIgnoreCase("confirm")) {
             Slimefun.getLocalization()
                     .sendMessage(
                             sender,
