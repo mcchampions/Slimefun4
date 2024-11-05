@@ -44,60 +44,61 @@ class BackpackCommand extends SubCommand {
 
     @Override
     public void onExecute(CommandSender sender, String[] args) {
-        if (sender instanceof Player player) {
-            if (sender.hasPermission("slimefun.command.backpack")) {
-                if (args.length < 1) {
-                    Slimefun.getLocalization()
-                            .sendMessage(
-                                    sender,
-                                    "messages.usage",
-                                    true,
-                                    msg -> msg.replace("%usage%", "/sf backpack (玩家名/UUID)"));
+        if (!(sender instanceof Player player)) {
+            Slimefun.getLocalization().sendMessage(sender, "messages.only-players", true);
+            return;
+        }
+        if (!sender.hasPermission("slimefun.command.backpack")) {
+            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+            return;
+        }
+        if (args.length < 1) {
+            Slimefun.getLocalization()
+                    .sendMessage(
+                            sender,
+                            "messages.usage",
+                            true,
+                            msg -> msg.replace("%usage%", "/sf backpack (玩家名/UUID)"));
+            return;
+        }
+
+        if (args.length == 1) {
+            openBackpackMenu(player, player);
+
+            Slimefun.getLocalization().sendMessage(player, "commands.backpack.searching");
+            return;
+        }
+
+        if (!sender.hasPermission("slimefun.command.backpack.other")) {
+            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+            return;
+        }
+        IAsyncReadCallback<UUID> callback = new IAsyncReadCallback<>() {
+            @Override
+            public void onResult(UUID result) {
+                if (!player.isOnline()) {
                     return;
                 }
-
-                if (args.length == 2) {
-                    if (sender.hasPermission("slimefun.command.backpack.other")) {
-                        IAsyncReadCallback<UUID> callback = new IAsyncReadCallback<>() {
-                            @Override
-                            public void onResult(UUID result) {
-                                if (!player.isOnline()) {
-                                    return;
-                                }
-                                openBackpackMenu(Bukkit.getOfflinePlayer(result), player);
-                            }
-
-                            @Override
-                            public void onResultNotFound() {
-                                Slimefun.getLocalization()
-                                    .sendMessage(player, "commands.backpack.backpack-does-not-exist");
-                            }
-                        };
-                        if (args[1].contains("-")) {
-                            UUID uuid = UUID.fromString(args[1]);
-                            Slimefun.getDatabaseManager()
-                                .getProfileDataController()
-                                .isExistsUuidAsync(uuid, callback);
-                        } else {
-                            Slimefun.getDatabaseManager()
-                                .getProfileDataController()
-                                .getPlayerUuidAsync(args[1], callback);
-                        }
-                    } else {
-                        Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
-                        return;
-                    }
-                } else {
-                    openBackpackMenu(player, player);
-                }
-
-                Slimefun.getLocalization().sendMessage(player, "commands.backpack.searching");
-            } else {
-                Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+                openBackpackMenu(Bukkit.getOfflinePlayer(result), player);
             }
+
+            @Override
+            public void onResultNotFound() {
+                Slimefun.getLocalization()
+                        .sendMessage(player, "commands.backpack.backpack-does-not-exist");
+            }
+        };
+        if (args[1].contains("-")) {
+            UUID uuid = UUID.fromString(args[1]);
+            Slimefun.getDatabaseManager()
+                    .getProfileDataController()
+                    .isExistsUuidAsync(uuid, callback);
         } else {
-            Slimefun.getLocalization().sendMessage(sender, "messages.only-players", true);
+            Slimefun.getDatabaseManager()
+                    .getProfileDataController()
+                    .getPlayerUuidAsync(args[1], callback);
         }
+        Slimefun.getLocalization().sendMessage(player, "commands.backpack.searching");
     }
 
     private void openBackpackMenu(OfflinePlayer owner, Player p) {
