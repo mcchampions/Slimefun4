@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.commands.subcommands;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
@@ -48,7 +49,7 @@ class BlockDataCommand extends SubCommand {
         }
 
         Block target = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
-        var blockData = StorageCacheUtils.getBlock(target.getLocation());
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(target.getLocation());
 
         if (target.getType().isAir() || blockData == null) {
             ChatUtils.sendMessage(player, "&c你需要看向一个 Slimefun 方块才能执行该指令!");
