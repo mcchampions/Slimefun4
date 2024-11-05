@@ -21,29 +21,30 @@ public class UnbanItemCommand extends SubCommand {
 
     @Override
     public void onExecute(CommandSender sender, String[] args) {
-        if (sender.hasPermission("slimefun.command.unbanitem") || sender instanceof ConsoleCommandSender) {
-            if (args.length >= 2) {
-                SlimefunItem item = SlimefunItem.getByName(args[1]);
-                if (item != null) {
-                    item.enable();
-                    Slimefun.getItemCfg().setValue(args[1] + ".enabled", true);
-                    Slimefun.getItemCfg().save();
-                    Slimefun.getLocalization().sendMessage(sender, "commands.unbanitem.success", true);
-                    return;
-                }
-                Slimefun.getLocalization()
-                        .sendMessage(
-                                sender, "messages.invalid-item", true, msg -> msg.replace(PLACEHOLDER_ITEM, args[1]));
+        if (!sender.hasPermission("slimefun.command.unbanitem") && !(sender instanceof ConsoleCommandSender)) {
+            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+            return;
+        }
+        if (args.length >= 2) {
+            SlimefunItem item = SlimefunItem.getByName(args[1]);
+            if (item != null) {
+                item.enable();
+                Slimefun.getItemCfg().setValue(args[1] + ".enabled", true);
+                Slimefun.getItemCfg().save();
+                Slimefun.getLocalization().sendMessage(sender, "commands.unbanitem.success", true);
+                return;
             }
             Slimefun.getLocalization()
                     .sendMessage(
-                            sender,
-                            "messages.usage",
-                            true,
-                            msg -> msg.replace("%usage%", "/sf unbanitem <Slimefun Item>"));
-        } else {
-            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+                            sender, "messages.invalid-item", true, msg -> msg.replace(PLACEHOLDER_ITEM, args[1]));
+            return;
         }
+        Slimefun.getLocalization().sendMessage(
+                sender,
+                "messages.usage",
+                true,
+                msg -> msg.replace("%usage%", "/sf unbanitem <Slimefun Item>"));
+
     }
 
     @Override

@@ -21,6 +21,7 @@ class OpenGuideCommand extends SubCommand {
         }
         if (!sender.hasPermission("slimefun.command.open_guide")) {
             Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+            return;
         }
         SlimefunGuide.openGuide(player, SlimefunGuideMode.SURVIVAL_MODE);
     }

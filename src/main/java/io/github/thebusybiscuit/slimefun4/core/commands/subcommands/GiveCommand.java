@@ -83,7 +83,7 @@ class GiveCommand extends SubCommand {
                             "messages.invalid-amount",
                             true,
                             msg -> msg.replace(PLACEHOLDER_AMOUNT, args[3]));
-
+            return;
         }
         Slimefun.getLocalization().sendMessage(p, "messages.given-item", true, msg -> msg.replace(
                         PLACEHOLDER_ITEM, sfItem.getItemName())
