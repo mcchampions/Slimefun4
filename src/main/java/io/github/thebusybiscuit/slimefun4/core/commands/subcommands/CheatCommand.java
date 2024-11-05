@@ -21,7 +21,7 @@ class CheatCommand extends SubCommand {
         if (!sender.hasPermission("slimefun.cheat.items")) {
             Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
             return;
-        } 
+        }
         SlimefunGuide.openCheatMenu(player);
     }
 }
