@@ -306,7 +306,6 @@ public class SlimefunItem implements Placeable {
      */
     public boolean isDisabled() {
         if (state == ItemState.UNREGISTERED) {
-            error("isDisabled() cannot be called before registering the item", new UnregisteredItemException(this));
             return false;
         }
 
@@ -323,9 +322,6 @@ public class SlimefunItem implements Placeable {
      */
     public boolean isDisabledIn(World world) {
         if (state == ItemState.UNREGISTERED) {
-            error(
-                    "isDisabled(World) cannot be called before registering the item",
-                    new UnregisteredItemException(this));
             return false;
         }
 
