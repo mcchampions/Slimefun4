@@ -69,6 +69,9 @@ permissions:
   slimefun.command.open_guide:
     description: Allows you to open the SF guide without the book
     default: true
+  slimefun.command.calc:
+    description: Allows you to do /sf calc
+    default: true
   slimefun.command.id:
     description: Allows you to do /sf itemid
     default: op

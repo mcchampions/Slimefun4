@@ -28,6 +28,11 @@ public class CalcCommand extends SubCommand {
             return;
         }
 
+        if (!sender.hasPermission("slimefun.command.calc")) {
+            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+            return;
+        }
+
         reqItem = args[1];
 
         if (args.length == 2) {
