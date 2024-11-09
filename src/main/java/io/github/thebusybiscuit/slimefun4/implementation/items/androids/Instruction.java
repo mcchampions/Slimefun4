@@ -1,14 +1,15 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
+import city.norain.slimefun4.api.menu.UniversalMenu;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
-import javax.annotation.Nullable;
 
 import lombok.Getter;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Ageable;
@@ -22,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
  * added by Slimefun itself.
  *
  * @author TheBusyBiscuit
- *
  */
 public enum Instruction {
     /**
@@ -248,7 +248,7 @@ public enum Instruction {
     private final AndroidType type;
     private final AndroidAction method;
 
-    Instruction(AndroidType type, HeadTexture head, @Nullable AndroidAction method) {
+    Instruction(AndroidType type, HeadTexture head, AndroidAction method) {
         this.type = type;
         this.item = SlimefunUtils.getCustomHead(head.getTexture());
         this.method = method;
@@ -262,8 +262,8 @@ public enum Instruction {
         return type;
     }
 
-    public void execute(ProgrammableAndroid android, Block b, BlockMenu inventory, BlockFace face) {
-         method.perform(android, b, inventory, face);
+    public void execute(ProgrammableAndroid android, Block b, UniversalMenu inventory, BlockFace face) {
+        method.perform(android, b, inventory, face);
     }
 
     /**
@@ -272,12 +272,10 @@ public enum Instruction {
      * your Java version. It also means that you can avoid an IllegalArgumentException which let's
      * face it is always good.
      *
-     * @param value
-     *            The value which you would like to look up.
-     *
+     * @param value The value which you would like to look up.
      * @return The {@link Instruction} or null if it does not exist.
      */
-    @Nullable public static Instruction getInstruction(String value) {
+    public static Instruction getInstruction(String value) {
         return nameLookup.get(value);
     }
 }

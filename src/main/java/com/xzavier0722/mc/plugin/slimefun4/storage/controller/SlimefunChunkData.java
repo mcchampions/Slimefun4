@@ -16,7 +16,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 
-public class SlimefunChunkData extends ASlimefunDataContainer {
+public class SlimefunChunkData extends ADataContainer {
     private static final SlimefunBlockData INVALID_BLOCK_DATA = new SlimefunBlockData(
             new Location(Bukkit.getWorlds().get(0), Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE),
             "INVALID_BLOCK_DATA_SF_KEY");
@@ -31,15 +31,12 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
     }
 
     public SlimefunBlockData createBlockData(Location l, String sfId) {
-        var lKey = LocationUtils.getLocKey(l);
-        if (getBlockCacheInternal(lKey) != null) {
-            throw new IllegalStateException("There already a block in this location: " + lKey);
-        }
-        var re = new SlimefunBlockData(l, sfId);
+        String lKey = LocationUtils.getLocKey(l);
+        SlimefunBlockData re = new SlimefunBlockData(l, sfId);
         re.setIsDataLoaded(true);
         sfBlocks.put(lKey, re);
 
-        var preset = BlockMenuPreset.getPreset(sfId);
+        BlockMenuPreset preset = BlockMenuPreset.getPreset(sfId);
         if (preset != null) {
             re.setBlockMenu(new BlockMenu(preset, l));
         }
@@ -56,8 +53,8 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
 
     @Nullable
     public SlimefunBlockData removeBlockData(Location l) {
-        var lKey = LocationUtils.getLocKey(l);
-        var re = removeBlockDataCacheInternal(lKey);
+        String lKey = LocationUtils.getLocKey(l);
+        SlimefunBlockData re = removeBlockDataCacheInternal(lKey);
         if (re == null) {
             if (isDataLoaded()) {
                 return null;
@@ -77,12 +74,12 @@ public class SlimefunChunkData extends ASlimefunDataContainer {
     }
 
     SlimefunBlockData getBlockCacheInternal(String lKey) {
-        var re = sfBlocks.get(lKey);
+        SlimefunBlockData re = sfBlocks.get(lKey);
         return re == INVALID_BLOCK_DATA ? null : re;
     }
 
     Set<SlimefunBlockData> getAllCacheInternal() {
-        var re = new HashSet<>(sfBlocks.values());
+        Set<SlimefunBlockData> re = new HashSet<>(sfBlocks.values());
         re.removeIf(v -> v == INVALID_BLOCK_DATA);
         return re;
     }

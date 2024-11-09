@@ -5,7 +5,6 @@ import io.github.bakedlibs.dough.collections.OptionalMap;
 import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.IdConflictException;
-import io.github.thebusybiscuit.slimefun4.api.exceptions.IncompatibleItemHandlerException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.MissingDependencyException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.UnregisteredItemException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.WrongItemStackException;
@@ -188,7 +187,7 @@ public class SlimefunItem implements Placeable {
         this.recipeType = recipeType;
         this.recipe = recipe;
         this.recipeOutput = recipeOutput;
-        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ","_");
+        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ", "_");
     }
 
     // Previously deprecated constructor, now only for internal purposes
@@ -198,7 +197,7 @@ public class SlimefunItem implements Placeable {
         this.id = id;
         this.recipeType = recipeType;
         this.recipe = recipe;
-        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ","_");
+        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ", "_");
     }
 
     /**
@@ -505,13 +504,6 @@ public class SlimefunItem implements Placeable {
 
     private void loadItemHandlers() {
         for (ItemHandler handler : itemHandlers.values()) {
-            Optional<IncompatibleItemHandlerException> exception = handler.validate(this);
-
-            // Check if the validation caused an exception.
-            if (exception.isPresent()) {
-                throw exception.get();
-            }
-
             /*
              * If this ItemHandler is "global" (not bound to this SlimefunItem),
              * we add it to the list of global Item handlers

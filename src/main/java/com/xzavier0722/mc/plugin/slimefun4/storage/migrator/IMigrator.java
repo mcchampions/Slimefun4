@@ -6,5 +6,7 @@ public interface IMigrator {
 
     MigrateStatus migrateData();
 
-    String getName();
+    default String getName() {
+        return this.getClass().getSimpleName();
+    }
 }

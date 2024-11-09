@@ -129,7 +129,7 @@ public class MinecraftRecipeService {
             List<RecipeChoice> choices = new LinkedList<>();
 
             for (String row : shapedRecipe.getShape()) {
-                int columns = row.toCharArray().length;
+                int columns = row.length();
 
                 for (char key : row.toCharArray()) {
                     choices.add(shapedRecipe.getChoiceMap().get(key));

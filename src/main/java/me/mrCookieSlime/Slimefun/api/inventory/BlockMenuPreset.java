@@ -3,9 +3,11 @@ package me.mrCookieSlime.Slimefun.api.inventory;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.Nullable;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
@@ -16,11 +18,9 @@ import org.bukkit.inventory.ItemStack;
 
 // This class will be deprecated, relocated and rewritten in a future version.
 public abstract class BlockMenuPreset extends ChestMenu {
-    private final Set<Integer> occupiedSlots = new HashSet<>();
+    protected final Set<Integer> occupiedSlots = new HashSet<>();
     private final String inventoryTitle;
     private final String id;
-
-    private boolean locked;
 
     protected BlockMenuPreset(String id, String title) {
         super(title);
@@ -33,10 +33,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
     }
 
     private void checkIfLocked() {
-        if (locked) {
-            throw new UnsupportedOperationException(
-                    "You cannot modify the BlockMenuPreset anymore, modify the individual instances" + " instead.");
-        }
     }
 
     public abstract void init();
@@ -46,11 +42,8 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * {@link BlockMenu} of that {@link Block}.
      * Override this as necessary.
      *
-     * @param b
-     *            The {@link Block} trying to be opened
-     * @param p
-     *            The {@link Player} who wants to open the {@link BlockMenu}
-     *
+     * @param b The {@link Block} trying to be opened
+     * @param p The {@link Player} who wants to open the {@link BlockMenu}
      * @return Whether that {@link Player} is allowed
      */
     public abstract boolean canOpen(Block b, Player p);
@@ -61,12 +54,11 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * This method is called whenever an {@link ItemStack} changes.
      * You can override this as necessary if you need to listen to these events
      *
-     * @param next
-     *            The {@link ItemStack} that it changes to
-     *
+     * @param next The {@link ItemStack} that it changes to
      * @return The new outcome of this operation
      */
-    @Nullable protected ItemStack onItemStackChange(
+    @Nullable
+    protected ItemStack onItemStackChange(
             @Nullable ItemStack next) {
         // Override this as necessary
         return next;
@@ -89,10 +81,8 @@ public abstract class BlockMenuPreset extends ChestMenu {
     /**
      * This method will draw unclickable background items into this {@link BlockMenuPreset}.
      *
-     * @param item
-     *            The {@link ItemStack} that should be used as background
-     * @param slots
-     *            The slots which should be treated as background
+     * @param item  The {@link ItemStack} that should be used as background
+     * @param slots The slots which should be treated as background
      */
     public void drawBackground(ItemStack item, int[] slots) {
         checkIfLocked();
@@ -105,8 +95,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
     /**
      * This method will draw unclickable background items into this {@link BlockMenuPreset}.
      *
-     * @param slots
-     *            The slots which should be treated as background
+     * @param slots The slots which should be treated as background
      */
     public void drawBackground(int[] slots) {
         drawBackground(ChestMenuUtils.getBackground(), slots);
@@ -193,8 +182,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
 
     public void newInstance(BlockMenu menu, Location l) {
         Slimefun.runSync(() -> {
-            locked = true;
-
             try {
                 newInstance(menu, l.getBlock());
             } catch (RuntimeException | LinkageError x) {
@@ -224,7 +211,8 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return SlimefunItem.getById(id);
     }
 
-    @Nullable public static BlockMenuPreset getPreset(@Nullable String id) {
+    @Nullable
+    public static BlockMenuPreset getPreset(@Nullable String id) {
         return id == null ? null : Slimefun.getRegistry().getMenuPresets().get(id);
     }
 

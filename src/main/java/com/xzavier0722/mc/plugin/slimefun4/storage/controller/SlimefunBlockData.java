@@ -2,10 +2,10 @@ package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import javax.annotation.Nullable;
 
 import lombok.Getter;
-import lombok.Setter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
@@ -13,23 +13,21 @@ import org.bukkit.inventory.ItemStack;
 public class SlimefunBlockData extends ASlimefunDataContainer {
     @Getter
     private final Location location;
-    @Getter
-    private final String sfId;
+
     private volatile BlockMenu menu;
-    @Setter
-    @Getter
-    private volatile boolean pendingRemove = false;
 
     SlimefunBlockData(Location location, String sfId) {
-        super(LocationUtils.getLocKey(location));
+        super(LocationUtils.getLocKey(location), sfId);
         this.location = location;
-        this.sfId = sfId;
     }
 
     SlimefunBlockData(Location location, SlimefunBlockData other) {
-        super(LocationUtils.getLocKey(location), other);
+        super(LocationUtils.getLocKey(location), other, other.getSfId());
         this.location = location;
-        this.sfId = other.sfId;
+    }
+
+    public String getSfId() {
+        return super.getSfId();
     }
 
     public void setData(String key, String val) {
@@ -48,11 +46,13 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         menu = blockMenu;
     }
 
-    @Nullable public BlockMenu getBlockMenu() {
+    @Nullable
+    public BlockMenu getBlockMenu() {
         return menu;
     }
 
-    @Nullable public ItemStack[] getMenuContents() {
+    @Nullable
+    public ItemStack[] getMenuContents() {
         if (menu == null) {
             return null;
         }
@@ -72,11 +72,11 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
     @Override
     public String toString() {
         return "SlimefunBlockData [sfId="
-                + sfId
-                + ", location="
-                + location
-                + ", isPendingRemove="
-                + pendingRemove
-                + "]";
+               + getSfId()
+               + ", location="
+               + location
+               + ", isPendingRemove="
+               + isPendingRemove()
+               + "]";
     }
 }

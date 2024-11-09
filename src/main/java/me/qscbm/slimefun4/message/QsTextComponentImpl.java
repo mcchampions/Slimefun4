@@ -7,7 +7,6 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.Style;
 
 import net.kyori.adventure.text.format.TextColor;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class QsTextComponentImpl implements TextComponent {
     }
 
     @Override
-    public QsTextComponentImpl append(final @NotNull ComponentLike like) {
+    public QsTextComponentImpl append(final ComponentLike like) {
         final Component component = like.asComponent();
         if (component == Component.empty()) return this;
         if (children.equals(Collections.emptyList())) {
@@ -54,7 +53,7 @@ public class QsTextComponentImpl implements TextComponent {
         return this;
     }
 
-    public QsTextComponentImpl append(final @NotNull QsTextComponentImpl like) {
+    public QsTextComponentImpl append(final QsTextComponentImpl like) {
         if (children.equals(Collections.emptyList())) {
             children = new ArrayList<>();
         }

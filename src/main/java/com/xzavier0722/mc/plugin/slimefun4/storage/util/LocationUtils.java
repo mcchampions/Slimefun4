@@ -15,6 +15,10 @@ public class LocationUtils {
     }
 
     public static Location toLocation(String lKey) {
+        if (lKey == null || lKey.isEmpty()) {
+            return null;
+        }
+
         String[] strArr = lKey.split(";");
         String[] loc = strArr[1].split(":");
         return new Location(

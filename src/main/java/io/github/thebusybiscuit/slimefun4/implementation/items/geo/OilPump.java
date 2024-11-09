@@ -5,11 +5,12 @@ import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
+import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
@@ -47,8 +48,8 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
             @Override
             public boolean canOpen(Block b, Player p) {
                 if (!(p.hasPermission("slimefun.inventory.bypass")
-                        || Slimefun.getProtectionManager()
-                                .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK))) {
+                      || Slimefun.getProtectionManager()
+                              .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK))) {
                     return false;
                 }
 
@@ -102,7 +103,7 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
 
                     if (supplies.isPresent() && supplies.getAsInt() > 0) {
                         MachineRecipe recipe = new MachineRecipe(
-                                26, new ItemStack[] {emptyBucket}, new ItemStack[] {SlimefunItems.OIL_BUCKET});
+                                26, new ItemStack[]{emptyBucket}, new ItemStack[]{SlimefunItems.OIL_BUCKET});
 
                         inv.consumeItem(slot);
                         Slimefun.getGPSNetwork()

@@ -45,7 +45,6 @@ import io.github.thebusybiscuit.slimefun4.integrations.IntegrationsManager;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;
-import lombok.NonNull;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.helper.ItemHelper;
 import me.qscbm.slimefun4.services.LanguageService;
@@ -596,7 +595,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link Slimefun} instance
      */
-    public static @NonNull Slimefun instance() {
+    public static Slimefun instance() {
         return instance;
     }
 

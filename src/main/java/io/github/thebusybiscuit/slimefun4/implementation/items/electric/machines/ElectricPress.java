@@ -4,10 +4,9 @@ import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
+import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-
 import me.qscbm.slimefun4.items.machines.ASpeedableContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
  * It allows you to compact items into their block variant, e.g. 9 diamonds into a diamond block.
  *
  * @author TheBusyBiscuit
- *
  */
 public class ElectricPress extends ASpeedableContainer implements RecipeDisplayItem, NotDiagonallyRotatable {
     public ElectricPress(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -80,7 +78,7 @@ public class ElectricPress extends ASpeedableContainer implements RecipeDisplayI
     }
 
     private void addRecipe(int seconds, ItemStack input, ItemStack output) {
-        registerRecipe(seconds, new ItemStack[] {input}, new ItemStack[] {output});
+        registerRecipe(seconds, new ItemStack[]{input}, new ItemStack[]{output});
     }
 
     @Override

@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
+import city.norain.slimefun4.api.menu.UniversalMenu;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.events.AndroidMineEvent;
@@ -12,10 +13,10 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.InfiniteBlockGenerator;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+
 import java.util.Collection;
 import java.util.UUID;
 
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -29,8 +30,6 @@ import org.bukkit.inventory.ItemStack;
 /**
  * The {@link MinerAndroid} is a variant of the {@link ProgrammableAndroid} which
  * is able to break blocks.
- * The core functionalities boil down to {@link #dig(Block, BlockMenu, Block)} and
- * {@link #moveAndDig(Block, BlockMenu, BlockFace, Block)}.
  * Otherwise the functionality is similar to a regular android.
  * <p>
  * The {@link MinerAndroid} will also fire an {@link AndroidMineEvent} when breaking a {@link Block}.
@@ -42,9 +41,7 @@ import org.bukkit.inventory.ItemStack;
  * @author CyberPatriot
  * @author Redemption198
  * @author Poslovitch
- *
  * @see AndroidMineEvent
- *
  */
 public class MinerAndroid extends ProgrammableAndroid {
     // Determines the drops a miner android will get
@@ -67,12 +64,12 @@ public class MinerAndroid extends ProgrammableAndroid {
     }
 
     @Override
-    protected void dig(Block b, BlockMenu menu, Block block) {
+    protected void dig(Block b, UniversalMenu menu, Block block) {
         Collection<ItemStack> drops = block.getDrops(effectivePickaxe);
 
         if (!SlimefunTag.UNBREAKABLE_MATERIALS.isTagged(block.getType()) && !drops.isEmpty()) {
-            OfflinePlayer owner =
-                    Bukkit.getOfflinePlayer(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")));
+            OfflinePlayer owner = Bukkit.getOfflinePlayer(
+                    UUID.fromString(StorageCacheUtils.getUniversalBlock(menu.getUuid(), b.getLocation(), "owner")));
 
             if (Slimefun.getProtectionManager().hasPermission(owner, block.getLocation(), Interaction.BREAK_BLOCK)) {
                 AndroidMineEvent event = new AndroidMineEvent(block, new AndroidInstance(this, b));
@@ -83,7 +80,8 @@ public class MinerAndroid extends ProgrammableAndroid {
                 }
 
                 // We only want to break non-Slimefun blocks
-                if (!StorageCacheUtils.hasBlock(block.getLocation())) {
+                if (!StorageCacheUtils.hasBlock(block.getLocation())
+                    && !StorageCacheUtils.hasUniversalBlock(block.getLocation())) {
                     breakBlock(menu, drops, block);
                 }
             }
@@ -91,12 +89,12 @@ public class MinerAndroid extends ProgrammableAndroid {
     }
 
     @Override
-    protected void moveAndDig(Block b, BlockMenu menu, BlockFace face, Block block) {
+    protected void moveAndDig(Block b, UniversalMenu menu, BlockFace face, Block block) {
         Collection<ItemStack> drops = block.getDrops(effectivePickaxe);
 
         if (!SlimefunTag.UNBREAKABLE_MATERIALS.isTagged(block.getType()) && !drops.isEmpty()) {
-            OfflinePlayer owner =
-                    Bukkit.getOfflinePlayer(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")));
+            OfflinePlayer owner = Bukkit.getOfflinePlayer(
+                    UUID.fromString(StorageCacheUtils.getUniversalBlock(menu.getUuid(), b.getLocation(), "owner")));
 
             if (Slimefun.getProtectionManager().hasPermission(owner, block.getLocation(), Interaction.BREAK_BLOCK)) {
                 AndroidMineEvent event = new AndroidMineEvent(block, new AndroidInstance(this, b));
@@ -107,7 +105,8 @@ public class MinerAndroid extends ProgrammableAndroid {
                 }
 
                 // We only want to break non-Slimefun blocks
-                if (!StorageCacheUtils.hasBlock(block.getLocation())) {
+                if (!StorageCacheUtils.hasBlock(block.getLocation())
+                    && !StorageCacheUtils.hasUniversalBlock(block.getLocation())) {
                     breakBlock(menu, drops, block);
                     move(b, face, block);
                 }
@@ -119,7 +118,7 @@ public class MinerAndroid extends ProgrammableAndroid {
         }
     }
 
-    private void breakBlock(BlockMenu menu, Collection<ItemStack> drops, Block block) {
+    private void breakBlock(UniversalMenu menu, Collection<ItemStack> drops, Block block) {
         if (!block.getWorld().getWorldBorder().isInside(block.getLocation())) {
             return;
         }

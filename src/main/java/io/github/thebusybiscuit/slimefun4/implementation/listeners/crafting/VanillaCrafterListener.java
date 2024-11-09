@@ -5,7 +5,6 @@ import city.norain.slimefun4.compatibillty.VersionedEvent;
 import io.github.bakedlibs.dough.versions.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
 import org.bukkit.block.Crafter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -17,7 +16,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
 public class VanillaCrafterListener implements SlimefunCraftingListener {
-    public VanillaCrafterListener(@Nonnull Slimefun plugin) {
+    public VanillaCrafterListener(Slimefun plugin) {
         if (SlimefunExtended.getMinecraftVersion().isAtLeast(MinecraftVersion.parse("1.20.3")))
             plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -28,9 +27,9 @@ public class VanillaCrafterListener implements SlimefunCraftingListener {
         Inventory topInventory = VersionedEvent.getTopInventory(e);
 
         if (clickedInventory != null
-                && topInventory.getType() == InventoryType.CRAFTER
-                && topInventory.getHolder() instanceof Crafter
-                && e.getWhoClicked() instanceof Player) {
+            && topInventory.getType() == InventoryType.CRAFTER
+            && topInventory.getHolder() instanceof Crafter
+            && e.getWhoClicked() instanceof Player) {
 
             if (e.getAction() == InventoryAction.HOTBAR_SWAP) {
                 e.setCancelled(true);

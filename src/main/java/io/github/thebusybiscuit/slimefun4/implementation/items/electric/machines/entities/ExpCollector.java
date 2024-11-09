@@ -9,12 +9,13 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
-import io.github.thebusybiscuit.slimefun4.core.attributes.NotDiagonallyRotatable;
+import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.KnowledgeFlask;
+
 import java.util.Iterator;
 
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
@@ -34,7 +35,6 @@ import org.bukkit.inventory.ItemStack;
  * and produces a {@link KnowledgeFlask}.
  *
  * @author TheBusyBiscuit
- *
  */
 public class ExpCollector extends SlimefunItem implements InventoryBlock, EnergyNetComponent, NotDiagonallyRotatable {
     private final int[] border = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
@@ -82,7 +82,7 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
 
     @Override
     public int[] getOutputSlots() {
-        return new int[] {12, 13, 14};
+        return new int[]{12, 13, 14};
     }
 
     @Override
@@ -143,10 +143,8 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
      * Produces Flasks of Knowledge for the given block until it either uses all stored
      * experience or runs out of room.
      *
-     * @param location
-     *                  The {@link Location} of the {@link ExpCollector} to produce flasks in.
-     * @param experiencePoints
-     *                  The number of experience points to use during production.
+     * @param location         The {@link Location} of the {@link ExpCollector} to produce flasks in.
+     * @param experiencePoints The number of experience points to use during production.
      */
     private void produceFlasks(Location location, int experiencePoints) {
         int withdrawn = 0;

@@ -1,11 +1,10 @@
 package me.qscbm.slimefun4.utils;
 
-import javax.annotation.Nonnull;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class CacheMap extends ConcurrentHashMap<String,String> {
+public class CacheMap extends ConcurrentHashMap<String, String> {
     @Override
-    public String put(@Nonnull String key, String value) {
+    public String put(String key, String value) {
         if (value == null) {
             value = "";
         }
@@ -13,7 +12,7 @@ public class CacheMap extends ConcurrentHashMap<String,String> {
     }
 
     @Override
-    public String putIfAbsent(@Nonnull String key, String value) {
+    public String putIfAbsent(String key, String value) {
         if (value == null) {
             value = "";
         }

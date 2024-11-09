@@ -13,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.*;
+import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
@@ -21,6 +22,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.GEOMiningOperation;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.OptionalInt;
@@ -43,18 +45,17 @@ import org.bukkit.inventory.ItemStack;
  * The {@link GEOMiner} is an electrical machine that allows you to obtain a {@link GEOResource}.
  *
  * @author TheBusyBiscuit
- *
  * @see GEOResource
  */
 public class GEOMiner extends SlimefunItem
         implements RecipeDisplayItem,
-                EnergyNetComponent,
-                InventoryBlock,
-                HologramOwner,
-                MachineProcessHolder<GEOMiningOperation>,
-                NotDiagonallyRotatable {
+        EnergyNetComponent,
+        InventoryBlock,
+        HologramOwner,
+        MachineProcessHolder<GEOMiningOperation>,
+        NotDiagonallyRotatable {
     private static final int[] BORDER = {
-        0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 53
+            0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 53
     };
     private static final int[] OUTPUT_BORDER = {19, 20, 21, 22, 23, 24, 25, 28, 34, 37, 43, 46, 47, 48, 49, 50, 51, 52};
     private static final int[] OUTPUT_SLOTS = {29, 30, 31, 32, 33, 38, 39, 40, 41, 42};
@@ -115,9 +116,7 @@ public class GEOMiner extends SlimefunItem
      * This method <strong>must</strong> be called before registering the item
      * and only before registering.
      *
-     * @param capacity
-     *            The amount of energy this machine can store
-     *
+     * @param capacity The amount of energy this machine can store
      * @return This method will return the current instance of {@link GEOMiner}, so that can be chained.
      */
     public final GEOMiner setCapacity(int capacity) {
@@ -132,9 +131,7 @@ public class GEOMiner extends SlimefunItem
     /**
      * This sets the speed of this machine.
      *
-     * @param speed
-     *            The speed multiplier for this machine, must be above zero
-     *
+     * @param speed The speed multiplier for this machine, must be above zero
      * @return This method will return the current instance of {@link GEOMiner}, so that can be chained.
      */
     public final GEOMiner setProcessingSpeed(int speed) {
@@ -145,9 +142,7 @@ public class GEOMiner extends SlimefunItem
     /**
      * This method sets the energy consumed by this machine per tick.
      *
-     * @param energyConsumption
-     *            The energy consumed per tick
-     *
+     * @param energyConsumption The energy consumed per tick
      * @return This method will return the current instance of {@link GEOMiner}, so that can be chained.
      */
     public final GEOMiner setEnergyConsumption(int energyConsumption) {
@@ -167,8 +162,8 @@ public class GEOMiner extends SlimefunItem
         if (getEnergyConsumption() <= 0) {
             warn("The energy consumption has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '"
-                    + getClass().getSimpleName()
-                    + "#setEnergyConsumption(...)' before registering!");
+                 + getClass().getSimpleName()
+                 + "#setEnergyConsumption(...)' before registering!");
         }
 
         if (getSpeed() <= 0) {

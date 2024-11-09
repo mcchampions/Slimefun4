@@ -34,7 +34,8 @@ public final class AndroidShareMenu {
     private static final NamespacedKey BLOCK_INFO_KEY = new NamespacedKey(Slimefun.instance(), "share-users");
     private static final int SHARED_USERS_LIMIT = 15;
 
-    private AndroidShareMenu() {}
+    private AndroidShareMenu() {
+    }
 
     /**
      * Open a share menu for player.
@@ -195,7 +196,7 @@ public final class AndroidShareMenu {
     /**
      * Checks user is in trusted users list.
      *
-     * @param b the block of Android
+     * @param b    the block of Android
      * @param uuid user's UUID
      * @return user trusted status
      */
@@ -214,15 +215,7 @@ public final class AndroidShareMenu {
             PersistentDataContainer container = ((TileState) state).getPersistentDataContainer();
             container.set(BLOCK_INFO_KEY, PersistentDataType.STRING, value);
             state.update();
-        } catch (RuntimeException x) {
-            Slimefun.logger().log(Level.SEVERE, "Please check if your Server Software is up to date!");
-
-            String serverSoftware = Bukkit.getName();
-            Slimefun.logger()
-                    .log(
-                            Level.SEVERE,
-                            () -> serverSoftware + " | " + Bukkit.getVersion() + " | " + Bukkit.getBukkitVersion());
-
+        } catch (Exception x) {
             Slimefun.logger()
                     .log(Level.SEVERE, "An Exception was thrown while trying to set Persistent Data for a Android", x);
         }

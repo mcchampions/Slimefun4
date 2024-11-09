@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import lombok.Getter;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -80,9 +81,9 @@ public class DirtyChestMenu extends ChestMenu {
     }
 
     public boolean fits(ItemStack item, int... slots) {
-        var isSfItem = SlimefunItem.getByItem(item) != null;
-        var wrapper = ItemStackWrapper.wrap(item);
-        var remain = item.getAmount();
+        boolean isSfItem = SlimefunItem.getByItem(item) != null;
+        ItemStackWrapper wrapper = ItemStackWrapper.wrap(item);
+        int remain = item.getAmount();
 
         for (int slot : slots) {
             // A small optimization for empty slots
@@ -234,36 +235,20 @@ public class DirtyChestMenu extends ChestMenu {
     }
 
     public void consumeItem(int slot, int amount) {
-        if (locked()) {
-            throw new IllegalStateException("Cannot consume item when menu is locked");
-        }
-
         consumeItem(slot, amount, false);
     }
 
     public void consumeItem(int slot, int amount, boolean replaceConsumables) {
-        if (locked()) {
-            throw new IllegalStateException("Cannot consume item when menu is locked");
-        }
-
         ItemUtils.consumeItem(getItemInSlot(slot), amount, replaceConsumables);
         markDirty();
     }
 
     @Override
     public void replaceExistingItem(int slot, ItemStack item) {
-        if (locked()) {
-            throw new IllegalStateException("Cannot consume item when menu is locked");
-        }
-
         replaceExistingItem(slot, item, true);
     }
 
     public void replaceExistingItem(int slot, ItemStack item, boolean event) {
-        if (locked()) {
-            throw new IllegalStateException("Cannot consume item when menu is locked");
-        }
-
         if (event) {
             item = preset.onItemStackChange(item);
         }

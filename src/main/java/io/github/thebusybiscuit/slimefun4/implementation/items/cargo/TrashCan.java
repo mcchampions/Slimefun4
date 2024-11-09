@@ -6,7 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.NotRotatable;
+import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotRotatable;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
@@ -21,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  * items that enter it.
  *
  * @author TheBusyBiscuit
- *
  */
 public class TrashCan extends SlimefunItem implements InventoryBlock, NotRotatable {
     private final int[] border = {0, 1, 2, 3, 5, 4, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
@@ -41,7 +40,7 @@ public class TrashCan extends SlimefunItem implements InventoryBlock, NotRotatab
 
     @Override
     public int[] getInputSlots() {
-        return new int[] {10, 11, 12, 13, 14, 15, 16};
+        return new int[]{10, 11, 12, 13, 14, 15, 16};
     }
 
     @Override

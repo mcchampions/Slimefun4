@@ -3,6 +3,14 @@ package me.mrCookieSlime.CSCoreLibPlugin.general.Inventory;
 import city.norain.slimefun4.holder.SlimefunInventoryHolder;
 import city.norain.slimefun4.utils.InventoryUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import lombok.Getter;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,12 +20,6 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 /**
  * An old remnant of CS-CoreLib.
@@ -27,7 +29,10 @@ import org.bukkit.inventory.ItemStack;
 public class ChestMenu extends SlimefunInventoryHolder {
     private boolean clickable;
     private boolean emptyClickable;
+
+    @Getter
     private final String title;
+
     private final List<ItemStack> items;
     /**
      * Size of chestmenu
@@ -56,8 +61,10 @@ public class ChestMenu extends SlimefunInventoryHolder {
         this.items = new ArrayList<>();
         this.handlers = new HashMap<>();
 
-        this.open = p -> {};
-        this.close = p -> {};
+        this.open = p -> {
+        };
+        this.close = p -> {
+        };
         this.playerclick = (p, slot, item, action) -> isPlayerInventoryClickable();
     }
 
@@ -375,8 +382,8 @@ public class ChestMenu extends SlimefunInventoryHolder {
         } else {
             throw new IllegalArgumentException(
                     "The size of a ChestMenu must be a multiple of 9 and within the bounds 0-54,"
-                            + " received: "
-                            + size);
+                    + " received: "
+                    + size);
         }
     }
 

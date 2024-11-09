@@ -6,7 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.NotDiagonallyRotatable;
+import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -40,11 +40,9 @@ import org.bukkit.persistence.PersistentDataType;
  * Only {@link ShapedRecipe} and {@link ShapelessRecipe} are therefore supported.
  *
  * @author TheBusyBiscuit
- *
  * @see AbstractAutoCrafter
  * @see EnhancedAutoCrafter
  * @see VanillaRecipe
- *
  */
 public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagonallyRotatable {
     public VanillaAutoCrafter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

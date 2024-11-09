@@ -2,8 +2,10 @@ package io.github.thebusybiscuit.slimefun4.core.services;
 
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.Iterator;
 import java.util.logging.Level;
+
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -12,16 +14,13 @@ import org.bukkit.entity.Player;
  * data.
  *
  * @author TheBusyBiscuit
- *
  */
 public class AutoSavingService {
     /**
      * This method starts the {@link AutoSavingService} with the given interval.
      *
-     * @param plugin
-     *            The current instance of Slimefun
-     * @param interval
-     *            The interval in which to run this task
+     * @param plugin   The current instance of Slimefun
+     * @param interval The interval in which to run this task
      */
     public void start(Slimefun plugin, int interval) {
         plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, this::saveAllPlayers, 2000L, interval * 60L * 20L);
@@ -29,9 +28,15 @@ public class AutoSavingService {
                 .getScheduler()
                 .runTaskTimerAsynchronously(
                         plugin,
-                        () -> Slimefun.getDatabaseManager()
-                                .getBlockDataController()
-                                .saveAllBlockInventories(),
+                        () -> {
+                            Slimefun.getDatabaseManager()
+                                    .getBlockDataController()
+                                    .saveAllBlockInventories();
+
+                            Slimefun.getDatabaseManager()
+                                    .getBlockDataController()
+                                    .saveAllUniversalInventories();
+                        },
                         2000L,
                         interval * 60L * 20L);
     }

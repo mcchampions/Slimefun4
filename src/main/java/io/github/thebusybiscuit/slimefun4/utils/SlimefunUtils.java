@@ -246,7 +246,7 @@ public final class SlimefunUtils {
         return isItemSimilar(item, sfitem, checkLore, checkAmount, checkDistinctiveItem, true);
     }
 
-    public static boolean isSlimefunItemSimilar(SlimefunItemStack sfItem, ItemStack item,boolean checkLore) {
+    public static boolean isSlimefunItemSimilar(SlimefunItemStack sfItem, ItemStack item, boolean checkLore) {
         SlimefunItem sfI = SlimefunItem.getByItem(item);
         if (sfI == null) {
             return false;
@@ -262,7 +262,7 @@ public final class SlimefunUtils {
             if (lores1.size() != lores2.size()) {
                 return false;
             }
-            for (int i = 0;i<lores1.size();i++) {
+            for (int i = 0; i < lores1.size(); i++) {
                 if (!lores1.get(i).equals(lores2.get(i))) {
                     return false;
                 }
@@ -283,7 +283,7 @@ public final class SlimefunUtils {
         } else if (sfitem == null || item.getType() != sfitem.getType() || checkAmount && item.getAmount() < sfitem.getAmount()) {
             return false;
         } else if (checkDistinctiveItem && sfitem instanceof SlimefunItemStack stackOne && item instanceof SlimefunItemStack stackTwo) {
-            return isSlimefunItemSimilar(stackOne, stackTwo,checkLore);
+            return isSlimefunItemSimilar(stackOne, stackTwo, checkLore);
         } else if (item.hasItemMeta()) {
             ItemMeta itemMeta = item.getItemMeta();
 
@@ -307,7 +307,7 @@ public final class SlimefunUtils {
                     return id.equals(sfItemStack.getItemId());
                 }
 
-                ItemMetaSnapshot meta = ((SlimefunItemStack) sfitem).getItemMetaSnapshot();
+                ItemMetaSnapshot meta = sfItemStack.getItemMetaSnapshot();
                 return equalsItemMeta(itemMeta, meta, checkLore);
             } else if (sfitem instanceof ItemStackWrapper && sfitem.hasItemMeta()) {
                 /*
@@ -320,7 +320,7 @@ public final class SlimefunUtils {
                 String possibleItemId = Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
                 String sfItemId = Slimefun.getItemDataService().getItemData(sfItemMeta).orElse(null);
                 // Prioritize SlimefunItem id comparison over ItemMeta comparison
-                if (possibleItemId != null ) {
+                if (possibleItemId != null) {
                     if (!(possibleItemId.equals(sfItemId))) {
                         return false;
                     }
@@ -361,17 +361,17 @@ public final class SlimefunUtils {
             return false;
         } else //noinspection DataFlowIssue
             if (itemMeta.hasDisplayName() && displayName.isPresent() && !itemMeta.displayName().equals(displayName.get())) {
-            return false;
-        } else if (checkLore) {
-            Optional<List<String>> itemLore = itemMetaSnapshot.getLore();
+                return false;
+            } else if (checkLore) {
+                Optional<List<String>> itemLore = itemMetaSnapshot.getLore();
 
-            //noinspection DataFlowIssue
-            if (itemMeta.hasLore() && itemLore.isPresent() && !equalsLore(itemMeta.getLore(), itemLore.get())) {
-                return false;
-            } else if (itemMeta.hasLore() != itemLore.isPresent()) {
-                return false;
+                //noinspection DataFlowIssue
+                if (itemMeta.hasLore() && itemLore.isPresent() && !equalsLore(itemMeta.getLore(), itemLore.get())) {
+                    return false;
+                } else if (itemMeta.hasLore() != itemLore.isPresent()) {
+                    return false;
+                }
             }
-        }
 
         // Fixes #3133: name and lore are not enough
         OptionalInt itemCustomModelData = itemMetaSnapshot.getCustomModelData();
@@ -387,20 +387,20 @@ public final class SlimefunUtils {
             return false;
         } else //noinspection DataFlowIssue
             if (itemMeta.hasDisplayName() && sfitemMeta.hasDisplayName() && !itemMeta.displayName().equals(sfitemMeta.displayName())) {
-            return false;
-        } else if (checkLore) {
-            boolean hasItemMetaLore = itemMeta.hasLore();
-            boolean hasSfItemMetaLore = sfitemMeta.hasLore();
+                return false;
+            } else if (checkLore) {
+                boolean hasItemMetaLore = itemMeta.hasLore();
+                boolean hasSfItemMetaLore = sfitemMeta.hasLore();
 
-            if (hasItemMetaLore && hasSfItemMetaLore) {
-                //noinspection DataFlowIssue
-                if (!equalsLoreNew(itemMeta.lore(), sfitemMeta.lore())) {
+                if (hasItemMetaLore && hasSfItemMetaLore) {
+                    //noinspection DataFlowIssue
+                    if (!equalsLoreNew(itemMeta.lore(), sfitemMeta.lore())) {
+                        return false;
+                    }
+                } else if (hasItemMetaLore != hasSfItemMetaLore) {
                     return false;
                 }
-            } else if (hasItemMetaLore != hasSfItemMetaLore) {
-                return false;
             }
-        }
 
         if (checkCustomModelCheck) {
             // Fixes #3133: name and lore are not enough
@@ -422,8 +422,8 @@ public final class SlimefunUtils {
 
                 //noinspection ConstantValue
                 return potionMeta.getBasePotionType() != null
-                        && sfPotionMeta.getBasePotionType() != null
-                        && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+                       && sfPotionMeta.getBasePotionType() != null
+                       && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
             } else if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
                 return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
             } else {
@@ -602,7 +602,7 @@ public final class SlimefunUtils {
      * @param reason The {@link ItemSpawnReason} why the item is being dropped
      * @return The dropped {@link Item} (or null if the {@link SlimefunItemSpawnEvent} was cancelled)
      */
-    public static @Nullable Item spawnItem(Location loc, ItemStack item, ItemSpawnReason reason) {
+    public static Item spawnItem(Location loc, ItemStack item, ItemSpawnReason reason) {
         return spawnItem(loc, item, reason, false);
     }
 
