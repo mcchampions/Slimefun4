@@ -123,7 +123,9 @@ public class EnergyNet extends Network implements HologramOwner {
         if (connectorNodes.isEmpty() && terminusNodes.isEmpty()) {
             updateHologram(b, "§4找不到能源网络", blockData::isPendingRemove);
         } else {
-            int supply = tickAllGenerators(timestamp::getAndAdd) + tickAllCapacitors();
+            int generatorsSupply = tickAllGenerators(timestamp::getAndAdd);
+            int capacitorsSupply = tickAllCapacitors();
+            int supply = NumberUtils.flowSafeAddition(generatorsSupply, capacitorsSupply);
             int remainingEnergy = supply;
             int demand = 0;
 
@@ -156,7 +158,7 @@ public class EnergyNet extends Network implements HologramOwner {
 
                 if (charge < capacity) {
                     int availableSpace = capacity - charge;
-                    demand += availableSpace;
+                    demand = NumberUtils.flowSafeAddition(demand, availableSpace);
 
                     if (remainingEnergy > 0) {
                         if (remainingEnergy > availableSpace) {
@@ -271,7 +273,7 @@ public class EnergyNet extends Network implements HologramOwner {
                         loc.getWorld().createExplosion(loc, 0F, false);
                     });
                 } else {
-                    supply = MathUtil.saturatedAdd(supply, energy);
+                    supply = NumberUtils.flowSafeAddition(supply, energy);
                 }
             } catch (RuntimeException | LinkageError throwable) {
                 explodedBlocks.add(loc);
@@ -294,7 +296,7 @@ public class EnergyNet extends Network implements HologramOwner {
         int supply = 0;
 
         for (Map.Entry<Location, EnergyNetComponent> entry : capacitors.entrySet()) {
-            supply = MathUtil.saturatedAdd(supply, entry.getValue().getCharge(entry.getKey()));
+            supply = NumberUtils.flowSafeAddition(supply, entry.getValue().getCharge(entry.getKey()));
         }
 
         return supply;
