@@ -110,10 +110,11 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
         }
 
         if (to == NetworkComponent.TERMINUS) {
-            var data = StorageCacheUtils.getBlock(l);
+            SlimefunBlockData data = StorageCacheUtils.getBlock(l);
             switch (data.getSfId()) {
                 case "CARGO_NODE_INPUT" -> inputNodes.add(l);
                 case "CARGO_NODE_OUTPUT", "CARGO_NODE_OUTPUT_ADVANCED" -> outputNodes.add(l);
+
                 default -> {}
             }
         }
