@@ -49,12 +49,22 @@ public class NBTUtils {
         try {
             resolvableProfile = Class.forName("net.minecraft.world.item.component.ResolvableProfile");
             RESOLVABLE_PROFILE_GAME_PROFILE_GETTER = ReflectionUtils.getMethod(resolvableProfile, "f");
+            if (RESOLVABLE_PROFILE_GAME_PROFILE_GETTER != null) {
+                RESOLVABLE_PROFILE_GAME_PROFILE_GETTER.setAccessible(true);
+            }
         } catch (ClassNotFoundException e) {
             resolvableProfile = null;
         }
         RESOLVABLE_PROFILE = resolvableProfile;
         PROPERTY_NAME_GETTER = ReflectionUtils.getMethod(Property.class, "getName");
+        if (PROPERTY_NAME_GETTER != null) {
+            PROPERTY_NAME_GETTER.setAccessible(true);
+        }
         PROPERTY_VALUE_GETTER = ReflectionUtils.getMethod(Property.class, "getValue");
+        if (PROPERTY_VALUE_GETTER != null) {
+            PROPERTY_VALUE_GETTER.setAccessible(true);
+
+        }
     }
 
     public static String getTexture(SkullMeta skullMeta) {

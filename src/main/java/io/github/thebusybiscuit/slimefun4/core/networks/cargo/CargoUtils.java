@@ -140,6 +140,7 @@ final class CargoUtils {
                     Method method = ReflectionUtils.getMethod(sfItem.getClass(), "getOutputSlots");
                     if (method != null) {
                         try {
+                            method.setAccessible(true);
                             slots = (int[]) method.invoke(sfItem);
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             throw new RuntimeException(e);
