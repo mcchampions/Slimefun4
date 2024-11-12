@@ -2,7 +2,9 @@ package me.mrCookieSlime.CSCoreLibPlugin.general.Inventory;
 
 import city.norain.slimefun4.holder.SlimefunInventoryHolder;
 import city.norain.slimefun4.utils.InventoryUtil;
+import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -152,7 +154,13 @@ public class ChestMenu extends SlimefunInventoryHolder {
         setSize((int) (Math.max(getSize(), Math.ceil((slot + 1) / 9d) * 9)));
 
         this.items.set(slot, actual);
-        this.inventory.setItem(slot, actual);
+        try {
+            this.inventory.setItem(slot, actual);
+        } catch (Exception ex) {
+            Slimefun.logger().warning("An exception is thrown in ChestMenu#addItem(int,ItemStack):" + ex.getMessage());
+            Slimefun.logger().warning("Error ItemStack Class Name:" + item.getClass().getName());
+            this.inventory.setItem(slot, new CustomItemStack(actual));
+        }
         return this;
     }
 

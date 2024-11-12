@@ -63,7 +63,6 @@ public class NBTUtils {
         PROPERTY_VALUE_GETTER = ReflectionUtils.getMethod(Property.class, "getValue");
         if (PROPERTY_VALUE_GETTER != null) {
             PROPERTY_VALUE_GETTER.setAccessible(true);
-
         }
     }
 
@@ -75,7 +74,6 @@ public class NBTUtils {
                     pro = RESOLVABLE_PROFILE_GAME_PROFILE_GETTER.invoke(pro);
                 }
             }
-
             if (pro == null) {
                 return null;
             }
