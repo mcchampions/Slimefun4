@@ -13,12 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -158,6 +153,7 @@ public class ChestMenu extends SlimefunInventoryHolder {
             this.inventory.setItem(slot, actual);
         } catch (Exception ex) {
             Slimefun.logger().warning("An exception is thrown in ChestMenu#addItem(int,ItemStack):" + ex.getMessage());
+            Slimefun.logger().warning("Error StackTrace:" + Arrays.toString(ex.getStackTrace()));
             Slimefun.logger().warning("Error ItemStack Class Name:" + item.getClass().getName());
             this.inventory.setItem(slot, new CustomItemStack(actual));
         }
