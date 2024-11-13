@@ -278,11 +278,6 @@ public class BlockListener implements Listener {
                 // Disable normal block drops
                 e.setDropItems(false);
 
-                // Fixes #4051
-                if (sfBlock == null) {
-                    block.breakNaturally(item);
-                }
-
                 // The list only contains other drops, not those from the block itself, so we still need to handle those
                 for (ItemStack drop : drops) {
                     // Prevent null or air from being dropped
