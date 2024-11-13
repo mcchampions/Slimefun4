@@ -107,12 +107,8 @@
                 <version>3.13.0</version>
 
                 <configuration>
-                    <excludes>
-                        <!-- package info files are only important for Javadocs -->
-                        <!-- We can safely exclude them from the final jar -->
-                        <exclude>**/package-info.java</exclude>
-                    </excludes>
                     <source>17</source>
+                    <encoding>UTF-8</encoding>
                     <target>17</target>
                     <annotationProcessorPaths>
                         <path>
