@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.cargo;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.bakedlibs.dough.protection.Interaction;
@@ -74,7 +75,7 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
                 // The owner and frequency are required by every node
-                var blockData = StorageCacheUtils.getBlock(e.getBlock().getLocation());
+                SlimefunBlockData blockData = StorageCacheUtils.getBlock(e.getBlock().getLocation());
                 blockData.setData("owner", e.getPlayer().getUniqueId().toString());
                 blockData.setData(FREQUENCY, "0");
 

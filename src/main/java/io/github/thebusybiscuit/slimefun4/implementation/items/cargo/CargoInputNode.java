@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.cargo;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -8,6 +9,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -40,7 +42,7 @@ public class CargoInputNode extends AbstractFilterNode {
     protected void onPlace(BlockPlaceEvent e) {
         super.onPlace(e);
 
-        var l = e.getBlock().getLocation();
+        Location l = e.getBlock().getLocation();
         StorageCacheUtils.setData(l, ROUND_ROBIN_MODE, String.valueOf(false));
         StorageCacheUtils.setData(l, SMART_FILL_MODE, String.valueOf(false));
     }
@@ -49,7 +51,7 @@ public class CargoInputNode extends AbstractFilterNode {
     protected void updateBlockMenu(BlockMenu menu, Block b) {
         super.updateBlockMenu(menu, b);
 
-        var blockData = StorageCacheUtils.getBlock(b.getLocation());
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(b.getLocation());
         String roundRobinMode = blockData.getData(ROUND_ROBIN_MODE);
         if (roundRobinMode == null || roundRobinMode.equals(String.valueOf(false))) {
             menu.replaceExistingItem(
