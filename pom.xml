@@ -107,6 +107,9 @@
                 <version>3.13.0</version>
 
                 <configuration>
+                    <compilerArgument>
+                        -proc:none
+                    </compilerArgument>
                     <source>17</source>
                     <encoding>UTF-8</encoding>
                     <target>17</target>
