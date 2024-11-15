@@ -267,7 +267,7 @@
         <dependency>
             <groupId>com.github.mcchampions.dough</groupId>
             <artifactId>dough-api</artifactId>
-            <version>b70619ed4c</version>
+            <version>a6ee4b80fa</version>
         </dependency>
         <dependency>
             <groupId>io.papermc</groupId>
