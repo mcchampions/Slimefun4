@@ -54,6 +54,11 @@ public final class ChargeUtils {
         for (int i = 0; i < lore.size(); i++) {
             Component line = lore.get(i);
             if (line instanceof TextComponent c) {
+                if (REGEX.matcher(c.content()).matches()) {
+                    lore.set(i, newLine);
+                    meta.lore(lore);
+                    return;
+                }
                 if (c.content().equals("\u21E8")) {
                     List<Component> children = c.children();
                     if (children.size() < 2) {
@@ -68,7 +73,6 @@ public final class ChargeUtils {
                     }
                 } else {
                     if (c.content().isEmpty()) {
-
                         List<Component> children = c.children();
                         if (children.size() < 3) {
                             continue;
@@ -83,12 +87,6 @@ public final class ChargeUtils {
                                 meta.lore(lore);
                                 return;
                             }
-                        }
-                    } else {
-                        if (REGEX.matcher(c.content()).matches()) {
-                            lore.set(i, newLine);
-                            meta.lore(lore);
-                            return;
                         }
                     }
                 }
