@@ -19,6 +19,8 @@ commands:
     needed-string: "§e还需要 %2 个 %1"
     no-item-string: "§c物品未找到!"
     not-a-number-string: "§c无效的数字!"
+  blockdata:
+    description: 处理方块数据
   cleardata:
     description: 清理世界数据
     success: '§a已清除§c {0} §a的§c {1} §a数据'
