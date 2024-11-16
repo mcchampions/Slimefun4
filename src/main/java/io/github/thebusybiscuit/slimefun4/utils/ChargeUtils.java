@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import me.qscbm.slimefun4.message.QsTextComponentImpl;
-import me.qscbm.slimefun4.utils.TextUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -84,6 +83,12 @@ public final class ChargeUtils {
                                 meta.lore(lore);
                                 return;
                             }
+                        }
+                    } else {
+                        if (REGEX.matcher(c.content()).matches()) {
+                            lore.set(i, newLine);
+                            meta.lore(lore);
+                            return;
                         }
                     }
                 }
