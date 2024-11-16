@@ -31,7 +31,7 @@ public final class ChargeUtils {
     private static final String LORE_PREFIX = "§8\u21E8 §e\u26A1 §7";
     private static final String NUMBER_PREFIX = "([+-]?\\d+([.]\\d+)?([Ee][+-]?\\d+)?)";
     private static final Pattern REGEX =
-            Pattern.compile(LORE_PREFIX + NUMBER_PREFIX + " / " + NUMBER_PREFIX + " J", Pattern.CASE_INSENSITIVE);
+            Pattern.compile("(§c§o)?"  + LORE_PREFIX + NUMBER_PREFIX + " / " + NUMBER_PREFIX + " J", Pattern.CASE_INSENSITIVE);
 
 
     private static final Pattern REGEX_NEW =
@@ -110,6 +110,10 @@ public final class ChargeUtils {
                 var matcher = REGEX.matcher(line);
                 if (matcher.matches()) {
                     String data = matcher.group(2);
+
+                    if (data == null) {
+                        return 0;
+                    }
 
                     float loreValue = Float.parseFloat(data);
                     container.set(key, PersistentDataType.FLOAT, loreValue);
