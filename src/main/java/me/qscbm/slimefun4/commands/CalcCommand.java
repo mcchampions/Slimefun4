@@ -18,6 +18,11 @@ public class CalcCommand extends SubCommand {
     }
 
     @Override
+    protected String getDescription() {
+        return "commands.calc.description";
+    }
+
+    @Override
     public void onExecute(CommandSender sender, String[] args) {
         long amount;
         String reqItem;
