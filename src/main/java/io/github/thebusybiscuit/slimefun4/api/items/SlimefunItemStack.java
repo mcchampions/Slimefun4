@@ -34,6 +34,8 @@ import java.util.function.Consumer;
  */
 @SerializableAs("ItemStack")
 public class SlimefunItemStack extends ItemStack {
+    private final boolean locked = false;
+
     private final String id;
     @Getter
     private ItemMetaSnapshot itemMetaSnapshot;
