@@ -203,7 +203,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
                 var uniData = StorageCacheUtils.getUniversalBlock(b);
                 if (!e.getPlayer().hasPermission("slimefun.android.bypass")
-                    && !e.getPlayer().getUniqueId().equals(uniData.getData("owner"))) {
+                    && !e.getPlayer().getUniqueId().toString().equals(uniData.getData("owner"))) {
                     // The Player is not allowed to break this android
                     e.setCancelled(true);
                     return;
