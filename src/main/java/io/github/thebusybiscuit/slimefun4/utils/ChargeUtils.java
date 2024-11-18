@@ -32,7 +32,6 @@ public final class ChargeUtils {
     private static final Pattern REGEX =
             Pattern.compile("(§c§o)?" + LORE_PREFIX + NUMBER_REGEX + " / " + NUMBER_REGEX + " J", Pattern.CASE_INSENSITIVE);
 
-
     private static final Pattern REGEX_NEW =
             Pattern.compile(NUMBER_REGEX + " / " + NUMBER_REGEX + " J");
 
