@@ -105,12 +105,6 @@ public class LockedItemGroup extends ItemGroup {
      * @see #removeParent(ItemGroup)
      */
     public void addParent(ItemGroup group) {
-        if (group == this || group == null) {
-            throw new IllegalArgumentException("ItemGroup '"
-                    + item.getItemMeta().getDisplayName()
-                    + "' cannot be a parent of itself or have a 'null' parent.");
-        }
-
         parents.add(group);
     }
 

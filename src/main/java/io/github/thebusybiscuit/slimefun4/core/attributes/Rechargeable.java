@@ -44,15 +44,7 @@ public interface Rechargeable extends ItemAttribute {
      *            The amount of charge to store
      */
     default void setItemCharge(ItemStack item, float charge) {
-        if (item == null || item.getType() == Material.AIR) {
-            throw new IllegalArgumentException("Cannot set Item charge for null or AIR");
-        }
-
         float maximum = getMaxItemCharge(item);
-
-        if (charge < 0 || charge > maximum) {
-            throw new IllegalArgumentException("Charge must be between zero and " + maximum + ".");
-        }
 
         ItemMeta meta = item.getItemMeta();
         ChargeUtils.setCharge(meta, charge, maximum);
@@ -68,10 +60,6 @@ public interface Rechargeable extends ItemAttribute {
      * @return The charge stored on this {@link ItemStack}
      */
     default float getItemCharge(ItemStack item) {
-        if (item == null || item.getType() == Material.AIR) {
-            throw new IllegalArgumentException("Cannot get Item charge for null or AIR");
-        }
-
         return ChargeUtils.getCharge(item.getItemMeta());
     }
 
@@ -96,10 +84,6 @@ public interface Rechargeable extends ItemAttribute {
      * @return Whether the given charge could be added successfully
      */
     default boolean addItemCharge(ItemStack item, float charge) {
-        if (item == null || item.getType() == Material.AIR) {
-            throw new IllegalArgumentException("Cannot add Item charge for null or AIR");
-        }
-
         ItemMeta meta = item.getItemMeta();
         float currentCharge = ChargeUtils.getCharge(meta);
         float maximum = getMaxItemCharge(item);
@@ -128,10 +112,6 @@ public interface Rechargeable extends ItemAttribute {
      * @return Whether the given charge could be removed successfully
      */
     default boolean removeItemCharge(ItemStack item, float charge) {
-        if (item == null || item.getType() == Material.AIR) {
-            throw new IllegalArgumentException("Cannot remove Item charge for null or AIR");
-        }
-
         ItemMeta meta = item.getItemMeta();
         float currentCharge = ChargeUtils.getCharge(meta);
 

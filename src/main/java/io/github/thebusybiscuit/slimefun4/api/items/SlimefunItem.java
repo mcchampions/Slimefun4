@@ -337,10 +337,6 @@ public class SlimefunItem implements Placeable {
      * @return The {@link SlimefunAddon} that registered this {@link SlimefunItem}
      */
     public final SlimefunAddon getAddon() {
-        if (addon == null) {
-            throw new UnregisteredItemException(this);
-        }
-
         return addon;
     }
 

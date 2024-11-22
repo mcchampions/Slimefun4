@@ -49,14 +49,6 @@ public class MultiBlock {
     private final boolean isSymmetric;
 
     public MultiBlock(SlimefunItem item, Material[] build, BlockFace trigger) {
-        if (build == null || build.length != 9) {
-            throw new IllegalArgumentException("MultiBlocks must have a length of 9!");
-        }
-
-        if (trigger != BlockFace.SELF && trigger != BlockFace.UP && trigger != BlockFace.DOWN) {
-            throw new IllegalArgumentException("Multiblock Blockface must be either UP, DOWN or SELF");
-        }
-
         this.item = item;
         this.blocks = build;
         this.trigger = trigger;

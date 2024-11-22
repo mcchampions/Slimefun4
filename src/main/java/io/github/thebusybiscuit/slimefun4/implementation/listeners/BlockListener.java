@@ -129,7 +129,7 @@ public class BlockListener implements Listener {
                         block.setBlockData(rotatable);
                     }
                 }
-                var placeEvent = new SlimefunBlockPlaceEvent(e.getPlayer(), item, block, sfItem);
+                SlimefunBlockPlaceEvent placeEvent = new SlimefunBlockPlaceEvent(e.getPlayer(), item, block, sfItem);
                 Bukkit.getPluginManager().callEvent(placeEvent);
 
                 if (placeEvent.isCancelled()) {
@@ -144,12 +144,7 @@ public class BlockListener implements Listener {
                             .createBlock(block.getLocation(), sfItem.getId());
 
                     if (data instanceof SlimefunUniversalBlockData) {
-                        if (Slimefun.getBlockDataService().isTileEntity(block.getType())) {
-                            Slimefun.getBlockDataService().updateUniversalDataUUID(block, data.getKey());
-                        } else {
-                            throw new IllegalStateException(
-                                    "You must use pdc support material for this Slimefun item!");
-                        }
+                        Slimefun.getBlockDataService().updateUniversalDataUUID(block, data.getKey());
                     }
 
                     sfItem.callItemHandler(BlockPlaceHandler.class, handler -> handler.onPlayerPlace(e));

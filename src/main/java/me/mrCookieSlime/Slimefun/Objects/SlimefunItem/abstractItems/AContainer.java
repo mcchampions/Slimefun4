@@ -188,12 +188,8 @@ public abstract class AContainer extends SlimefunItem
      * @return This method will return the current instance of {@link AContainer}, so that can be chained.
      */
     public final AContainer setCapacity(int capacity) {
-        if (getState() == ItemState.UNREGISTERED) {
-            this.energyCapacity = capacity;
-            return this;
-        } else {
-            throw new IllegalStateException("You cannot modify the capacity after the Item was registered.");
-        }
+        this.energyCapacity = capacity;
+        return this;
     }
 
     /**
@@ -221,23 +217,6 @@ public abstract class AContainer extends SlimefunItem
     @Override
     public void register(SlimefunAddon addon) {
         this.addon = addon;
-
-        if (getCapacity() <= 0) {
-            warn("The capacity has not been configured correctly. The Item was disabled.");
-            warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyCapacity(...)' before registering!");
-        }
-
-        if (getEnergyConsumption() <= 0) {
-            warn("The energy consumption has not been configured correctly. The Item was disabled.");
-            warn("Make sure to call '"
-                 + getClass().getSimpleName()
-                 + "#setEnergyConsumption(...)' before registering!");
-        }
-
-        if (getSpeed() <= 0) {
-            warn("The processing speed has not been configured correctly. The Item was disabled.");
-            warn("Make sure to call '" + getClass().getSimpleName() + "#setProcessingSpeed(...)' before registering!");
-        }
 
         if (getCapacity() > 0 && getEnergyConsumption() > 0 && getSpeed() > 0) {
             super.register(addon);

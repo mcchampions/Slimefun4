@@ -173,7 +173,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     }
 
     public static void setItemDisplayInfo(ItemStack item, PlayerBackpack bp) {
-        var meta = item.getItemMeta();
+        ItemMeta meta = item.getItemMeta();
         setItem(meta, bp);
         item.setItemMeta(meta);
     }
@@ -210,10 +210,6 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
 
     public PlayerBackpack(
             OfflinePlayer owner, UUID uuid, String name, int id, int size, @Nullable ItemStack[] contents) {
-        if (size < 9 || size > 54 || size % 9 != 0) {
-            throw new IllegalArgumentException("Invalid size! Size must be one of: [9, 18, 27, 36, 45, 54]");
-        }
-
         this.owner = owner;
         this.uuid = uuid;
         this.name = name;
@@ -225,9 +221,6 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
             return;
         }
 
-        if (size != contents.length) {
-            throw new IllegalArgumentException("Invalid contents: size mismatched!");
-        }
         inventory.setContents(contents);
     }
 
@@ -263,10 +256,6 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
      *            The new size for this Backpack
      */
     public void setSize(int size) {
-        if (size < 9 || size > 54 || size % 9 != 0) {
-            throw new IllegalArgumentException("Invalid size! Size must be one of: [9, 18, 27, 36, 45, 54]");
-        }
-
         this.size = size;
         updateInv();
         Slimefun.getDatabaseManager().getProfileDataController().saveBackpackInfo(this);

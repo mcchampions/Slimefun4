@@ -151,10 +151,6 @@ public final class SlimefunUtils {
      * @see #isSoulbound(ItemStack)
      */
     public static void setSoulbound(@Nullable ItemStack item, boolean makeSoulbound) {
-        if (item == null || item.getType() == Material.AIR) {
-            throw new IllegalArgumentException("A soulbound item cannot be null or air!");
-        }
-
         boolean isSoulbound = isSoulbound(item);
         ItemMeta meta = item.getItemMeta();
 

@@ -68,10 +68,6 @@ public class AncientAltarCraftEvent extends PlayerEvent implements Cancellable {
      *            being the {@link ItemStack} you want to change the item to.
      */
     public void setItem(ItemStack output) {
-        if (output == null || output.getType() == Material.AIR) {
-            throw new IllegalArgumentException("An Ancient Altar cannot drop 'null' items");
-        }
-
         this.output = output;
     }
 

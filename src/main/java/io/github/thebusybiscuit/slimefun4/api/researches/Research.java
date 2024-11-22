@@ -38,6 +38,11 @@ public class Research implements Keyed {
     private final int id;
     private final String name;
     private boolean enabled = true;
+    /**
+     * -- SETTER --
+     *  Sets the cost in XP levels to unlock this
+     */
+    @Setter
     @Getter
     private int levelCost;
     @Setter
@@ -161,24 +166,7 @@ public class Research implements Keyed {
      */
     @Deprecated
     public void setCost(int cost) {
-        if (levelCost < 0) {
-            throw new IllegalArgumentException("Research cost must be zero or greater!");
-        }
-
         levelCost = cost;
-    }
-
-    /**
-     * Sets the cost in XP levels to unlock this {@link Research}.
-     *
-     * @param levelCost The cost in XP levels
-     */
-    public void setLevelCost(int levelCost) {
-        if (levelCost < 0) {
-            throw new IllegalArgumentException("Research cost must be zero or greater!");
-        }
-
-        this.levelCost = levelCost;
     }
 
     /**

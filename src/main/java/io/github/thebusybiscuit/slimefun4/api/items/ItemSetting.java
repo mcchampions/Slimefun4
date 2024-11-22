@@ -28,12 +28,9 @@ public class ItemSetting<T> {
     /**
      * This creates a new {@link ItemSetting} with the given key and default value
      *
-     * @param item
-     *            The {@link SlimefunItem} this {@link ItemSetting} belongs to
-     * @param key
-     *            The key under which this setting will be stored (relative to the {@link SlimefunItem})
-     * @param defaultValue
-     *            The default value for this {@link ItemSetting}
+     * @param item         The {@link SlimefunItem} this {@link ItemSetting} belongs to
+     * @param key          The key under which this setting will be stored (relative to the {@link SlimefunItem})
+     * @param defaultValue The default value for this {@link ItemSetting}
      */
     public ItemSetting(SlimefunItem item, String key, T defaultValue) {
         this.item = item;
@@ -45,9 +42,7 @@ public class ItemSetting<T> {
      * This method checks if a given input would be valid as a value for this
      * {@link ItemSetting}. You can override this method to implement your own checks.
      *
-     * @param input
-     *            The input value to validate
-     *
+     * @param input The input value to validate
      * @return Whether the given input was valid
      */
     public boolean validateInput(T input) {
@@ -59,17 +54,10 @@ public class ItemSetting<T> {
      * Override this method to catch changes of a value.
      * A value may never be null.
      *
-     * @param newValue
-     *            The new value for this {@link ItemSetting}
+     * @param newValue The new value for this {@link ItemSetting}
      */
     public void update(T newValue) {
-        if (validateInput(newValue)) {
-            this.value = newValue;
-        } else {
-            throw new IllegalArgumentException("The passed value was not valid. (Maybe null?)");
-        }
-
-        // Feel free to override this as necessary.
+        this.value = newValue;
     }
 
     /**
@@ -105,9 +93,7 @@ public class ItemSetting<T> {
     /**
      * This method checks if this {@link ItemSetting} stores the given data type.
      *
-     * @param c
-     *            The class of data type you want to compare
-     *
+     * @param c The class of data type you want to compare
      * @return Whether this {@link ItemSetting} stores the given type
      */
     public boolean isType(Class<?> c) {
@@ -127,7 +113,6 @@ public class ItemSetting<T> {
     /**
      * This method is called by a {@link SlimefunItem} which wants to load its {@link ItemSetting}
      * from the {@link Config} file.
-     *
      */
     @SuppressWarnings("unchecked")
     public void reload() {
@@ -143,16 +128,16 @@ public class ItemSetting<T> {
                 this.value = newValue;
             } else {
                 item.warn("发现在 Items.yml 中有无效的物品设置!"
-                        + "\n  在 \""
-                        + item.getId()
-                        + "."
-                        + getKey()
-                        + "\""
-                        + "\n  "
-                        + configuredValue
-                        + " 不是一个有效值!"
-                        + "\n"
-                        + getErrorMessage());
+                          + "\n  在 \""
+                          + item.getId()
+                          + "."
+                          + getKey()
+                          + "\""
+                          + "\n  "
+                          + configuredValue
+                          + " 不是一个有效值!"
+                          + "\n"
+                          + getErrorMessage());
 
             }
         } else {
@@ -162,17 +147,17 @@ public class ItemSetting<T> {
                     : configuredValue.getClass().getSimpleName();
 
             item.warn("发现在 Items.yml 中有无效的物品设置!"
-                    + "\n请只设置有效的值."
-                    + "\n  在 \""
-                    + item.getId()
-                    + "."
-                    + getKey()
-                    + "\""
-                    + "\n  期望值为 \""
-                    + defaultValue.getClass().getSimpleName()
-                    + "\" 但填写了: \""
-                    + found
-                    + "\"");
+                      + "\n请只设置有效的值."
+                      + "\n  在 \""
+                      + item.getId()
+                      + "."
+                      + getKey()
+                      + "\""
+                      + "\n  期望值为 \""
+                      + defaultValue.getClass().getSimpleName()
+                      + "\" 但填写了: \""
+                      + found
+                      + "\"");
 
         }
     }

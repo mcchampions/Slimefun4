@@ -363,32 +363,26 @@ public class ChestMenu extends SlimefunInventoryHolder {
     }
 
     public ChestMenu setSize(int size) {
-        if (size % 9 == 0 && size >= 0 && size < 55) {
-            // Resize items list to match actual inventory size in order to reset inventory.
-            // I'm sure that use size of items as inventory size is somehow strange.
-            if (size > items.size()) {
-                while (items.size() < size) {
-                    this.items.add(null);
-                }
-            } else if (size < items.size()) {
-                while (items.size() > size) {
-                    this.items.remove(items.size() - 1);
-                }
-            } else {
-                return this;
+        // Resize items list to match actual inventory size in order to reset inventory.
+        // I'm sure that use size of items as inventory size is somehow strange.
+        if (size > items.size()) {
+            while (items.size() < size) {
+                this.items.add(null);
             }
-
-            this.size = size;
-
-            reset(false);
-
-            return this;
+        } else if (size < items.size()) {
+            while (items.size() > size) {
+                this.items.remove(items.size() - 1);
+            }
         } else {
-            throw new IllegalArgumentException(
-                    "The size of a ChestMenu must be a multiple of 9 and within the bounds 0-54,"
-                    + " received: "
-                    + size);
+            return this;
         }
+
+        this.size = size;
+
+        reset(false);
+
+        return this;
+
     }
 
     public boolean isSizeAutomaticallyInferred() {
