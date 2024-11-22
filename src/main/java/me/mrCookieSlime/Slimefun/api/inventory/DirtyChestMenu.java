@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import lombok.Getter;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -129,10 +128,6 @@ public class DirtyChestMenu extends ChestMenu {
      */
     @Nullable
     public ItemStack pushItem(ItemStack item, int... slots) {
-        if (item == null || item.getType() == Material.AIR) {
-            throw new IllegalArgumentException("Cannot push null or AIR");
-        }
-
         if (locked()) {
             throw new IllegalStateException("Cannot push item when menu is locked");
         }
