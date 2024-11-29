@@ -47,3 +47,10 @@
 
 ## 变更日志
 [here](CHANGLOG.md)
+
+## 本项目所使用到的开源代码的项目
+- [LuckPerms](https://github.com/LuckPerms/LuckPerms)
+- [SFCalc](https://github.com/Seggan/SFCalc)
+- [Geyser-Slimefun-Heads](https://github.com/Hahaa13/Geyser-Slimefun-Heads)
+- [NBTEditor](https://github.com/BananaPuncher714/NBTEditor)
+- [Snakeyaml](https://github.com/snakeyaml/snakeyaml)
