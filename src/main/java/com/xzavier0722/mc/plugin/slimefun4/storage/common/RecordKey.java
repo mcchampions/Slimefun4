@@ -3,10 +3,7 @@ package com.xzavier0722.mc.plugin.slimefun4.storage.common;
 import io.github.bakedlibs.dough.collections.Pair;
 import lombok.Getter;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class RecordKey extends ScopeKey {
     @Getter
@@ -17,7 +14,7 @@ public class RecordKey extends ScopeKey {
     private volatile boolean changed = true;
 
     public RecordKey(DataScope scope) {
-        this(scope, new HashSet<>());
+        this(scope, EnumSet.noneOf(FieldKey.class));
     }
 
     public RecordKey(DataScope scope, Set<FieldKey> fields) {

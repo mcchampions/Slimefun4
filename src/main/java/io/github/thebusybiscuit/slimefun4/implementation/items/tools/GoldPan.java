@@ -17,11 +17,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines
 import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.AutomatedPanningMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.GoldPanDrop;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+
+import java.util.*;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
@@ -46,7 +43,7 @@ import org.bukkit.inventory.ItemStack;
 public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements RecipeDisplayItem {
     private final RandomizedSet<ItemStack> randomizer = new RandomizedSet<>();
     @Getter
-    private final Set<Material> inputMaterials = new HashSet<>(List.of(Material.GRAVEL));
+    private final Set<Material> inputMaterials = EnumSet.of(Material.GRAVEL);
     private final Set<GoldPanDrop> drops = new HashSet<>();
 
     public GoldPan(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
