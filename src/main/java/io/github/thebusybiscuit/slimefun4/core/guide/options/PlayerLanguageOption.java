@@ -46,7 +46,7 @@ class PlayerLanguageOption implements SlimefunGuideOption<String> {
         }
     }
 
-    private void openLanguageSelection(Player p) {
+    private static void openLanguageSelection(Player p) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "guide.title.languages"));
 
         menu.open(p);

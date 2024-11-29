@@ -53,7 +53,7 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
         return true;
     }
 
-    private boolean isPlaceholder(
+    private static boolean isPlaceholder(
             @Nullable OfflinePlayer p, boolean requiresProfile, String params, String placeholder) {
         if (requiresProfile) {
             if (p != null && placeholder.equals(params)) {
@@ -134,7 +134,7 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
         return null;
     }
 
-    private String getProfilePlaceholder(Player p) {
+    private static String getProfilePlaceholder(Player p) {
         return Slimefun.getLocalization().getMessage(p, "placeholderapi.profile-loading");
     }
 }

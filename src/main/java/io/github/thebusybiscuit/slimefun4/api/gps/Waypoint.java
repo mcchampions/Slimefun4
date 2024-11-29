@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.gps;
 
 import io.github.thebusybiscuit.slimefun4.api.events.WaypointCreateEvent;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Teleporter;
 import java.util.Objects;
 import java.util.UUID;
@@ -127,7 +126,7 @@ public class Waypoint {
      */
 
     public ItemStack getIcon() {
-        return Slimefun.getGPSNetwork().getIcon(name, location.getWorld().getEnvironment());
+        return GPSNetwork.getIcon(name, location.getWorld().getEnvironment());
     }
 
     /**

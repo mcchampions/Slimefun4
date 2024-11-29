@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 
 import java.util.*;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.Bukkit;
@@ -33,6 +34,7 @@ public final class AndroidShareMenu {
     private static final int DISPLAY_START_SLOT = 9;
     private static final NamespacedKey BLOCK_INFO_KEY = new NamespacedKey(Slimefun.instance(), "share-users");
     private static final int SHARED_USERS_LIMIT = 15;
+    private static final Pattern SQLIT_PATTERN = Pattern.compile(", ");
 
     private AndroidShareMenu() {
     }
@@ -170,7 +172,7 @@ public final class AndroidShareMenu {
         if (replacedText.isEmpty()) {
             return Collections.emptyList();
         } else {
-            return new ArrayList<>(Arrays.asList(replacedText.split(", ")));
+            return new ArrayList<>(Arrays.asList(SQLIT_PATTERN.split(replacedText)));
         }
     }
 

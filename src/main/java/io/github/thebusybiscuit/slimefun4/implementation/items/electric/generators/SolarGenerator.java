@@ -116,7 +116,7 @@ public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
      *
      * @return Whether the given {@link World} has daytime and no active thunderstorm
      */
-    private boolean isDaytime(World world) {
+    private static boolean isDaytime(World world) {
         long time = world.getTime();
         return !world.hasStorm() && !world.isThundering() && (time < 12300 || time > 23850);
     }

@@ -47,7 +47,7 @@ public class ExplosiveBow extends SlimefunBow {
             int radius = range.getValue();
 
             Collection<Entity> entities =
-                    target.getWorld().getNearbyEntities(target.getLocation(), radius, radius, radius, this::canDamage);
+                    target.getWorld().getNearbyEntities(target.getLocation(), radius, radius, radius, ExplosiveBow::canDamage);
             for (Entity nearby : entities) {
                 LivingEntity entity = (LivingEntity) nearby;
 
@@ -75,7 +75,7 @@ public class ExplosiveBow extends SlimefunBow {
         };
     }
 
-    private boolean canDamage(Entity entity) {
+    private static boolean canDamage(Entity entity) {
         return entity instanceof LivingEntity && !(entity instanceof ArmorStand) && entity.isValid();
     }
 }

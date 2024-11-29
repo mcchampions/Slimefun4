@@ -58,7 +58,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * @return The new outcome of this operation
      */
     @Nullable
-    protected ItemStack onItemStackChange(
+    protected static ItemStack onItemStackChange(
             @Nullable ItemStack next) {
         // Override this as necessary
         return next;

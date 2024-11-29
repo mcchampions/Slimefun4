@@ -90,7 +90,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         return (e, d, block, machine) -> e.setCancelled(true);
     }
 
-    public Optional<Item> getPlacedItem(Block pedestal) {
+    public static Optional<Item> getPlacedItem(Block pedestal) {
         Location l = pedestal.getLocation().add(0.5, 1.2, 0.5);
 
         for (Entity n : l.getWorld().getNearbyEntities(l, 0.5, 0.5, 0.5, AncientPedestal::testItem)) {
@@ -102,7 +102,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         return Optional.empty();
     }
 
-    public @Nullable ArmorStand getArmorStand(Block pedestal, boolean createIfNoneExists) {
+    public static @Nullable ArmorStand getArmorStand(Block pedestal, boolean createIfNoneExists) {
         Optional<Item> entity = getPlacedItem(pedestal);
 
         if (entity.isPresent() && entity.get().getVehicle() instanceof ArmorStand armorStand) {
@@ -110,7 +110,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         }
 
         Location l = pedestal.getLocation().add(0.5, 1.2, 0.5);
-        for (Entity n : l.getWorld().getNearbyEntities(l, 0.5, 0.5, 0.5, this::testArmorStand)) {
+        for (Entity n : l.getWorld().getNearbyEntities(l, 0.5, 0.5, 0.5, AncientPedestal::testArmorStand)) {
             if (n instanceof ArmorStand armorStand) {
                 return armorStand;
             }
@@ -129,7 +129,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         }
     }
 
-    private boolean testArmorStand(@Nullable Entity n) {
+    private static boolean testArmorStand(@Nullable Entity n) {
         if (n instanceof ArmorStand && n.isValid()) {
             String customName = n.getCustomName();
             return customName != null && customName.startsWith(ITEM_PREFIX);
@@ -138,7 +138,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         }
     }
 
-    public ItemStack getOriginalItemStack(Item item) {
+    public static ItemStack getOriginalItemStack(Item item) {
         ItemStack stack = item.getItemStack().clone();
         ItemMeta im = stack.getItemMeta();
         String customName = item.getCustomName();

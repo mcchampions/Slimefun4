@@ -6,13 +6,20 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.helper.ItemHelper;
 import net.guizhanss.slimefun4.utils.ChatUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class CalcCommand extends SubCommand {
+    private static final Pattern PARAM_FIRST_PATTERN = Pattern.compile("%1");
+    private static final Pattern PARAM_SECOND_PATTERN = Pattern.compile("%2");
+    private static final Pattern PARAM_THIRD_PATTERN = Pattern.compile("%3");
+    private static final Pattern PARAM_FOUTH_PATTERN = Pattern.compile("%4");
+
     public CalcCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "calc", false);
     }
@@ -87,16 +94,16 @@ public class CalcCommand extends SubCommand {
         printResults(sender, item, amount);
     }
 
-    public void printResults(CommandSender sender, SlimefunItem item, long amount) {
+    public static void printResults(CommandSender sender, SlimefunItem item, long amount) {
         Slimefun.runAsync(() -> {
             Map<ItemStack, Long> results = calculate(item, amount);
 
             String header;
             String name = item.getItemNormalName();
             if (amount == 1) {
-                header = Slimefun.getLocalization().getMessage("commands.calc.header-string").replaceFirst("%1", name);
+                header = PARAM_FIRST_PATTERN.matcher(Slimefun.getLocalization().getMessage("commands.calc.header-string")).replaceFirst(name);
             } else {
-                header = Slimefun.getLocalization().getMessage("commands.calc.header-amount-string").replaceFirst("%1", name).replaceFirst("%2", String.valueOf(amount));
+                header = PARAM_SECOND_PATTERN.matcher(PARAM_FIRST_PATTERN.matcher(Slimefun.getLocalization().getMessage("commands.calc.header-amount-string")).replaceFirst(name)).replaceFirst(String.valueOf(amount));
             }
 
             ChatUtils.sendMessage(sender, header);
@@ -112,20 +119,17 @@ public class CalcCommand extends SubCommand {
                 if (originalValues <= maxStackSize) {
                     parsedAmount = Long.toString(originalValues);
                 } else {
-                    parsedAmount = Slimefun.getLocalization().getMessage("commands.calc.stack-string")
-                            .replaceFirst("%1", String.valueOf(originalValues)).replaceFirst("%2", String.valueOf(Math.floor(originalValues / (float) maxStackSize)))
-                            .replaceFirst("%3", String.valueOf(maxStackSize)).replaceFirst("%4", String.valueOf(originalValues % maxStackSize));
+                    parsedAmount = PARAM_FOUTH_PATTERN.matcher(PARAM_THIRD_PATTERN.matcher(PARAM_SECOND_PATTERN.matcher(PARAM_FIRST_PATTERN.matcher(Slimefun.getLocalization().getMessage("commands.calc.stack-string")).replaceFirst(String.valueOf(originalValues))).replaceFirst(String.valueOf(Math.floor(originalValues / (float) maxStackSize)))).replaceFirst(String.valueOf(maxStackSize))).replaceFirst(String.valueOf(originalValues % maxStackSize));
                 }
                 Slimefun.getLocalization().sendMessage(
                         sender, "commands.calc.amount-string", (m) ->
-                                m.replaceFirst("%1", Slimefun.getItemHelper().getItemName(entry.getKey()))
-                                        .replaceFirst("%2", parsedAmount)
+                                PARAM_SECOND_PATTERN.matcher(PARAM_FIRST_PATTERN.matcher(m).replaceFirst(ItemHelper.getItemName(entry.getKey()))).replaceFirst(parsedAmount)
                 );
             }
         });
     }
 
-    public Map<ItemStack, Long> calculate(SlimefunItem parent, long amount) {
+    public static Map<ItemStack, Long> calculate(SlimefunItem parent, long amount) {
         Map<ItemStack, Long> result = new HashMap<>();
 
         int multiplier = parent.getRecipeOutput().getAmount();
@@ -154,7 +158,7 @@ public class CalcCommand extends SubCommand {
         return result;
     }
 
-    private SlimefunItemStack getNextItem(Map<ItemStack, Long> map) {
+    private static SlimefunItemStack getNextItem(Map<ItemStack, Long> map) {
         for (Map.Entry<ItemStack, Long> entry : map.entrySet()) {
             if (entry.getKey() instanceof SlimefunItemStack ingredient) {
                 if (ingredient.getItem() != null) {
@@ -167,7 +171,7 @@ public class CalcCommand extends SubCommand {
         return null;
     }
 
-    private void add(Map<ItemStack, Long> map, ItemStack key, long amount) {
+    private static void add(Map<ItemStack, Long> map, ItemStack key, long amount) {
         ItemStack clone = key.clone();
         clone.setAmount(1);
         map.merge(clone, amount, Long::sum);

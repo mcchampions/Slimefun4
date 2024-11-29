@@ -101,7 +101,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         };
     }
 
-    private ToolUseHandler getToolUseHandler() {
+    private static ToolUseHandler getToolUseHandler() {
         return (e, tool, fortune, drops) -> {
             // Multi Tools cannot be used as shears
             Slimefun.getLocalization().sendMessage(e.getPlayer(), "messages.multi-tool.not-shears");
@@ -109,7 +109,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
         };
     }
 
-    private EntityInteractHandler getEntityInteractionHandler() {
+    private static EntityInteractHandler getEntityInteractionHandler() {
         return (e, item, offhand) -> {
             // Fixes #2217 - Prevent them from being used to shear entities
             EntityType type = e.getRightClicked().getType();

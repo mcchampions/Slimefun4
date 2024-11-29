@@ -67,7 +67,7 @@ abstract class AbstractSmeltery extends MultiBlockMachine {
         }
     }
 
-    private boolean canCraft(Inventory inv, List<ItemStack[]> inputs, int i) {
+    private static boolean canCraft(Inventory inv, List<ItemStack[]> inputs, int i) {
         for (ItemStack expectedInput : inputs.get(i)) {
             if (expectedInput != null) {
                 for (int j = 0; j < inv.getContents().length; j++) {

@@ -180,7 +180,7 @@ public class IndustrialMiner extends MultiBlockMachine {
         task.start(b);
     }
 
-    private Block[] findPistons(Block chest) {
+    private static Block[] findPistons(Block chest) {
         Block northern = chest.getRelative(BlockFace.NORTH);
 
         if (northern.getType() == Material.PISTON) {

@@ -142,7 +142,7 @@ public class MinerAndroid extends ProgrammableAndroid {
             // If we found a generator, continue.
             if (generator != null) {
                 if (firesEvent.getValue()) {
-                    generator.callEvent(block);
+                    InfiniteBlockGenerator.callEvent(block);
                 }
 
                 // "poof" a "new" block was generated

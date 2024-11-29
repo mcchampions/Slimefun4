@@ -176,7 +176,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         }
     }
 
-    @Nullable private Block findNextFluid(Block fluid) {
+    @Nullable private static Block findNextFluid(Block fluid) {
         if (fluid.getType() == Material.WATER || fluid.getType() == Material.BUBBLE_COLUMN) {
             /*
               With water we can be sure to find an infinite source whenever we
@@ -201,7 +201,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         return null;
     }
 
-    private ItemStack getFilledBottle(Block fluid) {
+    private static ItemStack getFilledBottle(Block fluid) {
         switch (fluid.getType()) {
             case WATER:
             case BUBBLE_COLUMN:
@@ -215,7 +215,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         }
     }
 
-    private ItemStack getFilledBucket(Block fluid) {
+    private static ItemStack getFilledBucket(Block fluid) {
         return switch (fluid.getType()) {
             case LAVA -> new ItemStack(Material.LAVA_BUCKET);
             case WATER, BUBBLE_COLUMN -> new ItemStack(Material.WATER_BUCKET);
@@ -233,7 +233,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
      *
      * @return Whether that {@link Block} is a liquid and a source {@link Block}.
      */
-    private boolean isSource(Block block) {
+    private static boolean isSource(Block block) {
         if (block.isLiquid()) {
             BlockData data = block.getBlockData();
 

@@ -32,8 +32,8 @@ public class GEOMiningOperation extends MiningOperation {
     public void onCancel(BlockPosition position) {
         ResourceManager resourceManager = Slimefun.getGPSNetwork().getResourceManager();
         OptionalInt supplies =
-                resourceManager.getSupplies(resource, position.getWorld(), position.getChunkX(), position.getChunkZ());
-        supplies.ifPresent(s -> resourceManager.setSupplies(
+                ResourceManager.getSupplies(resource, position.getWorld(), position.getChunkX(), position.getChunkZ());
+        supplies.ifPresent(s -> ResourceManager.setSupplies(
                 resource, position.getWorld(), position.getChunkX(), position.getChunkZ(), s + 1));
     }
 }

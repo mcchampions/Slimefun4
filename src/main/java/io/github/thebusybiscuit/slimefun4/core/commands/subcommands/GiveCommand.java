@@ -69,7 +69,7 @@ class GiveCommand extends SubCommand {
 
     }
 
-    private void giveItem(CommandSender sender, Player p, SlimefunItem sfItem, String[] args) {
+    private static void giveItem(CommandSender sender, Player p, SlimefunItem sfItem, String[] args) {
         if (sfItem instanceof MultiBlockMachine) {
             Slimefun.getLocalization().sendMessage(sender, "guide.cheat.no-multiblocks");
             return;
@@ -102,7 +102,7 @@ class GiveCommand extends SubCommand {
                         .replace(PLACEHOLDER_AMOUNT, String.valueOf(amount)));
     }
 
-    private int parseAmount(String[] args) {
+    private static int parseAmount(String[] args) {
         if (args.length != 4) {
             return 1;
         }

@@ -76,7 +76,7 @@ public class BlockDataService implements Keyed {
      * @param b     The {@link Block} in which to store the given value
      * @param value The value to store
      */
-    public void setBlockData(Block b, NamespacedKey key, String value) {
+    public static void setBlockData(Block b, NamespacedKey key, String value) {
         BlockState state = b.getState();
 
         if (state instanceof TileState tileState) {
@@ -117,7 +117,7 @@ public class BlockDataService implements Keyed {
         });
     }
 
-    public Optional<String> getBlockData(Block b, NamespacedKey key) {
+    public static Optional<String> getBlockData(Block b, NamespacedKey key) {
         BlockState state = b.getState(false);
         PersistentDataContainer container = getPersistentDataContainer(state);
 
@@ -129,7 +129,7 @@ public class BlockDataService implements Keyed {
     }
 
     @Nullable
-    private PersistentDataContainer getPersistentDataContainer(BlockState state) {
+    private static PersistentDataContainer getPersistentDataContainer(BlockState state) {
         if (state instanceof TileState tileState) {
             return tileState.getPersistentDataContainer();
         } else {
@@ -148,7 +148,7 @@ public class BlockDataService implements Keyed {
      * @param type The {@link Material} to check for
      * @return Whether the given {@link Material} is considered a Tile Entity
      */
-    public boolean isTileEntity(@Nullable Material type) {
+    public static boolean isTileEntity(@Nullable Material type) {
         if (type == null || type.isAir()) {
             // Cannot store data on air
             return false;

@@ -156,11 +156,11 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
      *
      * @return The target {@link Inventory}
      */
-    protected @Nullable Inventory findOutputInventory(ItemStack adding, Block dispBlock, Inventory dispInv) {
+    protected static @Nullable Inventory findOutputInventory(ItemStack adding, Block dispBlock, Inventory dispInv) {
         return findOutputInventory(adding, dispBlock, dispInv, dispInv);
     }
 
-    protected @Nullable Inventory findOutputInventory(
+    protected static @Nullable Inventory findOutputInventory(
             ItemStack product, Block dispBlock, Inventory dispInv, Inventory placeCheckerInv) {
         Optional<Inventory> outputChest = OutputChest.findOutputChestFor(dispBlock, product);
 

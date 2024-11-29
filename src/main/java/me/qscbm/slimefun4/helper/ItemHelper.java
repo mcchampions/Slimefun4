@@ -17,7 +17,7 @@ import java.util.Set;
 public class ItemHelper {
     public static final Map<String, String> ITEM_NAME_MAPPER = new HashMap<>();
 
-    public void load() {
+    public static void load() {
         Slimefun.instance().saveResource("vanilla_items.yml", true);
         Config config = new Config(Slimefun.instance(), "vanilla_items.yml");
         Set<String> keys = config.getKeys();
@@ -26,7 +26,7 @@ public class ItemHelper {
         }
     }
 
-    public String getItemName(ItemStack stack) {
+    public static String getItemName(ItemStack stack) {
         if (stack instanceof SlimefunItemStack sfItem) {
             return TextUtils.toPlainText(sfItem.getDisplayName());
         }

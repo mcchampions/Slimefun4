@@ -53,7 +53,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         addItemHandler(onPlace(), onRightClick(), onBreak());
     }
 
-    private BlockPlaceHandler onPlace() {
+    private static BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
@@ -68,7 +68,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         };
     }
 
-    private BlockBreakHandler onBreak() {
+    private static BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
             public void onBlockBreak(Block b) {

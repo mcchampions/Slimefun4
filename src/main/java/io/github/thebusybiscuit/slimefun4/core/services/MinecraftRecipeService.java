@@ -124,7 +124,7 @@ public class MinecraftRecipeService {
      *
      * @return An Array of {@link RecipeChoice} representing the shape of this {@link Recipe}
      */
-    public RecipeChoice[] getRecipeShape(Recipe recipe) {
+    public static RecipeChoice[] getRecipeShape(Recipe recipe) {
         if (recipe instanceof ShapedRecipe shapedRecipe) {
             List<RecipeChoice> choices = new LinkedList<>();
 

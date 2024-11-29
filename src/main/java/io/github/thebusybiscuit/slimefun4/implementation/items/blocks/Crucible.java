@@ -53,7 +53,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         return recipes;
     }
 
-    private List<ItemStack> getMachineRecipes() {
+    private static List<ItemStack> getMachineRecipes() {
         List<ItemStack> items = new LinkedList<>();
 
         items.add(new ItemStack(Material.COBBLESTONE, 16));
@@ -175,7 +175,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         }
     }
 
-    private void addLiquidLevel(Block block, boolean water) {
+    private static void addLiquidLevel(Block block, boolean water) {
         int level = ((Levelled) block.getBlockData()).getLevel();
 
         if (level > 7) {
@@ -196,7 +196,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         }
     }
 
-    private void placeLiquid(Block block, boolean water) {
+    private static void placeLiquid(Block block, boolean water) {
         if (block.getType().isAir()) {
             // Fixes #2903 - Cancel physics update to resolve weird overlapping
             block.setType(water ? Material.WATER : Material.LAVA, false);
@@ -211,7 +211,7 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         runPostTask(block, water ? SoundEffect.CRUCIBLE_PLACE_WATER_SOUND : SoundEffect.CRUCIBLE_PLACE_LAVA_SOUND, 1);
     }
 
-    private void runPostTask(Block block, SoundEffect sound, int times) {
+    private static void runPostTask(Block block, SoundEffect sound, int times) {
         if (!(block.getBlockData() instanceof Levelled le)) {
             SoundEffect.CRUCIBLE_BLOCK_BREAK_SOUND.playAt(block);
             return;

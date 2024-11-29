@@ -41,7 +41,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         return capacity;
     }
 
-    private BlockPlaceHandler onPlace() {
+    private static BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
@@ -53,7 +53,7 @@ public abstract class GPSTransmitter extends SimpleSlimefunItem<BlockTicker>
         };
     }
 
-    private BlockBreakHandler onBreak() {
+    private static BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {

@@ -177,7 +177,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         };
     }
 
-    private ItemStack getOtherHandItem(Player p, EquipmentSlot hand) {
+    private static ItemStack getOtherHandItem(Player p, EquipmentSlot hand) {
         if (hand == EquipmentSlot.HAND) {
             return p.getInventory().getItemInOffHand();
         } else {
@@ -235,7 +235,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return damageOnUse.getValue();
     }
 
-    private void playAnimation(Player p, Block b, EquipmentSlot hand) {
+    private static void playAnimation(Player p, Block b, EquipmentSlot hand) {
         p.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());
 
         if (hand == EquipmentSlot.HAND) {

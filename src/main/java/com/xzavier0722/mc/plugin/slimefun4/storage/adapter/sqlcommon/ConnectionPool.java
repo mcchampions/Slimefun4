@@ -69,11 +69,11 @@ public class ConnectionPool {
         checkDestroy();
 
         destroyed = true;
-        freeConn.forEach(this::tryClose);
-        usingConn.forEach(this::tryClose);
+        freeConn.forEach(ConnectionPool::tryClose);
+        usingConn.forEach(ConnectionPool::tryClose);
     }
 
-    private boolean testConn(Connection conn) {
+    private static boolean testConn(Connection conn) {
         try (var stmt = conn.createStatement()) {
             stmt.execute("/* ping */ SHOW DATABASES");
             return true;
@@ -88,7 +88,7 @@ public class ConnectionPool {
         }
     }
 
-    private void tryClose(Connection conn) {
+    private static void tryClose(Connection conn) {
         try {
             conn.close();
         } catch (SQLException e) {

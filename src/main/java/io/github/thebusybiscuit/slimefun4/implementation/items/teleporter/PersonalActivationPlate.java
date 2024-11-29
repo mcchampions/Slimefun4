@@ -27,7 +27,7 @@ public class PersonalActivationPlate extends AbstractTeleporterPlate {
         addItemHandler(onPlace());
     }
 
-    private BlockPlaceHandler onPlace() {
+    private static BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {

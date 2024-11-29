@@ -381,7 +381,7 @@ public class MiningTask implements Runnable {
         }
     }
 
-    private void setExtended(Block block, Piston piston, boolean extended) {
+    private static void setExtended(Block block, Piston piston, boolean extended) {
         piston.setExtended(extended);
         block.setBlockData(piston, false);
 

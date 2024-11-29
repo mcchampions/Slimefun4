@@ -5,7 +5,6 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.Univers
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.util.EnumSet;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;

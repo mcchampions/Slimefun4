@@ -23,7 +23,7 @@ public class SlimefunArmorTask extends AbstractArmorTask {
         updateAndHandleArmor(p, armor, profile.getArmor());
     }
 
-    private void updateAndHandleArmor(Player p, ItemStack[] armor, HashedArmorpiece[] cachedArmor) {
+    private static void updateAndHandleArmor(Player p, ItemStack[] armor, HashedArmorpiece[] cachedArmor) {
         for (int slot = 0; slot < 4; slot++) {
             ItemStack item = armor[slot];
             HashedArmorpiece armorPiece = cachedArmor[slot];
@@ -62,7 +62,7 @@ public class SlimefunArmorTask extends AbstractArmorTask {
      * @param armorPiece
      *            The actual {@link ItemStack} of the armor piece
      */
-    protected void onArmorPieceTick(Player p, SlimefunArmorPiece sfArmorPiece, ItemStack armorPiece) {
+    protected static void onArmorPieceTick(Player p, SlimefunArmorPiece sfArmorPiece, ItemStack armorPiece) {
         for (PotionEffect effect : sfArmorPiece.getPotionEffects()) {
             p.removePotionEffect(effect.getType());
             p.addPotionEffect(effect);

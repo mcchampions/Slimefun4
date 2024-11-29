@@ -153,34 +153,34 @@ public abstract class SlimefunLocalization implements Keyed {
      * @param key The Key of those Messages
      * @return The List this key is referring to
      */
-    public List<String> getDefaultMessages(String key) {
+    public static List<String> getDefaultMessages(String key) {
         return LanguageService.MESSAGES_MAP.get(key);
     }
 
-    public List<String> getMessages(Player p, String key) {
+    public static List<String> getMessages(Player p, String key) {
         return LanguageService.MESSAGES_MAP.get(key);
     }
 
-    public List<String> getMessages(Player p, String key, UnaryOperator<String> function) {
+    public static List<String> getMessages(Player p, String key, UnaryOperator<String> function) {
         List<String> messages = getMessages(p, key);
         messages.replaceAll(function);
 
         return messages;
     }
 
-    public @Nullable String getResearchName(Player p, NamespacedKey key) {
+    public static @Nullable String getResearchName(Player p, NamespacedKey key) {
         return LanguageService.RESEARCH_NAME_MAP.get(key.getNamespace() + '.' + key.getKey());
     }
 
-    public @Nullable String getItemGroupName(Player p, NamespacedKey key) {
+    public static @Nullable String getItemGroupName(Player p, NamespacedKey key) {
         return LanguageService.CATEGORIE_NAME_MAP.get(key.getNamespace() + '.' + key.getKey());
     }
 
-    public @Nullable String getResourceString(Player p, String key) {
+    public static @Nullable String getResourceString(Player p, String key) {
         return LanguageService.RESOURCE_NAME_MAP.get(key);
     }
 
-    public ItemStack getRecipeTypeItem(Player p, RecipeType recipeType) {
+    public static ItemStack getRecipeTypeItem(Player p, RecipeType recipeType) {
         ItemStack item = recipeType.toItem();
 
         if (item == null) {

@@ -37,7 +37,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
         super(itemGroup, item, recipe, trigger);
     }
 
-    protected Inventory createVirtualInventory(Inventory inv) {
+    protected static Inventory createVirtualInventory(Inventory inv) {
         Inventory fakeInv = Bukkit.createInventory(null, 9, "Fake Inventory");
 
         for (int j = 0; j < inv.getContents().length; j++) {
@@ -59,7 +59,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
     }
 
     // Return: true if upgrade from existing backpack, else false
-    protected boolean upgradeBackpack(
+    protected static boolean upgradeBackpack(
             Player p, Inventory inv, SlimefunBackpack backpack, ItemStack output, Runnable onReadyCb) {
         ItemStack input = null;
 
@@ -123,7 +123,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
         return false;
     }
 
-    private Optional<String> retrieveID(@Nullable ItemStack backpack) {
+    private static Optional<String> retrieveID(@Nullable ItemStack backpack) {
         if (backpack != null) {
             for (String line : backpack.getItemMeta().getLore()) {
                 if (line.startsWith("§7ID: ") && line.contains("#")) {
@@ -135,7 +135,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
         return Optional.empty();
     }
 
-    private Optional<String> retrieveUuid(@Nullable ItemStack backpack) {
+    private static Optional<String> retrieveUuid(@Nullable ItemStack backpack) {
         if (backpack == null) {
             return Optional.empty();
         }

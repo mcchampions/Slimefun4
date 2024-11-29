@@ -154,15 +154,15 @@ public class ReactorAccessPort extends SlimefunItem {
                 ChestMenuUtils.getEmptyClickHandler());
     }
 
-    public int[] getInputSlots() {
+    public static int[] getInputSlots() {
         return new int[] {19, 28, 37, 25, 34, 43};
     }
 
-    public int[] getFuelSlots() {
+    public static int[] getFuelSlots() {
         return new int[] {19, 28, 37};
     }
 
-    public int[] getCoolantSlots() {
+    public static int[] getCoolantSlots() {
         return new int[] {25, 34, 43};
     }
 
@@ -170,7 +170,7 @@ public class ReactorAccessPort extends SlimefunItem {
         return new int[] {40};
     }
 
-    @Nullable private BlockMenu getReactor(Location l) {
+    @Nullable private static BlockMenu getReactor(Location l) {
         Location location = new Location(l.getWorld(), l.getX(), l.getY() - 3, l.getZ());
         SlimefunItem item = StorageCacheUtils.getSfItem(location);
 

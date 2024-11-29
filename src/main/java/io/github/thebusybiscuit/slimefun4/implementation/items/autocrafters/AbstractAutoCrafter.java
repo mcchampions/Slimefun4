@@ -16,6 +16,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.AutoCrafterListener;
@@ -280,7 +281,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return Whether that {@link Block} has a valid {@link Inventory}
      */
-    protected boolean isValidInventory(Block block) {
+    protected static boolean isValidInventory(Block block) {
         if (CrafterInteractorManager.hasInterator(block)) {
             return true;
         }
@@ -362,7 +363,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
                     49,
                     new CustomItemStack(
                             Material.BARRIER,
-                            Slimefun.getLocalization().getMessages(p, "messages.auto-crafting.tooltips.enabled")));
+                            SlimefunLocalization.getMessages(p, "messages.auto-crafting.tooltips.enabled")));
             menu.addMenuClickHandler(49, (pl, item, slot, action) -> {
                 if (action.isRightClicked()) {
                     deleteRecipe(pl, b);
@@ -377,7 +378,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
                     49,
                     new CustomItemStack(
                             HeadTexture.EXCLAMATION_MARK.getAsItemStack(),
-                            Slimefun.getLocalization().getMessages(p, "messages.auto-crafting.tooltips.disabled")));
+                            SlimefunLocalization.getMessages(p, "messages.auto-crafting.tooltips.disabled")));
             menu.addMenuClickHandler(49, (pl, item, slot, action) -> {
                 if (action.isRightClicked()) {
                     deleteRecipe(pl, b);
@@ -503,7 +504,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return The leftover item or null if the item is fully consumed
      */
-    @Nullable private ItemStack getLeftoverItem(ItemStack item) {
+    @Nullable private static ItemStack getLeftoverItem(ItemStack item) {
         Material type = item.getType();
 
         return switch (type) {
@@ -592,7 +593,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
         return EnergyNetComponentType.CONSUMER;
     }
 
-    private int getIngredientCount(AbstractRecipe recipe) {
+    private static int getIngredientCount(AbstractRecipe recipe) {
         if (recipe instanceof SlimefunItemRecipe) {
             // Recipe is for slimefun item
             List<ItemStackWrapper> itemInRecipe = new ArrayList<>();

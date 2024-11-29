@@ -245,7 +245,7 @@ public class DirtyChestMenu extends ChestMenu {
 
     public void replaceExistingItem(int slot, ItemStack item, boolean event) {
         if (event) {
-            item = preset.onItemStackChange(item);
+            item = BlockMenuPreset.onItemStackChange(item);
         }
 
         super.replaceExistingItem(slot, item);

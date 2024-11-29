@@ -55,7 +55,7 @@ public class RainbowTickHandler extends BlockTicker {
      *
      * @return Whether the array contained any {@link GlassPane} materials
      */
-    private boolean containsGlassPanes(List<Material> materials) {
+    private static boolean containsGlassPanes(List<Material> materials) {
         for (Material type : materials) {
             /*
             This BlockData is purely virtual and only created on startup, it should have

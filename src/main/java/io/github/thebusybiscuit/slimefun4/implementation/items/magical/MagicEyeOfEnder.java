@@ -39,7 +39,7 @@ public class MagicEyeOfEnder extends SimpleSlimefunItem<ItemUseHandler> {
         };
     }
 
-    private boolean hasArmor(PlayerInventory inv) {
+    private static boolean hasArmor(PlayerInventory inv) {
         return SlimefunUtils.isItemSimilar(inv.getHelmet(), SlimefunItems.ENDER_HELMET, true)
                 && SlimefunUtils.isItemSimilar(inv.getChestplate(), SlimefunItems.ENDER_CHESTPLATE, true)
                 && SlimefunUtils.isItemSimilar(inv.getLeggings(), SlimefunItems.ENDER_LEGGINGS, true)

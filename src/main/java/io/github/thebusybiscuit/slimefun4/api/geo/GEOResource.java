@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.api.geo;
 
 import io.github.thebusybiscuit.slimefun4.api.events.GEOResourceGenerationEvent;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.geo.GEOMiner;
 import io.github.thebusybiscuit.slimefun4.implementation.items.geo.GEOScanner;
@@ -55,7 +56,7 @@ public interface GEOResource extends Keyed {
      *
      * @return The name of this Resource
      */
-    
+
     String getName();
 
     /**
@@ -64,7 +65,7 @@ public interface GEOResource extends Keyed {
      *
      * @return The {@link ItemStack} version of this Resource.
      */
-    
+
     ItemStack getItem();
 
     /**
@@ -90,9 +91,9 @@ public interface GEOResource extends Keyed {
      *            The {@link Player} to localize the name for.
      * @return The localized name for this {@link GEOResource}
      */
-    
+
     default String getName(Player p) {
-        String name = Slimefun.getLocalization()
+        String name = SlimefunLocalization
                 .getResourceString(p, "resources." + getKey().getNamespace() + "." + getKey().getKey());
         return name == null ? getName() : name;
     }

@@ -157,7 +157,7 @@ public class OreWasher extends MultiBlockMachine {
         }
     }
 
-    private void removeItem(
+    private static void removeItem(
             Player p,
             Block b,
             Inventory inputInv,

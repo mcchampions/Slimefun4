@@ -141,7 +141,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
                 .isEmpty();
     }
 
-    private boolean isValidAnimal(Entity n, Predicate<LivingEntity> predicate) {
+    private static boolean isValidAnimal(Entity n, Predicate<LivingEntity> predicate) {
         if (n instanceof LivingEntity livingEntity) {
             return predicate.test(livingEntity);
         } else {

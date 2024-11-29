@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class PlayerChatListener implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onChat(AsyncPlayerChatEvent e) {
+    public static void onChat(AsyncPlayerChatEvent e) {
         Slimefun.getChatCatcher().pollCatcher(e.getPlayer().getUniqueId()).ifPresent(h -> {
             e.setCancelled(true);
             Slimefun.runSync(() -> h.accept(e.getMessage()));
@@ -18,7 +18,7 @@ public class PlayerChatListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onLeave(PlayerQuitEvent e) {
+    public static void onLeave(PlayerQuitEvent e) {
         Slimefun.getChatCatcher().pollCatcher(e.getPlayer().getUniqueId());
     }
 }

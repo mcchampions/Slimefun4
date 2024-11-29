@@ -3,6 +3,7 @@ package io.github.thebusybiscuit.slimefun4.api.gps;
 import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Teleporter;
@@ -97,10 +98,10 @@ public final class TeleportationManager {
 
                     String[] lore = {
                         "",
-                        "§8\u21E8 &7"
-                                + Slimefun.getLocalization().getResourceString(p, "tooltips.world")
-                                + ": &f"
-                                + l.getWorld().getName(),
+                            "§8\u21E8 &7"
+                            + SlimefunLocalization.getResourceString(p, "tooltips.world")
+                            + ": &f"
+                            + l.getWorld().getName(),
                         "§8\u21E8 &7X: &f" + l.getX(),
                         "§8\u21E8 &7Y: &f" + l.getY(),
                         "§8\u21E8 &7Z: &f" + l.getZ(),
@@ -161,7 +162,7 @@ public final class TeleportationManager {
      *
      * @return The amount of time the teleportation will take
      */
-    public int getTeleportationTime(int complexity, Location source, Location destination) {
+    public static int getTeleportationTime(int complexity, Location source, Location destination) {
         if (complexity < 100) {
             return 100;
         }
@@ -173,7 +174,7 @@ public final class TeleportationManager {
         return Math.max(1, unsafeTime);
     }
 
-    private int distanceSquared(Location source, Location destination) {
+    private static int distanceSquared(Location source, Location destination) {
         if (source.getWorld().getUID().equals(destination.getWorld().getUID())) {
             int distance = (int) source.distanceSquared(destination);
             return Math.min(distance, 100_000_000);
@@ -182,7 +183,7 @@ public final class TeleportationManager {
         }
     }
 
-    private boolean isValid(@Nullable Player p, Location source) {
+    private static boolean isValid(@Nullable Player p, Location source) {
         return p != null
                 && p.isValid()
                 && p.getWorld().getUID().equals(source.getWorld().getUID())

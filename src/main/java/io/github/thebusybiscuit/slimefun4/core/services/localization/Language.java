@@ -71,7 +71,7 @@ public final class Language {
      *
      * @return A percentage {@code (0.0 - 100.0)} for the progress of translation of this {@link Language}
      */
-    public double getTranslationProgress() {
+    public static double getTranslationProgress() {
         return 100.0;
     }
 

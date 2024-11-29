@@ -239,7 +239,7 @@ public class TickerTask extends BaseTickerTask {
         if (errors == 1) {
             // Generate a new Error-Report
             new ErrorReport<>(x, l, item);
-            bugs.put(position, errors);
+            bugs.put(position, 1);
         } else if (errors == 4) {
             Slimefun.logger().log(Level.SEVERE, "X: {0} Y: {1} Z: {2} ({3})", new Object[]{
                     l.getBlockX(), l.getBlockY(), l.getBlockZ(), item.getId()

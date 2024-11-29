@@ -50,7 +50,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         return true;
     }
 
-    private BlockBreakHandler onBreak() {
+    private static BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
             @Override
             public void onBlockBreak(Block b) {

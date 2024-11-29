@@ -7,6 +7,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
+import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemState;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -72,7 +73,7 @@ public class GEOMiner extends SlimefunItem
         super(itemGroup, item, recipeType, recipe);
 
         processor.setProgressBar(new ItemStack(Material.DIAMOND_PICKAXE));
-        createPreset(this, getItemName(), this::constructMenu);
+        createPreset(this, getItemName(), GEOMiner::constructMenu);
         addItemHandler(onBlockPlace(), onBlockBreak());
     }
 
@@ -234,7 +235,7 @@ public class GEOMiner extends SlimefunItem
         return EnergyNetComponentType.CONSUMER;
     }
 
-    protected void constructMenu(BlockMenuPreset preset) {
+    protected static void constructMenu(BlockMenuPreset preset) {
         for (int i : BORDER) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
@@ -318,8 +319,7 @@ public class GEOMiner extends SlimefunItem
         boolean success = Slimefun.getRegistry().getGEOResources().values().isEmpty();
         for (GEOResource resource : Slimefun.getRegistry().getGEOResources().values()) {
             if (resource.isObtainableFromGEOMiner()) {
-                OptionalInt optional = Slimefun.getGPSNetwork()
-                        .getResourceManager()
+                OptionalInt optional = ResourceManager
                         .getSupplies(resource, b.getWorld(), b.getX() >> 4, b.getZ() >> 4);
 
                 if (optional.isEmpty()) continue;
@@ -333,8 +333,7 @@ public class GEOMiner extends SlimefunItem
                     }
 
                     processor.startOperation(b, new GEOMiningOperation(resource, PROCESSING_TIME));
-                    Slimefun.getGPSNetwork()
-                            .getResourceManager()
+                    ResourceManager
                             .setSupplies(resource, b.getWorld(), b.getX() >> 4, b.getZ() >> 4, supplies - 1);
                     updateHologram(b, "&7开采中: &r" + resource.getName());
                     return;

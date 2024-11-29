@@ -93,7 +93,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
         return false;
     }
 
-    protected boolean isFertilizer(@Nullable ItemStack item) {
+    protected static boolean isFertilizer(@Nullable ItemStack item) {
         return SlimefunUtils.isItemSimilar(item, organicFertilizer, false, false);
     }
 }

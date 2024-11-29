@@ -50,7 +50,7 @@ public class PickaxeOfVeinMining extends SimpleSlimefunItem<ToolUseHandler> {
         };
     }
 
-    private void breakBlocks(Player p, List<Block> blocks, int fortune, ItemStack tool) {
+    private static void breakBlocks(Player p, List<Block> blocks, int fortune, ItemStack tool) {
         for (Block b : blocks) {
             if (Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.BREAK_BLOCK)) {
                 b.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());

@@ -7,7 +7,7 @@ import org.bukkit.event.world.WorldLoadEvent;
 
 public class WorldListener implements Listener {
     @EventHandler
-    public void onChunkLoad(WorldLoadEvent e) {
+    public static void onChunkLoad(WorldLoadEvent e) {
         Slimefun.getDatabaseManager().getBlockDataController().loadWorld(e.getWorld());
     }
 }

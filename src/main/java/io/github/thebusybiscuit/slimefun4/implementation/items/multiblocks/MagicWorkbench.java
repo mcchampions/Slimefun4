@@ -131,7 +131,7 @@ public class MagicWorkbench extends AbstractCraftingTable {
         }
     }
 
-    private Block locateDispenser(Block b) {
+    private static Block locateDispenser(Block b) {
         Block block = null;
 
         if (b.getRelative(1, 0, 0).getType() == Material.DISPENSER) {
@@ -147,7 +147,7 @@ public class MagicWorkbench extends AbstractCraftingTable {
         return block;
     }
 
-    private boolean isCraftable(Inventory inv, ItemStack[] recipe) {
+    private static boolean isCraftable(Inventory inv, ItemStack[] recipe) {
         for (int j = 0; j < inv.getContents().length; j++) {
             if (!SlimefunUtils.isItemSimilar(inv.getContents()[j], recipe[j], true, true, false)) {
                 if (SlimefunItem.getByItem(recipe[j]) instanceof SlimefunBackpack) {

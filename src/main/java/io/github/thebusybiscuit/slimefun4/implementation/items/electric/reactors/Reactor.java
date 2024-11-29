@@ -269,7 +269,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         }
     }
 
-    protected ReactorMode getReactorMode(Location l) {
+    protected static ReactorMode getReactorMode(Location l) {
         ReactorMode mode = ReactorMode.GENERATOR;
 
         var blockData = StorageCacheUtils.getBlock(l);
@@ -316,7 +316,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         return new int[] {19, 28, 37, 25, 34, 43};
     }
 
-    public int[] getFuelSlots() {
+    public static int[] getFuelSlots() {
         return new int[] {19, 28, 37};
     }
 
@@ -511,7 +511,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         return true;
     }
 
-    private float getPercentage(int time, int total) {
+    private static float getPercentage(int time, int total) {
         int passed = ((total - time) % COOLANT_DURATION);
         return Math.round(((((COOLANT_DURATION - passed) * 100.0F) / COOLANT_DURATION) * 100.0F) / 100.0F);
     }

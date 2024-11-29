@@ -323,9 +323,9 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         logger.log(Level.INFO, "正在加载第三方插件支持...");
         integrations.start();
         logger.log(Level.INFO, "正在映射原版物品名称...");
-        itemHelper.load();
+        ItemHelper.load();
         logger.log(Level.INFO, "共映射 {0} 个原版物品名称:", ItemHelper.ITEM_NAME_MAPPER.keySet().size());
-        logger.log(Level.INFO, itemHelper.getItemName(new ItemStack(Material.GRASS_BLOCK)) + "...");
+        logger.log(Level.INFO, ItemHelper.getItemName(new ItemStack(Material.GRASS_BLOCK)) + "...");
 
         // Hooray!
         logger.log(Level.INFO, "Slimefun 完成加载, 耗时 {0}", getStartupTime(timestamp));
@@ -451,7 +451,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     /**
      * This method creates all necessary directories (and sub directories) for Slimefun.
      */
-    private void createDirectories() {
+    private static void createDirectories() {
         String[] storageFolders = {"waypoints", "block-backups"};
         String[] pluginFolders = {"scripts", "error-reports", "cache/github", "world-settings"};
 
@@ -728,7 +728,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @param timestamp The time at which we started to load Slimefun.
      * @return The total time it took to load Slimefun (in ms or s)
      */
-    private String getStartupTime(long timestamp) {
+    private static String getStartupTime(long timestamp) {
         long ms = (System.nanoTime() - timestamp) / 1000000;
 
         if (ms > 1000) {

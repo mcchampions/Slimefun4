@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.LockedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SeasonalItemGroup;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import java.util.ArrayList;
@@ -149,7 +150,7 @@ public class ItemGroup implements Keyed {
     /**
      * This refreshes the {@link ItemGroup} order.
      */
-    private void sortCategoriesByTier() {
+    private static void sortCategoriesByTier() {
         List<ItemGroup> categories = Slimefun.getRegistry().getAllItemGroups();
         categories.sort(Comparator.comparingInt(ItemGroup::getTier));
     }
@@ -207,7 +208,7 @@ public class ItemGroup implements Keyed {
      */
     public ItemStack getItem(Player p) {
         return new CustomItemStack(item, meta -> {
-            String name = Slimefun.getLocalization().getItemGroupName(p, key);
+            String name = SlimefunLocalization.getItemGroupName(p, key);
 
             if (name == null) {
                 name = item.getItemMeta().getDisplayName();
@@ -246,7 +247,7 @@ public class ItemGroup implements Keyed {
      * @return The localized name of this {@link ItemGroup}
      */
     public String getDisplayName(Player p) {
-        String localized = Slimefun.getLocalization().getItemGroupName(p, key);
+        String localized = SlimefunLocalization.getItemGroupName(p, key);
 
         if (localized != null) {
             return localized;

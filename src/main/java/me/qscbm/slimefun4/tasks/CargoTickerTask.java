@@ -110,19 +110,19 @@ public class CargoTickerTask extends BaseTickerTask {
         }
 
         try {
-            cargoManager.getTicker().update();
+            CargoManager.getTicker().update();
             Block b = l.getBlock();
             tickBlock(b, cargoManager, blockData);
-            cargoManager.getTicker().startNewTick();
+            CargoManager.getTicker().startNewTick();
         } catch (RuntimeException x) {
             //noinspection CallToPrintStackTrace
             x.printStackTrace();
         }
     }
 
-    private void tickBlock(Block b, CargoManager item, SlimefunBlockData data) {
+    private static void tickBlock(Block b, CargoManager item, SlimefunBlockData data) {
         try {
-            item.getTicker().tick(b, item, data);
+            CargoManager.getTicker().tick(b, item, data);
         } catch (RuntimeException | LinkageError x) {
             //noinspection CallToPrintStackTrace
             x.printStackTrace();

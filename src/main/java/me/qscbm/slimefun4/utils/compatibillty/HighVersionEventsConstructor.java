@@ -39,11 +39,11 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
         }
     }
 
-    private DamageSource newDamageSource(String type, Entity clusingEntity) {
+    private static DamageSource newDamageSource(String type, Entity clusingEntity) {
         return DamageSource.builder(getDamageType(type)).withCausingEntity(clusingEntity).build();
     }
 
-    private DamageType getDamageType(String key) {
+    private static DamageType getDamageType(String key) {
         try {
             Field field = DamageType.class.getDeclaredField(key);
             return (DamageType) field.get(null);

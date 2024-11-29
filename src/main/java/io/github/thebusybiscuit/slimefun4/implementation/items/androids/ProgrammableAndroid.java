@@ -169,7 +169,7 @@ public class ProgrammableAndroid extends SlimefunItem
         addItemHandler(onPlace(), onBreak());
     }
 
-    private BlockPlaceHandler onPlace() {
+    private static BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
@@ -364,7 +364,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    private String addInstruction(String[] script, int index, Instruction instruction) {
+    private static String addInstruction(String[] script, int index, Instruction instruction) {
         int i = 0;
         StringBuilder builder = new StringBuilder(Instruction.START.name() + '-');
 
@@ -383,7 +383,7 @@ public class ProgrammableAndroid extends SlimefunItem
         return builder.toString();
     }
 
-    private String duplicateInstruction(String[] script, int index) {
+    private static String duplicateInstruction(String[] script, int index) {
         int i = 0;
         StringBuilder builder = new StringBuilder(Instruction.START + "-");
 
@@ -402,7 +402,7 @@ public class ProgrammableAndroid extends SlimefunItem
         return builder.toString();
     }
 
-    private String deleteInstruction(String[] script, int index) {
+    private static String deleteInstruction(String[] script, int index) {
         int i = 0;
         StringBuilder builder = new StringBuilder(Instruction.START.name() + '-');
 
@@ -648,12 +648,12 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    public String getScript(SlimefunUniversalBlockData ubd) {
+    public static String getScript(SlimefunUniversalBlockData ubd) {
         String script = ubd.getData("script");
         return script != null ? script : DEFAULT_SCRIPT;
     }
 
-    public void setScript(SlimefunUniversalBlockData ubd, String script) {
+    public static void setScript(SlimefunUniversalBlockData ubd, String script) {
         ubd.setData("script", script);
     }
 
@@ -800,7 +800,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    protected void rotate(Block b, BlockFace current, int mod) {
+    protected static void rotate(Block b, BlockFace current, int mod) {
         int index = POSSIBLE_ROTATIONS.indexOf(current) + mod;
 
         if (index == POSSIBLE_ROTATIONS.size()) {
@@ -860,7 +860,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    private boolean insertFuel(
+    private static boolean insertFuel(
             UniversalMenu menu, Inventory dispenser, int slot, ItemStack currentFuel, ItemStack newFuel) {
         if (currentFuel == null) {
             menu.replaceExistingItem(43, newFuel);

@@ -95,7 +95,7 @@ public class Smeltery extends AbstractSmeltery {
         }
     }
 
-    private void consumeFire(Player p, Block dispenser, Block b) {
+    private static void consumeFire(Player p, Block dispenser, Block b) {
         boolean isFireRenewed = IgnitionChamber.useFlintAndSteel(p, dispenser);
 
         if (!isFireRenewed) {

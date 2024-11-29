@@ -168,7 +168,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         }
     }
 
-    private int getRandomlevel(Enchantment enchantment) {
+    private static int getRandomlevel(Enchantment enchantment) {
         int level = 1;
 
         if (enchantment.getMaxLevel() != 1) {
@@ -178,7 +178,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         return level;
     }
 
-    private void removeIllegalEnchantments(
+    private static void removeIllegalEnchantments(
             ItemStack target, List<Enchantment> potentialEnchantments) {
         for (Enchantment enchantment : target.getEnchantments().keySet()) {
             // Duplicate or conflict

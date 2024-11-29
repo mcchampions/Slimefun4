@@ -58,7 +58,7 @@ public class BlockPlacer extends SlimefunItem {
         addItemHandler(new VanillaInventoryDropHandler<>(Dispenser.class));
     }
 
-    private BlockPlaceHandler onPlace() {
+    private static BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
@@ -118,7 +118,7 @@ public class BlockPlacer extends SlimefunItem {
      *
      * @return Whether this action is permitted or not
      */
-    private boolean hasPermission(Dispenser dispenser, Block target) {
+    private static boolean hasPermission(Dispenser dispenser, Block target) {
         String owner = StorageCacheUtils.getData(dispenser.getLocation(), "owner");
 
         if (owner == null) {

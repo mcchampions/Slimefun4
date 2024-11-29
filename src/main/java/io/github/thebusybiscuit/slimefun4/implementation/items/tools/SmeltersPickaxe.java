@@ -48,7 +48,7 @@ public class SmeltersPickaxe extends SimpleSlimefunItem<ToolUseHandler> implemen
         };
     }
 
-    private void smelt(Block b, ItemStack drop, int fortune) {
+    private static void smelt(Block b, ItemStack drop, int fortune) {
         Optional<ItemStack> furnaceOutput = Slimefun.getMinecraftRecipeService().getFurnaceOutput(drop);
 
         if (furnaceOutput.isPresent()) {

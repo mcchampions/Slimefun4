@@ -50,7 +50,7 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
         addItemHandler(onPlace(), onBreak());
     }
 
-    private BlockPlaceHandler onPlace() {
+    private static BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
@@ -161,7 +161,7 @@ public class ExpCollector extends SlimefunItem implements InventoryBlock, Energy
         StorageCacheUtils.setData(location, DATA_KEY, String.valueOf(experiencePoints - withdrawn));
     }
 
-    private int getStoredExperience(Location location) {
+    private static int getStoredExperience(Location location) {
         SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
         String value = blockData.getData(DATA_KEY);
 

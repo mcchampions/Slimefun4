@@ -71,7 +71,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private void handleSlimefunArmor(Player p, ItemStack[] armor, HashedArmorpiece[] cachedArmor) {
+    private static void handleSlimefunArmor(Player p, ItemStack[] armor, HashedArmorpiece[] cachedArmor) {
         for (int slot = 0; slot < 4; slot++) {
             ItemStack item = armor[slot];
             HashedArmorpiece armorpiece = cachedArmor[slot];
@@ -102,7 +102,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private void checkForSolarHelmet(Player p) {
+    private static void checkForSolarHelmet(Player p) {
         ItemStack helmet = p.getInventory().getHelmet();
         SlimefunItem item = SlimefunItem.getByItem(helmet);
 
@@ -111,7 +111,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private boolean hasSunlight(Player p) {
+    private static boolean hasSunlight(Player p) {
         World world = p.getWorld();
 
         if (world.getEnvironment() != Environment.NORMAL) {

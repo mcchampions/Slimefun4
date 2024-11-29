@@ -5,6 +5,7 @@ import io.github.bakedlibs.dough.recipes.MinecraftRecipe;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AltarRecipe;
@@ -228,7 +229,7 @@ public class RecipeType implements Keyed {
     }
 
     public ItemStack getItem(Player p) {
-        return Slimefun.getLocalization().getRecipeTypeItem(p, this);
+        return SlimefunLocalization.getRecipeTypeItem(p, this);
     }
 
     public SlimefunItem getMachine() {

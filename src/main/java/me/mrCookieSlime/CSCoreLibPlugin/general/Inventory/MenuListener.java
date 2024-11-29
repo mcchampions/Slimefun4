@@ -22,7 +22,7 @@ public class MenuListener implements Listener {
     }
 
     @EventHandler
-    public void onClose(InventoryCloseEvent e) {
+    public static void onClose(InventoryCloseEvent e) {
         var holder = e.getInventory().getHolder();
 
         if (holder instanceof ChestMenu menu) {
@@ -32,7 +32,7 @@ public class MenuListener implements Listener {
     }
 
     @EventHandler
-    public void onClick(InventoryClickEvent e) {
+    public static void onClick(InventoryClickEvent e) {
         var holder = e.getInventory().getHolder();
 
         if (holder instanceof ChestMenu menu) {

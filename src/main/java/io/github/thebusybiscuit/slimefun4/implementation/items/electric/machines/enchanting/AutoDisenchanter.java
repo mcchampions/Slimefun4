@@ -126,7 +126,7 @@ public class AutoDisenchanter extends AbstractEnchantmentMachine {
         }
     }
 
-    private void transferEnchantments(ItemStack item, ItemStack book, Map<Enchantment, Integer> enchantments) {
+    private static void transferEnchantments(ItemStack item, ItemStack book, Map<Enchantment, Integer> enchantments) {
         ItemMeta itemMeta = item.getItemMeta();
         ItemMeta bookMeta = book.getItemMeta();
         ((Repairable) bookMeta).setRepairCost(((Repairable) itemMeta).getRepairCost());

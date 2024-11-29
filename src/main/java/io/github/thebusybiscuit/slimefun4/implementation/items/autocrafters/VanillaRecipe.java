@@ -1,6 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.autocrafters;
 
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AsyncRecipeChoiceTask;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import java.util.ArrayList;
@@ -66,7 +66,7 @@ class VanillaRecipe extends AbstractRecipe {
         menu.replaceExistingItem(24, getResult().clone());
         menu.addMenuClickHandler(24, ChestMenuUtils.getEmptyClickHandler());
 
-        RecipeChoice[] choices = Slimefun.getMinecraftRecipeService().getRecipeShape(recipe);
+        RecipeChoice[] choices = MinecraftRecipeService.getRecipeShape(recipe);
         ItemStack[] items = new ItemStack[9];
 
         if (choices.length == 1 && choices[0] instanceof MaterialChoice materialChoice) {

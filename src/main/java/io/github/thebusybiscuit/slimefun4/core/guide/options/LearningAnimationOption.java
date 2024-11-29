@@ -4,6 +4,7 @@ import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.core.config.SlimefunConfigManager;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +43,7 @@ class LearningAnimationOption implements SlimefunGuideOption<Boolean> {
         } else {
             boolean enabled = getSelectedOption(p, guide).orElse(true);
             String optionState = enabled ? "enabled" : "disabled";
-            List<String> lore = Slimefun.getLocalization()
+            List<String> lore = SlimefunLocalization
                     .getMessages(p, "guide.options.learning-animation." + optionState + ".text");
             lore.add("");
             lore.add("&7\u21E8 "

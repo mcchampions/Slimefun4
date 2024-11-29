@@ -34,7 +34,7 @@ public class LanguageService {
         return INSTANCE;
     }
 
-    public void load() {
+    public static void load() {
         Slimefun.logger().log(Level.INFO,"正在加载语言文件至内存中");
         long start = System.currentTimeMillis();
         language = Slimefun.getLocalization().getLanguage("zh-CN");
@@ -47,7 +47,7 @@ public class LanguageService {
         Slimefun.logger().log(Level.INFO,"加载完毕,耗时:" + (end - start) + "ms");
     }
 
-    public void loadResearches() {
+    public static void loadResearches() {
         FileConfiguration file = language.getFile(LanguageFile.RESEARCHES);
         Map<String, Object> map = file.getValues(true);
         map.forEach((k, v) -> {
@@ -57,7 +57,7 @@ public class LanguageService {
         });
     }
 
-    public void loadMessages() {
+    public static void loadMessages() {
         FileConfiguration file = language.getFile(LanguageFile.MESSAGES);
         Map<String, Object> map = file.getValues(true);
         map.forEach((k, v) -> {
@@ -70,7 +70,7 @@ public class LanguageService {
         });
     }
 
-    public void loadResources() {
+    public static void loadResources() {
         FileConfiguration file = language.getFile(LanguageFile.RESOURCES);
         Map<String, Object> map = file.getValues(true);
         map.forEach((k, v) -> {
@@ -80,7 +80,7 @@ public class LanguageService {
         });
     }
 
-    public void loadCategories() {
+    public static void loadCategories() {
         FileConfiguration file = language.getFile(LanguageFile.CATEGORIES);
         Map<String, Object> map = file.getValues(true);
         map.forEach((k, v) -> {
@@ -90,7 +90,7 @@ public class LanguageService {
         });
     }
 
-    public void loadRecipes() {
+    public static void loadRecipes() {
         FileConfiguration file = language.getFile(LanguageFile.RECIPES);
         Map<String, Object> map = file.getValues(true);
         map.forEach((k, v) -> {

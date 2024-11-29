@@ -73,7 +73,7 @@ public class BeeWingsTask extends AbstractPlayerTask {
      *            The limit of {@link Block blocks} to check under the given {@link Block b}.
      *
      */
-    private int getDistanceToGround(Block b, int limit) {
+    private static int getDistanceToGround(Block b, int limit) {
         for (int i = 1; i <= limit; i++) {
             Block relative = b.getRelative(0, -i, 0);
 

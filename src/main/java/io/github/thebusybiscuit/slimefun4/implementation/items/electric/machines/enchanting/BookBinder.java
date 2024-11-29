@@ -102,7 +102,7 @@ public class BookBinder extends AContainer {
         return null;
     }
 
-    private boolean isCompatible(@Nullable ItemStack item) {
+    private static boolean isCompatible(@Nullable ItemStack item) {
         return item != null && item.getType() == Material.ENCHANTED_BOOK;
     }
 

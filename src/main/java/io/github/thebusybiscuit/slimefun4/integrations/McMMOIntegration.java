@@ -31,17 +31,17 @@ class McMMOIntegration implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockPlacerPlace(BlockPlacerPlaceEvent e) {
+    public static void onBlockPlacerPlace(BlockPlacerPlaceEvent e) {
         // This registers blocks placed by the BlockPlacer as "player-placed"
         try {
             mcMMO.getPlaceStore().setTrue(e.getBlock());
         } catch (RuntimeException | LinkageError x) {
-            Slimefun.getIntegrations().logError("mcMMO", x);
+            IntegrationsManager.logError("mcMMO", x);
         }
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onItemSalvage(McMMOPlayerSalvageCheckEvent e) {
+    public static void onItemSalvage(McMMOPlayerSalvageCheckEvent e) {
         // Prevent Slimefun items from being salvaged
         if (!isSalvageable(e.getSalvageItem())) {
             e.setCancelled(true);
@@ -50,11 +50,11 @@ class McMMOIntegration implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onAutoDisenchant(AutoDisenchantEvent e) {
+    public static void onAutoDisenchant(AutoDisenchantEvent e) {
         try {
             SkillUtils.removeAbilityBuff(e.getItem());
         } catch (RuntimeException | LinkageError x) {
-            Slimefun.getIntegrations().logError("mcMMO", x);
+            IntegrationsManager.logError("mcMMO", x);
         }
     }
 
@@ -68,7 +68,7 @@ class McMMOIntegration implements Listener {
      *
      * @return Whether this item can be safely salvaged
      */
-    private boolean isSalvageable(ItemStack item) {
+    private static boolean isSalvageable(ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
         return sfItem == null || sfItem instanceof VanillaItem;
     }

@@ -119,7 +119,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
         }
     }
 
-    private void updateItemLore(ItemStack item, ItemMeta meta, int usesLeft) {
+    private static void updateItemLore(ItemStack item, ItemMeta meta, int usesLeft) {
         List<Component> lores = meta.lore();
         Component newLine = LoreBuilder.usesLeftNew(usesLeft);
         if (lores != null && !lores.isEmpty()) {

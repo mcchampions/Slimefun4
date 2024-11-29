@@ -76,7 +76,7 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
         SlimefunGuideSettings.openSettings(p, guide);
     }
 
-    private SlimefunGuideMode getNextMode(Player p, SlimefunGuideMode mode) {
+    private static SlimefunGuideMode getNextMode(Player p, SlimefunGuideMode mode) {
         if (p.hasPermission("slimefun.cheat.items")) {
             if (mode == SlimefunGuideMode.SURVIVAL_MODE) {
                 return SlimefunGuideMode.CHEAT_MODE;

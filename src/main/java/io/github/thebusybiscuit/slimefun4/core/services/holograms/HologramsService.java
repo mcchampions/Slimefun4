@@ -109,7 +109,7 @@ public class HologramsService {
         }
 
         // Scan all nearby entities which could be possible holograms
-        Collection<Entity> holograms = loc.getWorld().getNearbyEntities(loc, RADIUS, RADIUS, RADIUS, this::isHologram);
+        Collection<Entity> holograms = loc.getWorld().getNearbyEntities(loc, RADIUS, RADIUS, RADIUS, HologramsService::isHologram);
 
         for (Entity n : holograms) {
             if (n instanceof ArmorStand) {
@@ -157,7 +157,7 @@ public class HologramsService {
      * @param n The {@link Entity} to check
      * @return Whether this could be a hologram
      */
-    private boolean isHologram(Entity n) {
+    private static boolean isHologram(Entity n) {
         if (n instanceof ArmorStand armorStand) {
             // The absolute minimum requirements to count as a hologram
             return !armorStand.isVisible() && armorStand.isSilent() && !armorStand.hasGravity();

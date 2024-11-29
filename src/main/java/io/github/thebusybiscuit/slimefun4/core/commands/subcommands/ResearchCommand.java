@@ -75,7 +75,7 @@ class ResearchCommand extends SubCommand {
         });
     }
 
-    private void giveResearch(CommandSender sender, Player p, String input) {
+    private static void giveResearch(CommandSender sender, Player p, String input) {
         Optional<Research> research = getResearchFromString(input);
 
         if (research.isEmpty()) {
@@ -91,7 +91,7 @@ class ResearchCommand extends SubCommand {
         });
     }
 
-    private void researchAll(CommandSender sender, PlayerProfile profile, Player p) {
+    private static void researchAll(CommandSender sender, PlayerProfile profile, Player p) {
         for (Research res : Slimefun.getRegistry().getResearches()) {
             if (!profile.hasUnlocked(res)) {
                 Slimefun.getLocalization().sendMessage(sender, "messages.give-research", true, msg -> msg.replace(
@@ -103,7 +103,7 @@ class ResearchCommand extends SubCommand {
         }
     }
 
-    private void reset(PlayerProfile profile, Player p) {
+    private static void reset(PlayerProfile profile, Player p) {
         for (Research research : Slimefun.getRegistry().getResearches()) {
             profile.setResearched(research, false);
         }
@@ -112,7 +112,7 @@ class ResearchCommand extends SubCommand {
                 .sendMessage(p, "commands.research.reset", true, msg -> msg.replace(PLACEHOLDER_PLAYER, p.getName()));
     }
 
-    private Optional<Research> getResearchFromString(String input) {
+    private static Optional<Research> getResearchFromString(String input) {
         for (Research research : Slimefun.getRegistry().getResearches()) {
             if (research.getKey().toString().equalsIgnoreCase(input)) {
                 return Optional.of(research);

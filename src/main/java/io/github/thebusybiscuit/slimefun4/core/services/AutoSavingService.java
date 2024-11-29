@@ -23,7 +23,7 @@ public class AutoSavingService {
      * @param interval The interval in which to run this task
      */
     public void start(Slimefun plugin, int interval) {
-        plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, this::saveAllPlayers, 2000L, interval * 60L * 20L);
+        plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, AutoSavingService::saveAllPlayers, 2000L, interval * 60L * 20L);
         plugin.getServer()
                 .getScheduler()
                 .runTaskTimerAsynchronously(
@@ -45,7 +45,7 @@ public class AutoSavingService {
      * This method saves every {@link PlayerProfile} in memory and removes profiles
      * that were marked for deletion.
      */
-    private void saveAllPlayers() {
+    private static void saveAllPlayers() {
         Iterator<PlayerProfile> iterator = PlayerProfile.iterator();
         int players = 0;
 

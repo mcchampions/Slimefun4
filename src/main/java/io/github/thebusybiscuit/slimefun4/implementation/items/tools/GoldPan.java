@@ -156,7 +156,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      * @return the {@link EntityInteractHandler} of this {@link SlimefunItem}
      */
 
-    public EntityInteractHandler onEntityInteract() {
+    public static EntityInteractHandler onEntityInteract() {
         return (e, item, offHand) -> {
             if (!(e.getRightClicked() instanceof ItemFrame)) {
                 e.setCancelled(true);

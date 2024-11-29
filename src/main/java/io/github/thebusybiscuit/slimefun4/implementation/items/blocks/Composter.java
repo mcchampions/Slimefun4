@@ -39,7 +39,7 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
         return recipes;
     }
 
-    private List<ItemStack> getMachineRecipes() {
+    private static List<ItemStack> getMachineRecipes() {
         List<ItemStack> items = new LinkedList<>();
 
         for (Material leave : Tag.LEAVES.getValues()) {
@@ -103,7 +103,7 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
         };
     }
 
-    private void pushItem(Block b, ItemStack output) {
+    private static void pushItem(Block b, ItemStack output) {
         Optional<Inventory> outputChest = findOutputChest(b, output);
 
         if (outputChest.isPresent()) {
@@ -114,7 +114,7 @@ public class Composter extends SimpleSlimefunItem<BlockUseHandler> implements Re
         }
     }
 
-    private Optional<Inventory> findOutputChest(Block b, ItemStack output) {
+    private static Optional<Inventory> findOutputChest(Block b, ItemStack output) {
         return OutputChest.findOutputChestFor(b, output);
     }
 

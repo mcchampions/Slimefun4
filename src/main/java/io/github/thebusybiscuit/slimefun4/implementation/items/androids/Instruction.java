@@ -71,7 +71,7 @@ public enum Instruction {
      */
     TURN_LEFT(AndroidType.NONE, HeadTexture.SCRIPT_LEFT, (android, b, inv, face) -> {
         int mod = -1;
-        android.rotate(b, face, mod);
+        ProgrammableAndroid.rotate(b, face, mod);
     }),
 
     /**
@@ -79,7 +79,7 @@ public enum Instruction {
      */
     TURN_RIGHT(AndroidType.NONE, HeadTexture.SCRIPT_RIGHT, (android, b, inv, face) -> {
         int mod = 1;
-        android.rotate(b, face, mod);
+        ProgrammableAndroid.rotate(b, face, mod);
     }),
 
     /**

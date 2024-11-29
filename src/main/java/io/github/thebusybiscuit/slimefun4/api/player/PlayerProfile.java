@@ -260,7 +260,7 @@ public class PlayerProfile {
         Slimefun.getDatabaseManager().getProfileDataController().saveProfileBackpackCount(this);
     }
 
-    private int countNonEmptyResearches(Collection<Research> researches) {
+    private static int countNonEmptyResearches(Collection<Research> researches) {
         int count = 0;
         for (Research research : researches) {
             if (research.hasEnabledItems()) {

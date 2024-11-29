@@ -28,13 +28,13 @@ public class SlimefunProfiler {
 
     public void start() {}
 
-    public long newEntry() {
+    public static long newEntry() {
         return System.nanoTime();
     }
 
     public void scheduleEntries(int amount) {}
 
-    public long closeEntry(Location l, SlimefunItem item, long timestamp) {
+    public static long closeEntry(Location l, SlimefunItem item, long timestamp) {
         if (timestamp == 0) {
             return 0;
         }
@@ -55,43 +55,43 @@ public class SlimefunProfiler {
      * @return The current performance grade
      */
 
-    public PerformanceRating getPerformance() {
+    public static PerformanceRating getPerformance() {
         return PerformanceRating.UNKNOWN;
     }
 
-    public String getTime() {
+    public static String getTime() {
         return "0ms";
     }
 
-    public int getTickRate() {
+    public static int getTickRate() {
         return Slimefun.getTickerTask().getTickRate();
     }
 
-    public boolean hasTimings(Block b) {
+    public static boolean hasTimings(Block b) {
         return true;
     }
 
-    public String getTime(Block b) {
+    public static String getTime(Block b) {
         return "0ms";
     }
 
-    public String getTime(Chunk chunk) {
+    public static String getTime(Chunk chunk) {
         return "0ms";
     }
 
-    public String getTime(SlimefunItem item) {
+    public static String getTime(SlimefunItem item) {
         return "0ms";
     }
 
-    public long getAndResetAverageTimings() {
+    public static long getAndResetAverageTimings() {
         return 0;
     }
 
-    public double getAndResetAverageNanosecondTimings() {
+    public static double getAndResetAverageNanosecondTimings() {
         return 0;
     }
 
-    public double getAverageTimingsPerMachine() {
+    public static double getAverageTimingsPerMachine() {
         return 0;
     }
 }

@@ -98,7 +98,7 @@ public class MultiBlock {
         return Objects.hash(item.getId(), Arrays.hashCode(blocks), trigger, isSymmetric);
     }
 
-    private boolean compareBlocks(Material a, @Nullable Material b) {
+    private static boolean compareBlocks(Material a, @Nullable Material b) {
         if (b != null) {
             for (Tag<Material> tag : SUPPORTED_TAGS) {
                 if (tag.isTagged(b)) {

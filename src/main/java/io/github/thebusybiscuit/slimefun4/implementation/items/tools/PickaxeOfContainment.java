@@ -52,7 +52,7 @@ public class PickaxeOfContainment extends SimpleSlimefunItem<ToolUseHandler> {
         };
     }
 
-    private ItemStack breakSpawner(Block b) {
+    private static ItemStack breakSpawner(Block b) {
         AbstractMonsterSpawner spawner;
 
         /*

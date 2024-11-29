@@ -115,7 +115,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         }
     }
 
-    private List<Block> findBlocks(Block b) {
+    private static List<Block> findBlocks(Block b) {
         List<Block> blocks = new ArrayList<>(26);
 
         for (int x = -1; x <= 1; x++) {

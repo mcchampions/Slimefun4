@@ -5,6 +5,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunChunkData;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.events.GEOResourceGenerationEvent;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.geo.GEOMiner;
 import io.github.thebusybiscuit.slimefun4.implementation.items.geo.GEOScanner;
@@ -87,7 +88,7 @@ public class ResourceManager {
      *
      * @return An {@link OptionalInt}, either empty or containing the amount of the given {@link GEOResource}
      */
-    public OptionalInt getSupplies(GEOResource resource, World world, int x, int z) {
+    public static OptionalInt getSupplies(GEOResource resource, World world, int x, int z) {
         String key = resource.getKey().toString().replace(':', '-');
         var chunkData = Slimefun.getDatabaseManager().getBlockDataController().getChunkData(world.getChunkAt(x, z));
         if (chunkData == null) {
@@ -102,7 +103,7 @@ public class ResourceManager {
         }
     }
 
-    public void getSuppliesAsync(GEOResource resource, Chunk chunk, IAsyncReadCallback<Integer> callback) {
+    public static void getSuppliesAsync(GEOResource resource, Chunk chunk, IAsyncReadCallback<Integer> callback) {
         Slimefun.getDatabaseManager().getBlockDataController().getChunkDataAsync(chunk, new IAsyncReadCallback<>() {
             @Override
             public boolean runOnMainThread() {
@@ -140,7 +141,7 @@ public class ResourceManager {
      * @param value
      *            The new supply value
      */
-    public void setSupplies(GEOResource resource, World world, int x, int z, int value) {
+    public static void setSupplies(GEOResource resource, World world, int x, int z, int value) {
         String key = resource.getKey().toString().replace(':', '-');
         Slimefun.getDatabaseManager()
                 .getBlockDataController()
@@ -170,7 +171,7 @@ public class ResourceManager {
      *
      * @return The new supply value
      */
-    private int generate(GEOResource resource, World world, int x, int y, int z) {
+    private static int generate(GEOResource resource, World world, int x, int y, int z) {
         // Get the corresponding Block (and Biome)
         Block block = world.getBlockAt(x << 4, y, z << 4);
         Biome biome = block.getBiome();
@@ -224,7 +225,7 @@ public class ResourceManager {
         int x = block.getX() >> 4;
         int z = block.getZ() >> 4;
 
-        String title = "§4" + Slimefun.getLocalization().getResourceString(p, "tooltips.results");
+        String title = "§4" + SlimefunLocalization.getResourceString(p, "tooltips.results");
         ChestMenu menu = new ChestMenu(title);
 
         for (int slot : backgroundSlots) {
@@ -235,12 +236,12 @@ public class ResourceManager {
                 4,
                 new CustomItemStack(
                         HeadTexture.MINECRAFT_CHUNK.getAsItemStack(),
-                        ChatColor.YELLOW + Slimefun.getLocalization().getResourceString(p, "tooltips.chunk"),
+                        ChatColor.YELLOW + SlimefunLocalization.getResourceString(p, "tooltips.chunk"),
                         "",
                         "§8\u21E8 §7"
-                                + Slimefun.getLocalization().getResourceString(p, "tooltips.world")
-                                + ": "
-                                + block.getWorld().getName(),
+                        + SlimefunLocalization.getResourceString(p, "tooltips.world")
+                        + ": "
+                        + block.getWorld().getName(),
                         "§8\u21E8 §7X: " + x + " Z: " + z),
                 ChestMenuUtils.getEmptyClickHandler());
         List<GEOResource> resources =
@@ -262,7 +263,7 @@ public class ResourceManager {
         for (int i = page * 28; i < resources.size() && i < (page + 1) * 28; i++) {
             GEOResource resource = resources.get(i);
             int supplies = supplyMap.get(resource);
-            String suffix = Slimefun.getLocalization()
+            String suffix = SlimefunLocalization
                     .getResourceString(p, ChatUtils.checkPlurality("tooltips.unit", supplies));
 
             ItemStack item = new CustomItemStack(

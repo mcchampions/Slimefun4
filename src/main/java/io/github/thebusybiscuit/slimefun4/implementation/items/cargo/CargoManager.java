@@ -39,7 +39,7 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
         };
     }
 
-    public CargoTicker getTicker() {
+    public static CargoTicker getTicker() {
         return new CargoTicker() {
             @Override
             public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {

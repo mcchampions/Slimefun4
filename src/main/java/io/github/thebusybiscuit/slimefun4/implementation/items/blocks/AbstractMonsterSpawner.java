@@ -42,7 +42,7 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      * @return An {@link Optional} describing the result
      */
 
-    public Optional<EntityType> getEntityType(ItemStack item) {
+    public static Optional<EntityType> getEntityType(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
 
         // We may want to update this in the future to also make use of the BlockStateMeta

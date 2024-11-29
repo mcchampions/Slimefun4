@@ -75,7 +75,7 @@ public class SlimefunConfigManager {
         researchesConfig = getConfig(plugin, "Researches", () -> new Config(plugin, "Researches.yml"));
     }
 
-    @Nullable private Config getConfig(Slimefun plugin, String name, Supplier<Config> supplier) {
+    @Nullable private static Config getConfig(Slimefun plugin, String name, Supplier<Config> supplier) {
         try {
             return supplier.get();
         } catch (RuntimeException x) {
@@ -233,7 +233,7 @@ public class SlimefunConfigManager {
 
     public void setFreeCreativeResearchingEnabled(boolean enabled) {}
 
-    public boolean isFreeCreativeResearchingEnabled() {
+    public static boolean isFreeCreativeResearchingEnabled() {
         return false;
     }
 

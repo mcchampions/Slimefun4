@@ -62,12 +62,12 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
 
             @Override
             public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
-                EnergyRegulator.this.tick(b, data);
+                EnergyRegulator.tick(b, data);
             }
         });
     }
 
-    private void tick(Block b, SlimefunBlockData blockData) {
+    private static void tick(Block b, SlimefunBlockData blockData) {
         EnergyNet network = EnergyNet.getNetworkFromLocationOrCreate(b.getLocation());
         network.tick(b, blockData);
     }

@@ -191,7 +191,7 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
         }
     }
 
-    private boolean isBucket(@Nullable ItemStack item) {
+    private static boolean isBucket(@Nullable ItemStack item) {
         if (item == null) {
             return false;
         }

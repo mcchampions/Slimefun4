@@ -89,7 +89,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         };
     }
 
-    private void createJumpingBlock(Block ground, int index) {
+    private static void createJumpingBlock(Block ground, int index) {
         Location loc = ground.getRelative(BlockFace.UP).getLocation().add(0.5, 0.0, 0.5);
         FallingBlock block = ground.getWorld().spawnFallingBlock(loc, ground.getBlockData());
         block.setDropItem(false);
@@ -97,7 +97,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         block.setMetadata("seismic_axe", new FixedMetadataValue(Slimefun.instance(), "fake_block"));
     }
 
-    private boolean canReach(Location playerLocation, Location entityLocation, Location groundLocation) {
+    private static boolean canReach(Location playerLocation, Location entityLocation, Location groundLocation) {
         // Too far away from ground
         double maxGroundDistanceSquared = MAX_GROUND_DISTANCE * MAX_GROUND_DISTANCE;
 
@@ -141,7 +141,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         }
     }
 
-    private Block findGround(Block b) {
+    private static Block findGround(Block b) {
         if (b.getType() == Material.AIR) {
             int minHeight = b.getWorld().getMinHeight();
             for (int y = 0; b.getY() - y > minHeight; y++) {

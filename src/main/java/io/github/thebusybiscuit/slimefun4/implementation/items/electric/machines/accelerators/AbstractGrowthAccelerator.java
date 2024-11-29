@@ -28,7 +28,7 @@ public abstract class AbstractGrowthAccelerator extends SlimefunItem implements 
         super(itemGroup, item, recipeType, recipe);
 
         addItemHandler(onBreak());
-        createPreset(this, this::constructMenu);
+        createPreset(this, AbstractGrowthAccelerator::constructMenu);
     }
 
     private BlockBreakHandler onBreak() {
@@ -44,7 +44,7 @@ public abstract class AbstractGrowthAccelerator extends SlimefunItem implements 
         };
     }
 
-    private void constructMenu(BlockMenuPreset preset) {
+    private static void constructMenu(BlockMenuPreset preset) {
         for (int i : BORDER) {
             preset.addItem(
                     i,

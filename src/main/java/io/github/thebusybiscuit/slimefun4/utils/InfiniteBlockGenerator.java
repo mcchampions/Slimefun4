@@ -97,7 +97,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
         }
     }
 
-    private boolean hasSurroundingMaterials(Block b, Material... materials) {
+    private static boolean hasSurroundingMaterials(Block b, Material... materials) {
         boolean[] matches = new boolean[materials.length];
         int count = 0;
 
@@ -132,7 +132,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
      * @return Our called {@link BlockFormEvent}
      */
 
-    public BlockFormEvent callEvent(Block block) {
+    public static BlockFormEvent callEvent(Block block) {
         BlockState state = block.getState(false);
         BlockFormEvent event = new BlockFormEvent(block, state);
         Bukkit.getPluginManager().callEvent(event);

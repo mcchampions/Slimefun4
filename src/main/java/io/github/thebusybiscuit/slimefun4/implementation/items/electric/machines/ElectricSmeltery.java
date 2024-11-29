@@ -96,7 +96,7 @@ public class ElectricSmeltery extends ASpeedableContainer implements NotHopperab
         };
     }
 
-    private Comparator<Integer> compareSlots(DirtyChestMenu menu) {
+    private static Comparator<Integer> compareSlots(DirtyChestMenu menu) {
         return Comparator.comparingInt(slot -> menu.getItemInSlot(slot).getAmount());
     }
 

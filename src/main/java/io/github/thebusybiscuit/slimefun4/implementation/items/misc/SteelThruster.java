@@ -25,11 +25,11 @@ public class SteelThruster extends SlimefunItem {
         addItemHandler(onRightClickBlock(), onRightClickEntity());
     }
 
-    private ItemUseHandler onRightClickBlock() {
+    private static ItemUseHandler onRightClickBlock() {
         return PlayerRightClickEvent::cancel;
     }
 
-    private EntityInteractHandler onRightClickEntity() {
+    private static EntityInteractHandler onRightClickEntity() {
         return (e, item, hand) -> {
             // Milking cows with a rocket engine? Yeah, that would be weird.
             if (e.getRightClicked() instanceof Cow) {

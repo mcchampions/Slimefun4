@@ -76,7 +76,7 @@ public class AncientAltarTask implements Runnable {
         this.stage = 0;
 
         for (Block pedestal : pedestals) {
-            Optional<Item> item = pedestalItem.getPlacedItem(pedestal);
+            Optional<Item> item = AncientPedestal.getPlacedItem(pedestal);
 
             if (item.isPresent()) {
                 Item entity = item.get();
@@ -128,14 +128,14 @@ public class AncientAltarTask implements Runnable {
     }
 
     private void checkPedestal(Block pedestal) {
-        Optional<Item> item = pedestalItem.getPlacedItem(pedestal);
+        Optional<Item> item = AncientPedestal.getPlacedItem(pedestal);
 
         if (item.isEmpty() || positionLock.remove(item.get()) == null) {
             abort();
         } else {
             Item entity = item.get();
             particleLocations.add(pedestal.getLocation().add(0.5, 1.5, 0.5));
-            items.add(pedestalItem.getOriginalItemStack(entity));
+            items.add(AncientPedestal.getOriginalItemStack(entity));
             SoundEffect.ANCIENT_ALTAR_ITEM_CHECK_SOUND.playAt(pedestal);
 
             dropLocation

@@ -162,7 +162,7 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
         recipe.show(menu, task);
     }
 
-    private List<Recipe> getRecipesFor(ItemStack item) {
+    private static List<Recipe> getRecipesFor(ItemStack item) {
         List<Recipe> recipes = new ArrayList<>();
 
         // Fixes #2913 - Bukkit.getRecipesFor() only checks for Materials

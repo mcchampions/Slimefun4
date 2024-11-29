@@ -90,7 +90,7 @@ public class MagicianTalisman extends Talisman {
                 : enabled.get(ThreadLocalRandom.current().nextInt(enabled.size()));
     }
 
-    private boolean hasConflicts(Set<Enchantment> enchantments, TalismanEnchantment ench) {
+    private static boolean hasConflicts(Set<Enchantment> enchantments, TalismanEnchantment ench) {
         for (Enchantment existing : enchantments) {
             if (existing.conflictsWith(ench.getEnchantment())) {
                 return false;

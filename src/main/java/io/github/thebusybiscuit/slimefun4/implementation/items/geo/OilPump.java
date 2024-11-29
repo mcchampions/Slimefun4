@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.geo;
 
 import io.github.bakedlibs.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
+import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -53,8 +54,7 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
                     return false;
                 }
 
-                if (Slimefun.getGPSNetwork()
-                        .getResourceManager()
+                if (ResourceManager
                         .getSupplies(oil, b.getWorld(), b.getX() >> 4, b.getZ() >> 4)
                         .isEmpty()) {
                     Slimefun.getLocalization().sendMessage(p, "gps.geo.scan-required", true);
@@ -97,8 +97,7 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
 
             for (int slot : getInputSlots()) {
                 if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(slot), emptyBucket, true, false)) {
-                    OptionalInt supplies = Slimefun.getGPSNetwork()
-                            .getResourceManager()
+                    OptionalInt supplies = ResourceManager
                             .getSupplies(oil, b.getWorld(), b.getX() >> 4, b.getZ() >> 4);
 
                     if (supplies.isPresent() && supplies.getAsInt() > 0) {
@@ -106,8 +105,7 @@ public class OilPump extends ASpeedableContainer implements RecipeDisplayItem, N
                                 26, new ItemStack[]{emptyBucket}, new ItemStack[]{SlimefunItems.OIL_BUCKET});
 
                         inv.consumeItem(slot);
-                        Slimefun.getGPSNetwork()
-                                .getResourceManager()
+                        ResourceManager
                                 .setSupplies(oil, b.getWorld(), b.getX() >> 4, b.getZ() >> 4, supplies.getAsInt() - 1);
                         return recipe;
                     } else {

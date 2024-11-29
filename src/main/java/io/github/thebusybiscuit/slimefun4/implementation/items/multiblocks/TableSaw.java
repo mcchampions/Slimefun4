@@ -149,7 +149,7 @@ public class TableSaw extends MultiBlockMachine {
         }
     }
 
-    private void outputItems(Block b, ItemStack output) {
+    private static void outputItems(Block b, ItemStack output) {
         Optional<Inventory> outputChest = OutputChest.findOutputChestFor(b, output);
 
         if (outputChest.isPresent()) {

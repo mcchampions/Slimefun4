@@ -124,7 +124,7 @@ class BackpackCommand extends SubCommand {
                 });
     }
 
-    private void showBackpackMenu(OfflinePlayer owner, Player p, Set<PlayerBackpack> result, int page) {
+    private static void showBackpackMenu(OfflinePlayer owner, Player p, Set<PlayerBackpack> result, int page) {
         var menu = new ChestMenu(owner.getName() + " 拥有的背包列表");
         menu.setEmptySlotsClickable(false);
 

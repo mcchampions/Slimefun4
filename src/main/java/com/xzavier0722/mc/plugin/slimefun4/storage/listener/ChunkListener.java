@@ -7,7 +7,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 public class ChunkListener implements Listener {
     @EventHandler
-    public void onChunkLoad(ChunkLoadEvent e) {
+    public static void onChunkLoad(ChunkLoadEvent e) {
         Slimefun.getDatabaseManager().getBlockDataController().loadChunk(e.getChunk(), e.isNewChunk());
     }
 }

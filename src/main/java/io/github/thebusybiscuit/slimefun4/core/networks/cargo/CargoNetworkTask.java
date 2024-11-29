@@ -181,7 +181,7 @@ class CargoNetworkTask implements Runnable {
      * @param index       The round-robin index of the input node
      * @param outputNodes A {@link Deque} of {@link Location Locations} of the output nodes
      */
-    private void roundRobinSort(int index, Deque<Location> outputNodes) {
+    private static void roundRobinSort(int index, Deque<Location> outputNodes) {
         if (index < outputNodes.size()) {
             // Not ideal but actually not bad performance-wise over more elegant alternatives
             for (int i = 0; i < index; i++) {

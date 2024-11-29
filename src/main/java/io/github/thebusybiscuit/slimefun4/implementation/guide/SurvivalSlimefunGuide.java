@@ -21,6 +21,8 @@ import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.core.guide.options.SlimefunGuideSettings;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlock;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
+import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
+import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AsyncRecipeChoiceTask;
@@ -197,7 +199,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
             List<String> lore = new ArrayList<>();
             lore.add("");
 
-            for (String line : Slimefun.getLocalization().getMessages(p, "guide.locked-itemgroup")) {
+            for (String line : SlimefunLocalization.getMessages(p, "guide.locked-itemgroup")) {
                 lore.add(ChatColor.WHITE + line);
             }
 
@@ -428,7 +430,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         menu.open(p);
     }
 
-    private boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm) {
+    private static boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm) {
         String itemName = slimefunItem.getItemNormalName();
         return itemName.contains(searchTerm);
     }
@@ -528,7 +530,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     }
 
     private <T extends Recipe> void showRecipeChoices(T recipe, ItemStack[] recipeItems, AsyncRecipeChoiceTask task) {
-        RecipeChoice[] choices = Slimefun.getMinecraftRecipeService().getRecipeShape(recipe);
+        RecipeChoice[] choices = MinecraftRecipeService.getRecipeShape(recipe);
 
         if (choices.length == 1 && choices[0] instanceof MaterialChoice materialChoice) {
             recipeItems[4] = new ItemStack(materialChoice.getChoices().get(0));
@@ -813,7 +815,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         return Slimefun.getPermissionsService().hasPermission(p, item);
     }
 
-    private ChestMenu create(Player p) {
+    private static ChestMenu create(Player p) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "guide.title.main"));
 
         menu.setEmptySlotsClickable(false);
@@ -821,12 +823,12 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         return menu;
     }
 
-    private void printErrorMessage(Player p, Throwable x) {
+    private static void printErrorMessage(Player p, Throwable x) {
         p.sendMessage(ChatColor.DARK_RED + "服务器发生了一个内部错误. 请联系管理员处理.");
         Slimefun.logger().log(Level.SEVERE, "在打开指南书里的 Slimefun 物品时发生了意外!", x);
     }
 
-    private void printErrorMessage(Player p, SlimefunItem item, Throwable x) {
+    private static void printErrorMessage(Player p, SlimefunItem item, Throwable x) {
         p.sendMessage(ChatColor.DARK_RED
                 + "An internal server error has occurred. Please inform an admin, check the console for"
                 + " further info.");

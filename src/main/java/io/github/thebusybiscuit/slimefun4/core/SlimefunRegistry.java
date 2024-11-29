@@ -229,7 +229,7 @@ public final class SlimefunRegistry {
     }
 
     @Deprecated
-    public boolean isFreeCreativeResearchingEnabled() {
+    public static boolean isFreeCreativeResearchingEnabled() {
         return false;
     }
 }

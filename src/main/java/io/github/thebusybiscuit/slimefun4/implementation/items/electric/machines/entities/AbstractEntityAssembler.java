@@ -113,7 +113,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         addItemHandler(onPlace(), onBreak());
     }
 
-    private BlockPlaceHandler onPlace() {
+    private static BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(true) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
@@ -125,7 +125,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
                 onPlace(e);
             }
 
-            private void onPlace(BlockEvent e) {
+            private static void onPlace(BlockEvent e) {
                 var blockData = StorageCacheUtils.getBlock(e.getBlock().getLocation());
                 blockData.setData(KEY_OFFSET, "3.0");
                 blockData.setData(KEY_ENABLED, String.valueOf(false));
@@ -148,7 +148,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         };
     }
 
-    private void updateBlockInventory(BlockMenu menu, Block b) {
+    private static void updateBlockInventory(BlockMenu menu, Block b) {
         var blockData = StorageCacheUtils.getBlock(b.getLocation());
         String val;
         if (blockData == null || (val = blockData.getData(KEY_ENABLED)) == null || val.equals(String.valueOf(false))) {
@@ -232,7 +232,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
         };
     }
 
-    private boolean findResource(BlockMenu menu, ItemStack item, int[] slots) {
+    private static boolean findResource(BlockMenu menu, ItemStack item, int[] slots) {
         int found = 0;
 
         for (int slot : slots) {

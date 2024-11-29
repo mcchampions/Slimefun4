@@ -73,7 +73,7 @@ public class ArmorForge extends AbstractCraftingTable {
         }
     }
 
-    private boolean isCraftable(Inventory inv, ItemStack[] recipe) {
+    private static boolean isCraftable(Inventory inv, ItemStack[] recipe) {
         for (int j = 0; j < inv.getContents().length; j++) {
             if (!SlimefunUtils.isItemSimilar(inv.getContents()[j], recipe[j], true)) {
                 return false;

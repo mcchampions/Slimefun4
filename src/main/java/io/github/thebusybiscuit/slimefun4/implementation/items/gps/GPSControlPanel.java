@@ -39,7 +39,7 @@ public class GPSControlPanel extends SimpleSlimefunItem<BlockUseHandler> impleme
         };
     }
 
-    private boolean hasAccess(Player p, Location l) {
+    private static boolean hasAccess(Player p, Location l) {
         return p.hasPermission("slimefun.gps.bypass")
                || (Slimefun.getProtectionManager().hasPermission(p, l, Interaction.INTERACT_BLOCK));
     }

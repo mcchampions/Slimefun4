@@ -74,7 +74,7 @@ public class EnhancedCraftingTable extends AbstractCraftingTable {
         }
     }
 
-    private void craft(Inventory inv, Block dispenser, Player p, Block b, ItemStack output) {
+    private static void craft(Inventory inv, Block dispenser, Player p, Block b, ItemStack output) {
         Inventory fakeInv = createVirtualInventory(inv);
         Inventory outputInv = findOutputInventory(output, dispenser, inv, fakeInv);
 
@@ -106,7 +106,7 @@ public class EnhancedCraftingTable extends AbstractCraftingTable {
         }
     }
 
-    private boolean isCraftable(Inventory inv, ItemStack[] recipe) {
+    private static boolean isCraftable(Inventory inv, ItemStack[] recipe) {
         for (int j = 0; j < inv.getContents().length; j++) {
             if (!SlimefunUtils.isItemSimilar(inv.getContents()[j], recipe[j], true, true, false, false)) {
                 if (SlimefunItem.getByItem(recipe[j]) instanceof SlimefunBackpack) {

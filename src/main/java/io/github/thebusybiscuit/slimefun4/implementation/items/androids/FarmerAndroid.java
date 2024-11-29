@@ -72,7 +72,7 @@ public class FarmerAndroid extends ProgrammableAndroid {
         }
     }
 
-    private ItemStack getDropFromCrop(Material crop) {
+    private static ItemStack getDropFromCrop(Material crop) {
         Random random = ThreadLocalRandom.current();
 
         return switch (crop) {

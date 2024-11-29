@@ -96,7 +96,7 @@ public class InfusedHopper extends SimpleSlimefunItem<BlockTicker> {
         };
     }
 
-    private boolean isValidItem(Location l, Entity entity) {
+    private static boolean isValidItem(Location l, Entity entity) {
         if (entity instanceof Item item && entity.isValid()) {
             // Check if the item cannot be picked up or has the "no pickup" metadata
             return item.getPickupDelay() <= 0

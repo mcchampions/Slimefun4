@@ -118,7 +118,7 @@ public class BlockMenu extends DirtyChestMenu {
     }
 
     @Deprecated
-    public void delete(Location l) {
+    public static void delete(Location l) {
         Slimefun.logger()
                 .log(
                         Level.WARNING,

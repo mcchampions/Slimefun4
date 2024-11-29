@@ -97,7 +97,7 @@ public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
         }
     }
 
-    private @Nullable ItemStack brew(Material input, Material potionType, PotionMeta potion) {
+    private static @Nullable ItemStack brew(Material input, Material potionType, PotionMeta potion) {
         if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
             return brewPostBasePotionType(input, potionType, potion);
         } else {
@@ -105,7 +105,7 @@ public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
         }
     }
 
-    private ItemStack brewPostBasePotionType(Material input, Material potionType, PotionMeta potion) {
+    private static ItemStack brewPostBasePotionType(Material input, Material potionType, PotionMeta potion) {
         PotionType type = potion.getBasePotionType();
         if (type == PotionType.WATER) {
             if (input == Material.FERMENTED_SPIDER_EYE) {
@@ -147,7 +147,7 @@ public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
     }
 
     @SuppressWarnings("deprecation")
-    private ItemStack brewPreBasePotionType(Material input, Material potionType, PotionMeta potion) {
+    private static ItemStack brewPreBasePotionType(Material input, Material potionType, PotionMeta potion) {
         PotionData data = potion.getBasePotionData();
         PotionType type = data.getType();
         if (type == PotionType.WATER) {
@@ -196,7 +196,7 @@ public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
      *
      * @return Whether this {@link Material} is a valid potion
      */
-    private boolean isPotion(Material mat) {
+    private static boolean isPotion(Material mat) {
         return mat == Material.POTION || mat == Material.SPLASH_POTION || mat == Material.LINGERING_POTION;
     }
 

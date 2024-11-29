@@ -12,7 +12,7 @@ import java.util.List;
 public class AsyncTabCompleteListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
-    public void onAsyncTabCompleteEvent(AsyncTabCompleteEvent e) {
+    public static void onAsyncTabCompleteEvent(AsyncTabCompleteEvent e) {
         if (!e.isCommand()) {
             return;
         }

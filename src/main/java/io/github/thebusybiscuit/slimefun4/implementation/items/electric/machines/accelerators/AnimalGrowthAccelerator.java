@@ -36,7 +36,7 @@ public class AnimalGrowthAccelerator extends AbstractGrowthAccelerator {
     protected void tick(Block b) {
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
-        for (Entity n : b.getWorld().getNearbyEntities(b.getLocation(), RADIUS, RADIUS, RADIUS, this::isReadyToGrow)) {
+        for (Entity n : b.getWorld().getNearbyEntities(b.getLocation(), RADIUS, RADIUS, RADIUS, AnimalGrowthAccelerator::isReadyToGrow)) {
             for (int slot : getInputSlots()) {
                 if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(slot), organicFood, false, false)) {
                     if (getCharge(b.getLocation()) < ENERGY_CONSUMPTION) {
@@ -66,7 +66,7 @@ public class AnimalGrowthAccelerator extends AbstractGrowthAccelerator {
         }
     }
 
-    private boolean isReadyToGrow(Entity n) {
+    private static boolean isReadyToGrow(Entity n) {
         return n instanceof Ageable ageable && n.isValid() && !ageable.isAdult();
     }
 }

@@ -174,6 +174,7 @@ public class SlimefunItem implements Placeable {
      * @param recipe       An Array representing the recipe of this {@link SlimefunItem}
      * @param recipeOutput The result of crafting this item
      */
+    @SuppressWarnings("DynamicRegexReplaceableByCompiledPattern")
     public SlimefunItem(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -196,6 +197,7 @@ public class SlimefunItem implements Placeable {
         this.id = id;
         this.recipeType = recipeType;
         this.recipe = recipe;
+        //noinspection DynamicRegexReplaceableByCompiledPattern
         normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ", "_");
     }
 
@@ -520,7 +522,7 @@ public class SlimefunItem implements Placeable {
      *
      * @return Whether the original {@link SlimefunItemStack} is immutable.
      */
-    protected boolean isItemStackImmutable() {
+    protected static boolean isItemStackImmutable() {
         return true;
     }
 
@@ -529,7 +531,7 @@ public class SlimefunItem implements Placeable {
      *
      * @param addon The {@link SlimefunAddon} trying to register this {@link SlimefunItem}
      */
-    private void checkDependencies(SlimefunAddon addon) {
+    private static void checkDependencies(SlimefunAddon addon) {
         if (!addon.hasDependency("Slimefun")) {
             throw new MissingDependencyException(addon, "Slimefun");
         }
@@ -894,7 +896,7 @@ public class SlimefunItem implements Placeable {
      *
      * @param player The {@link Player} to inform.
      */
-    public void sendDeprecationWarning(Player player) {
+    public static void sendDeprecationWarning(Player player) {
         Slimefun.getLocalization().sendMessage(player, "messages.deprecated-item");
     }
 
