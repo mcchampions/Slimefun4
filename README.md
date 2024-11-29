@@ -46,9 +46,11 @@
 本项目是一个民间fork, 与简中汉化组与Slimefun官版无关.
 
 ## 变更日志
+
 [here](CHANGLOG.md)
 
 ## 本项目所使用到的开源代码的项目
+
 - [LuckPerms](https://github.com/LuckPerms/LuckPerms)
 - [SFCalc](https://github.com/Seggan/SFCalc)
 - [Geyser-Slimefun-Heads](https://github.com/Hahaa13/Geyser-Slimefun-Heads)
