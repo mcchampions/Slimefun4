@@ -57,7 +57,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     private String name;
     @Getter
     private int size;
-    private boolean isInvalid = false;
+    private boolean isInvalid;
 
     public static void getAsync(ItemStack item, Consumer<PlayerBackpack> callback, boolean runCbOnMainThread) {
         ItemMeta im;
@@ -194,7 +194,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
             Component line = lore.get(i);
             if (line instanceof TextComponent tc) {
                 if (COLORED_LORE_OWNER.equals(tc.content())) {
-                    lore.set(i, new QsTextComponentImpl(PLAIN_LORE_OWNER + bp.getOwner().getName())
+                    lore.set(i, new QsTextComponentImpl(PLAIN_LORE_OWNER + bp.owner.getName())
                             .color(NamedTextColor.GRAY));
                     break;
                 }

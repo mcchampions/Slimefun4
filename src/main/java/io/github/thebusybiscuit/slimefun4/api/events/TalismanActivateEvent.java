@@ -28,8 +28,8 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
      *
      */
     @Setter
-    private boolean preventConsumption = false;
-    private boolean cancelled = false;
+    private boolean preventConsumption;
+    private boolean cancelled;
 
     /**
      * @param player
@@ -76,7 +76,7 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 
     public static HandlerList getHandlerList() {

@@ -32,9 +32,9 @@ public class AltarRecipe {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof AltarRecipe ar) {
-            return ar.getCatalyst().equals(getCatalyst())
-                    && ar.getInput().equals(getInput())
-                    && ar.getOutput().equals(getOutput());
+            return ar.catalyst.equals(catalyst)
+                   && ar.input.equals(input)
+                   && ar.output.equals(output);
         } else {
             return false;
         }

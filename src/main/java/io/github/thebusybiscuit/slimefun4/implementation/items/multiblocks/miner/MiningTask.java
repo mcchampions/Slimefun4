@@ -49,9 +49,9 @@ public class MiningTask implements Runnable {
     private final BlockPosition end;
     private final int height;
 
-    private boolean running = false;
-    private int fuelLevel = 0;
-    private int ores = 0;
+    private boolean running;
+    private int fuelLevel;
+    private int ores;
 
     private int x;
     private int z;

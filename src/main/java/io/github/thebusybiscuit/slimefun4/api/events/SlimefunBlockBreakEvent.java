@@ -28,7 +28,7 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
     @Getter
     private final Player player;
 
-    private boolean cancelled = false;
+    private boolean cancelled;
 
     /**
      * @param player       The {@link Player} who broke this {@link SlimefunItem}
@@ -61,6 +61,6 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

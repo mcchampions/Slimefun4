@@ -181,7 +181,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
     protected void tick(Block b, SlimefunBlockData data) {
         AbstractRecipe recipe = getSelectedRecipe(b);
 
-        if (recipe == null || !recipe.isEnabled() || getCharge(b.getLocation(), data) < getEnergyConsumption()) {
+        if (recipe == null || !recipe.isEnabled() || getCharge(b.getLocation(), data) < energyConsumed) {
             // No recipe / disabled recipe / no energy, abort...
             return;
         }
@@ -203,7 +203,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
         }
 
         // If recipe noe enabled or no enough charge, return
-        if (!recipe.isEnabled() || getCharge(b.getLocation(), data) < getEnergyConsumption()) {
+        if (!recipe.isEnabled() || getCharge(b.getLocation(), data) < energyConsumed) {
             return;
         }
 
@@ -229,7 +229,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
                     // We are done crafting!
                     Location loc = b.getLocation().add(0.5, 0.8, 0.5);
                     b.getWorld().spawnParticle(VersionedParticle.HAPPY_VILLAGER, loc, 6);
-                    removeCharge(b.getLocation(), getEnergyConsumption());
+                    removeCharge(b.getLocation(), energyConsumed);
                 }
             }
         } else recipeCache.remove(b);
@@ -570,19 +570,19 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
     public void register(SlimefunAddon addon) {
         this.addon = addon;
 
-        if (getCapacity() <= 0) {
+        if (energyCapacity <= 0) {
             warn("The capacity has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyCapacity(...)' before registering!");
         }
 
-        if (getEnergyConsumption() <= 0) {
+        if (energyConsumed <= 0) {
             warn("The energy consumption has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '"
                     + getClass().getSimpleName()
                     + "#setEnergyConsumption(...)' before registering!");
         }
 
-        if (getCapacity() > 0 && getEnergyConsumption() > 0) {
+        if (energyCapacity > 0 && energyConsumed > 0) {
             super.register(addon);
         }
     }

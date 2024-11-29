@@ -61,6 +61,6 @@ public class AsyncMachineOperationFinishEvent extends Event {
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

@@ -19,14 +19,14 @@ public class FuelOperation implements MachineOperation {
     private final ItemStack result;
 
     private final int totalTicks;
-    private int currentTicks = 0;
+    private int currentTicks;
 
     public FuelOperation(MachineFuel recipe) {
         this(recipe.getInput(), recipe.getOutput(), recipe.getTicks());
     }
 
     public FuelOperation(ItemStack ingredient, @Nullable ItemStack result, int totalTicks) {
-        
+
 
         this.ingredient = ingredient;
         this.result = result;
@@ -35,7 +35,7 @@ public class FuelOperation implements MachineOperation {
 
     @Override
     public void addProgress(int num) {
-        
+
         currentTicks += num;
     }
 

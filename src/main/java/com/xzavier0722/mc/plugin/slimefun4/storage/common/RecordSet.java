@@ -2,6 +2,7 @@ package com.xzavier0722.mc.plugin.slimefun4.storage.common;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.DataUtils;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -12,10 +13,10 @@ import org.bukkit.inventory.ItemStack;
 @ToString
 public class RecordSet {
     private final Map<FieldKey, String> data;
-    private boolean readonly = false;
+    private boolean readonly;
 
     public RecordSet() {
-        data = new HashMap<>();
+        data = new EnumMap<>(FieldKey.class);
     }
 
     public void put(FieldKey key, String val) {

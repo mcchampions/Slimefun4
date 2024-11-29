@@ -81,7 +81,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
 
     @Override
     public void register(SlimefunAddon addon) {
-        if (getMaxUseCount() >= 1) {
+        if (maxUseCount >= 1) {
             super.register(addon);
         }
     }
@@ -104,7 +104,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
             ItemMeta meta = item.getItemMeta();
             NamespacedKey key = getStorageKey();
             PersistentDataContainer pdc = meta.getPersistentDataContainer();
-            int usesLeft = pdc.getOrDefault(key, PersistentDataType.INTEGER, getMaxUseCount());
+            int usesLeft = pdc.getOrDefault(key, PersistentDataType.INTEGER, maxUseCount);
 
             if (usesLeft == 1) {
                 SoundEffect.LIMITED_USE_ITEM_BREAK_SOUND.playFor(p);

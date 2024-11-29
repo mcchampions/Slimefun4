@@ -16,7 +16,7 @@ public class MiningOperation implements MachineOperation {
     private final ItemStack result;
 
     private final int totalTicks;
-    private int currentTicks = 0;
+    private int currentTicks;
 
     public MiningOperation(ItemStack result, int totalTicks) {
         this.result = result;
@@ -25,7 +25,7 @@ public class MiningOperation implements MachineOperation {
 
     @Override
     public void addProgress(int num) {
-        
+
         currentTicks += num;
     }
 

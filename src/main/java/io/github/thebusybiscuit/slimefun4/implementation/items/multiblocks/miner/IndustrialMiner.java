@@ -172,7 +172,7 @@ public class IndustrialMiner extends MultiBlockMachine {
         Block chest = b.getRelative(BlockFace.UP);
         Block[] pistons = findPistons(chest);
 
-        int mod = getRange();
+        int mod = range;
         Block start = b.getRelative(-mod, -1, -mod);
         Block end = b.getRelative(mod, -1, mod);
 

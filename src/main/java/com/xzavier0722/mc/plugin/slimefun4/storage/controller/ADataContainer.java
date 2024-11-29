@@ -11,7 +11,7 @@ public abstract class ADataContainer {
     @Getter
     private final String key;
     private final Map<String, String> data;
-    private volatile boolean isDataLoaded = false;
+    private volatile boolean isDataLoaded;
 
     public ADataContainer(String key) {
         this.key = key;

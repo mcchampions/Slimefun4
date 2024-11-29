@@ -243,7 +243,7 @@ public class RecipeType implements Keyed {
     @Override
     public final boolean equals(Object obj) {
         if (obj instanceof RecipeType recipeType) {
-            return recipeType.getKey().equals(this.getKey());
+            return recipeType.key.equals(this.key);
         } else {
             return false;
         }
@@ -251,7 +251,7 @@ public class RecipeType implements Keyed {
 
     @Override
     public final int hashCode() {
-        return getKey().hashCode();
+        return key.hashCode();
     }
 
     private static void registerBarterDrop(ItemStack[] recipe, ItemStack output) {

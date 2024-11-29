@@ -73,9 +73,9 @@ public class BlockDataController extends ADataController {
     /**
      * 延时加载模式标志
      */
-    private boolean enableDelayedSaving = false;
+    private boolean enableDelayedSaving;
 
-    private int delayedSecond = 0;
+    private int delayedSecond;
     private BukkitTask looperTask;
     /**
      * 区块数据加载模式
@@ -85,7 +85,7 @@ public class BlockDataController extends ADataController {
     /**
      * 初始化加载中标志
      */
-    private boolean initLoading = false;
+    private boolean initLoading;
 
     BlockDataController() {
         super(DataType.BLOCK_STORAGE);

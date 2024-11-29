@@ -222,7 +222,7 @@ import org.bukkit.potion.PotionType;
  *
  */
 public final class SlimefunItemSetup {
-    private static boolean registeredItems = false;
+    private static boolean registeredItems;
 
     private SlimefunItemSetup() {}
 

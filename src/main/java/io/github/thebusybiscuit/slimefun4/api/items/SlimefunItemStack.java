@@ -40,7 +40,7 @@ public class SlimefunItemStack extends ItemStack {
     @Getter
     private ItemMetaSnapshot itemMetaSnapshot;
 
-    private String texture = null;
+    private String texture;
 
     public SlimefunItemStack(String id, ItemStack item) {
         super(item.getType(), item.getAmount());
@@ -160,7 +160,7 @@ public class SlimefunItemStack extends ItemStack {
     }
 
     public SlimefunItemStack(SlimefunItemStack item, int amount) {
-        this(item.getItemId(), item);
+        this(item.id, item);
         setAmount(amount);
     }
 

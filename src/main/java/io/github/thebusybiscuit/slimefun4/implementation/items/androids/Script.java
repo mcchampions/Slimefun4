@@ -106,7 +106,7 @@ public final class Script {
 
     ItemStack getAsItemStack(ProgrammableAndroid android, Player p) {
         List<String> lore = new LinkedList<>();
-        lore.add("&7作者 &f" + getAuthor());
+        lore.add("&7作者 &f" + author);
         lore.add("");
         lore.add("&7下载量: &f" + getDownloads());
         lore.add("&7评分: " + getScriptRatingPercentage());
@@ -121,7 +121,7 @@ public final class Script {
             lore.add("&eShift + 右键 &f差评");
         }
 
-        return new CustomItemStack(android.getItem(), "&b" + getName(), lore.toArray(new String[0]));
+        return new CustomItemStack(android.getItem(), "&b" + name, lore.toArray(new String[0]));
     }
 
     private String getScriptRatingPercentage() {

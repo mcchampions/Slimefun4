@@ -88,6 +88,6 @@ public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

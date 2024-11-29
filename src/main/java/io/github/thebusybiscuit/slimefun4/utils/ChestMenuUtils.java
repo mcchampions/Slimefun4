@@ -139,7 +139,7 @@ public final class ChestMenuUtils {
 
     public static void drawBackground(ChestMenu menu, int... slots) {
         for (int slot : slots) {
-            menu.addItem(slot, getBackground(), getEmptyClickHandler());
+            menu.addItem(slot, UI_BACKGROUND, CLICK_HANDLER);
         }
     }
 

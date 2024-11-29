@@ -18,7 +18,7 @@ public class CraftingOperation implements MachineOperation {
     private final ItemStack[] results;
 
     private final int totalTicks;
-    private int currentTicks = 0;
+    private int currentTicks;
 
     public CraftingOperation(MachineRecipe recipe) {
         this(recipe.getInput(), recipe.getOutput(), recipe.getTicks());

@@ -17,11 +17,11 @@ abstract class AbstractPlayerTask implements Runnable {
     }
 
     public void schedule(long delay) {
-        setID(Bukkit.getScheduler().scheduleSyncDelayedTask(Slimefun.instance(), this, delay));
+        id = Bukkit.getScheduler().scheduleSyncDelayedTask(Slimefun.instance(), this, delay);
     }
 
     public void scheduleRepeating(long delay, long interval) {
-        setID(Bukkit.getScheduler().scheduleSyncRepeatingTask(Slimefun.instance(), this, delay, interval));
+        id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Slimefun.instance(), this, delay, interval);
     }
 
     @Override

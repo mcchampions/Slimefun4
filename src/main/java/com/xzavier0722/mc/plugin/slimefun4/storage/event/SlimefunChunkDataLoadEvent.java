@@ -30,6 +30,6 @@ public class SlimefunChunkDataLoadEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

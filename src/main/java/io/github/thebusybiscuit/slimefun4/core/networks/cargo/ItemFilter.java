@@ -62,7 +62,7 @@ class ItemFilter implements Predicate<ItemStack> {
     @Getter
     private volatile boolean dirty = true;
 
-    private volatile boolean isLoading = false;
+    private volatile boolean isLoading;
 
     /**
      * This creates a new {@link ItemFilter} for the given {@link Block}.
@@ -83,7 +83,7 @@ class ItemFilter implements Predicate<ItemStack> {
      *            The {@link Block}
      */
     public void update(Block b) {
-        if (!isDirty() || isLoading) {
+        if (!dirty || isLoading) {
             return;
         }
 
@@ -105,7 +105,7 @@ class ItemFilter implements Predicate<ItemStack> {
     }
 
     private void update(SlimefunBlockData blockData) {
-        if (!isDirty()) {
+        if (!dirty) {
             return;
         }
 
@@ -182,7 +182,7 @@ class ItemFilter implements Predicate<ItemStack> {
 
     @Override
     public boolean test(ItemStack item) {
-        if (isDirty()) {
+        if (dirty) {
             return false;
         }
 

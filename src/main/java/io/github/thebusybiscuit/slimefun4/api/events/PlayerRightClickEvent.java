@@ -167,6 +167,6 @@ public class PlayerRightClickEvent extends PlayerEvent {
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

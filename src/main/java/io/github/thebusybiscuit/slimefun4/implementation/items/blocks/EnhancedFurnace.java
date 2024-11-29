@@ -96,7 +96,7 @@ public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
 
     private void setProgress(Furnace furnace) {
         // Update the cooktime
-        int cookTime = furnace.getCookTime() + getProcessingSpeed() * 10;
+        int cookTime = furnace.getCookTime() + speed * 10;
         furnace.setCookTime((short) Math.min(cookTime, furnace.getCookTimeTotal() - 1));
     }
 }

@@ -4,8 +4,8 @@ import java.util.concurrent.TimeUnit;
 
 public class DelayedTask {
     private final Runnable task;
-    private long runAfter = 0;
-    private boolean executed = false;
+    private long runAfter;
+    private boolean executed;
 
     public DelayedTask(long delay, TimeUnit unit, Runnable task) {
         this.task = task;

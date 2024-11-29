@@ -234,12 +234,12 @@ public class ProgrammableAndroid extends SlimefunItem
      * @return The required type of fuel
      */
     public AndroidFuelSource getFuelSource() {
-        return switch (getTier()) {
+        return switch (tier) {
             case 1 -> AndroidFuelSource.SOLID;
             case 2 -> AndroidFuelSource.LIQUID;
             case 3 -> AndroidFuelSource.NUCLEAR;
             default -> throw new IllegalStateException(
-                    "Cannot convert the following Android tier to a fuel type: " + getTier());
+                    "Cannot convert the following Android tier to a fuel type: " + tier);
         };
     }
 

@@ -34,7 +34,7 @@ public enum UniversalDataTrait {
 
     public static boolean isReservedKey(String key) {
         for (UniversalDataTrait trait : UniversalDataTrait.values()) {
-            if (trait.getReservedKey().equals(key)) {
+            if (trait.reservedKey.equals(key)) {
                 return true;
             }
         }

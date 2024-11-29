@@ -165,7 +165,7 @@ public class BlockStorage {
         }
 
         String id = checkID(l);
-        return id != null && id.equals(slimefunItem);
+        return slimefunItem.equals(id);
     }
 
     public static BlockMenu getInventory(Block b) {

@@ -41,7 +41,7 @@ public class BiomeMapParser<T> {
      * could not be found.
      * The default value is false.
      */
-    private boolean isLenient = false;
+    private boolean isLenient;
 
     /**
      * This constructs a new {@link BiomeMapParser}.

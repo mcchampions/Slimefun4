@@ -55,6 +55,6 @@ public class AsyncProfileLoadEvent extends Event {
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

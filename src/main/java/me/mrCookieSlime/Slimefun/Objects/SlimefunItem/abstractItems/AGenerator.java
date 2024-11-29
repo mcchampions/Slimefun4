@@ -153,15 +153,15 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
                 if (isChargeable()) {
                     int charge = getCharge(l, data);
 
-                    if (getCapacity() - charge >= getEnergyProduction()) {
+                    if (energyCapacity - charge >= energyProducedPerTick) {
                         operation.addProgress(1);
-                        return getEnergyProduction();
+                        return energyProducedPerTick;
                     }
 
                     return 0;
                 } else {
                     operation.addProgress(1);
-                    return getEnergyProduction();
+                    return energyProducedPerTick;
                 }
             } else {
                 ItemStack fuel = operation.getIngredient();
@@ -270,17 +270,17 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
     public void register(SlimefunAddon addon) {
         this.addon = addon;
 
-        if (getCapacity() < 0) {
+        if (energyCapacity < 0) {
             warn("The capacity has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyCapacity(...)' before registering!");
         }
 
-        if (getEnergyProduction() <= 0) {
+        if (energyProducedPerTick <= 0) {
             warn("The energy consumption has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyProduction(...)' before registering!");
         }
 
-        if (getCapacity() >= 0 && getEnergyProduction() > 0) {
+        if (energyCapacity >= 0 && energyProducedPerTick > 0) {
             super.register(addon);
         }
     }

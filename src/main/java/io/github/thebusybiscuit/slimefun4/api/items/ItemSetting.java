@@ -116,8 +116,8 @@ public class ItemSetting<T> {
      */
     @SuppressWarnings("unchecked")
     public void reload() {
-        Slimefun.getItemCfg().setDefaultValue(item.getId() + '.' + getKey(), getDefaultValue());
-        Object configuredValue = Slimefun.getItemCfg().getValue(item.getId() + '.' + getKey());
+        Slimefun.getItemCfg().setDefaultValue(item.getId() + '.' + key, defaultValue);
+        Object configuredValue = Slimefun.getItemCfg().getValue(item.getId() + '.' + key);
 
         if (defaultValue.getClass().isInstance(configuredValue)
             || (configuredValue instanceof List && defaultValue instanceof List)) {
@@ -131,7 +131,7 @@ public class ItemSetting<T> {
                           + "\n  在 \""
                           + item.getId()
                           + "."
-                          + getKey()
+                          + key
                           + "\""
                           + "\n  "
                           + configuredValue
@@ -151,7 +151,7 @@ public class ItemSetting<T> {
                       + "\n  在 \""
                       + item.getId()
                       + "."
-                      + getKey()
+                      + key
                       + "\""
                       + "\n  期望值为 \""
                       + defaultValue.getClass().getSimpleName()
@@ -167,11 +167,11 @@ public class ItemSetting<T> {
         T currentValue = this.value != null ? this.value : defaultValue;
         return getClass().getSimpleName()
                + " {"
-               + getKey()
+               + key
                + " = "
                + currentValue
                + " (default: "
-               + getDefaultValue()
+               + defaultValue
                + ")";
     }
 
@@ -183,7 +183,7 @@ public class ItemSetting<T> {
     @Override
     public final boolean equals(Object obj) {
         if (obj instanceof ItemSetting<?> setting) {
-            return Objects.equals(getKey(), setting.getKey()) && Objects.equals(getItem(), setting.getItem());
+            return Objects.equals(key, setting.key) && Objects.equals(item, setting.item);
         } else {
             return false;
         }

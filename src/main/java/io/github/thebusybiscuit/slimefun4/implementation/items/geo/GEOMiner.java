@@ -154,24 +154,24 @@ public class GEOMiner extends SlimefunItem
     public void register(SlimefunAddon addon) {
         this.addon = addon;
 
-        if (getCapacity() <= 0) {
+        if (energyCapacity <= 0) {
             warn("The capacity has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyCapacity(...)' before registering!");
         }
 
-        if (getEnergyConsumption() <= 0) {
+        if (energyConsumedPerTick <= 0) {
             warn("The energy consumption has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '"
                  + getClass().getSimpleName()
                  + "#setEnergyConsumption(...)' before registering!");
         }
 
-        if (getSpeed() <= 0) {
+        if (processingSpeed <= 0) {
             warn("The processing speed has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setProcessingSpeed(...)' before registering!");
         }
 
-        if (getCapacity() > 0 && getEnergyConsumption() > 0 && getSpeed() > 0) {
+        if (energyCapacity > 0 && energyConsumedPerTick > 0 && processingSpeed > 0) {
             super.register(addon);
         }
     }
@@ -285,12 +285,12 @@ public class GEOMiner extends SlimefunItem
             if (!operation.isFinished()) {
                 processor.updateProgressBar(inv, 4, operation);
 
-                if (getCharge(b.getLocation()) < getEnergyConsumption()) {
+                if (getCharge(b.getLocation()) < energyConsumedPerTick) {
                     return;
                 }
 
-                removeCharge(b.getLocation(), getEnergyConsumption());
-                operation.addProgress(getSpeed());
+                removeCharge(b.getLocation(), energyConsumedPerTick);
+                operation.addProgress(processingSpeed);
             } else {
                 inv.replaceExistingItem(4, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
                 inv.pushItem(operation.getResult(), OUTPUT_SLOTS);

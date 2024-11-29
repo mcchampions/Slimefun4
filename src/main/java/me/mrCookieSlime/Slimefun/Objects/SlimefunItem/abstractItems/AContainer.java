@@ -218,7 +218,7 @@ public abstract class AContainer extends SlimefunItem
     public void register(SlimefunAddon addon) {
         this.addon = addon;
 
-        if (getCapacity() > 0 && getEnergyConsumption() > 0 && getSpeed() > 0) {
+        if (energyCapacity > 0 && energyConsumedPerTick > 0 && processingSpeed > 0) {
             super.register(addon);
         }
     }
@@ -280,7 +280,7 @@ public abstract class AContainer extends SlimefunItem
     }
 
     public void registerRecipe(MachineRecipe recipe) {
-        recipe.setTicks(recipe.getTicks() / getSpeed());
+        recipe.setTicks(recipe.getTicks() / processingSpeed);
         recipes.add(recipe);
     }
 
@@ -350,11 +350,11 @@ public abstract class AContainer extends SlimefunItem
         if (isChargeable()) {
             int charge = getCharge(l);
 
-            if (charge < getEnergyConsumption()) {
+            if (charge < energyConsumedPerTick) {
                 return false;
             }
 
-            setCharge(l, charge - getEnergyConsumption());
+            setCharge(l, charge - energyConsumedPerTick);
         }
         return true;
     }

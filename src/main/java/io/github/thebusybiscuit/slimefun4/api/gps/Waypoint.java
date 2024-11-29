@@ -147,9 +147,9 @@ public class Waypoint {
             return false;
         }
 
-        return this.ownerId.equals(waypoint.getOwnerId())
-                && id.equals(waypoint.getId())
-                && location.equals(waypoint.getLocation())
-                && name.equals(waypoint.getName());
+        return this.ownerId.equals(waypoint.ownerId)
+                && id.equals(waypoint.id)
+                && location.equals(waypoint.location)
+                && name.equals(waypoint.name);
     }
 }

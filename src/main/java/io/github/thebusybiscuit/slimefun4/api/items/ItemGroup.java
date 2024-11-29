@@ -54,7 +54,7 @@ public class ItemGroup implements Keyed {
      */
     @Setter
     @Getter
-    protected boolean crossAddonItemGroup = false;
+    protected boolean crossAddonItemGroup;
 
     /**
      * Constructs a new {@link ItemGroup} with the given {@link NamespacedKey} as an identifier
@@ -177,7 +177,7 @@ public class ItemGroup implements Keyed {
         }
 
         if (isRegistered()
-                && !isCrossAddonItemGroup()
+                && !crossAddonItemGroup
                 && !item.getAddon().getName().equals(this.addon.getName())) {
             item.warn("This item does not belong into ItemGroup " + this + " as that group belongs to "
                     + this.addon.getName());
@@ -207,7 +207,7 @@ public class ItemGroup implements Keyed {
      */
     public ItemStack getItem(Player p) {
         return new CustomItemStack(item, meta -> {
-            String name = Slimefun.getLocalization().getItemGroupName(p, getKey());
+            String name = Slimefun.getLocalization().getItemGroupName(p, key);
 
             if (name == null) {
                 name = item.getItemMeta().getDisplayName();
@@ -246,7 +246,7 @@ public class ItemGroup implements Keyed {
      * @return The localized name of this {@link ItemGroup}
      */
     public String getDisplayName(Player p) {
-        String localized = Slimefun.getLocalization().getItemGroupName(p, getKey());
+        String localized = Slimefun.getLocalization().getItemGroupName(p, key);
 
         if (localized != null) {
             return localized;
@@ -316,7 +316,7 @@ public class ItemGroup implements Keyed {
     @Override
     public final boolean equals(Object obj) {
         if (obj instanceof ItemGroup group) {
-            return group.getKey().equals(this.getKey());
+            return group.key.equals(this.key);
         } else {
             return false;
         }

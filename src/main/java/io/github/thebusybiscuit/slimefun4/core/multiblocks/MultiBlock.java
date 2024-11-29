@@ -80,7 +80,7 @@ public class MultiBlock {
             return false;
         }
 
-        if (trigger == mb.getTriggerBlock() && isSymmetric == mb.isSymmetric) {
+        if (trigger == mb.trigger && isSymmetric == mb.isSymmetric) {
             for (int i = 0; i < mb.getStructure().length; i++) {
                 if (!compareBlocks(blocks[i], mb.getStructure()[i])) {
                     return false;

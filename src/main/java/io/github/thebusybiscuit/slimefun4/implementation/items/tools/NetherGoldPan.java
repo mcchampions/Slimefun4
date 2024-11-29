@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.GoldPanDrop;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
  * @author JustAHuman
  */
 public class NetherGoldPan extends GoldPan {
-    private final Set<Material> inputMaterials = new HashSet<>(Arrays.asList(Material.SOUL_SAND, Material.SOUL_SOIL));
+    private final Set<Material> inputMaterials = EnumSet.of(Material.SOUL_SAND, Material.SOUL_SOIL);
 
     public NetherGoldPan(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

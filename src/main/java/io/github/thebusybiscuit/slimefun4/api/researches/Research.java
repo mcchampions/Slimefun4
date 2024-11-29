@@ -327,14 +327,14 @@ public class Research implements Keyed {
             return;
         }
 
-        Slimefun.getResearchCfg().setDefaultValue(path + ".cost", getLevelCost());
-        Slimefun.getResearchCfg().setDefaultValue(path + ".currency-cost", getCurrencyCost());
+        Slimefun.getResearchCfg().setDefaultValue(path + ".cost", levelCost);
+        Slimefun.getResearchCfg().setDefaultValue(path + ".currency-cost", currencyCost);
         Slimefun.getResearchCfg().setDefaultValue(path + ".enabled", true);
 
         setLevelCost(Slimefun.getResearchCfg().getInt(path + ".cost"));
 
         if (Slimefun.getConfigManager().isResearchAutoConvert()) {
-            setCurrencyCost(getLevelCost() * Slimefun.getConfigManager().getResearchCurrencyCostConvertRate());
+            setCurrencyCost(levelCost * Slimefun.getConfigManager().getResearchCurrencyCostConvertRate());
         } else {
             setCurrencyCost(Slimefun.getResearchCfg().getInt(path + ".currency-cost"));
         }
@@ -369,7 +369,7 @@ public class Research implements Keyed {
         }
 
         for (Research research : Slimefun.getRegistry().getResearches()) {
-            if (research.getKey().equals(key)) {
+            if (research.key.equals(key)) {
                 return Optional.of(research);
             }
         }
@@ -390,7 +390,7 @@ public class Research implements Keyed {
 
     @Override
     public String toString() {
-        return "Research (" + getKey() + ')';
+        return "Research (" + key + ')';
     }
 
 }

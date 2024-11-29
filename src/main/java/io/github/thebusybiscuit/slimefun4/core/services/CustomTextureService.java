@@ -34,14 +34,14 @@ public class CustomTextureService {
      * This nullable {@link StringBuffer} represents the "version" of the used item-models file.
      * This version is served with our resource pack.
      */
-    private String version = null;
+    private String version;
 
     /**
      * This boolean represents whether the file was modified anyway.
      * This is equivalent to at least one value being set to a number which
      * is not zero!
      */
-    private boolean modified = false;
+    private boolean modified;
 
     /**
      * This creates a new {@link CustomTextureService} for the provided {@link Config}

@@ -73,7 +73,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
          * This will eliminate non-matching base materials If we
          * are on a version without Basalt, it will be null here and not match.
          */
-        if (b.getType() == getGeneratedMaterial()) {
+        if (b.getType() == material) {
             switch (this) {
                 case COBBLESTONE_GENERATOR:
                     return hasSurroundingMaterials(b, Material.WATER, Material.LAVA);

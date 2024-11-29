@@ -21,7 +21,7 @@ import org.bukkit.event.Listener;
 public class SlimefunCommand implements CommandExecutor, Listener {
     public static Set<String> COMMAND_ALIASES;
     @Getter
-    private boolean registered = false;
+    private boolean registered;
     @Getter
     private final Slimefun plugin;
     private final List<SubCommand> commands = new ArrayList<>();

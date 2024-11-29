@@ -109,7 +109,7 @@ public enum MinecraftVersion {
     }
 
     public boolean isMinecraftVersion(int minecraftVersion, int patchVersion) {
-        if (isVirtual()) {
+        if (virtual) {
             return false;
         }
         if (this.majorVersion != 20) {

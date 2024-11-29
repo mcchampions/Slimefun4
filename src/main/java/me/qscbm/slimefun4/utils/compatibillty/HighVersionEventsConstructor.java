@@ -18,7 +18,7 @@ import java.util.List;
 @SuppressWarnings("UnstableApiUsage")
 public class HighVersionEventsConstructor extends VersionEventsConstructor {
     private final Constructor<BlockExplodeEvent> blockExplodeEventConstructor;
-    private Enum<?> destroyEnum = null;
+    private Enum<?> destroyEnum;
 
     public HighVersionEventsConstructor() {
         Class<Enum<?>> explosionResultClass;

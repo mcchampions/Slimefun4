@@ -60,7 +60,7 @@ public abstract class SubCommand {
     public abstract void onExecute(CommandSender sender, String[] args);
 
     protected String getDescription() {
-        return "commands." + getName();
+        return "commands." + name;
     }
 
     /**

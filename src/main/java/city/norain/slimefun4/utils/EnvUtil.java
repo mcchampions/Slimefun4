@@ -8,7 +8,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class EnvUtil {
-    public static Properties gitInfo = null;
+    public static Properties gitInfo;
 
     public void init() {
         try (var resource = Slimefun.class.getResourceAsStream("/git.properties")) {

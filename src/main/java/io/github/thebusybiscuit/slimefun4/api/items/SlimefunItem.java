@@ -6,7 +6,6 @@ import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.IdConflictException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.MissingDependencyException;
-import io.github.thebusybiscuit.slimefun4.api.exceptions.UnregisteredItemException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.WrongItemStackException;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -125,7 +124,7 @@ public class SlimefunItem implements Placeable {
      */
     @Getter
     protected boolean disenchantable = true;
-    protected boolean hidden = false;
+    protected boolean hidden;
     /**
      * -- GETTER --
      * This method returns whether or not this
@@ -135,7 +134,7 @@ public class SlimefunItem implements Placeable {
      * may be used in workbenches for example.
      */
     @Getter
-    protected boolean useableInWorkbench = false;
+    protected boolean useableInWorkbench;
 
     private Optional<String> wikiURL = Optional.empty();
 
@@ -148,7 +147,7 @@ public class SlimefunItem implements Placeable {
      * This returns whether or not we are scheduling a ticking task for this block.
      */
     @Getter
-    private boolean ticking = false;
+    private boolean ticking;
     @Getter
     private BlockTicker blockTicker;
 
@@ -364,7 +363,7 @@ public class SlimefunItem implements Placeable {
 
             Slimefun.getRegistry().getAllSlimefunItems().add(this);
             Slimefun.getRegistry().getSlimefunItemIds().put(id, this);
-            Slimefun.getRegistry().getSlimefunItemNames().put(getItemNormalName(), this);
+            Slimefun.getRegistry().getSlimefunItemNames().put(normalItemName, this);
 
             // Items that are "not-configurable" cannot be configured.
             if (!(this instanceof NotConfigurable)) {
@@ -413,7 +412,7 @@ public class SlimefunItem implements Placeable {
                 // Clear item handlers if we are disabled so that calling them isn't possible later on
                 for (ItemHandler handler : this.itemHandlers.values()) {
                     if (handler instanceof BlockTicker) {
-                        Slimefun.getRegistry().getTickerBlocks().remove(getId());
+                        Slimefun.getRegistry().getTickerBlocks().remove(id);
                     }
                 }
                 this.itemHandlers.clear();
@@ -456,7 +455,7 @@ public class SlimefunItem implements Placeable {
         }
 
         // Disable ticking block
-        Slimefun.getRegistry().getTickerBlocks().remove(getId());
+        Slimefun.getRegistry().getTickerBlocks().remove(id);
 
         state = ItemState.DISABLED;
 
@@ -628,14 +627,14 @@ public class SlimefunItem implements Placeable {
 
         // If the given item is a SlimefunitemStack, simply compare the id
         if (item instanceof SlimefunItemStack stack) {
-            return getId().equals(stack.getItemId());
+            return id.equals(stack.getItemId());
         }
 
         if (item.hasItemMeta()) {
             Optional<String> itemId = Slimefun.getItemDataService().getItemData(item);
 
             if (itemId.isPresent()) {
-                return getId().equals(itemId.get());
+                return id.equals(itemId.get());
             }
         }
 
@@ -666,7 +665,7 @@ public class SlimefunItem implements Placeable {
             // Tickers are a special case (at the moment at least)
             if (handler instanceof BlockTicker ticker) {
                 ticking = true;
-                Slimefun.getRegistry().getTickerBlocks().add(getId());
+                Slimefun.getRegistry().getTickerBlocks().add(id);
                 blockTicker = ticker;
             }
         }
@@ -747,7 +746,7 @@ public class SlimefunItem implements Placeable {
      */
     public final void addWikiPage(String page) {
         if (addon == null) {
-            Slimefun.logger().warning("该物品\"" + getId() + "\"暂未注册, 请在物品注册后再添加Wiki页面");
+            Slimefun.logger().warning("该物品\"" + id + "\"暂未注册, 请在物品注册后再添加Wiki页面");
             return;
         }
         if (addon.getWikiURL() != null) {
@@ -918,7 +917,7 @@ public class SlimefunItem implements Placeable {
      * @return Whether this {@link Player} is able to use this {@link SlimefunItem}.
      */
     public boolean canUse(Player p, boolean sendMessage) {
-        if (getState() == ItemState.VANILLA_FALLBACK) {
+        if (state == ItemState.VANILLA_FALLBACK) {
             // Vanilla items (which fell back) can always be used.
             return true;
         } else if (isDisabled()) {
@@ -929,7 +928,7 @@ public class SlimefunItem implements Placeable {
                                 p,
                                 "messages.disabled-item",
                                 true,
-                                msg -> msg.replace("%item_name%", getItemNormalName()));
+                                msg -> msg.replace("%item_name%", normalItemName));
             }
 
             return false;
@@ -941,7 +940,7 @@ public class SlimefunItem implements Placeable {
                                 p,
                                 "messages.disabled-in-world",
                                 true,
-                                msg -> msg.replace("%item_name%", getItemNormalName()));
+                                msg -> msg.replace("%item_name%", normalItemName));
             }
 
             return false;
@@ -963,7 +962,7 @@ public class SlimefunItem implements Placeable {
                  */
                 PlayerProfile.request(p);
                 return false;
-            } else if (!profile.get().hasUnlocked(getResearch())) {
+            } else if (!profile.get().hasUnlocked(research)) {
                 /*
                  * The Profile is loaded but Player has not unlocked the
                  * required Research to use this SlimefunItem.
@@ -990,7 +989,7 @@ public class SlimefunItem implements Placeable {
     @Override
     public final boolean equals(Object obj) {
         if (obj instanceof SlimefunItem item) {
-            return item.getId().equals(this.getId());
+            return item.id.equals(this.id);
         } else {
             return false;
         }
@@ -998,7 +997,7 @@ public class SlimefunItem implements Placeable {
 
     @Override
     public final int hashCode() {
-        return getId().hashCode();
+        return id.hashCode();
     }
 
     /**

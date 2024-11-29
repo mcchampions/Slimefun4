@@ -54,15 +54,15 @@ public class IntegrationsManager {
     /**
      * This boolean determines whether {@link #start()} was run.
      */
-    private boolean isEnabled = false;
+    private boolean isEnabled;
 
     // Soft dependencies
-    private boolean isPlaceholderAPIInstalled = false;
-    private boolean isWorldEditInstalled = false;
-    private boolean isMcMMOInstalled = false;
-    private boolean isClearLagInstalled = false;
-    private boolean isItemsAdderInstalled = false;
-    private boolean isOrebfuscatorInstalled = false;
+    private boolean isPlaceholderAPIInstalled;
+    private boolean isWorldEditInstalled;
+    private boolean isMcMMOInstalled;
+    private boolean isClearLagInstalled;
+    private boolean isItemsAdderInstalled;
+    private boolean isOrebfuscatorInstalled;
 
     /**
      * This initializes the {@link IntegrationsManager}

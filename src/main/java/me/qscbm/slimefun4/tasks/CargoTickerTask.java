@@ -24,11 +24,11 @@ public class CargoTickerTask extends BaseTickerTask {
     @Getter
     private int tickRate;
     @Getter
-    private boolean halted = false;
-    private boolean running = false;
+    private boolean halted;
+    private boolean running;
 
     @Setter
-    private volatile boolean paused = false;
+    private volatile boolean paused;
 
     public void start(Slimefun plugin) {
         this.tickRate = Slimefun.getCfg().getInt("URID.custom-ticker-delay");

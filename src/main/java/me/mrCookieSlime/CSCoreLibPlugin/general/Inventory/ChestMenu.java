@@ -62,7 +62,7 @@ public class ChestMenu extends SlimefunInventoryHolder {
         };
         this.close = p -> {
         };
-        this.playerclick = (p, slot, item, action) -> isPlayerInventoryClickable();
+        this.playerclick = (p, slot, item, action) -> clickable;
     }
 
     public ChestMenu(String title, int size) {

@@ -26,7 +26,7 @@ public class NBTUtils {
 
     private static final Class<?> RESOLVABLE_PROFILE;
 
-    private static Method RESOLVABLE_PROFILE_GAME_PROFILE_GETTER = null;
+    private static Method RESOLVABLE_PROFILE_GAME_PROFILE_GETTER;
 
     private static final Method PROPERTY_NAME_GETTER;
     private static final Method PROPERTY_VALUE_GETTER;

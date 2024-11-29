@@ -149,7 +149,7 @@ public enum HeadTexture {
      * @return A custom head {@link ItemStack}
      */
     public ItemStack getAsItemStack() {
-        return SlimefunUtils.getCustomHead(getTexture());
+        return SlimefunUtils.getCustomHead(texture);
     }
 
     public PlayerSkin getAsSkin() {

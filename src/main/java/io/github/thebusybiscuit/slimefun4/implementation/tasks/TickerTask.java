@@ -54,11 +54,11 @@ public class TickerTask extends BaseTickerTask {
     @Getter
     private int tickRate;
     @Getter
-    private boolean halted = false;
-    private boolean running = false;
+    private boolean halted;
+    private boolean running;
 
     @Setter
-    private volatile boolean paused = false;
+    private volatile boolean paused;
 
     /**
      * This method starts the {@link TickerTask} on an asynchronous schedule.

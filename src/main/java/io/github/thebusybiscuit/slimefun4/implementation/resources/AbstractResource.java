@@ -77,12 +77,12 @@ abstract class AbstractResource implements GEOResource {
      */
     static BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
         try {
-            return BiomeMap.fromResource(resource.getKey(), Slimefun.instance(), path, JsonElement::getAsInt);
+            return BiomeMap.fromResource(resource.key, Slimefun.instance(), path, JsonElement::getAsInt);
         } catch (BiomeMapException x) {
             // In a server environment, we should just print a warning and carry on
             Slimefun.logger()
-                .log(Level.WARNING, x, () -> "Failed to load BiomeMap for GEO-resource: " + resource.getKey());
-            return new BiomeMap<>(resource.getKey());
+                .log(Level.WARNING, x, () -> "Failed to load BiomeMap for GEO-resource: " + resource.key);
+            return new BiomeMap<>(resource.key);
         }
     }
 }

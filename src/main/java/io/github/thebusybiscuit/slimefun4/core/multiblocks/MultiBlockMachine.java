@@ -125,7 +125,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
 
     protected MultiBlockInteractionHandler getInteractionHandler() {
         return (p, mb, b) -> {
-            if (mb.equals(getMultiBlock())) {
+            if (mb.equals(multiblock)) {
                 if (canUse(p, true)
                         && Slimefun.getProtectionManager()
                                 .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK)) {

@@ -105,7 +105,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     /**
      * Keep track of whether this is a fresh install or a regular boot up.
      */
-    private boolean isNewlyInstalled = false;
+    private boolean isNewlyInstalled;
 
     // Various things we need
     private final SlimefunConfigManager cfgManager = new SlimefunConfigManager(this);
@@ -169,7 +169,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      */
     @Override
     public void onEnable() {
-        setInstance(this);
+        instance = this;
 
         if (initialized) {
             getLogger().log(Level.WARNING, "不支持热重载, 请重启服务器");
@@ -380,7 +380,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         }
 
         // Terminate our Plugin instance
-        setInstance(null);
+        instance = null;
 
         /*
           Close all inventories on the server to prevent item dupes

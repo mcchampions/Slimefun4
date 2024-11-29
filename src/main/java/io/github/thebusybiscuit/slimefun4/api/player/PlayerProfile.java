@@ -53,10 +53,10 @@ public class PlayerProfile {
     private final Config waypointsFile;
 
     @Getter
-    private boolean dirty = false;
-    private boolean isInvalid = false;
+    private boolean dirty;
+    private boolean isInvalid;
     @Getter
-    private boolean markedForDeletion = false;
+    private boolean markedForDeletion;
 
     private final Set<Research> researches;
     private final List<Waypoint> waypoints = new ArrayList<>();

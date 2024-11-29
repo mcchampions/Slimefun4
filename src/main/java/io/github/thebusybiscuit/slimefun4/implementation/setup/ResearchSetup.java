@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public final class ResearchSetup {
-    private static boolean alreadyRan = false;
+    private static boolean alreadyRan;
 
     private ResearchSetup() {}
 
