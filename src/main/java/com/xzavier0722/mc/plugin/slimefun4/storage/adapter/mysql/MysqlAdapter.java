@@ -43,6 +43,8 @@ public class MysqlAdapter extends SqlCommonAdapter<MysqlConfig> {
                 blockInvTable = SqlUtils.mapTable(DataScope.BLOCK_INVENTORY, config.tablePrefix());
                 chunkDataTable = SqlUtils.mapTable(DataScope.CHUNK_DATA, config.tablePrefix());
                 universalInvTable = SqlUtils.mapTable(DataScope.UNIVERSAL_INVENTORY, config.tablePrefix());
+                universalDataTable = SqlUtils.mapTable(DataScope.UNIVERSAL_DATA, config.tablePrefix());
+                universalRecordTable = SqlUtils.mapTable(DataScope.UNIVERSAL_RECORD, config.tablePrefix());
                 createBlockStorageTables();
             }
         }
