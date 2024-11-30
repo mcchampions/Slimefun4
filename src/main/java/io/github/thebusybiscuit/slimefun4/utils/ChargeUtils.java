@@ -53,7 +53,7 @@ public final class ChargeUtils {
         for (int i = 0; i < lore.size(); i++) {
             Component line = lore.get(i);
             if (line instanceof TextComponent c) {
-                if (c.content().equals("\u21E8")) {
+                if ("\u21E8".equals(c.content())) {
                     List<Component> children = c.children();
                     if (children.size() < 2) {
                         continue;
@@ -73,7 +73,7 @@ public final class ChargeUtils {
                         }
 
                         TextComponent fc = (TextComponent) children.get(0);
-                        if (fc.content().equals("\u21E8 ")) {
+                        if ("\u21E8 ".equals(fc.content())) {
                             TextComponent tc = (TextComponent) children.get(2);
                             String content = tc.content();
                             if (REGEX_NEW.matcher(content).matches()) {

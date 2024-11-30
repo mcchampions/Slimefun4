@@ -15,6 +15,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotRotatable
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
+import io.github.thebusybiscuit.slimefun4.core.services.BlockDataService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
@@ -135,7 +136,7 @@ public class BlockListener implements Listener {
                 if (placeEvent.isCancelled()) {
                     e.setCancelled(true);
                 } else {
-                    if (Slimefun.getBlockDataService().isTileEntity(block.getType())) {
+                    if (BlockDataService.isTileEntity(block.getType())) {
                         Slimefun.getBlockDataService().setBlockData(block, sfItem.getId());
                     }
 

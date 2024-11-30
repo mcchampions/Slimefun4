@@ -31,12 +31,12 @@ public class AsyncTabCompleteListener implements Listener {
         String commandLabel = buffer.substring(0, firstPlace).toLowerCase();
         String[] parts = commandLabel.split(":");
         if (parts.length > 1) {
-            if (!parts[0].equals("slimefun")) {
+            if (!"slimefun".equals(parts[0])) {
                 return;
             }
             commandLabel = parts[1];
         }
-        if (!SlimefunCommand.COMMAND_ALIASES.contains(commandLabel) && !commandLabel.equals("slimefun")) {
+        if (!SlimefunCommand.COMMAND_ALIASES.contains(commandLabel) && !"slimefun".equals(commandLabel)) {
             return;
         }
         List<String> args = new QuotedStringTokenizer(buffer.substring(firstPlace + 1)).tokenize(false);

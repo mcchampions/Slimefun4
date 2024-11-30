@@ -419,9 +419,9 @@ public final class SlimefunUtils {
                 //noinspection ConstantValue
                 return potionMeta.getBasePotionType() != null
                        && sfPotionMeta.getBasePotionType() != null
-                       && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+                       && potionMeta.getBasePotionType() == sfPotionMeta.getBasePotionType();
             } else if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
-                return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+                return potionMeta.getBasePotionType() == sfPotionMeta.getBasePotionType();
             } else {
                 //noinspection deprecation
                 return potionMeta.getBasePotionData().equals(sfPotionMeta.getBasePotionData());

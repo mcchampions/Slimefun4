@@ -326,7 +326,7 @@ public class BlockDataController extends ADataController {
         }
 
         if (Slimefun.getRegistry().getTickerBlocks().contains(removed.getSfId())) {
-            if (removed.getSfId().equalsIgnoreCase("CARGO_MANAGER")) {
+            if ("CARGO_MANAGER".equalsIgnoreCase(removed.getSfId())) {
                 Slimefun.instance().getCargoTickerTask().enableTicker(l);
             } else {
                 Slimefun.getTickerTask().enableTicker(l);
@@ -550,7 +550,7 @@ public class BlockDataController extends ADataController {
         var hasTicker = false;
 
         if (blockData.isDataLoaded() && Slimefun.getRegistry().getTickerBlocks().contains(blockData.getSfId())) {
-            if (blockData.getSfId().equalsIgnoreCase("CARGO_MANAGER")) {
+            if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {
                 Slimefun.instance().getCargoTickerTask().disableTicker(blockData.getLocation());
             } else {
                 Slimefun.getTickerTask().disableTicker(blockData.getLocation());
@@ -611,7 +611,7 @@ public class BlockDataController extends ADataController {
         scheduleWriteTask(scopeKey, key, data, true);
 
         if (hasTicker) {
-            if (blockData.getSfId().equalsIgnoreCase("CARGO_MANAGER")) {
+            if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {
                 Slimefun.instance().getCargoTickerTask().enableTicker(target);
             } else {
                 Slimefun.getTickerTask().enableTicker(target);
@@ -1280,7 +1280,7 @@ public class BlockDataController extends ADataController {
     private void clearBlockCacheAndTasks(SlimefunBlockData blockData) {
         var l = blockData.getLocation();
         if (blockData.isDataLoaded() && Slimefun.getRegistry().getTickerBlocks().contains(blockData.getSfId())) {
-            if (blockData.getSfId().equalsIgnoreCase("CARGO_MANAGER")) {
+            if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {
                 Slimefun.instance().getCargoTickerTask().disableTicker(blockData.getLocation());
             } else {
                 Slimefun.getTickerTask().disableTicker(blockData.getLocation());

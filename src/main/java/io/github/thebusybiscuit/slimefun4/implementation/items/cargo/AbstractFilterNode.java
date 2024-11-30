@@ -95,7 +95,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         SlimefunBlockData blockData = StorageCacheUtils.getBlock(b.getLocation());
         String filterType = blockData.getData(FILTER_TYPE);
 
-        if (filterType == null || filterType.equals("whitelist")) {
+        if (filterType == null || "whitelist".equals(filterType)) {
             menu.replaceExistingItem(15, new CustomItemStack(Material.WHITE_WOOL, "&7模式: &r白名单", "", "&e> 单击切换至黑名单"));
             menu.addMenuClickHandler(15, (p, slot, item, action) -> {
                 StorageCacheUtils.setData(b.getLocation(), FILTER_TYPE, "blacklist");

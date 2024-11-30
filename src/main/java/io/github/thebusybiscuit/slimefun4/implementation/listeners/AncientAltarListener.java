@@ -12,6 +12,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AltarRecipe;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientAltar;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.AbstractMonsterSpawner;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.RepairedSpawner;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AncientAltarTask;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
@@ -119,7 +120,7 @@ public class AncientAltarListener implements Listener {
         }
 
         // getting the currently placed item
-        Optional<Item> stack = pedestalItem.getPlacedItem(pedestal);
+        Optional<Item> stack = AncientPedestal.getPlacedItem(pedestal);
 
         if (stack.isEmpty()) {
             // Check if the Item in hand is valid
@@ -149,7 +150,7 @@ public class AncientAltarListener implements Listener {
              * no stack space left else add remaining items from the returned map value
              */
             Map<Integer, ItemStack> remainingItemMap =
-                    p.getInventory().addItem(pedestalItem.getOriginalItemStack(entity));
+                    p.getInventory().addItem(AncientPedestal.getOriginalItemStack(entity));
 
             for (ItemStack item : remainingItemMap.values()) {
                 p.getWorld().dropItem(pedestal.getLocation().add(0, 1, 0), item.clone());
@@ -204,9 +205,9 @@ public class AncientAltarListener implements Listener {
         List<ItemStack> input = new ArrayList<>();
 
         for (Block pedestal : pedestals) {
-            Optional<Item> stack = pedestalItem.getPlacedItem(pedestal);
+            Optional<Item> stack = AncientPedestal.getPlacedItem(pedestal);
 
-            stack.ifPresent(item -> input.add(pedestalItem.getOriginalItemStack(item)));
+            stack.ifPresent(item -> input.add(AncientPedestal.getOriginalItemStack(item)));
         }
 
         Optional<ItemStack> result = getRecipeOutput(catalyst, input);
@@ -315,7 +316,7 @@ public class AncientAltarListener implements Listener {
 
             RepairedSpawner spawner = (RepairedSpawner) SlimefunItems.REPAIRED_SPAWNER.getItem();
             return Optional.of(
-                    spawner.getItemForEntityType(spawner.getEntityType(wrapper).orElse(EntityType.PIG)));
+                    spawner.getItemForEntityType(AbstractMonsterSpawner.getEntityType(wrapper).orElse(EntityType.PIG)));
         }
 
         return checkRecipe(wrapper, items);

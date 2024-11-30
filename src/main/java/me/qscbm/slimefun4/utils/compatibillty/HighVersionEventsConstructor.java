@@ -32,7 +32,7 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
         Enum<?>[] enums = explosionResultClass.getEnumConstants();
 
         for (Enum<?> field : enums) {
-            if (field.name().equalsIgnoreCase("destroy")) {
+            if ("destroy".equalsIgnoreCase(field.name())) {
                 destroyEnum = field;
                 break;
             }

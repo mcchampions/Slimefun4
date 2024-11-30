@@ -50,7 +50,7 @@ public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
             if (!(fc instanceof TextComponent firstComponent)) return;
 
             List<Component> list = firstComponent.children();
-            if (list.size() >= 2 && ((TextComponent) list.get(1)).content().equals("None")) {
+            if (list.size() >= 2 && "None".equals(((TextComponent) list.get(1)).content())) {
                 lore.set(0, new QsTextComponentImpl("主人: ").color(NamedTextColor.GRAY)
                         .append(new QsTextComponentImpl(p.getName()).color(NamedTextColor.GRAY)));
                 lore.set(1, new QsTextComponentImpl(p.getUniqueId().toString()).color(NamedTextColor.BLACK));

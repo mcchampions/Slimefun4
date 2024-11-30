@@ -75,7 +75,7 @@ class BlockDataCommand extends SubCommand {
                     return;
                 }
 
-                if (key.equalsIgnoreCase("id")) {
+                if ("id".equalsIgnoreCase(key)) {
                     ChatUtils.sendMessage(player, "&c你不能修改方块的 ID!");
                     return;
                 }
@@ -87,7 +87,7 @@ class BlockDataCommand extends SubCommand {
                         .replace("%value%", value));
             }
             case "remove" -> {
-                if (key.equalsIgnoreCase("id")) {
+                if ("id".equalsIgnoreCase(key)) {
                     ChatUtils.sendMessage(player, "&c你不能修改方块的 ID!");
                     return;
                 }

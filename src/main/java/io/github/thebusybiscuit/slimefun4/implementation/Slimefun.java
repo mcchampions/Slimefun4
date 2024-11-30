@@ -246,7 +246,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                 config.getBoolean("networks.enable-visualizer"),
                 config.getBoolean("networks.delete-excess-items"));
         // load language cache
-        LanguageService.get().load();
+        LanguageService.load();
         // Registering all GEO Resources
 
         logger.log(Level.INFO, "加载矿物资源...");

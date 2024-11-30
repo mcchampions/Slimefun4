@@ -25,31 +25,31 @@ public class SlimefunTabCompleter {
             }
             case 2 -> {
                 String param = args.get(0);
-                if (param.equalsIgnoreCase("banitem")) {
+                if ("banitem".equalsIgnoreCase(param)) {
                     return createReturnList(getSlimefunItems(), args.get(1));
                 }
-                if (param.equalsIgnoreCase("unbanitem")) {
+                if ("unbanitem".equalsIgnoreCase(param)) {
                     Set<String> set = Slimefun.getRegistry().getDisabledSlimefunItemsToSet().stream()
                             .map(SlimefunItem::getItemNormalName)
                             .collect(Collectors.toSet());
                     return createReturnList(set, args.get(1));
                 }
-                if (param.equalsIgnoreCase("cleardata")) {
+                if ("cleardata".equalsIgnoreCase(param)) {
                     Set<String> set = Bukkit.getWorlds().stream().map(WorldInfo::getName).collect(Collectors.toSet());
                     set.add("*");
                     return createReturnList(set, args.get(1));
                 }
-                if (param.equalsIgnoreCase("calc")) {
+                if ("calc".equalsIgnoreCase(param)) {
                     return createReturnList(getSlimefunItems(), args.get(1));
                 }
                 return getPlayerList(args.get(1));
             }
             case 3 -> {
                 String param = args.get(0);
-                if (param.equalsIgnoreCase("give")) {
+                if ("give".equalsIgnoreCase(param)) {
                     return createReturnList(getSlimefunItems(), args.get(2));
                 }
-                if (param.equalsIgnoreCase("research")) {
+                if ("research".equalsIgnoreCase(param)) {
                     List<Research> researches = Slimefun.getRegistry().getResearches();
                     Set<String> suggestions = new HashSet<>();
 
@@ -62,17 +62,17 @@ public class SlimefunTabCompleter {
 
                     return createReturnList(suggestions, args.get(2));
                 }
-                if (param.equalsIgnoreCase("cleardata")) {
+                if ("cleardata".equalsIgnoreCase(param)) {
                     return createReturnList(Arrays.asList("block", "oil", "*"), args.get(2));
                 }
 
-                if (param.equalsIgnoreCase("calc")) {
+                if ("calc".equalsIgnoreCase(param)) {
                     return createReturnList(COUNT_LIST, args.get(2));
                 }
                 return Collections.emptyList();
             }
             case 4 -> {
-                if (args.get(0).equalsIgnoreCase("give")) {
+                if ("give".equalsIgnoreCase(args.get(0))) {
                     return createReturnList(COUNT_LIST, args.get(3));
                 }
             }

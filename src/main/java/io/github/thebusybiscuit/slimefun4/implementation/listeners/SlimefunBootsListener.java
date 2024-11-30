@@ -65,7 +65,7 @@ public class SlimefunBootsListener implements Listener {
 
                 if (boots instanceof StomperBoots stomperBoots) {
                     e.setCancelled(true);
-                    stomperBoots.stomp(e);
+                    StomperBoots.stomp(e);
                 } else if (boots instanceof LongFallBoots longFallBoots) {
                     e.setCancelled(true);
                     longFallBoots.getSoundEffect().playAt(p.getLocation(), SoundCategory.PLAYERS);

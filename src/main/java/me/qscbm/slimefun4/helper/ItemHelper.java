@@ -38,7 +38,7 @@ public class ItemHelper {
         }
 
         String type = wrapper.getType().name().toLowerCase(Locale.ROOT);
-        if (type.contains("potion") || type.equals("tipped_arrow")) {
+        if (type.contains("potion") || "tipped_arrow".equals(type)) {
             //noinspection deprecation
             String potion = ((PotionMeta) (meta == null ? stack.getItemMeta() : meta))
                     .getBasePotionData().getType().toString().toLowerCase();

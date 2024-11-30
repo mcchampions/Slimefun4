@@ -30,7 +30,7 @@ public class ClearDataCommand extends SubCommand {
             Slimefun.getLocalization().sendMessage(sender, "commands.cleardata.confirm", true);
             return;
         }
-        if (args.length < 3 || !args[3].equalsIgnoreCase("confirm")) {
+        if (args.length < 3 || !"confirm".equalsIgnoreCase(args[3])) {
             Slimefun.getLocalization()
                     .sendMessage(
                             sender,
@@ -44,7 +44,7 @@ public class ClearDataCommand extends SubCommand {
         String block = Slimefun.getLocalization().getMessage("commands.cleardata.block");
         String oil = Slimefun.getLocalization().getMessage("commands.cleardata.oil");
         BlockDataController controller = Slimefun.getDatabaseManager().getBlockDataController();
-        if (args[1].equals("*")) {
+        if ("*".equals(args[1])) {
             worlds.addAll(Bukkit.getWorlds());
         } else {
             World toAdd = Bukkit.getWorld(args[1]);
@@ -54,7 +54,7 @@ public class ClearDataCommand extends SubCommand {
             }
         }
 
-        if (args[2].equals("*")) {
+        if ("*".equals(args[2])) {
             clearTypes.addAll(ValidClearTypes);
         } else if (ValidClearTypes.contains(args[2])) {
             clearTypes.add(args[2]);
@@ -62,7 +62,7 @@ public class ClearDataCommand extends SubCommand {
 
         for (World world : worlds) {
             for (String cleartype : clearTypes) {
-                if (cleartype.equals("block")) {
+                if ("block".equals(cleartype)) {
                     controller.removeAllDataInWorldAsync(
                             world,
                             () -> Slimefun.runSync(() -> Slimefun.getLocalization()
@@ -71,7 +71,7 @@ public class ClearDataCommand extends SubCommand {
                                             .replace("{1}", block))));
                     continue;
                 }
-                if (cleartype.equals("oil")) {
+                if ("oil".equals(cleartype)) {
                     GEOResource oilresource = null;
                     for (GEOResource resource :
                             Slimefun.getRegistry().getGEOResources().values()) {

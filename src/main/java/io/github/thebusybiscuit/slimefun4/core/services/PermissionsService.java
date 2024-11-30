@@ -92,7 +92,7 @@ You can also customize the text that is displayed when a Player does not have th
         }
 
         String permission = permissions.get(item.getId());
-        return permission == null || permission.equals("none") || p.hasPermission(permission);
+        return permission == null || "none".equals(permission) || p.hasPermission(permission);
     }
 
     /**
@@ -109,7 +109,7 @@ You can also customize the text that is displayed when a Player does not have th
     public Optional<String> getPermission(SlimefunItem item) {
         String permission = permissions.get(item.getId());
 
-        if (permission == null || permission.equals("none")) {
+        if (permission == null || "none".equals(permission)) {
             return Optional.empty();
         } else {
             return Optional.of(permission);
