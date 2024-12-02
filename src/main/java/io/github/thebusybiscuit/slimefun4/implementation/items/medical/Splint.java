@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.medical;
 
+import city.norain.slimefun4.compatibillty.VersionedAttribute;
 import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -10,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
 import org.bukkit.GameMode;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -33,7 +33,7 @@ public class Splint extends SimpleSlimefunItem<ItemUseHandler> {
             // Player is neither burning nor injured
             if (p.getFireTicks() <= 0
                 && p.getHealth()
-                   >= p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
+                   >= p.getAttribute(VersionedAttribute.getMaxHealth()).getValue()) {
                 return;
             }
 

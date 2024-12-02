@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.medical;
 
+import city.norain.slimefun4.compatibillty.VersionedAttribute;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -11,7 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import lombok.Getter;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -41,8 +41,7 @@ public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefu
     /**
      * This method clears any negative {@link PotionEffect} from the given {@link LivingEntity}.
      *
-     * @param n
-     *            The {@link LivingEntity} to clear the effects from.
+     * @param n The {@link LivingEntity} to clear the effects from.
      */
     public void clearNegativeEffects(LivingEntity n) {
         for (PotionEffectType effect : curedEffects) {
@@ -55,12 +54,11 @@ public abstract class MedicalSupply<T extends ItemHandler> extends SimpleSlimefu
     /**
      * This method heals the given {@link LivingEntity} by the amount provided via the constructor.
      *
-     * @param n
-     *            The {@link LivingEntity} to heal
+     * @param n The {@link LivingEntity} to heal
      */
     public void heal(LivingEntity n) {
         double health = n.getHealth() + healAmount;
-        double maxHealth = n.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+        double maxHealth = n.getAttribute(VersionedAttribute.getMaxHealth()).getValue();
         n.setHealth(Math.min(health, maxHealth));
     }
 }

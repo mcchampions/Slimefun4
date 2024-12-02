@@ -8,11 +8,8 @@ import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.BiomeMapException;
 import io.github.thebusybiscuit.slimefun4.utils.JsonUtils;
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Biome;
