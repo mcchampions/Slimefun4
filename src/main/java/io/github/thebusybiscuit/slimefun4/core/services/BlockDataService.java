@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
 
@@ -118,13 +119,29 @@ public class BlockDataService implements Keyed {
     }
 
     public static Optional<String> getBlockData(Block b, NamespacedKey key) {
-        BlockState state = b.getState(false);
-        PersistentDataContainer container = getPersistentDataContainer(state);
-
-        if (container != null) {
-            return Optional.ofNullable(container.get(key, PersistentDataType.STRING));
-        } else {
-            return Optional.empty();
+        try {
+            BlockState state = b.getState(false);
+            PersistentDataContainer container = getPersistentDataContainer(state);
+            if (container != null) {
+                return Optional.ofNullable(container.get(key, PersistentDataType.STRING));
+            } else {
+                return Optional.empty();
+            }
+        } catch (IllegalStateException e) {
+            try {
+                return Bukkit.getScheduler().callSyncMethod(Slimefun.instance(), () -> {
+                    BlockState state = b.getState(false);
+                    PersistentDataContainer container = getPersistentDataContainer(state);
+                    if (container != null) {
+                        return Optional.ofNullable(container.get(key, PersistentDataType.STRING));
+                    } else {
+                        //noinspection OptionalOfNullableMisuse
+                        return Optional.ofNullable((String) null);
+                    }
+                }).get();
+            } catch (InterruptedException | ExecutionException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 
