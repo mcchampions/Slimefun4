@@ -119,29 +119,26 @@ public class BlockDataService implements Keyed {
     }
 
     public static Optional<String> getBlockData(Block b, NamespacedKey key) {
-        try {
+        if (Bukkit.isPrimaryThread()) {
             BlockState state = b.getState(false);
             PersistentDataContainer container = getPersistentDataContainer(state);
-            if (container != null) {
-                return Optional.ofNullable(container.get(key, PersistentDataType.STRING));
-            } else {
+            if (container == null) {
                 return Optional.empty();
             }
-        } catch (IllegalStateException e) {
-            try {
-                return Bukkit.getScheduler().callSyncMethod(Slimefun.instance(), () -> {
-                    BlockState state = b.getState(false);
-                    PersistentDataContainer container = getPersistentDataContainer(state);
-                    if (container != null) {
-                        return Optional.ofNullable(container.get(key, PersistentDataType.STRING));
-                    } else {
-                        //noinspection OptionalOfNullableMisuse
-                        return Optional.ofNullable((String) null);
-                    }
-                }).get();
-            } catch (InterruptedException | ExecutionException ex) {
-                throw new RuntimeException(ex);
-            }
+            return Optional.ofNullable(container.get(key, PersistentDataType.STRING));
+        }
+        try {
+            return Bukkit.getScheduler().callSyncMethod(Slimefun.instance(), () -> {
+                BlockState state = b.getState(false);
+                PersistentDataContainer container = getPersistentDataContainer(state);
+                if (container == null) {
+                    //noinspection OptionalOfNullableMisuse
+                    return Optional.ofNullable((String) null);
+                }
+                return Optional.ofNullable(container.get(key, PersistentDataType.STRING));
+            }).get();
+        } catch (InterruptedException | ExecutionException ex) {
+            throw new RuntimeException(ex);
         }
     }
 
