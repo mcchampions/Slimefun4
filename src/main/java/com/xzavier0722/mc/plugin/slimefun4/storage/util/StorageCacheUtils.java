@@ -13,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -150,7 +151,7 @@ public class StorageCacheUtils {
      * @return {@link SlimefunUniversalBlockData}
      */
     public static SlimefunUniversalBlockData getUniversalBlock(Block block) {
-        var uuid = Slimefun.getBlockDataService().getUniversalDataUUID(block);
+        Optional<UUID> uuid = Slimefun.getBlockDataService().getUniversalDataUUID(block);
 
         return uuid.map(id -> getUniversalBlock(id, block.getLocation())).orElse(null);
     }
@@ -164,7 +165,7 @@ public class StorageCacheUtils {
      * @return {@link SlimefunUniversalData}
      */
     public static UniversalMenu getUniversalMenu(Block block) {
-        var uniData = getUniversalBlock(block);
+        SlimefunUniversalBlockData uniData = getUniversalBlock(block);
 
         if (uniData == null) {
             return null;
@@ -174,7 +175,7 @@ public class StorageCacheUtils {
     }
 
     public static UniversalMenu getUniversalMenu(UUID uuid, Location l) {
-        var uniData = Slimefun.getDatabaseManager().getBlockDataController().getUniversalBlockDataFromCache(uuid);
+        SlimefunUniversalBlockData uniData = Slimefun.getDatabaseManager().getBlockDataController().getUniversalBlockDataFromCache(uuid);
 
         if (uniData == null) {
             return null;

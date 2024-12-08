@@ -10,11 +10,8 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.DataUtils;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerBackpack;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -36,32 +33,31 @@ public class ProfileDataController extends ADataController {
     }
 
     @Nullable public PlayerProfile getProfile(OfflinePlayer p) {
-        checkDestroy();
         var uuid = p.getUniqueId().toString();
         var re = profileCache.get(uuid);
         if (re != null) {
             return re;
         }
 
-        var key = new RecordKey(DataScope.PLAYER_PROFILE);
+        RecordKey key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addField(FieldKey.PLAYER_BACKPACK_NUM);
         key.addField(FieldKey.PLAYER_NAME);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
 
-        var result = getData(key);
+        List<RecordSet> result = getData(key);
         if (result.isEmpty()) {
             return null;
         }
 
         // check player name changed or not
-        var currentPlayerName = p.getName();
+        String currentPlayerName = p.getName();
         if (currentPlayerName != null && !currentPlayerName.equals(result.get(0).get(FieldKey.PLAYER_NAME))) {
             updateUsername(uuid, currentPlayerName);
         }
 
-        var bNum = result.get(0).getInt(FieldKey.BACKPACK_NUMBER);
+        int bNum = result.get(0).getInt(FieldKey.BACKPACK_NUMBER);
 
-        var researches = new HashSet<Research>();
+        Set<Research> researches = new HashSet<Research>();
         getUnlockedResearchKeys(uuid).forEach(rKey -> Research.getResearch(rKey).ifPresent(researches::add));
 
         re = new PlayerProfile(p, bNum, researches);
@@ -74,28 +70,27 @@ public class ProfileDataController extends ADataController {
     }
 
     @Nullable public PlayerBackpack getBackpack(OfflinePlayer owner, int num) {
-        checkDestroy();
-        var uuid = owner.getUniqueId().toString();
-        var re = backpackCache.get(uuid, num);
+        String uuid = owner.getUniqueId().toString();
+        PlayerBackpack re = backpackCache.get(uuid, num);
         if (re != null) {
             return re;
         }
 
-        var key = new RecordKey(DataScope.BACKPACK_PROFILE);
+        RecordKey key = new RecordKey(DataScope.BACKPACK_PROFILE);
         key.addField(FieldKey.BACKPACK_ID);
         key.addField(FieldKey.BACKPACK_SIZE);
         key.addField(FieldKey.BACKPACK_NAME);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
         key.addCondition(FieldKey.BACKPACK_NUMBER, num + "");
 
-        var bResult = getData(key);
+        List<RecordSet> bResult = getData(key);
         if (bResult.isEmpty()) {
             return null;
         }
 
-        var result = bResult.get(0);
-        var size = Integer.parseInt(bResult.get(0).get(FieldKey.BACKPACK_SIZE));
-        var idStr = result.get(FieldKey.BACKPACK_ID);
+        RecordSet result = bResult.get(0);
+        int size = Integer.parseInt(bResult.get(0).get(FieldKey.BACKPACK_SIZE));
+        String idStr = result.get(FieldKey.BACKPACK_ID);
 
         re = new PlayerBackpack(
                 owner,
@@ -109,12 +104,12 @@ public class ProfileDataController extends ADataController {
     }
 
     @Nullable public PlayerBackpack getBackpack(String uuid) {
-        var re = backpackCache.get(uuid);
+        PlayerBackpack re = backpackCache.get(uuid);
         if (re != null) {
             return re;
         }
 
-        var key = new RecordKey(DataScope.BACKPACK_PROFILE);
+        RecordKey key = new RecordKey(DataScope.BACKPACK_PROFILE);
         key.addField(FieldKey.BACKPACK_ID);
         key.addField(FieldKey.BACKPACK_SIZE);
         key.addField(FieldKey.BACKPACK_NAME);
@@ -122,14 +117,14 @@ public class ProfileDataController extends ADataController {
         key.addField(FieldKey.PLAYER_UUID);
         key.addCondition(FieldKey.BACKPACK_ID, uuid);
 
-        var resultSet = getData(key);
+        List<RecordSet> resultSet = getData(key);
         if (resultSet.isEmpty()) {
             return null;
         }
 
-        var result = resultSet.get(0);
-        var idStr = result.get(FieldKey.BACKPACK_ID);
-        var size = result.getInt(FieldKey.BACKPACK_SIZE);
+        RecordSet result = resultSet.get(0);
+        String idStr = result.get(FieldKey.BACKPACK_ID);
+        int size = result.getInt(FieldKey.BACKPACK_SIZE);
 
         re = new PlayerBackpack(
                 Bukkit.getOfflinePlayer(UUID.fromString(result.get(FieldKey.PLAYER_UUID))),
@@ -144,13 +139,13 @@ public class ProfileDataController extends ADataController {
 
 
     private ItemStack[] getBackpackInv(String uuid, int size) {
-        var key = new RecordKey(DataScope.BACKPACK_INVENTORY);
+        RecordKey key = new RecordKey(DataScope.BACKPACK_INVENTORY);
         key.addField(FieldKey.INVENTORY_SLOT);
         key.addField(FieldKey.INVENTORY_ITEM);
         key.addCondition(FieldKey.BACKPACK_ID, uuid);
 
-        var invResult = getData(key);
-        var re = new ItemStack[size];
+        List<RecordSet> invResult = getData(key);
+        ItemStack[] re = new ItemStack[size];
         invResult.forEach(
                 each -> re[each.getInt(FieldKey.INVENTORY_SLOT)] = each.getItemStack(FieldKey.INVENTORY_ITEM));
 
@@ -159,11 +154,11 @@ public class ProfileDataController extends ADataController {
 
 
     private Set<NamespacedKey> getUnlockedResearchKeys(String uuid) {
-        var key = new RecordKey(DataScope.PLAYER_RESEARCH);
+        RecordKey key = new RecordKey(DataScope.PLAYER_RESEARCH);
         key.addField(FieldKey.RESEARCH_ID);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
 
-        var result = getData(key);
+        List<RecordSet> result = getData(key);
         if (result.isEmpty()) {
             return Collections.emptySet();
         }
@@ -183,17 +178,16 @@ public class ProfileDataController extends ADataController {
 
 
     public Set<PlayerBackpack> getBackpacks(String pUuid) {
-        checkDestroy();
-        var key = new RecordKey(DataScope.BACKPACK_PROFILE);
+        RecordKey key = new RecordKey(DataScope.BACKPACK_PROFILE);
         key.addField(FieldKey.BACKPACK_ID);
         key.addCondition(FieldKey.PLAYER_UUID, pUuid);
 
-        var result = getData(key);
+        List<RecordSet> result = getData(key);
         if (result.isEmpty()) {
             return Collections.emptySet();
         }
 
-        var re = new HashSet<PlayerBackpack>();
+        Set<PlayerBackpack> re = new HashSet<PlayerBackpack>();
         result.forEach(bUuid -> re.add(getBackpack(bUuid.get(FieldKey.BACKPACK_ID))));
         return re;
     }
@@ -207,7 +201,6 @@ public class ProfileDataController extends ADataController {
 
 
     public PlayerProfile createProfile(OfflinePlayer p) {
-        checkDestroy();
         var uuid = p.getUniqueId().toString();
         var cache = profileCache.get(uuid);
         if (cache != null) {
@@ -288,7 +281,6 @@ public class ProfileDataController extends ADataController {
     }
 
     public UUID getPlayerUuid(String pName) {
-        checkDestroy();
         var key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addField(FieldKey.PLAYER_UUID);
         key.addCondition(FieldKey.PLAYER_NAME, pName);
@@ -302,7 +294,6 @@ public class ProfileDataController extends ADataController {
     }
 
     public boolean isExistsUuid(UUID uuid) {
-        checkDestroy();
         var key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addCondition(FieldKey.PLAYER_UUID, String.valueOf(uuid));
         key.addField(FieldKey.PLAYER_NAME);

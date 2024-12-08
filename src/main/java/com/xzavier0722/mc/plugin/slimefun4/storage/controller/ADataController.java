@@ -119,11 +119,7 @@ public abstract class ADataController {
         }
     }
 
-    protected void checkDestroy() {
-        if (destroyed) {
-            throw new IllegalStateException("Controller cannot be accessed after destroyed.");
-        }
-    }
+    protected void checkDestroy() {}
 
     protected <T> void invokeCallback(IAsyncReadCallback<T> callback, T result) {
         if (callback == null) {
@@ -145,12 +141,10 @@ public abstract class ADataController {
     }
 
     protected void scheduleReadTask(Runnable run) {
-        checkDestroy();
         readExecutor.submit(run);
     }
 
     protected void scheduleWriteTask(Runnable run) {
-        checkDestroy();
         writeExecutor.submit(run);
     }
 
@@ -171,7 +165,7 @@ public abstract class ADataController {
     }
 
     protected void abortScopeTask(ScopeKey key) {
-        var task = scheduledWriteTasks.remove(key);
+        QueuedWriteTask task = scheduledWriteTasks.remove(key);
         if (task != null) {
             task.abort();
         }

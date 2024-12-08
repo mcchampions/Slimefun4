@@ -174,7 +174,6 @@ public class BlockDataController extends ADataController {
      * @param forceSavePeriod 强制保存周期
      */
     public void initDelayedSaving(Plugin p, int delayedSecond, int forceSavePeriod) {
-        checkDestroy();
         if (delayedSecond < 1 || forceSavePeriod < 1) {
             throw new IllegalArgumentException("save period second must be greater than 0!");
         }
@@ -217,8 +216,7 @@ public class BlockDataController extends ADataController {
      * {@link SlimefunUniversalData}
      */
     public ASlimefunDataContainer createBlock(Location l, String sfId) {
-        checkDestroy();
-        var sfItem = SlimefunItem.getById(sfId);
+        SlimefunItem sfItem = SlimefunItem.getById(sfId);
 
         if (sfItem instanceof UniversalBlock) {
             SlimefunUniversalData re = createUniversalBlockData(l, sfId);
@@ -235,17 +233,14 @@ public class BlockDataController extends ADataController {
         }
     }
 
-    public SlimefunUniversalBlockData createUniversalBlockData(Location l, String sfId) {
-        checkDestroy();
-
-        var uuid = UUID.randomUUID();
-        var uniData = new SlimefunUniversalBlockData(uuid, sfId, l);
+    public SlimefunUniversalBlockData createUniversalBlockData(Location l, String sfId) {        UUID uuid = UUID.randomUUID();
+        SlimefunUniversalBlockData uniData = new SlimefunUniversalBlockData(uuid, sfId, l);
 
         uniData.setIsDataLoaded(true);
 
         loadedUniversalData.put(uuid, uniData);
 
-        var preset = UniversalMenuPreset.getPreset(sfId);
+        UniversalMenuPreset preset = UniversalMenuPreset.getPreset(sfId);
         if (preset != null) {
             uniData.setMenu(new UniversalMenu(preset, uuid, l));
         }
@@ -258,17 +253,17 @@ public class BlockDataController extends ADataController {
     }
 
     void saveNewBlock(Location l, String sfId) {
-        var lKey = LocationUtils.getLocKey(l);
+        String lKey = LocationUtils.getLocKey(l);
 
-        var key = new RecordKey(DataScope.BLOCK_RECORD);
+        RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
         // key.addCondition(FieldKey.LOCATION, lKey);
 
-        var data = new RecordSet();
+        RecordSet data = new RecordSet();
         data.put(FieldKey.LOCATION, lKey);
         data.put(FieldKey.CHUNK, LocationUtils.getChunkKey(l.getChunk()));
         data.put(FieldKey.SLIMEFUN_ID, sfId);
 
-        var scopeKey = new LocationKey(DataScope.NONE, l);
+        LocationKey scopeKey = new LocationKey(DataScope.NONE, l);
         removeDelayedBlockDataUpdates(scopeKey); // Shouldn't have.. But for safe..
         scheduleWriteTask(scopeKey, key, data, true);
     }
@@ -280,16 +275,16 @@ public class BlockDataController extends ADataController {
      * @param sfId the item universal data represents
      */
     void saveUniversalData(UUID uuid, String sfId, Set<UniversalDataTrait> traits) {
-        var key = new RecordKey(DataScope.UNIVERSAL_RECORD);
+        RecordKey key = new RecordKey(DataScope.UNIVERSAL_RECORD);
 
-        var data = new RecordSet();
+        RecordSet data = new RecordSet();
         data.put(FieldKey.UNIVERSAL_UUID, uuid.toString());
         data.put(FieldKey.SLIMEFUN_ID, sfId);
         data.put(
                 FieldKey.UNIVERSAL_TRAITS,
                 String.join(",", traits.stream().map(Enum::name).toList()));
 
-        var scopeKey = new UUIDKey(DataScope.NONE, uuid);
+        UUIDKey scopeKey = new UUIDKey(DataScope.NONE, uuid);
         removeDelayedBlockDataUpdates(scopeKey); // Shouldn't have.. But for safe..
         scheduleWriteTask(scopeKey, key, data, true);
     }
@@ -299,20 +294,14 @@ public class BlockDataController extends ADataController {
      *
      * @param l slimefun block location {@link Location}
      */
-    public void removeBlock(Location l) {
-        checkDestroy();
-
-        SlimefunBlockData removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
+    public void removeBlock(Location l) {        SlimefunBlockData removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
         if (removed == null) {
             getUniversalBlockDataFromCache(l)
                     .ifPresentOrElse(data -> removeUniversalBlockData(data.getUUID(), l), () -> {
-                        if (Bukkit.isPrimaryThread()) {
-                            Slimefun.getBlockDataService()
-                                    .getUniversalDataUUID(l.getBlock())
-                                    .ifPresent(uuid -> removeUniversalBlockData(uuid, l));
-                        }
+                        Slimefun.getBlockDataService()
+                                .getUniversalDataUUID(l.getBlock())
+                                .ifPresent(uuid -> removeUniversalBlockData(uuid, l));
                     });
-
             return;
         }
 
@@ -320,7 +309,7 @@ public class BlockDataController extends ADataController {
             return;
         }
 
-        var menu = removed.getBlockMenu();
+        BlockMenu menu = removed.getBlockMenu();
         if (menu != null) {
             menu.lock();
         }
@@ -334,16 +323,13 @@ public class BlockDataController extends ADataController {
         }
     }
 
-    public void removeBlockData(Location l) {
-        checkDestroy();
-
-        var removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
+    public void removeBlockData(Location l) {        SlimefunBlockData removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
 
         if (removed == null || !removed.isDataLoaded()) {
             return;
         }
 
-        var menu = removed.getBlockMenu();
+        BlockMenu menu = removed.getBlockMenu();
         if (menu != null) {
             InventoryUtil.closeInventory(menu.toInventory());
         }
@@ -353,10 +339,7 @@ public class BlockDataController extends ADataController {
         }
     }
 
-    public void removeUniversalBlockData(UUID uuid, Location lastPresent) {
-        checkDestroy();
-
-        var toRemove = loadedUniversalData.get(uuid);
+    public void removeUniversalBlockData(UUID uuid, Location lastPresent) {        var toRemove = loadedUniversalData.get(uuid);
 
         if (toRemove == null) {
             return;
@@ -384,7 +367,6 @@ public class BlockDataController extends ADataController {
     }
 
     void removeBlockDirectly(Location l) {
-        checkDestroy();
         var scopeKey = new LocationKey(DataScope.NONE, l);
         removeDelayedBlockDataUpdates(scopeKey);
 
@@ -394,7 +376,6 @@ public class BlockDataController extends ADataController {
     }
 
     void removeUniversalBlockDirectly(UUID uuid) {
-        checkDestroy();
         var scopeKey = new UUIDKey(DataScope.NONE, uuid);
         removeDelayedBlockDataUpdates(scopeKey);
 
@@ -411,7 +392,6 @@ public class BlockDataController extends ADataController {
      */
     @Nullable
     public SlimefunBlockData getBlockData(Location l) {
-        checkDestroy();
         if (chunkDataLoadMode.readCacheOnly()) {
             return getBlockDataFromCache(l);
         }
@@ -468,19 +448,17 @@ public class BlockDataController extends ADataController {
      */
     @Nullable
     public SlimefunUniversalBlockData getUniversalBlockData(UUID uuid) {
-        checkDestroy();
-
-        var key = new RecordKey(DataScope.UNIVERSAL_RECORD);
+        RecordKey key = new RecordKey(DataScope.UNIVERSAL_RECORD);
         key.addCondition(FieldKey.UNIVERSAL_UUID, uuid.toString());
         key.addField(FieldKey.SLIMEFUN_ID);
 
-        var result = getData(key);
+        List<RecordSet> result = getData(key);
 
         if (result.isEmpty()) {
             return null;
         }
 
-        var newData = new SlimefunUniversalBlockData(uuid, result.get(0).get(FieldKey.SLIMEFUN_ID));
+        SlimefunUniversalBlockData newData = new SlimefunUniversalBlockData(uuid, result.get(0).get(FieldKey.SLIMEFUN_ID));
 
         Arrays.stream(result.get(0).get(FieldKey.UNIVERSAL_TRAITS).split(",")).forEach(tname -> {
             for (UniversalDataTrait trait : UniversalDataTrait.values()) {
@@ -510,8 +488,6 @@ public class BlockDataController extends ADataController {
      */
     @Nullable
     public SlimefunUniversalBlockData getUniversalBlockDataFromCache(UUID uuid) {
-        checkDestroy();
-
         var cache = loadedUniversalData.get(uuid);
 
         return cache == null
@@ -524,10 +500,7 @@ public class BlockDataController extends ADataController {
      *
      * @param l Slimefun block location {@link Location}
      */
-    public Optional<SlimefunUniversalBlockData> getUniversalBlockDataFromCache(Location l) {
-        checkDestroy();
-
-        return loadedUniversalData.values().stream()
+    public Optional<SlimefunUniversalBlockData> getUniversalBlockDataFromCache(Location l) {        return loadedUniversalData.values().stream()
                 .filter(uniData -> uniData instanceof SlimefunUniversalBlockData ubd
                                    && ubd.getLastPresent().toLocation().equals(l))
                 .map(data -> (SlimefunUniversalBlockData) data)
@@ -620,13 +593,11 @@ public class BlockDataController extends ADataController {
     }
 
     private SlimefunBlockData getBlockDataFromCache(String cKey, String lKey) {
-        checkDestroy();
         var chunkData = loadedChunk.get(cKey);
         return chunkData == null ? null : chunkData.getBlockCacheInternal(lKey);
     }
 
     public void loadChunk(Chunk chunk, boolean isNewChunk) {
-        checkDestroy();
         var chunkData = getChunkDataCache(chunk, true);
 
         if (isNewChunk) {
@@ -907,7 +878,6 @@ public class BlockDataController extends ADataController {
     }
 
     public SlimefunChunkData getChunkData(Chunk chunk) {
-        checkDestroy();
         loadChunk(chunk, false);
         return getChunkDataCache(chunk, false);
     }

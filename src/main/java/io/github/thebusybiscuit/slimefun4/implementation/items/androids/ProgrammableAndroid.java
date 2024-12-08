@@ -926,10 +926,6 @@ public class ProgrammableAndroid extends SlimefunItem
     public void addItems(Block b, ItemStack... items) {
         Optional<UUID> uuid = Slimefun.getBlockDataService().getUniversalDataUUID(b);
 
-        if (uuid.isEmpty()) {
-            throw new IllegalStateException("Android missing uuid");
-        }
-
         UniversalMenu inv = StorageCacheUtils.getUniversalMenu(uuid.get(), b.getLocation());
 
         if (inv != null) {

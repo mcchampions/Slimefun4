@@ -28,12 +28,6 @@ public class LanguageService {
 
     public static Language language;
 
-    private static final LanguageService INSTANCE = new LanguageService();
-
-    public static LanguageService get() {
-        return INSTANCE;
-    }
-
     public static void load() {
         Slimefun.logger().log(Level.INFO,"正在加载语言文件至内存中");
         long start = System.currentTimeMillis();
