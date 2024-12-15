@@ -32,14 +32,18 @@ public class AsyncTabCompleteListener implements Listener {
             return;
         }
         String commandLabel = buffer.substring(0, firstPlace).toLowerCase();
-        Matcher matcher = COMMAND_PREFIX.matcher(commandLabel);
-        if (matcher.find()) {
-            if (matcher.start() == 0) {
-                commandLabel = commandLabel.substring(matcher.end());
-            }
-        }
         if (!SlimefunCommand.COMMAND_ALIASES.contains(commandLabel) && !"slimefun".equals(commandLabel)) {
-            return;
+            Matcher matcher = COMMAND_PREFIX.matcher(commandLabel);
+            if (!matcher.find()) {
+                return;
+            }
+            if (matcher.start() != 0) {
+                return;
+            }
+            commandLabel = commandLabel.substring(matcher.end());
+            if (!SlimefunCommand.COMMAND_ALIASES.contains(commandLabel) && !"slimefun".equals(commandLabel)) {
+                return;
+            }
         }
         List<String> args = new QuotedStringTokenizer(buffer.substring(firstPlace + 1)).tokenize(false);
         List<String> suggests = SlimefunTabCompleter.onTabComplete(args);
