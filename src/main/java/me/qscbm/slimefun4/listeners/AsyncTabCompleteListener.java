@@ -8,8 +8,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AsyncTabCompleteListener implements Listener {
+    public static final Pattern COMMAND_PREFIX = Pattern.compile("slimefun:");
 
     @EventHandler(ignoreCancelled = true)
     public static void onAsyncTabCompleteEvent(AsyncTabCompleteEvent e) {
@@ -29,12 +32,11 @@ public class AsyncTabCompleteListener implements Listener {
             return;
         }
         String commandLabel = buffer.substring(0, firstPlace).toLowerCase();
-        String[] parts = commandLabel.split(":");
-        if (parts.length > 1) {
-            if (!"slimefun".equals(parts[0])) {
-                return;
+        Matcher matcher = COMMAND_PREFIX.matcher(commandLabel);
+        if (matcher.find()) {
+            if (matcher.start() == 0) {
+                commandLabel = commandLabel.substring(matcher.end());
             }
-            commandLabel = parts[1];
         }
         if (!SlimefunCommand.COMMAND_ALIASES.contains(commandLabel) && !"slimefun".equals(commandLabel)) {
             return;
