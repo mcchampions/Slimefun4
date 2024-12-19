@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
@@ -381,7 +382,7 @@ public final class ResearchSetup {
         register("crucible", 107, "Crucible", 13, SlimefunItems.CRUCIBLE);
         register("gilded_backpack", 108, "Gilded Backpack", 22, SlimefunItems.GILDED_BACKPACK);
         register("armored_jetpack", 111, "Armored Jetpack", 27, SlimefunItems.ARMORED_JETPACK);
-        register("ender_talismans", 112, "Ender Talismans", 28, new String[0]);
+        register("ender_talismans", 112, "Ender Talismans", 28, QsConstants.EMPTY_STRINGS);
         register(
                 "nickel_and_cobalt", 115, "Even more Ores", 10, SlimefunItems.NICKEL_INGOT, SlimefunItems.COBALT_INGOT);
         register("magnet", 116, "Magnetic Metals", 16, SlimefunItems.MAGNET);

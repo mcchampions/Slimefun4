@@ -1,6 +1,7 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.common;
 
 import lombok.Getter;
+import me.qscbm.slimefun4.utils.QsConstants;
 
 @Getter
 public enum DataScope {
@@ -20,7 +21,7 @@ public enum DataScope {
     private final FieldKey[] primaryKeys;
 
     DataScope() {
-        primaryKeys = new FieldKey[0];
+        primaryKeys = QsConstants.EMPTY_FIELD_KEYS;
     }
 
     DataScope(FieldKey[] primaryKeys) {

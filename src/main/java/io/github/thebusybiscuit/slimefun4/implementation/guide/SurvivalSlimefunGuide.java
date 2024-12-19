@@ -40,6 +40,7 @@ import java.util.logging.Level;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -217,7 +218,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                                     + Slimefun.getLocalization().getMessage(p, "guide.locked")
                                     + " &7- &f"
                                     + group.getItem(p).getItemMeta().getDisplayName(),
-                            lore.toArray(new String[0])));
+                            lore.toArray(QsConstants.EMPTY_STRINGS)));
             menu.addMenuClickHandler(index, ChestMenuUtils.getEmptyClickHandler());
         }
     }
@@ -306,7 +307,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                     new CustomItemStack(
                             ChestMenuUtils.getNoPermissionItem(),
                             sfitem.getItemName(),
-                            message.toArray(new String[0])));
+                            message.toArray(QsConstants.EMPTY_STRINGS)));
             menu.addMenuClickHandler(index, ChestMenuUtils.getEmptyClickHandler());
         } else if (isSurvivalMode() && research != null && !profile.hasUnlocked(research)) {
             String lore;

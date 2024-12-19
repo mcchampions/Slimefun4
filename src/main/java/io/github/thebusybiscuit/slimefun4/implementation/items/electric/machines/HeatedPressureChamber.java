@@ -12,6 +12,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import me.qscbm.slimefun4.items.machines.ASpeedableContainer;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -41,7 +42,7 @@ public class HeatedPressureChamber extends ASpeedableContainer {
 
             @Override
             public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
-                return new int[0];
+                return QsConstants.EMPTY_INTS;
             }
 
             @Override

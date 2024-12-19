@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import lombok.Getter;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -121,7 +122,7 @@ public final class Script {
             lore.add("&eShift + 右键 &f差评");
         }
 
-        return new CustomItemStack(android.getItem(), "&b" + name, lore.toArray(new String[0]));
+        return new CustomItemStack(android.getItem(), "&b" + name, lore.toArray(QsConstants.EMPTY_STRINGS));
     }
 
     private String getScriptRatingPercentage() {

@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
+
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -141,7 +143,7 @@ public class MinecraftRecipeService {
                 }
             }
 
-            return choices.toArray(new RecipeChoice[0]);
+            return choices.toArray(QsConstants.EMPTY_RECIPE_CHOICES);
         } else {
             return RecipeSnapshot.getRecipeInput(recipe);
         }
@@ -158,9 +160,9 @@ public class MinecraftRecipeService {
      */
     public Recipe[] getRecipesFor(@Nullable ItemStack item) {
         if (snapshot == null || item == null) {
-            return new Recipe[0];
+            return QsConstants.EMPTY_RECIPES;
         } else {
-            return snapshot.getRecipesFor(item).toArray(new Recipe[0]);
+            return snapshot.getRecipesFor(item).toArray(QsConstants.EMPTY_RECIPES);
         }
     }
 

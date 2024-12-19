@@ -77,8 +77,8 @@ public final class FireworkUtils {
 
         for (int i = 0; i < amount; i++) {
             Location l = n.getLocation().clone();
-            l.setX(l.getX() + random.nextInt(amount * 2) - amount);
-            l.setZ(l.getZ() + random.nextInt(amount * 2) - amount);
+            l.setX(l.getX() + random.nextInt(amount << 1) - amount);
+            l.setZ(l.getZ() + random.nextInt(amount << 1) - amount);
 
             launchFirework(l, getRandomColor());
         }

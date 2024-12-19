@@ -25,6 +25,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -90,7 +91,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
                 if (flow == ItemTransportFlow.INSERT) {
                     return inputSlots;
                 } else {
-                    return new int[0];
+                    return QsConstants.EMPTY_INTS;
                 }
             }
 
@@ -106,7 +107,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
                     }
                 }
 
-                return new int[0];
+                return QsConstants.EMPTY_INTS;
             }
         };
 

@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
+import me.qscbm.slimefun4.utils.QsConstants;
 import net.guizhanss.slimefun4.utils.WikiUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -201,7 +202,7 @@ public final class PostSetup {
                     "ELECTRIC_INGOT_PULVERIZER", 3, new ItemStack[] {output[0]}, new ItemStack[] {ingredients.get(0)});
         } else {
             registerMachineRecipe(
-                    "ELECTRIC_SMELTERY", 12, ingredients.toArray(new ItemStack[0]), new ItemStack[] {output[0]});
+                    "ELECTRIC_SMELTERY", 12, ingredients.toArray(QsConstants.EMPTY_ITEM_STACKS), new ItemStack[] {output[0]});
         }
     }
 

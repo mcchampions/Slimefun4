@@ -33,7 +33,7 @@ public class NBTUtils {
 
     static {
         String detectedVersion = CRAFTBUKKIT_PACKAGE_NAME.substring(CRAFTBUKKIT_PACKAGE_NAME.lastIndexOf('.') + 1);
-        if (!detectedVersion.startsWith("v")) {
+        if (detectedVersion.charAt(0) != 'v') {
             // Paper or something...
             detectedVersion = VersionUtils.getBukkitVersion();
         }

@@ -22,6 +22,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -63,7 +64,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     }
 
     protected MultiBlockMachine(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, BlockFace trigger) {
-        this(itemGroup, item, recipe, new ItemStack[0], trigger);
+        this(itemGroup, item, recipe, QsConstants.EMPTY_ITEM_STACKS, trigger);
     }
 
     protected void registerDefaultRecipes(List<ItemStack> recipes) {
@@ -215,6 +216,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
             }
         }
 
-        return materials.toArray(new Material[0]);
+        return materials.toArray(QsConstants.EMPTY_MATERIALS);
     }
 }

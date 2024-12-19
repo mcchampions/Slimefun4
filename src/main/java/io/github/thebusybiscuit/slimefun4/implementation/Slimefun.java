@@ -159,7 +159,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * Our default constructor for {@link Slimefun}.
      */
     public Slimefun() {
-        super();
     }
 
     private boolean initialized;

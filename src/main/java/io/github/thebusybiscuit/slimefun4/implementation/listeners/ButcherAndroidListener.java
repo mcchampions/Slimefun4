@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -54,7 +55,7 @@ public class ButcherAndroidListener implements Listener {
 
                         addExtraDrops(items, e.getEntityType());
 
-                        obj.getAndroid().addItems(obj.getBlock(), items.toArray(new ItemStack[0]));
+                        obj.getAndroid().addItems(obj.getBlock(), items.toArray(QsConstants.EMPTY_ITEM_STACKS));
                         ExperienceOrb exp = (ExperienceOrb) e.getEntity()
                                 .getWorld()
                                 .spawnEntity(e.getEntity().getLocation(), EntityType.EXPERIENCE_ORB);

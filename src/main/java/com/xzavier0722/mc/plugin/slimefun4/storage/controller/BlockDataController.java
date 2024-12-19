@@ -297,11 +297,9 @@ public class BlockDataController extends ADataController {
     public void removeBlock(Location l) {        SlimefunBlockData removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
         if (removed == null) {
             getUniversalBlockDataFromCache(l)
-                    .ifPresentOrElse(data -> removeUniversalBlockData(data.getUUID(), l), () -> {
-                        Slimefun.getBlockDataService()
-                                .getUniversalDataUUID(l.getBlock())
-                                .ifPresent(uuid -> removeUniversalBlockData(uuid, l));
-                    });
+                    .ifPresentOrElse(data -> removeUniversalBlockData(data.getUUID(), l), () -> Slimefun.getBlockDataService()
+                            .getUniversalDataUUID(l.getBlock())
+                            .ifPresent(uuid -> removeUniversalBlockData(uuid, l)));
             return;
         }
 

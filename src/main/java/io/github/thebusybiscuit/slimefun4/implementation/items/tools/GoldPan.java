@@ -22,6 +22,7 @@ import java.util.*;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -50,7 +51,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
         super(itemGroup, item, recipeType, recipe);
 
         drops.addAll(getGoldPanDrops());
-        addItemSetting(drops.toArray(new GoldPanDrop[0]));
+        addItemSetting(drops.toArray(QsConstants.EMPTY_GOLD_PAN_DROPS));
         addItemHandler(onEntityInteract());
     }
 

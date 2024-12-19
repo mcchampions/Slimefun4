@@ -30,9 +30,9 @@ public class MachineFuel implements Predicate<ItemStack> {
     }
 
     public MachineFuel(int seconds, ItemStack fuel, ItemStack output) {
-        
 
-        this.ticks = seconds * 2;
+
+        this.ticks = seconds << 1;
         this.fuel = fuel;
         this.wrapper = ItemStackWrapper.wrap(fuel);
         this.output = output;

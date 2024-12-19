@@ -17,6 +17,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -79,7 +80,7 @@ public class CrafterSmartPort extends SlimefunItem {
 
             @Override
             public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
-                return new int[0];
+                return QsConstants.EMPTY_INTS;
             }
 
             @Override
@@ -96,7 +97,7 @@ public class CrafterSmartPort extends SlimefunItem {
                     if (SlimefunUtils.isItemSimilar(itemInSlot, wrapper, true, false)
                             && (itemAmount += itemInSlot.getAmount()) > amountLimit) {
                         // Amount has reached the limited, just return.
-                        return new int[0];
+                        return QsConstants.EMPTY_INTS;
                     }
                 }
 

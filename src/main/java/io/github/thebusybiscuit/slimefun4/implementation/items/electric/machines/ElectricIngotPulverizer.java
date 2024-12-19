@@ -36,7 +36,7 @@ public class ElectricIngotPulverizer extends ASpeedableContainer implements Reci
 
     @Override
     public List<ItemStack> getDisplayRecipes() {
-        List<ItemStack> displayRecipes = new ArrayList<>(recipes.size() * 2);
+        List<ItemStack> displayRecipes = new ArrayList<>(recipes.size() << 1);
 
         for (MachineRecipe recipe : recipes) {
             displayRecipes.add(recipe.getInput()[0]);

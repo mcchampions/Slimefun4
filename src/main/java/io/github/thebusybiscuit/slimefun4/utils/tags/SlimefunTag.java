@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 import javax.annotation.Nullable;
+
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
@@ -405,7 +407,7 @@ public enum SlimefunTag implements Tag<Material> {
      * @return A {@link Material} array for this {@link Tag}
      */
     public Material[] toArray() {
-        return getValues().toArray(new Material[0]);
+        return getValues().toArray(QsConstants.EMPTY_MATERIALS);
     }
 
     /**

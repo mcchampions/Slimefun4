@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.TalismanEnchantment;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -52,7 +53,7 @@ public class MagicianTalisman extends Talisman {
         try {
             if (!enchantments.isEmpty()) {
                 // Fixes #3007 - This is a Set, so every Enchantment should only be contained in here once.
-                addItemSetting(enchantments.toArray(new ItemSetting[0]));
+                addItemSetting(enchantments.toArray(QsConstants.EMPTY_ITEM_SETTINGS));
             }
         } catch (RuntimeException x) {
             Slimefun.logger()

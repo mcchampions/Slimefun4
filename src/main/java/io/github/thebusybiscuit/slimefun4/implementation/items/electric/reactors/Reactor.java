@@ -33,6 +33,7 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -112,7 +113,7 @@ public abstract class Reactor extends AbstractEnergyProvider
 
             @Override
             public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
-                return new int[0];
+                return QsConstants.EMPTY_INTS;
             }
         };
 
@@ -321,7 +322,7 @@ public abstract class Reactor extends AbstractEnergyProvider
     }
 
     public int[] getCoolantSlots() {
-        return needsCooling() ? new int[] {25, 34, 43} : new int[0];
+        return needsCooling() ? new int[] {25, 34, 43} : QsConstants.EMPTY_INTS;
     }
 
     @Override

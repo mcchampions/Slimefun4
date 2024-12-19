@@ -13,7 +13,7 @@ public class MachineRecipe {
     private final ItemStack[] output;
 
     public MachineRecipe(int seconds, ItemStack[] input, ItemStack[] output) {
-        this.ticks = seconds * 2;
+        this.ticks = seconds << 1;
         this.input = input;
         this.output = output;
     }

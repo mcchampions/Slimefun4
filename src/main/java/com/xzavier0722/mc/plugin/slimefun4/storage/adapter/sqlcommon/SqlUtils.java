@@ -166,6 +166,6 @@ public class SqlUtils {
     }
 
     private static boolean isWildcardsMatching(String val) {
-        return val.endsWith("%") || val.contains("%");
+        return val.charAt(val.length() - 1) == '%' || val.contains("%");
     }
 }

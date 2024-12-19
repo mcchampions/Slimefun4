@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import javax.annotation.Nullable;
 
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -21,7 +22,7 @@ public class SlimefunArmorPiece extends SlimefunItem {
             @Nullable PotionEffect[] effects) {
         super(itemGroup, item, recipeType, recipe);
 
-        this.effects = effects == null ? new PotionEffect[0] : effects;
+        this.effects = effects == null ? QsConstants.EMPTY_POTION_EFFECTS : effects;
     }
 
     /**

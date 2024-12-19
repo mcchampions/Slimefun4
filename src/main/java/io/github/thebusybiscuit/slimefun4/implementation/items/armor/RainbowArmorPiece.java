@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.Arrays;
 
 import lombok.Getter;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.inventory.ItemStack;
@@ -43,7 +44,7 @@ public class RainbowArmorPiece extends SlimefunArmorPiece {
             RecipeType recipeType,
             ItemStack[] recipe,
             DyeColor[] dyeColors) {
-        super(itemGroup, item, recipeType, recipe, new PotionEffect[0]);
+        super(itemGroup, item, recipeType, recipe, QsConstants.EMPTY_POTION_EFFECTS);
 
         // TODO Change this validation over to our custom validation blocked by
         // https://github.com/baked-libs/dough/pull/184

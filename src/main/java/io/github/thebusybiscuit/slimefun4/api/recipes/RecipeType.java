@@ -317,7 +317,7 @@ public class RecipeType implements Keyed {
 
     public static ItemStack getRecipeOutput(MultiBlockMachine machine, ItemStack input) {
         List<ItemStack[]> recipes = machine.getRecipes();
-        return recipes.get(((getRecipeInputs(machine).indexOf(input) * 2) + 1))[0].clone();
+        return recipes.get(((getRecipeInputs(machine).indexOf(input) << 1) + 1))[0].clone();
     }
 
     public static ItemStack getRecipeOutputList(MultiBlockMachine machine, ItemStack[] input) {

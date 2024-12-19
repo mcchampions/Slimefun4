@@ -57,7 +57,7 @@ public class ProfileDataController extends ADataController {
 
         int bNum = result.get(0).getInt(FieldKey.BACKPACK_NUMBER);
 
-        Set<Research> researches = new HashSet<Research>();
+        Set<Research> researches = new HashSet<>();
         getUnlockedResearchKeys(uuid).forEach(rKey -> Research.getResearch(rKey).ifPresent(researches::add));
 
         re = new PlayerProfile(p, bNum, researches);
@@ -187,7 +187,7 @@ public class ProfileDataController extends ADataController {
             return Collections.emptySet();
         }
 
-        Set<PlayerBackpack> re = new HashSet<PlayerBackpack>();
+        Set<PlayerBackpack> re = new HashSet<>();
         result.forEach(bUuid -> re.add(getBackpack(bUuid.get(FieldKey.BACKPACK_ID))));
         return re;
     }

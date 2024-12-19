@@ -13,7 +13,7 @@ public class Base64Utils {
         int iLen = in.length;
 
         int lines = (iLen + 56) / 57;
-        int bufLen = (iLen + 2) / 3 * 4 + lines * LINE_SEPARATOR_LENGTH;
+        int bufLen = ((iLen + 2) / 3 << 2) + lines * LINE_SEPARATOR_LENGTH;
         StringBuilder buf = new StringBuilder(bufLen);
 
         int l;

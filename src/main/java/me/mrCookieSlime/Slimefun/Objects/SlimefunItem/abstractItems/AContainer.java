@@ -250,7 +250,7 @@ public abstract class AContainer extends SlimefunItem
     }
 
     public List<ItemStack> getDisplayRecipes() {
-        List<ItemStack> displayRecipes = new ArrayList<>(recipes.size() * 2);
+        List<ItemStack> displayRecipes = new ArrayList<>(recipes.size() << 1);
 
         for (MachineRecipe recipe : recipes) {
             if (recipe.getInput().length != 1) {

@@ -18,6 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -126,7 +127,7 @@ public class Talisman extends SlimefunItem {
             }
 
             enderTalisman =
-                    new SlimefunItemStack("ENDER_" + getId(), getItem().getType(), name, lore.toArray(new String[0]));
+                    new SlimefunItemStack("ENDER_" + getId(), getItem().getType(), name, lore.toArray(QsConstants.EMPTY_STRINGS));
         } else {
             enderTalisman = null;
         }

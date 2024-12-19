@@ -34,6 +34,7 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -204,7 +205,7 @@ public class GEOMiner extends SlimefunItem
 
     @Override
     public int[] getInputSlots() {
-        return new int[0];
+        return QsConstants.EMPTY_INTS;
     }
 
     @Override
