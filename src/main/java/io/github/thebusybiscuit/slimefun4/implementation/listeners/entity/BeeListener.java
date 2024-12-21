@@ -43,7 +43,7 @@ public class BeeListener implements Listener {
                     }
                 }
 
-                e.setDamage(0D);
+                e.setDamage(0.0D);
             }
         }
     }

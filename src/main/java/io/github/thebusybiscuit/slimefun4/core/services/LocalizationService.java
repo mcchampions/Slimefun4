@@ -177,7 +177,7 @@ public class LocalizationService extends SlimefunLocalization {
      * @return A percentage {@code (0.0 - 100.0)} for the progress of translation of that {@link Language}
      */
     public static double calculateProgress(Language lang) {
-        return 100d;
+        return 100.0d;
     }
 
     private FileConfiguration getConfigurationFromStream(

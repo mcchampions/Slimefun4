@@ -238,7 +238,7 @@ public class MiningTask implements Runnable {
             Player p = Bukkit.getPlayer(owner);
 
             if (p != null) {
-                p.playSound(p.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 0.4F, 1F);
+                p.playSound(p.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 0.4F, 1.0F);
                 Slimefun.getLocalization()
                         .sendMessage(
                                 p,
@@ -400,6 +400,6 @@ public class MiningTask implements Runnable {
                         block.getLocation(),
                         extended ? Sound.BLOCK_PISTON_EXTEND : Sound.BLOCK_PISTON_CONTRACT,
                         0.1F,
-                        1F);
+                        1.0F);
     }
 }

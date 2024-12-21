@@ -29,7 +29,7 @@ class NetworkVisualizer implements Runnable {
      */
     NetworkVisualizer(Network network, Color color) {
         this.network = network;
-        this.particleOptions = new DustOptions(color, 3F);
+        this.particleOptions = new DustOptions(color, 3.0F);
     }
 
     @Override

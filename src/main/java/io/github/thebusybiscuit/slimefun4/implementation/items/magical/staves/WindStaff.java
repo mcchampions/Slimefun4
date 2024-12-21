@@ -50,7 +50,7 @@ public class WindStaff extends SimpleSlimefunItem<ItemUseHandler> {
                 p.setVelocity(p.getEyeLocation().getDirection().multiply(multiplier.getValue()));
                 SoundEffect.WIND_STAFF_USE_SOUND.playFor(p);
                 p.getWorld().playEffect(p.getLocation(), Effect.SMOKE, 1);
-                p.setFallDistance(0F);
+                p.setFallDistance(0.0F);
             } else {
                 Slimefun.getLocalization().sendMessage(p, "messages.hungry", true);
             }

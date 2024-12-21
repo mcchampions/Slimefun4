@@ -84,7 +84,7 @@ public final class TeleportationManager {
                                         + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.title")));
                 menu.addMenuClickHandler(4, ChestMenuUtils.getEmptyClickHandler());
 
-                Location source = new Location(b.getWorld(), b.getX() + 0.5D, b.getY() + 2D, b.getZ() + 0.5D);
+                Location source = new Location(b.getWorld(), b.getX() + 0.5D, b.getY() + 2.0D, b.getZ() + 0.5D);
                 int index = 0;
 
                 for (Waypoint waypoint : profile.getWaypoints()) {

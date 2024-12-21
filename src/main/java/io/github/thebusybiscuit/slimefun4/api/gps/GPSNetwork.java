@@ -203,7 +203,7 @@ public class GPSNetwork {
                                 "§8\u21E8 §7Z: §f" + l.getZ(),
                                 "",
                                 "§8\u21E8 §7信号强度: §f" + transmitter.getMultiplier(l.getBlockY()),
-                                "§8\u21E8 §7延迟: §f" + NumberUtils.roundDecimalNumber(1000D / l.getY()) + "ms"));
+                                "§8\u21E8 §7延迟: §f" + NumberUtils.roundDecimalNumber(1000.0D / l.getY()) + "ms"));
                 menu.addMenuClickHandler(slot, ChestMenuUtils.getEmptyClickHandler());
 
                 index++;

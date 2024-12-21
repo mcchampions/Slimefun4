@@ -118,8 +118,8 @@ public class AncientAltarTask implements Runnable {
     }
 
     private void idle() {
-        dropLocation.getWorld().spawnParticle(VersionedParticle.WITCH, dropLocation, 16, 1.2F, 0F, 1.2F);
-        dropLocation.getWorld().spawnParticle(VersionedParticle.FIREWORK, dropLocation, 8, 0.2F, 0F, 0.2F);
+        dropLocation.getWorld().spawnParticle(VersionedParticle.WITCH, dropLocation, 16, 1.2F, 0.0F, 1.2F);
+        dropLocation.getWorld().spawnParticle(VersionedParticle.FIREWORK, dropLocation, 8, 0.2F, 0.0F, 0.2F);
 
         for (Location loc : particleLocations) {
             dropLocation.getWorld().spawnParticle(VersionedParticle.ENCHANT, loc, 16, 0.3F, 0.2F, 0.3F);

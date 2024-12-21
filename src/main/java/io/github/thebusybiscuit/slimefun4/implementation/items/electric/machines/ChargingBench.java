@@ -53,7 +53,7 @@ public class ChargingBench extends ASpeedableContainer {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         if (sfItem instanceof Rechargeable rechargeable) {
-            float charge = getEnergyConsumption() / 2F / item.getAmount();
+            float charge = getEnergyConsumption() / 2.0F / item.getAmount();
 
             if (rechargeable.addItemCharge(item, charge)) {
                 removeCharge(data.getLocation(), getEnergyConsumption());

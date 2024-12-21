@@ -41,10 +41,10 @@ public class TelepositionScroll extends SimpleSlimefunItem<ItemUseHandler> {
                 if (n instanceof LivingEntity
                         && !(n instanceof ArmorStand)
                         && !n.getUniqueId().equals(e.getPlayer().getUniqueId())) {
-                    float yaw = n.getLocation().getYaw() + 180F;
+                    float yaw = n.getLocation().getYaw() + 180.0F;
 
-                    if (yaw > 360F) {
-                        yaw = yaw - 360F;
+                    if (yaw > 360.0F) {
+                        yaw = yaw - 360.0F;
                     }
 
                     n.teleport(new Location(

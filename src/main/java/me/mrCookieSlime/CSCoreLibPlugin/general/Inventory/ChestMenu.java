@@ -146,7 +146,7 @@ public class ChestMenu extends SlimefunInventoryHolder {
 
             actual = clone;
         }
-        setSize((int) (Math.max(getSize(), Math.ceil((slot + 1) / 9d) * 9)));
+        setSize((int) (Math.max(getSize(), Math.ceil((double) (slot + 1) / 9.0) * 9)));
 
         this.items.set(slot, actual);
         try {
@@ -359,7 +359,7 @@ public class ChestMenu extends SlimefunInventoryHolder {
     }
 
     public int getSize() {
-        return isSizeAutomaticallyInferred() ? Math.max(9, (int) Math.ceil(this.items.size() / 9F) * 9) : size;
+        return isSizeAutomaticallyInferred() ? Math.max(9, (int) Math.ceil(this.items.size() / 9.0F) * 9) : size;
     }
 
     public ChestMenu setSize(int size) {

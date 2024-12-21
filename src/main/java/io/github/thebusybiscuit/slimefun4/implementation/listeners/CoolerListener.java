@@ -114,7 +114,7 @@ public class CoolerListener implements Listener {
                     p.addPotionEffect(effect);
                 }
 
-                p.setSaturation(6F);
+                p.setSaturation(6.0F);
                 SoundEffect.COOLER_CONSUME_SOUND.playFor(p);
                 inv.setItem(slot, null);
                 Slimefun.getDatabaseManager().getProfileDataController().saveBackpackInventory(backpack, slot);

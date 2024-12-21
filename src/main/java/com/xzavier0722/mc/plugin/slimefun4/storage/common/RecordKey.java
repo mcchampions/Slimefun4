@@ -14,16 +14,20 @@ public class RecordKey extends ScopeKey {
     private volatile boolean changed = true;
 
     public RecordKey(DataScope scope) {
-        this(scope, EnumSet.noneOf(FieldKey.class));
+        super(scope);
+        this.fields = EnumSet.noneOf(FieldKey.class);
+        this.conditions = new LinkedList<>();
     }
 
     public RecordKey(DataScope scope, Set<FieldKey> fields) {
-        this(scope, fields, new LinkedList<>());
+        super(scope);
+        this.fields = fields;
+        this.conditions = new LinkedList<>();
     }
 
     public RecordKey(DataScope scope, Set<FieldKey> fields, List<Pair<FieldKey, String>> conditions) {
         super(scope);
-        this.fields = fields.isEmpty() ? fields : new HashSet<>(fields);
+        this.fields = fields.isEmpty() ? fields : EnumSet.copyOf(fields);
         this.conditions = conditions.isEmpty() ? conditions : new LinkedList<>(conditions);
     }
 

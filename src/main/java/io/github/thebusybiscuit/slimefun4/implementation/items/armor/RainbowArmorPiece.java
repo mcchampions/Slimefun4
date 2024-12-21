@@ -11,7 +11,6 @@ import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
 
 /**
  * Represents a {@link SlimefunArmorPiece} with rainbow properties (leather armor changing color).

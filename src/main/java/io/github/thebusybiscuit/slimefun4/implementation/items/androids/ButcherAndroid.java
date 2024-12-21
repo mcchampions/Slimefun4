@@ -35,7 +35,7 @@ public class ButcherAndroid extends ProgrammableAndroid {
 
     @Override
     protected void attack(Block b, BlockFace face, Predicate<LivingEntity> predicate) {
-        double damage = getTier() >= 3 ? 20D : 4D * getTier();
+        double damage = getTier() >= 3 ? 20.0D : 4.0D * getTier();
         double radius = 4.0 + getTier();
 
         for (Entity n : b.getWorld()
