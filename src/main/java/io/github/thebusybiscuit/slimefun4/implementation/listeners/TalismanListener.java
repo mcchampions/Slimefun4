@@ -34,10 +34,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerItemBreakEvent;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
-import org.bukkit.inventory.EntityEquipment;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.LlamaInventory;
-import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
@@ -219,7 +216,7 @@ public class TalismanListener implements Listener {
         }
 
         if (entity instanceof AbstractHorse abstractHorse) {
-            var inventory = abstractHorse.getInventory();
+            AbstractHorseInventory inventory = abstractHorse.getInventory();
             items.remove(inventory.getSaddle());
 
             if (inventory instanceof LlamaInventory llamaInventory) {

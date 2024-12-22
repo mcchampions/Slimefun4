@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
@@ -130,7 +131,7 @@ public class SlimefunConfigManager {
             return true;
         }
 
-        var researchSnapshot = new ArrayList<>(Slimefun.getRegistry().getResearches());
+        List<Research> researchSnapshot = new ArrayList<>(Slimefun.getRegistry().getResearches());
 
         // Reload Research costs
         for (Research research : researchSnapshot) {
@@ -142,7 +143,7 @@ public class SlimefunConfigManager {
                 research.setCurrencyCost(
                         researchesConfig.getDouble(key.getNamespace() + '.' + key.getKey() + ".currency-cost"));
 
-                var status = researchesConfig.getBoolean(key.getNamespace() + '.' + key.getKey() + ".enabled");
+                boolean status = researchesConfig.getBoolean(key.getNamespace() + '.' + key.getKey() + ".enabled");
 
                 if (research.isEnabled() != status) {
                     if (status) {
@@ -162,10 +163,10 @@ public class SlimefunConfigManager {
             }
         }
 
-        var enabledItemSnapshot = new ArrayList<>(Slimefun.getRegistry().getAllSlimefunItems());
+        List<SlimefunItem> enabledItemSnapshot = new ArrayList<>(Slimefun.getRegistry().getAllSlimefunItems());
 
         for (SlimefunItem item : enabledItemSnapshot) {
-            var newState = itemsConfig.getBoolean(item.getId() + ".enabled") ? ItemState.ENABLED : ItemState.DISABLED;
+            ItemState newState = itemsConfig.getBoolean(item.getId() + ".enabled") ? ItemState.ENABLED : ItemState.DISABLED;
 
             if (item.getState() != newState) {
                 switch (newState) {

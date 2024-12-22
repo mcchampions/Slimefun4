@@ -3,6 +3,7 @@ package io.github.thebusybiscuit.slimefun4.api.player;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ProfileDataController;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.events.AsyncProfileLoadEvent;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
@@ -365,7 +366,7 @@ public class PlayerProfile {
      * @return Whether the {@link PlayerProfile} was already loaded
      */
     public static boolean request(OfflinePlayer p) {
-        var profile = Slimefun.getRegistry().getPlayerProfiles().get(p.getUniqueId());
+        PlayerProfile profile = Slimefun.getRegistry().getPlayerProfiles().get(p.getUniqueId());
         if (profile == null || profile.isInvalid) {
             // Should probably prevent multiple requests for the same profile in the future
             getOrCreate(p, null);
@@ -386,7 +387,7 @@ public class PlayerProfile {
      * @return An {@link Optional} describing the result
      */
     public static Optional<PlayerProfile> find(OfflinePlayer p) {
-        var re = Slimefun.getRegistry().getPlayerProfiles().get(p.getUniqueId());
+        PlayerProfile re = Slimefun.getRegistry().getPlayerProfiles().get(p.getUniqueId());
         if (re == null || re.isInvalid) {
             return Optional.empty();
         }
@@ -444,7 +445,7 @@ public class PlayerProfile {
     }
 
     private static void getOrCreate(OfflinePlayer p, Consumer<PlayerProfile> cb) {
-        var controller = Slimefun.getDatabaseManager().getProfileDataController();
+        ProfileDataController controller = Slimefun.getDatabaseManager().getProfileDataController();
         controller.getProfileAsync(p, new IAsyncReadCallback<>() {
             @Override
             public void onResult(PlayerProfile result) {

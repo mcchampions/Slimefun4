@@ -70,7 +70,7 @@ public interface EnergyNetComponent extends ItemAttribute {
             return 0;
         }
 
-        var blockData = StorageCacheUtils.getBlock(l);
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
         if (blockData == null || blockData.isPendingRemove()) {
             return 0;
         }
@@ -92,7 +92,7 @@ public interface EnergyNetComponent extends ItemAttribute {
             return 0;
         }
 
-        var blockData = StorageCacheUtils.getBlock(l);
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
         if (blockData == null || blockData.isPendingRemove()) {
             return 0;
         }
@@ -153,7 +153,7 @@ public interface EnergyNetComponent extends ItemAttribute {
 
                 // Do we even need to update the value?
                 if (charge != getCharge(l)) {
-                    var blockData = StorageCacheUtils.getBlock(l);
+                    SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
 
                     if (blockData == null || blockData.isPendingRemove()) {
                         return;

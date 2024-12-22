@@ -28,7 +28,7 @@ public class VersionedPotionType {
         REGENERATION = !version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? PotionType.REGEN : getKey("REGENERATION");
     }
 
-    @Nullable private static PotionType getKey(String key) {
+    @Nullable public static PotionType getKey(String key) {
         try {
             Field field = PotionType.class.getDeclaredField(key);
             return (PotionType) field.get(null);

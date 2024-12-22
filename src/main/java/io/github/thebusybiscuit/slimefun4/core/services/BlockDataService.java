@@ -107,7 +107,7 @@ public class BlockDataService implements Keyed {
     }
 
     public Optional<UUID> getUniversalDataUUID(Block b) {
-        var uuid = getBlockData(b, universalDataKey);
+        Optional<String> uuid = getBlockData(b, universalDataKey);
 
         return uuid.map(data -> {
             try {

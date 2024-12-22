@@ -10,6 +10,7 @@ import org.bukkit.entity.Wither;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * This {@link Listener} is responsible for implementing the functionality of blocks that
@@ -45,7 +46,7 @@ public class WitherListener implements Listener {
                 controller.removeBlock(blockData.getLocation());
                 block.setType(Material.AIR);
 
-                for (var drop : item.getDrops()) {
+                for (ItemStack drop : item.getDrops()) {
                     if (drop != null && !drop.getType().isAir()) {
                         block.getWorld().dropItemNaturally(block.getLocation(), drop);
                     }

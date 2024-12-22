@@ -87,7 +87,7 @@ class ItemFilter implements Predicate<ItemStack> {
             return;
         }
 
-        var blockData = StorageCacheUtils.getBlock(b.getLocation());
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(b.getLocation());
         if (blockData.isDataLoaded()) {
             update(blockData);
         } else {

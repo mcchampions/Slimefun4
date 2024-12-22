@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.RadiationTask;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -25,7 +26,7 @@ public class JoinListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        final var p = e.getPlayer();
+        final Player p = e.getPlayer();
 
         PlayerProfile.get(p, playerProfile -> {
             final ItemStack[] armorContents = p.getInventory().getArmorContents();
