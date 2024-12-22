@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.multiblocks;
 
-import com.google.common.base.Preconditions;
 import io.github.bakedlibs.dough.inventory.InvUtils;
 import io.github.bakedlibs.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
@@ -103,9 +102,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     @Override
     public void load() {
         super.load();
-
-        Preconditions.checkArgument(
-                displayRecipes.size() % 2 == 0, "This MultiBlockMachine's display recipes were illegally modified!");
 
         for (int i = 0; i < displayRecipes.size(); i += 2) {
             ItemStack inputStack = displayRecipes.get(i);

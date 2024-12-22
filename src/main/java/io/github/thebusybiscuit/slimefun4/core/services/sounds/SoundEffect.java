@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 
-import com.google.common.base.Preconditions;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
@@ -112,9 +111,6 @@ public enum SoundEffect {
     private final float defaultPitch;
 
     SoundEffect(Sound sound, float volume, float pitch) {
-        Preconditions.checkArgument(volume >= 0, "The volume cannot be a negative number.");
-        Preconditions.checkArgument(pitch >= 0.5, "A pitch below 0.5 has no effect on the sound.");
-
         this.defaultSound = sound.getKey().getKey();
         this.defaultVolume = volume;
         this.defaultPitch = pitch;

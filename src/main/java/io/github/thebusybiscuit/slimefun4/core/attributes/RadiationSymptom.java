@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes;
 
-import com.google.common.base.Preconditions;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.RadiationUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
@@ -31,9 +30,6 @@ public enum RadiationSymptom {
     private final PotionEffect potionEffect;
 
     RadiationSymptom(int minExposure, PotionEffectType type, int level) {
-        Preconditions.checkArgument(minExposure > 0, "The minimum exposure must be greater than 0.");
-        Preconditions.checkArgument(level >= 0, "The status effect level must be non-negative.");
-
         this.minExposure = minExposure;
         this.potionEffect = new PotionEffect(
                 type, Slimefun.getCfg().getOrSetDefault("options.radiation-update-interval", 1) * 20 + 20, level);
