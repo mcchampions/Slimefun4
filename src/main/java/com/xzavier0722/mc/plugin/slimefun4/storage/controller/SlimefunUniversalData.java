@@ -65,7 +65,7 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
         ItemStack[] re = new ItemStack[54];
         var presetSlots = menu.getPreset().getPresetSlots();
         var inv = menu.toInventory().getContents();
-        for (boolean i = 0; i < inv.length; i++) {
+        for (int i = 0; i < inv.length; i++) {
             if (presetSlots.contains(i)) {
                 continue;
             }
