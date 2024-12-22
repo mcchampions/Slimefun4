@@ -31,7 +31,6 @@ public enum RadiationSymptom {
     private final PotionEffect potionEffect;
 
     RadiationSymptom(int minExposure, PotionEffectType type, int level) {
-        Preconditions.checkNotNull(type, "The effect type cannot be null");
         Preconditions.checkArgument(minExposure > 0, "The minimum exposure must be greater than 0.");
         Preconditions.checkArgument(level >= 0, "The status effect level must be non-negative.");
 
@@ -47,7 +46,6 @@ public enum RadiationSymptom {
      *            The player
      */
     public void apply(Player p) {
-        Preconditions.checkNotNull(p, "The player cannot be null");
         p.addPotionEffect(potionEffect);
     }
 

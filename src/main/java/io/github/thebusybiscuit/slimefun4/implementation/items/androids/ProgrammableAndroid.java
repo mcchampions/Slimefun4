@@ -817,6 +817,7 @@ public class ProgrammableAndroid extends SlimefunItem
                 rotatable.setRotation(rotation.getOppositeFace());
             }
         }));
+
         StorageCacheUtils.setData(b.getLocation(), "rotation", rotation.name());
     }
 

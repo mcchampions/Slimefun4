@@ -112,7 +112,6 @@ public enum SoundEffect {
     private final float defaultPitch;
 
     SoundEffect(Sound sound, float volume, float pitch) {
-        Preconditions.checkNotNull(sound, "The Sound id cannot be null!");
         Preconditions.checkArgument(volume >= 0, "The volume cannot be a negative number.");
         Preconditions.checkArgument(pitch >= 0.5, "A pitch below 0.5 has no effect on the sound.");
 
@@ -139,7 +138,6 @@ public enum SoundEffect {
      * @param player The {@link Player} which to play the {@link Sound} to.
      */
     public void playFor(Player player) {
-        Preconditions.checkNotNull(player, "Cannot play sounds to a Player that is null!");
         SoundConfiguration config = getConfiguration();
 
         if (config != null) {
@@ -156,7 +154,6 @@ public enum SoundEffect {
      * @param category The {@link SoundCategory} that should be used.
      */
     public void playAt(Location loc, SoundCategory category) {
-        Preconditions.checkNotNull(loc, "The location should not be null.");
         SoundConfiguration config = getConfiguration();
 
         if (config != null && loc.getWorld() != null) {
@@ -171,7 +168,6 @@ public enum SoundEffect {
      * @param block The {@link Block} at which to play the {@link SoundEffect}
      */
     public void playAt(Block block) {
-        Preconditions.checkNotNull(block, "The block cannot be null.");
         playAt(block.getLocation(), SoundCategory.BLOCKS);
     }
 

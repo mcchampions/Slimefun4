@@ -21,27 +21,19 @@ public final class RadiationUtils {
     private static final int MAX_EXPOSURE_LEVEL = 100;
 
     public static void clearExposure(Player p) {
-        Preconditions.checkNotNull(p, "The player cannot be null");
-
         RADIATION_EFFECT.clear(p);
     }
 
     public static int getExposure(Player p) {
-        Preconditions.checkNotNull(p, "The player must not be null");
-
         return RADIATION_EFFECT.getLevel(p).orElse(0);
     }
 
     public static void addExposure(Player p, int exposure) {
-        Preconditions.checkNotNull(p, "The player cannot be null");
-
         int level = Math.min(RADIATION_EFFECT.getLevel(p).orElse(0) + exposure, MAX_EXPOSURE_LEVEL);
         RADIATION_EFFECT.addPermanent(p, level);
     }
 
     public static void removeExposure(Player p, int exposure) {
-        Preconditions.checkNotNull(p, "The player should not be null");
-
         int level = Math.max(RADIATION_EFFECT.getLevel(p).orElse(0) - exposure, 0);
         RADIATION_EFFECT.addPermanent(p, level);
     }

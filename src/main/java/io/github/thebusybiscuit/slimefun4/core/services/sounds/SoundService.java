@@ -113,7 +113,6 @@ and volume. To disable a sound, simply set the volume to zero.
      * @return The corresponding {@link SoundConfiguration}. This may be null if something went wrong
      */
     public @Nullable SoundConfiguration getConfiguration(SoundEffect sound) {
-        Preconditions.checkNotNull(sound, "The sound must not be null!");
         return soundMap.get(sound);
     }
 }

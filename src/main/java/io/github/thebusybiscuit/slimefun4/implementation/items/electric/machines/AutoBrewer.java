@@ -49,6 +49,13 @@ public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
         fermentations.put(VersionedPotionType.HEALING, VersionedPotionType.HARMING);
         fermentations.put(PotionType.POISON, VersionedPotionType.HARMING);
         fermentations.put(PotionType.NIGHT_VISION, PotionType.INVISIBILITY);
+
+        if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 21)) {
+            potionRecipes.put(Material.BREEZE_ROD, PotionType.WIND_CHARGED);
+            potionRecipes.put(Material.COBWEB, PotionType.WEAVING);
+            potionRecipes.put(Material.SLIME_BLOCK, PotionType.OOZING);
+            potionRecipes.put(Material.STONE, PotionType.INFESTED);
+        }
     }
 
     public AutoBrewer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
