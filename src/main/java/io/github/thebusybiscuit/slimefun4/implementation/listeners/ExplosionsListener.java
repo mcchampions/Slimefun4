@@ -65,7 +65,7 @@ public class ExplosionsListener implements Listener {
             if (item != null) {
                 blocks.remove();
 
-                var controller = Slimefun.getDatabaseManager().getBlockDataController();
+                BlockDataController controller = Slimefun.getDatabaseManager().getBlockDataController();
                 if (!(item instanceof WitherProof)
                         && !item.callItemHandler(BlockBreakHandler.class, handler -> {
                             if (blockData.isDataLoaded()) {

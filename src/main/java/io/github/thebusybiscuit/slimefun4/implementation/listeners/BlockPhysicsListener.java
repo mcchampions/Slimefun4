@@ -68,7 +68,7 @@ public class BlockPhysicsListener implements Listener {
                 var block = e.getBlock();
                 var item = SlimefunItem.getById(blockData.getSfId());
 
-                var controller = Slimefun.getDatabaseManager().getBlockDataController();
+                BlockDataController controller = Slimefun.getDatabaseManager().getBlockDataController();
                 if (item != null
                         && !(item instanceof WitherProof)
                         && !item.callItemHandler(BlockBreakHandler.class, handler -> {

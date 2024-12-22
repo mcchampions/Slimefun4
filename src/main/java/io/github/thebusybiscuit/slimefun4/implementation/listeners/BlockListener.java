@@ -312,7 +312,7 @@ public class BlockListener implements Listener {
                 BlockBreakEvent dummyEvent = new BlockBreakEvent(blockAbove, player);
                 List<ItemStack> drops = new ArrayList<>(sfItem.getDrops(player));
 
-                var controller = Slimefun.getDatabaseManager().getBlockDataController();
+                BlockDataController controller = Slimefun.getDatabaseManager().getBlockDataController();
                 if (blockData.isDataLoaded()) {
                     sfItem.callItemHandler(
                             BlockBreakHandler.class, handler -> handler.onPlayerBreak(dummyEvent, item, drops));

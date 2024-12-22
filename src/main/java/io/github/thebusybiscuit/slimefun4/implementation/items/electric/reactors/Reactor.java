@@ -544,7 +544,7 @@ public abstract class Reactor extends AbstractEnergyProvider
 
     @Nullable protected BlockMenu getAccessPort(BlockMenu menu, Location l) {
         Location portLoc = new Location(l.getWorld(), l.getX(), l.getY() + 3, l.getZ());
-        var controller = Slimefun.getDatabaseManager().getBlockDataController();
+        BlockDataController controller = Slimefun.getDatabaseManager().getBlockDataController();
         var port = controller.getBlockData(portLoc);
 
         if (port == null || port.isPendingRemove()) {

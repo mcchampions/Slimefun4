@@ -885,12 +885,12 @@ public class BlockDataController extends ADataController {
     }
 
     public void saveAllBlockInventories() {
-        HashSet<> chunks = new HashSet<>(loadedChunk.values());
+        Set<SlimefunChunkData> chunks = new HashSet<>(loadedChunk.values());
         chunks.forEach(chunk -> chunk.getAllCacheInternal().forEach(block -> {
             if (block.isPendingRemove() || !block.isDataLoaded()) {
                 return;
             }
-            var menu = block.getBlockMenu();
+            BlockMenu menu = block.getBlockMenu();
             if (menu == null || menu.isNoDirty()) {
                 return;
             }
@@ -900,12 +900,12 @@ public class BlockDataController extends ADataController {
     }
 
     public void saveAllUniversalInventories() {
-        HashSet<> uniData = new HashSet<>(loadedUniversalData.values());
+        Set<SlimefunUniversalData> uniData = new HashSet<>(loadedUniversalData.values());
         uniData.forEach(data -> {
             if (data.isPendingRemove() || !data.isDataLoaded()) {
                 return;
             }
-            var menu = data.getMenu();
+            UniversalMenu menu = data.getMenu();
             if (menu == null || !menu.isDirty()) {
                 return;
             }
@@ -915,7 +915,7 @@ public class BlockDataController extends ADataController {
     }
 
     public void saveBlockInventory(SlimefunBlockData blockData) {
-        var newInv = blockData.getMenuContents();
+        ItemStack[] newInv = blockData.getMenuContents();
         List<Pair<ItemStack, Integer>> lastSave;
         if (newInv == null) {
             lastSave = invSnapshots.remove(blockData.getKey());
@@ -926,7 +926,7 @@ public class BlockDataController extends ADataController {
             lastSave = invSnapshots.put(blockData.getKey(), InvStorageUtils.getInvSnapshot(newInv));
         }
 
-        var changed = InvStorageUtils.getChangedSlots(lastSave, newInv);
+        Set<Integer> changed = InvStorageUtils.getChangedSlots(lastSave, newInv);
         if (changed.isEmpty()) {
             return;
         }
@@ -943,8 +943,8 @@ public class BlockDataController extends ADataController {
     }
 
     public void removeAllDataInChunk(Chunk chunk) {
-        var cKey = LocationUtils.getChunkKey(chunk);
-        var cache = loadedChunk.remove(cKey);
+        String cKey = LocationUtils.getChunkKey(chunk);
+        SlimefunChunkData cache = loadedChunk.remove(cKey);
 
         if (cache != null && cache.isDataLoaded()) {
             cache.getAllBlockData().forEach(this::clearBlockCacheAndTasks);
@@ -962,7 +962,7 @@ public class BlockDataController extends ADataController {
     public void removeAllDataInWorld(World world) {
         // 1. remove block cache
         HashSet<SlimefunBlockData> loadedBlockData = new HashSet<>();
-        for (var chunkData : getAllLoadedChunkData(world)) {
+        for (SlimefunChunkData chunkData : getAllLoadedChunkData(world)) {
             loadedBlockData.addAll(chunkData.getAllBlockData());
             chunkData.removeAllCacheInternal();
         }
@@ -971,7 +971,7 @@ public class BlockDataController extends ADataController {
         loadedBlockData.forEach(this::clearBlockCacheAndTasks);
 
         // 3. remove from database
-        var prefix = world.getName() + ";";
+        String prefix = world.getName() + ";";
         deleteChunkAndBlockDataDirectly(prefix + "%");
 
         // 4. remove chunk cache
@@ -986,10 +986,10 @@ public class BlockDataController extends ADataController {
     }
 
     public void saveUniversalInventory(SlimefunUniversalData universalData) {
-        var menu = universalData.getMenu();
-        var universalID = universalData.getUUID();
+        UniversalMenu menu = universalData.getMenu();
+        UUID universalID = universalData.getUUID();
 
-        var newInv = menu.getContents();
+        ItemStack[] newInv = menu.getContents();
         List<Pair<ItemStack, Integer>> lastSave;
         if (newInv == null) {
             lastSave = invSnapshots.remove(universalID.toString());
@@ -1000,7 +1000,7 @@ public class BlockDataController extends ADataController {
             lastSave = invSnapshots.put(universalID.toString(), InvStorageUtils.getInvSnapshot(newInv));
         }
 
-        var changed = InvStorageUtils.getChangedSlots(lastSave, newInv);
+        Set<Integer> changed = InvStorageUtils.getChangedSlots(lastSave, newInv);
         if (changed.isEmpty()) {
             return;
         }
@@ -1009,7 +1009,7 @@ public class BlockDataController extends ADataController {
     }
 
     public Set<SlimefunChunkData> getAllLoadedChunkData(World world) {
-        var prefix = world.getName() + ";";
+        String prefix = world.getName() + ";";
         HashSet<SlimefunChunkData> re = new HashSet<>();
         loadedChunk.forEach((k, v) -> {
             if (k.startsWith(prefix)) {
