@@ -221,7 +221,7 @@ public class ProfileDataController extends ADataController {
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
         key.addCondition(FieldKey.RESEARCH_ID, researchKey.toString());
         if (unlocked) {
-            var data = new RecordSet();
+            RecordSet data = new RecordSet();
             data.put(FieldKey.PLAYER_UUID, uuid);
             data.put(FieldKey.RESEARCH_ID, researchKey.toString());
             scheduleWriteTask(new UUIDKey(DataScope.NONE, uuid), key, data, false);
@@ -267,7 +267,7 @@ public class ProfileDataController extends ADataController {
             if (is == null) {
                 scheduleDeleteTask(new UUIDKey(DataScope.NONE, bp.getOwner().getUniqueId()), key, false);
             } else {
-                var data = new RecordSet();
+                RecordSet data = new RecordSet();
                 data.put(FieldKey.BACKPACK_ID, id);
                 data.put(FieldKey.INVENTORY_SLOT, slot + "");
                 data.put(FieldKey.INVENTORY_ITEM, is);
@@ -319,7 +319,7 @@ public class ProfileDataController extends ADataController {
         key.addField(FieldKey.PLAYER_NAME);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
 
-        var data = new RecordSet();
+        RecordSet data = new RecordSet();
         data.put(FieldKey.PLAYER_NAME, newName);
         data.put(FieldKey.PLAYER_UUID, uuid);
 
@@ -327,7 +327,7 @@ public class ProfileDataController extends ADataController {
     }
 
     private static RecordSet getRecordSet(PlayerBackpack bp) {
-        var re = new RecordSet();
+        RecordSet re = new RecordSet();
         re.put(FieldKey.PLAYER_UUID, bp.getOwner().getUniqueId().toString());
         re.put(FieldKey.BACKPACK_ID, bp.getUniqueId().toString());
         re.put(FieldKey.BACKPACK_NUMBER, bp.getId() + "");
@@ -337,7 +337,7 @@ public class ProfileDataController extends ADataController {
     }
 
     private static RecordSet getRecordSet(PlayerProfile profile) {
-        var re = new RecordSet();
+        RecordSet re = new RecordSet();
         re.put(FieldKey.PLAYER_UUID, profile.getUUID().toString());
         re.put(FieldKey.PLAYER_NAME, profile.getOwner().getName());
         re.put(FieldKey.PLAYER_BACKPACK_NUM, profile.getBackpackCount() + "");

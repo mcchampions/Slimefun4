@@ -51,10 +51,10 @@ public class AutoBrewer extends ASpeedableContainer implements NotHopperable {
         fermentations.put(PotionType.NIGHT_VISION, PotionType.INVISIBILITY);
 
         if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 21)) {
-            potionRecipes.put(Material.BREEZE_ROD, PotionType.WIND_CHARGED);
-            potionRecipes.put(Material.COBWEB, PotionType.WEAVING);
-            potionRecipes.put(Material.SLIME_BLOCK, PotionType.OOZING);
-            potionRecipes.put(Material.STONE, PotionType.INFESTED);
+            potionRecipes.put(Material.getMaterial("BREEZE_ROD"), VersionedPotionType.getKey("WIND_CHARGED"));
+            potionRecipes.put(Material.COBWEB, VersionedPotionType.getKey("WEAVING"));
+            potionRecipes.put(Material.SLIME_BLOCK, VersionedPotionType.getKey("OOZING"));
+            potionRecipes.put(Material.STONE, VersionedPotionType.getKey("INFESTED"));
         }
     }
 

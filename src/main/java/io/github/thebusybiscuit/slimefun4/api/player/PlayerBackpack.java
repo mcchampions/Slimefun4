@@ -28,6 +28,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 /**
@@ -69,7 +70,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
             return;
         }
 
-        var bUuid = getBackpackUUID(im);
+        Optional<String> bUuid = getBackpackUUID(im);
         if (bUuid.isPresent()) {
             Slimefun.getDatabaseManager()
                     .getProfileDataController()
@@ -166,7 +167,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     }
 
     public static void bindItem(ItemStack item, PlayerBackpack bp) {
-        var meta = item.getItemMeta();
+        ItemMeta meta = item.getItemMeta();
         setPdc(meta, bp.uuid.toString(), bp.owner.getUniqueId().toString());
         setItem(meta, bp);
         item.setItemMeta(meta);
@@ -183,14 +184,14 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     }
 
     private static void setPdc(ItemMeta meta, String bpUuid, String ownerUuid) {
-        var pdc = meta.getPersistentDataContainer();
+        PersistentDataContainer pdc = meta.getPersistentDataContainer();
         pdc.set(PlayerBackpack.KEY_BACKPACK_UUID, PersistentDataType.STRING, bpUuid);
         pdc.set(PlayerBackpack.KEY_OWNER_UUID, PersistentDataType.STRING, ownerUuid);
     }
 
     private static void setItem(ItemMeta meta, PlayerBackpack bp) {
         List<Component> lore = meta.lore();
-        for (var i = 0; i < lore.size(); i++) {
+        for (int i = 0; i < lore.size(); i++) {
             Component line = lore.get(i);
             if (line instanceof TextComponent tc) {
                 if (COLORED_LORE_OWNER.equals(tc.content())) {
@@ -294,7 +295,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
 
     private void updateInv() {
         InventoryUtil.closeInventory(this.inventory);
-        var inv = newInv();
+        Inventory inv = newInv();
         inv.setContents(this.inventory.getContents());
         this.inventory.clear();
         this.inventory = inv;

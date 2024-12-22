@@ -86,7 +86,7 @@ public class DirtyChestMenu extends ChestMenu {
 
         for (int slot : slots) {
             // A small optimization for empty slots
-            var slotItem = getItemInSlot(slot);
+            ItemStack slotItem = getItemInSlot(slot);
             if (slotItem == null || slotItem.getType().isAir()) {
                 return true;
             }
@@ -98,7 +98,7 @@ public class DirtyChestMenu extends ChestMenu {
                     continue;
                 }
 
-                var slotRemain = slotItem.getMaxStackSize() - slotItem.getAmount();
+                int slotRemain = slotItem.getMaxStackSize() - slotItem.getAmount();
                 remain -= slotRemain;
                 if (remain <= 0) {
                     return true;

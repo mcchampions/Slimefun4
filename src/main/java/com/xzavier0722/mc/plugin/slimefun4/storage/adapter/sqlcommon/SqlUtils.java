@@ -37,18 +37,14 @@ import io.github.bakedlibs.dough.collections.Pair;
 import java.sql.Connection;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.sql.Statement;
+import java.util.*;
 
 public class SqlUtils {
     private static final FieldMapper<String> mapper;
 
     static {
-        var fieldMap = new HashMap<FieldKey, String>();
+        Map<FieldKey, String> fieldMap = new EnumMap<>(FieldKey.class);
         fieldMap.put(FieldKey.PLAYER_UUID, FIELD_PLAYER_UUID);
         fieldMap.put(FieldKey.PLAYER_NAME, FIELD_PLAYER_NAME);
         fieldMap.put(FieldKey.RESEARCH_ID, FIELD_RESEARCH_KEY);
@@ -130,7 +126,7 @@ public class SqlUtils {
     }
 
     public static List<RecordSet> execQuery(Connection conn, String sql) throws SQLException {
-        try (var stmt = conn.createStatement()) {
+        try (Statement stmt = conn.createStatement()) {
             try (var result = stmt.executeQuery(sql)) {
                 List<RecordSet> re = null;
                 ResultSetMetaData metaData = null;
@@ -141,7 +137,7 @@ public class SqlUtils {
                         metaData = result.getMetaData();
                         columnCount = metaData.getColumnCount();
                     }
-                    var row = new RecordSet();
+                    RecordSet row = new RecordSet();
                     for (var i = 1; i <= columnCount; i++) {
                         row.put(SqlUtils.mapField(metaData.getColumnName(i)), result.getString(i));
                     }

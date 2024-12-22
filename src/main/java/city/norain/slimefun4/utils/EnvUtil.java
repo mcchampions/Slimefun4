@@ -12,7 +12,7 @@ public class EnvUtil {
 
     public void init() {
         try (var resource = Slimefun.class.getResourceAsStream("/git.properties")) {
-            var prop = new Properties();
+            Properties prop = new Properties();
             prop.load(resource);
 
             gitInfo = prop;

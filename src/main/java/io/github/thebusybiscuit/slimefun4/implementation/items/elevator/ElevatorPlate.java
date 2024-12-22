@@ -92,7 +92,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
     }
 
     public void getFloors(Block b, Consumer<List<ElevatorFloor>> action) {
-        var blockDataList = new ArrayList<SlimefunBlockData>();
+        ArrayList<SlimefunBlockData> blockDataList = new ArrayList<>();
         var shouldLoad = false;
 
         for (int y = b.getWorld().getMinHeight(); y < b.getWorld().getMaxHeight(); y++) {
@@ -133,7 +133,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
     }
 
     private static List<ElevatorFloor> toFloors(List<SlimefunBlockData> blockDataList) {
-        var floors = new LinkedList<ElevatorFloor>();
+        LinkedList<ElevatorFloor> floors = new LinkedList<>();
         for (var i = 0; i < blockDataList.size(); i++) {
             var blockData = blockDataList.get(i);
             floors.addFirst(new ElevatorFloor(

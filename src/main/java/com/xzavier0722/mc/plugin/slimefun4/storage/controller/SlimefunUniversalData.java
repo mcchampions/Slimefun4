@@ -62,7 +62,7 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
         if (menu == null) {
             return null;
         }
-        var re = new ItemStack[54];
+        ItemStack[] re = new ItemStack[54];
         var presetSlots = menu.getPreset().getPresetSlots();
         var inv = menu.toInventory().getContents();
         for (var i = 0; i < inv.length; i++) {

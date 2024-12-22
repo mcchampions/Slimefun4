@@ -90,7 +90,7 @@ public class ResourceManager {
      */
     public static OptionalInt getSupplies(GEOResource resource, World world, int x, int z) {
         String key = resource.getKey().toString().replace(':', '-');
-        var chunkData = Slimefun.getDatabaseManager().getBlockDataController().getChunkData(world.getChunkAt(x, z));
+        SlimefunChunkData chunkData = Slimefun.getDatabaseManager().getBlockDataController().getChunkData(world.getChunkAt(x, z));
         if (chunkData == null) {
             return OptionalInt.empty();
         }

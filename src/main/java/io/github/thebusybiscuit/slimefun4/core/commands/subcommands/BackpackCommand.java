@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Restore
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,6 +22,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * This command that allows for backpack retrieval in the event they are lost.
@@ -125,10 +128,10 @@ class BackpackCommand extends SubCommand {
     }
 
     private static void showBackpackMenu(OfflinePlayer owner, Player p, Set<PlayerBackpack> result, int page) {
-        var menu = new ChestMenu(owner.getName() + " 拥有的背包列表");
+        ChestMenu menu = new ChestMenu(owner.getName() + " 拥有的背包列表");
         menu.setEmptySlotsClickable(false);
 
-        var pages = result.size() / 36;
+        int pages = result.size() / 36;
 
         // Draw background start
         for (int i = 0; i < 9; i++) {
@@ -136,20 +139,20 @@ class BackpackCommand extends SubCommand {
             menu.addMenuClickHandler(i, (pl, slot, item, action) -> false);
         }
 
-        var bps = new ArrayList<>(result);
+        List<PlayerBackpack> bps = new ArrayList<>(result);
         // max display 36 backpacks per page
         for (int i = 0; i <= 36; i++) {
             int slot = DISPLAY_START_SLOT + i;
-            var index = i + 36 * (page - 1);
+            int index = i + 36 * (page - 1);
             if (index >= bps.size()) {
                 break;
             }
-            var bp = bps.get(index);
+            PlayerBackpack bp = bps.get(index);
 
-            var visualBackpack = SlimefunItems.RESTORED_BACKPACK.clone();
-            var im = visualBackpack.getItemMeta();
+            ItemStack visualBackpack = SlimefunItems.RESTORED_BACKPACK.clone();
+            ItemMeta im = visualBackpack.getItemMeta();
             im.displayName(new QsTextComponentImpl(bp.getName().isEmpty() ? "背包 #" + bp.getId() : bp.getName()));
-            var lore = new ArrayList<Component>();
+            ArrayList<Component> lore = new ArrayList<>();
             lore.add(Component.empty());
             lore.add(new QsTextComponentImpl("左键 获取此背包").color(NamedTextColor.GREEN));
             im.lore(lore);
@@ -158,7 +161,7 @@ class BackpackCommand extends SubCommand {
             menu.addItem(slot, visualBackpack);
             menu.addMenuClickHandler(slot, (p1, slot1, item, action) -> {
                 if (!action.isRightClicked() && !action.isShiftClicked() && p1.getUniqueId() == p.getUniqueId()) {
-                    var restoreBp = SlimefunItems.RESTORED_BACKPACK.clone();
+                    ItemStack restoreBp = SlimefunItems.RESTORED_BACKPACK.clone();
                     PlayerBackpack.bindItem(restoreBp, bp);
                     p1.getInventory().addItem(restoreBp);
                     Slimefun.getLocalization().sendMessage(p1, "commands.backpack.restored-backpack-given");

@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.core;
 
 import io.github.bakedlibs.dough.collections.KeyMap;
+import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
@@ -79,7 +80,7 @@ public final class SlimefunRegistry {
         guides.put(SlimefunGuideMode.SURVIVAL_MODE, new SurvivalSlimefunGuide());
         guides.put(SlimefunGuideMode.CHEAT_MODE, new CheatSheetSlimefunGuide());
 
-        var cfg = Slimefun.getConfigManager().getPluginConfig();
+        Config cfg = Slimefun.getConfigManager().getPluginConfig();
         researchRanks.addAll(cfg.getStringList("research-ranks"));
     }
 

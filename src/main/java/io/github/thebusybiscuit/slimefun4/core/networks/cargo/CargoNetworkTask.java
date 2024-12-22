@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.networks.cargo;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
@@ -130,7 +131,7 @@ class CargoNetworkTask implements Runnable {
     private ItemStack distributeItem(ItemStack stack, Location inputNode, List<Location> outputNodes) {
         ItemStack item = stack;
 
-        var blockData = StorageCacheUtils.getBlock(inputNode);
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(inputNode);
         boolean roundrobin = Objects.equals(blockData.getData("round-robin"), "true");
         boolean smartFill = Objects.equals(blockData.getData("smart-fill"), "true");
 

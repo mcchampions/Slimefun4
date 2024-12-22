@@ -110,7 +110,7 @@ public final class ChargeUtils {
         // If no persistent data exists, we will just fall back to the lore
         if (meta.hasLore()) {
             for (String line : meta.getLore()) {
-                var matcher = REGEX.matcher(line);
+                Matcher matcher = REGEX.matcher(line);
                 if (matcher.matches()) {
                     String data = matcher.group(2);
 

@@ -33,7 +33,7 @@ public abstract class SqlCommonConfig implements ISqlCommonConfig {
     }
 
     public HikariDataSource createDataSource() {
-        var config = new HikariConfig();
+        HikariConfig config = new HikariConfig();
         config.setDriverClassName(driver());
         config.setJdbcUrl(jdbcUrl());
         config.setPoolName("SlimefunHikariPool");

@@ -104,7 +104,7 @@ public class BlockPhysicsListener implements Listener {
         if (handler.isExplosionAllowed(b)) {
             b.setType(Material.AIR);
 
-            var drops = new ArrayList<ItemStack>();
+            ArrayList<ItemStack> drops = new ArrayList<>();
             handler.onExplode(b, drops);
             Slimefun.getDatabaseManager().getBlockDataController().removeBlock(b.getLocation());
 

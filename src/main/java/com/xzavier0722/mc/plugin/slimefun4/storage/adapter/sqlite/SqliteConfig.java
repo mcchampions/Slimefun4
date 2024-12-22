@@ -6,7 +6,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public record SqliteConfig(String path, int maxConnection) implements ISqlCommonConfig {
     public HikariDataSource createDataSource() {
-        var config = new HikariConfig();
+        HikariConfig config = new HikariConfig();
         config.setDriverClassName(driver());
         config.setJdbcUrl(jdbcUrl());
         config.setPoolName("SlimefunHikariPool");

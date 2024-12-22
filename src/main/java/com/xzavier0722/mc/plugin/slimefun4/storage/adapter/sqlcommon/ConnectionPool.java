@@ -2,6 +2,7 @@ package com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -35,12 +36,12 @@ public class ConnectionPool {
                 return getConn();
             }
 
-            var re = connCreator.get();
+            Connection re = connCreator.get();
             currConnCount++;
             usingConn.add(re);
             return re;
         } else {
-            var re = freeConn.poll();
+            Connection re = freeConn.poll();
             if (!testConn(re)) {
                 currConnCount--;
                 return getConn();
@@ -74,7 +75,7 @@ public class ConnectionPool {
     }
 
     private static boolean testConn(Connection conn) {
-        try (var stmt = conn.createStatement()) {
+        try (Statement stmt = conn.createStatement()) {
             stmt.execute("/* ping */ SHOW DATABASES");
             return true;
         } catch (SQLException e) {

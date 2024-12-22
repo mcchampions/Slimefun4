@@ -43,7 +43,7 @@ public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
             throw new IllegalArgumentException("No data provided in RecordSet.");
         }
 
-        var valStr = new StringBuilder();
+        StringBuilder valStr = new StringBuilder();
         var flag = false;
         for (Map.Entry<FieldKey, String> entry : data.entrySet()) {
             if (flag) {

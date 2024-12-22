@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
 import city.norain.slimefun4.api.menu.UniversalMenu;
 import city.norain.slimefun4.api.menu.UniversalMenuPreset;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.UniversalBlock;
@@ -101,7 +102,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
             @Override
             public boolean canOpen(Block b, Player p) {
-                var uniData = StorageCacheUtils.getUniversalBlock(b);
+                SlimefunUniversalBlockData uniData = StorageCacheUtils.getUniversalBlock(b);
 
                 UUID owner = UUID.fromString(uniData.getData("owner"));
 
@@ -117,7 +118,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
             @Override
             public void newInstance(UniversalMenu menu, Block b) {
-                var uniData = StorageCacheUtils.getUniversalBlock(menu.getUuid());
+                SlimefunUniversalBlockData uniData = StorageCacheUtils.getUniversalBlock(menu.getUuid());
 
                 menu.replaceExistingItem(
                         15, new CustomItemStack(HeadTexture.SCRIPT_START.getAsItemStack(), "&a启动/继续运行"));
@@ -177,7 +178,7 @@ public class ProgrammableAndroid extends SlimefunItem
                 Player p = e.getPlayer();
                 Block b = e.getBlock();
 
-                var universalData = StorageCacheUtils.getUniversalBlock(b);
+                SlimefunUniversalBlockData universalData = StorageCacheUtils.getUniversalBlock(b);
 
                 universalData.setData("owner", p.getUniqueId().toString());
                 universalData.setData("script", DEFAULT_SCRIPT);
@@ -202,7 +203,7 @@ public class ProgrammableAndroid extends SlimefunItem
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 Block b = e.getBlock();
 
-                var uniData = StorageCacheUtils.getUniversalBlock(b);
+                SlimefunUniversalBlockData uniData = StorageCacheUtils.getUniversalBlock(b);
                 if (!e.getPlayer().hasPermission("slimefun.android.bypass")
                     && !e.getPlayer().getUniqueId().toString().equals(uniData.getData("owner"))) {
                     // The Player is not allowed to break this android
@@ -210,7 +211,7 @@ public class ProgrammableAndroid extends SlimefunItem
                     return;
                 }
 
-                var menu = uniData.getMenu();
+                UniversalMenu menu = uniData.getMenu();
                 if (menu != null) {
                     menu.dropItems(b.getLocation(), 43);
                     menu.dropItems(b.getLocation(), getOutputSlots());
@@ -938,7 +939,7 @@ public class ProgrammableAndroid extends SlimefunItem
     }
 
     protected void move(Block from, BlockFace face, Block to) {
-        var uniData = StorageCacheUtils.getUniversalBlock(from);
+        SlimefunUniversalBlockData uniData = StorageCacheUtils.getUniversalBlock(from);
 
         OfflinePlayer owner = Bukkit.getOfflinePlayer(UUID.fromString(uniData.getData("owner")));
 
@@ -957,7 +958,7 @@ public class ProgrammableAndroid extends SlimefunItem
 
             // Bro encountered a ghost 💀
             if (StorageCacheUtils.hasBlock(to.getLocation())) {
-                var data = StorageCacheUtils.getBlock(to.getLocation());
+                SlimefunBlockData data = StorageCacheUtils.getBlock(to.getLocation());
                 if (data != null && !data.isPendingRemove()) {
                     // Since it's a ghost, we just hunt it.
                     Slimefun.getDatabaseManager().getBlockDataController().removeBlock(to.getLocation());

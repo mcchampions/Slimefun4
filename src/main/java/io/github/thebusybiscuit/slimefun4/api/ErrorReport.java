@@ -1,5 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.api;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalBlockData;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -103,7 +105,7 @@ public class ErrorReport<T extends Throwable> {
 
             stream.println("Slimefun 数据:");
             stream.println("  ID: " + item.getId());
-            var blockData =
+            SlimefunBlockData blockData =
                     Slimefun.getDatabaseManager().getBlockDataController().getBlockData(l);
 
             if (blockData == null) {
@@ -111,7 +113,7 @@ public class ErrorReport<T extends Throwable> {
                         .getUniversalDataUUID(l.getBlock())
                         .ifPresentOrElse(
                                 uuid -> {
-                                    var universalData = Slimefun.getDatabaseManager()
+                                    SlimefunUniversalBlockData universalData = Slimefun.getDatabaseManager()
                                             .getBlockDataController()
                                             .getUniversalBlockDataFromCache(uuid);
                                     if (universalData != null) {

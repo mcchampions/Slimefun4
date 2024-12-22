@@ -563,7 +563,7 @@ public class BlockDataController extends ADataController {
         key.addField(FieldKey.LOCATION);
         key.addCondition(FieldKey.LOCATION, blockData.getKey());
 
-        var data = new RecordSet();
+        RecordSet data = new RecordSet();
         data.put(FieldKey.LOCATION, newBlockData.getKey());
         data.put(FieldKey.CHUNK, chunkData.getKey());
         data.put(FieldKey.SLIMEFUN_ID, blockData.getSfId());
@@ -641,7 +641,7 @@ public class BlockDataController extends ADataController {
         var start = System.currentTimeMillis();
         var worldName = world.getName();
         logger.log(Level.INFO, "正在加载世界 {0} 的 Slimefun 方块数据...", worldName);
-        var chunkKeys = new HashSet<String>();
+        HashSet<String> chunkKeys = new HashSet<>();
         var key = new RecordKey(DataScope.CHUNK_DATA);
         key.addField(FieldKey.CHUNK);
         key.addCondition(FieldKey.CHUNK, worldName + ";%");
@@ -673,7 +673,7 @@ public class BlockDataController extends ADataController {
 
             var uuid = data.getUUID(FieldKey.UNIVERSAL_UUID);
             var traitsData = data.get(FieldKey.UNIVERSAL_TRAITS);
-            var traits = new HashSet<UniversalDataTrait>();
+            Set<UniversalDataTrait> traits = EnumSet.noneOf(UniversalDataTrait.class);
 
             if (traitsData != null && !traitsData.isBlank()) {
                 for (String traitStr : traitsData.split(",")) {
@@ -759,7 +759,7 @@ public class BlockDataController extends ADataController {
                 var menuPreset = BlockMenuPreset.getPreset(blockData.getSfId());
 
                 if (menuPreset != null) {
-                    var inv = new ItemStack[54];
+                    ItemStack[] inv = new ItemStack[54];
 
                     invData.forEach(record ->
                             inv[record.getInt(FieldKey.INVENTORY_SLOT)] = record.getItemStack(FieldKey.INVENTORY_ITEM));
@@ -829,7 +829,7 @@ public class BlockDataController extends ADataController {
                     menuKey.addField(FieldKey.INVENTORY_SLOT);
                     menuKey.addField(FieldKey.INVENTORY_ITEM);
 
-                    var inv = new ItemStack[54];
+                    ItemStack[] inv = new ItemStack[54];
 
                     getData(menuKey)
                             .forEach(recordSet -> inv[recordSet.getInt(FieldKey.INVENTORY_SLOT)] =
@@ -961,7 +961,7 @@ public class BlockDataController extends ADataController {
 
     public void removeAllDataInWorld(World world) {
         // 1. remove block cache
-        var loadedBlockData = new HashSet<SlimefunBlockData>();
+        HashSet<SlimefunBlockData> loadedBlockData = new HashSet<>();
         for (var chunkData : getAllLoadedChunkData(world)) {
             loadedBlockData.addAll(chunkData.getAllBlockData());
             chunkData.removeAllCacheInternal();
@@ -1010,7 +1010,7 @@ public class BlockDataController extends ADataController {
 
     public Set<SlimefunChunkData> getAllLoadedChunkData(World world) {
         var prefix = world.getName() + ";";
-        var re = new HashSet<SlimefunChunkData>();
+        HashSet<SlimefunChunkData> re = new HashSet<>();
         loadedChunk.forEach((k, v) -> {
             if (k.startsWith(prefix)) {
                 re.add(v);
@@ -1057,7 +1057,7 @@ public class BlockDataController extends ADataController {
         if (item == null) {
             scheduleDeleteTask(scopeKey, reqKey, true);
         } else {
-            var data = new RecordSet();
+            RecordSet data = new RecordSet();
             data.put(FieldKey.LOCATION, lKey);
             data.put(FieldKey.INVENTORY_SLOT, slot + "");
             data.put(FieldKey.INVENTORY_ITEM, item);
@@ -1094,7 +1094,7 @@ public class BlockDataController extends ADataController {
         if (item == null) {
             scheduleDeleteTask(scopeKey, reqKey, true);
         } else {
-            var data = new RecordSet();
+            RecordSet data = new RecordSet();
             data.put(FieldKey.UNIVERSAL_UUID, uuid.toString());
             data.put(FieldKey.INVENTORY_SLOT, slot + "");
             data.put(FieldKey.INVENTORY_ITEM, item);
@@ -1154,7 +1154,7 @@ public class BlockDataController extends ADataController {
         if (val == null) {
             scheduleDeleteTask(scopeKey, reqKey, false);
         } else {
-            var data = new RecordSet();
+            RecordSet data = new RecordSet();
             reqKey.addField(FieldKey.DATA_VALUE);
             data.put(FieldKey.LOCATION, lKey);
             data.put(FieldKey.DATA_KEY, key);
@@ -1167,7 +1167,7 @@ public class BlockDataController extends ADataController {
         if (val == null) {
             scheduleDeleteTask(scopeKey, reqKey, false);
         } else {
-            var data = new RecordSet();
+            RecordSet data = new RecordSet();
             reqKey.addField(FieldKey.DATA_VALUE);
             data.put(FieldKey.UNIVERSAL_UUID, uuid);
             data.put(FieldKey.DATA_KEY, key);
@@ -1208,7 +1208,7 @@ public class BlockDataController extends ADataController {
         if (val == null) {
             scheduleDeleteTask(scopeKey, reqKey, false);
         } else {
-            var data = new RecordSet();
+            RecordSet data = new RecordSet();
             reqKey.addField(FieldKey.DATA_VALUE);
             data.put(FieldKey.CHUNK, cKey);
             data.put(FieldKey.DATA_KEY, key);

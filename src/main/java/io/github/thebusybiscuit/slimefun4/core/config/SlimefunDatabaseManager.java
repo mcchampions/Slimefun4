@@ -55,12 +55,12 @@ public class SlimefunDatabaseManager {
 
         try {
             blockDataStorageType = StorageType.valueOf(blockStorageConfig.getString("storageType"));
-            var readExecutorThread = blockStorageConfig.getInt("readExecutorThread");
-            var writeExecutorThread = blockStorageConfig.getInt("writeExecutorThread");
+            int readExecutorThread = blockStorageConfig.getInt("readExecutorThread");
+            int writeExecutorThread = blockStorageConfig.getInt("writeExecutorThread");
 
             initAdapter(blockDataStorageType, DataType.BLOCK_STORAGE, blockStorageConfig);
 
-            var blockDataController =
+            BlockDataController blockDataController =
                     ControllerHolder.createController(BlockDataController.class, blockDataStorageType);
             blockDataController.init(blockStorageAdapter, readExecutorThread, writeExecutorThread);
 
@@ -78,12 +78,12 @@ public class SlimefunDatabaseManager {
 
         try {
             profileStorageType = StorageType.valueOf(profileConfig.getString("storageType"));
-            var readExecutorThread = profileConfig.getInt("readExecutorThread");
-            var writeExecutorThread =
+            int readExecutorThread = profileConfig.getInt("readExecutorThread");
+            int writeExecutorThread =
                     profileStorageType == StorageType.SQLITE ? 1 : profileConfig.getInt("writeExecutorThread");
 
             initAdapter(profileStorageType, DataType.PLAYER_PROFILE, profileConfig);
-            var profileController = ControllerHolder.createController(ProfileDataController.class, profileStorageType);
+            ProfileDataController profileController = ControllerHolder.createController(ProfileDataController.class, profileStorageType);
             profileController.init(profileAdapter, readExecutorThread, writeExecutorThread);
         } catch (IOException e) {
             plugin.getLogger().log(Level.SEVERE, "加载玩家档案适配器失败", e);
@@ -93,7 +93,7 @@ public class SlimefunDatabaseManager {
     private void initAdapter(StorageType storageType, DataType dataType, Config databaseConfig) throws IOException {
         switch (storageType) {
             case MYSQL -> {
-                var adapter = new MysqlAdapter();
+                MysqlAdapter adapter = new MysqlAdapter();
 
                 adapter.prepare(new MysqlConfig(
                         databaseConfig.getString("mysql.host"),
@@ -111,7 +111,7 @@ public class SlimefunDatabaseManager {
                 }
             }
             case SQLITE -> {
-                var adapter = new SqliteAdapter();
+                SqliteAdapter adapter = new SqliteAdapter();
 
                 File databasePath = null;
 
@@ -129,7 +129,7 @@ public class SlimefunDatabaseManager {
                         databasePath.getAbsolutePath(), databaseConfig.getInt("sqlite.maxConnection")));
             }
             case POSTGRESQL -> {
-                var adapter = new PostgreSqlAdapter();
+                PostgreSqlAdapter adapter = new PostgreSqlAdapter();
 
                 adapter.prepare(new PostgreSqlConfig(
                         databaseConfig.getString("postgresql.host"),
