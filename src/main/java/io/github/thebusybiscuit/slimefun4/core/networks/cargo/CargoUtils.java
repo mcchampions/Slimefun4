@@ -116,7 +116,7 @@ final class CargoUtils {
         DirtyChestMenu menu = getChestMenu(target);
 
         if (menu != null) {
-            var event = new CargoWithdrawEvent(node, target, menu.toInventory());
+            CargoWithdrawEvent event = new CargoWithdrawEvent(node, target, menu.toInventory());
             Bukkit.getPluginManager().callEvent(event);
             if (event.isCancelled()) {
                 return null;
@@ -228,7 +228,7 @@ final class CargoUtils {
                     inventory = holder.getInventory();
                     inventories.put(target.getLocation(), inventory);
                 }
-                var event = new CargoInsertEvent(node, target, inventory);
+                CargoInsertEvent event = new CargoInsertEvent(node, target, inventory);
                 Bukkit.getPluginManager().callEvent(event);
                 if (!event.isCancelled()) {
                     return insertIntoVanillaInventory(stack, wrapper, smartFill, inventory);
@@ -238,7 +238,7 @@ final class CargoUtils {
             return stack;
         }
 
-        var event = new CargoInsertEvent(node, target, menu.toInventory());
+        CargoInsertEvent event = new CargoInsertEvent(node, target, menu.toInventory());
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled()) {
             return stack;

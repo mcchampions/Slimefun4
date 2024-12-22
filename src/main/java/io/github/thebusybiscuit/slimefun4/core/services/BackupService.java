@@ -95,11 +95,11 @@ public class BackupService implements Runnable {
     }
 
     private static void addFile(ZipOutputStream output, File file) throws IOException {
-        var entry = new ZipEntry("/" + file.getName());
+        ZipEntry entry = new ZipEntry("/" + file.getName());
         output.putNextEntry(entry);
 
         byte[] buffer = new byte[4096];
-        try (var input = new FileInputStream(file)) {
+        try (FileInputStream input = new FileInputStream(file)) {
             int length;
 
             while ((length = input.read(buffer)) > 0) {

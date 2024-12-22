@@ -207,17 +207,17 @@ public class ProfileDataController extends ADataController {
             return cache;
         }
 
-        var re = new PlayerProfile(p, 0);
+        PlayerProfile re = new PlayerProfile(p, 0);
         profileCache.put(uuid, re);
 
-        var key = new RecordKey(DataScope.PLAYER_PROFILE);
+        RecordKey key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
         scheduleWriteTask(new UUIDKey(DataScope.NONE, p.getUniqueId()), key, getRecordSet(re), true);
         return re;
     }
 
     public void setResearch(String uuid, NamespacedKey researchKey, boolean unlocked) {
-        var key = new RecordKey(DataScope.PLAYER_RESEARCH);
+        RecordKey key = new RecordKey(DataScope.PLAYER_RESEARCH);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
         key.addCondition(FieldKey.RESEARCH_ID, researchKey.toString());
         if (unlocked) {
@@ -232,15 +232,15 @@ public class ProfileDataController extends ADataController {
 
 
     public PlayerBackpack createBackpack(OfflinePlayer p, String name, int num, int size) {
-        var re = new PlayerBackpack(p, UUID.randomUUID(), name, num, size, null);
-        var key = new RecordKey(DataScope.BACKPACK_PROFILE);
+        PlayerBackpack re = new PlayerBackpack(p, UUID.randomUUID(), name, num, size, null);
+        RecordKey key = new RecordKey(DataScope.BACKPACK_PROFILE);
         key.addCondition(FieldKey.BACKPACK_ID, re.getUniqueId().toString());
         scheduleWriteTask(new UUIDKey(DataScope.NONE, p.getUniqueId()), key, getRecordSet(re), true);
         return re;
     }
 
     public void saveBackpackInfo(PlayerBackpack bp) {
-        var key = new RecordKey(DataScope.BACKPACK_PROFILE);
+        RecordKey key = new RecordKey(DataScope.BACKPACK_PROFILE);
         key.addCondition(FieldKey.BACKPACK_ID, bp.getUniqueId().toString());
         key.addField(FieldKey.BACKPACK_SIZE);
         key.addField(FieldKey.BACKPACK_NAME);
@@ -248,7 +248,7 @@ public class ProfileDataController extends ADataController {
     }
 
     public void saveProfileBackpackCount(PlayerProfile profile) {
-        var key = new RecordKey(DataScope.PLAYER_PROFILE);
+        RecordKey key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addField(FieldKey.PLAYER_BACKPACK_NUM);
         var uuid = profile.getUUID();
         key.addCondition(FieldKey.PLAYER_UUID, uuid.toString());
@@ -259,7 +259,7 @@ public class ProfileDataController extends ADataController {
         var id = bp.getUniqueId().toString();
         var inv = bp.getInventory();
         slots.forEach(slot -> {
-            var key = new RecordKey(DataScope.BACKPACK_INVENTORY);
+            RecordKey key = new RecordKey(DataScope.BACKPACK_INVENTORY);
             key.addCondition(FieldKey.BACKPACK_ID, id);
             key.addCondition(FieldKey.INVENTORY_SLOT, slot + "");
             key.addField(FieldKey.INVENTORY_ITEM);
@@ -281,7 +281,7 @@ public class ProfileDataController extends ADataController {
     }
 
     public UUID getPlayerUuid(String pName) {
-        var key = new RecordKey(DataScope.PLAYER_PROFILE);
+        RecordKey key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addField(FieldKey.PLAYER_UUID);
         key.addCondition(FieldKey.PLAYER_NAME, pName);
 
@@ -294,7 +294,7 @@ public class ProfileDataController extends ADataController {
     }
 
     public boolean isExistsUuid(UUID uuid) {
-        var key = new RecordKey(DataScope.PLAYER_PROFILE);
+        RecordKey key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addCondition(FieldKey.PLAYER_UUID, String.valueOf(uuid));
         key.addField(FieldKey.PLAYER_NAME);
 
@@ -315,7 +315,7 @@ public class ProfileDataController extends ADataController {
     }
 
     public void updateUsername(String uuid, String newName) {
-        var key = new RecordKey(DataScope.PLAYER_PROFILE);
+        RecordKey key = new RecordKey(DataScope.PLAYER_PROFILE);
         key.addField(FieldKey.PLAYER_NAME);
         key.addCondition(FieldKey.PLAYER_UUID, uuid);
 
@@ -350,7 +350,7 @@ public class ProfileDataController extends ADataController {
             removed.markInvalid();
         }
 
-        var task = new Runnable() {
+        Runnable task = new Runnable() {
             @Override
             public void run() {
                 if (invalidingBackpackTasks.remove(pUuid) != this) {

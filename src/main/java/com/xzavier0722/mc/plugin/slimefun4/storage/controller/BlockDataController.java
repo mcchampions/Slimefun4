@@ -365,19 +365,19 @@ public class BlockDataController extends ADataController {
     }
 
     void removeBlockDirectly(Location l) {
-        var scopeKey = new LocationKey(DataScope.NONE, l);
+        LocationKey scopeKey = new LocationKey(DataScope.NONE, l);
         removeDelayedBlockDataUpdates(scopeKey);
 
-        var key = new RecordKey(DataScope.BLOCK_RECORD);
+        RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
         key.addCondition(FieldKey.LOCATION, LocationUtils.getLocKey(l));
         scheduleDeleteTask(scopeKey, key, true);
     }
 
     void removeUniversalBlockDirectly(UUID uuid) {
-        var scopeKey = new UUIDKey(DataScope.NONE, uuid);
+        UUIDKey scopeKey = new UUIDKey(DataScope.NONE, uuid);
         removeDelayedBlockDataUpdates(scopeKey);
 
-        var key = new RecordKey(DataScope.UNIVERSAL_RECORD);
+        RecordKey key = new RecordKey(DataScope.UNIVERSAL_RECORD);
         key.addCondition(FieldKey.UNIVERSAL_UUID, uuid.toString());
         scheduleDeleteTask(scopeKey, key, true);
     }
@@ -404,7 +404,7 @@ public class BlockDataController extends ADataController {
             }
         }
 
-        var key = new RecordKey(DataScope.BLOCK_RECORD);
+        RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
         key.addCondition(FieldKey.LOCATION, lKey);
         key.addField(FieldKey.SLIMEFUN_ID);
 
@@ -542,8 +542,8 @@ public class BlockDataController extends ADataController {
             chunkData.removeBlockDataCacheInternal(blockData.getKey());
         }
 
-        var newBlockData = new SlimefunBlockData(target, blockData);
-        var key = new RecordKey(DataScope.BLOCK_RECORD);
+        SlimefunBlockData newBlockData = new SlimefunBlockData(target, blockData);
+        RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
         if (LocationUtils.isSameChunk(blockData.getLocation().getChunk(), target.getChunk())) {
             if (chunkData == null) {
                 chunkData = getChunkDataCache(chunk, true);
@@ -567,7 +567,7 @@ public class BlockDataController extends ADataController {
         data.put(FieldKey.LOCATION, newBlockData.getKey());
         data.put(FieldKey.CHUNK, chunkData.getKey());
         data.put(FieldKey.SLIMEFUN_ID, blockData.getSfId());
-        var scopeKey = new LocationKey(DataScope.NONE, blockData.getLocation());
+        LocationKey scopeKey = new LocationKey(DataScope.NONE, blockData.getLocation());
         synchronized (delayedWriteTasks) {
             var it = delayedWriteTasks.entrySet().iterator();
             while (it.hasNext()) {
@@ -612,7 +612,7 @@ public class BlockDataController extends ADataController {
 
         // 按区块加载方块数据
 
-        var key = new RecordKey(DataScope.BLOCK_RECORD);
+        RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
         key.addField(FieldKey.LOCATION);
         key.addField(FieldKey.SLIMEFUN_ID);
         key.addCondition(FieldKey.CHUNK, chunkData.getKey());
@@ -642,7 +642,7 @@ public class BlockDataController extends ADataController {
         var worldName = world.getName();
         logger.log(Level.INFO, "正在加载世界 {0} 的 Slimefun 方块数据...", worldName);
         HashSet<String> chunkKeys = new HashSet<>();
-        var key = new RecordKey(DataScope.CHUNK_DATA);
+        RecordKey key = new RecordKey(DataScope.CHUNK_DATA);
         key.addField(FieldKey.CHUNK);
         key.addCondition(FieldKey.CHUNK, worldName + ";%");
         getData(key, true).forEach(data -> chunkKeys.add(data.get(FieldKey.CHUNK)));
@@ -658,7 +658,7 @@ public class BlockDataController extends ADataController {
     }
 
     public void loadUniversalRecord() {
-        var uniKey = new RecordKey(DataScope.UNIVERSAL_RECORD);
+        RecordKey uniKey = new RecordKey(DataScope.UNIVERSAL_RECORD);
         uniKey.addField(FieldKey.UNIVERSAL_UUID);
         uniKey.addField(FieldKey.SLIMEFUN_ID);
         uniKey.addField(FieldKey.UNIVERSAL_TRAITS);
@@ -698,7 +698,7 @@ public class BlockDataController extends ADataController {
         if (chunkData.isDataLoaded()) {
             return;
         }
-        var key = new RecordKey(DataScope.CHUNK_DATA);
+        RecordKey key = new RecordKey(DataScope.CHUNK_DATA);
         key.addField(FieldKey.DATA_KEY);
         key.addField(FieldKey.DATA_VALUE);
         key.addCondition(FieldKey.CHUNK, chunkData.getKey());
@@ -723,7 +723,7 @@ public class BlockDataController extends ADataController {
         if (blockData.isDataLoaded()) {
             return;
         }
-        var key = new RecordKey(DataScope.BLOCK_DATA);
+        RecordKey key = new RecordKey(DataScope.BLOCK_DATA);
         key.addCondition(FieldKey.LOCATION, blockData.getKey());
         key.addField(FieldKey.DATA_KEY);
         key.addField(FieldKey.DATA_VALUE);
@@ -739,7 +739,7 @@ public class BlockDataController extends ADataController {
 
             var kvData = getData(key);
 
-            var menuKey = new RecordKey(DataScope.BLOCK_INVENTORY);
+            RecordKey menuKey = new RecordKey(DataScope.BLOCK_INVENTORY);
             menuKey.addCondition(FieldKey.LOCATION, blockData.getKey());
             menuKey.addField(FieldKey.INVENTORY_SLOT);
             menuKey.addField(FieldKey.INVENTORY_ITEM);
@@ -799,7 +799,7 @@ public class BlockDataController extends ADataController {
             return;
         }
 
-        var key = new RecordKey(DataScope.UNIVERSAL_DATA);
+        RecordKey key = new RecordKey(DataScope.UNIVERSAL_DATA);
         key.addCondition(FieldKey.UNIVERSAL_UUID, uniData.getKey());
         key.addField(FieldKey.DATA_KEY);
         key.addField(FieldKey.DATA_VALUE);
@@ -824,7 +824,7 @@ public class BlockDataController extends ADataController {
             if (uniData.hasTrait(UniversalDataTrait.INVENTORY)) {
                 var menuPreset = UniversalMenuPreset.getPreset(uniData.getSfId());
                 if (menuPreset != null) {
-                    var menuKey = new RecordKey(DataScope.UNIVERSAL_INVENTORY);
+                    RecordKey menuKey = new RecordKey(DataScope.UNIVERSAL_INVENTORY);
                     menuKey.addCondition(FieldKey.UNIVERSAL_UUID, uniData.getKey());
                     menuKey.addField(FieldKey.INVENTORY_SLOT);
                     menuKey.addField(FieldKey.INVENTORY_ITEM);
@@ -885,7 +885,7 @@ public class BlockDataController extends ADataController {
     }
 
     public void saveAllBlockInventories() {
-        var chunks = new HashSet<>(loadedChunk.values());
+        HashSet<> chunks = new HashSet<>(loadedChunk.values());
         chunks.forEach(chunk -> chunk.getAllCacheInternal().forEach(block -> {
             if (block.isPendingRemove() || !block.isDataLoaded()) {
                 return;
@@ -900,7 +900,7 @@ public class BlockDataController extends ADataController {
     }
 
     public void saveAllUniversalInventories() {
-        var uniData = new HashSet<>(loadedUniversalData.values());
+        HashSet<> uniData = new HashSet<>(loadedUniversalData.values());
         uniData.forEach(data -> {
             if (data.isPendingRemove() || !data.isDataLoaded()) {
                 return;
@@ -1020,7 +1020,7 @@ public class BlockDataController extends ADataController {
     }
 
     public void removeFromAllChunkInWorld(World world, String key) {
-        var req = new RecordKey(DataScope.CHUNK_DATA);
+        RecordKey req = new RecordKey(DataScope.CHUNK_DATA);
         req.addCondition(FieldKey.CHUNK, world.getName() + ";%");
         req.addCondition(FieldKey.DATA_KEY, key);
         deleteData(req);
@@ -1035,8 +1035,8 @@ public class BlockDataController extends ADataController {
     }
 
     private void scheduleDelayedBlockInvUpdate(SlimefunBlockData blockData, int slot) {
-        var scopeKey = new LocationKey(DataScope.NONE, blockData.getLocation());
-        var reqKey = new RecordKey(DataScope.BLOCK_INVENTORY);
+        LocationKey scopeKey = new LocationKey(DataScope.NONE, blockData.getLocation());
+        RecordKey reqKey = new RecordKey(DataScope.BLOCK_INVENTORY);
         reqKey.addCondition(FieldKey.LOCATION, blockData.getKey());
         reqKey.addCondition(FieldKey.INVENTORY_SLOT, slot + "");
         reqKey.addField(FieldKey.INVENTORY_ITEM);
@@ -1073,8 +1073,8 @@ public class BlockDataController extends ADataController {
      * @param slot updated item slot
      */
     private void scheduleDelayedUniversalInvUpdate(UUID uuid, UniversalMenu menu, int slot) {
-        var scopeKey = new UUIDKey(DataScope.NONE, uuid);
-        var reqKey = new RecordKey(DataScope.UNIVERSAL_INVENTORY);
+        UUIDKey scopeKey = new UUIDKey(DataScope.NONE, uuid);
+        RecordKey reqKey = new RecordKey(DataScope.UNIVERSAL_INVENTORY);
         reqKey.addCondition(FieldKey.UNIVERSAL_UUID, uuid.toString());
         reqKey.addCondition(FieldKey.INVENTORY_SLOT, slot + "");
         reqKey.addField(FieldKey.INVENTORY_ITEM);
@@ -1114,8 +1114,8 @@ public class BlockDataController extends ADataController {
     }
 
     void scheduleDelayedBlockDataUpdate(SlimefunBlockData blockData, String key) {
-        var scopeKey = new LocationKey(DataScope.NONE, blockData.getLocation());
-        var reqKey = new RecordKey(DataScope.BLOCK_DATA);
+        LocationKey scopeKey = new LocationKey(DataScope.NONE, blockData.getLocation());
+        RecordKey reqKey = new RecordKey(DataScope.BLOCK_DATA);
         reqKey.addCondition(FieldKey.LOCATION, blockData.getKey());
         reqKey.addCondition(FieldKey.DATA_KEY, key);
         if (enableDelayedSaving) {
@@ -1128,8 +1128,8 @@ public class BlockDataController extends ADataController {
     }
 
     void scheduleDelayedUniversalDataUpdate(SlimefunUniversalData universalData, String key) {
-        var scopeKey = new UUIDKey(DataScope.NONE, universalData.getKey());
-        var reqKey = new RecordKey(DataScope.UNIVERSAL_DATA);
+        UUIDKey scopeKey = new UUIDKey(DataScope.NONE, universalData.getKey());
+        RecordKey reqKey = new RecordKey(DataScope.UNIVERSAL_DATA);
         reqKey.addCondition(FieldKey.UNIVERSAL_UUID, universalData.getKey());
         reqKey.addCondition(FieldKey.DATA_KEY, key);
         if (enableDelayedSaving) {
@@ -1177,8 +1177,8 @@ public class BlockDataController extends ADataController {
     }
 
     void scheduleDelayedChunkDataUpdate(SlimefunChunkData chunkData, String key) {
-        var scopeKey = new ChunkKey(DataScope.NONE, chunkData.getChunk());
-        var reqKey = new RecordKey(DataScope.CHUNK_DATA);
+        ChunkKey scopeKey = new ChunkKey(DataScope.NONE, chunkData.getChunk());
+        RecordKey reqKey = new RecordKey(DataScope.CHUNK_DATA);
         reqKey.addCondition(FieldKey.CHUNK, chunkData.getKey());
         reqKey.addCondition(FieldKey.DATA_KEY, key);
 
@@ -1226,7 +1226,7 @@ public class BlockDataController extends ADataController {
     private SlimefunChunkData getChunkDataCache(Chunk chunk, boolean createOnNotExists) {
         return createOnNotExists
                 ? loadedChunk.computeIfAbsent(LocationUtils.getChunkKey(chunk), k -> {
-            var re = new SlimefunChunkData(chunk);
+            SlimefunChunkData re = new SlimefunChunkData(chunk);
             if (!initLoading && chunkDataLoadMode.readCacheOnly()) {
                 re.setIsDataLoaded(true);
             }
@@ -1236,7 +1236,7 @@ public class BlockDataController extends ADataController {
     }
 
     private void deleteChunkAndBlockDataDirectly(String cKey) {
-        var req = new RecordKey(DataScope.BLOCK_RECORD);
+        RecordKey req = new RecordKey(DataScope.BLOCK_RECORD);
         req.addCondition(FieldKey.CHUNK, cKey);
         deleteData(req);
 
@@ -1256,7 +1256,7 @@ public class BlockDataController extends ADataController {
         }
         Slimefun.getNetworkManager().updateAllNetworks(l);
 
-        var scopeKey = new LocationKey(DataScope.NONE, l);
+        LocationKey scopeKey = new LocationKey(DataScope.NONE, l);
         removeDelayedBlockDataUpdates(scopeKey);
         abortScopeTask(scopeKey);
     }
