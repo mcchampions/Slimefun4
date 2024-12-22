@@ -81,7 +81,7 @@ public class EnhancedCraftingTable extends AbstractCraftingTable {
         if (outputInv != null) {
             SlimefunItem sfItem = SlimefunItem.getByItem(output);
 
-            var waitCallback = false;
+            boolean waitCallback = false;
             if (sfItem instanceof SlimefunBackpack backpack) {
                 waitCallback = upgradeBackpack(p, inv, backpack, output, () -> {
                     SoundEffect.ENHANCED_CRAFTING_TABLE_CRAFT_SOUND.playAt(b);

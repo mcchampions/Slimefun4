@@ -518,7 +518,7 @@ public class BlockDataController extends ADataController {
             return;
         }
 
-        var hasTicker = false;
+        boolean hasTicker = false;
 
         if (blockData.isDataLoaded() && Slimefun.getRegistry().getTickerBlocks().contains(blockData.getSfId())) {
             if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {

@@ -34,10 +34,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.common.FieldMapper;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
 import io.github.bakedlibs.dough.collections.Pair;
 
-import java.sql.Connection;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 public class SqlUtils {
@@ -127,7 +124,7 @@ public class SqlUtils {
 
     public static List<RecordSet> execQuery(Connection conn, String sql) throws SQLException {
         try (Statement stmt = conn.createStatement()) {
-            try (var result = stmt.executeQuery(sql)) {
+            try (ResultSet result = stmt.executeQuery(sql)) {
                 List<RecordSet> re = null;
                 ResultSetMetaData metaData = null;
                 int columnCount = 0;
@@ -138,7 +135,7 @@ public class SqlUtils {
                         columnCount = metaData.getColumnCount();
                     }
                     RecordSet row = new RecordSet();
-                    for (var i = 1; i <= columnCount; i++) {
+                    for (int i = 1; i <= columnCount; i++) {
                         row.put(SqlUtils.mapField(metaData.getColumnName(i)), result.getString(i));
                     }
                     row.readonly();
@@ -150,13 +147,13 @@ public class SqlUtils {
     }
 
     public static void execSql(Connection conn, String sql) throws SQLException {
-        try (var stmt = conn.createStatement()) {
+        try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         }
     }
 
     public static int execUpdate(Connection conn, String sql) throws SQLException {
-        try (var stmt = conn.createStatement()) {
+        try (Statement stmt = conn.createStatement()) {
             return stmt.executeUpdate(sql);
         }
     }

@@ -60,7 +60,7 @@ public class MysqlAdapter extends SqlCommonAdapter<MysqlConfig> {
         }
 
         StringBuilder valStr = new StringBuilder();
-        var flag = false;
+        boolean flag = false;
         for (Map.Entry<FieldKey, String> entry : data.entrySet()) {
             if (flag) {
                 valStr.append(", ");
