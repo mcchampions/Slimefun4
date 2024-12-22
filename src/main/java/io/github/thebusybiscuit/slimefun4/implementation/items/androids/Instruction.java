@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
 import city.norain.slimefun4.api.menu.UniversalMenu;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 
@@ -71,7 +72,7 @@ public enum Instruction {
      */
     TURN_LEFT(AndroidType.NONE, HeadTexture.SCRIPT_LEFT, (android, b, inv, face) -> {
         int mod = -1;
-        ProgrammableAndroid.rotate(b, face, mod);
+        android.rotate(b, StorageCacheUtils.getUniversalBlock(inv.getUuid()), face, mod);
     }),
 
     /**
@@ -79,7 +80,7 @@ public enum Instruction {
      */
     TURN_RIGHT(AndroidType.NONE, HeadTexture.SCRIPT_RIGHT, (android, b, inv, face) -> {
         int mod = 1;
-        ProgrammableAndroid.rotate(b, face, mod);
+        android.rotate(b, StorageCacheUtils.getUniversalBlock(inv.getUuid()), face, mod);
     }),
 
     /**

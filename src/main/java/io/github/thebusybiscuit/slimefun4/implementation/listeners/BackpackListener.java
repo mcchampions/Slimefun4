@@ -9,10 +9,8 @@ import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Cooler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.SlimefunBackpack;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+
+import java.util.*;
 import javax.annotation.Nullable;
 
 import org.bukkit.Material;
@@ -25,7 +23,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * This {@link Listener} is responsible for all events centered around a {@link SlimefunBackpack}.
@@ -62,12 +63,12 @@ public class BackpackListener implements Listener {
     }
 
     private void saveBackpackInv(PlayerBackpack bp) {
-        var snapshot = invSnapshot.remove(bp.getUniqueId());
+        List<Pair<ItemStack, Integer>> snapshot = invSnapshot.remove(bp.getUniqueId());
         if (snapshot == null) {
             return;
         }
 
-        var changed =
+        Set<Integer> changed =
                 InvStorageUtils.getChangedSlots(snapshot, bp.getInventory().getContents());
         if (changed.isEmpty()) {
             return;
@@ -84,6 +85,24 @@ public class BackpackListener implements Listener {
             if (sfItem instanceof SlimefunBackpack) {
                 e.setCancelled(true);
             }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerSwap(PlayerSwapHandItemsEvent e) {
+        Player player = e.getPlayer();
+        if (!backpacks.containsKey(player.getUniqueId())) {
+            return;
+        }
+
+        ItemStack item = player.getInventory().getItemInOffHand();
+        if (item.getType().isAir()) {
+            return;
+        }
+
+        SlimefunItem backpack = SlimefunItem.getByItem(item);
+        if (backpack instanceof SlimefunBackpack) {
+            e.setCancelled(true);
         }
     }
 
@@ -145,13 +164,13 @@ public class BackpackListener implements Listener {
     }
 
     private void openBackpack(Player p, ItemStack item, PlayerProfile profile, int size) {
-        var meta = item.getItemMeta();
+        ItemMeta meta = item.getItemMeta();
         if (PlayerBackpack.getBackpackUUID(meta).isEmpty()
                 && PlayerBackpack.getBackpackID(meta).isEmpty()) {
             // Create backpack
             Slimefun.getLocalization().sendMessage(p, "backpack.set-name", true);
             Slimefun.getChatCatcher().scheduleCatcher(p.getUniqueId(), name -> {
-                var pInv = p.getInventory();
+                PlayerInventory pInv = p.getInventory();
                 if (!item.equals(pInv.getItemInMainHand()) && !item.equals(pInv.getItemInOffHand())) {
                     Slimefun.getLocalization().sendMessage(p, "backpack.not-original-item", true);
                     return;
