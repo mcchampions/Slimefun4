@@ -41,7 +41,7 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
             return lastPresent;
         }
 
-        var data = getData("location");
+        String data = getData("location");
 
         if (data == null) {
             Slimefun.logger().log(Level.WARNING.WARNING, "UniversalBlockData [" + getUUID() + "] missing location data");
