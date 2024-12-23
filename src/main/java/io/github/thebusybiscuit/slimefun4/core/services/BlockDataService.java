@@ -1,5 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.core.services;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalBlockData;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 
@@ -111,7 +113,17 @@ public class BlockDataService implements Keyed {
 
         return uuid.map(data -> {
             try {
-                return UUID.fromString(data);
+                UUID uniId = UUID.fromString(data);
+
+                SlimefunUniversalBlockData uniData =
+                        Slimefun.getDatabaseManager().getBlockDataController().getUniversalBlockDataFromCache(uniId);
+
+                // Auto fix missing location
+                if (uniData != null && uniData.getLastPresent() == null) {
+                    uniData.setLastPresent(b.getLocation());
+                }
+
+                return uniId;
             } catch (IllegalArgumentException e) {
                 return null;
             }
