@@ -4,9 +4,6 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.Univers
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
 import java.util.UUID;
-import java.util.logging.Level;
-
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.Location;
 
 public class SlimefunUniversalBlockData extends SlimefunUniversalData {
@@ -20,11 +17,14 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
         super(uuid, sfId);
 
         this.lastPresent = present;
-        setTraitData(UniversalDataTrait.BLOCK, LocationUtils.locationToString(lastPresent.toLocation()));
     }
 
     public SlimefunUniversalBlockData(UUID uuid, String sfId, Location present) {
         this(uuid, sfId, new BlockPosition(present));
+    }
+
+    public void initLastPresent() {
+        setTraitData(UniversalDataTrait.BLOCK, LocationUtils.locationToString(lastPresent.toLocation()));
     }
 
     public void setLastPresent(BlockPosition lastPresent) {
@@ -37,14 +37,17 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
     }
 
     public BlockPosition getLastPresent() {
+        String data = getData(UniversalDataTrait.BLOCK.getReservedKey());
+
         if (lastPresent != null) {
+            if (data == null) {
+                setTraitData(UniversalDataTrait.BLOCK, LocationUtils.locationToString(lastPresent.toLocation()));
+            }
+
             return lastPresent;
         }
 
-        String data = getData("location");
-
         if (data == null) {
-            Slimefun.logger().log(Level.WARNING.WARNING, "UniversalBlockData [" + getUUID() + "] missing location data");
             return null;
         }
 
