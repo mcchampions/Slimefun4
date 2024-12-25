@@ -264,7 +264,6 @@ public class TickerTask extends BaseTickerTask {
         return tickingLocations;
     }
 
-
     /**
      * This method returns a <strong>read-only</strong> {@link Map}
      * representation of every {@link ChunkPosition} and its corresponding

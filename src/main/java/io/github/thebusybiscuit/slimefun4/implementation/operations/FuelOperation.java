@@ -26,8 +26,6 @@ public class FuelOperation implements MachineOperation {
     }
 
     public FuelOperation(ItemStack ingredient, @Nullable ItemStack result, int totalTicks) {
-
-
         this.ingredient = ingredient;
         this.result = result;
         this.totalTicks = totalTicks;
@@ -35,7 +33,6 @@ public class FuelOperation implements MachineOperation {
 
     @Override
     public void addProgress(int num) {
-
         currentTicks += num;
     }
 

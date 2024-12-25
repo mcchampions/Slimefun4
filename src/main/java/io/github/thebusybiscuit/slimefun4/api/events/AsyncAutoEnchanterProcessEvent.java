@@ -57,7 +57,6 @@ public class AsyncAutoEnchanterProcessEvent extends Event implements Cancellable
         return handlers;
     }
 
-
     @Override
     public @NotNull HandlerList getHandlers() {
         return handlers;

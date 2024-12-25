@@ -137,7 +137,6 @@ public class ProfileDataController extends ADataController {
         return re;
     }
 
-
     private ItemStack[] getBackpackInv(String uuid, int size) {
         RecordKey key = new RecordKey(DataScope.BACKPACK_INVENTORY);
         key.addField(FieldKey.INVENTORY_SLOT);
@@ -151,7 +150,6 @@ public class ProfileDataController extends ADataController {
 
         return re;
     }
-
 
     private Set<NamespacedKey> getUnlockedResearchKeys(String uuid) {
         RecordKey key = new RecordKey(DataScope.PLAYER_RESEARCH);
@@ -176,7 +174,6 @@ public class ProfileDataController extends ADataController {
         scheduleReadTask(() -> invokeCallback(callback, getBackpack(uuid)));
     }
 
-
     public Set<PlayerBackpack> getBackpacks(String pUuid) {
         RecordKey key = new RecordKey(DataScope.BACKPACK_PROFILE);
         key.addField(FieldKey.BACKPACK_ID);
@@ -198,7 +195,6 @@ public class ProfileDataController extends ADataController {
             invokeCallback(callback, re.isEmpty() ? null : re);
         });
     }
-
 
     public PlayerProfile createProfile(OfflinePlayer p) {
         var uuid = p.getUniqueId().toString();
@@ -229,7 +225,6 @@ public class ProfileDataController extends ADataController {
             scheduleDeleteTask(new UUIDKey(DataScope.NONE, uuid), key, false);
         }
     }
-
 
     public PlayerBackpack createBackpack(OfflinePlayer p, String name, int num, int size) {
         PlayerBackpack re = new PlayerBackpack(p, UUID.randomUUID(), name, num, size, null);

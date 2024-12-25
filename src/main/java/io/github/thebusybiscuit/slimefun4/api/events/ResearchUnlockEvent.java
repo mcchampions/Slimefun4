@@ -42,11 +42,9 @@ public class ResearchUnlockEvent extends Event implements Cancellable {
         this.cancelled = cancel;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 
     @Override
     public @NotNull HandlerList getHandlers() {

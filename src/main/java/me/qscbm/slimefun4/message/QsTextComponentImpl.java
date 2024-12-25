@@ -66,7 +66,6 @@ public class QsTextComponentImpl implements TextComponent {
         return style(style.color(color));
     }
 
-
     @Override
     public QsTextComponentImpl content(final String content) {
         this.content = content;

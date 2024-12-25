@@ -53,11 +53,9 @@ public class AsyncMachineOperationFinishEvent extends Event {
         return machineOperation;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 
     @Override
     public @NotNull HandlerList getHandlers() {

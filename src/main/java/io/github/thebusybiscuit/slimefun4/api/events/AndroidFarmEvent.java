@@ -94,11 +94,9 @@ public class AndroidFarmEvent extends Event implements Cancellable {
         cancelled = cancel;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 
     @Override
     public @NotNull HandlerList getHandlers() {

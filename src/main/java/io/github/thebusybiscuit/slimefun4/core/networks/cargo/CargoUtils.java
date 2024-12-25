@@ -66,7 +66,6 @@ final class CargoUtils {
         return SlimefunTag.CARGO_SUPPORTED_STORAGE_BLOCKS.isTagged(type);
     }
 
-
     static int[] getInputSlotRange(Inventory inv, @Nullable ItemStack item) {
         if (inv instanceof FurnaceInventory) {
             if (item != null && item.getType().isFuel()) {
@@ -95,7 +94,6 @@ final class CargoUtils {
             return new int[]{0, inv.getSize()};
         }
     }
-
 
     static int[] getOutputSlotRange(Inventory inv) {
         if (inv instanceof FurnaceInventory) {
@@ -209,7 +207,6 @@ final class CargoUtils {
             boolean smartFill,
             ItemStack stack,
             ItemStackWrapper wrapper) {
-
         if (!matchesFilter(network, node, stack)) {
             return stack;
         }

@@ -38,7 +38,6 @@ public class MultiBlock {
         SUPPORTED_TAGS.add(Tag.FIRE);
     }
 
-
     public static Set<Tag<Material>> getSupportedTags() {
         return SUPPORTED_TAGS;
     }
@@ -55,7 +54,6 @@ public class MultiBlock {
         this.isSymmetric = isSymmetric(build);
     }
 
-
     public SlimefunItem getSlimefunItem() {
         return item;
     }
@@ -64,11 +62,9 @@ public class MultiBlock {
         return blocks[0] == blocks[2] && blocks[3] == blocks[5] && blocks[6] == blocks[8];
     }
 
-
     public Material[] getStructure() {
         return blocks;
     }
-
 
     public BlockFace getTriggerBlock() {
         return trigger;

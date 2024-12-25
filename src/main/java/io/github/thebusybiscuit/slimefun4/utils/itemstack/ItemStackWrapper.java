@@ -70,7 +70,6 @@ public final class ItemStackWrapper extends ItemStack {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
     }
 
-
     @Override
     public ItemStack clone() {
         throw new UnsupportedOperationException(ERROR_MESSAGE);

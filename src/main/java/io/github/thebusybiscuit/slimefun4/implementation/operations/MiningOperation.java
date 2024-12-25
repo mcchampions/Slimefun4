@@ -25,7 +25,6 @@ public class MiningOperation implements MachineOperation {
 
     @Override
     public void addProgress(int num) {
-
         currentTicks += num;
     }
 

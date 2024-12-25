@@ -41,7 +41,6 @@ public class ReactorExplodeEvent extends Event {
         return handlers;
     }
 
-
     @Override
     public @NotNull HandlerList getHandlers() {
         return handlers;

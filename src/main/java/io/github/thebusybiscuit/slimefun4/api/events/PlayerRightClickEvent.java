@@ -105,7 +105,6 @@ public class PlayerRightClickEvent extends PlayerEvent {
         return face;
     }
 
-
     public Optional<SlimefunItem> getSlimefunItem() {
         if (!slimefunItem.isComputed()) {
             if (itemStack.isPresent()) {
@@ -117,7 +116,6 @@ public class PlayerRightClickEvent extends PlayerEvent {
 
         return slimefunItem.getAsOptional();
     }
-
 
     public Optional<SlimefunItem> getSlimefunBlock() {
         if (!slimefunBlock.isComputed()) {
@@ -141,11 +139,9 @@ public class PlayerRightClickEvent extends PlayerEvent {
         blockResult = Result.DENY;
     }
 
-
     public Result useItem() {
         return itemResult;
     }
-
 
     public Result useBlock() {
         return blockResult;
@@ -159,11 +155,9 @@ public class PlayerRightClickEvent extends PlayerEvent {
         blockResult = result;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 
     @Override
     public @NotNull HandlerList getHandlers() {

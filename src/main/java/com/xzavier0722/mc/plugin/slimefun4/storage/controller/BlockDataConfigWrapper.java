@@ -26,12 +26,10 @@ public class BlockDataConfigWrapper extends Config {
         return blockData.getData(path);
     }
 
-
     @Override
     public Set<String> getKeys() {
         return new HashSet<>(blockData.getAllData().keySet());
     }
-
 
     @Override
     public Set<String> getKeys(String path) {

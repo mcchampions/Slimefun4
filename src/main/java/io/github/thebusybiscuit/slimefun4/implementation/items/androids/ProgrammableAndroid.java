@@ -70,7 +70,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ProgrammableAndroid extends SlimefunItem
         implements InventoryBlock, RecipeDisplayItem, NotDiagonallyRotatable, UniversalBlock {
-
     private static final List<BlockFace> POSSIBLE_ROTATIONS =
             Arrays.asList(BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST);
     private static final int[] BORDER = {
@@ -94,7 +93,6 @@ public class ProgrammableAndroid extends SlimefunItem
         registerDefaultFuelTypes();
 
         new UniversalMenuPreset(getId(), "可编程式机器人") {
-
             @Override
             public void init() {
                 constructMenu(this);
@@ -250,7 +248,6 @@ public class ProgrammableAndroid extends SlimefunItem
         super.preRegister();
 
         addItemHandler(new BlockTicker(true) {
-
             @Override
             public void tick(Block b, SlimefunItem item, SlimefunUniversalData data) {
                 if (b != null && data != null) {
@@ -264,7 +261,6 @@ public class ProgrammableAndroid extends SlimefunItem
             }
         });
     }
-
 
     public void openScript(Player p, SlimefunUniversalBlockData uniData, String sourceCode) {
         ChestMenu menu =
@@ -949,7 +945,6 @@ public class ProgrammableAndroid extends SlimefunItem
         if (to.getY() > to.getWorld().getMinHeight()
             && to.getY() < to.getWorld().getMaxHeight()
             && to.isEmpty()) {
-
             if (!to.getWorld().getWorldBorder().isInside(to.getLocation())) {
                 return;
             }

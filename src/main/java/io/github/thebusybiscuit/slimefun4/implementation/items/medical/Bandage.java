@@ -46,7 +46,6 @@ public class Bandage extends SimpleSlimefunItem<ItemUseHandler> {
             if (p.getFireTicks() <= 0
                 && p.getHealth()
                    >= p.getAttribute(VersionedAttribute.getMaxHealth()).getValue()) {
-
                 return;
             }
 

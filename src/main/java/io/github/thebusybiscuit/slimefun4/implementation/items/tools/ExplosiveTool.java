@@ -102,7 +102,6 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         }
     }
 
-
     private void addBlocksToDestroy(List<Block> blocks, Player p, List<Block> blocksToDestroy, List<ItemStack> drops) {
         for (Block block : blocks) {
             if (canBreak(p, block)) {

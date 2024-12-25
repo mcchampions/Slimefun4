@@ -33,11 +33,9 @@ public class StorageCacheUtils {
         return getBlock(l) != null;
     }
 
-
     public static boolean hasUniversalBlock(Location l) {
         return Slimefun.getBlockDataService().getUniversalDataUUID(l.getBlock()).isPresent();
     }
-
 
     public static SlimefunBlockData getBlock(Location l) {
         return Slimefun.getDatabaseManager().getBlockDataController().getBlockDataFromCache(l);

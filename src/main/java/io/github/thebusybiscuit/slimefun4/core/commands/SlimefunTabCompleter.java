@@ -119,7 +119,6 @@ public class SlimefunTabCompleter {
         return returnList;
     }
 
-
     public static Set<String> getSlimefunItems() {
         List<SlimefunItem> items = Slimefun.getRegistry().getEnabledSlimefunItems();
         Set<String> set = new HashSet<>(items.size());

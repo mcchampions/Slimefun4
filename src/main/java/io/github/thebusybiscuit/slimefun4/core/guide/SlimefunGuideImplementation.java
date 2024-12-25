@@ -55,7 +55,6 @@ public interface SlimefunGuideImplementation {
     default void unlockItem(Player p, SlimefunItem sfitem, Consumer<Player> callback) {
         Research research = sfitem.getResearch();
 
-
         if (VaultIntegration.isEnabled()) {
             VaultIntegration.withdrawPlayer(p, research.getCurrencyCost());
         } else {

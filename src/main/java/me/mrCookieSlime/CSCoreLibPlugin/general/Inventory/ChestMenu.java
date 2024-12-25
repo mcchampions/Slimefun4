@@ -17,7 +17,6 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
 /**
  * An old remnant of CS-CoreLib.
  * This will be removed once we updated everything.

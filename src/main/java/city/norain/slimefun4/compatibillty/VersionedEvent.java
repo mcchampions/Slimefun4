@@ -1,6 +1,5 @@
 package city.norain.slimefun4.compatibillty;
 
-
 import lombok.experimental.UtilityClass;
 import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.block.Block;

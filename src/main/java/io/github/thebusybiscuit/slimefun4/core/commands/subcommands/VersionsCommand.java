@@ -28,13 +28,11 @@ import org.bukkit.plugin.Plugin;
  * @author Walshy
  */
 class VersionsCommand extends SubCommand {
-
     VersionsCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "versions", false);
     }
 
     final int version = NumberUtils.getJavaVersion();
-
 
     final String serverSoftware = Bukkit.getName();
     final ComponentBuilder<TextComponent, TextComponent.Builder> component = Component.text()

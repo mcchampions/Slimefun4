@@ -177,16 +177,13 @@ public final class SlimefunRegistry {
         return barterDrops;
     }
 
-
     public Set<SlimefunItem> getRadioactiveItems() {
         return radioactive;
     }
 
-
     public Set<String> getTickerBlocks() {
         return tickers;
     }
-
 
     public Map<String, SlimefunItem> getSlimefunItemIds() {
         return slimefunIds;
@@ -196,11 +193,9 @@ public final class SlimefunRegistry {
         return slimefunNames;
     }
 
-
     public Map<String, BlockMenuPreset> getMenuPresets() {
         return blockMenuPresets;
     }
-
 
     public Map<UUID, PlayerProfile> getPlayerProfiles() {
         return profiles;
@@ -214,16 +209,13 @@ public final class SlimefunRegistry {
         return geoResources;
     }
 
-
     public NamespacedKey getSoulboundDataKey() {
         return soulboundKey;
     }
 
-
     public NamespacedKey getItemChargeDataKey() {
         return itemChargeKey;
     }
-
 
     public NamespacedKey getGuideDataKey() {
         return guideKey;

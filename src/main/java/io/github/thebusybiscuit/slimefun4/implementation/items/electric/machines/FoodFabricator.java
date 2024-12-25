@@ -56,7 +56,6 @@ public class FoodFabricator extends ASpeedableContainer {
         });
     }
 
-
     @Override
     public String getMachineIdentifier() {
         return "FOOD_FABRICATOR";

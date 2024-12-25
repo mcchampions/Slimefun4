@@ -37,7 +37,6 @@ public class SlimefunBlockBreakEvent extends Event implements Cancellable {
      * @param slimefunItem The {@link SlimefunItem} within the {@link ItemStack}
      */
     public SlimefunBlockBreakEvent(Player player, ItemStack heldItem, Block blockBroken, SlimefunItem slimefunItem) {
-
         this.player = player;
         this.heldItem = heldItem;
         this.blockBroken = blockBroken;

@@ -32,7 +32,6 @@ public class BlockInfoConfig extends Config {
         this.data = data;
     }
 
-
     public Map<String, String> getMap() {
         return data;
     }
@@ -104,7 +103,6 @@ public class BlockInfoConfig extends Config {
     public void reload() {
         throw new UnsupportedOperationException();
     }
-
 
     public String toJSON() {
         return new GsonBuilder().create().toJson(data);
