@@ -175,9 +175,6 @@ public class BlockDataController extends ADataController {
      * @param forceSavePeriod 强制保存周期
      */
     public void initDelayedSaving(Plugin p, int delayedSecond, int forceSavePeriod) {
-        if (delayedSecond < 1 || forceSavePeriod < 1) {
-            throw new IllegalArgumentException("save period second must be greater than 0!");
-        }
         enableDelayedSaving = true;
         this.delayedSecond = delayedSecond;
         looperTask = Bukkit.getScheduler()
