@@ -30,7 +30,7 @@ public class RadioactivityListener implements Listener {
         addGracePeriod(e.getPlayer());
     }
 
-    private void addGracePeriod(Player entity) {
+    public static void addGracePeriod(Player entity) {
         RadiationUtils.clearExposure(entity);
         RadiationTask.addGracePeriod(entity);
     }

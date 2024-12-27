@@ -95,7 +95,7 @@ public class MultiBlockListener implements Listener {
                 && (bottom == null || equals(b.getRelative(BlockFace.DOWN).getType(), bottom));
     }
 
-    private boolean equals(Material a, Material b) {
+    public static boolean equals(Material a, Material b) {
         if (a == b) {
             return true;
         }

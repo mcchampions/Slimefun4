@@ -101,7 +101,7 @@ public class BlockPhysicsListener implements Listener {
         }
     }
 
-    private void callHandler(BlockBreakHandler handler, Block b) {
+    public static void callHandler(BlockBreakHandler handler, Block b) {
         if (handler.isExplosionAllowed(b)) {
             b.setType(Material.AIR);
 

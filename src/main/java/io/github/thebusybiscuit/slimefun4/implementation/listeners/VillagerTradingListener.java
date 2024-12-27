@@ -49,7 +49,7 @@ public class VillagerTradingListener implements Listener {
         }
     }
 
-    private boolean isUnallowed(@Nullable SlimefunItem item) {
+    public static boolean isUnallowed(@Nullable SlimefunItem item) {
         return item != null
                 && !(item instanceof VanillaItem)
                 && !(item instanceof SyntheticEmerald)

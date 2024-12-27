@@ -84,7 +84,7 @@ public class SlimefunItemInteractListener implements Listener {
         }
     }
 
-    private boolean rightClickItem(PlayerInteractEvent e, PlayerRightClickEvent event, boolean defaultValue) {
+    public static boolean rightClickItem(PlayerInteractEvent e, PlayerRightClickEvent event, boolean defaultValue) {
         Optional<SlimefunItem> optional = event.getSlimefunItem();
 
         if (optional.isPresent()) {
@@ -100,7 +100,7 @@ public class SlimefunItemInteractListener implements Listener {
         return defaultValue;
     }
 
-    private boolean rightClickBlock(PlayerRightClickEvent event) {
+    public static boolean rightClickBlock(PlayerRightClickEvent event) {
         Optional<SlimefunItem> optional = event.getSlimefunBlock();
 
         if (optional.isPresent()) {
@@ -127,7 +127,7 @@ public class SlimefunItemInteractListener implements Listener {
         return true;
     }
 
-    private void openInventory(Player p, SlimefunItem item, Block clickedBlock, PlayerRightClickEvent event) {
+    public static void openInventory(Player p, SlimefunItem item, Block clickedBlock, PlayerRightClickEvent event) {
         try {
             if (!p.isSneaking() || event.getItem().getType() == Material.AIR) {
                 event.getInteractEvent().setCancelled(true);
@@ -195,7 +195,7 @@ public class SlimefunItemInteractListener implements Listener {
         }
     }
 
-    private void openMenu(DirtyChestMenu menu, Block b, Player p) {
+    public static void openMenu(DirtyChestMenu menu, Block b, Player p) {
         if (menu != null) {
             if (menu.canOpen(b, p)) {
                 menu.open(p);

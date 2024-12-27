@@ -62,7 +62,7 @@ public class GadgetsListener implements Listener {
         }
     }
 
-    private void handleChestplate(Player p, @Nullable SlimefunItem chestplate) {
+    public static void handleChestplate(Player p, @Nullable SlimefunItem chestplate) {
         if (chestplate == null || !chestplate.canUse(p, true)) {
             return;
         }
@@ -78,7 +78,7 @@ public class GadgetsListener implements Listener {
         }
     }
 
-    private void handleBoots(Player p, @Nullable SlimefunItem boots) {
+    public static void handleBoots(Player p, @Nullable SlimefunItem boots) {
         if (boots instanceof JetBoots jetBoots && boots.canUse(p, true)) {
             double speed = jetBoots.getSpeed();
 

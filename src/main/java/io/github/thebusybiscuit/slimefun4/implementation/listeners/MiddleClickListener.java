@@ -72,7 +72,7 @@ public class MiddleClickListener implements Listener {
         }
     }
 
-    private boolean isActualMiddleClick(InventoryCreativeEvent e, Block b) {
+    public static boolean isActualMiddleClick(InventoryCreativeEvent e, Block b) {
         /*
          * On a middle click outside the user inventory, cursor will be set
          * to the actual block that is middle clicked, while currentItem will be AIR.

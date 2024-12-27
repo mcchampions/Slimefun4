@@ -89,7 +89,7 @@ public class AutoCrafterListener implements Listener {
         }
     }
 
-    private boolean hasUnlockedRecipe(Player p, ItemStack item) {
+    private static boolean hasUnlockedRecipe(Player p, ItemStack item) {
         for (Recipe recipe : Slimefun.getMinecraftRecipeService().getRecipesFor(item)) {
             if (recipe instanceof Keyed keyed && !p.hasDiscoveredRecipe(keyed.getKey())) {
                 return false;

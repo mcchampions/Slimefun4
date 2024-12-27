@@ -66,7 +66,7 @@ public class SlimefunGuideListener implements Listener {
         }
     }
 
-    private void openGuide(Player p, PlayerRightClickEvent e, SlimefunGuideMode layout) {
+    public static void openGuide(Player p, PlayerRightClickEvent e, SlimefunGuideMode layout) {
         SlimefunGuideOpenEvent event = new SlimefunGuideOpenEvent(p, e.getItem(), layout);
         Bukkit.getPluginManager().callEvent(event);
 
@@ -76,7 +76,7 @@ public class SlimefunGuideListener implements Listener {
         }
     }
 
-    private Result tryOpenGuide(Player p, PlayerRightClickEvent e, SlimefunGuideMode layout) {
+    public static Result tryOpenGuide(Player p, PlayerRightClickEvent e, SlimefunGuideMode layout) {
         ItemStack item = e.getItem();
         if (SlimefunUtils.isItemSimilar(item, SlimefunGuide.getItem(layout), false, false)) {
             if (!Slimefun.getWorldSettingsService().isWorldEnabled(p.getWorld())) {

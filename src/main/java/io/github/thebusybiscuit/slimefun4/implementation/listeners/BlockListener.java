@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ASlimefunDataContainer;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.BlockDataController;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalBlockData;
@@ -66,7 +67,7 @@ public class BlockListener implements Listener {
 
         // Fixes #2636 - This will solve the "ghost blocks" issue
         if (e.getBlockReplacedState().getType().isAir()) {
-            var blockData = StorageCacheUtils.getBlock(loc);
+            SlimefunBlockData blockData = StorageCacheUtils.getBlock(loc);
             if (blockData != null && blockData.isPendingRemove()) {
                 e.setCancelled(true);
                 return;
@@ -147,7 +148,7 @@ public class BlockListener implements Listener {
                                 .getBlockDataController()
                                 .createUniversalBlock(block.getLocation(), sfItem.getId());
 
-                        if (Slimefun.getBlockDataService().isTileEntity(block.getType())) {
+                        if (BlockDataService.isTileEntity(block.getType())) {
                             Slimefun.getBlockDataService().updateUniversalDataUUID(block, data.getKey());
                         }
                     } else {
@@ -174,12 +175,12 @@ public class BlockListener implements Listener {
             return;
         }
 
-        var heldItem = e.getPlayer().getInventory().getItemInMainHand();
-        var block = e.getBlock();
-        var blockData = StorageCacheUtils.hasBlock(block.getLocation())
+        ItemStack heldItem = e.getPlayer().getInventory().getItemInMainHand();
+        Block block = e.getBlock();
+        ASlimefunDataContainer blockData = StorageCacheUtils.hasBlock(block.getLocation())
                 ? StorageCacheUtils.getBlock(block.getLocation())
                 : StorageCacheUtils.getUniversalBlock(block);
-        var sfItem = blockData == null ? null : SlimefunItem.getById(blockData.getSfId());
+        SlimefunItem sfItem = blockData == null ? null : SlimefunItem.getById(blockData.getSfId());
 
         // If there is a Slimefun Block here, call our BreakEvent and, if cancelled, cancel this event
         // and return
@@ -216,7 +217,7 @@ public class BlockListener implements Listener {
 
             if (!blockData.isDataLoaded()) {
                 e.setDropItems(false);
-                var type = block.getType();
+                Material type = block.getType();
                 StorageCacheUtils.executeAfterLoad(
                         blockData,
                         () -> {
@@ -246,7 +247,7 @@ public class BlockListener implements Listener {
         }
     }
 
-    private void callToolHandler(BlockBreakEvent e, ItemStack item, int fortune, List<ItemStack> drops) {
+    public static void callToolHandler(BlockBreakEvent e, ItemStack item, int fortune, List<ItemStack> drops) {
         SlimefunItem tool = SlimefunItem.getByItem(item);
 
         if (tool != null) {
@@ -258,8 +259,8 @@ public class BlockListener implements Listener {
         }
     }
 
-    private void callBlockHandler(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
-        var loc = e.getBlock().getLocation();
+    public static void callBlockHandler(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
+        Location loc = e.getBlock().getLocation();
         SlimefunItem sfItem = StorageCacheUtils.getSfItem(loc);
 
         if (sfItem != null && !sfItem.useVanillaBlockBreaking()) {
@@ -274,7 +275,7 @@ public class BlockListener implements Listener {
         }
     }
 
-    private void dropItems(
+    public static void dropItems(
             BlockBreakEvent e, ItemStack item, Block block, @Nullable SlimefunItem sfBlock, List<ItemStack> drops) {
         if (!drops.isEmpty()) {
             // Fixes #2560
@@ -308,8 +309,8 @@ public class BlockListener implements Listener {
         Block blockAbove = block.getRelative(BlockFace.UP);
 
         if (SlimefunTag.SENSITIVE_MATERIALS.isTagged(blockAbove.getType())) {
-            var loc = blockAbove.getLocation();
-            var blockData = StorageCacheUtils.getBlock(loc);
+            Location loc = blockAbove.getLocation();
+            SlimefunBlockData blockData = StorageCacheUtils.getBlock(loc);
             SlimefunItem sfItem = StorageCacheUtils.getSfItem(loc);
 
             if (sfItem != null && !sfItem.useVanillaBlockBreaking()) {

@@ -57,7 +57,7 @@ public class MobDropListener implements Listener {
         }
     }
 
-    private boolean canDrop(Player p, ItemStack item) {
+    public static boolean canDrop(Player p, ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         if (sfItem == null) {

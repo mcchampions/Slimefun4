@@ -78,7 +78,7 @@ public class ButcherAndroidListener implements Listener {
      * @param entityType
      *            The {@link EntityType} of the killed entity
      */
-    private void addExtraDrops(List<ItemStack> drops, EntityType entityType) {
+    public static void addExtraDrops(List<ItemStack> drops, EntityType entityType) {
         Random random = ThreadLocalRandom.current();
 
         if (entityType == EntityType.WITHER_SKELETON && random.nextInt(250) < 2) {

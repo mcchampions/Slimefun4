@@ -116,7 +116,7 @@ public class TalismanListener implements Listener {
      * @param projectile
      *            The {@link Projectile} that hit this {@link Player}
      */
-    private void returnProjectile(Player p, Projectile projectile) {
+    public static void returnProjectile(Player p, Projectile projectile) {
         Vector direction = p.getEyeLocation().getDirection().multiply(2.0);
         Location loc = p.getEyeLocation().add(direction.getX(), direction.getY(), direction.getZ());
 
@@ -174,7 +174,7 @@ public class TalismanListener implements Listener {
         }
     }
 
-    private Collection<ItemStack> getExtraDrops(LivingEntity entity, Collection<ItemStack> drops) {
+    public static Collection<ItemStack> getExtraDrops(LivingEntity entity, Collection<ItemStack> drops) {
         List<ItemStack> items = new ArrayList<>(drops);
 
         // Prevent duplication of items stored inside a Horse's chest
@@ -401,7 +401,7 @@ public class TalismanListener implements Listener {
         }
     }
 
-    private int getAmountWithFortune(Material type, int fortuneLevel) {
+    public static int getAmountWithFortune(Material type, int fortuneLevel) {
         if (fortuneLevel > 0) {
             Random random = ThreadLocalRandom.current();
             int amount = random.nextInt(fortuneLevel + 2) - 1;

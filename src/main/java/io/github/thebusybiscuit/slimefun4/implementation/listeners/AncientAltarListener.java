@@ -337,7 +337,7 @@ public class AncientAltarListener implements Listener {
         return Optional.empty();
     }
 
-    private Optional<ItemStack> checkPedestals(
+    public static Optional<ItemStack> checkPedestals(
             List<ItemStackWrapper> items, AltarRecipe recipe) {
         for (int i = 0; i < 8; i++) {
             if (SlimefunUtils.isItemSimilar(items.get(i), recipe.getInput().get(0), true)) {

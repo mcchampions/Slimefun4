@@ -90,7 +90,7 @@ public class TeleporterListener implements Listener {
         }
     }
 
-    private void teleport(String ownerUid, Player p, Block b) {
+    public static void teleport(String ownerUid, Player p, Block b) {
         Slimefun.getGPSNetwork().getTeleportationManager().openTeleporterGUI(p, UUID.fromString(ownerUid), b);
     }
 

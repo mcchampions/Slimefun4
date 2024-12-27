@@ -51,11 +51,11 @@ public class CargoNodeListener implements Listener {
         }
     }
 
-    private boolean isCargoNode(ItemStack item) {
+    public static boolean isCargoNode(ItemStack item) {
         return SlimefunItem.getByItem(item) instanceof CargoNode;
     }
 
-    private boolean isContainer(Block block) {
+    public static boolean isContainer(Block block) {
         return block.getState() instanceof Container
                 || Slimefun.getDatabaseManager().getBlockDataController().getBlockData(block.getLocation()) != null;
     }

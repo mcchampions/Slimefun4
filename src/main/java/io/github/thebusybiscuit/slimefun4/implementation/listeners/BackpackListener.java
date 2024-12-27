@@ -144,7 +144,7 @@ public class BackpackListener implements Listener {
         }
     }
 
-    private boolean isAllowed(SlimefunBackpack backpack, @Nullable ItemStack item) {
+    public static boolean isAllowed(SlimefunBackpack backpack, @Nullable ItemStack item) {
         if (item == null || item.getType() == Material.AIR) {
             return true;
         }

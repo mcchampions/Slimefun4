@@ -56,7 +56,7 @@ public class ExplosionsListener implements Listener {
         removeResistantBlocks(e.blockList().iterator());
     }
 
-    private void removeResistantBlocks(Iterator<Block> blocks) {
+    public static void removeResistantBlocks(Iterator<Block> blocks) {
         while (blocks.hasNext()) {
             Block block = blocks.next();
             var loc = block.getLocation();
@@ -92,7 +92,7 @@ public class ExplosionsListener implements Listener {
         }
     }
 
-    private void handleExplosion(BlockBreakHandler handler, Block block) {
+    public static void handleExplosion(BlockBreakHandler handler, Block block) {
         if (handler.isExplosionAllowed(block)) {
             block.setType(Material.AIR);
 
