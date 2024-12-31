@@ -4,7 +4,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -22,12 +24,10 @@ import org.bukkit.inventory.meta.ItemMeta;
  * to provide some utility methods.
  *
  * @author TheBusyBiscuit
- *
  * @see BrokenSpawner
  * @see RepairedSpawner
- *
  */
-public abstract class AbstractMonsterSpawner extends SlimefunItem {
+public abstract class AbstractMonsterSpawner extends SlimefunItem implements DistinctiveItem {
     AbstractMonsterSpawner(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -36,9 +36,7 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      * This method tries to obtain an {@link EntityType} from a given {@link ItemStack}.
      * The provided {@link ItemStack} must be a {@link RepairedSpawner} item.
      *
-     * @param item
-     *            The {@link ItemStack} to extract the {@link EntityType} from
-     *
+     * @param item The {@link ItemStack} to extract the {@link EntityType} from
      * @return An {@link Optional} describing the result
      */
 
@@ -50,13 +48,19 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
             String stripColor = ChatColor.stripColor(line);
 
             if ((stripColor.startsWith("类型: ") || stripColor.startsWith("Type:"))
-                    && (!line.contains("<类型>") || line.contains("<Type>"))) {
+                && (!line.contains("<类型>") || line.contains("<Type>"))) {
                 EntityType type = EntityType.valueOf(ChatColor.stripColor(line)
                         .replace("类型: ", "")
                         .replace("Type: ", "")
                         .replace(' ', '_')
                         .toUpperCase(Locale.ROOT));
                 return Optional.of(type);
+            }
+        }
+        if (meta instanceof BlockStateMeta blockStateMeta) {
+            if (blockStateMeta.hasBlockState() && blockStateMeta.getBlockState() instanceof CreatureSpawner spawner) {
+                EntityType type = spawner.getSpawnedType();
+                if (type != null) return Optional.of(type);
             }
         }
 
@@ -68,12 +72,9 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
      * to hold and represent the given {@link EntityType}.
      * It updates the lore and {@link BlockStateMeta} to reflect the specified {@link EntityType}.
      *
-     * @param type
-     *            The {@link EntityType} to apply
-     *
+     * @param type The {@link EntityType} to apply
      * @return An {@link ItemStack} for this {@link SlimefunItem} holding that {@link EntityType}
      */
-
     public ItemStack getItemForEntityType(EntityType type) {
         if (type == null) {
             // Fixes #4209
@@ -81,25 +82,27 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
         }
         ItemStack item = getItem().clone();
         ItemMeta meta = item.getItemMeta();
+        // fix: you can't set null type or a not-spawnable type, for example ,player
+        if (type.isSpawnable()) {
 
-        // Fixes #2583 - Proper NBT handling of Spawners
-        if (meta instanceof BlockStateMeta stateMeta) {
-            BlockState state = stateMeta.getBlockState();
+            // Fixes #2583 - Proper NBT handling of Spawners
+            if (meta instanceof BlockStateMeta stateMeta) {
+                BlockState state = stateMeta.getBlockState();
 
-            if (state instanceof CreatureSpawner spawner) {
-                spawner.setSpawnedType(type);
+                if (state instanceof CreatureSpawner spawner) {
+                    spawner.setSpawnedType(type);
+                }
+
+                stateMeta.setBlockState(state);
             }
-
-            stateMeta.setBlockState(state);
         }
-
         // Setting the lore to indicate the Type visually
         List<String> lore = meta.getLore();
 
         for (int i = 0; i < lore.size(); i++) {
             String currentLine = lore.get(i);
             if (currentLine.contains("<Type>") || currentLine.contains("<类型>")) {
-                String typeName = ChatUtils.humanize(type.name());
+                String typeName = type == null ? "空" : ChatUtils.humanize(type.name());
                 lore.set(i, currentLine.replace("<Type>", typeName).replace("<类型>", typeName));
                 break;
             }
@@ -107,7 +110,24 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
 
         meta.setLore(lore);
         item.setItemMeta(meta);
-
         return item;
+    }
+
+    // to fix the bug of stacking two BROKEN_SPAWNER/REINFORCED_SPAWNER containing different EntityType using cargo or
+    // machine
+    public boolean canStack(ItemMeta itemMetaOne, ItemMeta itemMetaTwo) {
+        if (itemMetaOne instanceof BlockStateMeta blockStateMeta1
+            && itemMetaTwo instanceof BlockStateMeta blockStateMeta2) {
+            if (blockStateMeta1.hasBlockState() && blockStateMeta2.hasBlockState()) {
+                // BlockState.equals do not compare these data
+                if (blockStateMeta1.getBlockState() instanceof CreatureSpawner spawner1
+                    && blockStateMeta2.getBlockState() instanceof CreatureSpawner spawner2) {
+                    return spawner1.getSpawnedType() == spawner2.getSpawnedType();
+                }
+            } else {
+                return blockStateMeta1.hasBlockState() == blockStateMeta2.hasBlockState();
+            }
+        }
+        return false;
     }
 }

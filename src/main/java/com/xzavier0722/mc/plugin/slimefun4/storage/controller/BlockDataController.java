@@ -395,8 +395,8 @@ public class BlockDataController extends ADataController {
             return getBlockDataFromCache(l);
         }
 
-        Chunk chunk = l.getChunk();
-        SlimefunChunkData chunkData = getChunkDataCache(chunk, false);
+        // fix issue #935
+        SlimefunChunkData chunkData = getChunkDataCache(l, false);
         String lKey = LocationUtils.getLocKey(l);
         if (chunkData != null) {
             SlimefunBlockData re = chunkData.getBlockCacheInternal(lKey);
@@ -413,7 +413,8 @@ public class BlockDataController extends ADataController {
         SlimefunBlockData re =
                 result.isEmpty() ? null : new SlimefunBlockData(l, result.get(0).get(FieldKey.SLIMEFUN_ID));
         if (re != null) {
-            chunkData = getChunkDataCache(chunk, true);
+            // fix issue #935
+            chunkData = getChunkDataCache(l, true);
             chunkData.addBlockCacheInternal(re, false);
             re = chunkData.getBlockCacheInternal(lKey);
         }
@@ -437,7 +438,7 @@ public class BlockDataController extends ADataController {
      * @return {@link SlimefunBlockData}
      */
     public SlimefunBlockData getBlockDataFromCache(Location l) {
-        return getBlockDataFromCache(LocationUtils.getChunkKey(l.getChunk()), LocationUtils.getLocKey(l));
+        return getBlockDataFromCache(LocationUtils.getChunkKey(l), LocationUtils.getLocKey(l));
     }
 
     /**
@@ -596,12 +597,12 @@ public class BlockDataController extends ADataController {
     }
 
     private SlimefunBlockData getBlockDataFromCache(String cKey, String lKey) {
-        var chunkData = loadedChunk.get(cKey);
+        SlimefunChunkData chunkData = loadedChunk.get(cKey);
         return chunkData == null ? null : chunkData.getBlockCacheInternal(lKey);
     }
 
     public void loadChunk(Chunk chunk, boolean isNewChunk) {
-        var chunkData = getChunkDataCache(chunk, true);
+        SlimefunChunkData chunkData = getChunkDataCache(chunk, true);
 
         if (isNewChunk) {
             chunkData.setIsDataLoaded(true);
@@ -616,7 +617,6 @@ public class BlockDataController extends ADataController {
         loadChunkData(chunkData);
 
         // 按区块加载方块数据
-
         RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
         key.addField(FieldKey.LOCATION);
         key.addField(FieldKey.SLIMEFUN_ID);
@@ -1238,6 +1238,18 @@ public class BlockDataController extends ADataController {
             return re;
         })
                 : loadedChunk.get(LocationUtils.getChunkKey(chunk));
+    }
+
+    // fix issue 935: auto chunk load when using loc.getChunk(),if chunk data is already loaded into cache, we generate
+    // keyString using location,instead of loc.getChunk
+    private SlimefunChunkData getChunkDataCache(Location loc, boolean createOnNotExists) {
+        SlimefunChunkData re = loadedChunk.get(LocationUtils.getChunkKey(loc));
+        if (re != null) {
+            return re;
+        } else {
+            // jump to origin getChunkDataCache and call getChunk() to trigger chunkLoad
+            return getChunkDataCache(loc.getChunk(), createOnNotExists);
+        }
     }
 
     private void deleteChunkAndBlockDataDirectly(String cKey) {

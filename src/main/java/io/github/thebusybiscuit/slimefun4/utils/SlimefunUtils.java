@@ -287,20 +287,24 @@ public final class SlimefunUtils {
                 String id = Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
 
                 if (id != null) {
-                    if (checkDistinctiveItem) {
-                        /*
-                         * PR #3417
-                         *
-                         * Some items can't rely on just IDs matching and will implement Distinctive Item
-                         * in which case we want to use the method provided to compare
-                         */
-                        Optional<DistinctiveItem> optionalDistinctive = getDistinctiveItem(id);
-                        ItemMeta sfItemMeta = sfitem.getItemMeta();
-                        if (optionalDistinctive.isPresent()) {
-                            return optionalDistinctive.get().canStack(sfItemMeta, itemMeta);
+                    // to fix issue #976
+                    if (id.equals(sfItemStack.getItemId())) {
+                        if (checkDistinctiveItem) {
+                            /*
+                             * PR #3417
+                             *
+                             * Some items can't rely on just IDs matching and will implement Distinctive Item
+                             * in which case we want to use the method provided to compare
+                             */
+                            Optional<DistinctiveItem> optionalDistinctive = getDistinctiveItem(id);
+                            if (optionalDistinctive.isPresent()) {
+                                ItemMeta sfItemMeta = sfitem.getItemMeta();
+                                return optionalDistinctive.get().canStack(sfItemMeta, itemMeta);
+                            }
                         }
+                        return true;
                     }
-                    return id.equals(sfItemStack.getItemId());
+                    return false;
                 }
 
                 ItemMetaSnapshot meta = sfItemStack.getItemMetaSnapshot();
