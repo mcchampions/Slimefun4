@@ -119,7 +119,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final CustomItemDataService itemDataService = new CustomItemDataService(this, "slimefun_item");
     private final BlockDataService blockDataService = new BlockDataService(this, "slimefun_block");
     private final CustomTextureService textureService = new CustomTextureService(new Config(this, "item-models.yml"));
-    private final AutoSavingService autoSavingService = new AutoSavingService();
     private final BackupService backupService = new BackupService();
     private final PermissionsService permissionsService = new PermissionsService(this);
     private final PerWorldSettingsService worldSettingsService = new PerWorldSettingsService(this);
@@ -315,7 +314,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         }
 
         // Starting our tasks
-        autoSavingService.start(this, config.getInt("options.auto-save-delay-in-minutes"));
+        AutoSavingService.start(this, config.getInt("options.auto-save-delay-in-minutes"));
         hologramsService.start();
         ticker.start(this);
         cargoTickerTask.start(this);

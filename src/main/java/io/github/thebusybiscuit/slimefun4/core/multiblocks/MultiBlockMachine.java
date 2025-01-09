@@ -184,7 +184,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
      *            The {@link Inventory} of our {@link Container}
      *
      */
-    protected void handleCraftedItem(ItemStack outputItem, Block block, Inventory blockInv) {
+    public static void handleCraftedItem(ItemStack outputItem, Block block, Inventory blockInv) {
         Inventory outputInv = findOutputInventory(outputItem, block, blockInv);
 
         if (outputInv != null) {

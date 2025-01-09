@@ -88,7 +88,7 @@ public class MultiBlockListener implements Listener {
         return false;
     }
 
-    private boolean compareMaterialsVertical(
+    public static boolean compareMaterialsVertical(
             Block b, @Nullable Material top, @Nullable Material center, @Nullable Material bottom) {
         return (center == null || equals(b.getType(), center))
                 && (top == null || equals(b.getRelative(BlockFace.UP).getType(), top))

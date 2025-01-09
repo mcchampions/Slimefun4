@@ -22,7 +22,7 @@ public class AutoSavingService {
      * @param plugin   The current instance of Slimefun
      * @param interval The interval in which to run this task
      */
-    public void start(Slimefun plugin, int interval) {
+    public static void start(Slimefun plugin, int interval) {
         plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, AutoSavingService::saveAllPlayers, 2000L, interval * 60L * 20L);
         plugin.getServer()
                 .getScheduler()

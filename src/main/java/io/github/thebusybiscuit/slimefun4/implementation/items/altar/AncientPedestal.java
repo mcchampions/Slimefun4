@@ -153,7 +153,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         return stack;
     }
 
-    public void placeItem(Player p, Block b) {
+    public static void placeItem(Player p, Block b) {
         ItemStack hand = p.getInventory().getItemInMainHand();
         String displayName = ITEM_PREFIX + System.nanoTime();
         ItemStack displayItem = new CustomItemStack(hand, displayName);

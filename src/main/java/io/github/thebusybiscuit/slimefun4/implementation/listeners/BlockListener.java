@@ -305,7 +305,7 @@ public class BlockListener implements Listener {
      * @param block  The {@link Block} that was broken
      * @param item   The {@link ItemStack} that was used to break the {@link Block}
      */
-    private void checkForSensitiveBlockAbove(Player player, Block block, ItemStack item) {
+    public static void checkForSensitiveBlockAbove(Player player, Block block, ItemStack item) {
         Block blockAbove = block.getRelative(BlockFace.UP);
 
         if (SlimefunTag.SENSITIVE_MATERIALS.isTagged(blockAbove.getType())) {

@@ -103,7 +103,7 @@ class BackpackCommand extends SubCommand {
         Slimefun.getLocalization().sendMessage(player, "commands.backpack.searching");
     }
 
-    private void openBackpackMenu(OfflinePlayer owner, Player p) {
+    public static void openBackpackMenu(OfflinePlayer owner, Player p) {
         Slimefun.getDatabaseManager()
                 .getProfileDataController()
                 .getBackpacksAsync(owner.getUniqueId().toString(), new IAsyncReadCallback<>() {

@@ -798,7 +798,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    protected void rotate(Block b, SlimefunUniversalBlockData uniData, BlockFace current, int mod) {
+    public static void rotate(Block b, SlimefunUniversalBlockData uniData, BlockFace current, int mod) {
         int index = POSSIBLE_ROTATIONS.indexOf(current) + mod;
 
         if (index == POSSIBLE_ROTATIONS.size()) {
@@ -842,7 +842,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    protected void refuel(UniversalMenu menu, Block facedBlock) {
+    public static void refuel(UniversalMenu menu, Block facedBlock) {
         if (facedBlock.getType() == Material.DISPENSER
             && StorageCacheUtils.isBlock(facedBlock.getLocation(), "ANDROID_INTERFACE_FUEL")) {
             BlockState state = facedBlock.getState(false);
