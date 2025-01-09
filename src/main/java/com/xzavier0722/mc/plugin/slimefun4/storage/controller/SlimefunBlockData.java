@@ -6,10 +6,12 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
+import lombok.ToString;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 
+@ToString
 public class SlimefunBlockData extends ASlimefunDataContainer {
     @Getter
     private final Location location;
@@ -67,16 +69,5 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         }
 
         return re;
-    }
-
-    @Override
-    public String toString() {
-        return "SlimefunBlockData [sfId="
-               + getSfId()
-               + ", location="
-               + location
-               + ", isPendingRemove="
-               + isPendingRemove()
-               + "]";
     }
 }
