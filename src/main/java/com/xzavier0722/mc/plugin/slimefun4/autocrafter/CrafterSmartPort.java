@@ -17,7 +17,9 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import me.qscbm.slimefun4.utils.QsConstants;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -130,10 +132,13 @@ public class CrafterSmartPort extends SlimefunItem {
         });
     }
 
+    private static final QsTextComponentImpl COUNT_ITEM_DISPLAY_NAME =
+            new QsTextComponentImpl("合成表的原料数量").color(NamedTextColor.BLUE);
+
     private static ItemStack getCountItem() {
         ItemStack countItem = new ItemStack(Material.CLOCK);
         ItemMeta im = countItem.getItemMeta();
-        im.setDisplayName(ChatColor.BLUE + "合成表的原料数量");
+        im.displayName(COUNT_ITEM_DISPLAY_NAME);
         countItem.setItemMeta(im);
         return countItem;
     }

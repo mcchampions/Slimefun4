@@ -4,11 +4,15 @@ import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.Arrays;
 import java.util.List;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
+import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -19,7 +23,8 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public final class ChestMenuUtils {
-    private ChestMenuUtils() {}
+    private ChestMenuUtils() {
+    }
 
     private static final ItemStack UI_BACKGROUND =
             new SlimefunItemStack("_UI_BACKGROUND", Material.GRAY_STAINED_GLASS_PANE, " ");
@@ -89,14 +94,18 @@ public final class ChestMenuUtils {
                 "&7\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup"));
     }
 
+    private static final QsTextComponentImpl GRAY_SEARCH_BUTTON_DISPLAY_NAME = new QsTextComponentImpl("搜索...").color(NamedTextColor.GRAY);
+
+    private static final List<Component> SEARCH_BUTTON_LORE =
+            Arrays.asList(Component.empty(),
+                    new QsTextComponentImpl("\u21E8 ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("单击搜索物品").color(NamedTextColor.AQUA))
+            );
+
     public static ItemStack getSearchButton(Player p) {
         return new CustomItemStack(SEARCH_BUTTON, meta -> {
-            meta.setDisplayName(ChatColors.color(Slimefun.getLocalization().getMessage(p, "guide.search.name")));
+            meta.displayName(GRAY_SEARCH_BUTTON_DISPLAY_NAME);
 
-            List<String> lore = Arrays.asList(
-                    "", ChatColor.GRAY + "\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.search.tooltip"));
-            lore.replaceAll(ChatColors::color);
-            meta.setLore(lore);
+            meta.lore(SEARCH_BUTTON_LORE);
         });
     }
 
@@ -104,18 +113,26 @@ public final class ChestMenuUtils {
         return WIKI_BUTTON;
     }
 
+    private static final QsTextComponentImpl GRAY_PREVIOUS_BUTTON_DISPLAY_NAME =
+            new QsTextComponentImpl("\u21E6 上一页").color(NamedTextColor.DARK_GRAY);
+
+    private static final QsTextComponentImpl WHITEY_PREVIOUS_BUTTON_DISPLAY_NAME =
+            new QsTextComponentImpl("\u21E6 上一页").color(NamedTextColor.WHITE);
+
+    private static final QsTextComponentImpl DARK_NEXT_BUTTON_DISPLAY_NAME =
+            new QsTextComponentImpl("\u21E6 下一页 \u21E8").color(NamedTextColor.DARK_GRAY);
+    private static final QsTextComponentImpl WHITE_NEXT_BUTTON_DISPLAY_NAME =
+            new QsTextComponentImpl("\u21E6 下一页 \u21E8").color(NamedTextColor.WHITE);
+
     public static ItemStack getPreviousButton(Player p, int page, int pages) {
         if (pages == 1 || page == 1) {
             return new CustomItemStack(PREV_BUTTON_INACTIVE, meta -> {
-                meta.setDisplayName(ChatColor.DARK_GRAY
-                        + "\u21E6 "
-                        + Slimefun.getLocalization().getMessage(p, "guide.pages.previous"));
+                meta.displayName(GRAY_PREVIOUS_BUTTON_DISPLAY_NAME);
                 meta.setLore(Arrays.asList("", ChatColor.GRAY + "(" + page + " / " + pages + ")"));
             });
         } else {
             return new CustomItemStack(PREV_BUTTON_ACTIVE, meta -> {
-                meta.setDisplayName(
-                        ChatColor.WHITE + "\u21E6 " + Slimefun.getLocalization().getMessage(p, "guide.pages.previous"));
+                meta.displayName(WHITEY_PREVIOUS_BUTTON_DISPLAY_NAME);
                 meta.setLore(Arrays.asList("", ChatColor.GRAY + "(" + page + " / " + pages + ")"));
             });
         }
@@ -124,14 +141,12 @@ public final class ChestMenuUtils {
     public static ItemStack getNextButton(Player p, int page, int pages) {
         if (pages == 1 || page == pages) {
             return new CustomItemStack(NEXT_BUTTON_INACTIVE, meta -> {
-                meta.setDisplayName(
-                        ChatColor.DARK_GRAY + Slimefun.getLocalization().getMessage(p, "guide.pages.next") + " \u21E8");
+                meta.displayName(DARK_NEXT_BUTTON_DISPLAY_NAME);
                 meta.setLore(Arrays.asList("", ChatColor.GRAY + "(" + page + " / " + pages + ")"));
             });
         } else {
             return new CustomItemStack(NEXT_BUTTON_ACTIVE, meta -> {
-                meta.setDisplayName(
-                        ChatColor.WHITE + Slimefun.getLocalization().getMessage(p, "guide.pages.next") + " \u21E8");
+                meta.displayName(WHITE_NEXT_BUTTON_DISPLAY_NAME);
                 meta.setLore(Arrays.asList("", ChatColor.GRAY + "(" + page + " / " + pages + ")"));
             });
         }
