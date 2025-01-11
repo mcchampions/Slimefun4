@@ -8,8 +8,6 @@ import org.bukkit.command.CommandSender;
 @Getter
 @Deprecated
 public class SQLProfiler {
-    private final boolean isProfiling = false;
-
     public void start() {}
 
     public void subscribe(CommandSender sender) {}

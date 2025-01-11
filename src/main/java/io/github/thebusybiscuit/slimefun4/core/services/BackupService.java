@@ -38,7 +38,7 @@ public class BackupService implements Runnable {
     /**
      * The directory in which to create the backups
      */
-    private final File directory = new File("data-storage/Slimefun/block-backups");
+    private static final File directory = new File("data-storage/Slimefun/block-backups");
 
     @Override
     public void run() {

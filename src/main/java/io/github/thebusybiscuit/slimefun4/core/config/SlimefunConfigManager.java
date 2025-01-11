@@ -61,10 +61,10 @@ public class SlimefunConfigManager {
     private double researchCurrencyCostConvertRate;
 
     @Getter
-    private final boolean researchAutoConvert = false;
+    private static final boolean researchAutoConvert = false;
 
     @Getter
-    private final boolean bypassEnvironmentCheck = true;
+    private static final boolean bypassEnvironmentCheck = true;
 
     @Getter
     private int cargoTickerDelay;
