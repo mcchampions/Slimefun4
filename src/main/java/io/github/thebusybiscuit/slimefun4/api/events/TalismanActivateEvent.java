@@ -28,6 +28,7 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
      *
      */
     @Setter
+    @Getter
     private boolean preventConsumption;
     private boolean cancelled;
 

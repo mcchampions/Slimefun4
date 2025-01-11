@@ -70,19 +70,21 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         };
     }
 
+    private final BlockPlaceHandler HANDLER = new BlockPlaceHandler(false) {
+        @Override
+        public void onPlayerPlace(BlockPlaceEvent e) {
+            // The owner and frequency are required by every node
+            SlimefunBlockData blockData = StorageCacheUtils.getBlock(e.getBlock().getLocation());
+            blockData.setData("owner", e.getPlayer().getUniqueId().toString());
+            blockData.setData(FREQUENCY, "0");
+
+            onPlace(e);
+        }
+    };
+
     @Override
     public BlockPlaceHandler getItemHandler() {
-        return new BlockPlaceHandler(false) {
-            @Override
-            public void onPlayerPlace(BlockPlaceEvent e) {
-                // The owner and frequency are required by every node
-                SlimefunBlockData blockData = StorageCacheUtils.getBlock(e.getBlock().getLocation());
-                blockData.setData("owner", e.getPlayer().getUniqueId().toString());
-                blockData.setData(FREQUENCY, "0");
-
-                onPlace(e);
-            }
-        };
+        return HANDLER;
     }
 
     protected void addChannelSelector(Block b, BlockMenu menu, int slotPrev, int slotCurrent, int slotNext) {

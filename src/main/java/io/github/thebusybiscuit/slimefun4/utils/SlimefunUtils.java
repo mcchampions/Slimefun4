@@ -416,7 +416,7 @@ public final class SlimefunUtils {
         if (itemMeta instanceof PotionMeta potionMeta && sfitemMeta instanceof PotionMeta sfPotionMeta) {
             if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)) {
                 //noinspection ConstantValue
-                if (potionMeta.getBasePotionType() == null && sfPotionMeta.getBasePotionType() == null) {
+                if (potionMeta.getBasePotionType() == null) {
                     return true;
                 }
 

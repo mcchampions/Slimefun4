@@ -28,6 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.OptionalInt;
 
+import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
@@ -68,6 +69,7 @@ public class GEOMiner extends SlimefunItem
 
     private int energyConsumedPerTick = -1;
     private int energyCapacity = -1;
+    @Getter
     private int processingSpeed = -1;
 
     public GEOMiner(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

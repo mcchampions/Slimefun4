@@ -28,6 +28,7 @@ public class CargoTickerTask extends BaseTickerTask {
     private boolean running;
 
     @Setter
+    @Getter
     private volatile boolean paused;
 
     public void start(Slimefun plugin) {

@@ -4,6 +4,8 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -32,6 +34,7 @@ class Hologram {
     /**
      * The label of this {@link Hologram}.
      */
+    @Getter
     private String label;
 
     /**

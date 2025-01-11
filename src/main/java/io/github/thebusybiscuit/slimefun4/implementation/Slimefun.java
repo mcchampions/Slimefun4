@@ -95,6 +95,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * Our static instance of {@link Slimefun}.
      * Make sure to clean this up in {@link #onDisable()}!
      */
+    @SuppressWarnings("FieldHasSetterButNoGetter")
     private static Slimefun instance;
 
     /**

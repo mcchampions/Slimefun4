@@ -102,7 +102,7 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem implements Dis
         for (int i = 0; i < lore.size(); i++) {
             String currentLine = lore.get(i);
             if (currentLine.contains("<Type>") || currentLine.contains("<类型>")) {
-                String typeName = type == null ? "空" : ChatUtils.humanize(type.name());
+                String typeName = ChatUtils.humanize(type.name());
                 lore.set(i, currentLine.replace("<Type>", typeName).replace("<类型>", typeName));
                 break;
             }
