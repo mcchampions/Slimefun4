@@ -20,7 +20,6 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import me.qscbm.slimefun4.utils.QsConstants;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
