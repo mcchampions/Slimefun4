@@ -385,7 +385,7 @@ public class BlockListener implements Listener {
     }
     */
 
-    private int getBonusDropsWithFortune(@Nullable ItemStack item, Block b) {
+    private static int getBonusDropsWithFortune(@Nullable ItemStack item, Block b) {
         int amount = 1;
 
         if (item != null && !item.getType().isAir() && item.hasItemMeta()) {
