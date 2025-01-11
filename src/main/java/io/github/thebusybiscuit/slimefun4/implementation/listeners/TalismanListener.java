@@ -355,7 +355,7 @@ public class TalismanListener implements Listener {
         }
     }
 
-    private void doubleTalismanDrops(
+    private static void doubleTalismanDrops(
             BlockDropItemEvent e, SlimefunItemStack talismanItemStack, SlimefunTag tag, Material type, ItemMeta meta) {
         if (tag.isTagged(type)) {
             Collection<Item> drops = e.getItems();

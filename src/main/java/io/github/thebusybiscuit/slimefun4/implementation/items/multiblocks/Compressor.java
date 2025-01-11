@@ -102,7 +102,7 @@ public class Compressor extends MultiBlockMachine {
         }
     }
 
-    private void craft(Player p, ItemStack output, Block dispenser, Inventory dispInv) {
+    private static void craft(Player p, ItemStack output, Block dispenser, Inventory dispInv) {
         for (int i = 0; i < 4; i++) {
             int j = i;
 

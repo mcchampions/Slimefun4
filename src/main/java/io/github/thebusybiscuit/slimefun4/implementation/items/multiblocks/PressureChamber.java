@@ -86,7 +86,7 @@ public class PressureChamber extends MultiBlockMachine {
         }
     }
 
-    private void craft(Player p, Block b, ItemStack output, Inventory dispInv, Block dispenser) {
+    private static void craft(Player p, Block b, ItemStack output, Inventory dispInv, Block dispenser) {
         for (int i = 0; i < 4; i++) {
             int j = i;
 

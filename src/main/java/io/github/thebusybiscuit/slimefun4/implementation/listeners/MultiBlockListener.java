@@ -68,7 +68,7 @@ public class MultiBlockListener implements Listener {
         }
     }
 
-    private boolean compareMaterials(Block b, Material[] blocks, boolean onlyTwoWay) {
+    private static boolean compareMaterials(Block b, Material[] blocks, boolean onlyTwoWay) {
         if (!compareMaterialsVertical(b, blocks[1], blocks[4], blocks[7])) {
             return false;
         }

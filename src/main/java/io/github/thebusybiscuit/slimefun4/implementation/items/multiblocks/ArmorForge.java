@@ -83,7 +83,7 @@ public class ArmorForge extends AbstractCraftingTable {
         return true;
     }
 
-    private void craft(Player p, ItemStack output, Inventory inv, Block dispenser) {
+    private static void craft(Player p, ItemStack output, Inventory inv, Block dispenser) {
         Inventory fakeInv = createVirtualInventory(inv);
         Inventory outputInv = findOutputInventory(output, dispenser, inv, fakeInv);
 

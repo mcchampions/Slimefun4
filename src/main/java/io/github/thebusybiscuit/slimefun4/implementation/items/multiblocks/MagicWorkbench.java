@@ -112,7 +112,7 @@ public class MagicWorkbench extends AbstractCraftingTable {
         }
     }
 
-    private void startAnimation(Player p, Block b, Inventory dispInv, Block dispenser, ItemStack output) {
+    private static void startAnimation(Player p, Block b, Inventory dispInv, Block dispenser, ItemStack output) {
         for (int j = 0; j < 4; j++) {
             int current = j;
             Slimefun.runSync(
