@@ -114,7 +114,7 @@ public class BlockListener implements Listener {
                 Block block = e.getBlock();
 
                 optimizePlacement(sfItem, block, e.getPlayer().getLocation());
-                
+
                 SlimefunBlockPlaceEvent placeEvent = new SlimefunBlockPlaceEvent(e.getPlayer(), item, block, sfItem);
                 Bukkit.getPluginManager().callEvent(placeEvent);
 
