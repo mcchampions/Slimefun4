@@ -108,6 +108,15 @@ public class BlockListener implements Listener {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         if (sfItem != null && !(sfItem instanceof NotPlaceable)) {
+            /*
+             如果这个物品是工具类物品，我们需要检查它是否修改了一个方块 (铲子右键、打火石点火)
+             并不要为替换的方块创建一个对应工具 ID 的数据
+             这应该适用于大部分情况，但建议附属开发者们还是显式声明对应物品是不可放置的最好
+            */
+            if (!e.getBlockReplacedState().getType().isAir()) {
+                return;
+            }
+
             if (!sfItem.canUse(e.getPlayer(), true)) {
                 e.setCancelled(true);
             } else {
