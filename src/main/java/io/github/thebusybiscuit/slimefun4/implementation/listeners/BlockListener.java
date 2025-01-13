@@ -112,27 +112,9 @@ public class BlockListener implements Listener {
                 e.setCancelled(true);
             } else {
                 Block block = e.getBlock();
-                if (block.getBlockData() instanceof Rotatable rotatable
-                    && !(rotatable.getRotation() == BlockFace.UP || rotatable.getRotation() == BlockFace.DOWN)) {
-                    BlockFace rotation = null;
 
-                    if (sfItem instanceof NotCardinallyRotatable && sfItem instanceof NotDiagonallyRotatable) {
-                        rotation = BlockFace.NORTH;
-                    } else if (sfItem instanceof NotRotatable notRotatable) {
-                        rotation = notRotatable.getRotation();
-                    } else if (sfItem instanceof NotCardinallyRotatable notRotatable) {
-                        rotation = notRotatable.getRotation(Location.normalizeYaw(
-                                e.getPlayer().getLocation().getYaw()));
-                    } else if (sfItem instanceof NotDiagonallyRotatable notRotatable) {
-                        rotation = notRotatable.getRotation(Location.normalizeYaw(
-                                e.getPlayer().getLocation().getYaw()));
-                    }
-
-                    if (rotation != null) {
-                        rotatable.setRotation(rotation);
-                        block.setBlockData(rotatable);
-                    }
-                }
+                optimizePlacement(sfItem, block, e.getPlayer().getLocation());
+                
                 SlimefunBlockPlaceEvent placeEvent = new SlimefunBlockPlaceEvent(e.getPlayer(), item, block, sfItem);
                 Bukkit.getPluginManager().callEvent(placeEvent);
 
@@ -156,7 +138,6 @@ public class BlockListener implements Listener {
                                 .getBlockDataController()
                                 .createBlock(block.getLocation(), sfItem.getId());
                     }
-
                     sfItem.callItemHandler(BlockPlaceHandler.class, handler -> handler.onPlayerPlace(e));
                 }
             }
@@ -354,10 +335,8 @@ public class BlockListener implements Listener {
      * This method checks recursively for any sensitive blocks
      * that are no longer supported due to this block breaking
      *
-     * @param block
-     *      The {@link Block} in question
-     * @param count
-     *      The amount of times this has been recursively called
+     * @param block The {@link Block} in question
+     * @param count The amount of times this has been recursively called
      */
     /*
     private void checkForSensitiveBlocks(Block block, Integer count, boolean isDropItems) {
@@ -407,5 +386,28 @@ public class BlockListener implements Listener {
         }
 
         return amount;
+    }
+
+    // 美化可旋转类 (如头颅) 物品放置
+    private static void optimizePlacement(SlimefunItem sfItem, Block block, Location l) {
+        if (block.getBlockData() instanceof Rotatable rotatable
+            && !(rotatable.getRotation() == BlockFace.UP || rotatable.getRotation() == BlockFace.DOWN)) {
+            BlockFace rotation = null;
+
+            if (sfItem instanceof NotCardinallyRotatable && sfItem instanceof NotDiagonallyRotatable) {
+                rotation = BlockFace.NORTH;
+            } else if (sfItem instanceof NotRotatable notRotatable) {
+                rotation = notRotatable.getRotation();
+            } else if (sfItem instanceof NotCardinallyRotatable notRotatable) {
+                rotation = notRotatable.getRotation(Location.normalizeYaw(l.getYaw()));
+            } else if (sfItem instanceof NotDiagonallyRotatable notRotatable) {
+                rotation = notRotatable.getRotation(Location.normalizeYaw(l.getYaw()));
+            }
+
+            if (rotation != null) {
+                rotatable.setRotation(rotation);
+                block.setBlockData(rotatable);
+            }
+        }
     }
 }
