@@ -108,6 +108,11 @@ public class BlockListener implements Listener {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         if (sfItem != null && !(sfItem instanceof NotPlaceable)) {
+            // Fixes #994, should check placed block is equals to item material or not.
+            if (item.getType() != e.getBlock().getType()) {
+                return;
+            }
+
             if (!sfItem.canUse(e.getPlayer(), true)) {
                 e.setCancelled(true);
             } else {
