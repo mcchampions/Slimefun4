@@ -1,5 +1,6 @@
 package city.norain.slimefun4.api.menu;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
@@ -28,7 +29,7 @@ public abstract class UniversalMenuPreset extends BlockMenuPreset {
     @Override
     protected void clone(DirtyChestMenu menu) {
         if (menu instanceof UniversalMenu universalMenu) {
-            var uniData = StorageCacheUtils.getUniversalBlock(universalMenu.getUuid());
+            SlimefunUniversalBlockData uniData = StorageCacheUtils.getUniversalBlock(universalMenu.getUuid());
 
             if (uniData == null) {
                 return;
@@ -66,7 +67,7 @@ public abstract class UniversalMenuPreset extends BlockMenuPreset {
         if (id == null) {
             return null;
         } else {
-            var preset = Slimefun.getRegistry().getMenuPresets().get(id);
+            BlockMenuPreset preset = Slimefun.getRegistry().getMenuPresets().get(id);
             if (preset instanceof UniversalMenuPreset uniPreset) {
                 return uniPreset;
             } else {
