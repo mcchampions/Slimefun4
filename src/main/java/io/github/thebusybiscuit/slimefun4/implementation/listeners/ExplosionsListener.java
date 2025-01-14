@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
@@ -61,8 +62,8 @@ public class ExplosionsListener implements Listener {
     public static void removeResistantBlocks(Iterator<Block> blocks) {
         while (blocks.hasNext()) {
             Block block = blocks.next();
-            var loc = block.getLocation();
-            var blockData = StorageCacheUtils.getBlock(loc);
+            Location loc = block.getLocation();
+            SlimefunBlockData blockData = StorageCacheUtils.getBlock(loc);
             SlimefunItem item = blockData == null ? null : SlimefunItem.getById(blockData.getSfId());
 
             if (item != null) {
