@@ -57,9 +57,9 @@ public abstract class ADataController {
         callbackExecutor.shutdownNow();
         try {
             float totalTask = scheduledWriteTasks.size();
-            var pendingTask = scheduledWriteTasks.size();
+            int pendingTask = scheduledWriteTasks.size();
             while (pendingTask > 0) {
-                var doneTaskPercent = String.format("%.1f", (totalTask - pendingTask) / totalTask * 100);
+                String doneTaskPercent = String.format("%.1f", (totalTask - pendingTask) / totalTask * 100);
                 logger.log(Level.INFO, "数据保存中，请稍候... 剩余 {0} 个任务 ({1}%)", new Object[] {pendingTask, doneTaskPercent});
                 TimeUnit.SECONDS.sleep(1);
                 pendingTask = scheduledWriteTasks.size();
@@ -88,8 +88,8 @@ public abstract class ADataController {
     protected void scheduleWriteTask(ScopeKey scopeKey, RecordKey key, Runnable task, boolean forceScopeKey) {
         lock.lock(scopeKey);
         try {
-            var scopeToUse = forceScopeKey ? scopeKey : key;
-            var queuedTask = scheduledWriteTasks.get(scopeKey);
+            ScopeKey scopeToUse = forceScopeKey ? scopeKey : key;
+            QueuedWriteTask queuedTask = scheduledWriteTasks.get(scopeKey);
             if (queuedTask == null && scopeKey != scopeToUse) {
                 queuedTask = scheduledWriteTasks.get(scopeToUse);
             }

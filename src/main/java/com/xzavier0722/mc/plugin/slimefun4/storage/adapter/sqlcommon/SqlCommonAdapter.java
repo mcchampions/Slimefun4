@@ -4,9 +4,12 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
 import com.zaxxer.hikari.HikariDataSource;
+import io.github.thebusybiscuit.slimefun4.api.ErrorReport;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class SqlCommonAdapter<T extends ISqlCommonConfig> implements IDataSourceAdapter<T> {
@@ -30,16 +33,19 @@ public abstract class SqlCommonAdapter<T extends ISqlCommonConfig> implements ID
     protected void executeSql(String sql) {
         try (Connection conn = ds.getConnection()) {
             SqlUtils.execSql(conn, sql);
-        } catch (SQLException e) {
-            throw new IllegalStateException("An exception thrown while executing sql: " + sql, e);
+        } catch (Exception e) {
+            Slimefun.logger().warning("执行SQL失败, 抛出异常.");
+            e.printStackTrace();
         }
     }
 
     protected List<RecordSet> executeQuery(String sql) {
         try (Connection conn = ds.getConnection()) {
             return SqlUtils.execQuery(conn, sql);
-        } catch (SQLException e) {
-            throw new IllegalStateException("An exception thrown while executing sql: " + sql, e);
+        } catch (Exception e) {
+            Slimefun.logger().warning("执行SQL失败, 抛出异常.");
+            e.printStackTrace();
+            return Collections.emptyList();
         }
     }
 
