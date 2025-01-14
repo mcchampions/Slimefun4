@@ -18,6 +18,7 @@ public class VersionedItemFlag {
                 : getKey("HIDE_ADDITIONAL_TOOLTIP");
     }
 
+    @SuppressWarnings("SameParameterValue")
     @Nullable private static ItemFlag getKey(String key) {
         try {
             Field field = ItemFlag.class.getDeclaredField(key);
