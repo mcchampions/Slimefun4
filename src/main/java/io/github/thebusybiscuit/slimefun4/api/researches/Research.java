@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemState;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
+import io.github.thebusybiscuit.slimefun4.core.config.SlimefunConfigManager;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideImplementation;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.SlimefunLocalization;
@@ -334,7 +335,7 @@ public class Research implements Keyed {
 
         setLevelCost(Slimefun.getResearchCfg().getInt(path + ".cost"));
 
-        if (Slimefun.getConfigManager().isResearchAutoConvert()) {
+        if (SlimefunConfigManager.isResearchAutoConvert()) {
             setCurrencyCost(levelCost * Slimefun.getConfigManager().getResearchCurrencyCostConvertRate());
         } else {
             setCurrencyCost(Slimefun.getResearchCfg().getInt(path + ".currency-cost"));

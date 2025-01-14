@@ -133,9 +133,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final SQLProfiler sqlProfiler = new SQLProfiler();
     private final GPSNetwork gpsNetwork = new GPSNetwork(this);
 
-    @Getter
-    private static final ItemHelper itemHelper = new ItemHelper();
-
     // Even more things we need
     private NetworkManager networkManager;
     private LocalizationService local;

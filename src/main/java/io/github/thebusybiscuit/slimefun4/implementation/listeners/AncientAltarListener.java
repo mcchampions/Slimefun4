@@ -132,7 +132,7 @@ public class AncientAltarListener implements Listener {
                 }
 
                 // place the item onto the pedestal
-                pedestalItem.placeItem(p, pedestal);
+                AncientPedestal.placeItem(p, pedestal);
             }
         } else if (!removedItems.contains(stack.get().getUniqueId())) {
             Item entity = stack.get();

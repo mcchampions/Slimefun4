@@ -81,7 +81,7 @@ public class MagicWorkbench extends AbstractCraftingTable {
         }
     }
 
-    private void craft(Inventory inv, Block dispenser, Player p, Block b, ItemStack output) {
+    public static void craft(Inventory inv, Block dispenser, Player p, Block b, ItemStack output) {
         Inventory fakeInv = createVirtualInventory(inv);
         Inventory outputInv = findOutputInventory(output, dispenser, inv, fakeInv);
 

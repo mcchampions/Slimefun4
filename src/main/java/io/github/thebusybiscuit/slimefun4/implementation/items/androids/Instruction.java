@@ -72,7 +72,7 @@ public enum Instruction {
      */
     TURN_LEFT(AndroidType.NONE, HeadTexture.SCRIPT_LEFT, (android, b, inv, face) -> {
         int mod = -1;
-        android.rotate(b, StorageCacheUtils.getUniversalBlock(inv.getUuid()), face, mod);
+        ProgrammableAndroid.rotate(b, StorageCacheUtils.getUniversalBlock(inv.getUuid()), face, mod);
     }),
 
     /**
@@ -80,7 +80,7 @@ public enum Instruction {
      */
     TURN_RIGHT(AndroidType.NONE, HeadTexture.SCRIPT_RIGHT, (android, b, inv, face) -> {
         int mod = 1;
-        android.rotate(b, StorageCacheUtils.getUniversalBlock(inv.getUuid()), face, mod);
+        ProgrammableAndroid.rotate(b, StorageCacheUtils.getUniversalBlock(inv.getUuid()), face, mod);
     }),
 
     /**
@@ -232,7 +232,7 @@ public enum Instruction {
      */
     INTERFACE_FUEL(AndroidType.NONE, HeadTexture.SCRIPT_PULL_FUEL, (android, b, inv, face) -> {
         Block target = b.getRelative(face);
-        android.refuel(inv, target);
+        ProgrammableAndroid.refuel(inv, target);
     });
 
     private static final Map<String, Instruction> nameLookup = new HashMap<>();
