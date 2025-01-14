@@ -4,17 +4,20 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
-import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
 import javax.annotation.Nullable;
 
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.type.Sapling;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Optional;
 
 /**
  * The {@link TreeGrowthAccelerator} is an electrical machine that works similar to
@@ -29,9 +32,6 @@ import org.bukkit.inventory.ItemStack;
 public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
     private static final int ENERGY_CONSUMPTION = 24;
     private static final int RADIUS = 9;
-
-    // We wanna strip the Slimefun Item id here
-    private static final ItemStack organicFertilizer = ItemStackWrapper.wrap(SlimefunItems.FERTILIZER);
 
     public TreeGrowthAccelerator(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -93,7 +93,34 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
         return false;
     }
 
-    protected static boolean isFertilizer(@Nullable ItemStack item) {
-        return SlimefunUtils.isItemSimilar(item, organicFertilizer, false, false);
+    public boolean updateSaplingData(Block machine, Block block, BlockMenu inv, Sapling sapling) {
+        for (int slot : getInputSlots()) {
+            if (isFertilizer(inv.getItemInSlot(slot))) {
+                removeCharge(machine.getLocation(), ENERGY_CONSUMPTION);
+
+                sapling.setStage(sapling.getStage() + 1);
+                block.setBlockData(sapling, false);
+
+                inv.consumeItem(slot);
+                block.getWorld()
+                        .spawnParticle(
+                                VersionedParticle.HAPPY_VILLAGER,
+                                block.getLocation().add(0.5D, 0.5D, 0.5D),
+                                4,
+                                0.1F,
+                                0.1F,
+                                0.1F);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isFertilizer(@Nullable ItemStack item) {
+        Optional<String> id = Slimefun.getItemDataService().getItemData(item);
+
+        return id.map(s -> s.startsWith("FERTILIZER") && SlimefunItems.FERTILIZER.getType() == item.getType())
+                .orElse(false);
     }
 }

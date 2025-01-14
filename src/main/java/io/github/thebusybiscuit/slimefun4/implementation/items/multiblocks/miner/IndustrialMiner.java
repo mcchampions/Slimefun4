@@ -2,12 +2,14 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.mine
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,16 +59,16 @@ public class IndustrialMiner extends MultiBlockMachine {
         super(
                 itemGroup,
                 item,
-                new ItemStack[] {
-                    null,
-                    null,
-                    null,
-                    new CustomItemStack(Material.PISTON, "活塞 (朝上)"),
-                    new ItemStack(Material.CHEST),
-                    new CustomItemStack(Material.PISTON, "活塞 (朝上)"),
-                    new ItemStack(baseMaterial),
-                    new ItemStack(Material.BLAST_FURNACE),
-                    new ItemStack(baseMaterial)
+                new ItemStack[]{
+                        null,
+                        null,
+                        null,
+                        new CustomItemStack(Material.PISTON, "活塞 (朝上)"),
+                        new ItemStack(Material.CHEST),
+                        new CustomItemStack(Material.PISTON, "活塞 (朝上)"),
+                        new ItemStack(baseMaterial),
+                        new ItemStack(Material.BLAST_FURNACE),
+                        new ItemStack(baseMaterial)
                 },
                 BlockFace.UP);
 
@@ -111,9 +113,7 @@ public class IndustrialMiner extends MultiBlockMachine {
     /**
      * This method returns the outcome that mining certain ores yields.
      *
-     * @param material
-     *            The {@link Material} of the ore that was mined
-     *
+     * @param material The {@link Material} of the ore that was mined
      * @return The outcome when mining this ore
      */
     public ItemStack getOutcome(Material material) {
@@ -128,10 +128,8 @@ public class IndustrialMiner extends MultiBlockMachine {
     /**
      * This registers a new fuel type for this {@link IndustrialMiner}.
      *
-     * @param ores
-     *            The amount of ores this allows you to mine
-     * @param item
-     *            The item that shall be consumed
+     * @param ores The amount of ores this allows you to mine
+     * @param item The item that shall be consumed
      */
     public void addFuelType(int ores, ItemStack item) {
         fuelTypes.add(new MachineFuel(ores / 2, item));
@@ -184,29 +182,28 @@ public class IndustrialMiner extends MultiBlockMachine {
         Block northern = chest.getRelative(BlockFace.NORTH);
 
         if (northern.getType() == Material.PISTON) {
-            return new Block[] {northern, chest.getRelative(BlockFace.SOUTH)};
+            return new Block[]{northern, chest.getRelative(BlockFace.SOUTH)};
         } else {
-            return new Block[] {chest.getRelative(BlockFace.WEST), chest.getRelative(BlockFace.EAST)};
+            return new Block[]{chest.getRelative(BlockFace.WEST), chest.getRelative(BlockFace.EAST)};
         }
     }
 
     /**
      * This returns whether this {@link IndustrialMiner} can mine the given {@link Block}.
      *
-     * @param block
-     *            The {@link Block} to check
-     *
+     * @param block The {@link Block} to check
      * @return Whether this {@link IndustrialMiner} is capable of mining this {@link Block}
      */
     public boolean canMine(Block block) {
         Material type = block.getType();
-
+        MinecraftVersion version = Slimefun.getMinecraftVersion();
         if (type == Material.ANCIENT_DEBRIS) {
-            return canMineAncientDebris.getValue() && !StorageCacheUtils.hasBlock(block.getLocation());
-        } else if (SlimefunTag.DEEPSLATE_ORES.isTagged(type)) {
-            return canMineDeepslateOres.getValue() && !StorageCacheUtils.hasBlock(block.getLocation());
+            return canMineAncientDebris.getValue() && !StorageCacheUtils.hasSlimefunBlock(block.getLocation());
+        } else if (version.isAtLeast(MinecraftVersion.MINECRAFT_1_17) && SlimefunTag.DEEPSLATE_ORES.isTagged(type)) {
+            return canMineDeepslateOres.getValue() && !StorageCacheUtils.hasSlimefunBlock(block.getLocation());
         } else {
-            return SlimefunTag.INDUSTRIAL_MINER_ORES.isTagged(type) && !StorageCacheUtils.hasBlock(block.getLocation());
+            return SlimefunTag.INDUSTRIAL_MINER_ORES.isTagged(type)
+                   && !StorageCacheUtils.hasSlimefunBlock(block.getLocation());
         }
     }
 }

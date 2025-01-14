@@ -119,13 +119,13 @@ public class BlockPhysicsListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onPistonExtend(BlockPistonExtendEvent e) {
-        if (StorageCacheUtils.hasBlock(e.getBlock().getLocation())) {
+        if (StorageCacheUtils.hasSlimefunBlock(e.getBlock().getLocation())) {
             e.setCancelled(true);
         } else {
             for (Block b : e.getBlocks()) {
-                if (StorageCacheUtils.hasBlock(b.getLocation())
+                if (StorageCacheUtils.hasSlimefunBlock(b.getLocation())
                         || (b.getRelative(e.getDirection()).getType() == Material.AIR
-                                && StorageCacheUtils.hasBlock(
+                                && StorageCacheUtils.hasSlimefunBlock(
                                         b.getRelative(e.getDirection()).getLocation()))) {
                     e.setCancelled(true);
                     break;
@@ -136,13 +136,13 @@ public class BlockPhysicsListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onPistonRetract(BlockPistonRetractEvent e) {
-        if (StorageCacheUtils.hasBlock(e.getBlock().getLocation())) {
+        if (StorageCacheUtils.hasSlimefunBlock(e.getBlock().getLocation())) {
             e.setCancelled(true);
         } else if (e.isSticky()) {
             for (Block b : e.getBlocks()) {
-                if (StorageCacheUtils.hasBlock(b.getLocation())
+                if (StorageCacheUtils.hasSlimefunBlock(b.getLocation())
                         || (b.getRelative(e.getDirection()).getType() == Material.AIR
-                                && StorageCacheUtils.hasBlock(
+                                && StorageCacheUtils.hasSlimefunBlock(
                                         b.getRelative(e.getDirection()).getLocation()))) {
                     e.setCancelled(true);
                     break;
@@ -159,7 +159,7 @@ public class BlockPhysicsListener implements Listener {
         // Check if this Material can be destroyed by fluids
         if (SlimefunTag.FLUID_SENSITIVE_MATERIALS.isTagged(type)) {
             // Check if this Block holds any data
-            if (StorageCacheUtils.hasBlock(block.getLocation())) {
+            if (StorageCacheUtils.hasSlimefunBlock(block.getLocation())) {
                 e.setCancelled(true);
             }
             return;
@@ -177,7 +177,7 @@ public class BlockPhysicsListener implements Listener {
         // Fix for placing water on player heads
         Location l = e.getBlockClicked().getRelative(e.getBlockFace()).getLocation();
 
-        if (StorageCacheUtils.hasBlock(l)) {
+        if (StorageCacheUtils.hasSlimefunBlock(l)) {
             e.setCancelled(true);
         }
     }

@@ -243,6 +243,10 @@ public class BlockDataController extends ADataController {
             uniData.setMenu(new UniversalMenu(preset, uuid, l));
         }
 
+        if (Slimefun.getRegistry().getTickerBlocks().contains(sfId)) {
+            Slimefun.getTickerTask().enableTicker(l, uuid);
+        }
+
         Slimefun.getDatabaseManager()
                 .getBlockDataController()
                 .saveUniversalData(uuid, sfId, Set.of(UniversalDataTrait.BLOCK, UniversalDataTrait.INVENTORY));

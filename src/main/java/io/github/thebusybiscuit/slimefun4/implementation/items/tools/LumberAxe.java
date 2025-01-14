@@ -47,7 +47,7 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
                 logs.remove(e.getBlock());
 
                 for (Block b : logs) {
-                    if (!StorageCacheUtils.hasBlock(b.getLocation())
+                    if (!StorageCacheUtils.hasSlimefunBlock(b.getLocation())
                             && Slimefun.getProtectionManager()
                                     .hasPermission(e.getPlayer(), b, Interaction.BREAK_BLOCK)) {
                         breakLog(b);
@@ -68,7 +68,7 @@ public class LumberAxe extends SlimefunItem implements NotPlaceable {
                     logs.remove(block);
 
                     for (Block b : logs) {
-                        if (!StorageCacheUtils.hasBlock(b.getLocation())
+                        if (!StorageCacheUtils.hasSlimefunBlock(b.getLocation())
                                 && Slimefun.getProtectionManager()
                                         .hasPermission(e.getPlayer(), b, Interaction.BREAK_BLOCK)) {
                             stripLog(b);

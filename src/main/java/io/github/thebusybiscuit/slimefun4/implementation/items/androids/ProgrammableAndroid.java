@@ -2,7 +2,7 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
 import city.norain.slimefun4.api.menu.UniversalMenu;
 import city.norain.slimefun4.api.menu.UniversalMenuPreset;
-import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ASlimefunDataContainer;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.UniversalBlock;
@@ -952,8 +952,10 @@ public class ProgrammableAndroid extends SlimefunItem
             Slimefun.getTickerTask().disableTicker(from.getLocation());
 
             // Bro encountered a ghost 💀
-            if (StorageCacheUtils.hasBlock(to.getLocation())) {
-                SlimefunBlockData data = StorageCacheUtils.getBlock(to.getLocation());
+            if (StorageCacheUtils.hasSlimefunBlock(to.getLocation())) {
+                ASlimefunDataContainer data = StorageCacheUtils.getBlock(to.getLocation()) == null
+                        ? StorageCacheUtils.getBlock(to.getLocation())
+                        : StorageCacheUtils.getUniversalBlock(to);
                 if (data != null && !data.isPendingRemove()) {
                     // Since it's a ghost, we just hunt it.
                     Slimefun.getDatabaseManager().getBlockDataController().removeBlock(to.getLocation());

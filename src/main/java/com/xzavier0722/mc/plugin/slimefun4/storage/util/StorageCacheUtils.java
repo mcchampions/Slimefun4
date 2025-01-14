@@ -29,6 +29,10 @@ import org.bukkit.block.Block;
 public class StorageCacheUtils {
     private static final Set<ADataContainer> loadingData = new HashSet<>();
 
+    public static boolean hasSlimefunBlock(Location l) {
+        return hasBlock(l) || hasUniversalBlock(l);
+    }
+
     public static boolean hasBlock(Location l) {
         return getBlock(l) != null;
     }

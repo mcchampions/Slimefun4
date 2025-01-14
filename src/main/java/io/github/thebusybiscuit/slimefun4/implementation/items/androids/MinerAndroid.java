@@ -79,8 +79,8 @@ public class MinerAndroid extends ProgrammableAndroid {
                 }
 
                 // We only want to break non-Slimefun blocks
-                if (!StorageCacheUtils.hasBlock(block.getLocation())
-                    && !StorageCacheUtils.hasUniversalBlock(block.getLocation())) {
+
+                if (!StorageCacheUtils.hasSlimefunBlock(block.getLocation())) {
                     breakBlock(menu, drops, block);
                 }
             }
@@ -104,8 +104,7 @@ public class MinerAndroid extends ProgrammableAndroid {
                 }
 
                 // We only want to break non-Slimefun blocks
-                if (!StorageCacheUtils.hasBlock(block.getLocation())
-                    && !StorageCacheUtils.hasUniversalBlock(block.getLocation())) {
+                if (!StorageCacheUtils.hasSlimefunBlock(block.getLocation())) {
                     breakBlock(menu, drops, block);
                     move(b, face, block);
                 }
