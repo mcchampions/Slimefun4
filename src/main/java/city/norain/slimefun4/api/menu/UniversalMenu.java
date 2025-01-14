@@ -34,7 +34,7 @@ public class UniversalMenu extends DirtyChestMenu {
         this.uuid = uuid;
 
         for (int i = 0; i < contents.length; i++) {
-            var item = contents[i];
+            ItemStack item = contents[i];
             if (item == null || item.getType().isAir()) {
                 continue;
             }
