@@ -14,6 +14,7 @@ import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlC
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_PLAYER_UUID;
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_RESEARCH_KEY;
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_SLIMEFUN_ID;
+import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_TABLE_VERSION;
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_UNIVERSAL_TRAITS;
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_UNIVERSAL_UUID;
 
@@ -48,6 +49,9 @@ public class MysqlAdapter extends SqlCommonAdapter<MysqlConfig> {
                 createBlockStorageTables();
             }
         }
+
+        tableInformationTable = SqlUtils.mapTable(DataScope.TABLE_INFORMATION, config.tablePrefix());
+        createTableInformationTable();
     }
 
     @Override
@@ -381,5 +385,14 @@ public class MysqlAdapter extends SqlCommonAdapter<MysqlConfig> {
                    + FIELD_DATA_KEY
                    + ")"
                    + ");");
+    }
+
+    private void createTableInformationTable() {
+        executeSql("CREATE TABLE IF NOT EXISTS "
+                + tableInformationTable
+                + "("
+                + FIELD_TABLE_VERSION
+                + " INT UNIQUE NOT NULL DEFAULT '0'"
+                + ");");
     }
 }

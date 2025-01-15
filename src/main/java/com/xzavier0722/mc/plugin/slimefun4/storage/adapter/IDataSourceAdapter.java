@@ -21,4 +21,6 @@ public interface IDataSourceAdapter<T> {
     List<RecordSet> getData(RecordKey key, boolean distinct);
 
     void deleteData(RecordKey key);
+
+    void patch();
 }
