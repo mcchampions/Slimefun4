@@ -7,6 +7,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.mysql.MysqlConfig;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.ISqlCommonConfig;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlCommonConfig;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlUtils;
+import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlite.SqliteConfig;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,7 +22,11 @@ public class DatabasePatchV1 extends DatabasePatch {
         var table = SqlUtils.mapTable(
                 DataScope.TABLE_INFORMATION, config instanceof SqlCommonConfig scc ? scc.tablePrefix() : "");
 
-        stmt.execute("UPDATE " + table + " SET " + FIELD_TABLE_VERSION + " = '1' LIMIT 1;");
+        if (config instanceof SqliteConfig) {
+            stmt.execute("UPDATE " + table + " SET " + FIELD_TABLE_VERSION + " = '1' ");
+        } else {
+            stmt.execute("insert into " + table + " values (" + FIELD_TABLE_VERSION + " = '1');");
+        }
 
         if (config instanceof MysqlConfig mysqlConf) {
             var uniInvTable = SqlUtils.mapTable(DataScope.UNIVERSAL_INVENTORY, mysqlConf.tablePrefix());

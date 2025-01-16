@@ -18,9 +18,11 @@ import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlC
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_UNIVERSAL_TRAITS;
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_UNIVERSAL_UUID;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlCommonAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlUtils;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.*;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.util.List;
 import java.util.Map;
@@ -389,10 +391,16 @@ public class MysqlAdapter extends SqlCommonAdapter<MysqlConfig> {
 
     private void createTableInformationTable() {
         executeSql("CREATE TABLE IF NOT EXISTS "
-                + tableInformationTable
-                + "("
-                + FIELD_TABLE_VERSION
-                + " INT UNIQUE NOT NULL DEFAULT '0'"
-                + ");");
+                   + tableInformationTable
+                   + "("
+                   + FIELD_TABLE_VERSION
+                   + " INT UNIQUE NOT NULL DEFAULT '0'"
+                   + ");");
+
+        if (Slimefun.isNewlyInstalled()) {
+            executeSql("INSERT INTO " + tableInformationTable + " (" + FIELD_TABLE_VERSION + ") SELECT '"
+                       + IDataSourceAdapter.DATABASE_VERSION + "' WHERE NOT EXISTS (SELECT 1 FROM " + tableInformationTable
+                       + ")");
+        }
     }
 }
