@@ -23,9 +23,12 @@ public class DatabasePatchV1 extends DatabasePatch {
                 DataScope.TABLE_INFORMATION, config instanceof SqlCommonConfig scc ? scc.tablePrefix() : "");
 
         if (config instanceof SqliteConfig) {
-            stmt.execute("UPDATE " + table + " SET " + FIELD_TABLE_VERSION + " = '1' ");
+            stmt.execute("INSERT INTO " + table + " (" + FIELD_TABLE_VERSION + ") SELECT " + getVersion()
+                    + " WHERE NOT EXISTS (SELECT 1 FROM " + table + ");");
+            stmt.execute("UPDATE " + table + " SET " + FIELD_TABLE_VERSION + " = '1' WHERE rowid = (SELECT rowid FROM "
+                    + table + " LIMIT 1);");
         } else {
-            stmt.execute("insert into " + table + " values (" + FIELD_TABLE_VERSION + " = '1');");
+            stmt.execute("UPDATE " + table + " SET " + FIELD_TABLE_VERSION + " = '1' LIMIT 1");
         }
 
         if (config instanceof MysqlConfig mysqlConf) {
