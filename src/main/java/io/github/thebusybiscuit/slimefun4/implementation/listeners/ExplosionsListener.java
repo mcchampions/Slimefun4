@@ -1,14 +1,14 @@
 package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
-import com.xzavier0722.mc.plugin.slimefun4.storage.controller.BlockDataController;
-import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.*;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.WitherProof;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -30,10 +30,8 @@ import org.bukkit.inventory.ItemStack;
  * calls the explosive part of the {@link BlockBreakHandler}.
  *
  * @author TheBusyBiscuit
- *
  * @see BlockBreakHandler
  * @see WitherProof
- *
  */
 public class ExplosionsListener implements Listener {
     public ExplosionsListener(Slimefun plugin) {
@@ -47,7 +45,7 @@ public class ExplosionsListener implements Listener {
           so we just ignore it.
          */
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)
-                && e.getEntityType() == EntityType.WIND_CHARGE) {
+            && e.getEntityType() == EntityType.WIND_CHARGE) {
             return;
         }
 
@@ -63,7 +61,9 @@ public class ExplosionsListener implements Listener {
         while (blocks.hasNext()) {
             Block block = blocks.next();
             Location loc = block.getLocation();
-            SlimefunBlockData blockData = StorageCacheUtils.getBlock(loc);
+            ASlimefunDataContainer blockData = StorageCacheUtils.hasBlock(loc)
+                    ? StorageCacheUtils.getBlock(loc)
+                    : StorageCacheUtils.getUniversalBlock(loc);
             SlimefunItem item = blockData == null ? null : SlimefunItem.getById(blockData.getSfId());
 
             if (item != null) {
@@ -71,23 +71,38 @@ public class ExplosionsListener implements Listener {
 
                 BlockDataController controller = Slimefun.getDatabaseManager().getBlockDataController();
                 if (!(item instanceof WitherProof)
-                        && !item.callItemHandler(BlockBreakHandler.class, handler -> {
-                            if (blockData.isDataLoaded()) {
-                                handleExplosion(handler, block);
-                            } else {
-                                controller.loadBlockDataAsync(blockData, new IAsyncReadCallback<>() {
-                                    @Override
-                                    public boolean runOnMainThread() {
-                                        return true;
-                                    }
+                    && !item.callItemHandler(BlockBreakHandler.class, handler -> {
+                    if (blockData.isDataLoaded()) {
+                        handleExplosion(handler, block);
+                    } else {
+                        if (blockData instanceof SlimefunBlockData sbd) {
+                            controller.loadBlockDataAsync(sbd, new IAsyncReadCallback<>() {
+                                @Override
+                                public boolean runOnMainThread() {
+                                    return true;
+                                }
 
-                                    @Override
-                                    public void onResult(SlimefunBlockData result) {
-                                        handleExplosion(handler, block);
-                                    }
-                                });
-                            }
-                        })) {
+                                @Override
+                                public void onResult(SlimefunBlockData result) {
+                                    handleExplosion(handler, block);
+                                }
+                            });
+                        } else {
+                            SlimefunUniversalBlockData ubd = (SlimefunUniversalBlockData) blockData;
+                            controller.loadUniversalDataAsync(ubd, new IAsyncReadCallback<>() {
+                                @Override
+                                public boolean runOnMainThread() {
+                                    return true;
+                                }
+
+                                @Override
+                                public void onResult(SlimefunUniversalData result) {
+                                    handleExplosion(handler, block);
+                                }
+                            });
+                        }
+                    }
+                })) {
                     controller.removeBlock(loc);
                     block.setType(Material.AIR);
                 }

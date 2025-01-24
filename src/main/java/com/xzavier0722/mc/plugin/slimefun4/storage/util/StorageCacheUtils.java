@@ -148,16 +148,26 @@ public class StorageCacheUtils {
     }
 
     /**
+     * Get universal data from location
+     *
+     * @param location {@link Location}
+     * @return {@link SlimefunUniversalBlockData}
+     */
+    public static SlimefunUniversalBlockData getUniversalBlock(Location location) {
+        return Slimefun.getDatabaseManager()
+                .getBlockDataController()
+                .getUniversalBlockDataFromCache(location)
+                .orElse(null);
+    }
+
+    /**
      * Get universal data from block
      *
      * @param block {@link Block}
      * @return {@link SlimefunUniversalBlockData}
      */
     public static SlimefunUniversalBlockData getUniversalBlock(Block block) {
-        return Slimefun.getDatabaseManager()
-                .getBlockDataController()
-                .getUniversalBlockDataFromCache(block.getLocation())
-                .orElse(null);
+        return getUniversalBlock(block.getLocation());
     }
 
     /**
