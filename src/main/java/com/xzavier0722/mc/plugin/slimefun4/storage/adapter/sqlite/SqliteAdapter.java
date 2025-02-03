@@ -36,6 +36,7 @@ public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
             case BLOCK_STORAGE -> createBlockStorageTables();
         }
 
+        tableInformationTable = SqlUtils.mapTable(DataScope.TABLE_INFORMATION);
         createTableInformationTable();
     }
 
