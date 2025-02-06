@@ -174,7 +174,6 @@ public class SlimefunItem implements Placeable {
      * @param recipe       An Array representing the recipe of this {@link SlimefunItem}
      * @param recipeOutput The result of crafting this item
      */
-    @SuppressWarnings("DynamicRegexReplaceableByCompiledPattern")
     public SlimefunItem(
             ItemGroup itemGroup,
             SlimefunItemStack item,
