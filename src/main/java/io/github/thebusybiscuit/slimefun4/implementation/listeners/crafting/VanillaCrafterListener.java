@@ -5,6 +5,8 @@ import city.norain.slimefun4.compatibillty.VersionedEvent;
 import io.github.bakedlibs.dough.versions.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import me.qscbm.slimefun4.utils.VersionEventsUtils;
+import me.qscbm.slimefun4.utils.VersionUtils;
 import org.bukkit.block.Crafter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -24,7 +26,7 @@ public class VanillaCrafterListener implements SlimefunCraftingListener {
     @EventHandler(ignoreCancelled = true)
     public void onCrafter(InventoryClickEvent e) {
         Inventory clickedInventory = e.getClickedInventory();
-        Inventory topInventory = VersionedEvent.getTopInventory(e);
+        Inventory topInventory = VersionEventsUtils.getTopInventory(e);
 
         if (clickedInventory != null
             && topInventory.getType() == InventoryType.CRAFTER

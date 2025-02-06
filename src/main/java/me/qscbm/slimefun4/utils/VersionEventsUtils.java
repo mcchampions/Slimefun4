@@ -13,6 +13,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryEvent;
 import org.bukkit.inventory.Inventory;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -22,6 +24,10 @@ import java.util.List;
 public class VersionEventsUtils {
     public static VersionEventsConstructor versionEventsConstructor;
 
+
+    private static Method GET_TOP_INVENTORY;
+    private static Method GET_CLICKED_INVENTORY;
+
     static {
         if (Slimefun.getMinecraftVersion()
                 .isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
@@ -29,6 +35,15 @@ public class VersionEventsUtils {
         } else {
             versionEventsConstructor = new VersionEventsConstructor();
         }
+        try {
+            GET_TOP_INVENTORY =
+                    Class.forName("org.bukkit.inventory.InventoryView").getMethod("getTopInventory");
+            GET_TOP_INVENTORY.setAccessible(true);
+
+            GET_CLICKED_INVENTORY = Class.forName("org.bukkit.event.inventory.InventoryClickEvent")
+                    .getMethod("getClickedInventory");
+            GET_CLICKED_INVENTORY.setAccessible(true);
+        } catch (NoSuchMethodException | ClassNotFoundException ignored) {}
     }
 
     public static EntityDamageByEntityEvent newEntityDamageByEntityEvent(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, String type, double damage) {
@@ -40,42 +55,24 @@ public class VersionEventsUtils {
     }
 
     public static Inventory getTopInventory(InventoryEvent event) {
-        /*
-        我使用1.20.4编译, 无需理会
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
             return event.getView().getTopInventory();
-        } else {
-            if (GET_TOP_INVENTORY == null) {
-                throw new IllegalStateException("Unable to get top inventory: missing method");
-            }
-
-            try {
-                return (Inventory) GET_TOP_INVENTORY.invoke(event.getView());
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
         }
-         */
-        return event.getView().getTopInventory();
+        try {
+            return (Inventory) GET_TOP_INVENTORY.invoke(event.getView());
+        } catch (Exception e) {
+            return event.getView().getTopInventory();
+        }
     }
 
     public static Inventory getClickedInventory(InventoryClickEvent event) {
-        /*
-        我使用1.20.4编译, 无需理会
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
             return event.getClickedInventory();
-        } else {
-            if (GET_CLICKED_INVENTORY == null) {
-                throw new IllegalStateException("Unable to get clicked inventory: missing method");
-            }
-
-            try {
-                return (Inventory) GET_CLICKED_INVENTORY.invoke(event);
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
         }
-         */
-        return event.getClickedInventory();
+        try {
+            return (Inventory) GET_CLICKED_INVENTORY.invoke(event);
+        } catch (Exception e) {
+            return event.getClickedInventory();
+        }
     }
 }
