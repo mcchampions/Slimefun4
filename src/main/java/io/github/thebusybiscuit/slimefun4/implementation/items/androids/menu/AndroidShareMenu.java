@@ -7,12 +7,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.androids.Programm
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
-
-import java.util.*;
-import java.util.logging.Level;
-import java.util.regex.Pattern;
-
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -22,6 +18,9 @@ import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+
+import java.util.*;
+import java.util.logging.Level;
 
 /**
  * The {@link AndroidShareMenu} is responsibility to modify trusted users
@@ -34,7 +33,6 @@ public final class AndroidShareMenu {
     private static final int DISPLAY_START_SLOT = 9;
     private static final NamespacedKey BLOCK_INFO_KEY = new NamespacedKey(Slimefun.instance(), "share-users");
     private static final int SHARED_USERS_LIMIT = 15;
-    private static final Pattern SQLIT_PATTERN = Pattern.compile(", ");
 
     private AndroidShareMenu() {
     }
@@ -172,7 +170,7 @@ public final class AndroidShareMenu {
         if (replacedText.isEmpty()) {
             return Collections.emptyList();
         } else {
-            return new ArrayList<>(Arrays.asList(SQLIT_PATTERN.split(replacedText)));
+            return TextUtils.split(replacedText,", ");
         }
     }
 

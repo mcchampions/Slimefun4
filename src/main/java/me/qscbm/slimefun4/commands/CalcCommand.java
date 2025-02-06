@@ -12,14 +12,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class CalcCommand extends SubCommand {
-    private static final Pattern PARAM_FIRST_PATTERN = Pattern.compile("%1");
-    private static final Pattern PARAM_SECOND_PATTERN = Pattern.compile("%2");
-    private static final Pattern PARAM_THIRD_PATTERN = Pattern.compile("%3");
-    private static final Pattern PARAM_FOUTH_PATTERN = Pattern.compile("%4");
-
     public CalcCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "calc", false);
     }
@@ -101,9 +95,12 @@ public class CalcCommand extends SubCommand {
             String header;
             String name = item.getItemNormalName();
             if (amount == 1) {
-                header = PARAM_FIRST_PATTERN.matcher(Slimefun.getLocalization().getMessage("commands.calc.header-string")).replaceFirst(name);
+                header = Slimefun.getLocalization().getMessage("commands.calc.header-string")
+                        .replace("%1", name);
             } else {
-                header = PARAM_SECOND_PATTERN.matcher(PARAM_FIRST_PATTERN.matcher(Slimefun.getLocalization().getMessage("commands.calc.header-amount-string")).replaceFirst(name)).replaceFirst(String.valueOf(amount));
+                header = Slimefun.getLocalization().getMessage("commands.calc.header-amount-string")
+                        .replace("%1", name)
+                        .replace("%2", String.valueOf(amount));
             }
 
             ChatUtils.sendMessage(sender, header);
@@ -119,11 +116,16 @@ public class CalcCommand extends SubCommand {
                 if (originalValues <= maxStackSize) {
                     parsedAmount = Long.toString(originalValues);
                 } else {
-                    parsedAmount = PARAM_FOUTH_PATTERN.matcher(PARAM_THIRD_PATTERN.matcher(PARAM_SECOND_PATTERN.matcher(PARAM_FIRST_PATTERN.matcher(Slimefun.getLocalization().getMessage("commands.calc.stack-string")).replaceFirst(String.valueOf(originalValues))).replaceFirst(String.valueOf(Math.floor(originalValues / (float) maxStackSize)))).replaceFirst(String.valueOf(maxStackSize))).replaceFirst(String.valueOf(originalValues % maxStackSize));
+                    parsedAmount = Slimefun.getLocalization().getMessage("commands.calc.stack-string")
+                            .replace("%1", String.valueOf(originalValues))
+                            .replace("%2", String.valueOf(Math.floor(originalValues / (float) maxStackSize)))
+                            .replace("%3", String.valueOf(maxStackSize))
+                            .replace("%4", String.valueOf(originalValues % maxStackSize));
                 }
                 Slimefun.getLocalization().sendMessage(
                         sender, "commands.calc.amount-string", (m) ->
-                                PARAM_SECOND_PATTERN.matcher(PARAM_FIRST_PATTERN.matcher(m).replaceFirst(ItemHelper.getItemName(entry.getKey()))).replaceFirst(parsedAmount)
+                                m.replace("%1", ItemHelper.getItemName(entry.getKey()))
+                                        .replace("%2", parsedAmount)
                 );
             }
         });

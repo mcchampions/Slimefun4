@@ -5,6 +5,9 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TextUtils {
     public static String toPlainText(Component component) {
         return PlainTextComponentSerializer.plainText().serialize(component);
@@ -48,6 +51,26 @@ public class TextUtils {
 
     public static String toLegacyText(Component component) {
         return LegacyComponentSerializer.legacyAmpersand().serialize(component);
+    }
+
+    public static List<String> split(String str, String character) {
+        int off = 0;
+        int next;
+        List<String> list = new ArrayList<>();
+        while ((next = str.indexOf(character, off)) != -1) {
+            list.add(str.substring(off, next));
+            off = next + 1;
+        }
+        if (off == 0)
+            return List.of(str);
+
+        list.add(str.substring(off));
+
+        int resultSize = list.size();
+        while (resultSize > 0 && list.get(resultSize - 1).isEmpty()) {
+            resultSize--;
+        }
+        return list.subList(0, resultSize);
     }
 
     public static String translateAlternateColorCodes(String text) {
