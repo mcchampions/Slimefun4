@@ -5,10 +5,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
-import java.util.regex.Pattern;
-
 public class TextUtils {
-    private static final Pattern COLOR_PATTERN = Pattern.compile("&([\\da-zA-Z])");
 
     public static String toPlainText(Component component) {
         return PlainTextComponentSerializer.plainText().serialize(component);
