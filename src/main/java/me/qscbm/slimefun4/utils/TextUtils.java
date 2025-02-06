@@ -54,7 +54,28 @@ public class TextUtils {
         return LegacyComponentSerializer.legacyAmpersand().serialize(component);
     }
 
+    public static String translateAlternateColorCodes(String text) {
+        final char[] chars = text.toCharArray();
+        int i = 0;
+        while (i < chars.length - 1) {
+            if (chars[i] == '&' && isColorCodeChar(chars[i + 1])) {
+                chars[i] = '§';
+            }
+            i++;
+        }
+
+        return new String(chars);
+    }
+
     public static TextComponent fromText(String text) {
-        return LegacyComponentSerializer.legacyAmpersand().deserialize(COLOR_PATTERN.matcher(text).replaceAll("§$1"));
+        return LegacyComponentSerializer.legacySection().deserialize(translateAlternateColorCodes(text));
+    }
+
+    public static TextComponent fromText(char character, String text) {
+        LegacyComponentSerializer serializer = LegacyComponentSerializer.legacySection();
+        if (character == '&') {
+            serializer = LegacyComponentSerializer.legacyAmpersand();
+        }
+        return serializer.deserialize(text);
     }
 }

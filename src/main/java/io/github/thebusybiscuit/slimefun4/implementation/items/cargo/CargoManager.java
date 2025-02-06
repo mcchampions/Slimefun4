@@ -16,6 +16,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBre
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.qscbm.slimefun4.handlers.CargoTicker;
 import me.qscbm.slimefun4.tasks.BaseTickerTask;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -72,10 +73,10 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
                         SlimefunBlockData blockData = StorageCacheUtils.getBlock(b.getLocation());
                         if (blockData.getData("visualizer") == null) {
                             blockData.setData("visualizer", "disabled");
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c货运网络可视化: " + "§4\u2718"));
+                            p.sendMessage(TextUtils.fromText('&', "&c货运网络可视化: " + "§4\u2718"));
                         } else {
                             blockData.removeData("visualizer");
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c货运网络可视化: " + "&2\u2714"));
+                            p.sendMessage(TextUtils.fromText('&', "&c货运网络可视化: " + "&2\u2714"));
                         }
                     }
                 });
