@@ -22,14 +22,17 @@ import org.bukkit.inventory.ItemStack;
  * Deprecated: use {@link com.xzavier0722.mc.plugin.slimefun4.storage.controller.BlockDataController} instead
  */
 public class BlockStorage {
+    @SuppressWarnings("InstantiationOfUtilityClass")
+    public static final BlockStorage INSTANCE = new BlockStorage();
+
     private static final Config emptyData = new EmptyBlockData();
 
     public static BlockStorage getStorage(World world) {
-        return new BlockStorage();
+        return INSTANCE;
     }
 
     public static BlockStorage getOrCreate(World world) {
-        return new BlockStorage();
+        return INSTANCE;
     }
 
     public static void store(Block block, ItemStack item) {
