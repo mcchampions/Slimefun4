@@ -6,6 +6,8 @@ import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Locale;
 import java.util.function.Consumer;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -30,14 +32,14 @@ public final class ChatUtils {
     }
 
     public static String removeColorCodes(String string) {
-        return ChatColor.stripColor(ChatColors.color(string));
+        return TextUtils.toPlainText(ChatColors.color(string));
     }
 
     public static String crop(ChatColor color, String string) {
-        if (ChatColor.stripColor(color + string).length() > 19) {
-            return (color + ChatColor.stripColor(string)).substring(0, 18) + "...";
+        if (TextUtils.toPlainText(color + string).length() > 19) {
+            return (color + TextUtils.toPlainText(string)).substring(0, 18) + "...";
         } else {
-            return color + ChatColor.stripColor(string);
+            return color + TextUtils.toPlainText(string);
         }
     }
 

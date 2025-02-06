@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.qscbm.slimefun4.message.QsTextComponentImpl;
 import me.qscbm.slimefun4.services.LanguageService;
+import me.qscbm.slimefun4.utils.TextUtils;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -217,7 +218,7 @@ public abstract class SlimefunLocalization implements Keyed {
         if (recipient instanceof Player player) {
             recipient.sendMessage(ChatColors.color(prefix + getMessage(player, key)));
         } else {
-            recipient.sendMessage(ChatColor.stripColor(ChatColors.color(prefix + getMessage(key))));
+            recipient.sendMessage(TextUtils.toPlainText(ChatColors.color(prefix + getMessage(key))));
         }
     }
 
@@ -243,7 +244,7 @@ public abstract class SlimefunLocalization implements Keyed {
         if (recipient instanceof Player player) {
             recipient.sendMessage(ChatColors.color(prefix + function.apply(getMessage(player, key))));
         } else {
-            recipient.sendMessage(ChatColor.stripColor(ChatColors.color(prefix + function.apply(getMessage(key)))));
+            recipient.sendMessage(TextUtils.toPlainText(ChatColors.color(prefix + function.apply(getMessage(key)))));
         }
     }
 
@@ -258,7 +259,7 @@ public abstract class SlimefunLocalization implements Keyed {
         } else {
             for (String translation : getDefaultMessages(key)) {
                 String message = ChatColors.color(prefix + translation);
-                recipient.sendMessage(ChatColor.stripColor(message));
+                recipient.sendMessage(TextUtils.toPlainText(message));
             }
         }
     }
@@ -274,7 +275,7 @@ public abstract class SlimefunLocalization implements Keyed {
         } else {
             for (String translation : getDefaultMessages(key)) {
                 String message = ChatColors.color(prefix + function.apply(translation));
-                recipient.sendMessage(ChatColor.stripColor(message));
+                recipient.sendMessage(TextUtils.toPlainText(message));
             }
         }
     }

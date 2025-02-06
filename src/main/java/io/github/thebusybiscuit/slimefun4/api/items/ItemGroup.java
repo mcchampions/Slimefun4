@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -234,7 +235,7 @@ public class ItemGroup implements Keyed {
      * @return The unlocalized name of this {@link ItemGroup}
      */
     public String getUnlocalizedName() {
-        return ChatColor.stripColor(item.getItemMeta().getDisplayName());
+        return TextUtils.toPlainText(item.getItemMeta().getDisplayName());
     }
 
     /**

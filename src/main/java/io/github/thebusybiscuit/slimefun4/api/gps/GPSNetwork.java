@@ -19,6 +19,7 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import me.qscbm.slimefun4.utils.TextUtils;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
 import org.bukkit.World.Environment;
@@ -369,7 +370,7 @@ public class GPSNetwork {
                 Bukkit.getPluginManager().callEvent(event);
 
                 if (!event.isCancelled()) {
-                    String id = ChatColor.stripColor(ChatColors.color(event.getName()))
+                    String id = TextUtils.toPlainText(ChatColors.color(event.getName()))
                             .toUpperCase(Locale.ROOT)
                             .replace(' ', '_');
 
