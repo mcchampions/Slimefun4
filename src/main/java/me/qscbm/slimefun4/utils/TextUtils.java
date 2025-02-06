@@ -6,7 +6,6 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
 public class TextUtils {
-
     public static String toPlainText(Component component) {
         return PlainTextComponentSerializer.plainText().serialize(component);
     }
