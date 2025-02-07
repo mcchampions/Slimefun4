@@ -17,10 +17,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
-/**
- * 这是个临时适配的工具类
- * 如果上游更新相关的工具类会迁移保证适配附属
- */
 @SuppressWarnings({"JavaReflectionMemberAccess", "FieldCanBeLocal"})
 public class VersionEventsUtils {
     public static VersionEventsConstructor versionEventsConstructor;
@@ -30,6 +26,12 @@ public class VersionEventsUtils {
     private static Method CLICKED_INVENTORY_GETTER;
 
     private static Method EXPLOSION_RESULT_GETTER;
+
+    private static ReflectionGetterMethodFunction TOP_INVENTORY_GETTER_FUNCTION;
+
+    private static ReflectionGetterMethodFunction CLICKED_INVENTORY_GETTER_FUNCTION;
+
+    private static ReflectionGetterMethodFunction EXPLOSION_RESULT_GETTER_FUNCTION;
 
     private static Class<?> EXPLOSION_RESULT_CLASS;
 
@@ -47,19 +49,25 @@ public class VersionEventsUtils {
                     Class.forName("org.bukkit.inventory.InventoryView")
                             .getMethod("getTopInventory");
             TOP_INVENTORY_GETTER.setAccessible(true);
-        } catch (NoSuchMethodException | ClassNotFoundException ignored) {}
+            TOP_INVENTORY_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(TOP_INVENTORY_GETTER);
+        } catch (NoSuchMethodException | ClassNotFoundException ignored) {
+        }
         try {
             CLICKED_INVENTORY_GETTER =
                     Class.forName("org.bukkit.event.inventory.InventoryClickEvent")
                             .getMethod("getClickedInventory");
             CLICKED_INVENTORY_GETTER.setAccessible(true);
-        } catch (NoSuchMethodException | ClassNotFoundException ignored) {}
+            CLICKED_INVENTORY_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(CLICKED_INVENTORY_GETTER);
+        } catch (NoSuchMethodException | ClassNotFoundException ignored) {
+        }
         try {
             EXPLOSION_RESULT_GETTER =
                     Class.forName("org.bukkit.event.block.BlockExplodeEvent")
                             .getMethod("getExplosionResult");
             EXPLOSION_RESULT_GETTER.setAccessible(true);
-        } catch (NoSuchMethodException | ClassNotFoundException ignored) {}
+            EXPLOSION_RESULT_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(EXPLOSION_RESULT_GETTER);
+        } catch (NoSuchMethodException | ClassNotFoundException ignored) {
+        }
         try {
             EXPLOSION_RESULT_CLASS = Class.forName("org.bukkit.ExplosionResult");
             Method method = EXPLOSION_RESULT_CLASS.getMethod("values");
@@ -72,7 +80,8 @@ public class VersionEventsUtils {
                 }
             }
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-                 IllegalAccessException ignored) {}
+                 IllegalAccessException ignored) {
+        }
     }
 
     public static EntityDamageByEntityEvent newEntityDamageByEntityEvent(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, String type, double damage) {
@@ -88,7 +97,7 @@ public class VersionEventsUtils {
             return event.getView().getTopInventory();
         }
         try {
-            return (Inventory) TOP_INVENTORY_GETTER.invoke(event.getView());
+            return (Inventory) TOP_INVENTORY_GETTER_FUNCTION.invoke(event.getView());
         } catch (Exception e) {
             return event.getView().getTopInventory();
         }
@@ -99,7 +108,7 @@ public class VersionEventsUtils {
             return event.getClickedInventory();
         }
         try {
-            return (Inventory) CLICKED_INVENTORY_GETTER.invoke(event);
+            return (Inventory) CLICKED_INVENTORY_GETTER_FUNCTION.invoke(event);
         } catch (Exception e) {
             return event.getClickedInventory();
         }
@@ -107,9 +116,9 @@ public class VersionEventsUtils {
 
     public static boolean isTriggerBlock(BlockExplodeEvent e) {
         try {
-            Object result = EXPLOSION_RESULT_GETTER.invoke(e);
+            Object result = EXPLOSION_RESULT_GETTER_FUNCTION.invoke(e);
             return result == TRIGGER_BLOCK_ENUM;
-        } catch (IllegalAccessException | InvocationTargetException ex) {
+        } catch (Exception ex) {
             return true;
         }
     }

@@ -1,6 +1,7 @@
 package me.qscbm.slimefun4.utils.compatibillty;
 
 import io.github.bakedlibs.dough.reflection.ReflectionUtils;
+import me.qscbm.slimefun4.utils.QsReflectionUtils;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.damage.DamageSource;
@@ -10,14 +11,15 @@ import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
 public class HighVersionEventsConstructor extends VersionEventsConstructor {
     private final Constructor<BlockExplodeEvent> blockExplodeEventConstructor;
+    private final MethodHandle blockExplodeEventConstructorHandle;
     private Enum<?> destroyEnum;
 
     public HighVersionEventsConstructor() {
@@ -29,6 +31,11 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
             throw new RuntimeException(e);
         }
         blockExplodeEventConstructor = ReflectionUtils.getConstructor(BlockExplodeEvent.class, Block.class, BlockState.class, List.class, float.class, explosionResultClass);
+        try {
+            blockExplodeEventConstructorHandle = QsReflectionUtils.LOOKUP.unreflectConstructor(blockExplodeEventConstructor);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
         Enum<?>[] enums = explosionResultClass.getEnumConstants();
 
         for (Enum<?> field : enums) {
@@ -61,8 +68,8 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
     @Override
     public BlockExplodeEvent newBlockExplodeEvent(Block block, List<Block> blockList, float yield) {
         try {
-            return blockExplodeEventConstructor.newInstance(block, block.getState(), blockList, yield, destroyEnum);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            return (BlockExplodeEvent) blockExplodeEventConstructorHandle.invoke(block, block.getState(), blockList, yield, destroyEnum);
+        } catch (Throwable e) {
             throw new RuntimeException(e);
         }
     }

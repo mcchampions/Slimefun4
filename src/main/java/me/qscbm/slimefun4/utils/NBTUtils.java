@@ -29,7 +29,14 @@ public class NBTUtils {
     private static Method RESOLVABLE_PROFILE_GAME_PROFILE_GETTER;
 
     private static final Method PROPERTY_NAME_GETTER;
+
     private static final Method PROPERTY_VALUE_GETTER;
+
+    private static ReflectionGetterMethodFunction RESOLVABLE_PROFILE_GAME_PROFILE_GETTER_FUNCTION;
+
+    private static ReflectionGetterMethodFunction PROPERTY_NAME_GETTER_FUNCTION;
+
+    private static ReflectionGetterMethodFunction PROPERTY_VALUE_GETTER_FUNCTION;
 
     static {
         String detectedVersion = CRAFTBUKKIT_PACKAGE_NAME.substring(CRAFTBUKKIT_PACKAGE_NAME.lastIndexOf('.') + 1);
@@ -51,6 +58,7 @@ public class NBTUtils {
             RESOLVABLE_PROFILE_GAME_PROFILE_GETTER = ReflectionUtils.getMethod(resolvableProfile, "f");
             if (RESOLVABLE_PROFILE_GAME_PROFILE_GETTER != null) {
                 RESOLVABLE_PROFILE_GAME_PROFILE_GETTER.setAccessible(true);
+                RESOLVABLE_PROFILE_GAME_PROFILE_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(RESOLVABLE_PROFILE_GAME_PROFILE_GETTER);
             }
         } catch (ClassNotFoundException e) {
             resolvableProfile = null;
@@ -59,10 +67,12 @@ public class NBTUtils {
         PROPERTY_NAME_GETTER = ReflectionUtils.getMethod(Property.class, "getName");
         if (PROPERTY_NAME_GETTER != null) {
             PROPERTY_NAME_GETTER.setAccessible(true);
+            PROPERTY_NAME_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(PROPERTY_NAME_GETTER);
         }
         PROPERTY_VALUE_GETTER = ReflectionUtils.getMethod(Property.class, "getValue");
         if (PROPERTY_VALUE_GETTER != null) {
             PROPERTY_VALUE_GETTER.setAccessible(true);
+            PROPERTY_VALUE_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(PROPERTY_VALUE_GETTER);
         }
     }
 
@@ -71,7 +81,7 @@ public class NBTUtils {
             Object pro = SKULL_PROFILE.get(skullMeta);
             if (RESOLVABLE_PROFILE != null && RESOLVABLE_PROFILE.isInstance(pro)) {
                 if (RESOLVABLE_PROFILE_GAME_PROFILE_GETTER != null) {
-                    pro = RESOLVABLE_PROFILE_GAME_PROFILE_GETTER.invoke(pro);
+                    pro = RESOLVABLE_PROFILE_GAME_PROFILE_GETTER_FUNCTION.invoke(pro);
                 }
             }
             if (pro == null) {
@@ -82,8 +92,8 @@ public class NBTUtils {
             for (Property prop : properties) {
                 String texture = null;
                 if (PROPERTY_NAME_GETTER != null) {
-                    if ("textures".equals(PROPERTY_NAME_GETTER.invoke(prop))) {
-                        texture = new String(Base64.getDecoder().decode((String) PROPERTY_VALUE_GETTER.invoke(prop)));
+                    if ("textures".equals(PROPERTY_NAME_GETTER_FUNCTION.invoke(prop))) {
+                        texture = new String(Base64.getDecoder().decode((String) PROPERTY_VALUE_GETTER_FUNCTION.invoke(prop)));
                     }
                 } else {
                     if ("textures".equals(prop.name())) {
@@ -93,7 +103,7 @@ public class NBTUtils {
                 return getMatch(texture, "\\{\"url\":\"(.*?)\"\\}");
             }
             return null;
-        } catch (IllegalAccessException | InvocationTargetException e) {
+        } catch (IllegalAccessException e) {
             Slimefun.logger().warning(e.getMessage());
             return null;
         }
