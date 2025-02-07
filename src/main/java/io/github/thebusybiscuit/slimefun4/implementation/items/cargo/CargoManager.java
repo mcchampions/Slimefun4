@@ -17,7 +17,6 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.qscbm.slimefun4.handlers.CargoTicker;
 import me.qscbm.slimefun4.tasks.BaseTickerTask;
 import me.qscbm.slimefun4.utils.TextUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

@@ -149,7 +149,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         ReactorMode mode = getReactorMode(b.getLocation());
 
         switch (mode) {
-            case GENERATOR:
+            case GENERATOR -> {
                 menu.replaceExistingItem(
                         4,
                         new CustomItemStack(
@@ -166,8 +166,8 @@ public abstract class Reactor extends AbstractEnergyProvider
                     updateInventory(menu, b);
                     return false;
                 });
-                break;
-            case PRODUCTION:
+            }
+            case PRODUCTION -> {
                 menu.replaceExistingItem(
                         4,
                         new CustomItemStack(
@@ -184,9 +184,9 @@ public abstract class Reactor extends AbstractEnergyProvider
                     updateInventory(menu, b);
                     return false;
                 });
-                break;
-            default:
-                break;
+            }
+            default -> {
+            }
         }
 
         BlockMenu port = getAccessPort(menu, b.getLocation());

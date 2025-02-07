@@ -774,26 +774,23 @@ public class ProgrammableAndroid extends SlimefunItem
             BlockFace face = rotationData == null ? BlockFace.NORTH : BlockFace.valueOf(rotationData);
 
             switch (instruction) {
-                case START:
-                case WAIT:
+                case START, WAIT ->
                     // We are "waiting" here, so we only move a step forward
-                    data.setData("index", String.valueOf(index));
-                    break;
-                case REPEAT:
+                        data.setData("index", String.valueOf(index));
+                case REPEAT ->
                     // "repeat" just means, we reset our index
-                    data.setData("index", String.valueOf(0));
-                    break;
-                case CHOP_TREE:
+                        data.setData("index", String.valueOf(0));
+                case CHOP_TREE -> {
                     // We only move to the next step if we finished chopping wood
                     if (chopTree(b, inv, face)) {
                         data.setData("index", String.valueOf(index));
                     }
-                    break;
-                default:
+                }
+                default -> {
                     // We set the index here in advance to fix moving android issues
                     data.setData("index", String.valueOf(index));
                     instruction.execute(this, b, inv, face);
-                    break;
+                }
             }
         }
     }

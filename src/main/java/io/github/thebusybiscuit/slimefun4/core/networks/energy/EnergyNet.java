@@ -90,22 +90,18 @@ public class EnergyNet extends Network implements HologramOwner {
 
         if (component != null) {
             switch (component.getEnergyComponentType()) {
-                case CAPACITOR:
-                    capacitors.put(l, component);
-                    break;
-                case CONSUMER:
-                    consumers.put(l, component);
-                    break;
-                case GENERATOR:
+                case CAPACITOR -> capacitors.put(l, component);
+                case CONSUMER -> consumers.put(l, component);
+                case GENERATOR -> {
                     if (component instanceof EnergyNetProvider provider) {
                         generators.put(l, provider);
                     } else if (component instanceof SlimefunItem item) {
                         item.warn("This Item is marked as a GENERATOR but does not implement the interface"
-                                  + " EnergyNetProvider!");
+                                + " EnergyNetProvider!");
                     }
-                    break;
-                default:
-                    break;
+                }
+                default -> {
+                }
             }
         }
     }

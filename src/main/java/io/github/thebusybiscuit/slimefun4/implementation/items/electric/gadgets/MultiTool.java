@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.qscbm.slimefun4.utils.TextUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

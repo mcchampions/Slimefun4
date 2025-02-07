@@ -21,7 +21,6 @@ import lombok.Getter;
 import me.qscbm.slimefun4.utils.QsConstants;
 import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;

@@ -18,7 +18,6 @@ import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
 public class HighVersionEventsConstructor extends VersionEventsConstructor {
-    private final Constructor<BlockExplodeEvent> blockExplodeEventConstructor;
     private final MethodHandle blockExplodeEventConstructorHandle;
     private Enum<?> destroyEnum;
 
@@ -30,7 +29,7 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        blockExplodeEventConstructor = ReflectionUtils.getConstructor(BlockExplodeEvent.class, Block.class, BlockState.class, List.class, float.class, explosionResultClass);
+        Constructor<BlockExplodeEvent> blockExplodeEventConstructor = ReflectionUtils.getConstructor(BlockExplodeEvent.class, Block.class, BlockState.class, List.class, float.class, explosionResultClass);
         try {
             blockExplodeEventConstructorHandle = QsReflectionUtils.LOOKUP.unreflectConstructor(blockExplodeEventConstructor);
         } catch (IllegalAccessException e) {

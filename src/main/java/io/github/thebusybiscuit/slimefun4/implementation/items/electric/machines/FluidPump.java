@@ -203,15 +203,16 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
 
     private static ItemStack getFilledBottle(Block fluid) {
         switch (fluid.getType()) {
-            case WATER:
-            case BUBBLE_COLUMN:
+            case WATER, BUBBLE_COLUMN -> {
                 ItemStack waterBottle = new ItemStack(Material.POTION);
                 PotionMeta meta = (PotionMeta) waterBottle.getItemMeta();
                 meta.setBasePotionType(PotionType.WATER);
                 waterBottle.setItemMeta(meta);
                 return waterBottle;
-            default:
+            }
+            default -> {
                 return new ItemStack(Material.GLASS_BOTTLE);
+            }
         }
     }
 

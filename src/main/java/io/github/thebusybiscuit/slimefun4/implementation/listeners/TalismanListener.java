@@ -63,36 +63,32 @@ public class TalismanListener implements Listener {
     public void onDamageGet(EntityDamageEvent e) {
         if (e.getEntity() instanceof Player) {
             switch (e.getCause()) {
-                case LAVA:
+                case LAVA ->
                     // Fire Resistance when hitting lava
-                    Talisman.trigger(e, SlimefunItems.TALISMAN_LAVA);
-                    break;
-                case DROWNING:
+                        Talisman.trigger(e, SlimefunItems.TALISMAN_LAVA);
+                case DROWNING ->
                     // Water Breathing when starting to drown
-                    Talisman.trigger(e, SlimefunItems.TALISMAN_WATER);
-                    break;
-                case FALL:
+                        Talisman.trigger(e, SlimefunItems.TALISMAN_WATER);
+                case FALL ->
                     // 75% chance to prevent fall damage
-                    Talisman.trigger(e, SlimefunItems.TALISMAN_ANGEL);
-                    break;
-                case FIRE:
+                        Talisman.trigger(e, SlimefunItems.TALISMAN_ANGEL);
+                case FIRE ->
                     // Fire Resistance when starting to burn
-                    Talisman.trigger(e, SlimefunItems.TALISMAN_FIRE);
-                    break;
-                case ENTITY_ATTACK:
+                        Talisman.trigger(e, SlimefunItems.TALISMAN_FIRE);
+                case ENTITY_ATTACK -> {
                     // 30% chance to get Regeneration
                     Talisman.trigger(e, SlimefunItems.TALISMAN_KNIGHT);
 
                     // Strength III when getting attacked
                     Talisman.trigger(e, SlimefunItems.TALISMAN_WARRIOR);
-                    break;
-                case PROJECTILE:
+                }
+                case PROJECTILE -> {
                     if (e instanceof EntityDamageByEntityEvent entityDamageByEntityEvent) {
                         onProjectileDamage(entityDamageByEntityEvent);
                     }
-                    break;
-                default:
-                    break;
+                }
+                default -> {
+                }
             }
         }
     }
