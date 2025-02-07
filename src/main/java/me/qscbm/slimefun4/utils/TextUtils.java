@@ -21,7 +21,7 @@ public class TextUtils {
 
         while (readPos < length) {
             if (readPos + 1 < length) {
-                if (chars[readPos] == '§' || (chars[readPos] == '&' && isColorCodeChar(chars[readPos + 1]))) {
+                if ((chars[readPos] == '§' || chars[readPos] == '&') && isColorCodeChar(chars[readPos + 1])) {
                     readPos += 2;
                     continue;
                 }
