@@ -2,6 +2,7 @@ package me.qscbm.slimefun4.utils;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import io.github.bakedlibs.dough.reflection.ReflectionGetterMethodFunction;
 import io.github.bakedlibs.dough.reflection.ReflectionUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.Bukkit;
@@ -57,7 +58,7 @@ public class NBTUtils {
             RESOLVABLE_PROFILE_GAME_PROFILE_GETTER = ReflectionUtils.getMethod(resolvableProfile, "f");
             if (RESOLVABLE_PROFILE_GAME_PROFILE_GETTER != null) {
                 RESOLVABLE_PROFILE_GAME_PROFILE_GETTER.setAccessible(true);
-                RESOLVABLE_PROFILE_GAME_PROFILE_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(RESOLVABLE_PROFILE_GAME_PROFILE_GETTER);
+                RESOLVABLE_PROFILE_GAME_PROFILE_GETTER_FUNCTION = ReflectionUtils.createGetterFunction(RESOLVABLE_PROFILE_GAME_PROFILE_GETTER);
             }
         } catch (ClassNotFoundException e) {
             resolvableProfile = null;
@@ -66,12 +67,12 @@ public class NBTUtils {
         PROPERTY_NAME_GETTER = ReflectionUtils.getMethod(Property.class, "getName");
         if (PROPERTY_NAME_GETTER != null) {
             PROPERTY_NAME_GETTER.setAccessible(true);
-            PROPERTY_NAME_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(PROPERTY_NAME_GETTER);
+            PROPERTY_NAME_GETTER_FUNCTION = ReflectionUtils.createGetterFunction(PROPERTY_NAME_GETTER);
         }
         PROPERTY_VALUE_GETTER = ReflectionUtils.getMethod(Property.class, "getValue");
         if (PROPERTY_VALUE_GETTER != null) {
             PROPERTY_VALUE_GETTER.setAccessible(true);
-            PROPERTY_VALUE_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(PROPERTY_VALUE_GETTER);
+            PROPERTY_VALUE_GETTER_FUNCTION = ReflectionUtils.createGetterFunction(PROPERTY_VALUE_GETTER);
         }
     }
 

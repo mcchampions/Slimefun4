@@ -1,5 +1,7 @@
 package me.qscbm.slimefun4.utils;
 
+import io.github.bakedlibs.dough.reflection.ReflectionGetterMethodFunction;
+import io.github.bakedlibs.dough.reflection.ReflectionUtils;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.qscbm.slimefun4.utils.compatibillty.HighVersionEventsConstructor;
@@ -49,7 +51,7 @@ public class VersionEventsUtils {
                     Class.forName("org.bukkit.inventory.InventoryView")
                             .getMethod("getTopInventory");
             TOP_INVENTORY_GETTER.setAccessible(true);
-            TOP_INVENTORY_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(TOP_INVENTORY_GETTER);
+            TOP_INVENTORY_GETTER_FUNCTION = ReflectionUtils.createGetterFunction(TOP_INVENTORY_GETTER);
         } catch (NoSuchMethodException | ClassNotFoundException ignored) {
         }
         try {
@@ -57,7 +59,7 @@ public class VersionEventsUtils {
                     Class.forName("org.bukkit.event.inventory.InventoryClickEvent")
                             .getMethod("getClickedInventory");
             CLICKED_INVENTORY_GETTER.setAccessible(true);
-            CLICKED_INVENTORY_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(CLICKED_INVENTORY_GETTER);
+            CLICKED_INVENTORY_GETTER_FUNCTION = ReflectionUtils.createGetterFunction(CLICKED_INVENTORY_GETTER);
         } catch (NoSuchMethodException | ClassNotFoundException ignored) {
         }
         try {
@@ -65,7 +67,7 @@ public class VersionEventsUtils {
                     Class.forName("org.bukkit.event.block.BlockExplodeEvent")
                             .getMethod("getExplosionResult");
             EXPLOSION_RESULT_GETTER.setAccessible(true);
-            EXPLOSION_RESULT_GETTER_FUNCTION = QsReflectionUtils.createGetterFunction(EXPLOSION_RESULT_GETTER);
+            EXPLOSION_RESULT_GETTER_FUNCTION = ReflectionUtils.createGetterFunction(EXPLOSION_RESULT_GETTER);
         } catch (NoSuchMethodException | ClassNotFoundException ignored) {
         }
         try {

@@ -1,7 +1,6 @@
 package me.qscbm.slimefun4.utils.compatibillty;
 
 import io.github.bakedlibs.dough.reflection.ReflectionUtils;
-import me.qscbm.slimefun4.utils.QsReflectionUtils;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.damage.DamageSource;
@@ -31,7 +30,7 @@ public class HighVersionEventsConstructor extends VersionEventsConstructor {
         }
         Constructor<BlockExplodeEvent> blockExplodeEventConstructor = ReflectionUtils.getConstructor(BlockExplodeEvent.class, Block.class, BlockState.class, List.class, float.class, explosionResultClass);
         try {
-            blockExplodeEventConstructorHandle = QsReflectionUtils.LOOKUP.unreflectConstructor(blockExplodeEventConstructor);
+            blockExplodeEventConstructorHandle = ReflectionUtils.LOOKUP.unreflectConstructor(blockExplodeEventConstructor);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
