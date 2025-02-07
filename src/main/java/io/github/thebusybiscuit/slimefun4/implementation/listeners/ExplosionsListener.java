@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEntityType;
+import me.qscbm.slimefun4.utils.VersionEventsUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -45,7 +47,8 @@ public class ExplosionsListener implements Listener {
           so we just ignore it.
          */
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)
-            && e.getEntityType() == EntityType.WIND_CHARGE) {
+                && (e.getEntityType() == EntityType.WIND_CHARGE
+                || e.getEntityType() == VersionedEntityType.BREEZE_WIND_CHARGE)) {
             return;
         }
 
@@ -54,6 +57,11 @@ public class ExplosionsListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockExplode(BlockExplodeEvent e) {
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)
+                && VersionEventsUtils.isTriggerBlock(e)) {
+            return;
+        }
+
         removeResistantBlocks(e.blockList().iterator());
     }
 
@@ -71,7 +79,7 @@ public class ExplosionsListener implements Listener {
 
                 BlockDataController controller = Slimefun.getDatabaseManager().getBlockDataController();
                 if (!(item instanceof WitherProof)
-                    && !item.callItemHandler(BlockBreakHandler.class, handler -> {
+                        && !item.callItemHandler(BlockBreakHandler.class, handler -> {
                     if (blockData.isDataLoaded()) {
                         handleExplosion(handler, block);
                     } else {

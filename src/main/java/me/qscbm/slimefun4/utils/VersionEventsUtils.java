@@ -21,12 +21,19 @@ import java.util.List;
  * 这是个临时适配的工具类
  * 如果上游更新相关的工具类会迁移保证适配附属
  */
+@SuppressWarnings({"JavaReflectionMemberAccess", "FieldCanBeLocal"})
 public class VersionEventsUtils {
     public static VersionEventsConstructor versionEventsConstructor;
 
+    private static Method TOP_INVENTORY_GETTER;
 
-    private static Method GET_TOP_INVENTORY;
-    private static Method GET_CLICKED_INVENTORY;
+    private static Method CLICKED_INVENTORY_GETTER;
+
+    private static Method EXPLOSION_RESULT_GETTER;
+
+    private static Class<?> EXPLOSION_RESULT_CLASS;
+
+    private static Enum<?> TRIGGER_BLOCK_ENUM;
 
     static {
         if (Slimefun.getMinecraftVersion()
@@ -36,14 +43,36 @@ public class VersionEventsUtils {
             versionEventsConstructor = new VersionEventsConstructor();
         }
         try {
-            GET_TOP_INVENTORY =
-                    Class.forName("org.bukkit.inventory.InventoryView").getMethod("getTopInventory");
-            GET_TOP_INVENTORY.setAccessible(true);
-
-            GET_CLICKED_INVENTORY = Class.forName("org.bukkit.event.inventory.InventoryClickEvent")
-                    .getMethod("getClickedInventory");
-            GET_CLICKED_INVENTORY.setAccessible(true);
+            TOP_INVENTORY_GETTER =
+                    Class.forName("org.bukkit.inventory.InventoryView")
+                            .getMethod("getTopInventory");
+            TOP_INVENTORY_GETTER.setAccessible(true);
         } catch (NoSuchMethodException | ClassNotFoundException ignored) {}
+        try {
+            CLICKED_INVENTORY_GETTER =
+                    Class.forName("org.bukkit.event.inventory.InventoryClickEvent")
+                            .getMethod("getClickedInventory");
+            CLICKED_INVENTORY_GETTER.setAccessible(true);
+        } catch (NoSuchMethodException | ClassNotFoundException ignored) {}
+        try {
+            EXPLOSION_RESULT_GETTER =
+                    Class.forName("org.bukkit.event.block.BlockExplodeEvent")
+                            .getMethod("getExplosionResult");
+            EXPLOSION_RESULT_GETTER.setAccessible(true);
+        } catch (NoSuchMethodException | ClassNotFoundException ignored) {}
+        try {
+            EXPLOSION_RESULT_CLASS = Class.forName("org.bukkit.ExplosionResult");
+            Method method = EXPLOSION_RESULT_CLASS.getMethod("values");
+            method.setAccessible(true);
+            Enum<?>[] enums = (Enum<?>[]) method.invoke(null);
+            for (Enum<?> e : enums) {
+                if (e.name().equals("TRIGGER_BLOCK")) {
+                    TRIGGER_BLOCK_ENUM = e;
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                 IllegalAccessException ignored) {}
     }
 
     public static EntityDamageByEntityEvent newEntityDamageByEntityEvent(Entity damager, Entity damagee, EntityDamageEvent.DamageCause cause, String type, double damage) {
@@ -59,7 +88,7 @@ public class VersionEventsUtils {
             return event.getView().getTopInventory();
         }
         try {
-            return (Inventory) GET_TOP_INVENTORY.invoke(event.getView());
+            return (Inventory) TOP_INVENTORY_GETTER.invoke(event.getView());
         } catch (Exception e) {
             return event.getView().getTopInventory();
         }
@@ -70,9 +99,18 @@ public class VersionEventsUtils {
             return event.getClickedInventory();
         }
         try {
-            return (Inventory) GET_CLICKED_INVENTORY.invoke(event);
+            return (Inventory) CLICKED_INVENTORY_GETTER.invoke(event);
         } catch (Exception e) {
             return event.getClickedInventory();
+        }
+    }
+
+    public static boolean isTriggerBlock(BlockExplodeEvent e) {
+        try {
+            Object result = EXPLOSION_RESULT_GETTER.invoke(e);
+            return result == TRIGGER_BLOCK_ENUM;
+        } catch (IllegalAccessException | InvocationTargetException ex) {
+            return true;
         }
     }
 }

@@ -232,9 +232,9 @@ public class BlockDataController extends ADataController {
         UUID uuid = UUID.randomUUID();
         SlimefunUniversalBlockData uniData = new SlimefunUniversalBlockData(uuid, sfId, l);
 
-        uniData.setIsDataLoaded(true);
-
         uniData.initLastPresent();
+
+        uniData.setIsDataLoaded(true);
 
         loadedUniversalData.put(uuid, uniData);
 
@@ -507,12 +507,16 @@ public class BlockDataController extends ADataController {
      * @param l Slimefun block location {@link Location}
      */
     public Optional<SlimefunUniversalBlockData> getUniversalBlockDataFromCache(Location l) {
-        return loadedUniversalData.values().stream()
-                .filter(uniData -> uniData instanceof SlimefunUniversalBlockData ubd
-                                   && ubd.getLastPresent() != null
-                                   && l.equals(ubd.getLastPresent().toLocation()))
-                .map(data -> (SlimefunUniversalBlockData) data)
-                .findFirst();
+        for (SlimefunUniversalData uniData : loadedUniversalData.values()) {
+            if (uniData instanceof SlimefunUniversalBlockData ubd
+                    && ubd.isDataLoaded()
+                    && ubd.getLastPresent() != null
+                    && l.equals(ubd.getLastPresent().toLocation())) {
+                return Optional.of(ubd);
+            }
+        }
+
+        return Optional.empty();
     }
 
     /**
@@ -697,7 +701,7 @@ public class BlockDataController extends ADataController {
                     ? new SlimefunUniversalBlockData(uuid, sfId)
                     : new SlimefunUniversalData(uuid, sfId);
 
-            traits.forEach(t -> uniData.getTraits().add(t));
+            traits.forEach(uniData::addTrait);
 
             scheduleReadTask(() -> loadUniversalData(uniData));
         });
@@ -826,9 +830,9 @@ public class BlockDataController extends ADataController {
                             DataUtils.blockDataDebase64(recordSet.get(FieldKey.DATA_VALUE)),
                             false));
 
-            uniData.setIsDataLoaded(true);
-
             loadedUniversalData.putIfAbsent(uniData.getUUID(), uniData);
+
+            uniData.setIsDataLoaded(true);
 
             if (uniData.hasTrait(UniversalDataTrait.INVENTORY)) {
                 UniversalMenuPreset menuPreset = UniversalMenuPreset.getPreset(uniData.getSfId());

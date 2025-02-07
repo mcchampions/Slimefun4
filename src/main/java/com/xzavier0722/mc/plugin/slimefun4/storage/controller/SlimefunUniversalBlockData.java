@@ -40,6 +40,10 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
     }
 
     public BlockPosition getLastPresent() {
+        if (!isDataLoaded()) {
+            return null;
+        }
+
         String data = getData(UniversalDataTrait.BLOCK.getReservedKey());
 
         if (lastPresent != null) {
@@ -62,6 +66,14 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
             }
 
             // 修复因使用不一致的文本转换导致的位置无法解析
+            oldLocationFix(data);
+        }
+
+        return lastPresent;
+    }
+
+    private void oldLocationFix(String data) {
+        try {
             String[] lArr = data.split(",");
             BlockPosition bp = new BlockPosition(
                     Bukkit.getWorld(lArr[0].replace("[world=", "")),
@@ -71,9 +83,9 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
 
             setTraitData(UniversalDataTrait.BLOCK, LocationUtils.getLocKey(bp.toLocation()));
 
-            return bp;
+            lastPresent = bp;
+        } catch (Exception x) {
+            throw new RuntimeException("Unable to fix location " + data + ", it might be broken", x);
         }
-
-        return lastPresent;
     }
 }

@@ -79,6 +79,10 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
         return UUID.fromString(getKey());
     }
 
+    public void addTrait(UniversalDataTrait trait) {
+        traits.add(trait);
+    }
+
     public boolean hasTrait(UniversalDataTrait trait) {
         return traits.contains(trait);
     }

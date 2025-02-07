@@ -14,6 +14,7 @@ public class VersionUtils {
     private static final int MINECRAFT_PATCH_VERSION;
     private static final int MINECRAFT_PRE_RELEASE_VERSION;
     private static final int MINECRAFT_RELEASE_CANDIDATE_VERSION;
+
     static {
         Matcher matcher = VERSION_PATTERN.matcher(BUKKIT_VERSION);
         int version = 0;
