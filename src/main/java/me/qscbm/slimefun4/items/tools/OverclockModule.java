@@ -1,6 +1,7 @@
 package me.qscbm.slimefun4.items.tools;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -31,8 +32,7 @@ public class OverclockModule extends SimpleSlimefunItem<ItemUseHandler> {
                 return;
             }
             Block block = blockOptional.get();
-            SlimefunBlockData blockData = Slimefun.getDatabaseManager()
-                    .getBlockDataController().getBlockData(block.getLocation());
+            SlimefunBlockData blockData = StorageCacheUtils.getBlock(block.getLocation());
             SlimefunItem item = sfBlock.get();
             Player player = e.getPlayer();
             if (item instanceof Speedable machine) {
