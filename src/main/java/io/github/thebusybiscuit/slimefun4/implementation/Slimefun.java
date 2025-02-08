@@ -46,7 +46,7 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
-import me.qscbm.slimefun4.helper.ItemHelper;
+import me.qscbm.slimefun4.utils.QsItemUtils;
 import me.qscbm.slimefun4.services.LanguageService;
 import me.qscbm.slimefun4.tasks.CargoTickerTask;
 import me.qscbm.slimefun4.utils.VersionUtils;
@@ -319,9 +319,9 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         logger.log(Level.INFO, "正在加载第三方插件支持...");
         integrations.start();
         logger.log(Level.INFO, "正在映射原版物品名称...");
-        ItemHelper.load();
-        logger.log(Level.INFO, "共映射 {0} 个原版物品名称:", ItemHelper.ITEM_NAME_MAPPER.keySet().size());
-        logger.log(Level.INFO, ItemHelper.getItemName(new ItemStack(Material.GRASS_BLOCK)) + "...");
+        QsItemUtils.load();
+        logger.log(Level.INFO, "共映射 {0} 个原版物品名称:", QsItemUtils.ITEM_NAME_MAPPER.keySet().size());
+        logger.log(Level.INFO, QsItemUtils.getItemName(new ItemStack(Material.GRASS_BLOCK)) + "...");
 
         // Hooray!
         logger.log(Level.INFO, "Slimefun 完成加载, 耗时 {0}", getStartupTime(timestamp));

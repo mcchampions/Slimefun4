@@ -1,10 +1,9 @@
-package me.qscbm.slimefun4.helper;
+package me.qscbm.slimefun4.utils;
 
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
-import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -14,7 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-public class ItemHelper {
+public class QsItemUtils {
     public static final Map<String, String> ITEM_NAME_MAPPER = new HashMap<>();
 
     public static void load() {

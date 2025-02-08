@@ -6,7 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import me.qscbm.slimefun4.helper.ItemHelper;
+import me.qscbm.slimefun4.utils.QsItemUtils;
 import net.guizhanss.slimefun4.utils.ChatUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
@@ -124,7 +124,7 @@ public class CalcCommand extends SubCommand {
                 }
                 Slimefun.getLocalization().sendMessage(
                         sender, "commands.calc.amount-string", (m) ->
-                                m.replace("%1", ItemHelper.getItemName(entry.getKey()))
+                                m.replace("%1", QsItemUtils.getItemName(entry.getKey()))
                                         .replace("%2", parsedAmount)
                 );
             }
