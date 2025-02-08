@@ -28,88 +28,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuotedStringTokenizer {
-    private final String string;
+    private final char[] chars;
+    private final int length;
     private int cursor;
 
     public QuotedStringTokenizer(String string) {
-        this.string = string;
+        this.chars = string.toCharArray();
+        this.length = chars.length;
     }
 
-    public List<String> tokenize(boolean omitEmptyStringAtEnd) {
-        List<String> output = new ArrayList<>();
-        while (hasNext()) {
+    public List<String> tokenize() {
+        final List<String> output = new ArrayList<>(5);
+        while (cursor < length) {
             output.add(readString());
-        }
-        if (!omitEmptyStringAtEnd && this.cursor > 0 && isWhitespace(peek(-1))) {
-            output.add("");
         }
         return output;
     }
 
-    private static boolean isQuoteCharacter(char c) {
-        // return c == '"' || c == '“' || c == '”';
-        return c == '\u0022' || c == '\u201C' || c == '\u201D';
-    }
-
-    private static boolean isWhitespace(char c) {
-        return c == ' ';
-    }
-
     private String readString() {
-        if (isQuoteCharacter(peek())) {
-            return readQuotedString();
-        } else {
-            return readUnquotedString();
-        }
+        final char c = chars[cursor];
+        return (c == '"') ? readQuotedString() : readUnquotedString();
     }
 
     private String readUnquotedString() {
-        final int start = this.cursor;
-        while (hasNext() && !isWhitespace(peek())) {
-            skip();
+        final int start = cursor;
+        while (cursor < length && chars[cursor] != ' ') {
+            cursor++;
         }
-        final int end = this.cursor;
+        final int end = cursor;
 
-        if (hasNext()) {
-            skip(); // skip whitespace
+        if (cursor < length) {
+            cursor++;
         }
 
-        return this.string.substring(start, end);
+        return new String(chars, start, end - start);
     }
 
     private String readQuotedString() {
-        skip(); // skip start quote
+        cursor++;
 
-        final int start = this.cursor;
-        while (hasNext() && !isQuoteCharacter(peek())) {
-            skip();
+        final int start = cursor;
+        while (cursor < length && chars[cursor] != '"') {
+            cursor++;
         }
-        final int end = this.cursor;
+        final int end = cursor;
 
-        if (hasNext()) {
-            skip(); // skip end quote
+        if (cursor < length) {
+            cursor++;
+            if (cursor < length && chars[cursor] == ' ') {
+                cursor++;
+            }
         }
-        if (hasNext() && isWhitespace(peek())) {
-            skip(); // skip whitespace
-        }
 
-        return this.string.substring(start, end);
+        return new String(chars, start, end - start);
     }
-
-    private boolean hasNext() {
-        return this.cursor + 1 <= this.string.length();
-    }
-
-    private char peek() {
-        return this.string.charAt(this.cursor);
-    }
-
-    private char peek(int offset) {
-        return this.string.charAt(this.cursor + offset);
-    }
-
-    private void skip() {
-        this.cursor++;
-    }
-
 }

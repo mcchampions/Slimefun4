@@ -45,7 +45,7 @@ public class AsyncTabCompleteListener implements Listener {
                 return;
             }
         }
-        List<String> args = new QuotedStringTokenizer(buffer.substring(firstPlace + 1)).tokenize(false);
+        List<String> args = new QuotedStringTokenizer(buffer.substring(firstPlace + 1)).tokenize();
         List<String> suggests = SlimefunTabCompleter.onTabComplete(args);
         e.setCompletions(suggests);
         e.setHandled(true);
