@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.cargo.CargoNode;
@@ -57,6 +58,6 @@ public class CargoNodeListener implements Listener {
 
     public static boolean isContainer(Block block) {
         return block.getState() instanceof Container
-                || Slimefun.getDatabaseManager().getBlockDataController().getBlockData(block.getLocation()) != null;
+                || StorageCacheUtils.getBlock(block.getLocation()) != null;
     }
 }
