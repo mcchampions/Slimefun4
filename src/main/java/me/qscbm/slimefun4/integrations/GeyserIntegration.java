@@ -31,7 +31,9 @@ public class GeyserIntegration implements EventRegistrar {
     private List<String> skullsHash = new ArrayList<>();
 
     public void register() {
-        GeyserApi.api().eventBus().register(this, this);
+        try {
+            GeyserApi.api().eventBus().register(this, this);
+        } catch (RuntimeException ignored) {}
         Slimefun.runAsync(() -> {
             long start = System.nanoTime();
             Slimefun.logger().info("开始加载自定义粘液科技Geyser支持");
