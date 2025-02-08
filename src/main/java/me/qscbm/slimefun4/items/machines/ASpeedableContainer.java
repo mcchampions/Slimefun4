@@ -88,8 +88,7 @@ public abstract class ASpeedableContainer extends AContainer implements Speedabl
 
     @Override
     protected boolean takeCharge(Location l) {
-        return takeCharge(Slimefun.getDatabaseManager()
-                .getBlockDataController().getBlockData(l));
+        return takeCharge(StorageCacheUtils.getBlock(l));
     }
 
     public int getEnergyConsumption(SlimefunBlockData data) {
