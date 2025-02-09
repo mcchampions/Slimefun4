@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AsyncTabCompleteListener implements Listener {
-    public static final Pattern COMMAND_PREFIX = Pattern.compile("slimefun:");
 
     @EventHandler(ignoreCancelled = true)
     public static void onAsyncTabCompleteEvent(AsyncTabCompleteEvent e) {
@@ -33,14 +32,11 @@ public class AsyncTabCompleteListener implements Listener {
         }
         String commandLabel = buffer.substring(0, firstPlace).toLowerCase();
         if (!SlimefunCommand.COMMAND_ALIASES.contains(commandLabel) && !"slimefun".equals(commandLabel)) {
-            Matcher matcher = COMMAND_PREFIX.matcher(commandLabel);
-            if (!matcher.find()) {
+            int index = commandLabel.indexOf("slimefun:");
+            if (index != 0) {
                 return;
             }
-            if (matcher.start() != 0) {
-                return;
-            }
-            commandLabel = commandLabel.substring(matcher.end());
+            commandLabel = commandLabel.substring(9);
             if (!SlimefunCommand.COMMAND_ALIASES.contains(commandLabel) && !"slimefun".equals(commandLabel)) {
                 return;
             }
