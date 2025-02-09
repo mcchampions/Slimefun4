@@ -9,7 +9,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,7 +20,7 @@ public class QsItemUtils {
         Config config = new Config(Slimefun.instance(), "vanilla_items.yml");
         Set<String> keys = config.getKeys();
         for (String key : keys) {
-            ITEM_NAME_MAPPER.put(key.toLowerCase(), config.getString(key));
+            ITEM_NAME_MAPPER.put(key, config.getString(key));
         }
     }
 
@@ -36,11 +35,11 @@ public class QsItemUtils {
             return TextUtils.toPlainText(meta.getDisplayName());
         }
 
-        String type = wrapper.getType().name().toLowerCase(Locale.ROOT);
-        if (type.contains("potion") || "tipped_arrow".equals(type)) {
+        String type = wrapper.getType().name();
+        if (type.contains("POTION") || "TIPPED_ARROW".equals(type)) {
             //noinspection deprecation
             String potion = ((PotionMeta) (meta == null ? stack.getItemMeta() : meta))
-                    .getBasePotionData().getType().toString().toLowerCase();
+                    .getBasePotionData().getType().toString();
             if (!potion.isEmpty()) {
                 type = potion + "_" + type;
             }
