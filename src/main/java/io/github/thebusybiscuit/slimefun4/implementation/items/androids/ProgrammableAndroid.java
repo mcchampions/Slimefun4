@@ -285,7 +285,7 @@ public class ProgrammableAndroid extends SlimefunItem
             return false;
         });
 
-        String[] script = CommonPatterns.DASH.split(sourceCode);
+        String[] script = sourceCode.split("-");
 
         for (int i = 1; i < script.length; i++) {
             int index = i;
@@ -547,7 +547,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.addItem(1, new CustomItemStack(HeadTexture.SCRIPT_FORWARD.getAsItemStack(), "&2> 编辑脚本", "", "&a修改你现有的脚本"));
         menu.addMenuClickHandler(1, (pl, slot, item, action) -> {
             String script = getScript(uniData);
-            if (CommonPatterns.DASH.split(script).length <= MAX_SCRIPT_LENGTH) {
+            if (script.split("-").length <= MAX_SCRIPT_LENGTH) {
                 openScript(pl, uniData, script);
             } else {
                 pl.closeInventory();
@@ -743,7 +743,7 @@ public class ProgrammableAndroid extends SlimefunItem
                 consumeFuel(b, menu);
             } else {
                 String code = data.getData("script");
-                String[] script = CommonPatterns.DASH.split(code == null ? DEFAULT_SCRIPT : code);
+                String[] script = (code == null ? DEFAULT_SCRIPT : code).split("-");
 
                 String indexData = data.getData("index");
                 int index = (indexData == null ? 0 : Integer.parseInt(indexData)) + 1;

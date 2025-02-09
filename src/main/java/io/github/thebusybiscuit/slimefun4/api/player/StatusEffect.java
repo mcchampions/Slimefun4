@@ -86,7 +86,7 @@ public record StatusEffect(NamespacedKey key) implements Keyed {
         Optional<String> optional = PersistentDataAPI.getOptionalString(p, getKey());
 
         if (optional.isPresent()) {
-            String[] data = CommonPatterns.SEMICOLON.split(optional.get());
+            String[] data = optional.get().split(";");
             long timestamp = Long.parseLong(data[1]);
 
             if (timestamp == 0 || timestamp >= System.currentTimeMillis()) {
@@ -112,7 +112,7 @@ public record StatusEffect(NamespacedKey key) implements Keyed {
         Optional<String> optional = PersistentDataAPI.getOptionalString(p, getKey());
 
         if (optional.isPresent()) {
-            String[] data = CommonPatterns.SEMICOLON.split(optional.get());
+            String[] data = optional.get().split(";");
             return OptionalInt.of(Integer.parseInt(data[0]));
         } else {
             return OptionalInt.empty();

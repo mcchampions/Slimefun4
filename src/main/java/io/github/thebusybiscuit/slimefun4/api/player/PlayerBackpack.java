@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 
 import lombok.Getter;
 import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import me.qscbm.slimefun4.utils.TextUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -94,9 +95,9 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         String uuid = "";
         for (String line : im.getLore()) {
             if (line.startsWith("§7ID: ") && line.indexOf('#') != -1) {
-                String[] splitLine = CommonPatterns.HASH.split(line);
+                String[] splitLine = line.split("#");
 
-                if (CommonPatterns.NUMERIC.matcher(splitLine[1]).matches()) {
+                if (TextUtils.hasNumber(splitLine[1])) {
                     uuid = splitLine[0].replace("§7ID: ", "");
                     id = OptionalInt.of(Integer.parseInt(splitLine[1]));
                 }

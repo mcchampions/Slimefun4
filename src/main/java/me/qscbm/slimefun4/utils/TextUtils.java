@@ -56,7 +56,7 @@ public class TextUtils {
     public static List<String> split(String str, String character) {
         int off = 0;
         int next;
-        List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>(2);
         while ((next = str.indexOf(character, off)) != -1) {
             list.add(str.substring(off, next));
             off = next + 1;
@@ -96,5 +96,35 @@ public class TextUtils {
             serializer = LegacyComponentSerializer.legacyAmpersand();
         }
         return serializer.deserialize(text);
+    }
+
+    public static boolean isNumber(String text) {
+        char[] chars = text.toCharArray();
+        for (char c : chars) {
+            switch (c) {
+                case '1', '2', '3', '4', '5',
+                        '6', '7', '8', '9', '0' -> {
+                }
+                default -> {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean hasNumber(String text) {
+        char[] chars = text.toCharArray();
+        for (char c : chars) {
+            switch (c) {
+                case '1', '2', '3', '4', '5',
+                        '6', '7', '8', '9', '0' -> {
+                    return true;
+                }
+                default -> {
+                }
+            }
+        }
+        return false;
     }
 }

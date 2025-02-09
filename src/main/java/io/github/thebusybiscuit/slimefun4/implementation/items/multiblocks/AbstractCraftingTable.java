@@ -127,7 +127,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
         if (backpack != null) {
             for (String line : backpack.getItemMeta().getLore()) {
                 if (line.startsWith("§7ID: ") && line.contains("#")) {
-                    return Optional.of(CommonPatterns.HASH.split(line.replace("§7ID: ", ""))[1]);
+                    return Optional.of(line.replace("§7ID: ", "").split("#")[1]);
                 }
             }
         }

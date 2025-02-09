@@ -19,10 +19,18 @@ public final class PatternUtils {
 
     public static final Pattern YAML_ENTRY = Pattern.compile("[a-z0-9_-]+:.*");
 
+    public static final String MINECRAFT_NAMESPACEDKEY_PREFIX = "minecraft:";
+
     public static final Pattern MINECRAFT_NAMESPACEDKEY = Pattern.compile("minecraft:[a-z0-9/._-]+");
 
+    public static final String MINECRAFT_TAG_PREFIX = "#minecraft:";
+
     public static final Pattern MINECRAFT_TAG = Pattern.compile("#minecraft:[a-z_]+");
+
+    public static final String SLIMEFUN_TAG_PREFIX = "#slimefun:";
     public static final Pattern SLIMEFUN_TAG = Pattern.compile("#slimefun:[a-z_]+");
 
-    public static final Pattern USES_LEFT_LORE = Pattern.compile("还可以使用");
+    public static final String USES_LEFT_LORE_STR = "还可以使用";
+
+    public static final Pattern USES_LEFT_LORE = Pattern.compile(USES_LEFT_LORE_STR);
 }

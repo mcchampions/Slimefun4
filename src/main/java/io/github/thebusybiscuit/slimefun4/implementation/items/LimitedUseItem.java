@@ -126,7 +126,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
             // find the correct line
             for (int i = 0; i < lores.size(); i++) {
                 if (lores.get(i) instanceof TextComponent component) {
-                    if (PatternUtils.USES_LEFT_LORE.matcher(component.content()).matches()) {
+                    if (component.content().contains(PatternUtils.USES_LEFT_LORE_STR)) {
                         lores.set(i, newLine);
                         meta.lore(lores);
                         item.setItemMeta(meta);

@@ -133,7 +133,7 @@ public class TagParser implements Keyed {
     private void parsePrimitiveValue(
             String value, Set<Material> materials, Set<Tag<Material>> tags, boolean throwException)
             throws TagMisconfigurationException {
-        if (PatternUtils.MINECRAFT_NAMESPACEDKEY.matcher(value).matches()) {
+        if (value.indexOf(PatternUtils.MINECRAFT_NAMESPACEDKEY_PREFIX) == 0) {
             // Match the NamespacedKey against Materials
             Material material = Material.matchMaterial(value);
 
@@ -143,9 +143,9 @@ public class TagParser implements Keyed {
             } else if (throwException) {
                 throw new TagMisconfigurationException(key, "Minecraft Material '" + value + "' seems to not exist!");
             }
-        } else if (PatternUtils.MINECRAFT_TAG.matcher(value).matches()) {
+        } else if (value.contains(PatternUtils.MINECRAFT_TAG_PREFIX)) {
             // Get the actual Key portion and match it to item and block tags.
-            String keyValue = CommonPatterns.COLON.split(value)[1];
+            String keyValue = value.split(":")[1];
             NamespacedKey namespacedKey = NamespacedKey.minecraft(keyValue);
             Tag<Material> itemsTag = Bukkit.getTag(Tag.REGISTRY_ITEMS, namespacedKey, Material.class);
             Tag<Material> blocksTag = Bukkit.getTag(Tag.REGISTRY_BLOCKS, namespacedKey, Material.class);
@@ -160,9 +160,9 @@ public class TagParser implements Keyed {
                 // If both fail, then the tag does not exist.
                 throw new TagMisconfigurationException(key, "There is no '" + value + "' tag in Minecraft.");
             }
-        } else if (PatternUtils.SLIMEFUN_TAG.matcher(value).matches()) {
+        } else if (value.contains(PatternUtils.SLIMEFUN_TAG_PREFIX)) {
             // Get a SlimefunTag enum value for the given key
-            String keyValue = CommonPatterns.COLON.split(value)[1].toUpperCase(Locale.ROOT);
+            String keyValue = value.split(":")[1];
             SlimefunTag tag = SlimefunTag.getTag(keyValue);
 
             if (tag != null) {

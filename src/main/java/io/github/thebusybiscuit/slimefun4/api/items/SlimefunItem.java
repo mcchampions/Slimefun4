@@ -186,7 +186,7 @@ public class SlimefunItem implements Placeable {
         this.recipeType = recipeType;
         this.recipe = recipe;
         this.recipeOutput = recipeOutput;
-        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ", "_");
+        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replace(" ", "_");
     }
 
     // Previously deprecated constructor, now only for internal purposes
@@ -197,7 +197,7 @@ public class SlimefunItem implements Placeable {
         this.recipeType = recipeType;
         this.recipe = recipe;
         //noinspection DynamicRegexReplaceableByCompiledPattern
-        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replaceAll(" ", "_");
+        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replace(" ", "_");
     }
 
     /**
@@ -479,9 +479,9 @@ public class SlimefunItem implements Placeable {
         // Check for an illegal stack size
         if (itemStackTemplate.getAmount() != 1) {
             warn("无效物品数量: "
-                 + itemStackTemplate.getAmount()
-                 + "  "
-                 + addon.getName());
+                    + itemStackTemplate.getAmount()
+                    + "  "
+                    + addon.getName());
 
         }
 
@@ -830,13 +830,13 @@ public class SlimefunItem implements Placeable {
             return getClass().getSimpleName() + " - '" + id + "'";
         } else {
             return getClass().getSimpleName()
-                   + " - '"
-                   + id
-                   + "' ("
-                   + addon.getName()
-                   + " v"
-                   + addon.getPluginVersion()
-                   + ')';
+                    + " - '"
+                    + id
+                    + "' ("
+                    + addon.getName()
+                    + " v"
+                    + addon.getPluginVersion()
+                    + ')';
         }
     }
 

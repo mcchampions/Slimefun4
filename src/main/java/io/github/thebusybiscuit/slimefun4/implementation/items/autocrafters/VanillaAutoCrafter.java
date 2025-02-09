@@ -59,7 +59,7 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter implements NotDiagon
             String value = container.get(recipeStorageKey, PersistentDataType.STRING);
 
             if (value != null) {
-                String[] values = CommonPatterns.COLON.split(value);
+                String[] values = value.split(":");
 
                 /*
                  * Normally this constructor should not be used.

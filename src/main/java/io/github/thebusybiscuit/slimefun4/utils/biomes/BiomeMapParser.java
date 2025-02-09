@@ -137,8 +137,8 @@ public class BiomeMapParser<T> {
             if (element.isJsonPrimitive() && element.getAsJsonPrimitive().isString()) {
                 String value = element.getAsString();
 
-                if (PatternUtils.MINECRAFT_NAMESPACEDKEY.matcher(value).matches()) {
-                    String formattedValue = CommonPatterns.COLON.split(value)[1].toUpperCase(Locale.ROOT);
+                if (value.contains(PatternUtils.MINECRAFT_NAMESPACEDKEY_PREFIX)) {
+                    String formattedValue = (value.split(":"))[1].toUpperCase(Locale.ROOT);
 
                     try {
                         Biome biome = Biome.valueOf(formattedValue);
