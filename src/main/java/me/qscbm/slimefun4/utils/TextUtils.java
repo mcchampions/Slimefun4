@@ -56,7 +56,7 @@ public class TextUtils {
     public static List<String> split(String str, String character) {
         int off = 0;
         int next;
-        List<String> list = new ArrayList<>(2);
+        List<String> list = new ArrayList<>(3);
         while ((next = str.indexOf(character, off)) != -1) {
             list.add(str.substring(off, next));
             off = next + 1;
