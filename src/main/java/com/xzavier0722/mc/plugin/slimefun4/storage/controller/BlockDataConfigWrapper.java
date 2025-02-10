@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.Nullable;
+
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,10 +17,12 @@ public class BlockDataConfigWrapper extends Config {
     }
 
     @Override
-    public void save() {}
+    public void save() {
+    }
 
     @Override
-    public void createFile() {}
+    public void createFile() {
+    }
 
     @Override
     public String getString(String path) {
@@ -46,7 +49,8 @@ public class BlockDataConfigWrapper extends Config {
         return getString(path) != null;
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public Object getValue(String path) {
         return getString(path);
     }
@@ -58,23 +62,26 @@ public class BlockDataConfigWrapper extends Config {
 
     @Override
     public void setDefaultValue(String path, @Nullable Object value) {
-        if (!(value instanceof String str)) {
-            throw new NotImplementedException();
+        if (value == null) {
+            blockData.setData(path, null);
+            return;
         }
         if (getString(path) == null) {
-            blockData.setData(path, str);
+            blockData.setData(path, value.toString());
         }
     }
 
     @Override
-    public void setValue(String path, Object value) {
-        if (!(value instanceof String str)) {
-            throw new NotImplementedException();
+    public void setValue(String path, @Nullable Object value) {
+        if (value == null) {
+            blockData.removeData(path);
+            return;
         }
-        blockData.setData(path, str);
+        blockData.setData(path, value.toString());
     }
 
     @Override
-    public void save(File file) {}
+    public void save(File file) {
+    }
 
 }
