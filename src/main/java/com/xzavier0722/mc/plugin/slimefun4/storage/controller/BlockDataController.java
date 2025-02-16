@@ -232,9 +232,9 @@ public class BlockDataController extends ADataController {
         UUID uuid = UUID.randomUUID();
         SlimefunUniversalBlockData uniData = new SlimefunUniversalBlockData(uuid, sfId, l);
 
-        uniData.initLastPresent();
-
         uniData.setIsDataLoaded(true);
+
+        uniData.initLastPresent();
 
         loadedUniversalData.put(uuid, uniData);
 
