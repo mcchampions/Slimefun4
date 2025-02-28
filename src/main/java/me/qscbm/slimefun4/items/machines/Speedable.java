@@ -2,7 +2,6 @@ package me.qscbm.slimefun4.items.machines;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.block.Block;
 
 public interface Speedable {

@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.api.player;
 
-import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
 import java.util.Optional;
 import java.util.OptionalInt;
