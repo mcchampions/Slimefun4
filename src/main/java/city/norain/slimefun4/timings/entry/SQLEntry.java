@@ -10,7 +10,7 @@ public class SQLEntry implements TimingEntry {
 
     @Override
     public String getIdentifier() {
-        return sql.isBlank() ? null : sql.split(" ")[0];
+        return sql.split(" ")[0];
     }
 
     @Override

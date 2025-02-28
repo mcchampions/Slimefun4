@@ -688,7 +688,7 @@ public class BlockDataController extends ADataController {
             String traitsData = data.get(FieldKey.UNIVERSAL_TRAITS);
             Set<UniversalDataTrait> traits = EnumSet.noneOf(UniversalDataTrait.class);
 
-            if (traitsData != null && !traitsData.isBlank()) {
+            if (traitsData != null) {
                 for (String traitStr : traitsData.split(",")) {
                     try {
                         traits.add(UniversalDataTrait.valueOf(traitStr.toUpperCase()));

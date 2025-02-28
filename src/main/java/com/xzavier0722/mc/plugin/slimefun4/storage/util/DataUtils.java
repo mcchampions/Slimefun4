@@ -27,7 +27,7 @@ public class DataUtils {
     }
 
     public static ItemStack string2ItemStack(String base64Str) {
-        if (base64Str == null || base64Str.isEmpty() || base64Str.isBlank()) {
+        if (base64Str == null || base64Str.isEmpty()) {
             return null;
         }
 

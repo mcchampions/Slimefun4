@@ -204,7 +204,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         }
         meta.lore(lore);
 
-        if (bp.name.isEmpty() || bp.name.isBlank()) {
+        if (bp.name.isEmpty()) {
             return;
         }
         meta.setDisplayName(ChatColors.color(bp.name));
