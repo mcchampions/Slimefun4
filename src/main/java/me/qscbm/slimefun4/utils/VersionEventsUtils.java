@@ -76,7 +76,7 @@ public class VersionEventsUtils {
             method.setAccessible(true);
             Enum<?>[] enums = (Enum<?>[]) method.invoke(null);
             for (Enum<?> e : enums) {
-                if (e.name().equals("TRIGGER_BLOCK")) {
+                if ("TRIGGER_BLOCK".equals(e.name())) {
                     TRIGGER_BLOCK_ENUM = e;
                     break;
                 }
