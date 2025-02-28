@@ -196,7 +196,6 @@ public class SlimefunItem implements Placeable {
         this.id = id;
         this.recipeType = recipeType;
         this.recipe = recipe;
-        //noinspection DynamicRegexReplaceableByCompiledPattern
         normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replace(" ", "_");
     }
 
