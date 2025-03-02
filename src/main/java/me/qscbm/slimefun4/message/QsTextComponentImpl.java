@@ -37,6 +37,29 @@ public class QsTextComponentImpl implements TextComponent {
         this.content = content;
     }
 
+    public QsTextComponentImpl(List<Component> components, Style style, String content) {
+        this.children = components;
+        this.style = style;
+        this.content = content;
+    }
+
+    public QsTextComponentImpl(List<Component> components, String content) {
+        this.children = components;
+        this.style = Style.empty();
+        this.content = content;
+    }
+
+    public QsTextComponentImpl(Style style, String content) {
+        this.children = Collections.emptyList();
+        this.style = style;
+        this.content = content;
+    }
+
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
+    public QsTextComponentImpl clone() {
+        return new QsTextComponentImpl(this.children, this.style, this.content);
+    }
+
     @Override
     public String content() {
         return this.content;
@@ -52,6 +75,30 @@ public class QsTextComponentImpl implements TextComponent {
         children.add(component);
         return this;
     }
+
+    public QsTextComponentImpl append(final ComponentLike like, final TextColor defaultColor) {
+        Component component = like.asComponent();
+        if (component == Component.empty()) return this;
+        if (component.color() == null) {
+            component = component.color(defaultColor);
+        }
+        if (children.equals(Collections.emptyList())) {
+            children = new ArrayList<>();
+        }
+        children.add(component);
+        return this;
+    }
+
+    @Override
+    public QsTextComponentImpl append(final Component component) {
+        if (component == Component.empty()) return this;
+        if (children.equals(Collections.emptyList())) {
+            children = new ArrayList<>();
+        }
+        children.add(component);
+        return this;
+    }
+
 
     public QsTextComponentImpl append(final QsTextComponentImpl like) {
         if (children.equals(Collections.emptyList())) {
@@ -95,7 +142,7 @@ public class QsTextComponentImpl implements TextComponent {
         if (!(other instanceof TextComponent that)) return false;
         return Objects.equals(this.children, that.children())
                && Objects.equals(this.style, that.style()) &&
-            Objects.equals(this.content, that.content());
+               Objects.equals(this.content, that.content());
     }
 
     @Override
