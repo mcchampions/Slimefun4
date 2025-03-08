@@ -28,13 +28,13 @@ import org.bukkit.persistence.PersistentDataType;
  * @see Rechargeable
  */
 public final class ChargeUtils {
-    private static final String LORE_PREFIX = "§8\u21E8 §e\u26A1 §7";
-    private static final String NUMBER_REGEX = "([+-]?\\d+([.]\\d+)?([Ee][+-]?\\d+)?)";
-    private static final Pattern REGEX =
+    public static final String LORE_PREFIX = "§8\u21E8 §e\u26A1 §7";
+    public static final String NUMBER_REGEX = "([+-]?\\d+([.]\\d+)?([Ee][+-]?\\d+)?)";
+    public static final Pattern REGEX =
             Pattern.compile("(§c§o)?" + LORE_PREFIX + NUMBER_REGEX + " / " + NUMBER_REGEX + " J", Pattern.CASE_INSENSITIVE);
 
-    private static final Pattern REGEX_NEW =
-            Pattern.compile(NUMBER_REGEX + " / " + NUMBER_REGEX + " J");
+    public static final Pattern REGEX_NEW =
+            Pattern.compile("([+-]?\\d+\\.?\\d*([eE][+-]?\\d+)?)\\s/\\s([+-]?\\d+\\.?\\d*([eE][+-]?\\d+)?)\\sJ");
 
     private ChargeUtils() {
     }
