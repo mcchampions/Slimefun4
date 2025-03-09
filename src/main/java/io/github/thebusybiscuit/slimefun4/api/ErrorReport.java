@@ -232,7 +232,7 @@ public class ErrorReport<T extends Throwable> {
             if (addon.getBugTrackerURL() != null) {
                 addon.getLogger().log(Level.WARNING, "Bug Tracker: {0}", addon.getBugTrackerURL());
             }
-            addon.getLogger().log(Level.WARNING, "Please DO NOT send screenshots of these logs to the developer(s).");
+
             addon.getLogger().log(Level.WARNING, "");
         } catch (Exception x) {
             addon.getLogger()
