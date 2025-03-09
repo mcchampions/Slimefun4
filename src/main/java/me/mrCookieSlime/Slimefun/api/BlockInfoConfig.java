@@ -38,10 +38,6 @@ public class BlockInfoConfig extends Config {
 
     @Override
     public void setValue(String path, Object value) {
-        if (value != null && !(value instanceof String)) {
-            throw new UnsupportedOperationException();
-        }
-
         if (value == null) {
             data.remove(path);
         } else {
