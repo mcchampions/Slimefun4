@@ -39,6 +39,9 @@ public final class ChargeUtils {
     private ChargeUtils() {
     }
 
+    public static final QsTextComponentImpl CHARGE_LORE_MODULE = new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
+            .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW));
+
     public static void setCharge(ItemMeta meta, float charge, float capacity) {
         BigDecimal decimal = BigDecimal.valueOf(charge).setScale(2, RoundingMode.HALF_UP);
         float value = decimal.floatValue();
@@ -47,8 +50,7 @@ public final class ChargeUtils {
         meta.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, value);
 
         List<Component> lore = meta.hasLore() ? meta.lore() : new ArrayList<>();
-        Component newLine = new QsTextComponentImpl("\u21E8").color(NamedTextColor.DARK_GRAY)
-                .append(new QsTextComponentImpl("\u26A1").color(NamedTextColor.YELLOW))
+        Component newLine = CHARGE_LORE_MODULE.clone()
                 .append(new QsTextComponentImpl(value + " / " + capacity + " J")
                         .color(NamedTextColor.GRAY));
         for (int i = 0; i < lore.size(); i++) {
