@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEntityType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,6 @@ import org.bukkit.persistence.PersistentDataType;
  * the behaviour of any other {@link SlimefunItem}.
  *
  * @author TheBusyBiscuit
- *
  */
 public class MultiTool extends SlimefunItem implements Rechargeable {
     private static final float COST = 0.3F;
@@ -79,7 +79,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
             int index = pdc.getOrDefault(multiToolMode, PersistentDataType.INTEGER, 0);
 
             if (!p.isSneaking()) {
-                if (removeItemCharge(item, COST)) {
+                if (removeItemCharge(item, im, COST)) {
                     SlimefunItem sfItem = modes.get(index).getItem();
 
                     if (sfItem != null) {
@@ -114,8 +114,8 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
             // Fixes #2217 - Prevent them from being used to shear entities
             EntityType type = e.getRightClicked().getType();
             if (type == VersionedEntityType.MOOSHROOM
-                    || type == VersionedEntityType.SNOW_GOLEM
-                    || type == EntityType.SHEEP) {
+                || type == VersionedEntityType.SNOW_GOLEM
+                || type == EntityType.SHEEP) {
                 Slimefun.getLocalization().sendMessage(e.getPlayer(), "messages.multi-tool.not-shears");
                 e.setCancelled(true);
             }
