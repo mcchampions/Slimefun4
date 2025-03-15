@@ -88,6 +88,8 @@ public class SlimefunDatabaseManager {
         } catch (IOException e) {
             plugin.getLogger().log(Level.SEVERE, "加载玩家档案适配器失败", e);
         }
+        profileDataController = ControllerHolder.getController(ProfileDataController.class, profileStorageType);
+        blockDataController = ControllerHolder.getController(BlockDataController.class, blockDataStorageType);
     }
 
     private void initAdapter(StorageType storageType, DataType dataType, Config databaseConfig) throws IOException {
@@ -150,22 +152,20 @@ public class SlimefunDatabaseManager {
         }
     }
 
-    @Nullable
-    public ProfileDataController getProfileDataController() {
-        return ControllerHolder.getController(ProfileDataController.class, profileStorageType);
-    }
+    @Getter
+    public ProfileDataController profileDataController;
 
-    public BlockDataController getBlockDataController() {
-        return ControllerHolder.getController(BlockDataController.class, blockDataStorageType);
-    }
+
+    @Getter
+    public BlockDataController blockDataController;
 
     public void shutdown() {
-        if (getProfileDataController() != null) {
-            getProfileDataController().shutdown();
+        if (profileDataController != null) {
+            profileDataController.shutdown();
         }
 
-        if (getBlockDataController() != null) {
-            getBlockDataController().shutdown();
+        if (blockDataController != null) {
+            blockDataController.shutdown();
         }
 
         if (blockStorageAdapter != null) {
