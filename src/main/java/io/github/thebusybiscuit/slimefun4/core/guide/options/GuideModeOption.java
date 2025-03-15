@@ -5,16 +5,13 @@ import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Optional;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import me.qscbm.slimefun4.utils.QsConstants;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
     @Override
@@ -38,25 +35,12 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
 
         if (current.isPresent()) {
             SlimefunGuideMode selectedMode = current.get();
-            ItemStack item = new ItemStack(Material.AIR);
-
+            ItemStack item;
             if (selectedMode == SlimefunGuideMode.SURVIVAL_MODE) {
-                item.setType(Material.CHEST);
+                item = QsConstants.GUIDE_SURVIVAL_MODE_OPTION.clone();
             } else {
-                item.setType(Material.COMMAND_BLOCK);
+                item = QsConstants.GUIDE_CHEAT_MODE_OPTION.clone();
             }
-
-            ItemMeta meta = item.getItemMeta();
-            meta.setDisplayName(ChatColor.GRAY + "Slimefun 指南样式: " + ChatColor.YELLOW + selectedMode.getDisplayName());
-            List<String> lore = new ArrayList<>();
-            lore.add("");
-            lore.add((selectedMode == SlimefunGuideMode.SURVIVAL_MODE ? ChatColor.GREEN : ChatColor.GRAY) + "普通模式");
-            lore.add((selectedMode == SlimefunGuideMode.CHEAT_MODE ? ChatColor.GREEN : ChatColor.GRAY) + "作弊模式");
-
-            lore.add("");
-            lore.add(ChatColor.GRAY + "\u21E8 " + ChatColor.YELLOW + "单击修改指南样式");
-            meta.setLore(lore);
-            item.setItemMeta(meta);
 
             return Optional.of(item);
         }
