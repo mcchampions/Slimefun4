@@ -20,7 +20,6 @@ import lombok.Getter;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
-import javax.annotation.Nullable;
 
 public class SlimefunDatabaseManager {
     private static final String PROFILE_CONFIG_FILE_NAME = "profile-storage.yml";
