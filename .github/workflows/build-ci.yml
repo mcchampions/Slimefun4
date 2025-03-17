@@ -47,17 +47,17 @@ jobs:
           name: Slimefun Beta Build
           path: target
 
-        #   - name: Automatic Releases
-        #    uses: marvinpinto/action-automatic-releases@v1.2.1
-        #    if: github.ref_name == 'master'
-        #    with:
-        #      repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        #      automatic_release_tag: "exp"
-        #      prerelease: true
-        #      title: "Slimefun 自动构建版本"
-        #      files: |
-        #         target/Slimefun-*.jar
-
+  #   - name: Automatic Releases
+  #    uses: marvinpinto/action-automatic-releases@v1.2.1
+  #    if: github.ref_name == 'master'
+  #    with:
+  #      repo_token: "${{ secrets.GITHUB_TOKEN }}"
+  #      automatic_release_tag: "exp"
+  #      prerelease: true
+  #      title: "Slimefun 自动构建版本"
+  #      files: |
+  #         target/Slimefun-*.jar
+  #
   # e2e-testing:
   #  needs: build
   #  name: End to End Testing
