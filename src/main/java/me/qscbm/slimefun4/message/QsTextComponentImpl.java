@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@SuppressWarnings({"UnstableApiUsage", "NullableProblems"})
+@SuppressWarnings({"UnstableApiUsage", "NullableProblems", "NonFinalFieldReferenceInEquals"})
 public class QsTextComponentImpl implements TextComponent {
     protected List<Component> children;
     protected Style style;
