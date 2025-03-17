@@ -107,6 +107,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
             if (canBreak(p, block)) {
                 if (Slimefun.getIntegrations().isCustomBlock(block)) {
                     drops.addAll(CustomBlock.byAlreadyPlaced(block).getLoot());
+                    //noinspection UnreachableCode
                     CustomBlock.remove(block.getLocation());
                 }
                 blocksToDestroy.add(block);
