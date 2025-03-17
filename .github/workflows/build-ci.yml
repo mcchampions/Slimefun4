@@ -47,7 +47,6 @@ jobs:
           name: Slimefun Beta Build
           path: target
 
-
         #   - name: Automatic Releases
         #    uses: marvinpinto/action-automatic-releases@v1.2.1
         #    if: github.ref_name == 'master'
