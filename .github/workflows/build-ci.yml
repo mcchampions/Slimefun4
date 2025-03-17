@@ -111,11 +111,6 @@ jobs:
         with:
           path: plugins/
 
-      - name: Download e2e-tester
-        run: |
-          curl -o e2e-tester.jar https://builds.guizhanss.com/api/download/ybw0014/Slimefun-e2e-tester/main/latest
-          mv e2e-tester.jar plugins/e2e-tester.jar
-
       - name: Run server
         run: |
           java -jar paper.jar --nogui
