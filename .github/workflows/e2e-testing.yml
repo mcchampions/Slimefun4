@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       artifact-name:
-        description: 'Slimefun Beta Build'
+        description: 'slimefun artifact name'
         required: true
         type: string
 
