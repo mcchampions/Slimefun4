@@ -223,7 +223,11 @@ public class BlockDataController extends ADataController {
         }
         SlimefunBlockData re = getChunkDataCache(l.getChunk(), true).createBlockData(l, sfId);
         if (Slimefun.getRegistry().getTickerBlocks().contains(sfId)) {
-            Slimefun.getTickerTask().enableTicker(l);
+            if ("CARGO_MANAGER".equalsIgnoreCase(sfId)) {
+                Slimefun.instance().getCargoTickerTask().enableTicker(l);
+            } else {
+                Slimefun.getTickerTask().enableTicker(l);
+            }
         }
         return re;
     }
@@ -317,9 +321,9 @@ public class BlockDataController extends ADataController {
 
         if (Slimefun.getRegistry().getTickerBlocks().contains(removed.getSfId())) {
             if ("CARGO_MANAGER".equalsIgnoreCase(removed.getSfId())) {
-                Slimefun.instance().getCargoTickerTask().enableTicker(l);
+                Slimefun.instance().getCargoTickerTask().disableTicker(l);
             } else {
-                Slimefun.getTickerTask().enableTicker(l);
+                Slimefun.getTickerTask().disableTicker(l);
             }
         }
     }
@@ -550,56 +554,61 @@ public class BlockDataController extends ADataController {
             menu.lock();
         }
 
-        Chunk chunk = blockData.getLocation().getChunk();
-        SlimefunChunkData chunkData = getChunkDataCache(chunk, false);
-        if (chunkData != null) {
-            chunkData.removeBlockDataCacheInternal(blockData.getKey());
-        }
-
-        SlimefunBlockData newBlockData = new SlimefunBlockData(target, blockData);
-        RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
-        if (LocationUtils.isSameChunk(blockData.getLocation().getChunk(), target.getChunk())) {
-            if (chunkData == null) {
-                chunkData = getChunkDataCache(chunk, true);
+        try {
+            var chunk = blockData.getLocation().getChunk();
+            var chunkData = getChunkDataCache(chunk, false);
+            if (chunkData != null) {
+                chunkData.removeBlockDataCacheInternal(blockData.getKey());
             }
-            key.addField(FieldKey.CHUNK);
-        } else {
-            chunkData = getChunkDataCache(target.getChunk(), true);
-        }
 
-        chunkData.addBlockCacheInternal(newBlockData, true);
+            var newBlockData = new SlimefunBlockData(target, blockData);
+            var key = new RecordKey(DataScope.BLOCK_RECORD);
+            if (LocationUtils.isSameChunk(blockData.getLocation().getChunk(), target.getChunk())) {
+                if (chunkData == null) {
+                    chunkData = getChunkDataCache(chunk, true);
+                }
+                key.addField(FieldKey.CHUNK);
+            } else {
+                chunkData = getChunkDataCache(target.getChunk(), true);
+            }
 
-        if (menu != null) {
-            newBlockData.setBlockMenu(new BlockMenu(menu.getPreset(), target, menu.getInventory()));
-            menu.unlock();
-        }
+            chunkData.addBlockCacheInternal(newBlockData, true);
 
-        key.addField(FieldKey.LOCATION);
-        key.addCondition(FieldKey.LOCATION, blockData.getKey());
+            if (menu != null) {
+                newBlockData.setBlockMenu(new BlockMenu(menu.getPreset(), target, menu.getInventory()));
+            }
 
-        RecordSet data = new RecordSet();
-        data.put(FieldKey.LOCATION, newBlockData.getKey());
-        data.put(FieldKey.CHUNK, chunkData.getKey());
-        data.put(FieldKey.SLIMEFUN_ID, blockData.getSfId());
-        LocationKey scopeKey = new LocationKey(DataScope.NONE, blockData.getLocation());
-        synchronized (delayedWriteTasks) {
-            Iterator<Map.Entry<LinkedKey, DelayedTask>> it = delayedWriteTasks.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<LinkedKey, DelayedTask> next = it.next();
-                if (scopeKey.equals(next.getKey().getParent())) {
-                    next.getValue().runUnsafely();
-                    it.remove();
+            key.addField(FieldKey.LOCATION);
+            key.addCondition(FieldKey.LOCATION, blockData.getKey());
+
+            var data = new RecordSet();
+            data.put(FieldKey.LOCATION, newBlockData.getKey());
+            data.put(FieldKey.CHUNK, chunkData.getKey());
+            data.put(FieldKey.SLIMEFUN_ID, blockData.getSfId());
+            var scopeKey = new LocationKey(DataScope.NONE, blockData.getLocation());
+            synchronized (delayedWriteTasks) {
+                var it = delayedWriteTasks.entrySet().iterator();
+                while (it.hasNext()) {
+                    var next = it.next();
+                    if (scopeKey.equals(next.getKey().getParent())) {
+                        next.getValue().runUnsafely();
+                        it.remove();
+                    }
                 }
             }
-        }
 
-        scheduleWriteTask(scopeKey, key, data, true);
+            scheduleWriteTask(scopeKey, key, data, true);
 
-        if (hasTicker) {
-            if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {
-                Slimefun.instance().getCargoTickerTask().enableTicker(target);
-            } else {
-                Slimefun.getTickerTask().enableTicker(target);
+            if (hasTicker) {
+                if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {
+                    Slimefun.instance().getCargoTickerTask().enableTicker(target);
+                } else {
+                    Slimefun.getTickerTask().enableTicker(target);
+                }
+            }
+        } finally {
+            if (menu != null) {
+                menu.unlock();
             }
         }
     }
@@ -787,7 +796,11 @@ public class BlockDataController extends ADataController {
             }
 
             if (sfItem != null && sfItem.isTicking()) {
-                sfItem.getTickerTask().enableTicker(blockData.getLocation());
+                if ("CARGO_MANAGER".equalsIgnoreCase(sfItem.getId())) {
+                    Slimefun.instance().getCargoTickerTask().enableTicker(blockData.getLocation());
+                } else {
+                    Slimefun.getTickerTask().enableTicker(blockData.getLocation());
+                }
             }
         } finally {
             lock.unlock(key);

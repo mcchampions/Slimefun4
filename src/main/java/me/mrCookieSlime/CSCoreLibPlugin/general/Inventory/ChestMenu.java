@@ -4,6 +4,15 @@ import city.norain.slimefun4.holder.SlimefunInventoryHolder;
 import city.norain.slimefun4.utils.InventoryUtil;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -14,8 +23,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * An old remnant of CS-CoreLib.
@@ -54,8 +61,8 @@ public class ChestMenu extends SlimefunInventoryHolder {
         this.title = ChatColor.translateAlternateColorCodes('&', title);
         this.clickable = false;
         this.emptyClickable = true;
-        this.items = new ArrayList<>();
-        this.handlers = new HashMap<>();
+        this.items = new CopyOnWriteArrayList<>();
+        this.handlers = new ConcurrentHashMap<>();
 
         this.open = p -> {
         };

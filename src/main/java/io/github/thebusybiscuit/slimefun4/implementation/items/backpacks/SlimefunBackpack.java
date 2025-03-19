@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerBackpack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
+import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
@@ -30,13 +31,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  *
  */
 @Getter
-public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> implements DistinctiveItem {
-    /**
-     * -- GETTER --
-     *  This returns the size of this
-     * .
-     *
-     */
+public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> implements  DistinctiveItem, NotPlaceable {
     private final int size;
 
     public SlimefunBackpack(
