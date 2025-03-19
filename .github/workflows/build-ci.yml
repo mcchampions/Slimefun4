@@ -28,90 +28,45 @@ jobs:
           java-package: jdk
           architecture: x64
           cache: maven
-      - name: Clean cache
-        run: mvn clean
       - name: Delete useless folders
         run: |
-          rm -rf target/
+          rm -rf **/target/
       - name: Build Slimefun
-        run: mvn clean -B package --errors --file pom.xml
-      - name: Maven Dependency Tree Dependency Submission
-        uses: advanced-security/maven-dependency-submission-action@v4.1.0
+        run: mvn install
       - name: Delete useless files
         run: |
-          rm -rf target/classes target/maven-archiver target/maven-status
-          rm target/original-*.jar
+          rm -rf **/target/classes **/target/maven-archiver **/target/maven-status **/target/generated-sources
+          rm **/target/original-*.jar
+      - name: Setup server
+        run: |
+          echo 'eula=true' > eula.txt
+          mkdir plugins
+      - name: Place plugins jar
+        run: |
+          cp test/target/*.jar plugins/
+          cp target/*.jar plugins/
       - uses: actions/upload-artifact@v4
         name: Upload Beta artifact
         with:
           name: Slimefun Beta Build
           path: target
 
-  #   - name: Automatic Releases
-  #    uses: marvinpinto/action-automatic-releases@v1.2.1
-  #    if: github.ref_name == 'master'
-  #    with:
-  #      repo_token: "${{ secrets.GITHUB_TOKEN }}"
-  #      automatic_release_tag: "exp"
-  #      prerelease: true
-  #      title: "Slimefun 自动构建版本"
-  #      files: |
-  #         target/Slimefun-*.jar
-  #
-  # e2e-testing:
-  #  needs: build
-  #  name: End to End Testing
-  #  runs-on: ubuntu-latest
-  #  timeout-minutes: 5
-  #
-  #  strategy:
-  #    matrix:
-  #      include:
-  #        - mcVersion: '1.18.2'
-  #          javaVersion: '18'
-  #        - mcVersion: '1.19.4'
-  #          javaVersion: '19'
-  #        - mcVersion: 'latest'
-  #          javaVersion: '21'
-  #
-  #  steps:
-  #    - name: Checkout repository
-  #      uses: actions/checkout@v4
-  #
-  #    - name: Set up JDK
-  #      uses: actions/setup-java@v4.0.0
-  #      with:
-  #        distribution: temurin
-  #        java-version: ${{ matrix.javaVersion }}
-  #        java-package: jdk
-  #        architecture: x64
-  #
-  #    - name: Setup server
-  #      run: |
-  #        echo 'eula=true' > eula.txt
-  #        mkdir plugins
-  #
-  #   - name: Download ${{ matrix.mcVersion }} Paper
-  #      run: |
-  #        VERSION="${{ matrix.mcVersion }}"
-  #        if [ "$VERSION" == "latest" ]; then
-  #          VERSION=$(curl https://api.papermc.io/v2/projects/paper/ -s | jq -r '.versions[-1]')
-  #        fi
-  #
-  #        BUILD_JAR=$(curl -s "https://api.papermc.io/v2/projects/paper/versions/$VERSION/builds" \
-  #          | jq '.builds[-1] | "\(.build) \(.downloads.application.name)"' -r)
-  #        BUILD=$(echo "$BUILD_JAR" | awk '{print $1}')
-  #        JAR_FILE=$(echo "$BUILD_JAR" | awk '{print $2}')
-  #
-  #        echo "Downloading... https://api.papermc.io/v2/projects/paper/versions/$VERSION/builds/$BUILD/downloads/$JAR_FILE"
-  #        curl -o paper.jar \
-  #          "https://api.papermc.io/v2/projects/paper/versions/$VERSION/builds/$BUILD/downloads/$JAR_FILE"
-  #
-  #    - name: Download Slimefun
-  #      uses: actions/download-artifact@v4
-  #      with:
-  #        path: plugins/
-  #
-  #    - name: Run server
-  #      run: |
-  #        java -jar paper.jar --nogui
+      - name: Download 1.20.4 Paper
+        run: |
+            VERSION="1.20.4"
+            if [ "$VERSION" == "latest" ]; then
+              VERSION=$(curl https://api.papermc.io/v2/projects/paper/ -s | jq -r '.versions[-1]')
+            fi
+
+            BUILD_JAR=$(curl -s "https://api.papermc.io/v2/projects/paper/versions/$VERSION/builds" \
+              | jq '.builds[-1] | "\(.build) \(.downloads.application.name)"' -r)
+            BUILD=$(echo "$BUILD_JAR" | awk '{print $1}')
+            JAR_FILE=$(echo "$BUILD_JAR" | awk '{print $2}')
+
+            echo "Downloading... https://api.papermc.io/v2/projects/paper/versions/$VERSION/builds/$BUILD/downloads/$JAR_FILE"
+            curl -o paper.jar \
+              "https://api.papermc.io/v2/projects/paper/versions/$VERSION/builds/$BUILD/downloads/$JAR_FILE"
+
+      - name: Run server
+        run: |
+          java -jar paper.jar --nogui

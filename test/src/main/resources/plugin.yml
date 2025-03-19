@@ -1,0 +1,7 @@
+name: test
+version: '1.0-SNAPSHOT'
+main: me.qscbm.plugins.slimefun4.test.Test
+api-version: '1.20'
+authors: [qscbm187531]
+softdepend:
+  - 'Slimefun'

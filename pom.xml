@@ -7,11 +7,15 @@
     <groupId>com.github.slimefun</groupId>
     <artifactId>Slimefun</artifactId>
 
+    <modules>
+        <module>test</module>
+    </modules>
+
     <!-- Our default version will be UNOFFICIAL, this will prevent auto updates -->
     <!-- from overriding our local Test file -->
     <version>qs-fork-${git.commit.id.abbrev}</version>
     <inceptionYear>2013</inceptionYear>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <!-- Project Info -->
     <description>Slimefun is a Spigot/Paper plugin that simulates a modpack-like atmosphere by adding over 500 new items
