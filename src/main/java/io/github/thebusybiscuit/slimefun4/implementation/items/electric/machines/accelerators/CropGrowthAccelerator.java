@@ -2,13 +2,12 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.electric.machine
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
-import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+import java.util.Arrays;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
@@ -16,7 +15,20 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class CropGrowthAccelerator extends AbstractGrowthAccelerator {
     // We wanna strip the Slimefun Item id here
-    private static final ItemStack organicFertilizer = ItemStackWrapper.wrap(SlimefunItems.FERTILIZER);
+    private static final String[] organicFertilizers = new String[] {
+        "FERTILIZER",
+        "FERTILIZER_WHEAT",
+        "FERTILIZER_CARROT",
+        "FERTILIZER_POTATO",
+        "FERTILIZER_SEEDS",
+        "FERTILIZER_BEETROOT",
+        "FERTILIZER_MELON",
+        "FERTILIZER_APPLE",
+        "FERTILIZER_SWEET_BERRIES",
+        "FERTILIZER_KELP",
+        "FERTILIZER_COCOA",
+        "FERTILIZER_SEAGRASS",
+    };
 
     protected CropGrowthAccelerator(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -56,7 +68,19 @@ public abstract class CropGrowthAccelerator extends AbstractGrowthAccelerator {
 
         if (ageable.getAge() < ageable.getMaximumAge()) {
             for (int slot : getInputSlots()) {
-                if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(slot), organicFertilizer, false, false)) {
+                var item = inv.getItemInSlot(slot);
+
+                if (item.isEmpty()) {
+                    continue;
+                }
+
+                var sfItem = SlimefunItem.getByItem(item);
+
+                if (sfItem == null) {
+                    continue;
+                }
+
+                if (Arrays.stream(organicFertilizers).anyMatch(id -> id.equals(sfItem.getId()))) {
                     removeCharge(machine.getLocation(), getEnergyConsumption());
                     inv.consumeItem(slot);
 

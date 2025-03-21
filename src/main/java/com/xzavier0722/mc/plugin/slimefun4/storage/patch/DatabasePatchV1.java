@@ -7,6 +7,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.ISqlCommonC
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlUtils;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
 import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
 import java.sql.Statement;
 
 public class DatabasePatchV1 extends DatabasePatch {
@@ -18,6 +19,13 @@ public class DatabasePatchV1 extends DatabasePatch {
     public void patch(Statement stmt, ISqlCommonConfig config) throws SQLException {
         if (config instanceof MysqlConfig mysqlConf) {
             String uniInvTable = SqlUtils.mapTable(DataScope.UNIVERSAL_INVENTORY, mysqlConf.tablePrefix());
+
+            try {
+                stmt.execute("SELECT * FROM " + uniInvTable + " LIMIT 1");
+            } catch (SQLSyntaxErrorException ignored) {
+                return;
+            }
+
             stmt.execute("ALTER TABLE " + uniInvTable + " MODIFY COLUMN " + FIELD_INVENTORY_ITEM + " TEXT;");
         }
     }

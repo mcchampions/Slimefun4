@@ -141,6 +141,10 @@ public abstract class SqlCommonAdapter<T extends ISqlCommonConfig> implements ID
             patch.updateVersion(stmt, config);
             patch.patch(stmt, config);
             Slimefun.logger().log(Level.INFO, "更新完成. ");
+
+            if (getDatabaseVersion() != IDataSourceAdapter.DATABASE_VERSION) {
+                patch();
+            }
         } catch (SQLException e) {
             Slimefun.logger().log(Level.SEVERE, "更新数据库时出现问题!", e);
         }

@@ -27,6 +27,9 @@ public abstract class BlockTicker implements ItemHandler {
         this.universal = universal;
     }
 
+    /**
+     * 刷新当前 ticker 执行状态
+     */
     public void update() {
         if (unique) {
             uniqueTick();
