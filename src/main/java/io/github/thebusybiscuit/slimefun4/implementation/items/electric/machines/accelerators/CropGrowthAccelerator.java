@@ -70,7 +70,7 @@ public abstract class CropGrowthAccelerator extends AbstractGrowthAccelerator {
             for (int slot : getInputSlots()) {
                 var item = inv.getItemInSlot(slot);
 
-                if (item.isEmpty()) {
+                if (item == null || item.isEmpty()) {
                     continue;
                 }
 
