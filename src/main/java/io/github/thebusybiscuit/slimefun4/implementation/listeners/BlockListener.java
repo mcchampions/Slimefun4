@@ -268,8 +268,10 @@ public class BlockListener implements Listener {
         if (!drops.isEmpty()) {
             // Fixes #2560
             if (e.isDropItems()) {
-                // Disable normal block drops
-                e.setDropItems(false);
+                // Disable slimefun block drops in vanilla way
+                if (sfBlock != null) {
+                    e.setDropItems(false);
+                }
 
                 // The list only contains other drops, not those from the block itself, so we still need to handle those
                 for (ItemStack drop : drops) {
