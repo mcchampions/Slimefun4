@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoEnchanter;
 import lombok.Getter;
+import org.bukkit.block.Block;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -13,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
  * an {@link ItemStack}.
  *
  * @author WalshyDev
- *
  * @see AutoDisenchantEvent
  */
 public class AutoEnchantEvent extends Event implements Cancellable {
@@ -21,12 +21,21 @@ public class AutoEnchantEvent extends Event implements Cancellable {
 
     @Getter
     private final ItemStack item;
+    @Getter
+    private Block block;
     private boolean cancelled;
 
     public AutoEnchantEvent(ItemStack item) {
         super(true);
 
         this.item = item;
+    }
+
+    public AutoEnchantEvent(ItemStack item, Block block) {
+        super(true);
+
+        this.item = item;
+        this.block = block;
     }
 
     @Override
