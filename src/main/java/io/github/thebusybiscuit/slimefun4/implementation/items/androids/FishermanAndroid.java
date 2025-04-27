@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
+import city.norain.slimefun4.api.menu.UniversalMenu;
 import io.github.bakedlibs.dough.collections.RandomizedSet;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -7,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.ParametersAreNonnullByDefault;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
@@ -50,7 +50,7 @@ public class FishermanAndroid extends ProgrammableAndroid {
     }
 
     @Override
-    protected void fish(Block b, BlockMenu menu) {
+    protected void fish(Block b, UniversalMenu menu) {
         Block water = b.getRelative(BlockFace.DOWN);
 
         if (water.getType() == Material.WATER) {

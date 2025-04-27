@@ -1,17 +1,12 @@
 package me.mrCookieSlime.Slimefun.api.inventory;
 
-import city.norain.slimefun4.utils.StringUtil;
 import io.github.bakedlibs.dough.inventory.InvUtils;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
-import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
@@ -67,6 +62,10 @@ public class DirtyChestMenu extends ChestMenu {
 
     @Override
     public void open(Player... players) {
+        if (locked()) {
+            return;
+        }
+
         super.open(players);
 
         // The Inventory will likely be modified soon
@@ -80,12 +79,6 @@ public class DirtyChestMenu extends ChestMenu {
     }
 
     public boolean fits(@Nonnull ItemStack item, int... slots) {
-        Debug.log(
-                TestCase.UTILS,
-                "DirtyChestMenu#fits - start check fits | item {} | slots {}",
-                StringUtil.itemStackToString(item),
-                Arrays.stream(slots).mapToObj(String::valueOf).collect(Collectors.joining(",")));
-
         var isSfItem = SlimefunItem.getByItem(item) != null;
         var wrapper = ItemStackWrapper.wrap(item);
         var remain = item.getAmount();
@@ -97,15 +90,7 @@ public class DirtyChestMenu extends ChestMenu {
                 return true;
             }
 
-            Debug.log(
-                    TestCase.UTILS,
-                    "DirtyChestMenu#fits - Now checking item | Slot {} | Item {}",
-                    slot,
-                    StringUtil.itemStackToString(slotItem));
-
             if (isSfItem) {
-                Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - Check slimefun item fits");
-
                 if (!slotItem.hasItemMeta()
                         || item.getType() != slotItem.getType()
                         || !SlimefunUtils.isItemSimilar(slotItem, wrapper, true, false)) {
@@ -114,14 +99,9 @@ public class DirtyChestMenu extends ChestMenu {
 
                 var slotRemain = slotItem.getMaxStackSize() - slotItem.getAmount();
 
-                Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - current slot remain: {}", slotRemain);
-
                 remain -= slotRemain;
 
-                Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - remaining amount: {}", remain);
-
                 if (remain <= 0) {
-                    Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - check fits result (no remain): false");
                     return true;
                 }
             }
@@ -132,8 +112,6 @@ public class DirtyChestMenu extends ChestMenu {
         if (!isSfItem) {
             result = InvUtils.fits(toInventory(), wrapper, slots);
         }
-
-        Debug.log(TestCase.UTILS, "DirtyChestMenu#fits - check fits result: {}", result);
 
         return result;
     }
@@ -152,6 +130,10 @@ public class DirtyChestMenu extends ChestMenu {
     @Nullable public ItemStack pushItem(ItemStack item, int... slots) {
         if (item == null || item.getType() == Material.AIR) {
             throw new IllegalArgumentException("Cannot push null or AIR");
+        }
+
+        if (locked()) {
+            throw new IllegalStateException("Cannot push item when menu is locked");
         }
 
         ItemStackWrapper wrapper = null;
@@ -206,20 +188,36 @@ public class DirtyChestMenu extends ChestMenu {
     }
 
     public void consumeItem(int slot, int amount) {
+        if (locked()) {
+            throw new IllegalStateException("Cannot consume item when menu is locked");
+        }
+
         consumeItem(slot, amount, false);
     }
 
     public void consumeItem(int slot, int amount, boolean replaceConsumables) {
+        if (locked()) {
+            throw new IllegalStateException("Cannot consume item when menu is locked");
+        }
+
         ItemUtils.consumeItem(getItemInSlot(slot), amount, replaceConsumables);
         markDirty();
     }
 
     @Override
     public void replaceExistingItem(int slot, ItemStack item) {
+        if (locked()) {
+            throw new IllegalStateException("Cannot consume item when menu is locked");
+        }
+
         replaceExistingItem(slot, item, true);
     }
 
     public void replaceExistingItem(int slot, ItemStack item, boolean event) {
+        if (locked()) {
+            throw new IllegalStateException("Cannot consume item when menu is locked");
+        }
+
         if (event) {
             ItemStack previous = getItemInSlot(slot);
             item = preset.onItemStackChange(this, slot, previous, item);

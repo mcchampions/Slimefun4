@@ -2,12 +2,11 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.electric.machine
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.items.misc.OrganicFood;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
-import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Ageable;
@@ -19,9 +18,6 @@ public class AnimalGrowthAccelerator extends AbstractGrowthAccelerator {
 
     private static final int ENERGY_CONSUMPTION = 14;
     private static final double RADIUS = 3.0;
-
-    // We wanna strip the Slimefun Item id here
-    private static final ItemStack organicFood = ItemStackWrapper.wrap(SlimefunItems.ORGANIC_FOOD);
 
     public AnimalGrowthAccelerator(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -39,7 +35,15 @@ public class AnimalGrowthAccelerator extends AbstractGrowthAccelerator {
 
         for (Entity n : b.getWorld().getNearbyEntities(b.getLocation(), RADIUS, RADIUS, RADIUS, this::isReadyToGrow)) {
             for (int slot : getInputSlots()) {
-                if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(slot), organicFood, false, false)) {
+                var item = inv.getItemInSlot(slot);
+
+                if (item == null || item.isEmpty()) {
+                    continue;
+                }
+
+                var sfItem = SlimefunItem.getByItem(item);
+
+                if (sfItem instanceof OrganicFood) {
                     if (getCharge(b.getLocation()) < ENERGY_CONSUMPTION) {
                         return;
                     }

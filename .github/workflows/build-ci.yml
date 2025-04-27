@@ -31,7 +31,7 @@ jobs:
         run: mvn -s .mvn/settings.xml -B spotless:check --errors
       - name: Build Slimefun
         run: mvn -s .mvn/settings.xml -B package --errors
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         name: Upload Beta artifact
         with:
           name: Slimefun Beta Build

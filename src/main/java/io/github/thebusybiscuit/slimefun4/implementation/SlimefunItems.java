@@ -693,7 +693,7 @@ public final class SlimefunItems {
     public static final SlimefunItemStack PICKAXE_OF_CONTAINMENT =
             new SlimefunItemStack("PICKAXE_OF_CONTAINMENT", Material.IRON_PICKAXE, "&c刷怪笼之镐", "", "&9可以获取刷怪笼");
     public static final SlimefunItemStack EXPLOSIVE_PICKAXE = new SlimefunItemStack(
-            "EXPLOSIVE_PICKAXE", Material.DIAMOND_PICKAXE, "&e爆炸镐", "", "&r允许你在一瞬间挖掘矿物", "", "&9在挖矿时有时运效果");
+            "EXPLOSIVE_PICKAXE", Material.DIAMOND_PICKAXE, "&e爆炸镐", "", "&r用爆炸快速开采矿物", "", "&9支持时运附魔");
     public static final SlimefunItemStack EXPLOSIVE_SHOVEL =
             new SlimefunItemStack("EXPLOSIVE_SHOVEL", Material.DIAMOND_SHOVEL, "&e爆炸铲", "", "&r让你一下子就能挖掉很多方块");
     public static final SlimefunItemStack PICKAXE_OF_THE_SEEKER = new SlimefunItemStack(

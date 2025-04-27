@@ -1,5 +1,6 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
+import city.norain.slimefun4.utils.TaskTimer;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataType;
@@ -42,6 +43,7 @@ public abstract class ADataController {
     public void init(IDataSourceAdapter<?> dataAdapter, int maxReadThread, int maxWriteThread) {
         this.dataAdapter = dataAdapter;
         dataAdapter.initStorage(dataType);
+        dataAdapter.patch();
         readExecutor = Executors.newFixedThreadPool(maxReadThread, threadFactory);
         writeExecutor = Executors.newFixedThreadPool(maxWriteThread, threadFactory);
         callbackExecutor = Executors.newCachedThreadPool(threadFactory);
@@ -58,11 +60,35 @@ public abstract class ADataController {
         try {
             float totalTask = scheduledWriteTasks.size();
             var pendingTask = scheduledWriteTasks.size();
+            var taskTimer = new TaskTimer();
+            var previousTask = pendingTask;
+
             while (pendingTask > 0) {
                 var doneTaskPercent = String.format("%.1f", (totalTask - pendingTask) / totalTask * 100);
                 logger.log(Level.INFO, "数据保存中，请稍候... 剩余 {0} 个任务 ({1}%)", new Object[] {pendingTask, doneTaskPercent});
                 TimeUnit.SECONDS.sleep(1);
                 pendingTask = scheduledWriteTasks.size();
+
+                if (previousTask > pendingTask) {
+                    taskTimer.reset();
+                    previousTask = pendingTask;
+                    continue;
+                }
+
+                // 展示疑似死锁任务
+                if ((taskTimer.peek() / 1000 / 60) > 2) {
+                    logger.log(Level.WARNING, "检测到数据保存时出现的长耗时任务，可以截图下列信息供反馈参考 ({0}):\n", new Object[] {
+                        scheduledWriteTasks.size()
+                    });
+                    var taskSnapshot = Map.copyOf(scheduledWriteTasks);
+                    for (var task : taskSnapshot.entrySet()) {
+                        var key = task.getKey();
+                        var value = task.getValue();
+                        logger.log(Level.WARNING, "On scope {0}:", new Object[] {key});
+                        logger.log(Level.WARNING, "     {0}", new Object[] {value});
+                        logger.log(Level.WARNING, " ");
+                    }
+                }
             }
 
             logger.info("数据保存完成.");

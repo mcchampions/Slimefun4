@@ -50,17 +50,17 @@ class PerformanceSummary {
 
     public void send(@Nonnull PerformanceInspector sender) {
         sender.sendMessage("");
-        sender.sendMessage(ChatColor.GREEN + "===== Slimefun Lag Profiler =====");
+        sender.sendMessage(ChatColor.GREEN + "===== Slimefun 性能分析器 =====");
         sender.sendMessage(
-                ChatColor.GOLD + "Total time: " + ChatColor.YELLOW + NumberUtils.getAsMillis(totalElapsedTime));
+                ChatColor.GOLD + "Tick 总用时: " + ChatColor.YELLOW + NumberUtils.getAsMillis(totalElapsedTime));
         sender.sendMessage(ChatColor.GOLD
-                + "Running every: "
+                + "Ticker 运行周期: "
                 + ChatColor.YELLOW
                 + NumberUtils.roundDecimalNumber(tickRate / 20.0)
                 + "s ("
                 + tickRate
                 + " ticks)");
-        sender.sendMessage(ChatColor.GOLD + "Performance: " + getPerformanceRating());
+        sender.sendMessage(ChatColor.GOLD + "性能评分: " + getPerformanceRating());
         sender.sendMessage("");
 
         summarizeTimings(totalTickedBlocks, "block", sender, items, entry -> {
@@ -75,9 +75,9 @@ class PerformanceSummary {
             String average = NumberUtils.getAsMillis(entry.getValue() / count);
 
             if (sender.getOrderType() == SummaryOrderType.AVERAGE) {
-                return String.format(message, average + " | total: " + time);
+                return String.format(message, average + " | 总用时: " + time);
             } else {
-                return String.format(message, time + " | avg: " + average);
+                return String.format(message, time + " | 平均用时: " + average);
             }
         });
 
@@ -127,7 +127,7 @@ class PerformanceSummary {
         component.setColor(ChatColor.YELLOW);
 
         if (count > 0) {
-            TextComponent hoverComponent = new TextComponent("  (Hover for details)");
+            TextComponent hoverComponent = new TextComponent("  (将鼠标放置到此处获取更多信息)");
             hoverComponent.setColor(ChatColor.GRAY);
             StringBuilder builder = new StringBuilder();
 

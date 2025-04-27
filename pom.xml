@@ -27,9 +27,9 @@
 
         <maven.settings.file>${project.basedir}/.mvn/settings.xml</maven.settings.file>
 
-        <!-- Spigot properties -->
-        <spigot.version>1.21</spigot.version>
-        <spigot.javadocs>https://hub.spigotmc.org/javadocs/spigot/</spigot.javadocs>
+        <!-- Paper properties -->
+        <paper.version>1.21</paper.version>
+        <paper.javadocs>https://papermc.io/javadocs</paper.javadocs>
     </properties>
 
     <issueManagement>
@@ -139,7 +139,7 @@
                 <!-- Dependency shading -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.6.0</version>
 
                 <configuration>
                     <!-- Relocate these to avoid clashes and conflicts -->
@@ -205,21 +205,31 @@
             </plugin>
 
             <plugin>
-                <groupId>com.rudikershaw.gitbuildhook</groupId>
-                <artifactId>git-build-hook-maven-plugin</artifactId>
-                <version>3.5.0</version>
-                <configuration>
-                    <installHooks>
-                        <pre-commit>.git-hooks/pre-commit</pre-commit>
-                    </installHooks>
-                </configuration>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <version>9.0.1</version>
+
                 <executions>
                     <execution>
+                        <id>get-the-git-infos</id>
                         <goals>
-                            <goal>install</goal>
+                            <goal>revision</goal>
                         </goals>
+                        <phase>initialize</phase>
                     </execution>
                 </executions>
+
+                <configuration>
+                    <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+                    <includeOnlyProperties>
+                        <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
+                        <includeOnlyProperty>git.branch</includeOnlyProperty>
+                    </includeOnlyProperties>
+                    <commitIdGenerationMode>full</commitIdGenerationMode>
+                </configuration>
             </plugin>
         </plugins>
 
@@ -244,6 +254,7 @@
                     <include>biome-maps/*.json</include>
 
                     <include>languages/**/*.yml</include>
+                    <include>git.properties</include>
                 </includes>
             </resource>
 
@@ -262,9 +273,9 @@
     <dependencies>
         <!-- Hard dependencies -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>${spigot.version}-R0.1-SNAPSHOT</version>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>${paper.version}-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -283,11 +294,18 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.24.1</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Shaded packages -->
         <dependency>
             <groupId>com.github.StarWishsama.dough</groupId>
             <artifactId>dough-api</artifactId>
-            <version>30c7e77b62</version>
+            <version>7e74688682</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -319,7 +337,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.3</version>
+            <version>42.7.4</version>
             <scope>compile</scope>
         </dependency>
 
@@ -327,7 +345,7 @@
         <dependency>
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-core</artifactId>
-            <version>7.2.19</version>
+            <version>7.3.6</version>
             <scope>provided</scope>
 
             <exclusions>
@@ -341,7 +359,7 @@
         <dependency>
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-bukkit</artifactId>
-            <version>7.2.19</version>
+            <version>7.3.6</version>
             <scope>provided</scope>
 
             <exclusions>
@@ -467,14 +485,8 @@
 
         <dependency>
             <groupId>net.guizhanss</groupId>
-            <artifactId>GuizhanLib-common</artifactId>
-            <version>1.6.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.guizhanss</groupId>
-            <artifactId>GuizhanLib-updater</artifactId>
-            <version>1.6.1</version>
+            <artifactId>guizhanlib-updater</artifactId>
+            <version>2.1.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

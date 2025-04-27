@@ -14,8 +14,14 @@ import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlC
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_PLAYER_UUID;
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_RESEARCH_KEY;
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_SLIMEFUN_ID;
+import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_TABLE_METADATA_KEY;
+import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_TABLE_METADATA_VALUE;
+import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_UNIVERSAL_TRAITS;
+import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_UNIVERSAL_UUID;
+import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.METADATA_VERSION;
 
 import city.norain.slimefun4.timings.entry.SQLEntry;
+import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlCommonAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlUtils;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
@@ -24,6 +30,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordKey;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.List;
 
 public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
@@ -33,6 +40,9 @@ public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
             case PLAYER_PROFILE -> createProfileTables();
             case BLOCK_STORAGE -> createBlockStorageTables();
         }
+
+        tableMetadataTable = SqlUtils.mapTable(DataScope.TABLE_METADATA);
+        createTableMetadataTable();
     }
 
     @Override
@@ -118,6 +128,9 @@ public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
         createBlockDataTable();
         createBlockInvTable();
         createChunkDataTable();
+        createUniversalInventoryTable();
+        createUniversalRecordTable();
+        createUniversalDataTable();
     }
 
     private void createProfileTable() {
@@ -311,6 +324,91 @@ public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
                 + FIELD_INVENTORY_SLOT
                 + ")"
                 + ");");
+    }
+
+    private void createUniversalInventoryTable() {
+        executeSql("CREATE TABLE IF NOT EXISTS "
+                + SqlUtils.mapTable(DataScope.UNIVERSAL_INVENTORY)
+                + "("
+                + FIELD_UNIVERSAL_UUID
+                + " CHAR(64) NOT NULL, "
+                + FIELD_INVENTORY_SLOT
+                + " TINYINT UNSIGNED NOT NULL, "
+                + FIELD_INVENTORY_ITEM
+                + " TEXT NOT NULL,"
+                + "PRIMARY KEY ("
+                + FIELD_UNIVERSAL_UUID
+                + ", "
+                + FIELD_INVENTORY_SLOT
+                + ")"
+                + ");");
+    }
+
+    private void createUniversalRecordTable() {
+        executeSql("CREATE TABLE IF NOT EXISTS "
+                + SqlUtils.mapTable(DataScope.UNIVERSAL_RECORD)
+                + "("
+                + FIELD_UNIVERSAL_UUID
+                + " CHAR(64) NOT NULL, "
+                + FIELD_SLIMEFUN_ID
+                + " CHAR(64) NOT NULL, "
+                + FIELD_UNIVERSAL_TRAITS
+                + " CHAR(64) NOT NULL, "
+                + "PRIMARY KEY ("
+                + FIELD_UNIVERSAL_UUID
+                + ")"
+                + ");");
+    }
+
+    private void createUniversalDataTable() {
+        executeSql("CREATE TABLE IF NOT EXISTS "
+                + SqlUtils.mapTable(DataScope.UNIVERSAL_DATA)
+                + "("
+                + FIELD_UNIVERSAL_UUID
+                + " CHAR(64) NOT NULL, "
+                + FIELD_DATA_KEY
+                + " CHAR(64) NOT NULL, "
+                + FIELD_DATA_VALUE
+                + " TEXT NOT NULL, "
+                + "FOREIGN KEY ("
+                + FIELD_UNIVERSAL_UUID
+                + ") "
+                + "REFERENCES "
+                + SqlUtils.mapTable(DataScope.UNIVERSAL_RECORD)
+                + "("
+                + FIELD_UNIVERSAL_UUID
+                + ") "
+                + "ON UPDATE CASCADE ON DELETE CASCADE, "
+                + "PRIMARY KEY ("
+                + FIELD_UNIVERSAL_UUID
+                + ", "
+                + FIELD_DATA_KEY
+                + ")"
+                + ");");
+    }
+
+    private void createTableMetadataTable() {
+        executeSql(MessageFormat.format(
+                """
+                CREATE TABLE IF NOT EXISTS {0}
+                (
+                    {1} VARCHAR(255) UNIQUE NOT NULL,
+                    {2} TEXT NOT NULL
+                );
+                """,
+                SqlUtils.mapTable(DataScope.TABLE_METADATA), FIELD_TABLE_METADATA_KEY, FIELD_TABLE_METADATA_VALUE));
+
+        if (Slimefun.isNewlyInstalled()) {
+            executeSql(MessageFormat.format(
+                    """
+                    INSERT INTO {0} ({1}, {2}) VALUES ("{3}", {4});
+                    """,
+                    SqlUtils.mapTable(DataScope.TABLE_METADATA),
+                    FIELD_TABLE_METADATA_KEY,
+                    FIELD_TABLE_METADATA_VALUE,
+                    METADATA_VERSION,
+                    IDataSourceAdapter.DATABASE_VERSION));
+        }
     }
 
     public synchronized void executeSql(String sql) {

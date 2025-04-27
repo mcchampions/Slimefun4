@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -29,8 +28,9 @@ import org.bukkit.persistence.PersistentDataType;
 public final class ChargeUtils {
 
     private static final String LORE_PREFIX = ChatColors.color("&8\u21E8 &e\u26A1 &7");
+    private static final String NUMBER_REGEX = "([+-]?[\\d]+([\\.][\\d]+)?([Ee][+-]?[\\d]+)?)";
     private static final Pattern REGEX =
-            Pattern.compile(ChatColors.color("(&c&o)?" + LORE_PREFIX) + "[0-9.]+ / [0-9.]+ J");
+            Pattern.compile(ChatColors.color("(&c&o)?" + LORE_PREFIX) + NUMBER_REGEX + " / " + NUMBER_REGEX + " J");
 
     private ChargeUtils() {}
 
@@ -76,9 +76,9 @@ public final class ChargeUtils {
         // If no persistent data exists, we will just fall back to the lore
         if (meta.hasLore()) {
             for (String line : meta.getLore()) {
-                if (REGEX.matcher(line).matches()) {
-                    String data =
-                            ChatColor.stripColor(PatternUtils.SLASH_SEPARATOR.split(line)[0].replace(LORE_PREFIX, ""));
+                var matcher = REGEX.matcher(line);
+                if (matcher.matches()) {
+                    String data = matcher.group(2);
 
                     float loreValue = Float.parseFloat(data);
                     container.set(key, PersistentDataType.FLOAT, loreValue);

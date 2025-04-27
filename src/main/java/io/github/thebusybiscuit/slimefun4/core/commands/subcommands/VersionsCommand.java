@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.commands.subcommands;
 
+import city.norain.slimefun4.utils.EnvUtil;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
@@ -7,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.papermc.lib.PaperLib;
 import java.util.Collection;
+import java.util.Locale;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import net.md_5.bungee.api.ChatColor;
@@ -64,8 +66,17 @@ class VersionsCommand extends SubCommand {
                     .color(ChatColor.DARK_GREEN)
                     .append("Slimefun ")
                     .color(ChatColor.GREEN)
-                    .append(Slimefun.getVersion() + '\n')
-                    .color(ChatColor.DARK_GREEN);
+                    .append(Slimefun.getVersion()
+                            + (Slimefun.getVersion().toLowerCase(Locale.ROOT).contains("release")
+                                    ? " (" + EnvUtil.getBuildCommitID() + "@" + EnvUtil.getBranch() + ")"
+                                    : "")
+                            + '\n')
+                    .color(ChatColor.DARK_GREEN)
+                    .append("构建时间 ")
+                    .color(ChatColor.GREEN)
+                    .append(EnvUtil.getBuildTime())
+                    .color(ChatColor.DARK_GREEN)
+                    .append("\n");
             // @formatter:on
 
             if (Slimefun.getMetricsService().getVersion() != null) {
@@ -79,7 +90,7 @@ class VersionsCommand extends SubCommand {
 
             addJavaVersion(builder);
 
-            // Add notice to warn those smart people
+            // Specify we are NOT OFFICIAL build so no support from upstream
             builder.append("\n由 StarWishsama 汉化")
                     .color(ChatColor.WHITE)
                     .append("\n请不要将此版本信息截图到 Discord/Github 反馈 Bug" + "\n优先到汉化页面反馈" + "\n")
@@ -88,6 +99,11 @@ class VersionsCommand extends SubCommand {
             if (Slimefun.getConfigManager().isBypassEnvironmentCheck()) {
                 builder.append("\n").event((HoverEvent) null);
                 builder.append("\n已禁用环境兼容性检查").color(ChatColor.RED);
+            }
+
+            if (Slimefun.getConfigManager().isBypassItemLengthCheck()) {
+                builder.append("\n").event((HoverEvent) null);
+                builder.append("\n已禁用物品长度检查").color(ChatColor.RED);
             }
 
             builder.append("\n").event((HoverEvent) null);

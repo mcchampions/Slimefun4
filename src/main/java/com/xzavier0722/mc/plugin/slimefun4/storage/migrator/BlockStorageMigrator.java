@@ -12,7 +12,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Map;
 import java.util.logging.Level;
 import lombok.Getter;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -135,18 +135,18 @@ public class BlockStorageMigrator implements IMigrator {
             var z = Integer.parseInt(arr[3]);
 
             var loc = new Location(world, x, y, z);
-            var blockData =
-                    Slimefun.getDatabaseManager().getBlockDataController().createBlock(loc, sfId);
+            var sfData = Slimefun.getDatabaseManager().getBlockDataController().createBlock(loc, sfId);
             Map<String, String> data = gson.fromJson(jsonStr, new TypeToken<Map<String, String>>() {}.getType());
             for (var each : data.entrySet()) {
                 var key = each.getKey();
                 if ("id".equals(key)) {
                     continue;
                 }
-                blockData.setData(key, each.getValue());
+                sfData.setData(key, each.getValue());
             }
 
-            var menu = blockData.getBlockMenu();
+            DirtyChestMenu menu = sfData.getBlockMenu();
+
             if (menu != null) {
                 var f = new File(invFolder, world.getName() + ";" + x + ";" + y + ";" + z + ".sfi");
                 if (!f.isFile()) {
@@ -159,7 +159,7 @@ public class BlockStorageMigrator implements IMigrator {
         }
     }
 
-    private void migrateInv(BlockMenu menu, File f) {
+    private void migrateInv(DirtyChestMenu menu, File f) {
         var cfg = new Config(f);
         var preset = menu.getPreset().getPresetSlots();
         for (var key : cfg.getKeys()) {
