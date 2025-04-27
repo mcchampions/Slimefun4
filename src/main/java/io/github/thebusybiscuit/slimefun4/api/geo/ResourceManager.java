@@ -27,23 +27,20 @@ import java.util.concurrent.ThreadLocalRandom;
  * You have to use the {@link ResourceManager} if you want to generate or consume a {@link GEOResource} too.
  *
  * @author TheBusyBiscuit
- *
  * @see GEOResource
  * @see GEOMiner
  * @see GEOScanner
- *
  */
 public class ResourceManager {
     private final int[] backgroundSlots = {
-        0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 48, 49, 50, 52, 53
+            0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 48, 49, 50, 52, 53
     };
     private final Config config;
 
     /**
      * This will create a new {@link ResourceManager}.
      *
-     * @param plugin
-     *            Our {@link Slimefun} instance
+     * @param plugin Our {@link Slimefun} instance
      */
     public ResourceManager(Slimefun plugin) {
         config = new Config(plugin, "resources.yml");
@@ -53,8 +50,7 @@ public class ResourceManager {
      * This method registers the given {@link GEOResource}.
      * It may never be called directly, use {@link GEOResource#register()} instead.
      *
-     * @param resource
-     *            The {@link GEOResource} to register
+     * @param resource The {@link GEOResource} to register
      */
     void register(GEOResource resource) {
         // Resources may only be registered once
@@ -77,15 +73,10 @@ public class ResourceManager {
      * The result is an {@link OptionalInt} which will be empty if this {@link GEOResource}
      * has not been generated at that {@link Location} yet.
      *
-     * @param resource
-     *            The {@link GEOResource} to query
-     * @param world
-     *            The {@link World} of this {@link Location}
-     * @param x
-     *            The {@link Chunk} x coordinate
-     * @param z
-     *            The {@link Chunk} z coordinate
-     *
+     * @param resource The {@link GEOResource} to query
+     * @param world    The {@link World} of this {@link Location}
+     * @param x        The {@link Chunk} x coordinate
+     * @param z        The {@link Chunk} z coordinate
      * @return An {@link OptionalInt}, either empty or containing the amount of the given {@link GEOResource}
      */
     public static OptionalInt getSupplies(GEOResource resource, World world, int x, int z) {
@@ -130,16 +121,11 @@ public class ResourceManager {
     /**
      * This method will set the supplies in a given {@link Chunk} to the specified value.
      *
-     * @param resource
-     *            The {@link GEOResource}
-     * @param world
-     *            The {@link World}
-     * @param x
-     *            The x coordinate of that {@link Chunk}
-     * @param z
-     *            The z coordinate of that {@link Chunk}
-     * @param value
-     *            The new supply value
+     * @param resource The {@link GEOResource}
+     * @param world    The {@link World}
+     * @param x        The x coordinate of that {@link Chunk}
+     * @param z        The z coordinate of that {@link Chunk}
+     * @param value    The new supply value
      */
     public static void setSupplies(GEOResource resource, World world, int x, int z, int value) {
         String key = resource.getKey().toString().replace(':', '-');
@@ -160,15 +146,10 @@ public class ResourceManager {
      * This method will invoke {@link #setSupplies(GEOResource, World, int, int, int)} and also calls a
      * {@link GEOResourceGenerationEvent}.
      *
-     * @param resource
-     *            The {@link GEOResource} to generate
-     * @param world
-     *            The {@link World}
-     * @param x
-     *            The x coordinate of that {@link Chunk}
-     * @param z
-     *            The z coordinate of that {@link Chunk}
-     *
+     * @param resource The {@link GEOResource} to generate
+     * @param world    The {@link World}
+     * @param x        The x coordinate of that {@link Chunk}
+     * @param z        The z coordinate of that {@link Chunk}
      * @return The new supply value
      */
     private static int generate(GEOResource resource, World world, int x, int y, int z) {
@@ -184,8 +165,8 @@ public class ResourceManager {
 
             if (max <= 0) {
                 throw new IllegalStateException("GEO Resource \""
-                        + resource.getKey()
-                        + "\" was misconfigured! getMaxDeviation() must return a value higher than zero!");
+                                                + resource.getKey()
+                                                + "\" was misconfigured! getMaxDeviation() must return a value higher than zero!");
             }
 
             value += ThreadLocalRandom.current().nextInt(max);
@@ -208,12 +189,9 @@ public class ResourceManager {
      * parameter only determines the {@link Location} that was clicked but it will still scan
      * the entire {@link Chunk}.
      *
-     * @param p
-     *            The {@link Player} who requested these results
-     * @param block
-     *            The {@link Block} which the scan starts at
-     * @param page
-     *            The zero-based page to display
+     * @param p     The {@link Player} who requested these results
+     * @param block The {@link Block} which the scan starts at
+     * @param page  The zero-based page to display
      */
     public void scan(Player p, Block block, int page) {
         if (Slimefun.getGPSNetwork().getNetworkComplexity(p.getUniqueId()) < 600) {
@@ -227,6 +205,11 @@ public class ResourceManager {
 
         String title = "§4" + SlimefunLocalization.getResourceString(p, "tooltips.results");
         ChestMenu menu = new ChestMenu(title);
+
+        menu.setPlayerInventoryClickable(false);
+        menu.setEmptySlotsClickable(false);
+
+        menu.addPlayerInventoryClickHandler((player, slot, item, action) -> false);
 
         for (int slot : backgroundSlots) {
             menu.addItem(slot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());

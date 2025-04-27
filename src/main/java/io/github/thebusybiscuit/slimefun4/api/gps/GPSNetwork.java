@@ -34,14 +34,12 @@ import java.util.*;
  * It is also responsible for teleportation and resource management.
  *
  * @author TheBusyBiscuit
- *
  * @see TeleportationManager
  * @see ResourceManager
- *
  */
 public class GPSNetwork {
     private final int[] border = {
-        0, 1, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53
+            0, 1, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53
     };
     private final int[] inventory = {19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43
     };
@@ -51,12 +49,11 @@ public class GPSNetwork {
 
     /**
      * -- GETTER --
-     *  This returns the
-     *  for this
+     * This returns the
+     * for this
      * .
-     *  Use this to access
+     * Use this to access
      * .
-     *
      */
     @Getter
     private final ResourceManager resourceManager;
@@ -65,8 +62,7 @@ public class GPSNetwork {
      * This constructs a new {@link GPSNetwork}.
      * Note that this network is per {@link Server} and not per {@link Player}.
      *
-     * @param plugin
-     *            Our {@link Slimefun} instance
+     * @param plugin Our {@link Slimefun} instance
      */
     public GPSNetwork(Slimefun plugin) {
         resourceManager = new ResourceManager(plugin);
@@ -75,12 +71,9 @@ public class GPSNetwork {
     /**
      * This method updates the status of a {@link GPSTransmitter}.
      *
-     * @param l
-     *            The {@link Location} of the {@link GPSTransmitter}
-     * @param uuid
-     *            The {@link UUID} who the {@link GPSTransmitter} belongs to
-     * @param online
-     *            Whether that {@link GPSTransmitter} is online
+     * @param l      The {@link Location} of the {@link GPSTransmitter}
+     * @param uuid   The {@link UUID} who the {@link GPSTransmitter} belongs to
+     * @param online Whether that {@link GPSTransmitter} is online
      */
     public void updateTransmitter(Location l, UUID uuid, boolean online) {
         Set<Location> set = transmitters.computeIfAbsent(uuid, id -> new HashSet<>());
@@ -97,9 +90,7 @@ public class GPSNetwork {
      * The complexity is determined by the Y level of each {@link GPSTransmitter}
      * multiplied by the multiplier of that transmitter.
      *
-     * @param uuid
-     *            The {@link UUID} who to calculate it for
-     *
+     * @param uuid The {@link UUID} who to calculate it for
      * @return The network complexity for that {@link UUID}
      */
     public int getNetworkComplexity(UUID uuid) {
@@ -125,9 +116,7 @@ public class GPSNetwork {
      * This method returns the amount of {@link GPSTransmitter Transmitters} for the
      * given {@link UUID}.
      *
-     * @param uuid
-     *            The {@link UUID} who these transmitters belong to
-     *
+     * @param uuid The {@link UUID} who these transmitters belong to
      * @return The amount of transmitters
      */
     public int countTransmitters(UUID uuid) {
@@ -139,13 +128,15 @@ public class GPSNetwork {
      * This method opens the {@link GPSTransmitter} control panel to the given
      * {@link Player}.
      *
-     * @param p
-     *            The {@link Player}
+     * @param p The {@link Player}
      */
     public void openTransmitterControlPanel(Player p) {
         ChestMenu menu = new ChestMenu(
                 ChatColor.BLUE + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
+        menu.setPlayerInventoryClickable(false);
+        menu.setEmptySlotsClickable(false);
 
+        menu.addPlayerInventoryClickHandler((player, slot, item, action) -> false);
         for (int slot : border) {
             menu.addItem(slot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
@@ -175,8 +166,8 @@ public class GPSNetwork {
                         "§7" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.waypoints"),
                         "",
                         ChatColor.GRAY
-                                + "\u21E8 "
-                                + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
+                        + "\u21E8 "
+                        + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
         menu.addMenuClickHandler(6, (pl, slot, item, action) -> {
             openWaypointControlPanel(pl);
             return false;
@@ -222,11 +213,8 @@ public class GPSNetwork {
      * <p>
      * Otherwise it will return a globe, a nether or end sphere according to the {@link Environment}.
      *
-     * @param name
-     *            The name of a waypoint
-     * @param environment
-     *            The {@link Environment} of the waypoint's {@link World}
-     *
+     * @param name        The name of a waypoint
+     * @param environment The {@link Environment} of the waypoint's {@link World}
      * @return An icon for this waypoint
      */
     public static ItemStack getIcon(String name, Environment environment) {
@@ -254,6 +242,11 @@ public class GPSNetwork {
             ChestMenu menu = new ChestMenu(
                     ChatColor.BLUE + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
 
+            menu.setPlayerInventoryClickable(false);
+            menu.setEmptySlotsClickable(false);
+
+            menu.addPlayerInventoryClickHandler((player, slot, item, action) -> false);
+
             for (int slot : border) {
                 menu.addItem(slot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
             }
@@ -265,8 +258,8 @@ public class GPSNetwork {
                             "§7" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.transmitters"),
                             "",
                             ChatColor.GRAY
-                                    + "\u21E8 "
-                                    + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
+                            + "\u21E8 "
+                            + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
             menu.addMenuClickHandler(2, (pl, slot, item, action) -> {
                 openTransmitterControlPanel(pl);
                 return false;
@@ -329,10 +322,8 @@ public class GPSNetwork {
      * This method will prompt the given {@link Player} to enter a name for a waypoint.
      * After entering the name, it will be added to his waypoint list.
      *
-     * @param p
-     *            The {@link Player} who should get a new waypoint
-     * @param l
-     *            The {@link Location} of the new waypoint
+     * @param p The {@link Player} who should get a new waypoint
+     * @param l The {@link Location} of the new waypoint
      */
     public void createWaypoint(Player p, Location l) {
         PlayerProfile.get(p, profile -> {
@@ -351,12 +342,9 @@ public class GPSNetwork {
     /**
      * This method adds a new waypoint with the given name and {@link Location} for that {@link Player}.
      *
-     * @param p
-     *            The {@link Player} to get the new waypoint
-     * @param name
-     *            The name of this waypoint
-     * @param l
-     *            The {@link Location} of this waypoint
+     * @param p    The {@link Player} to get the new waypoint
+     * @param name The name of this waypoint
+     * @param l    The {@link Location} of this waypoint
      */
     public void addWaypoint(Player p, String name, Location l) {
         PlayerProfile.get(p, profile -> {
@@ -399,9 +387,7 @@ public class GPSNetwork {
      * This method returns a {@link Set} of {@link Location Locations} for all {@link GPSTransmitter Transmitters}
      * owned by the given {@link UUID}.
      *
-     * @param uuid
-     *            The {@link UUID} owning those transmitters
-     *
+     * @param uuid The {@link UUID} owning those transmitters
      * @return A {@link Set} with all {@link Location Locations} of transmitters for this {@link UUID}
      */
 
