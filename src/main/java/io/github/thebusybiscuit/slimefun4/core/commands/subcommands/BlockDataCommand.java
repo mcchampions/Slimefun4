@@ -80,7 +80,7 @@ class BlockDataCommand extends SubCommand {
                     return;
                 }
 
-                String value = args[2];
+                String value = args[3];
 
                 blockData.setData(key, value);
                 ChatUtils.sendMessage(player, "&a已设置该方块 &b%key% &a的值为: &e%value%", msg -> msg.replace("%key%", key)
