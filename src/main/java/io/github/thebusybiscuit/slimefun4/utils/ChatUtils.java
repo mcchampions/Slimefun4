@@ -3,6 +3,7 @@ package io.github.thebusybiscuit.slimefun4.utils;
 import io.github.bakedlibs.dough.chat.ChatInput;
 import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.Locale;
 import java.util.function.Consumer;
 
@@ -16,10 +17,10 @@ import org.bukkit.entity.Player;
  * or sending a {@link String} to a {@link Player}.
  *
  * @author TheBusyBiscuit
- *
  */
 public final class ChatUtils {
-    private ChatUtils() {}
+    private ChatUtils() {
+    }
 
     public static void sendURL(CommandSender sender, String url) {
         // If we get access to the URL prompt one day, we can just prompt the link to the Player that
@@ -36,7 +37,7 @@ public final class ChatUtils {
 
     public static String crop(ChatColor color, String string) {
         if (TextUtils.toPlainText(color + string).length() > 19) {
-            return (color + TextUtils.toPlainText(string)).substring(0, 18) + "...";
+            return (color + TextUtils.toPlainText(string, 18) + "...");
         } else {
             return color + TextUtils.toPlainText(string);
         }
@@ -58,9 +59,7 @@ public final class ChatUtils {
      * For example:
      * {@code ENUM_CONSTANT: Enum Constant}
      *
-     * @param string
-     *            The {@link String} to convert
-     *
+     * @param string The {@link String} to convert
      * @return A human-friendly version of the given {@link String}
      */
     public static String humanize(String string) {
@@ -80,13 +79,10 @@ public final class ChatUtils {
     /**
      * This method adds an s to a string if the supplied integer is not 1.
      *
-     * @param string
-     *      The string to potentially pluralize
-     * @param count
-     *      The amount of things
-     * @return
-     *      {@code string} if {@code count} is 1 else {@code string + "s"}
-     *      if count is less than 0
+     * @param string The string to potentially pluralize
+     * @param count  The amount of things
+     * @return {@code string} if {@code count} is 1 else {@code string + "s"}
+     * if count is less than 0
      */
     public static String checkPlurality(String string, int count) {
         if (count == 1) {

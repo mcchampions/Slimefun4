@@ -33,6 +33,27 @@ public class TextUtils {
         return new String(chars, 0, writePos);
     }
 
+    public static String toPlainText(String text, int index) {
+        final char[] chars = text.toCharArray();
+        final int length = chars.length;
+        int readPos = 0;
+        int writePos = 0;
+
+        while (readPos <= index && readPos < length) {
+            if (readPos + 1 < length) {
+                if ((chars[readPos] == '§' || chars[readPos] == '&') && isColorCodeChar(chars[readPos + 1])) {
+                    readPos += 2;
+                    index += 2;
+                    continue;
+                }
+            }
+
+            chars[writePos++] = chars[readPos++];
+        }
+
+        return new String(chars, 0, writePos);
+    }
+
     public static boolean isColorCodeChar(char c) {
         if (c < '0' || c > 'x') {
             return false;
@@ -44,9 +65,9 @@ public class TextUtils {
         final int mask = 0b11011111;
         final int uc = c & mask;
         return (uc >= 'A' && uc <= 'F')
-                || (uc >= 'K' && uc <= 'O')
-                || uc == 'R'
-                || uc == 'X';
+               || (uc >= 'K' && uc <= 'O')
+               || uc == 'R'
+               || uc == 'X';
     }
 
     public static String toLegacyText(Component component) {
@@ -103,7 +124,7 @@ public class TextUtils {
         for (char c : chars) {
             switch (c) {
                 case '1', '2', '3', '4', '5',
-                        '6', '7', '8', '9', '0' -> {
+                     '6', '7', '8', '9', '0' -> {
                 }
                 default -> {
                     return false;
@@ -118,7 +139,7 @@ public class TextUtils {
         for (char c : chars) {
             switch (c) {
                 case '1', '2', '3', '4', '5',
-                        '6', '7', '8', '9', '0' -> {
+                     '6', '7', '8', '9', '0' -> {
                     return true;
                 }
                 default -> {
