@@ -1044,6 +1044,12 @@ public class SlimefunItem implements Placeable {
         return itemID.map(SlimefunItem::getById).orElse(null);
     }
 
+    public static @Nullable SlimefunItem getByItem(@Nullable SlimefunItemStack item) {
+        Optional<String> itemID = Slimefun.getItemDataService().getItemData(item);
+
+        return itemID.map(SlimefunItem::getById).orElse(null);
+    }
+
     /**
      * Retrieve a {@link Optional} {@link SlimefunItem} from an {@link ItemStack}.
      *
