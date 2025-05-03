@@ -47,7 +47,7 @@ public class TelepositionScroll extends SimpleSlimefunItem<ItemUseHandler> {
                         yaw = yaw - 360.0F;
                     }
 
-                    n.teleport(new Location(
+                    n.teleportAsync(new Location(
                             n.getWorld(),
                             n.getLocation().getX(),
                             n.getLocation().getY(),
