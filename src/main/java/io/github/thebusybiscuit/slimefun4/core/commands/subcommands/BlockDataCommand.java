@@ -62,7 +62,7 @@ class BlockDataCommand extends SubCommand {
             case "get" -> {
                 String value = blockData.getData(key);
                 ChatUtils.sendMessage(player, "&a该方块 &b%key% &a的值为: &e%value%", msg -> msg.replace("%key%", key)
-                        .replace("%value%", value));
+                        .replace("%value%", value == null ? "null" : value));
             }
             case "set" -> {
                 if (args.length < 4) {

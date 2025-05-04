@@ -49,6 +49,31 @@ commands:
     description: 为你手持的物品充电
     charge-success: 充电完成!
     not-rechargeable: 这个物品不能充电!
+  timings:
+    description: Slimefun 及其附属插件的性能报告
+    please-wait: '&e请稍等一会...结果马上就来!'
+    verbose-player: '&4该标记不能对玩家使用!'
+    unknown-flag: '&4未知标记: &c%flag%'
+  debug:
+    description: '输出调试日志以供开发者使用'
+    current: '&7当前测试项: &6%test_case%'
+    none-running: '&7当前没有运行的测试项!'
+    running: '&7正在调试模式中运行该测试项: &6%test%'
+    disabled: '&7已禁用调试模式'
+  reload:
+    description: "重载 Slimefun 配置文件"
+    success: "&a成功重载配置文件."
+    failed: "&c重载配置文件失败! 你可能需要重启服务器以应用更改, 查看后台输出信息了解更多."
+  migrate:
+    description: "迁移旧数据"
+    confirm: "&c你确定要进行数据迁移吗? 确认请输入 /sf migrate confirm 开始迁移\n迁移过程中请不要让玩家进入服务器操作 Slimefun 相关机器及物品!"
+    started: "&a正在迁移旧数据..."
+    success: "&a迁移旧数据 (%migrate_type%) 至数据库成功."
+    failed: "&c迁移数据过程中出现了问题, 请查看后台."
+    already-migrated: "&a暂无可迁移数据."
+    in-progress: "&a迁移正在进行中..."
+  blockdata:
+    description: '操作粘液方块数据'
 placeholderapi:
   profile-loading: '加载中...'
 guide:
