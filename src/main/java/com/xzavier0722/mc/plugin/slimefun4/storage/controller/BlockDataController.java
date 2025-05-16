@@ -514,7 +514,7 @@ public class BlockDataController extends ADataController {
     public Optional<SlimefunUniversalBlockData> getUniversalBlockDataFromCache(Location l) {
         for (SlimefunUniversalData uniData : loadedUniversalData.values()) {
             if (uniData instanceof SlimefunUniversalBlockData ubd) {
-                if (!ubd.isDataLoaded() || !ubd.hasTrait(UniversalDataTrait.BLOCK) || ubd.getLastPresent() == null) {
+                if (!ubd.isDataLoaded() || ubd.getLastPresent() == null) {
                     continue;
                 }
 
@@ -689,7 +689,9 @@ public class BlockDataController extends ADataController {
         uniKey.addField(FieldKey.SLIMEFUN_ID);
         uniKey.addField(FieldKey.UNIVERSAL_TRAITS);
 
-        getData(uniKey).forEach(data -> {
+        List<RecordSet> uniRecord = getData(uniKey);
+
+        uniRecord.forEach(data -> {
             String sfId = data.get(FieldKey.SLIMEFUN_ID);
             SlimefunItem sfItem = SlimefunItem.getById(sfId);
 
@@ -881,16 +883,11 @@ public class BlockDataController extends ADataController {
                 }
             }
 
-            if (uniData.hasTrait(UniversalDataTrait.BLOCK)) {
-                SlimefunItem sfItem = SlimefunItem.getById(uniData.getSfId());
+            if (uniData instanceof SlimefunUniversalBlockData ubd) {
+                SlimefunItem sfItem = SlimefunItem.getById(ubd.getSfId());
 
                 if (sfItem != null && sfItem.isTicking()) {
-                    Slimefun.getTickerTask()
-                            .enableTicker(
-                                    ((SlimefunUniversalBlockData) uniData)
-                                            .getLastPresent()
-                                            .toLocation(),
-                                    uniData.getUUID());
+                    Slimefun.getTickerTask().enableTicker(ubd.getLastPresent().toLocation(), uniData.getUUID());
                 }
             }
         } finally {
