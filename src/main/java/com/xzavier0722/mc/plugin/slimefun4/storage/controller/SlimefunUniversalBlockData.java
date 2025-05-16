@@ -26,6 +26,10 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
         this(uuid, sfId, new BlockPosition(present));
     }
 
+    public void initTraits() {
+        addTrait(UniversalDataTrait.BLOCK, UniversalDataTrait.INVENTORY);
+    }
+
     public void initLastPresent() {
         setTraitData(UniversalDataTrait.BLOCK, LocationUtils.getLocKey(lastPresent.toLocation()));
     }

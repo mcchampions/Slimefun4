@@ -5,6 +5,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.Univers
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -29,8 +30,6 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
     }
 
     public void setData(String key, String val) {
-        checkData();
-
         if (UniversalDataTrait.isReservedKey(key)) {
             Slimefun.logger().log(Level.WARNING, "警告: 有附属正在尝试修改受保护的方块数据, 已取消更改");
             return;
@@ -41,8 +40,6 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
     }
 
     protected void setTraitData(UniversalDataTrait trait, String val) {
-        checkData();
-
         setCacheInternal(trait.getReservedKey(), val, true);
         Slimefun.getDatabaseManager()
                 .getBlockDataController()
@@ -77,8 +74,8 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
         return UUID.fromString(getKey());
     }
 
-    public void addTrait(UniversalDataTrait trait) {
-        traits.add(trait);
+    public void addTrait(UniversalDataTrait... trait) {
+        traits.addAll(List.of(trait));
     }
 
     public boolean hasTrait(UniversalDataTrait trait) {

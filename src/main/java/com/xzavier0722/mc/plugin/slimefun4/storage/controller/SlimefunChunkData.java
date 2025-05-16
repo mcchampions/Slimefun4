@@ -47,7 +47,6 @@ public class SlimefunChunkData extends ADataContainer {
 
     @Nullable
     public SlimefunBlockData getBlockData(Location l) {
-        checkData();
         return getBlockCacheInternal(LocationUtils.getLocKey(l));
     }
 
@@ -98,7 +97,6 @@ public class SlimefunChunkData extends ADataContainer {
     }
 
     public void setData(String key, String val) {
-        checkData();
         setCacheInternal(key, val, true);
         Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedChunkDataUpdate(this, key);
     }

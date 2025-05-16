@@ -33,7 +33,6 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
     }
 
     public void setData(String key, String val) {
-        checkData();
         setCacheInternal(key, val, true);
         Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedBlockDataUpdate(this, key);
     }
