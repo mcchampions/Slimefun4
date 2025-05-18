@@ -24,6 +24,10 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
         this(uuid, sfId, new BlockPosition(present));
     }
 
+    public void initTraits() {
+        addTrait(UniversalDataTrait.BLOCK, UniversalDataTrait.INVENTORY);
+    }
+
     public void initLastPresent() {
         setTraitData(UniversalDataTrait.BLOCK, LocationUtils.getLocKey(lastPresent.toLocation()));
     }
@@ -85,5 +89,12 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
         } catch (Exception x) {
             throw new RuntimeException("Unable to fix location " + data + ", it might be broken", x);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "SlimefunUniversalBlockData [uuid= " + getUUID() + ", sfId=" + getSfId() + ", isPendingRemove="
+                + isPendingRemove() + ", lastPresent=" + lastPresent + ", hasMenu=" + (getMenu() != null) + ", traits="
+                + getTraits() + "]";
     }
 }
