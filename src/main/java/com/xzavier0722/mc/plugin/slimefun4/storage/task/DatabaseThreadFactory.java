@@ -1,9 +1,7 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.task;
 
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Level;
 
 public class DatabaseThreadFactory implements ThreadFactory {
     private final AtomicInteger threadCount = new AtomicInteger(0);
@@ -17,10 +15,7 @@ public class DatabaseThreadFactory implements ThreadFactory {
 
     @Override
     public Thread newThread(Runnable r) {
-        Thread t = new Thread(r, prefix + threadCount.getAndIncrement());
-        t.setUncaughtExceptionHandler((et, e) ->
-                Slimefun.logger().log(Level.SEVERE, "A error occurred in database thread " + t.getName(), e));
 
-        return t;
+        return new Thread(r, prefix + threadCount.getAndIncrement());
     }
 }
