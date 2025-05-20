@@ -3,6 +3,7 @@ package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 import city.norain.slimefun4.api.menu.UniversalMenu;
 import city.norain.slimefun4.api.menu.UniversalMenuPreset;
 import city.norain.slimefun4.utils.InventoryUtil;
+import city.norain.slimefun4.utils.TaskUtil;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
@@ -205,7 +206,7 @@ public class BlockDataController extends ADataController {
     }
 
     /**
-     * 在指定位置新建方块
+     * 在指定位置创建一个新的 Slimefun 方块数据
      *
      * @param l    Slimefun 方块位置 {@link Location}
      * @param sfId Slimefun 物品 ID {@link SlimefunItem#getId()}
@@ -232,6 +233,21 @@ public class BlockDataController extends ADataController {
         return re;
     }
 
+    public SlimefunUniversalData createUniversalData(String sfId) {
+        checkDestroy();
+
+        UUID uuid = UUID.randomUUID();
+        SlimefunUniversalData uniData = new SlimefunUniversalData(uuid, sfId);
+
+        uniData.setIsDataLoaded(true);
+
+        loadedUniversalData.put(uuid, uniData);
+
+        Slimefun.getDatabaseManager().getBlockDataController().saveUniversalData(uniData);
+
+        return uniData;
+    }
+
     public SlimefunUniversalBlockData createUniversalBlock(Location l, String sfId) {
         UUID uuid = UUID.randomUUID();
         SlimefunUniversalBlockData uniData = new SlimefunUniversalBlockData(uuid, sfId, l);
@@ -252,7 +268,7 @@ public class BlockDataController extends ADataController {
             Slimefun.getTickerTask().enableTicker(l, uuid);
         }
 
-        Slimefun.getDatabaseManager().getBlockDataController().saveUniversalData(uuid, sfId, uniData.getTraits());
+        Slimefun.getDatabaseManager().getBlockDataController().saveUniversalData(uniData);
 
         return uniData;
     }
@@ -269,43 +285,46 @@ public class BlockDataController extends ADataController {
         data.put(FieldKey.SLIMEFUN_ID, sfId);
 
         LocationKey scopeKey = new LocationKey(DataScope.NONE, l);
-        removeDelayedBlockDataUpdates(scopeKey); // Shouldn't have.. But for safe..
+        removeDelayedDataUpdates(scopeKey); // Shouldn't have.. But for safe..
         scheduleWriteTask(scopeKey, key, data, true);
     }
 
-    /**
-     * Save certain universal data
-     *
-     * @param uuid universal data uuid
-     * @param sfId the item universal data represents
-     */
-    void saveUniversalData(UUID uuid, String sfId, Set<UniversalDataTrait> traits) {
-        RecordKey key = new RecordKey(DataScope.UNIVERSAL_RECORD);
+    void saveUniversalData(SlimefunUniversalData universalData) {
+        var uuid = universalData.getKey();
+        var sfId = universalData.getSfId();
+        var traitsStr = String.join(
+                ",", universalData.getTraits().stream().map(Enum::name).toList());
 
-        RecordSet data = new RecordSet();
-        data.put(FieldKey.UNIVERSAL_UUID, uuid.toString());
+        var key = new RecordKey(DataScope.UNIVERSAL_RECORD);
+
+        var data = new RecordSet();
+        data.put(FieldKey.UNIVERSAL_UUID, uuid);
         data.put(FieldKey.SLIMEFUN_ID, sfId);
-        data.put(
-                FieldKey.UNIVERSAL_TRAITS,
-                String.join(",", traits.stream().map(Enum::name).toList()));
+        data.put(FieldKey.UNIVERSAL_TRAITS, traitsStr);
 
         UUIDKey scopeKey = new UUIDKey(DataScope.NONE, uuid);
-        removeDelayedBlockDataUpdates(scopeKey); // Shouldn't have.. But for safe..
+        removeDelayedDataUpdates(scopeKey); // Shouldn't have.. But for safe..
+
         scheduleWriteTask(scopeKey, key, data, true);
     }
 
     /**
-     * Remove slimefun block data at specific location
+     * 移除指定位置上的 Slimefun 数据
      *
-     * @param l slimefun block location {@link Location}
+     * @param l 位置 {@link Location}
      */
     public void removeBlock(Location l) {
-        SlimefunBlockData removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
+        checkDestroy();
+
+        var removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
+
         if (removed == null) {
             getUniversalBlockDataFromCache(l)
-                    .ifPresentOrElse(data -> removeUniversalBlockData(data.getUUID(), l), () -> Slimefun.getBlockDataService()
-                            .getUniversalDataUUID(l.getBlock())
-                            .ifPresent(uuid -> removeUniversalBlockData(uuid, l)));
+                    .ifPresentOrElse(
+                            data -> removeUniversalBlockData(data.getUUID()),
+                            () -> TaskUtil.runSyncMethod(() -> Slimefun.getBlockDataService()
+                                    .getUniversalDataUUID(l.getBlock())
+                                    .ifPresent(this::removeUniversalBlockData)));
             return;
         }
 
@@ -327,6 +346,11 @@ public class BlockDataController extends ADataController {
         }
     }
 
+    /**
+     * 移除指定位置上的 Slimefun 方块数据
+     *
+     * @param l 位置 {@link Location}
+     */
     public void removeBlockData(Location l) {
         SlimefunBlockData removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
 
@@ -344,8 +368,10 @@ public class BlockDataController extends ADataController {
         }
     }
 
-    public void removeUniversalBlockData(UUID uuid, Location lastPresent) {
-        SlimefunUniversalData toRemove = loadedUniversalData.get(uuid);
+    public void removeUniversalBlockData(UUID uuid) {
+        checkDestroy();
+
+        var toRemove = loadedUniversalData.get(uuid);
 
         if (toRemove == null) {
             return;
@@ -358,7 +384,7 @@ public class BlockDataController extends ADataController {
         toRemove.setPendingRemove(true);
 
         if (toRemove instanceof SlimefunUniversalBlockData ubd) {
-            toRemove.setPendingRemove(true);
+            ubd.setPendingRemove(true);
             removeUniversalBlockDirectly(uuid);
 
             UniversalMenu menu = ubd.getMenu();
@@ -367,7 +393,7 @@ public class BlockDataController extends ADataController {
             }
 
             if (Slimefun.getRegistry().getTickerBlocks().contains(toRemove.getSfId())) {
-                Slimefun.getTickerTask().disableTicker(lastPresent);
+                Slimefun.getTickerTask().disableTicker(ubd.getLastPresent().toLocation());
             }
         }
 
@@ -375,8 +401,8 @@ public class BlockDataController extends ADataController {
     }
 
     void removeBlockDirectly(Location l) {
-        LocationKey scopeKey = new LocationKey(DataScope.NONE, l);
-        removeDelayedBlockDataUpdates(scopeKey);
+        var scopeKey = new LocationKey(DataScope.NONE, l);
+        removeDelayedDataUpdates(scopeKey);
 
         RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
         key.addCondition(FieldKey.LOCATION, LocationUtils.getLocKey(l));
@@ -384,8 +410,8 @@ public class BlockDataController extends ADataController {
     }
 
     void removeUniversalBlockDirectly(UUID uuid) {
-        UUIDKey scopeKey = new UUIDKey(DataScope.NONE, uuid);
-        removeDelayedBlockDataUpdates(scopeKey);
+        var scopeKey = new UUIDKey(DataScope.NONE, uuid);
+        removeDelayedDataUpdates(scopeKey);
 
         RecordKey key = new RecordKey(DataScope.UNIVERSAL_RECORD);
         key.addCondition(FieldKey.UNIVERSAL_UUID, uuid.toString());
@@ -832,7 +858,8 @@ public class BlockDataController extends ADataController {
             return;
         }
 
-        RecordKey key = new RecordKey(DataScope.UNIVERSAL_DATA);
+        // 构建 通用数据 kv 存储 查询条件
+        var key = new RecordKey(DataScope.UNIVERSAL_DATA);
         key.addCondition(FieldKey.UNIVERSAL_UUID, uniData.getKey());
         key.addField(FieldKey.DATA_KEY);
         key.addField(FieldKey.DATA_VALUE);
@@ -854,40 +881,49 @@ public class BlockDataController extends ADataController {
 
             uniData.setIsDataLoaded(true);
 
-            if (uniData.hasTrait(UniversalDataTrait.INVENTORY)) {
-                UniversalMenuPreset menuPreset = UniversalMenuPreset.getPreset(uniData.getSfId());
-                if (menuPreset != null) {
-                    RecordKey menuKey = new RecordKey(DataScope.UNIVERSAL_INVENTORY);
-                    menuKey.addCondition(FieldKey.UNIVERSAL_UUID, uniData.getKey());
-                    menuKey.addField(FieldKey.INVENTORY_SLOT);
-                    menuKey.addField(FieldKey.INVENTORY_ITEM);
+            if (uniData instanceof SlimefunUniversalBlockData ubd) {
+                if (ubd.hasTrait(UniversalDataTrait.BLOCK)) {
+                    // 初始化 上次出现位置
+                    var lStr = ubd.getData(UniversalDataTrait.BLOCK.getReservedKey());
 
-                    ItemStack[] inv = new ItemStack[54];
+                    if (lStr != null && !lStr.isBlank()) {
+                        ubd.setLastPresent(LocationUtils.toLocation(lStr));
+                    }
 
-                    getData(menuKey)
-                            .forEach(recordSet -> inv[recordSet.getInt(FieldKey.INVENTORY_SLOT)] =
-                                    recordSet.getItemStack(FieldKey.INVENTORY_ITEM));
+                    var sfItem = SlimefunItem.getById(ubd.getSfId());
 
-                    Location location = uniData.hasTrait(UniversalDataTrait.BLOCK)
-                            ? ((SlimefunUniversalBlockData) uniData)
-                            .getLastPresent()
-                            .toLocation()
-                            : null;
-
-                    uniData.setMenu(new UniversalMenu(menuPreset, uniData.getUUID(), location, inv));
-
-                    ItemStack[] content = uniData.getMenuContents();
-                    if (content != null) {
-                        invSnapshots.put(uniData.getKey(), InvStorageUtils.getInvSnapshot(content));
+                    if (sfItem != null && sfItem.isTicking()) {
+                        Slimefun.getTickerTask()
+                                .enableTicker(ubd.getLastPresent().toLocation(), ubd.getUUID());
                     }
                 }
-            }
 
-            if (uniData instanceof SlimefunUniversalBlockData ubd) {
-                SlimefunItem sfItem = SlimefunItem.getById(ubd.getSfId());
+                if (ubd.hasTrait(UniversalDataTrait.INVENTORY)) {
+                    // 加载菜单
+                    var menuPreset = UniversalMenuPreset.getPreset(ubd.getSfId());
+                    if (menuPreset != null) {
+                        var menuKey = new RecordKey(DataScope.UNIVERSAL_INVENTORY);
+                        menuKey.addCondition(FieldKey.UNIVERSAL_UUID, ubd.getKey());
+                        menuKey.addField(FieldKey.INVENTORY_SLOT);
+                        menuKey.addField(FieldKey.INVENTORY_ITEM);
 
-                if (sfItem != null && sfItem.isTicking()) {
-                    Slimefun.getTickerTask().enableTicker(ubd.getLastPresent().toLocation(), uniData.getUUID());
+                        var inv = new ItemStack[54];
+
+                        getData(menuKey)
+                                .forEach(recordSet -> inv[recordSet.getInt(FieldKey.INVENTORY_SLOT)] =
+                                        recordSet.getItemStack(FieldKey.INVENTORY_ITEM));
+
+                        var location = ubd.hasTrait(UniversalDataTrait.BLOCK)
+                                ? ubd.getLastPresent().toLocation()
+                                : null;
+
+                        ubd.setMenu(new UniversalMenu(menuPreset, ubd.getUUID(), location, inv));
+
+                        var content = ubd.getMenuContents();
+                        if (content != null) {
+                            invSnapshots.put(ubd.getKey(), InvStorageUtils.getInvSnapshot(content));
+                        }
+                    }
                 }
             }
         } finally {
@@ -1170,7 +1206,7 @@ public class BlockDataController extends ADataController {
         }
     }
 
-    private void removeDelayedBlockDataUpdates(ScopeKey scopeKey) {
+    private void removeDelayedDataUpdates(ScopeKey scopeKey) {
         synchronized (delayedWriteTasks) {
             delayedWriteTasks
                     .entrySet()
@@ -1263,14 +1299,12 @@ public class BlockDataController extends ADataController {
                 : loadedChunk.get(LocationUtils.getChunkKey(chunk));
     }
 
-    // fix issue 935: auto chunk load when using loc.getChunk(),if chunk data is already loaded into cache, we generate
-    // keyString using location,instead of loc.getChunk
     private SlimefunChunkData getChunkDataCache(Location loc, boolean createOnNotExists) {
         SlimefunChunkData re = loadedChunk.get(LocationUtils.getChunkKey(loc));
         if (re != null) {
             return re;
         } else {
-            // jump to origin getChunkDataCache and call getChunk() to trigger chunkLoad
+            // If cache not exists, use `getChunkDataCache` and trigger chunk loading
             return getChunkDataCache(loc.getChunk(), createOnNotExists);
         }
     }
@@ -1296,8 +1330,8 @@ public class BlockDataController extends ADataController {
         }
         Slimefun.getNetworkManager().updateAllNetworks(l);
 
-        LocationKey scopeKey = new LocationKey(DataScope.NONE, l);
-        removeDelayedBlockDataUpdates(scopeKey);
+        var scopeKey = new LocationKey(DataScope.NONE, l);
+        removeDelayedDataUpdates(scopeKey);
         abortScopeTask(scopeKey);
     }
 

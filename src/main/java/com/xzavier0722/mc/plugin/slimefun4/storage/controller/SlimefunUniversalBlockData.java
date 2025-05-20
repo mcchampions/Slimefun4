@@ -92,4 +92,11 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
             throw new RuntimeException("Unable to fix location " + data + ", it might be broken", x);
         }
     }
+
+    @Override
+    public String toString() {
+        return "SlimefunUniversalBlockData [uuid= " + getUUID() + ", sfId=" + getSfId() + ", isPendingRemove="
+                + isPendingRemove() + ", lastPresent=" + lastPresent + ", hasMenu=" + (getMenu() != null) + ", traits="
+                + getTraits() + "]";
+    }
 }

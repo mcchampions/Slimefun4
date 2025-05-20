@@ -12,6 +12,14 @@ import org.bukkit.Bukkit;
 
 @UtilityClass
 public class TaskUtil {
+    public void runSyncMethod(Runnable runnable) {
+        if (Bukkit.isPrimaryThread()) {
+            runnable.run();
+        } else {
+            Slimefun.runSync(runnable);
+        }
+    }
+
     public <T> T runSyncMethod(Callable<T> callable) {
         try {
             if (Bukkit.isPrimaryThread()) {

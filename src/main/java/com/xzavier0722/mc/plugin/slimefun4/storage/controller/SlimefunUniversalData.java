@@ -40,10 +40,12 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
     }
 
     protected void setTraitData(UniversalDataTrait trait, String val) {
-        setCacheInternal(trait.getReservedKey(), val, true);
-        Slimefun.getDatabaseManager()
-                .getBlockDataController()
-                .scheduleDelayedUniversalDataUpdate(this, trait.getReservedKey());
+        if (!trait.getReservedKey().isEmpty()) {
+            setCacheInternal(trait.getReservedKey(), val, true);
+            Slimefun.getDatabaseManager()
+                    .getBlockDataController()
+                    .scheduleDelayedUniversalDataUpdate(this, trait.getReservedKey());
+        }
     }
 
     public void removeData(String key) {

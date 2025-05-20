@@ -4,10 +4,7 @@ import city.norain.slimefun4.holder.SlimefunInventoryHolder;
 import city.norain.slimefun4.utils.InventoryUtil;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;

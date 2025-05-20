@@ -4,6 +4,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.UniversalBlock;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.UniversalDataTrait;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -137,6 +138,12 @@ public class SlimefunItemInteractListener implements Listener {
 
                     if (uniData == null) {
                         return;
+                    }
+
+                    // Fix: on some case universal block may lose its location info
+                    // We added a manual patch by identify its pdc info to fix it.
+                    if (uniData.getData(UniversalDataTrait.BLOCK.getReservedKey()) == null) {
+                        uniData.setLastPresent(clickedBlock.getLocation());
                     }
 
                     if (uniData.isDataLoaded()) {
