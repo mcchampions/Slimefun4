@@ -7827,20 +7827,7 @@ public final class SlimefunItemSetup {
                 new ItemStack(Material.GLOW_BERRIES), null, null, null, null, null, null, null, null
         })
                 .register(plugin);
-
-        new ElytraCap(itemGroups.magicalArmor, SlimefunItems.ELYTRA_CAP, RecipeType.ARMOR_FORGE, new ItemStack[]{
-                new ItemStack(Material.SLIME_BALL),
-                new ItemStack(Material.SLIME_BALL),
-                new ItemStack(Material.SLIME_BALL),
-                SlimefunItems.ELYTRA_SCALE,
-                SlimefunItems.ELYTRA_SCALE,
-                SlimefunItems.ELYTRA_SCALE,
-                new ItemStack(Material.SLIME_BALL),
-                new ItemStack(Material.LEATHER_HELMET),
-                new ItemStack(Material.SLIME_BALL)
-        })
-                .register(plugin);
-
+        
         new SlimefunItem(
                 itemGroups.magicalResources,
                 SlimefunItems.RAINBOW_LEATHER,
