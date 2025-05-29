@@ -431,6 +431,6 @@ public enum SlimefunTag implements Tag<Material> {
      * @return The {@link SlimefunTag} or null if it does not exist.
      */
     public static @Nullable SlimefunTag getTag(String value) {
-        return nameLookup.get(value);
+        return nameLookup.get(value.toUpperCase());
     }
 }

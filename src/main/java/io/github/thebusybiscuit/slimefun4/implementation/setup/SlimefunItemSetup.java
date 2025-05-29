@@ -7809,11 +7809,7 @@ public final class SlimefunItemSetup {
                         null
                 })
                 .register(plugin);
-        new Juice(itemGroups.food, SlimefunItems.GLOW_BERRY_JUICE, RecipeType.JUICER, new ItemStack[]{
-                new ItemStack(Material.GLOW_BERRIES), null, null, null, null, null, null, null, null
-        })
-                .register(plugin);
-
+        
         new ElytraCap(itemGroups.magicalArmor, SlimefunItems.ELYTRA_CAP, RecipeType.ARMOR_FORGE, new ItemStack[]{
                 new ItemStack(Material.SLIME_BALL),
                 new ItemStack(Material.SLIME_BALL),
