@@ -147,7 +147,7 @@
                         </relocation>
                         <relocation>
                             <pattern>org.json</pattern>
-                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.commons.json</shadedPattern>
+                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.json</shadedPattern>
                         </relocation>
                     </relocations>
 
