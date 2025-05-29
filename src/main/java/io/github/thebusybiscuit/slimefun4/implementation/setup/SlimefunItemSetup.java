@@ -7809,7 +7809,7 @@ public final class SlimefunItemSetup {
                         null
                 })
                 .register(plugin);
-        
+
         new ElytraCap(itemGroups.magicalArmor, SlimefunItems.ELYTRA_CAP, RecipeType.ARMOR_FORGE, new ItemStack[]{
                 new ItemStack(Material.SLIME_BALL),
                 new ItemStack(Material.SLIME_BALL),
