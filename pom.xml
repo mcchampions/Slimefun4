@@ -145,6 +145,10 @@
                             <pattern>org.apache.commons.lang</pattern>
                             <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.commons.lang</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>org.json</pattern>
+                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.commons.json</shadedPattern>
+                        </relocation>
                     </relocations>
 
                     <!-- Exclude unneeded metadata files from shaded dependencies -->
@@ -453,12 +457,11 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Geyser -->
         <dependency>
-            <groupId>org.geysermc.geyser</groupId>
-            <artifactId>api</artifactId>
-            <version>2.4.2-SNAPSHOT</version>
-            <scope>provided</scope>
+            <groupId>com.github.mcchampions</groupId>
+            <artifactId>JSON-java</artifactId>
+            <version>2.0.2</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

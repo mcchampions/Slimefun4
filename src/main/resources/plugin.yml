@@ -20,12 +20,12 @@ softdepend:
   - ItemsAdder
   - Vault
   - Orebfuscator
-  - Geyser-Spigot
 
 # We hook into these plugins too, but they depend on Slimefun.
 loadBefore:
   - ChestTerminal
   - SlimeGlue
+  - Geyser-Spigot
 
 # Our commands
 commands:
