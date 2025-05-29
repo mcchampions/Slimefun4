@@ -79,7 +79,7 @@ public class ProgrammableAndroid extends SlimefunItem
     private static final int MAX_SCRIPT_LENGTH = 54;
 
     protected final List<MachineFuel> fuelTypes = new ArrayList<>();
-    protected static final String texture;
+    protected static String texture;
     @Getter
     private final int tier;
 
