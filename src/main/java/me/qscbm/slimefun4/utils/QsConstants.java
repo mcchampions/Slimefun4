@@ -39,7 +39,7 @@ public class QsConstants {
 
     public static final ItemStack GUIDE_CHEAT_MODE_OPTION = new ItemStack(Material.COMMAND_BLOCK);
 
-    static {
+    public static void init() {
         ItemMeta survival_meta = GUIDE_SURVIVAL_MODE_OPTION.getItemMeta();
         survival_meta.setDisplayName(ChatColor.GRAY + "Slimefun 指南样式: " + ChatColor.YELLOW + "普通模式");
         List<String> lore = new ArrayList<>();

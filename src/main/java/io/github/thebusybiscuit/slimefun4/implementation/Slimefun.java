@@ -46,6 +46,7 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
+import me.qscbm.slimefun4.utils.QsConstants;
 import me.qscbm.slimefun4.utils.QsItemUtils;
 import me.qscbm.slimefun4.services.LanguageService;
 import me.qscbm.slimefun4.tasks.CargoTickerTask;
@@ -166,7 +167,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     @Override
     public void onEnable() {
         instance = this;
-
+        QsConstants.init();
         if (initialized) {
             getLogger().log(Level.WARNING, "不支持热重载, 请重启服务器");
             getServer().getPluginManager().disablePlugin(this);
