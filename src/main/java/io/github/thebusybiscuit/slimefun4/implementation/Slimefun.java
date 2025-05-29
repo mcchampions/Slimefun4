@@ -167,7 +167,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     @Override
     public void onEnable() {
         instance = this;
-        runSync(QsConstants::init);
+        Bukkit.getScheduler().runTask(this, QsConstants::init);
         if (initialized) {
             getLogger().log(Level.WARNING, "不支持热重载, 请重启服务器");
             getServer().getPluginManager().disablePlugin(this);
