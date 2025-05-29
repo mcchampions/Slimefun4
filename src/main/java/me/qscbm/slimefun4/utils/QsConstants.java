@@ -35,11 +35,13 @@ public class QsConstants {
 
     public static final String[] EMPTY_STRINGS = new String[0];
 
-    public static final ItemStack GUIDE_SURVIVAL_MODE_OPTION = new ItemStack(Material.CHEST);
+    public static ItemStack GUIDE_SURVIVAL_MODE_OPTION;
 
-    public static final ItemStack GUIDE_CHEAT_MODE_OPTION = new ItemStack(Material.COMMAND_BLOCK);
+    public static ItemStack GUIDE_CHEAT_MODE_OPTION;
 
     public static void init() {
+        GUIDE_SURVIVAL_MODE_OPTION = new ItemStack(Material.CHEST);
+        GUIDE_CHEAT_MODE_OPTION = new ItemStack(Material.COMMAND_BLOCK);
         ItemMeta survival_meta = GUIDE_SURVIVAL_MODE_OPTION.getItemMeta();
         survival_meta.setDisplayName(ChatColor.GRAY + "Slimefun 指南样式: " + ChatColor.YELLOW + "普通模式");
         List<String> lore = new ArrayList<>();
