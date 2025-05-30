@@ -139,8 +139,6 @@ public class IntegrationsManager {
      * This method is called when the {@link Server} has finished loading all its {@link Plugin Plugins}.
      */
     private void onServerStart() {
-        // Geyser Integration (custom skulls)
-        load("Geyser-Spigot", integration -> new GeyserIntegration().register());
         try {
             // Load Protection plugin integrations
             protectionManager = new ProtectionManager(plugin);

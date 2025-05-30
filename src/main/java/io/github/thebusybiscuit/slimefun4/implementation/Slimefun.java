@@ -46,6 +46,7 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
+import me.qscbm.slimefun4.integrations.GeyserIntegration;
 import me.qscbm.slimefun4.utils.QsConstants;
 import me.qscbm.slimefun4.utils.QsItemUtils;
 import me.qscbm.slimefun4.services.LanguageService;
@@ -167,6 +168,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     @Override
     public void onEnable() {
         instance = this;
+        logger().info("Slimefun开始加载");
         Bukkit.getScheduler().runTask(this, QsConstants::init);
         if (initialized) {
             getLogger().log(Level.WARNING, "不支持热重载, 请重启服务器");
@@ -324,6 +326,8 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         logger.log(Level.INFO, "共映射 {0} 个原版物品名称:", QsItemUtils.ITEM_NAME_MAPPER.keySet().size());
         logger.log(Level.INFO, QsItemUtils.getItemName(new ItemStack(Material.GRASS_BLOCK)) + "...");
 
+        // Geyser Integration (custom skulls and items)
+        new GeyserIntegration().register();
         // Hooray!
         logger.log(Level.INFO, "Slimefun 完成加载, 耗时 {0}", getStartupTime(timestamp));
     }

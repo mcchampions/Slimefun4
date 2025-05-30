@@ -13,7 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -36,33 +35,32 @@ public class GeyserIntegration {
     private Path geyserMappingItemsFilePath;
 
     public void register() {
-        Slimefun.runAsync(() -> {
-            long start = System.nanoTime();
-            Slimefun.logger().info("开始加载自定义粘液科技Geyser支持");
+        long start = System.nanoTime();
+        Slimefun.logger().info("开始加载自定义粘液科技Geyser支持");
 
-            try {
-                File geyserFolder = new File("plugins/Geyser-Spigot/");
-                customSkullsFile = new File(geyserFolder, "custom-skulls.yml");
-                File geyserMappingFolder = new File("plugins/Geyser-Spigot/custom_mappings/");
-                geyserMappingItemsFile = new File(geyserMappingFolder, SlimefunConfigManager.getGeyserMappingItemsFileName());
-                if (!geyserFolder.exists()) {
-                    customSkullsFile.createNewFile();
-                    geyserFolder.mkdirs();
-                    geyserMappingFolder.createNewFile();
-                }
-                geyserMappingItemsFilePath = geyserMappingFolder.toPath();
-                if (!geyserMappingItemsFile.exists()) {
-                    geyserMappingItemsFile.createNewFile();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        try {
+            File geyserFolder = new File("plugins/Geyser-Spigot/");
+            customSkullsFile = new File(geyserFolder, "custom-skulls.yml");
+            File geyserMappingFolder = new File("plugins/Geyser-Spigot/custom_mappings/");
+            geyserMappingItemsFile = new File(geyserMappingFolder, SlimefunConfigManager.getGeyserMappingItemsFileName());
+            if (!geyserFolder.exists()) {
+                customSkullsFile.createNewFile();
+                geyserFolder.mkdirs();
+                geyserMappingFolder.createNewFile();
             }
+            geyserMappingItemsFilePath = geyserMappingItemsFile.toPath();
+            if (!geyserMappingItemsFile.exists()) {
+                geyserMappingItemsFile.createNewFile();
+            }
+        } catch (Exception e) {
+            Slimefun.logger().warning("加载自定义粘液科技Geyser支持时发生错误");
+            throw new RuntimeException(e);
+        }
 
-            start();
+        start();
 
-            Slimefun.logger().info("加载共耗时" + (System.nanoTime() - start) / 1000000 + "ms");
-            Slimefun.logger().warning("完成加载自定义粘液科技Geyser支持,如果不生效请重启服务器");
-        });
+        Slimefun.logger().info("加载共耗时" + (System.nanoTime() - start) / 1000000 + "ms");
+        Slimefun.logger().warning("完成加载自定义粘液科技Geyser支持,如果不生效请重启服务器");
     }
 
     public void start() {
@@ -71,7 +69,6 @@ public class GeyserIntegration {
                     {
                         "format_version": 1,
                         "items": {
-
                         }
                     }""");
             JSONObject items = jsonObject.getJSONObject("items");
@@ -91,7 +88,7 @@ public class GeyserIntegration {
                 if (!items.has(name)) {
                     items.put(name, new JSONArray());
                 }
-                JSONArray array = items.getJSONArray("name");
+                JSONArray array = items.getJSONArray(name);
                 array.put(item);
                 successItemCount++;
                 if (type != Material.PLAYER_HEAD) {
@@ -127,7 +124,8 @@ public class GeyserIntegration {
             Slimefun.logger().info("成功加载" + successSkullCount + "个自定义头颅");
             Slimefun.logger().warning("加载失败" + errorSkullCount + "个自定义头颅");
             Slimefun.logger().info("成功加载" + successItemCount + "个自定义物品");
-        } catch (IOException e) {
+        } catch (Exception e) {
+            Slimefun.logger().warning("加载自定义粘液科技Geyser支持时发生错误");
             throw new RuntimeException(e);
         }
     }

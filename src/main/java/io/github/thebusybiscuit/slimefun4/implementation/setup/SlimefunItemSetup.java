@@ -7827,7 +7827,7 @@ public final class SlimefunItemSetup {
                 new ItemStack(Material.GLOW_BERRIES), null, null, null, null, null, null, null, null
         })
                 .register(plugin);
-        
+
         new SlimefunItem(
                 itemGroups.magicalResources,
                 SlimefunItems.RAINBOW_LEATHER,
