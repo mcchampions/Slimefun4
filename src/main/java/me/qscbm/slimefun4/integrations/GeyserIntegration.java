@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.config.SlimefunConfigManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.qscbm.slimefun4.utils.NBTUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -36,6 +37,9 @@ public class GeyserIntegration {
 
     public void register() {
         long start = System.nanoTime();
+        if (Bukkit.getPluginManager().getPlugin("Geyser-Spigot") == null) {
+            return;
+        }
         Slimefun.logger().info("开始加载自定义粘液科技Geyser支持");
 
         try {
