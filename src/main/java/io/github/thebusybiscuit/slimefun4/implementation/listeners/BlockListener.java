@@ -280,6 +280,7 @@ public class BlockListener implements Listener {
                         e.getBlock()
                                 .getWorld()
                                 .dropItemNaturally(e.getBlock().getLocation(), drop);
+                        drop.setAmount(0);
                     }
                 }
             }
