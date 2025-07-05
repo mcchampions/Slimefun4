@@ -116,12 +116,17 @@ public class SlimefunConfigManager {
             useMoneyUnlock = pluginConfig.getBoolean("researches.use-money-unlock");
             showVanillaRecipes = pluginConfig.getBoolean("guide.show-vanilla-recipes");
             showHiddenItemGroupsInSearch = pluginConfig.getBoolean("guide.show-hidden-item-groups-in-search");
-
             researchCurrencyCostConvertRate = pluginConfig.getDouble("researches.currency-cost-convert-rate");
 
             cargoTickerDelay = pluginConfig.getInt("networks.cargo-ticker-delay");
             geyserMappingItemsFileName = pluginConfig.getString("geyser.mapping-items-file-name");
         } catch (RuntimeException x) {
+            pluginConfig.setDefaultValue("researches.currency-cost-convert-rate", 25.0);
+            researchCurrencyCostConvertRate = pluginConfig.getDouble("researches.currency-cost-convert-rate");
+
+            pluginConfig.setDefaultValue("researches.auto-convert", false);
+            researchAutoConvert = pluginConfig.getBoolean("researches.auto-convert");
+        } catch (Exception x) {
             plugin.getLogger()
                     .log(
                             Level.SEVERE,

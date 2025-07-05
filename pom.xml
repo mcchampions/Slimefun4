@@ -40,6 +40,19 @@
         </license>
     </licenses>
 
+    <distributionManagement>
+        <repository>
+            <id>gugu-maven-repo</id>
+            <name>Gugu Maven Release Repository</name>
+            <url>https://maven.norain.city/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>gugu-maven-repo</id>
+            <name>Gugu Maven Snapshot Repository</name>
+            <url>https://maven.norain.city/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <!-- Repositories that host our dependencies -->
     <!-- Well, any that aren't found on maven-central. -->
     <repositories>
@@ -47,6 +60,13 @@
             <!-- ItemsAdder and Dough-->
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>gugu-maven-repo</id>
+            <url>https://maven.norain.city/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
         <repository>
             <!-- Spigot-API -->
@@ -198,10 +218,16 @@
                     <commitIdGenerationMode>full</commitIdGenerationMode>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
         </plugins>
 
-        <resources>
+        <!-- 私有 Maven Repo 发布相关组件 -->
 
+        <resources>
             <!-- Resources we want to include, e.g. configs or language files -->
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
