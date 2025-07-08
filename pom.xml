@@ -82,11 +82,6 @@
             <id>codemc-repo</id>
             <url>https://repo.codemc.io/repository/maven-public/</url>
         </repository>
-        <repository>
-            <!-- Geyser-->
-            <id>opencollab-snapshot</id>
-            <url>https://repo.opencollab.dev/main/</url>
-        </repository>
     </repositories>
 
     <build>
