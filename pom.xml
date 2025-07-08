@@ -281,7 +281,7 @@
         <dependency>
             <groupId>com.github.mcchampions.dough</groupId>
             <artifactId>dough-api</artifactId>
-            <version>6488d9d712</version>
+            <version>0f62068a58</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -461,7 +461,7 @@
         <dependency>
             <groupId>com.github.mcchampions</groupId>
             <artifactId>JSON-java</artifactId>
-            <version>2.0.2</version>
+            <version>2787129836</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
