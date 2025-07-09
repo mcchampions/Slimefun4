@@ -1057,7 +1057,7 @@ public class BlockDataController extends ADataController {
         UniversalMenu menu = universalData.getMenu();
         UUID universalID = universalData.getUUID();
 
-        ItemStack[] newInv = menu.getContents();
+        ItemStack[] newInv = universalData.getMenuContents();
         List<Pair<ItemStack, Integer>> lastSave;
         if (newInv == null) {
             lastSave = invSnapshots.remove(universalID.toString());
