@@ -61,7 +61,7 @@ public class SlimefunConfigManager {
     private double researchCurrencyCostConvertRate;
 
     @Getter
-    private static final boolean researchAutoConvert = false;
+    private static boolean researchAutoConvert = false;
 
     @Getter
     private static final boolean bypassEnvironmentCheck = true;
