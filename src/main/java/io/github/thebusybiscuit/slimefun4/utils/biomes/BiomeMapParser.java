@@ -29,7 +29,7 @@ public class BiomeMapParser<T> {
 
     private final NamespacedKey key;
     private final BiomeDataConverter<T> valueConverter;
-    private final Map<Biome, T> map = new EnumMap<>(Biome.class);
+    private final Map<Biome, T> map = new HashMap<>();
 
     /**
      * This flag specifies whether the parsing is "lenient" or not.
