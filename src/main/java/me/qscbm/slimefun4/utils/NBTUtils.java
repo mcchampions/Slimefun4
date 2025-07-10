@@ -64,6 +64,12 @@ public class NBTUtils {
                 if (RESOLVABLE_PROFILE_GAME_PROFILE_GETTER != null) {
                     RESOLVABLE_PROFILE_GAME_PROFILE_GETTER.setAccessible(true);
                     RESOLVABLE_PROFILE_GAME_PROFILE_GETTER_FUNCTION = ReflectionUtils.createGetterFunction(RESOLVABLE_PROFILE_GAME_PROFILE_GETTER);
+                } else {
+                    RESOLVABLE_PROFILE_GAME_PROFILE_GETTER = resolvableProfile.getRecordComponents()[3].getAccessor();
+                    if (RESOLVABLE_PROFILE_GAME_PROFILE_GETTER != null) {
+                        RESOLVABLE_PROFILE_GAME_PROFILE_GETTER.setAccessible(true);
+                        RESOLVABLE_PROFILE_GAME_PROFILE_GETTER_FUNCTION = ReflectionUtils.createGetterFunction(RESOLVABLE_PROFILE_GAME_PROFILE_GETTER);
+                    }
                 }
             }
         } catch (ClassNotFoundException e) {
