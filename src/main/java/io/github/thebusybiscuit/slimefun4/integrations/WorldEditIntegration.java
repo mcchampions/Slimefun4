@@ -35,7 +35,7 @@ class WorldEditIntegration {
     }
 
     @Subscribe
-    public static void wrapForLogging(EditSessionEvent event) {
+    public void wrapForLogging(EditSessionEvent event) {
         event.setExtent(new AbstractDelegateExtent(event.getExtent()) {
             @Override
             public <T extends BlockStateHolder<T>> boolean setBlock(BlockVector3 pos, T block)
