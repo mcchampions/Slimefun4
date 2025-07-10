@@ -130,7 +130,7 @@ public class BiomeMapParser<T> {
     }
 
     private Set<Biome> readBiomes(JsonArray array) throws BiomeMapException {
-        Set<Biome> biomes = EnumSet.noneOf(Biome.class);
+        Set<Biome> biomes = new HashSet<>();
 
         for (JsonElement element : array) {
             if (element.isJsonPrimitive() && element.getAsJsonPrimitive().isString()) {
