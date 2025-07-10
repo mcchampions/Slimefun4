@@ -69,9 +69,6 @@ public class SlimefunConfigManager {
     @Getter
     private int cargoTickerDelay;
 
-    @Getter
-    private static String geyserMappingItemsFileName;
-
     public SlimefunConfigManager(Slimefun plugin) {
         this.plugin = plugin;
         pluginConfig = getConfig(plugin, "config", () -> new Config(plugin));
@@ -119,7 +116,6 @@ public class SlimefunConfigManager {
             researchCurrencyCostConvertRate = pluginConfig.getDouble("researches.currency-cost-convert-rate");
 
             cargoTickerDelay = pluginConfig.getInt("networks.cargo-ticker-delay");
-            geyserMappingItemsFileName = pluginConfig.getString("geyser.mapping-items-file-name");
         } catch (RuntimeException x) {
             pluginConfig.setDefaultValue("researches.currency-cost-convert-rate", 25.0);
             researchCurrencyCostConvertRate = pluginConfig.getDouble("researches.currency-cost-convert-rate");

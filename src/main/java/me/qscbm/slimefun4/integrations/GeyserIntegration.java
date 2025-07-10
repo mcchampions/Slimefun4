@@ -43,11 +43,9 @@ public class GeyserIntegration {
         try {
             File geyserFolder = new File("plugins/Geyser-Spigot/");
             customSkullsFile = new File(geyserFolder, "custom-skulls.yml");
-            File geyserMappingFolder = new File("plugins/Geyser-Spigot/custom_mappings/");
             if (!geyserFolder.exists()) {
                 customSkullsFile.createNewFile();
                 geyserFolder.mkdirs();
-                geyserMappingFolder.createNewFile();
             }
         } catch (Exception e) {
             Slimefun.logger().warning("加载自定义粘液科技Geyser支持时发生错误");
