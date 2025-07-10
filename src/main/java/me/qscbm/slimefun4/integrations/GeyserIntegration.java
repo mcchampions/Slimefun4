@@ -32,8 +32,6 @@ import java.util.Locale;
  */
 public class GeyserIntegration {
     private File customSkullsFile;
-    private File geyserMappingItemsFile;
-    private Path geyserMappingItemsFilePath;
 
     public void register() {
         long start = System.nanoTime();
@@ -46,15 +44,10 @@ public class GeyserIntegration {
             File geyserFolder = new File("plugins/Geyser-Spigot/");
             customSkullsFile = new File(geyserFolder, "custom-skulls.yml");
             File geyserMappingFolder = new File("plugins/Geyser-Spigot/custom_mappings/");
-            geyserMappingItemsFile = new File(geyserMappingFolder, SlimefunConfigManager.getGeyserMappingItemsFileName());
             if (!geyserFolder.exists()) {
                 customSkullsFile.createNewFile();
                 geyserFolder.mkdirs();
                 geyserMappingFolder.createNewFile();
-            }
-            geyserMappingItemsFilePath = geyserMappingItemsFile.toPath();
-            if (!geyserMappingItemsFile.exists()) {
-                geyserMappingItemsFile.createNewFile();
             }
         } catch (Exception e) {
             Slimefun.logger().warning("加载自定义粘液科技Geyser支持时发生错误");
@@ -69,32 +62,13 @@ public class GeyserIntegration {
 
     public void start() {
         try {
-            JSONObject jsonObject = new JSONObject("""
-                    {
-                        "format_version": 1,
-                        "items": {
-                        }
-                    }""");
-            JSONObject items = jsonObject.getJSONObject("items");
             Config config = new Config(customSkullsFile);
             List<String> l = config.getStringList("skin-hashes");
             int successSkullCount = 0;
-            int successItemCount = 0;
             int errorSkullCount = 0;
             for (SlimefunItem slimefunItem : Slimefun.getRegistry().getAllSlimefunItems()) {
                 ItemStack itemStack = slimefunItem.getItem();
                 Material type = itemStack.getType();
-                String name = "minecraft:" + type.name().toLowerCase(Locale.ROOT);
-                JSONObject item = new JSONObject();
-                String id = slimefunItem.getId();
-                item.put("name", id);
-                item.put("custom_model_data", Slimefun.getItemTextureService().getModelData(id));
-                if (!items.has(name)) {
-                    items.put(name, new JSONArray());
-                }
-                JSONArray array = items.getJSONArray(name);
-                array.put(item);
-                successItemCount++;
                 if (type != Material.PLAYER_HEAD) {
                     continue;
                 }
@@ -116,7 +90,6 @@ public class GeyserIntegration {
                 }
                 successSkullCount++;
             }
-            Files.writeString(geyserMappingItemsFilePath, jsonObject.toString());
             String[] i = {"player-names", "player-uuids", "player-profiles"};
             for (String t : i) {
                 if (config.getStringList(t).isEmpty()) {
@@ -127,7 +100,6 @@ public class GeyserIntegration {
             config.save();
             Slimefun.logger().info("成功加载" + successSkullCount + "个自定义头颅");
             Slimefun.logger().warning("加载失败" + errorSkullCount + "个自定义头颅");
-            Slimefun.logger().info("成功加载" + successItemCount + "个自定义物品");
         } catch (Exception e) {
             Slimefun.logger().warning("加载自定义粘液科技Geyser支持时发生错误");
             throw new RuntimeException(e);
