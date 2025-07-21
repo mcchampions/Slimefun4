@@ -41,4 +41,8 @@ final class GrapplingHookEntity {
             leashTarget.remove();
         }
     }
+
+    public Entity getLeashTarget() {
+        return leashTarget;
+    }
 }

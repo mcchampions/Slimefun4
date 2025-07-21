@@ -1,5 +1,6 @@
 package me.mrCookieSlime.Slimefun.api.inventory;
 
+import city.norain.slimefun4.utils.InventoryUtil;
 import io.github.bakedlibs.dough.inventory.InvUtils;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.bakedlibs.dough.items.ItemUtils;
@@ -8,16 +9,13 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import lombok.Getter;
-
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.block.Block;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 
 // This class will be deprecated, relocated and rewritten in a future version.
 public class DirtyChestMenu extends ChestMenu {
@@ -74,9 +72,7 @@ public class DirtyChestMenu extends ChestMenu {
     }
 
     public void close() {
-        for (HumanEntity human : new ArrayList<>(toInventory().getViewers())) {
-            human.closeInventory();
-        }
+        InventoryUtil.closeInventory(toInventory());
     }
 
     public boolean fits(ItemStack item, int... slots) {
@@ -93,8 +89,8 @@ public class DirtyChestMenu extends ChestMenu {
 
             if (isSfItem) {
                 if (!slotItem.hasItemMeta()
-                    || item.getType() != slotItem.getType()
-                    || !SlimefunUtils.isItemSimilar(slotItem, wrapper, true, false)) {
+                        || item.getType() != slotItem.getType()
+                        || !SlimefunUtils.isItemSimilar(slotItem, wrapper, true, false)) {
                     continue;
                 }
 

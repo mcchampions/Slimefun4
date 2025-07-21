@@ -24,7 +24,9 @@ public enum TestCase {
 
     ENERGYNET,
 
-    ANALYTICS;
+    ANALYTICS,
+
+    INVENTORY;
 
     TestCase() {}
 

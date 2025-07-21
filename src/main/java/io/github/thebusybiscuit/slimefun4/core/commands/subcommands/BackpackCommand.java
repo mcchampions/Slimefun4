@@ -114,7 +114,7 @@ class BackpackCommand extends SubCommand {
 
                     @Override
                     public void onResult(Set<PlayerBackpack> result) {
-                        if (!p.isOnline()) {
+                        if (!p.isConnected()) {
                             return;
                         }
                         showBackpackMenu(owner, p, result, 1);
