@@ -57,7 +57,7 @@ public class QsTextComponentImpl implements TextComponent {
 
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     public QsTextComponentImpl clone() {
-        return new QsTextComponentImpl(this.children, this.style, this.content);
+        return new QsTextComponentImpl(new ArrayList<>(this.children), this.style.toBuilder().build(), this.content);
     }
 
     @Override
