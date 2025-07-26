@@ -42,6 +42,9 @@ public class QuotedStringTokenizer {
         while (cursor < length) {
             output.add(readString());
         }
+        if (this.cursor > 0 && chars[this.cursor - 1] == ' ') {
+            output.add("");
+        }
         return output;
     }
 
