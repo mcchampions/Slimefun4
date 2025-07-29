@@ -147,13 +147,10 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
         }
 
         if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 21, 2)) {
-            switch (logType) {
-                case PALE_OAK_LOG, PALE_OAK_WOOD, STRIPPED_PALE_OAK_LOG, STRIPPED_PALE_OAK_WOOD -> {
-                    saplingType = Material.PALE_OAK_SAPLING;
+            if (logType ==  Material.getMaterial("PALE_OAK_LOG") || logType == Material.getMaterial("PALE_OAK_WOOD")
+                    || logType ==  Material.getMaterial("STRIPPED_PALE_OAK_LOG") || logType ==  Material.getMaterial("STRIPPED_PALE_OAK_WOOD")) {
+                    saplingType = Material.getMaterial("PALE_OAK_SAPLING");
                     soilRequirement = SlimefunTag.DIRT_VARIANTS::isTagged;
-                }
-                default -> {
-                }
             }
         }
 
