@@ -98,7 +98,10 @@ public final class ChestMenuUtils {
 
     private static final List<Component> SEARCH_BUTTON_LORE =
             Arrays.asList(Component.empty(),
-                    new QsTextComponentImpl("\u21E8 ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("单击搜索物品").color(NamedTextColor.AQUA))
+                    new QsTextComponentImpl("\u21E8 ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("单击搜索物品").color(NamedTextColor.AQUA)),
+                    Component.empty(),
+                    new QsTextComponentImpl("  - ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("左键普通搜索").color(NamedTextColor.GRAY)),
+                    new QsTextComponentImpl("  - ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("右键以启用拼音搜索").color(NamedTextColor.LIGHT_PURPLE))
             );
 
     public static ItemStack getSearchButton(Player p) {

@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.guide.SurvivalSlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.SlimefunGuideItem;
+
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -19,13 +20,12 @@ import org.bukkit.inventory.ItemStack;
  * of {@link SlimefunGuideImplementation} that abstracts away the actual implementation.
  *
  * @author TheBusyBiscuit
- *
  * @see SlimefunGuideImplementation
  * @see SurvivalSlimefunGuide
- *
  */
 public final class SlimefunGuide {
-    private SlimefunGuide() {}
+    private SlimefunGuide() {
+    }
 
     public static ItemStack getItem(SlimefunGuideMode design) {
         return Slimefun.getRegistry().getSlimefunGuide(design).getItem();
@@ -78,9 +78,9 @@ public final class SlimefunGuide {
         Slimefun.getRegistry().getSlimefunGuide(mode).openItemGroup(profile, itemGroup, selectedPage);
     }
 
-    public static void openSearch(PlayerProfile profile, String input, SlimefunGuideMode mode, boolean addToHistory) {
+    public static void openSearch(PlayerProfile profile, String input, SlimefunGuideMode mode, boolean addToHistory, boolean usePinyin) {
         SlimefunGuideImplementation guide = Slimefun.getRegistry().getSlimefunGuide(mode);
-        guide.openSearch(profile, input, addToHistory);
+        guide.openSearch(profile, input, addToHistory, usePinyin);
     }
 
     public static void displayItem(PlayerProfile profile, ItemStack item, boolean addToHistory) {
@@ -98,9 +98,7 @@ public final class SlimefunGuide {
     /**
      * This method checks if a given {@link ItemStack} is a {@link SlimefunGuide}.
      *
-     * @param item
-     *            The {@link ItemStack} to check
-     *
+     * @param item The {@link ItemStack} to check
      * @return Whether this {@link ItemStack} represents a {@link SlimefunGuide}
      */
     public static boolean isGuideItem(@Nullable ItemStack item) {

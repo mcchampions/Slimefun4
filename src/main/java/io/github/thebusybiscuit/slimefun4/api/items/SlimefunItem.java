@@ -186,7 +186,7 @@ public class SlimefunItem implements Placeable {
         this.recipeType = recipeType;
         this.recipe = recipe;
         this.recipeOutput = recipeOutput;
-        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replace(" ", "_");
+        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName());
     }
 
     // Previously deprecated constructor, now only for internal purposes
@@ -196,7 +196,7 @@ public class SlimefunItem implements Placeable {
         this.id = id;
         this.recipeType = recipeType;
         this.recipe = recipe;
-        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName()).replace(" ", "_");
+        normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName());
     }
 
     /**

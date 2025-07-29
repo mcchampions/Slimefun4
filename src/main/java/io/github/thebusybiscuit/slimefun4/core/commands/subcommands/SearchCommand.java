@@ -36,10 +36,15 @@ class SearchCommand extends SubCommand {
                             msg -> msg.replace("%usage%", "/sf search <SearchTerm>"));
             return;
         }
-        String query = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
+        if (args.length == 3) {
+            PlayerProfile.get(
+                    player,
+                    profile -> SlimefunGuide.openSearch(profile, args[1], SlimefunGuideMode.SURVIVAL_MODE, true, Boolean.parseBoolean(args[2])));
+            return;
+        }
         PlayerProfile.get(
                 player,
-                profile -> SlimefunGuide.openSearch(profile, query, SlimefunGuideMode.SURVIVAL_MODE, true));
+                profile -> SlimefunGuide.openSearch(profile, args[1], SlimefunGuideMode.SURVIVAL_MODE, true, false));
 
     }
 }

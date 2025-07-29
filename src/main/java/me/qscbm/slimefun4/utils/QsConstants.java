@@ -11,8 +11,7 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class QsConstants {
     public static final int[] EMPTY_INTS = new int[0];

@@ -47,6 +47,7 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.integrations.GeyserIntegration;
+import me.qscbm.slimefun4.utils.PinyinUtils;
 import me.qscbm.slimefun4.utils.QsConstants;
 import me.qscbm.slimefun4.utils.QsItemUtils;
 import me.qscbm.slimefun4.services.LanguageService;
@@ -270,6 +271,8 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
         registerListeners();
 
+        runAsync(PinyinUtils::init);
+
         // Initiating various Stuff and all items with a slight delay (0ms after the Server finished
         // loading)
         runSync(
@@ -286,11 +289,11 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                                 Level.SEVERE,
                                 x,
                                 () -> "An Exception occured while iterating through the Recipe list on Minecraft"
-                                      + " Version "
-                                      + minecraftVersion.getName()
-                                      + " (Slimefun v"
-                                      + getVersion()
-                                      + ")");
+                                        + " Version "
+                                        + minecraftVersion.getName()
+                                        + " (Slimefun v"
+                                        + getVersion()
+                                        + ")");
                     }
                 }),
                 0);
@@ -586,7 +589,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                             Level.SEVERE,
                             x,
                             () -> "一个 错误 发生了 在 初始化 粘液科技物品研究 中 "
-                                  + getVersion());
+                                    + getVersion());
         }
     }
 
@@ -822,7 +825,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                 .filter(plugin -> {
                     PluginDescriptionFile description = plugin.getDescription();
                     return description.getDepend().contains(pluginName)
-                           || description.getSoftDepend().contains(pluginName);
+                            || description.getSoftDepend().contains(pluginName);
                 })
                 .collect(Collectors.toSet());
 

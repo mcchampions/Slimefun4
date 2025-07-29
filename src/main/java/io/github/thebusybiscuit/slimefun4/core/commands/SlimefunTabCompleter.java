@@ -24,7 +24,7 @@ public class SlimefunTabCompleter {
                 return createReturnList(Slimefun.getCommand().getSubCommandNamesToSet(), args.get(0));
             }
             case 2 -> {
-                String param = args.get(0);
+                String param = args.get(0).toLowerCase();
                 if ("banitem".equalsIgnoreCase(param)) {
                     return createReturnList(getSlimefunItems(), args.get(1));
                 }
@@ -69,7 +69,9 @@ public class SlimefunTabCompleter {
                 if ("calc".equalsIgnoreCase(param)) {
                     return createReturnList(COUNT_LIST, args.get(2));
                 }
-                return Collections.emptyList();
+                if ("search".equalsIgnoreCase(param)) {
+                    return createReturnList(BOOLEAN_LIST, args.get(2));
+                }
             }
             case 4 -> {
                 if ("give".equalsIgnoreCase(args.get(0))) {
@@ -78,10 +80,14 @@ public class SlimefunTabCompleter {
             }
         }
         if (size > 0) {
-            return getPlayerList(args.get(size - 1));
+            return TIPS;
         }
         return Slimefun.getCommand().getSubCommandNames();
     }
+
+    public static final List<String> TIPS = Collections.singletonList("温馨提示： 若输入内容中有空格，请用双引号包含");
+
+    public static final List<String> BOOLEAN_LIST = List.of("true", "false");
 
     @SuppressWarnings("deprecation")
     public static List<String> getPlayerList(String input) {
@@ -95,9 +101,10 @@ public class SlimefunTabCompleter {
 
         for (String item : set) {
             if (item.toLowerCase(Locale.ROOT).contains(input)) {
+                if (item.contains(" ")) {
+                    item =  "\"" + item + "\"";
+                }
                 returnList.add(item);
-            } else if (item.equalsIgnoreCase(input)) {
-                return Collections.emptyList();
             }
         }
 
@@ -110,9 +117,10 @@ public class SlimefunTabCompleter {
 
         for (String item : list) {
             if (item.toLowerCase(Locale.ROOT).contains(input)) {
+                if (item.contains(" ")) {
+                    item =  "\"" + item + "\"";
+                }
                 returnList.add(item);
-            } else if (item.equalsIgnoreCase(input)) {
-                return Collections.emptyList();
             }
         }
 

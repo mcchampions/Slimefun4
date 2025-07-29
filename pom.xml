@@ -168,6 +168,14 @@
                             <pattern>org.json</pattern>
                             <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.json</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>net.sourceforge.pinyin4j</pattern>
+                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.pinyin</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.hp.hpl.sparta</pattern>
+                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.pinyin</shadedPattern>
+                        </relocation>
                     </relocations>
 
                     <!-- Exclude unneeded metadata files from shaded dependencies -->
@@ -280,6 +288,12 @@
             <groupId>io.papermc</groupId>
             <artifactId>paperlib</artifactId>
             <version>1.0.8</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

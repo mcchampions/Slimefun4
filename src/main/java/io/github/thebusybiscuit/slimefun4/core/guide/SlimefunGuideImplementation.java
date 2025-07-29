@@ -46,7 +46,7 @@ public interface SlimefunGuideImplementation {
 
     void openItemGroup(PlayerProfile profile, ItemGroup group, int page);
 
-    void openSearch(PlayerProfile profile, String input, boolean addToHistory);
+    void openSearch(PlayerProfile profile, String input, boolean addToHistory, boolean usePinyin);
 
     void displayItem(PlayerProfile profile, ItemStack item, int index, boolean addToHistory);
 

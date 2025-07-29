@@ -30,17 +30,13 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.SlimefunGuideItem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.logging.Level;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
 import me.qscbm.slimefun4.message.QsTextComponentImpl;
+import me.qscbm.slimefun4.utils.PinyinUtils;
 import me.qscbm.slimefun4.utils.QsConstants;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -199,8 +195,8 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
 
     private void showItemGroup(ChestMenu menu, Player p, PlayerProfile profile, ItemGroup group, int index) {
         if (!(group instanceof LockedItemGroup)
-            || !isSurvivalMode()
-            || ((LockedItemGroup) group).hasUnlocked(p, profile)) {
+                || !isSurvivalMode()
+                || ((LockedItemGroup) group).hasUnlocked(p, profile)) {
             menu.addItem(index, group.getItem(p));
             menu.addMenuClickHandler(index, (pl, slot, item, action) -> {
                 openItemGroup(profile, group, 1);
@@ -368,21 +364,22 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         }
     }
 
-    @Override
-    public void openSearch(PlayerProfile profile, String input, boolean addToHistory) {
-        Player p = profile.getPlayer();
 
+    @Override
+    public void openSearch(PlayerProfile profile, String input, boolean addToHistory, boolean usePinyin) {
+        Player p = profile.getPlayer();
         if (p == null) {
             return;
         }
 
-        ChestMenu menu = new ChestMenu(Slimefun.getLocalization()
-                                               .getMessage(p, "guide.search.inventory")
-                                       + " &f" + input);
         String searchTerm = input.toLowerCase(Locale.ROOT);
 
+        ChestMenu menu = new ChestMenu(Slimefun.getLocalization()
+                .getMessage(p, "guide.search.inventory")
+                + " &f" + input);
+
         if (addToHistory) {
-            profile.getGuideHistory().add(searchTerm);
+            profile.getGuideHistory().add(searchTerm, usePinyin);
         }
 
         menu.setEmptySlotsClickable(false);
@@ -397,7 +394,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
             }
 
             if (!slimefunItem.isHidden()
-                && isSearchFilterApplicable(slimefunItem, searchTerm)) {
+                    && isSearchFilterApplicable(slimefunItem, searchTerm, usePinyin)) {
                 ItemStack itemstack = new CustomItemStack(slimefunItem.getItem(), meta -> {
                     ItemGroup itemGroup = slimefunItem.getItemGroup();
                     meta.setLore(Arrays.asList(
@@ -426,12 +423,17 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
                 index++;
             }
         }
-
         menu.open(p);
     }
 
-    private static boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm) {
-        String itemName = slimefunItem.getItemNormalName();
+    private static boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm, boolean usePinyin) {
+        String itemName ;
+        if (usePinyin) {
+            itemName = PinyinUtils.getPinyin(slimefunItem);
+
+        } else {
+            itemName = slimefunItem.getItemNormalName();
+        }
         return itemName.contains(searchTerm);
     }
 
@@ -674,7 +676,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
             ChatInput.waitForPlayer(
                     Slimefun.instance(),
                     pl,
-                    msg -> SlimefunGuide.openSearch(profile, msg, getMode(), isSurvivalMode()));
+                    msg -> SlimefunGuide.openSearch(profile, msg, getMode(), isSurvivalMode(), action.isRightClicked()));
 
             return false;
         });
@@ -838,8 +840,8 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
 
     private static void printErrorMessage(Player p, SlimefunItem item, Throwable x) {
         p.sendMessage(ChatColor.DARK_RED
-                      + "An internal server error has occurred. Please inform an admin, check the console for"
-                      + " further info.");
+                + "An internal server error has occurred. Please inform an admin, check the console for"
+                + " further info.");
         item.error(
                 "This item has caused an error message to be thrown while viewing it in the Slimefun" + " guide.", x);
     }
