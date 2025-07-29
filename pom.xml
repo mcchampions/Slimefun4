@@ -206,26 +206,6 @@
             <!-- Resources we want to include, e.g. configs or language files -->
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-
-                <includes>
-                    <include>plugin.yml</include>
-                    <include>config.yml</include>
-                    <include>item-models.yml</include>
-                    <include>profile-storage.yml</include>
-                    <include>block-storage.yml</include>
-
-                    <include>wiki.json</include>
-                    <include>languages/translators.json</include>
-
-                    <include>tags/*.json</include>
-                    <include>biome-maps/*.json</include>
-
-                    <include>languages/**/*.yml</include>
-                    <include>git.properties</include>
-
-                    <include>vanilla_items.yml</include>
-                </includes>
             </resource>
 
             <!-- We also want to include our LICENSE file -->
@@ -288,12 +268,6 @@
             <groupId>io.papermc</groupId>
             <artifactId>paperlib</artifactId>
             <version>1.0.8</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.belerweb</groupId>
-            <artifactId>pinyin4j</artifactId>
-            <version>2.5.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

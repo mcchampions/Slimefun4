@@ -43,6 +43,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  * A {@link SlimefunItem} is a custom item registered by a {@link SlimefunAddon}.
@@ -141,7 +142,8 @@ public class SlimefunItem implements Placeable {
     private final OptionalMap<Class<? extends ItemHandler>, ItemHandler> itemHandlers = new OptionalMap<>(HashMap::new);
     @Getter
     private final Set<ItemSetting<?>> itemSettings = new HashSet<>();
-
+    @Getter
+    private final String baseName;
     /**
      * -- GETTER --
      * This returns whether or not we are scheduling a ticking task for this block.
@@ -150,7 +152,6 @@ public class SlimefunItem implements Placeable {
     private boolean ticking;
     @Getter
     private BlockTicker blockTicker;
-
     private final String normalItemName;
 
     /**
@@ -164,6 +165,8 @@ public class SlimefunItem implements Placeable {
     public SlimefunItem(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         this(itemGroup, item, recipeType, recipe, null);
     }
+
+    public static final Pattern BASE_NAME_PATTERN = Pattern.compile("[ \\-_.()/\\\\`,=*&$#@!%^\"}{\\[\\]?+—（）【】“：”。，《》<>‘’；？|~·]");
 
     /**
      * This creates a new {@link SlimefunItem} from the given arguments.
@@ -187,6 +190,7 @@ public class SlimefunItem implements Placeable {
         this.recipe = recipe;
         this.recipeOutput = recipeOutput;
         normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName());
+        baseName = BASE_NAME_PATTERN.matcher(normalItemName).replaceAll("");
     }
 
     // Previously deprecated constructor, now only for internal purposes
@@ -197,6 +201,7 @@ public class SlimefunItem implements Placeable {
         this.recipeType = recipeType;
         this.recipe = recipe;
         normalItemName = TextUtils.toPlainText(itemStackTemplate.getItemMeta().getDisplayName());
+        baseName = BASE_NAME_PATTERN.matcher(normalItemName).replaceAll("");
     }
 
     /**

@@ -101,7 +101,8 @@ public final class ChestMenuUtils {
                     new QsTextComponentImpl("\u21E8 ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("单击搜索物品").color(NamedTextColor.AQUA)),
                     Component.empty(),
                     new QsTextComponentImpl("  - ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("左键普通搜索").color(NamedTextColor.GRAY)),
-                    new QsTextComponentImpl("  - ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("右键以启用拼音搜索").color(NamedTextColor.LIGHT_PURPLE))
+                    new QsTextComponentImpl("  - ").color(NamedTextColor.GRAY).append(new QsTextComponentImpl("右键以启用拼音搜索").color(NamedTextColor.LIGHT_PURPLE)),
+                    new QsTextComponentImpl("注意: 拼音模式下搜索需要省略其他符及号空格").color(NamedTextColor.BLACK)
             );
 
     public static ItemStack getSearchButton(Player p) {
