@@ -47,6 +47,7 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.integrations.GeyserIntegration;
+import me.qscbm.slimefun4.listeners.GuideListener;
 import me.qscbm.slimefun4.utils.PinyinUtils;
 import me.qscbm.slimefun4.utils.QsConstants;
 import me.qscbm.slimefun4.utils.QsItemUtils;
@@ -484,6 +485,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         // Old deprecated CS-CoreLib Listener
         new MenuListener(this);
 
+        new GuideListener(this);
         new SlimefunBootsListener(this);
         new SlimefunItemInteractListener(this);
         new SlimefunItemConsumeListener(this);
