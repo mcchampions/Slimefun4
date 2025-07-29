@@ -54,19 +54,20 @@ public class PinyinUtils {
             if (isChineseCharacter(c)) {
                 try {
                     String[] pinyins = PinyinHelper.toHanyuPinyinStringArray(c, ALL_PINYIN_FORMAT);
-                    Set<String> charOptions = new HashSet<>(Arrays.asList(pinyins));
+                    Set<String> charOptions = new HashSet<>((int) (pinyins.length * 1.6d + 3));
                     for (String py : pinyins) {
                         charOptions.add(String.valueOf(py.charAt(0)));
                     }
+                    charOptions.addAll(Arrays.asList(pinyins));
                     charOptions.add(String.valueOf(c));
                     optionsList.add(charOptions);
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    optionsList.add(Set.of(String.valueOf(c)));
+                    optionsList.add(Collections.singleton(String.valueOf(c)));
                 }
             } else {
-                optionsList.add(Set.of(String.valueOf(c)));
+                optionsList.add(Collections.singleton(String.valueOf(c)));
             }
         }
 
