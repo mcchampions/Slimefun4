@@ -374,9 +374,13 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
 
         String searchTerm = input.toLowerCase(Locale.ROOT);
 
-        ChestMenu menu = new ChestMenu(Slimefun.getLocalization()
+        String title = Slimefun.getLocalization()
                 .getMessage(p, "guide.search.inventory")
-                + " &f" + input);
+                + " &f" + input;
+        if (usePinyin) {
+            title = title + "   --&b已启用拼音搜索";
+        }
+        ChestMenu menu = new ChestMenu(title);
 
         if (addToHistory) {
             profile.getGuideHistory().add(searchTerm, usePinyin);
