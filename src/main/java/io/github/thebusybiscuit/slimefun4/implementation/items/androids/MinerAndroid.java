@@ -16,7 +16,6 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 
 import java.util.Collection;
 import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -26,22 +25,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.Container;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * The {@link MinerAndroid} is a variant of the {@link ProgrammableAndroid} which
- * is able to break blocks.
- * Otherwise the functionality is similar to a regular android.
- * <p>
- * The {@link MinerAndroid} will also fire an {@link AndroidMineEvent} when breaking a {@link Block}.
- *
- * @author TheBusyBiscuit
- * @author creator3
- * @author poma123
- * @author Sfiguz7
- * @author CyberPatriot
- * @author Redemption198
- * @author Poslovitch
- * @see AndroidMineEvent
- */
 public class MinerAndroid extends ProgrammableAndroid {
     // Determines the drops a miner android will get
     private final ItemStack effectivePickaxe = new ItemStack(Material.DIAMOND_PICKAXE);

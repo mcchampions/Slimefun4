@@ -159,7 +159,7 @@ public class SlimefunItemInteractListener implements Listener {
 
                                     @Override
                                     public void onResult(SlimefunUniversalData result) {
-                                        if (!p.isConnected()) {
+                                        if (!p.isOnline()) {
                                             return;
                                         }
 
@@ -187,7 +187,7 @@ public class SlimefunItemInteractListener implements Listener {
 
                                     @Override
                                     public void onResult(SlimefunBlockData result) {
-                                        if (!p.isConnected()) {
+                                        if (!p.isOnline()) {
                                             return;
                                         }
 

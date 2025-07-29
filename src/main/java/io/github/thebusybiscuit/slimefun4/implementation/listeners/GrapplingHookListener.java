@@ -161,7 +161,7 @@ public class GrapplingHookListener implements Listener {
             return;
         }
 
-        for (GrapplingHookEntity hook : activeHooks.values()){
+        for (GrapplingHookEntity hook : activeHooks.values()) {
             if (hook.getLeashTarget() == e.getEntity()) {
                 e.setDropLeash(false);
                 return;

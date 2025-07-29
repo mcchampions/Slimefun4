@@ -17,7 +17,7 @@ public class InventoryUtil {
             return;
         }
 
-        if (!p.isConnected()) {
+        if (!PlayerUtil.isConnected(p)) {
 
             return;
         }
