@@ -14,7 +14,7 @@ import java.util.logging.Level;
 public class PinyinUtils {
     public static final HanyuPinyinOutputFormat ALL_PINYIN_FORMAT = new HanyuPinyinOutputFormat();
 
-    public static Map<SlimefunItem,String> ITEM_MAPPING;
+    public static Map<SlimefunItem, String> ITEM_MAPPING;
 
     static {
         ALL_PINYIN_FORMAT.setCaseType(HanyuPinyinCaseType.LOWERCASE);
@@ -28,12 +28,7 @@ public class PinyinUtils {
         try {
             ITEM_MAPPING = new HashMap<>(list.size());
             for (SlimefunItem slimefunItem : list) {
-                String name = slimefunItem.getItemNormalName().toLowerCase();
-                StringBuilder builder = new StringBuilder();
-                for (String s : getPinyin(name)) {
-                    builder.append(s).append(" ;");
-                }
-                ITEM_MAPPING.put(slimefunItem, builder.toString());
+                ITEM_MAPPING.put(slimefunItem, getPinyin(slimefunItem.getItemName()));
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -45,50 +40,48 @@ public class PinyinUtils {
         return ITEM_MAPPING.get(item);
     }
 
-    public static Set<String> getPinyin(String hanzi) {
+    public static String getPinyin(String hanzi) {
         if (hanzi == null || hanzi.isEmpty()) {
-            return Collections.emptySet();
+            return "";
         }
 
         String trimmed = hanzi.trim();
 
-        List<List<String>> optionsList = new ArrayList<>();
+        List<Set<String>> optionsList = new ArrayList<>();
         char[] chars = trimmed.toCharArray();
 
         for (char c : chars) {
             if (isChineseCharacter(c)) {
                 try {
                     String[] pinyins = PinyinHelper.toHanyuPinyinStringArray(c, ALL_PINYIN_FORMAT);
-                    if (pinyins != null && pinyins.length > 0) {
-                        List<String> charOptions = new ArrayList<>(Arrays.asList(pinyins));
-                        for (String py : pinyins) {
-                            charOptions.add(String.valueOf(py.charAt(0)));
-                        }
-                        charOptions.add(String.valueOf(c));
-                        optionsList.add(charOptions);
-                    } else {
-                        optionsList.add(Collections.singletonList(String.valueOf(c)));
+                    Set<String> charOptions = new HashSet<>(Arrays.asList(pinyins));
+                    for (String py : pinyins) {
+                        charOptions.add(String.valueOf(py.charAt(0)));
                     }
+                    charOptions.add(String.valueOf(c));
+                    optionsList.add(charOptions);
+
                 } catch (Exception e) {
-                    optionsList.add(Collections.singletonList(String.valueOf(c)));
+                    e.printStackTrace();
+                    optionsList.add(Set.of(String.valueOf(c)));
                 }
             } else {
-                optionsList.add(Collections.singletonList(String.valueOf(c)));
+                optionsList.add(Set.of(String.valueOf(c)));
             }
         }
 
         return generateCombinations(optionsList);
     }
 
-    private static Set<String> generateCombinations(List<List<String>> optionsList) {
-        Set<String> results = new HashSet<>();
-        generateCombinationsHelper(optionsList, 0, new StringBuilder(), results);
-        return results;
+    private static String generateCombinations(List<Set<String>> optionsList) {
+        StringBuilder result = new StringBuilder(optionsList.size() * 6);
+        generateCombinationsHelper(optionsList, 0, new StringBuilder(), result);
+        return result.toString();
     }
 
-    private static void generateCombinationsHelper(List<List<String>> optionsList, int depth, StringBuilder current, Set<String> results) {
+    private static void generateCombinationsHelper(List<Set<String>> optionsList, int depth, StringBuilder current, StringBuilder results) {
         if (depth == optionsList.size()) {
-            results.add(current.toString());
+            results.append(current.toString()).append(" ;");
             return;
         }
 
@@ -99,6 +92,7 @@ public class PinyinUtils {
             current.setLength(lengthBefore);
         }
     }
+
 
     private static boolean isChineseCharacter(char c) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(c);
