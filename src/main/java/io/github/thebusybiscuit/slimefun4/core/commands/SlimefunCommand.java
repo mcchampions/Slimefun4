@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import lombok.Getter;
 import me.qscbm.slimefun4.listeners.AsyncTabCompleteListener;
+import me.qscbm.slimefun4.utils.QsConstants;
+import me.qscbm.slimefun4.utils.QuotedStringTokenizer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -55,6 +57,8 @@ public class SlimefunCommand implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        String argsStr = String.join(" ", args);
+        args = new QuotedStringTokenizer(argsStr).tokenize().toArray(QsConstants.EMPTY_STRINGS);
         if (args.length > 0) {
             for (SubCommand command : commands) {
                 if (args[0].equalsIgnoreCase(command.getName())) {
