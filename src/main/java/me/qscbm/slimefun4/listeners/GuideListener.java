@@ -29,25 +29,17 @@ public class GuideListener implements Listener {
         Player p = (Player) e.getWhoClicked();
 
         if (tryOpenGuide(p, e, SlimefunGuideMode.SURVIVAL_MODE) == Event.Result.ALLOW) {
-            if (p.isSneaking()) {
-                SlimefunGuideSettings.openSettings(p, e.getCurrentItem());
-            } else {
-                openGuide(p, e, SlimefunGuideMode.SURVIVAL_MODE);
-            }
+            openGuide(p, e, SlimefunGuideMode.SURVIVAL_MODE);
         } else if (tryOpenGuide(p, e, SlimefunGuideMode.CHEAT_MODE) == Event.Result.ALLOW) {
-            if (p.isSneaking()) {
-                SlimefunGuideSettings.openSettings(
-                        p,
-                        p.hasPermission("slimefun.cheat.items")
-                                ? e.getCurrentItem()
-                                : SlimefunGuide.getItem(SlimefunGuideMode.SURVIVAL_MODE));
-            } else {
-                /*
-                 * We rather just run the command here, all
-                 * necessary permission checks will be handled there.
-                 */
-                p.chat("/sf cheat");
+            /*
+             * We rather just run the command here, all
+             * necessary permission checks will be handled there.
+             */
+            if (!p.hasPermission("slimefun.cheat.items")) {
+                Slimefun.getLocalization().sendMessage(p, "messages.no-permission", true);
+                return;
             }
+            SlimefunGuide.openCheatMenu(p);
         }
     }
 
