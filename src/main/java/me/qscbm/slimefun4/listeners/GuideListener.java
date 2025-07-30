@@ -31,10 +31,6 @@ public class GuideListener implements Listener {
         if (tryOpenGuide(p, e, SlimefunGuideMode.SURVIVAL_MODE) == Event.Result.ALLOW) {
             openGuide(p, e, SlimefunGuideMode.SURVIVAL_MODE);
         } else if (tryOpenGuide(p, e, SlimefunGuideMode.CHEAT_MODE) == Event.Result.ALLOW) {
-            /*
-             * We rather just run the command here, all
-             * necessary permission checks will be handled there.
-             */
             if (!p.hasPermission("slimefun.cheat.items")) {
                 Slimefun.getLocalization().sendMessage(p, "messages.no-permission", true);
                 return;
