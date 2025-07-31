@@ -20,6 +20,7 @@ public class UniversalMenu extends DirtyChestMenu {
         this(preset, uuid, (Location) null);
     }
 
+
     public UniversalMenu(UniversalMenuPreset preset, UUID uuid, Location lastPresent) {
         super(preset);
         this.uuid = uuid;
@@ -29,7 +30,10 @@ public class UniversalMenu extends DirtyChestMenu {
     }
 
     public UniversalMenu(
-            UniversalMenuPreset preset, UUID uuid, Location lastPresent, ItemStack[] contents) {
+            UniversalMenuPreset preset,
+            UUID uuid,
+            Location lastPresent,
+            ItemStack[] contents) {
         super(preset);
         this.uuid = uuid;
 

@@ -13,8 +13,10 @@ import javax.annotation.Nullable;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.bukkit.inventory.ItemStack;
 
+@Slf4j
 @Getter
 public class SlimefunUniversalData extends ASlimefunDataContainer {
     @Setter
@@ -27,6 +29,11 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
 
     SlimefunUniversalData(UUID uuid, String sfId) {
         super(uuid.toString(), sfId);
+    }
+
+    SlimefunUniversalData(UUID uuid, String sfId, Set<UniversalDataTrait> traits) {
+        super(uuid.toString(), sfId);
+        this.traits.addAll(traits);
     }
 
     public void setData(String key, String val) {
@@ -42,9 +49,20 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
     protected void setTraitData(UniversalDataTrait trait, String val) {
         if (!trait.getReservedKey().isEmpty()) {
             setCacheInternal(trait.getReservedKey(), val, true);
+
             Slimefun.getDatabaseManager()
                     .getBlockDataController()
                     .scheduleDelayedUniversalDataUpdate(this, trait.getReservedKey());
+        }
+    }
+
+    protected void setTraitData(String val) {
+        if (!UniversalDataTrait.BLOCK.getReservedKey().isEmpty()) {
+            setCacheInternal(UniversalDataTrait.BLOCK.getReservedKey(), val, true);
+
+            Slimefun.getDatabaseManager()
+                    .getBlockDataController()
+                    .scheduleDelayedUniversalDataUpdate(this, UniversalDataTrait.BLOCK.getReservedKey());
         }
     }
 

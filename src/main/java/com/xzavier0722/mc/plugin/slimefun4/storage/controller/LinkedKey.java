@@ -31,4 +31,9 @@ public class LinkedKey extends ScopeKey {
     public boolean equals(Object obj) {
         return self.equals(obj instanceof LinkedKey linked ? linked.self : obj);
     }
+
+    @Override
+    public String toString() {
+        return getKeyStr() + " -> " + self.toString();
+    }
 }

@@ -22,7 +22,7 @@ public abstract class UniversalMenuPreset extends BlockMenuPreset {
         super(id, title);
     }
 
-    public void newInstance(UniversalMenu menu, Block b) {
+    public void newInstance(UniversalMenu menu, @Nullable Block b) {
         // This method can optionally be overridden by implementations
     }
 
@@ -39,6 +39,7 @@ public abstract class UniversalMenuPreset extends BlockMenuPreset {
         }
     }
 
+
     protected void clone(UniversalMenu menu, Location lastPresent) {
         menu.setPlayerInventoryClickable(true);
 
@@ -50,7 +51,13 @@ public abstract class UniversalMenuPreset extends BlockMenuPreset {
             menu.addItem(getSize() - 1, null);
         }
 
-        newInstance(menu, lastPresent.getBlock());
+        Block b = null;
+
+        if (lastPresent != null) {
+            b = lastPresent.getBlock();
+        }
+
+        newInstance(menu, b);
 
         for (int slot = 0; slot < 54; slot++) {
             if (getMenuClickHandler(slot) != null) {

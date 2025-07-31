@@ -31,12 +31,12 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
     }
 
     public void initLastPresent() {
-        setTraitData(UniversalDataTrait.BLOCK, LocationUtils.getLocKey(lastPresent.toLocation()));
+        setTraitData(LocationUtils.getLocKey(lastPresent.toLocation()));
     }
 
     public void setLastPresent(BlockPosition bp) {
         this.lastPresent = bp;
-        setTraitData(UniversalDataTrait.BLOCK, LocationUtils.getLocKey(bp.toLocation()));
+        setTraitData(LocationUtils.getLocKey(bp.toLocation()));
     }
 
     public void setLastPresent(Location l) {
@@ -53,7 +53,7 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
         // 自动修复丢失的位置数据
         if (lastPresent != null) {
             if (data == null) {
-                setTraitData(UniversalDataTrait.BLOCK, LocationUtils.getLocKey(lastPresent.toLocation()));
+                setTraitData(LocationUtils.getLocKey(lastPresent.toLocation()));
             }
 
             return lastPresent;
@@ -86,7 +86,7 @@ public class SlimefunUniversalBlockData extends SlimefunUniversalData {
                     (int) Double.parseDouble(lArr[2].replace("y=", "")),
                     (int) Double.parseDouble(lArr[3].replace("z=", "").replace("]", "")));
 
-            setTraitData(UniversalDataTrait.BLOCK, LocationUtils.getLocKey(bp.toLocation()));
+            setTraitData(LocationUtils.getLocKey(bp.toLocation()));
 
             lastPresent = bp;
         } catch (Exception x) {
