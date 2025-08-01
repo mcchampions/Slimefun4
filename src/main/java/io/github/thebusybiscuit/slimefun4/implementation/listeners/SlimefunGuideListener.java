@@ -57,11 +57,11 @@ public class SlimefunGuideListener implements Listener {
                                 ? e.getItem()
                                 : SlimefunGuide.getItem(SlimefunGuideMode.SURVIVAL_MODE));
             } else {
-                /*
-                 * We rather just run the command here, all
-                 * necessary permission checks will be handled there.
-                 */
-                p.chat("/sf cheat");
+                if (!p.hasPermission("slimefun.cheat.items")) {
+                    Slimefun.getLocalization().sendMessage(p, "messages.no-permission", true);
+                    return;
+                }
+                SlimefunGuide.openCheatMenu(p);
             }
         }
     }
