@@ -148,4 +148,50 @@ public class TextUtils {
         }
         return false;
     }
+
+    public static List<String> tokenize(String string) {
+        int cursor = 0;
+        char[] chars = string.toCharArray();
+        int length = chars.length;
+        final List<String> output = new ArrayList<>(3);
+
+        while (cursor < length) {
+            final char c = chars[cursor];
+            String s;
+            if (c == '"') {
+                cursor++;
+
+                final int start = cursor;
+                while (cursor < length && chars[cursor] != '"') {
+                    cursor++;
+                }
+                final int end = cursor;
+
+                if (cursor < length) {
+                    cursor++;
+                    if (cursor < length && chars[cursor] == ' ') {
+                        cursor++;
+                    }
+                }
+                s = new String(chars, start, end - start);
+            } else {
+                final int start = cursor;
+                while (cursor < length && chars[cursor] != ' ') {
+                    cursor++;
+                }
+                final int end = cursor;
+
+                if (cursor < length) {
+                    cursor++;
+                }
+
+                s = new String(chars, start, end - start);
+            }
+            output.add(s);
+        }
+        if (cursor > 0 && chars[cursor - 1] == ' ') {
+            output.add("");
+        }
+        return output;
+    }
 }

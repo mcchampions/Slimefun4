@@ -3,7 +3,7 @@ package me.qscbm.slimefun4.listeners;
 import com.destroystokyo.paper.event.server.AsyncTabCompleteEvent;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunTabCompleter;
-import me.qscbm.slimefun4.utils.QuotedStringTokenizer;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -39,7 +39,7 @@ public class AsyncTabCompleteListener implements Listener {
                 return;
             }
         }
-        List<String> args = new QuotedStringTokenizer(buffer.substring(firstPlace + 1)).tokenize();
+        List<String> args = TextUtils.tokenize(buffer.substring(firstPlace + 1));
         List<String> suggests = SlimefunTabCompleter.onTabComplete(args);
         e.setCompletions(suggests);
         e.setHandled(true);
