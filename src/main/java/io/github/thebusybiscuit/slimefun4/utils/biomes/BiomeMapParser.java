@@ -7,6 +7,7 @@ import com.google.gson.JsonParseException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.BiomeMapException;
 import io.github.thebusybiscuit.slimefun4.utils.JsonUtils;
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedBiome;
 
 import java.util.*;
 
