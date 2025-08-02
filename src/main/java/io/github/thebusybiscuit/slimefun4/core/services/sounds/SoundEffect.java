@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedSound;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
 
@@ -110,8 +111,14 @@ public enum SoundEffect {
     @Getter
     private final float defaultPitch;
 
+    SoundEffect(String sound, float volume, float pitch) {
+        this.defaultSound = sound;
+        this.defaultVolume = volume;
+        this.defaultPitch = pitch;
+    }
+
     SoundEffect(Sound sound, float volume, float pitch) {
-        this.defaultSound = sound.getKey().getKey();
+        this.defaultSound = VersionedSound.getSoundName(sound);
         this.defaultVolume = volume;
         this.defaultPitch = pitch;
     }

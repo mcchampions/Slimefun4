@@ -10,6 +10,8 @@ import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
 
 import java.util.*;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Biome;
 
@@ -31,12 +33,8 @@ public class BiomeMapParser<T> {
     private final BiomeDataConverter<T> valueConverter;
     private final Map<Biome, T> map = new HashMap<>();
 
-    /**
-     * This flag specifies whether the parsing is "lenient" or not.
-     * A lenient parser will not throw a {@link BiomeMapException} if the {@link Biome}
-     * could not be found.
-     * The default value is false.
-     */
+    @Setter
+    @Getter
     private boolean isLenient;
 
     /**
@@ -52,33 +50,6 @@ public class BiomeMapParser<T> {
     public BiomeMapParser(NamespacedKey key, BiomeDataConverter<T> valueConverter) {
         this.key = key;
         this.valueConverter = valueConverter;
-    }
-
-    /**
-     * This method sets the "lenient" flag for this parser.
-     * <p>
-     * A lenient parser will not throw a {@link BiomeMapException} if the {@link Biome}
-     * could not be found.
-     * The default value is false.
-     *
-     * @param isLenient
-     *            Whether this parser should be lenient or not.
-     */
-    public void setLenient(boolean isLenient) {
-        this.isLenient = isLenient;
-    }
-
-    /**
-     * This method returns whether this parser is flagged as "lenient".
-     * <p>
-     * A lenient parser will not throw a {@link BiomeMapException} if the {@link Biome}
-     * could not be found.
-     * The default value is false.
-     *
-     * @return Whether this parser is lenient or not.
-     */
-    public boolean isLenient() {
-        return isLenient;
     }
 
     public void read(String json) throws BiomeMapException {
@@ -140,7 +111,7 @@ public class BiomeMapParser<T> {
                     String formattedValue = (value.split(":"))[1].toUpperCase(Locale.ROOT);
 
                     try {
-                        Biome biome = Biome.valueOf(formattedValue);
+                        Biome biome = VersionedBiome.valueOf(formattedValue);
                         biomes.add(biome);
                     } catch (IllegalArgumentException x) {
                         // Lenient Parsers will ignore unknown biomes
