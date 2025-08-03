@@ -1,5 +1,8 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.common;
 
+import lombok.Getter;
+
+@Getter
 public enum FieldKey {
     PLAYER_UUID,
     PLAYER_NAME,
@@ -42,7 +45,4 @@ public enum FieldKey {
         this.isNumType = isNumType;
     }
 
-    public boolean isNumType() {
-        return isNumType;
-    }
 }

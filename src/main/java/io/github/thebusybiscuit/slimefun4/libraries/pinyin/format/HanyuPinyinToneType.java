@@ -84,7 +84,7 @@ public class HanyuPinyinToneType {
     }
 
     protected HanyuPinyinToneType(String name) {
-        setName(name);
+        this.name = name;
     }
 
     /**

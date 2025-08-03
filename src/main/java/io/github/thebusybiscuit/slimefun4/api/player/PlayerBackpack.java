@@ -59,6 +59,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     private String name;
     @Getter
     private int size;
+    @Getter
     private boolean isInvalid;
 
     public static void getAsync(ItemStack item, Consumer<PlayerBackpack> callback, boolean runCbOnMainThread) {
@@ -276,10 +277,6 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     public void markInvalid() {
         isInvalid = true;
         InventoryUtil.closeInventory(this.inventory);
-    }
-
-    public boolean isInvalid() {
-        return isInvalid;
     }
 
     /**

@@ -327,7 +327,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         integrations.start();
         logger.log(Level.INFO, "正在映射原版物品名称...");
         QsItemUtils.load();
-        logger.log(Level.INFO, "共映射 {0} 个原版物品名称:", QsItemUtils.ITEM_NAME_MAPPER.keySet().size());
+        logger.log(Level.INFO, "共映射 {0} 个原版物品名称:", QsItemUtils.ITEM_NAME_MAPPER.size());
         logger.log(Level.INFO, QsItemUtils.getItemName(new ItemStack(Material.GRASS_BLOCK)) + "...");
 
         // Geyser Integration (custom skulls and items)

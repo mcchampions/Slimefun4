@@ -48,9 +48,9 @@ public final class VersionedSound {
      * @return Sound 名称
      */
     @Nonnull
-    public static String getSoundName(@Nonnull Sound sound) {
+    public static String getSoundName(Sound sound) {
         try {
-            if (isEnum()) {
+            if (IS_ENUM) {
                 return ((Enum<?>) sound).name();
             } else if (GET_KEY_METHOD != null) {
                 Object key = GET_KEY_METHOD.invoke(sound);

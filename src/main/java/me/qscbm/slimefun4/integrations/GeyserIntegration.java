@@ -2,7 +2,6 @@ package me.qscbm.slimefun4.integrations;
 
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.core.config.SlimefunConfigManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.qscbm.slimefun4.utils.NBTUtils;
 import org.bukkit.Bukkit;
@@ -10,15 +9,10 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * 对 Geyser 的头颅支持

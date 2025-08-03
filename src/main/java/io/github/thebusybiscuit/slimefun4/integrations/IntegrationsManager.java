@@ -12,7 +12,6 @@ import java.util.function.Consumer;
 import java.util.logging.Level;
 
 import lombok.Getter;
-import me.qscbm.slimefun4.integrations.GeyserIntegration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Server;
@@ -53,15 +52,28 @@ public class IntegrationsManager {
 
     /**
      * This boolean determines whether {@link #start()} was run.
+     * -- GETTER --
+     *  This method returns whether the
+     *  was enabled yet.
+     *
+     * @return Whether this {@link IntegrationsManager} has been enabled already.
+
      */
+    @Getter
     private boolean isEnabled;
 
     // Soft dependencies
+    @Getter
     private boolean isPlaceholderAPIInstalled;
+    @Getter
     private boolean isWorldEditInstalled;
+    @Getter
     private boolean isMcMMOInstalled;
+    @Getter
     private boolean isClearLagInstalled;
+    @Getter
     private boolean isItemsAdderInstalled;
+    @Getter
     private boolean isOrebfuscatorInstalled;
 
     /**
@@ -72,15 +84,6 @@ public class IntegrationsManager {
      */
     public IntegrationsManager(Slimefun plugin) {
         this.plugin = plugin;
-    }
-
-    /**
-     * This method returns whether the {@link IntegrationsManager} was enabled yet.
-     *
-     * @return Whether this {@link IntegrationsManager} has been enabled already.
-     */
-    public boolean isEnabled() {
-        return isEnabled;
     }
 
     /**
@@ -304,27 +307,4 @@ public class IntegrationsManager {
         }
     }
 
-    public boolean isPlaceholderAPIInstalled() {
-        return isPlaceholderAPIInstalled;
-    }
-
-    public boolean isWorldEditInstalled() {
-        return isWorldEditInstalled;
-    }
-
-    public boolean isMcMMOInstalled() {
-        return isMcMMOInstalled;
-    }
-
-    public boolean isClearLagInstalled() {
-        return isClearLagInstalled;
-    }
-
-    public boolean isItemsAdderInstalled() {
-        return isItemsAdderInstalled;
-    }
-
-    public boolean isOrebfuscatorInstalled() {
-        return isOrebfuscatorInstalled;
-    }
 }

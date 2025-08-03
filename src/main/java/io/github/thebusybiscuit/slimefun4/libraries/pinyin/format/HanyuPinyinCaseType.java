@@ -70,7 +70,7 @@ public class HanyuPinyinCaseType {
      * Constructor
      */
     protected HanyuPinyinCaseType(String name) {
-        setName(name);
+        this.name = name;
     }
 
     /**

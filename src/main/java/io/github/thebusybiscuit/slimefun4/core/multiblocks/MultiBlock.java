@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.World;
@@ -45,6 +47,15 @@ public class MultiBlock {
     private final SlimefunItem item;
     private final Material[] blocks;
     private final BlockFace trigger;
+    /**
+     * -- GETTER --
+     *  This returns whether this
+     *  is a symmetric structure or whether
+     *  the left and right side differ.
+     *
+     * @return Whether this {@link MultiBlock} is a symmetric structure
+     */
+    @Getter
     private final boolean isSymmetric;
 
     public MultiBlock(SlimefunItem item, Material[] build, BlockFace trigger) {
@@ -113,16 +124,6 @@ public class MultiBlock {
         }
 
         return true;
-    }
-
-    /**
-     * This returns whether this {@link MultiBlock} is a symmetric structure or whether
-     * the left and right side differ.
-     *
-     * @return Whether this {@link MultiBlock} is a symmetric structure
-     */
-    public boolean isSymmetric() {
-        return isSymmetric;
     }
 
     @Override

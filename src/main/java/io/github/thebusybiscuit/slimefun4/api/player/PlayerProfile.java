@@ -55,6 +55,7 @@ public class PlayerProfile {
 
     @Getter
     private boolean dirty;
+    @Getter
     private boolean isInvalid;
     @Getter
     private boolean markedForDeletion;
@@ -438,10 +439,6 @@ public class PlayerProfile {
 
     public void markInvalid() {
         isInvalid = true;
-    }
-
-    public boolean isInvalid() {
-        return isInvalid;
     }
 
     private static void getOrCreate(OfflinePlayer p, Consumer<PlayerProfile> cb) {

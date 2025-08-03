@@ -81,7 +81,7 @@ public class Trie {
                         currentTrie.put(hexString, new Trie());
                         trieParent = currentTrie.get(hexString);
                     }
-                    Trie trie = trieParent.getNextTire();//获取此对象的下一个
+                    Trie trie = trieParent.nextTire;//获取此对象的下一个
 
                     if (keys.length - 1 == i) {//最后一个字了,需要把拼音写进去
                         trieParent.pinyin = value;
