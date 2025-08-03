@@ -112,12 +112,11 @@ class ItemFilter implements Predicate<ItemStack> {
         SlimefunItem item = SlimefunItem.getById(blockData.getSfId());
         BlockMenu menu = blockData.getBlockMenu();
 
-        if (!(item instanceof CargoNode) || menu == null) {
+        if (!(item instanceof CargoNode node) || menu == null) {
             // Don't filter for a non-existing item (safety check)
             clear(false);
         } else {
             try {
-                CargoNode node = (CargoNode) item;
 
                 if (!node.hasItemFilter()) {
                     // Node does not have a filter, allow everything

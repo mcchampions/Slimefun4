@@ -39,6 +39,13 @@ public class AndroidFarmEvent extends Event implements Cancellable {
      */
     @Getter
     private final AndroidInstance android;
+    /**
+     * -- GETTER --
+     *  Whether this was invoked via an advanced farming action
+     *
+     * @return Whether it is advanced
+     */
+    @Getter
     private final boolean isAdvanced;
     private ItemStack drop;
     private boolean cancelled;
@@ -64,15 +71,6 @@ public class AndroidFarmEvent extends Event implements Cancellable {
      */
     @Nullable public ItemStack getDrop() {
         return drop;
-    }
-
-    /**
-     * Whether this was invoked via an advanced farming action
-     *
-     * @return Whether it is advanced
-     */
-    public boolean isAdvanced() {
-        return isAdvanced;
     }
 
     /**

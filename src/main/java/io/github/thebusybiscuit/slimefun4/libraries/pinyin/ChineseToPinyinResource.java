@@ -62,12 +62,12 @@ class ChineseToPinyinResource {
             final String resourceName = "/pinyindb/unicode_to_hanyu_pinyin.txt";
             final String resourceMultiName = "/pinyindb/multi_pinyin.txt";
 
-            setUnicodeToHanyuPinyinTable(new Trie());
-            getUnicodeToHanyuPinyinTable().load(ResourceHelper.getResourceInputStream(resourceName));
+            unicodeToHanyuPinyinTable = new Trie();
+            unicodeToHanyuPinyinTable.load(ResourceHelper.getResourceInputStream(resourceName));
 
-            getUnicodeToHanyuPinyinTable().loadMultiPinyin(ResourceHelper.getResourceInputStream(resourceMultiName));
+            unicodeToHanyuPinyinTable.loadMultiPinyin(ResourceHelper.getResourceInputStream(resourceMultiName));
 
-            getUnicodeToHanyuPinyinTable().loadMultiPinyinExtend();
+            unicodeToHanyuPinyinTable.loadMultiPinyinExtend();
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -127,7 +127,7 @@ class ChineseToPinyinResource {
         String codepointHexStr = Integer.toHexString(ch).toUpperCase();
 
         // fetch from hashtable
-        Trie trie = getUnicodeToHanyuPinyinTable().get(codepointHexStr);
+        Trie trie = unicodeToHanyuPinyinTable.get(codepointHexStr);
         String foundRecord = null;
         if (trie != null)
             foundRecord = trie.getPinyin();

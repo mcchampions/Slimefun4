@@ -78,6 +78,7 @@ public class AncientAltarTask implements Runnable {
         for (Block pedestal : pedestals) {
             Optional<Item> item = AncientPedestal.getPlacedItem(pedestal);
 
+            //noinspection OptionalIsPresent
             if (item.isPresent()) {
                 Item entity = item.get();
                 positionLock.put(entity, entity.getLocation().clone());

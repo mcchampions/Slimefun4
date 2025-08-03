@@ -8,7 +8,6 @@ import java.util.Deque;
 import java.util.LinkedList;
 import javax.annotation.Nullable;
 
-import io.github.thebusybiscuit.slimefun4.implementation.guide.SurvivalSlimefunGuide;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.entity.Player;

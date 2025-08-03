@@ -71,7 +71,7 @@ public class GadgetsListener implements Listener {
             double thrust = jetpack.getThrust();
 
             if (thrust > 0.2) {
-                new JetpackTask(p, (Jetpack) chestplate).scheduleRepeating(0, 3);
+                new JetpackTask(p, jetpack).scheduleRepeating(0, 3);
             }
         } else if (chestplate instanceof Parachute) {
             new ParachuteTask(p).scheduleRepeating(0, 3);
@@ -83,7 +83,7 @@ public class GadgetsListener implements Listener {
             double speed = jetBoots.getSpeed();
 
             if (speed > 0.2) {
-                new JetBootsTask(p, (JetBoots) boots).scheduleRepeating(0, 2);
+                new JetBootsTask(p, jetBoots).scheduleRepeating(0, 2);
             }
         }
     }

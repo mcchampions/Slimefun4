@@ -15,6 +15,7 @@ final class GrapplingHookEntity {
     private final boolean wasConsumed;
     @Getter
     private final Arrow arrow;
+    @Getter
     private final Entity leashTarget;
 
     GrapplingHookEntity(Player p, Arrow arrow, Entity leashTarget, boolean dropItem, boolean wasConsumed) {
@@ -42,7 +43,4 @@ final class GrapplingHookEntity {
         }
     }
 
-    public Entity getLeashTarget() {
-        return leashTarget;
-    }
 }

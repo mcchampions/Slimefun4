@@ -15,8 +15,6 @@ public class DatabaseThreadFactory implements ThreadFactory {
 
     @Override
     public Thread newThread(Runnable r) {
-        Thread t = new Thread(r, prefix + threadCount.getAndIncrement());
-
-        return t;
+        return new Thread(r, prefix + threadCount.getAndIncrement());
     }
 }

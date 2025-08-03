@@ -86,7 +86,7 @@ public class HanyuPinyinVCharType {
      * Constructor
      */
     protected HanyuPinyinVCharType(String name) {
-        setName(name);
+        this.name = name;
     }
 
     /**

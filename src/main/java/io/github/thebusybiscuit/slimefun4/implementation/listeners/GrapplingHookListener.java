@@ -43,7 +43,6 @@ public class GrapplingHookListener implements Listener {
     private GrapplingHook grapplingHook;
 
     private final Map<UUID, GrapplingHookEntity> activeHooks = new HashMap<>();
-    private final Set<UUID> invulnerability = new HashSet<>();
 
     public void register(Slimefun plugin, GrapplingHook grapplingHook) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -100,7 +99,6 @@ public class GrapplingHookListener implements Listener {
 
         UUID uuid = e.getPlayer().getUniqueId();
         activeHooks.remove(uuid);
-        invulnerability.remove(uuid);
     }
 
     @EventHandler
@@ -111,20 +109,6 @@ public class GrapplingHookListener implements Listener {
 
         UUID uuid = e.getPlayer().getUniqueId();
         activeHooks.remove(uuid);
-        invulnerability.remove(uuid);
-    }
-
-    @EventHandler
-    public void onFallDamage(EntityDamageEvent e) {
-        if (grapplingHook.isDisabled()) {
-            return;
-        }
-
-        if (e.getEntity() instanceof Player
-                && e.getCause() == DamageCause.FALL
-                && invulnerability.remove(e.getEntity().getUniqueId())) {
-            e.setCancelled(true);
-        }
     }
 
     @EventHandler
@@ -232,7 +216,6 @@ public class GrapplingHookListener implements Listener {
                         Slimefun.runSync(
                                 () -> {
                                     activeHooks.remove(uuid);
-                                    invulnerability.remove(uuid);
                                 },
                                 20L);
                     }

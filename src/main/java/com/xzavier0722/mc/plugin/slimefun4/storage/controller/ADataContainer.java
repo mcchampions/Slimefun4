@@ -11,6 +11,7 @@ public abstract class ADataContainer {
     @Getter
     private final String key;
     private final Map<String, String> data;
+    @Getter
     private volatile boolean isDataLoaded;
 
     public ADataContainer(String key) {
@@ -22,10 +23,6 @@ public abstract class ADataContainer {
         this.key = key;
         this.data = other.data;
         this.isDataLoaded = other.isDataLoaded;
-    }
-
-    public boolean isDataLoaded() {
-        return isDataLoaded;
     }
 
     protected String getCacheInternal(String key) {

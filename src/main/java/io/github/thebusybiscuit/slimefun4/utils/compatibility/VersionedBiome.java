@@ -31,8 +31,8 @@ public final class VersionedBiome {
     }
 
     @Nonnull
-    public static Biome valueOf(@Nonnull String biomeName) throws IllegalArgumentException {
-        if (biomeName == null || biomeName.isEmpty()) {
+    public static Biome valueOf(String biomeName) throws IllegalArgumentException {
+        if (biomeName.isEmpty()) {
             throw new IllegalArgumentException("Biome 名称不能为空");
         }
         try {
