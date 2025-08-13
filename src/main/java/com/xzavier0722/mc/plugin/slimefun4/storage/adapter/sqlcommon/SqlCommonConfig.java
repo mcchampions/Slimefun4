@@ -47,13 +47,7 @@ public abstract class SqlCommonConfig implements ISqlCommonConfig {
         }
 
         config.setMaximumPoolSize(maxConnection);
-
-        config.addDataSourceProperty("useLocalSessionState", "true");
-        config.addDataSourceProperty("rewriteBatchedStatements", "true");
-        config.addDataSourceProperty("cacheResultSetMetadata", "true");
-        config.addDataSourceProperty("cacheServerConfiguration", "true");
-        config.addDataSourceProperty("elideSetAutoCommits", "true");
-        config.addDataSourceProperty("maintainTimeStats", "false");
+        config.setLeakDetectionThreshold(8000);
 
         return new HikariDataSource(config);
     }

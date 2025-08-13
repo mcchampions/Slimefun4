@@ -1,6 +1,5 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
-import city.norain.slimefun4.utils.ControllerPoolExecutor;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataType;
@@ -9,13 +8,13 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.ScopeKey;
 import com.xzavier0722.mc.plugin.slimefun4.storage.task.DatabaseThreadFactory;
 import com.xzavier0722.mc.plugin.slimefun4.storage.task.QueuedWriteTask;
+import city.norain.slimefun4.utils.SlimefunPoolExecutor;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,27 +63,31 @@ public abstract class ADataController {
         this.dataAdapter = dataAdapter;
         dataAdapter.initStorage(dataType);
         dataAdapter.patch();
-        readExecutor = new ControllerPoolExecutor(
+        readExecutor = new SlimefunPoolExecutor(
+                "SF-DB-Read-Executor",
                 maxReadThread,
                 maxReadThread,
                 10,
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(32),
+                new LinkedBlockingQueue<>(),
                 new DatabaseThreadFactory("SF-DB-Read-Thread #"));
 
-        writeExecutor = new ControllerPoolExecutor(
+        writeExecutor = new SlimefunPoolExecutor(
+                "SF-DB-Write-Executor",
                 maxWriteThread,
                 maxWriteThread,
                 10,
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(32),
+                new LinkedBlockingQueue<>(),
                 new DatabaseThreadFactory("SF-DB-Write-Thread #"));
-        callbackExecutor = new ThreadPoolExecutor(
+
+        callbackExecutor = new SlimefunPoolExecutor(
+                "SF-DB-Callback-Executor",
                 1,
                 Runtime.getRuntime().availableProcessors() / 2,
                 10,
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(64),
+                new LinkedBlockingQueue<>(),
                 new DatabaseThreadFactory("SF-DB-CB-Thread #"));
     }
 
@@ -99,9 +102,11 @@ public abstract class ADataController {
         destroyed = true;
         readExecutor.shutdownNow();
         callbackExecutor.shutdownNow();
+
         try {
             float totalTask = scheduledWriteTasks.size();
-            int pendingTask = scheduledWriteTasks.size();
+            var pendingTask = scheduledWriteTasks.size();
+
             while (pendingTask > 0) {
                 String doneTaskPercent = String.format("%.1f", (totalTask - pendingTask) / totalTask * 100);
                 logger.log(Level.INFO, "数据保存中，请稍候... 剩余 {0} 个任务 ({1}%)", new Object[] {pendingTask, doneTaskPercent});
@@ -150,9 +155,7 @@ public abstract class ADataController {
 
                 @Override
                 protected void onError(Throwable e) {
-                    Slimefun.logger().log(Level.SEVERE, "执行写入操作时发生了一个异常: ");
-                    //noinspection CallToPrintStackTrace
-                    e.printStackTrace();
+                    Slimefun.logger().log(Level.SEVERE, "Exception thrown while executing write task: ", e);
                 }
             };
             queuedTask.queue(key, task);

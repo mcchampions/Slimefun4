@@ -17,4 +17,9 @@ public class SQLEntry implements TimingEntry {
     public String normalize() {
         return sql;
     }
+
+    @Override
+    public int hashCode() {
+        return sql.hashCode();
+    }
 }

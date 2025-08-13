@@ -1,6 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.medical;
 
-import city.norain.slimefun4.compatibillty.VersionedAttribute;
+import city.norain.slimefun4.compatibillty.CompatibilityUtil;
 import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -44,8 +44,8 @@ public class Bandage extends SimpleSlimefunItem<ItemUseHandler> {
 
             // Player is neither burning nor injured
             if (p.getFireTicks() <= 0
-                && p.getHealth()
-                   >= p.getAttribute(VersionedAttribute.getMaxHealth()).getValue()) {
+                    && p.getHealth()
+                            >= p.getAttribute(CompatibilityUtil.getMaxHealth()).getValue()) {
                 return;
             }
 
