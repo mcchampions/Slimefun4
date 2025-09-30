@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.HashedArmorpiece;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectionType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectiveArmor;
+import io.github.thebusybiscuit.slimefun4.core.guide.GuideHistory;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
@@ -51,21 +52,20 @@ import org.bukkit.entity.Player;
 public class PlayerProfile {
     private static final Map<UUID, Boolean> processProfiles = new ConcurrentHashMap<>();
 
+    @Getter
+    private boolean markedForDeletion;
     private final UUID owner;
     private int backpackNum;
     private final Config waypointsFile;
+    @Getter
+    private final GuideHistory guideHistory = new GuideHistory(this);
+
 
     /**
      * `dirty` indicates whether the profile has unsaved changes.
      */
     @Getter
     private boolean dirty;
-
-    /**
-     * `markedForDeletion` indicates whether the profile is marked for deletion.
-     * If true, means the profile should be removed from memory later.
-     */
-    private boolean markedForDeletion;
 
     private final Set<Research> researches;
     private final List<Waypoint> waypoints = new CopyOnWriteArrayList<>();
