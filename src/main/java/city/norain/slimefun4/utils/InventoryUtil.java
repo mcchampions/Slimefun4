@@ -1,6 +1,5 @@
 package city.norain.slimefun4.utils;
 
-import city.norain.slimefun4.compatibillty.CompatibilityUtil;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.util.LinkedList;
@@ -15,9 +14,6 @@ import org.bukkit.inventory.Inventory;
 public class InventoryUtil {
     public void openInventory(Player p, Inventory inventory) {
         if (p == null || inventory == null) {
-            return;
-        }
-        if (!CompatibilityUtil.isConnected(p)) {
             return;
         }
 

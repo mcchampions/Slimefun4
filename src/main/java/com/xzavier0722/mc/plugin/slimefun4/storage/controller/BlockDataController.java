@@ -26,6 +26,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.BlockDataService;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -84,10 +85,6 @@ public class BlockDataController extends ADataController {
      * {@link ChunkDataLoadMode}
      */
     private ChunkDataLoadMode chunkDataLoadMode;
-    /**
-     * 初始化加载中标志
-     */
-    private boolean initLoading;
 
     BlockDataController() {
         super(DataType.BLOCK_STORAGE);
@@ -124,11 +121,7 @@ public class BlockDataController extends ADataController {
         Bukkit.getScheduler()
                 .runTaskLater(
                         Slimefun.instance(),
-                        () -> {
-                            initLoading = true;
-                            loadUniversalRecord();
-                            initLoading = false;
-                        },
+                        this::loadUniversalRecord,
                         1);
     }
 
@@ -140,11 +133,9 @@ public class BlockDataController extends ADataController {
                 .runTaskLater(
                         Slimefun.instance(),
                         () -> {
-                            initLoading = true;
-                            for (World world : Bukkit.getWorlds()) {
+                            for (var world : Bukkit.getWorlds()) {
                                 loadWorld(world);
                             }
-                            initLoading = false;
                         },
                         1);
     }
@@ -157,13 +148,11 @@ public class BlockDataController extends ADataController {
                 .runTaskLater(
                         Slimefun.instance(),
                         () -> {
-                            initLoading = true;
-                            for (World world : Bukkit.getWorlds()) {
-                                for (Chunk chunk : world.getLoadedChunks()) {
-                                    loadChunk(chunk, false);
+                            for (var world : Bukkit.getWorlds()) {
+                                for (var chunk : world.getLoadedChunks()) {
+                                    loadChunk(chunk, false, true);
                                 }
                             }
-                            initLoading = false;
                         },
                         1);
     }
@@ -244,8 +233,6 @@ public class BlockDataController extends ADataController {
      * @return 通用数据, {@link SlimefunUniversalData}
      */
     public SlimefunUniversalData createUniversalData(UUID uuid, String sfId) {
-        checkDestroy();
-
         if (getUniversalDataFromCache(uuid) != null || getUniversalData(uuid) != null) {
             throw new IllegalArgumentException("A universal data with this UUID already exists: " + uuid);
         }
@@ -331,8 +318,6 @@ public class BlockDataController extends ADataController {
      * @param l 位置 {@link Location}
      */
     public void removeBlock(Location l) {
-        checkDestroy();
-
         var removed = getChunkDataCache(l.getChunk(), true).removeBlockData(l);
 
         if (removed == null) {
@@ -340,6 +325,8 @@ public class BlockDataController extends ADataController {
 
             return;
         }
+        // fix issue # 992 # 1099
+        invSnapshots.remove(removed.getKey());
 
         if (!removed.isDataLoaded()) {
             return;
@@ -387,8 +374,6 @@ public class BlockDataController extends ADataController {
      * @param l {@link Location} 位置
      */
     public void removeUniversalBlockData(Location l) {
-        checkDestroy();
-
         var toRemove = getUniversalBlockDataFromCache(l);
 
         if (toRemove.isEmpty()) {
@@ -399,8 +384,6 @@ public class BlockDataController extends ADataController {
     }
 
     public void removeUniversalBlockData(UUID uuid) {
-        checkDestroy();
-
         var toRemove = loadedUniversalData.get(uuid);
 
         if (toRemove == null) {
@@ -460,18 +443,22 @@ public class BlockDataController extends ADataController {
         if (chunkDataLoadMode.readCacheOnly()) {
             return getBlockDataFromCache(l);
         }
-
+        var chunkData = getChunkDataCache(l, false);
         // fix issue #935
-        SlimefunChunkData chunkData = getChunkDataCache(l, false);
-        String lKey = LocationUtils.getLocKey(l);
         if (chunkData != null) {
-            SlimefunBlockData re = chunkData.getBlockCacheInternal(lKey);
+            var lKey = LocationUtils.getLocKey(l);
+            var re = chunkData.getBlockCacheInternal(lKey);
             if (re != null || chunkData.hasBlockCache(lKey) || chunkData.isDataLoaded()) {
                 return re;
             }
         }
 
-        RecordKey key = new RecordKey(DataScope.BLOCK_RECORD);
+        return loadBlockData(l);
+    }
+
+    private SlimefunBlockData loadBlockData(Location l) {
+        var lKey = LocationUtils.getLocKey(l);
+        var key = new RecordKey(DataScope.BLOCK_RECORD);
         key.addCondition(FieldKey.LOCATION, lKey);
         key.addField(FieldKey.SLIMEFUN_ID);
 
@@ -480,11 +467,28 @@ public class BlockDataController extends ADataController {
                 result.isEmpty() ? null : new SlimefunBlockData(l, result.get(0).get(FieldKey.SLIMEFUN_ID));
         if (re != null) {
             // fix issue #935
-            chunkData = getChunkDataCache(l, true);
+            SlimefunChunkData chunkData = getChunkDataCache(l, true);
             chunkData.addBlockCacheInternal(re, false);
             re = chunkData.getBlockCacheInternal(lKey);
         }
         return re;
+    }
+
+    public CompletableFuture<SlimefunBlockData> getBlockDataAsync(Location l) {
+        if (chunkDataLoadMode.readCacheOnly()) {
+            return CompletableFuture.completedFuture(getBlockDataFromCache(l));
+        }
+
+        var chunkData = getChunkDataCache(l, false);
+        // fix issue #935
+        if (chunkData != null) {
+            var lKey = LocationUtils.getLocKey(l);
+            var re = chunkData.getBlockCacheInternal(lKey);
+            if (re != null || chunkData.hasBlockCache(lKey) || chunkData.isDataLoaded()) {
+                return CompletableFuture.completedFuture(re);
+            }
+        }
+        return CompletableFuture.supplyAsync(() -> loadBlockData(l), this.readExecutor);
     }
 
     /**
@@ -511,8 +515,6 @@ public class BlockDataController extends ADataController {
      * 从数据库中获取 {@link SlimefunUniversalData}
      */
     public SlimefunUniversalData getUniversalData( UUID uuid) {
-        checkDestroy();
-
         var key = new RecordKey(DataScope.UNIVERSAL_RECORD);
         key.addCondition(FieldKey.UNIVERSAL_UUID, uuid.toString());
         key.addField(FieldKey.SLIMEFUN_ID);
@@ -567,8 +569,6 @@ public class BlockDataController extends ADataController {
      * @return {@link SlimefunUniversalData}
      */
     public SlimefunUniversalData getUniversalDataFromCache(UUID uuid) {
-        checkDestroy();
-
         return loadedUniversalData.get(uuid);
     }
 
@@ -704,16 +704,31 @@ public class BlockDataController extends ADataController {
     }
 
     public void loadChunk(Chunk chunk, boolean isNewChunk) {
-        SlimefunChunkData chunkData = getChunkDataCache(chunk, true);
+        loadChunk(chunk, isNewChunk, false);
+    }
 
-        if (isNewChunk) {
-            chunkData.setIsDataLoaded(true);
-            Bukkit.getPluginManager().callEvent(new SlimefunChunkDataLoadEvent(chunkData));
-            return;
-        }
+    public void loadChunk(Chunk chunk, boolean isNewChunk, boolean forceReadData) {
+        var chunkData = getChunkDataCache(chunk, true);
 
-        if (chunkData.isDataLoaded()) {
-            return;
+        // escape all return if forceRead Flag is true
+        if (forceReadData) {
+            if (chunkDataLoadMode.readCacheOnly()) {
+                // if readCache only , then all the chunkData get from cache is DataLoaded
+                // since we removed initLoading, so we set DataLoad false here, so it will trigger the loadChunkData
+                chunkData.setIsDataLoaded(false);
+            }
+            // else force loading, escape all returns
+        } else {
+            // not force loading
+            if (isNewChunk) {
+                chunkData.setIsDataLoaded(true);
+                Bukkit.getPluginManager().callEvent(new SlimefunChunkDataLoadEvent(chunkData));
+                return;
+            }
+
+            if (chunkData.isDataLoaded()) {
+                return;
+            }
         }
 
         loadChunkData(chunkData);
@@ -759,7 +774,7 @@ public class BlockDataController extends ADataController {
         key.addCondition(FieldKey.CHUNK, world.getName() + ";%");
         getData(key, true).forEach(data -> chunkKeys.add(data.get(FieldKey.CHUNK)));
 
-        chunkKeys.forEach(cKey -> loadChunk(LocationUtils.toChunk(world, cKey), false));
+        chunkKeys.forEach(cKey -> loadChunk(LocationUtils.toChunk(world, cKey), false, true));
         logger.log(
                 Level.INFO, "世界 {0} 数据加载完成, 耗时 {1}ms", new Object[]{worldName, (System.currentTimeMillis() - start)});
     }
@@ -1007,6 +1022,15 @@ public class BlockDataController extends ADataController {
     public SlimefunChunkData getChunkData(Chunk chunk) {
         loadChunk(chunk, false);
         return getChunkDataCache(chunk, false);
+    }
+
+    public CompletableFuture<SlimefunChunkData> getChunkDataAsync(Chunk chunk) {
+        SlimefunChunkData cdata = getChunkDataCache(chunk, true);
+        if (cdata.isDataLoaded()) {
+            return CompletableFuture.completedFuture(cdata);
+        }
+        return CompletableFuture.runAsync(() -> loadChunk(chunk, false), readExecutor)
+                .thenApply((v) -> getChunkDataCache(chunk, false));
     }
 
     public void getChunkDataAsync(Chunk chunk, IAsyncReadCallback<SlimefunChunkData> callback) {
@@ -1360,12 +1384,12 @@ public class BlockDataController extends ADataController {
     private SlimefunChunkData getChunkDataCache(Chunk chunk, boolean createOnNotExists) {
         return createOnNotExists
                 ? loadedChunk.computeIfAbsent(LocationUtils.getChunkKey(chunk), k -> {
-            SlimefunChunkData re = new SlimefunChunkData(chunk);
-            if (!initLoading && chunkDataLoadMode.readCacheOnly()) {
-                re.setIsDataLoaded(true);
-            }
-            return re;
-        })
+                    var re = new SlimefunChunkData(chunk);
+                    if (chunkDataLoadMode.readCacheOnly()) {
+                        re.setIsDataLoaded(true);
+                    }
+                    return re;
+                })
                 : loadedChunk.get(LocationUtils.getChunkKey(chunk));
     }
 

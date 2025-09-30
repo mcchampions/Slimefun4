@@ -24,15 +24,19 @@ import org.bukkit.Location;
  */
 public interface EnergyNetProvider extends EnergyNetComponent {
     @Override
-    
+
     default EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.GENERATOR;
     }
 
+    default long getGeneratedOutputLong(Location l, SlimefunBlockData data) {
+        return getGeneratedOutput(l, data);
+    }
+
     /**
      * This method returns how much energy this {@link EnergyNetProvider} provides to the {@link EnergyNet}.
-     * We call this method on every tick, so make sure to keep it light and fast.
      * Stored energy does not have to be handled in here.
+     * if your machine returns a long value of generated output, please return Integer.MAX_VALUE and override {@link EnergyNetProvider#getGeneratedOutputLong(Location, SlimefunBlockData)}
      *
      * @param l    The {@link Location} of this {@link EnergyNetProvider}
      * @param data The stored block data

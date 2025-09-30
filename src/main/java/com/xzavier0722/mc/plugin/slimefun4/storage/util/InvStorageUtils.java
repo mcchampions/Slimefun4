@@ -1,9 +1,13 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.util;
 
 import io.github.bakedlibs.dough.collections.Pair;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.*;
 
 public class InvStorageUtils {
     private static final Pair<ItemStack, Integer> emptyPair = new Pair<>(null, 0);
@@ -46,8 +50,8 @@ public class InvStorageUtils {
                 }
                 continue;
             }
-
-            if (!curr.equals(each.getFirstValue()) || curr.getAmount() != each.getSecondValue()) {
+            // fix: #1099 more strict difference check
+            if (curr.getAmount() != each.getSecondValue() || !Objects.equals(curr, each.getFirstValue())) {
                 re.add(i);
             }
         }
@@ -56,9 +60,11 @@ public class InvStorageUtils {
     }
 
     public static List<Pair<ItemStack, Integer>> getInvSnapshot(ItemStack[] invContents) {
-        List<Pair<ItemStack, Integer>> re = new ArrayList<>(invContents.length);
-        for (ItemStack each : invContents) {
-            re.add(each == null ? emptyPair : new Pair<>(each, each.getAmount()));
+        var re = new ArrayList<Pair<ItemStack, Integer>>(invContents.length);
+        for (var each : invContents) {
+            // fix: in case some addons directly manipulate origin ItemStack
+            // fix: # 1099 bundles may change their meta internally without a new itemstack instance
+            re.add(each == null ? emptyPair : new Pair<>(each.clone(), each.getAmount()));
         }
 
         return re;

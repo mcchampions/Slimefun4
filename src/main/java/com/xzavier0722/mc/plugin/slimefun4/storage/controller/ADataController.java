@@ -10,6 +10,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.task.DatabaseThreadFactory;
 import com.xzavier0722.mc.plugin.slimefun4.storage.task.QueuedWriteTask;
 import city.norain.slimefun4.utils.SlimefunPoolExecutor;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -32,18 +33,13 @@ public abstract class ADataController {
     private final ScopedLock lock;
 
     private volatile IDataSourceAdapter<?> dataAdapter;
-    /**
-     * 数据库读取调度器
-     */
-    private ExecutorService readExecutor;
-    /**
-     * 数据库写入调度器
-     */
-    private ExecutorService writeExecutor;
-    /**
-     * 数据库回调调度器
-     */
-    private ExecutorService callbackExecutor;
+
+    protected ExecutorService readExecutor;
+
+    protected ExecutorService writeExecutor;
+
+    protected ExecutorService callbackExecutor;
+
     private volatile boolean destroyed;
 
     protected final Logger logger;
@@ -109,7 +105,7 @@ public abstract class ADataController {
 
             while (pendingTask > 0) {
                 String doneTaskPercent = String.format("%.1f", (totalTask - pendingTask) / totalTask * 100);
-                logger.log(Level.INFO, "数据保存中，请稍候... 剩余 {0} 个任务 ({1}%)", new Object[] {pendingTask, doneTaskPercent});
+                logger.log(Level.INFO, "数据保存中，请稍候... 剩余 {0} 个任务 ({1}%)", new Object[]{pendingTask, doneTaskPercent});
                 TimeUnit.SECONDS.sleep(1);
                 pendingTask = scheduledWriteTasks.size();
             }
@@ -160,13 +156,14 @@ public abstract class ADataController {
             };
             queuedTask.queue(key, task);
             scheduledWriteTasks.put(scopeToUse, queuedTask);
-            writeExecutor.execute(queuedTask);
+            writeExecutor.submit(queuedTask);
         } finally {
             lock.unlock(scopeKey);
         }
     }
 
-    protected void checkDestroy() {}
+    protected void checkDestroy() {
+    }
 
     protected <T> void invokeCallback(IAsyncReadCallback<T> callback, T result) {
         if (callback == null) {
@@ -183,18 +180,18 @@ public abstract class ADataController {
         if (callback.runOnMainThread()) {
             Slimefun.runSync(cb);
         } else {
-            callbackExecutor.execute(cb);
+            callbackExecutor.submit(cb);
         }
     }
 
     protected void scheduleReadTask(Runnable run) {
         checkDestroy();
-        readExecutor.execute(run);
+        readExecutor.submit(run);
     }
 
     protected void scheduleWriteTask(Runnable run) {
         checkDestroy();
-        writeExecutor.execute(run);
+        writeExecutor.submit(run);
     }
 
     protected List<RecordSet> getData(RecordKey key) {

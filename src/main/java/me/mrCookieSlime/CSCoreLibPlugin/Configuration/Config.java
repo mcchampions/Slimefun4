@@ -8,11 +8,6 @@ import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-/**
- * An old remnant of CS-CoreLib.
- * This will be removed once we updated everything.
- * Don't look at the code, it will be gone soon, don't worry.
- */
 public class Config {
     /**
      * -- GETTER --
@@ -22,6 +17,7 @@ public class Config {
     @Getter
     private File file;
     private FileConfiguration config;
+    private static final FileConfiguration BLANK_CONFIGURATION = new YamlConfiguration();
 
     /**
      * Creates a new Config Object for the specified File
@@ -58,7 +54,9 @@ public class Config {
         this.config = YamlConfiguration.loadConfiguration(this.file);
     }
 
-    public Config() {}
+    public Config() {
+        config = BLANK_CONFIGURATION;
+    }
 
     /**
      * Converts this Config Object into a plain FileConfiguration Object

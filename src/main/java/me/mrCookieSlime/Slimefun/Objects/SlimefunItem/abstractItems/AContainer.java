@@ -350,7 +350,7 @@ public abstract class AContainer extends SlimefunItem
      */
     protected boolean takeCharge(Location l) {
         if (isChargeable()) {
-            int charge = getCharge(l);
+            long charge = getChargeLong(l);
 
             if (charge < energyConsumedPerTick) {
                 return false;

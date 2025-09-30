@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -39,7 +40,9 @@ public class AsyncProfileLoadEvent extends Event {
     private PlayerProfile profile;
 
     public AsyncProfileLoadEvent(PlayerProfile profile) {
-        super(true);
+        // this event may be called in main-thread by accident, or while migration
+        // we are not sure
+        super(!Bukkit.isPrimaryThread());
 
         this.uniqueId = profile.getUUID();
         this.profile = profile;

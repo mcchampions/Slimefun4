@@ -1,12 +1,16 @@
 package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 
+import city.norain.slimefun4.SlimefunExtended;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedSound;
+import java.util.Locale;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
 
 import lombok.Getter;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;
@@ -145,7 +149,14 @@ public enum SoundEffect {
 
         if (config != null) {
             Location loc = player.getEyeLocation();
-            player.playSound(loc, config.getSoundId(), SoundCategory.PLAYERS, config.getVolume(), config.getPitch());
+
+            Sound playSound = getPlaySound(config.getSoundId());
+
+            if (playSound == null) {
+                return;
+            }
+
+            player.playSound(loc, playSound, SoundCategory.PLAYERS, config.getVolume(), config.getPitch());
         }
     }
 
@@ -160,7 +171,13 @@ public enum SoundEffect {
         SoundConfiguration config = getConfiguration();
 
         if (config != null && loc.getWorld() != null) {
-            loc.getWorld().playSound(loc, config.getSoundId(), category, config.getVolume(), config.getPitch());
+            Sound playSound = getPlaySound(config.getSoundId());
+
+            if (playSound == null) {
+                return;
+            }
+
+            loc.getWorld().playSound(loc, playSound, category, config.getVolume(), config.getPitch());
         }
     }
 
@@ -183,4 +200,25 @@ public enum SoundEffect {
         return defaultSound;
     }
 
+    private Sound getPlaySound(String soundId) {
+        Sound playSound = null;
+
+        if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 21, 3)) {
+            playSound = Registry.SOUNDS.get(NamespacedKey.minecraft(soundId.toLowerCase(Locale.ROOT)));
+        }
+
+        if (playSound == null) {
+            try {
+                playSound = VersionedSound.valueOf(soundId);
+            } catch (IllegalArgumentException e) {
+                Slimefun.logger().log(Level.SEVERE, e, e::getMessage);
+            }
+        }
+
+        if (playSound == null) {
+            Slimefun.logger().log(Level.WARNING, "Could not find sound: {0} for {1}.", new Object[] {soundId, name()});
+        }
+
+        return playSound;
+    }
 }

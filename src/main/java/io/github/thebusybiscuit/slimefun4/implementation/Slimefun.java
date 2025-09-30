@@ -28,9 +28,59 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Cooler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.BeeWings;
 import io.github.thebusybiscuit.slimefun4.implementation.items.tools.GrapplingHook;
 import io.github.thebusybiscuit.slimefun4.implementation.items.weapons.SeismicAxe;
-import io.github.thebusybiscuit.slimefun4.implementation.listeners.*;
-import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.*;
-import io.github.thebusybiscuit.slimefun4.implementation.listeners.entity.*;
+
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.AncientAltarListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.AutoCrafterListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.BackpackListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.BeeWingsListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.BlockListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.BlockPhysicsListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.ButcherAndroidListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.CargoNodeListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.CoolerListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.DeathpointListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.DispenserListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.ElytraImpactListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.EnhancedFurnaceListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.ExplosionsListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.GadgetsListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.GrapplingHookListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.HopperListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.ItemDropListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.ItemPickupListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.JoinListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.MiddleClickListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.MiningAndroidListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.MultiBlockListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.NetworkListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.PlayerProfileListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.RadioactivityListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.SeismicAxeListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.SlimefunBootsListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.SlimefunBowListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.SlimefunGuideListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.SlimefunItemConsumeListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.SlimefunItemHitListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.SlimefunItemInteractListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.SoulboundListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.TalismanListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.VersionedMiddleClickListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.VillagerTradingListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.AnvilListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.BrewingStandListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.CartographyTableListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.CauldronListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.CraftingTableListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.GrindstoneListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.SmithingTableListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting.VanillaCrafterListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.entity.BeeListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.entity.EntityInteractionListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.entity.FireworksListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.entity.IronGolemListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.entity.MobDropListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.entity.PiglinListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.entity.WitherListener;
 import io.github.thebusybiscuit.slimefun4.implementation.resources.GEOResourcesSetup;
 import io.github.thebusybiscuit.slimefun4.implementation.setup.PostSetup;
 import io.github.thebusybiscuit.slimefun4.implementation.setup.ResearchSetup;
@@ -170,7 +220,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link ThreadService} for Slimefun
      */
-    public static  ThreadService getThreadService() {
+    public static ThreadService getThreadService() {
         return instance().threadService;
     }
 
@@ -220,7 +270,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private void onPluginStart() {
         long timestamp = System.nanoTime();
         Logger logger = getLogger();
-
         // If the server has no "data-storage" folder, it's _probably_ a new install. So mark it for
         // metrics.
         isNewlyInstalled = !new File("data-storage/Slimefun").exists();
@@ -300,11 +349,11 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                                 Level.SEVERE,
                                 x,
                                 () -> "An Exception occured while iterating through the Recipe list on Minecraft"
-                                        + " Version "
-                                        + minecraftVersion.getName()
-                                        + " (Slimefun v"
-                                        + getVersion()
-                                        + ")");
+                                      + " Version "
+                                      + minecraftVersion.getName()
+                                      + " (Slimefun v"
+                                      + getVersion()
+                                      + ")");
                     }
                 }),
                 0);
@@ -533,7 +582,11 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         new SoulboundListener(this);
         new AutoCrafterListener(this);
         new SlimefunItemHitListener(this);
-        new MiddleClickListener(this);
+        if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 21, 5)) {
+            new VersionedMiddleClickListener(this);
+        } else {
+            new MiddleClickListener(this);
+        }
         new BeeListener(this);
         new BeeWingsListener(this, (BeeWings) SlimefunItems.BEE_WINGS.getItem());
         new PiglinListener(this);
@@ -601,7 +654,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                             Level.SEVERE,
                             x,
                             () -> "一个 错误 发生了 在 初始化 粘液科技物品研究 中 "
-                                    + getVersion());
+                                  + getVersion());
         }
     }
 
@@ -837,7 +890,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
                 .filter(plugin -> {
                     PluginDescriptionFile description = plugin.getDescription();
                     return description.getDepend().contains(pluginName)
-                            || description.getSoftDepend().contains(pluginName);
+                           || description.getSoftDepend().contains(pluginName);
                 })
                 .collect(Collectors.toSet());
 

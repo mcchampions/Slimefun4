@@ -12,6 +12,7 @@ public class BlockDataConfigWrapper extends Config {
     private final SlimefunBlockData blockData;
 
     public BlockDataConfigWrapper(SlimefunBlockData blockData) {
+        super();
         this.blockData = blockData;
     }
 

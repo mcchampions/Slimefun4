@@ -161,6 +161,7 @@ public class AncientAltarListener implements Listener {
     private void useAltar(Block altar, Player p) {
         if (!Slimefun.getProtectionManager().hasPermission(p, altar, Interaction.INTERACT_BLOCK)) {
             Slimefun.getLocalization().sendMessage(p, "inventory.no-access", true);
+            altarsInUse.remove(altar.getLocation());
             return;
         }
 
