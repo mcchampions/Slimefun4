@@ -65,6 +65,18 @@
     {
       "id": "minecraft:short_grass",
       "required": false
+    },
+    {
+      "id": "minecraft:light",
+      "required": false
+    },
+    {
+      "id": "minecraft:test_block",
+      "required": false
+    },
+    {
+      "id": "minecraft:test_instance_block",
+      "required": false
     }
   ]
 }

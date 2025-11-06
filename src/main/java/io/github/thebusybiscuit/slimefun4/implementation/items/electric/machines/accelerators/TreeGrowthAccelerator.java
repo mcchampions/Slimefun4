@@ -2,10 +2,10 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.electric.machine
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.misc.OrganicFertilizer;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 
 import javax.annotation.Nullable;
@@ -16,8 +16,6 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.Sapling;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Optional;
 
 /**
  * The {@link TreeGrowthAccelerator} is an electrical machine that works similar to
@@ -117,10 +115,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
         return false;
     }
 
-    public static boolean isFertilizer(@Nullable ItemStack item) {
-        Optional<String> id = Slimefun.getItemDataService().getItemData(item);
-
-        return id.map(s -> s.startsWith("FERTILIZER") && SlimefunItems.FERTILIZER.getType() == item.getType())
-                .orElse(false);
+    protected static boolean isFertilizer(@Nullable ItemStack item) {
+        return SlimefunItem.getByItem(item) instanceof OrganicFertilizer;
     }
 }

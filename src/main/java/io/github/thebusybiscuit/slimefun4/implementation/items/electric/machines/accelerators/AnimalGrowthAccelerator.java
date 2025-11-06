@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.misc.OrganicFood;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
+import javax.annotation.Nullable;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Ageable;
@@ -34,15 +35,7 @@ public class AnimalGrowthAccelerator extends AbstractGrowthAccelerator {
 
         for (Entity n : b.getWorld().getNearbyEntities(b.getLocation(), RADIUS, RADIUS, RADIUS, AnimalGrowthAccelerator::isReadyToGrow)) {
             for (int slot : getInputSlots()) {
-                var item = inv.getItemInSlot(slot);
-
-                if (item == null || item.isEmpty()) {
-                    continue;
-                }
-
-                var sfItem = SlimefunItem.getByItem(item);
-
-                if (sfItem instanceof OrganicFood) {
+                if (isOrganicFood(inv.getItemInSlot(slot))) {
                     if (getCharge(b.getLocation()) < ENERGY_CONSUMPTION) {
                         return;
                     }
@@ -68,6 +61,10 @@ public class AnimalGrowthAccelerator extends AbstractGrowthAccelerator {
                 }
             }
         }
+    }
+
+    protected boolean isOrganicFood(@Nullable ItemStack item) {
+        return SlimefunItem.getByItem(item) instanceof OrganicFood;
     }
 
     private static boolean isReadyToGrow(Entity n) {

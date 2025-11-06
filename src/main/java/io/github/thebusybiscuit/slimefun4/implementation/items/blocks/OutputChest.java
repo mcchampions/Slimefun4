@@ -66,4 +66,9 @@ public class OutputChest extends SlimefunItem {
 
         return Optional.empty();
     }
+
+    @Override
+    public boolean loadDataByDefault() {
+        return true;
+    }
 }
