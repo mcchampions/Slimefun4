@@ -223,7 +223,7 @@ public class PlayerProfile {
             }
         }
 
-        if (waypoints.size() < 21) {
+        if (waypoints.size() < Slimefun.getGPSNetwork().getMaxWaypoints()) {
             waypoints.add(waypoint);
 
             waypointsFile.setValue(waypoint.getId(), waypoint.getLocation());

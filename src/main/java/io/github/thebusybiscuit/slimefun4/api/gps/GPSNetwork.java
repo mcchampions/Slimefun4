@@ -16,6 +16,16 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Telepo
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.qscbm.slimefun4.message.QsTextComponentImpl;
@@ -25,8 +35,6 @@ import org.bukkit.*;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.*;
 
 /**
  * The {@link GPSNetwork} is a manager class for all {@link GPSTransmitter Transmitters} and waypoints.
@@ -38,13 +46,16 @@ import java.util.*;
  * @see ResourceManager
  */
 public class GPSNetwork {
+    private static final int PREV_SLOT = 46;
+    private static final int NEXT_SLOT = 52;
+
     private final int[] border = {
-            0, 1, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53
+        0, 1, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 35, 36, 44, 45, 47, 48, 49, 50, 51, 53
     };
     private final int[] inventory = {19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43
     };
 
-    private final Map<UUID, Set<Location>> transmitters = new HashMap<>();
+    private final Map<UUID, Set<Location>> transmitters = new ConcurrentHashMap<>();
     private final TeleportationManager teleportation = new TeleportationManager();
 
     /**
@@ -58,6 +69,11 @@ public class GPSNetwork {
     @Getter
     private final ResourceManager resourceManager;
 
+    private final Map<UUID, Integer> pages = new ConcurrentHashMap<>();
+
+    @Getter
+    private final int maxWaypoints;
+
     /**
      * This constructs a new {@link GPSNetwork}.
      * Note that this network is per {@link Server} and not per {@link Player}.
@@ -66,6 +82,7 @@ public class GPSNetwork {
      */
     public GPSNetwork(Slimefun plugin) {
         resourceManager = new ResourceManager(plugin);
+        maxWaypoints = plugin.getConfig().getInt("options.max-gps-waypoints", 21);
     }
 
     /**
@@ -202,6 +219,9 @@ public class GPSNetwork {
             }
         }
 
+        menu.addItem(PREV_SLOT, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
+        menu.addItem(NEXT_SLOT, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
+
         menu.open(p);
     }
 
@@ -242,10 +262,7 @@ public class GPSNetwork {
             ChestMenu menu = new ChestMenu(
                     ChatColor.BLUE + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
 
-            menu.setPlayerInventoryClickable(false);
-            menu.setEmptySlotsClickable(false);
-
-            menu.addPlayerInventoryClickHandler((player, slot, item, action) -> false);
+            menu.addMenuCloseHandler((pl) -> pages.remove(pl.getUniqueId()));
 
             for (int slot : border) {
                 menu.addItem(slot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
@@ -283,13 +300,16 @@ public class GPSNetwork {
                             "§7" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.waypoints")));
             menu.addMenuClickHandler(6, ChestMenuUtils.getEmptyClickHandler());
 
-            int index = 0;
-            for (Waypoint waypoint : profile.getWaypoints()) {
-                if (index >= inventory.length) {
-                    break;
-                }
+            List<Waypoint> all = new ArrayList<>(profile.getWaypoints());
+            int pageSize = inventory.length;
+            int page = pages.getOrDefault(p.getUniqueId(), 1);
+            PageRange pr = PageRange.compute(all.size(), pageSize, page);
+            pages.put(p.getUniqueId(), pr.getCurrentPage());
 
-                int slot = inventory[index];
+            int index = 0;
+            for (int i = pr.getFromIndex(); i < pr.getToIndex(); i++) {
+                Waypoint waypoint = all.get(i);
+                int slot = inventory[index++];
 
                 Location l = waypoint.getLocation();
                 menu.addItem(
@@ -306,16 +326,27 @@ public class GPSNetwork {
                 menu.addMenuClickHandler(slot, (pl, s, item, action) -> {
                     profile.removeWaypoint(waypoint);
                     SoundEffect.GPS_NETWORK_OPEN_PANEL_SOUND.playFor(p);
-
                     openWaypointControlPanel(pl);
                     return false;
                 });
-
-                index++;
             }
 
+            PageHelper.renderPageButton(
+                    menu, PREV_SLOT, NEXT_SLOT, pr, getWaypointPageHandler(pr, -1), getWaypointPageHandler(pr, 1));
             menu.open(p);
         });
+    }
+
+    private ChestMenu.MenuClickHandler getWaypointPageHandler(PageRange pr, int delta) {
+        return (pl, s, i, a) -> {
+            setPage(pl, pr.getCurrentPage() + delta, pr.getTotalPages());
+            openWaypointControlPanel(pl);
+            return false;
+        };
+    }
+
+    private void setPage(Player p, int page, int totalPages) {
+        pages.put(p.getUniqueId(), Math.max(1, Math.min(page, totalPages)));
     }
 
     /**
@@ -327,7 +358,7 @@ public class GPSNetwork {
      */
     public void createWaypoint(Player p, Location l) {
         PlayerProfile.get(p, profile -> {
-            if ((profile.getWaypoints().size() + 2) > inventory.length) {
+            if (profile.getWaypoints().size() >= maxWaypoints) {
                 Slimefun.getLocalization().sendMessage(p, "gps.waypoint.max", true);
                 return;
             }
@@ -348,7 +379,7 @@ public class GPSNetwork {
      */
     public void addWaypoint(Player p, String name, Location l) {
         PlayerProfile.get(p, profile -> {
-            if ((profile.getWaypoints().size() + 2) > inventory.length) {
+            if (profile.getWaypoints().size() >= maxWaypoints) {
                 Slimefun.getLocalization().sendMessage(p, "gps.waypoint.max", true);
                 return;
             }
@@ -405,5 +436,4 @@ public class GPSNetwork {
     public TeleportationManager getTeleportationManager() {
         return teleportation;
     }
-
 }
