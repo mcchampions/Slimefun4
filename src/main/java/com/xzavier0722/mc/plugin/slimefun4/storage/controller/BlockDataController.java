@@ -203,11 +203,7 @@ public class BlockDataController extends ADataController {
         }
         SlimefunBlockData re = getChunkDataCache(l.getChunk(), true).createBlockData(l, sfId);
         if (Slimefun.getRegistry().getTickerBlocks().contains(sfId)) {
-            if ("CARGO_MANAGER".equalsIgnoreCase(sfId)) {
-                Slimefun.instance().getCargoTickerTask().enableTicker(l);
-            } else {
-                Slimefun.getTickerTask().enableTicker(l);
-            }
+            Slimefun.getTickerTask().enableTicker(l);
         }
         return re;
     }
@@ -333,11 +329,7 @@ public class BlockDataController extends ADataController {
         }
 
         if (Slimefun.getRegistry().getTickerBlocks().contains(removed.getSfId())) {
-            if ("CARGO_MANAGER".equalsIgnoreCase(removed.getSfId())) {
-                Slimefun.instance().getCargoTickerTask().disableTicker(l);
-            } else {
-                Slimefun.getTickerTask().disableTicker(l);
-            }
+            Slimefun.getTickerTask().disableTicker(l);
         }
 
         var menu = removed.getBlockMenu();
@@ -608,15 +600,27 @@ public class BlockDataController extends ADataController {
         return Optional.empty();
     }
 
+    public void setBlockDataLocation(SlimefunBlockData blockData, Location target) {
+        move(blockData, target);
+    }
+
     /**
      * Move block data to specific location
      * <p>
      * Similar to original BlockStorage#move.
      *
-     * @param blockData the block data {@link SlimefunBlockData} need to move
-     * @param target    move target {@link Location}
+     * @param data   the block data {@link SlimefunBlockData} need to move
+     * @param target move target {@link Location}
      */
-    public void setBlockDataLocation(SlimefunBlockData blockData, Location target) {
+    public void move(ASlimefunDataContainer data, Location target) {
+        if (data instanceof SlimefunBlockData blockData) {
+            move(blockData, target);
+        } else if (data instanceof SlimefunUniversalBlockData universalBlockData) {
+            move(universalBlockData, target);
+        }
+    }
+
+    private void move(SlimefunBlockData blockData, Location target) {
         if (LocationUtils.isSameLoc(blockData.getLocation(), target)) {
             return;
         }
@@ -624,11 +628,7 @@ public class BlockDataController extends ADataController {
         boolean hasTicker = false;
 
         if (blockData.isDataLoaded() && Slimefun.getRegistry().getTickerBlocks().contains(blockData.getSfId())) {
-            if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {
-                Slimefun.instance().getCargoTickerTask().disableTicker(blockData.getLocation());
-            } else {
-                Slimefun.getTickerTask().disableTicker(blockData.getLocation());
-            }
+            Slimefun.getTickerTask().disableTicker(blockData.getLocation());
             hasTicker = true;
         }
 
@@ -685,11 +685,49 @@ public class BlockDataController extends ADataController {
             scheduleWriteTask(scopeKey, key, data, true);
 
             if (hasTicker) {
-                if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {
-                    Slimefun.instance().getCargoTickerTask().enableTicker(target);
-                } else {
-                    Slimefun.getTickerTask().enableTicker(target);
-                }
+                Slimefun.getTickerTask().enableTicker(target);
+            }
+        } finally {
+            if (menu != null) {
+                menu.unlock();
+            }
+        }
+    }
+
+    private void move(SlimefunUniversalBlockData uniData, Location target) {
+        var loc = uniData.getLastPresent().toLocation();
+
+        if (LocationUtils.isSameLoc(loc, target)) {
+            return;
+        }
+
+        var hasTicker = false;
+
+        if (uniData.isDataLoaded() && Slimefun.getRegistry().getTickerBlocks().contains(uniData.getSfId())) {
+            Slimefun.getTickerTask().disableTicker(loc);
+            hasTicker = true;
+        }
+
+        UniversalMenu menu = null;
+
+        if (uniData.isDataLoaded() && uniData.getMenu() != null) {
+            menu = uniData.getMenu();
+            menu.lock();
+        }
+
+        try {
+            uniData.setLastPresent(target);
+
+            Slimefun.getBlockDataService()
+                    .updateUniversalDataUUID(
+                            target.getBlock(), uniData.getUUID().toString());
+
+            if (menu != null) {
+                menu.update(target);
+            }
+
+            if (hasTicker) {
+                Slimefun.getTickerTask().enableTicker(target, uniData.getUUID());
             }
         } finally {
             if (menu != null) {
@@ -902,15 +940,23 @@ public class BlockDataController extends ADataController {
             }
 
             if (sfItem != null && sfItem.isTicking()) {
-                if ("CARGO_MANAGER".equalsIgnoreCase(sfItem.getId())) {
-                    Slimefun.instance().getCargoTickerTask().enableTicker(blockData.getLocation());
-                } else {
-                    Slimefun.getTickerTask().enableTicker(blockData.getLocation());
-                }
+                Slimefun.getTickerTask().enableTicker(blockData.getLocation());
             }
         } finally {
             lock.unlock(key);
         }
+    }
+
+    public void loadDataAsync(ASlimefunDataContainer container, IAsyncReadCallback<ASlimefunDataContainer> callback) {
+        scheduleReadTask(() -> {
+            if (container instanceof SlimefunBlockData blockData) {
+                loadBlockData(blockData);
+            } else if (container instanceof SlimefunUniversalData uniData) {
+                loadUniversalData(uniData);
+            }
+
+            invokeCallback(callback, container);
+        });
     }
 
     public void loadBlockDataAsync(SlimefunBlockData blockData, IAsyncReadCallback<SlimefunBlockData> callback) {
@@ -1424,11 +1470,7 @@ public class BlockDataController extends ADataController {
     private void clearBlockCacheAndTasks(SlimefunBlockData blockData) {
         Location l = blockData.getLocation();
         if (blockData.isDataLoaded() && Slimefun.getRegistry().getTickerBlocks().contains(blockData.getSfId())) {
-            if ("CARGO_MANAGER".equalsIgnoreCase(blockData.getSfId())) {
-                Slimefun.instance().getCargoTickerTask().disableTicker(blockData.getLocation());
-            } else {
-                Slimefun.getTickerTask().disableTicker(blockData.getLocation());
-            }
+            Slimefun.getTickerTask().disableTicker(blockData.getLocation());
         }
         Slimefun.getNetworkManager().updateAllNetworks(l);
 

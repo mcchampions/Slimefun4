@@ -114,13 +114,10 @@ public class StringUtil {
     }
 
     private static String getThreadStateDescription(ThreadInfo threadInfo) {
-        switch (threadInfo.getThreadState()) {
-            case BLOCKED:
-                return "blocked on " + threadInfo.getLockName();
-            case WAITING, TIMED_WAITING:
-                return "waiting on " + threadInfo.getLockName();
-            default:
-                return threadInfo.getThreadState().toString().toLowerCase();
-        }
+        return switch (threadInfo.getThreadState()) {
+            case BLOCKED -> "blocked on " + threadInfo.getLockName();
+            case WAITING, TIMED_WAITING -> "waiting on " + threadInfo.getLockName();
+            default -> threadInfo.getThreadState().toString().toLowerCase();
+        };
     }
 }

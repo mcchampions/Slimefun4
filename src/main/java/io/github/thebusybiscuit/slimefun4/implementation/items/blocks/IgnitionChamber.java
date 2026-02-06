@@ -111,7 +111,7 @@ public class IgnitionChamber extends SlimefunItem {
             Block block = b.getRelative(face);
 
             if (block.getType() == Material.DROPPER
-                    && StorageCacheUtils.getSfItem(block.getLocation()) instanceof IgnitionChamber) {
+                    && StorageCacheUtils.getSlimefunItem(block.getLocation()) instanceof IgnitionChamber) {
                 BlockState state =
                         b.getRelative(face).getState(false);
 

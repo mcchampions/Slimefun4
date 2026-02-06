@@ -62,4 +62,6 @@ public abstract class ADataContainer {
     }
 
     public abstract void setData(String key, String val);
+
+    public abstract void removeData(String key);
 }

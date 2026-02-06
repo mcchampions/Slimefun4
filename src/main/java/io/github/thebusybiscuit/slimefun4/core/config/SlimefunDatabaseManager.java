@@ -54,9 +54,9 @@ public class SlimefunDatabaseManager {
 
         try {
             blockDataStorageType = StorageType.valueOf(blockStorageConfig.getString("storageType"));
-            int readExecutorThread = blockStorageConfig.getInt("readExecutorThread");
-            int writeExecutorThread = blockStorageConfig.getInt("writeExecutorThread");
-
+            var readExecutorThread = blockStorageConfig.getInt("readExecutorThread");
+            var writeExecutorThread =
+                    blockDataStorageType == StorageType.SQLITE ? 1 : blockStorageConfig.getInt("writeExecutorThread");
             initAdapter(blockDataStorageType, DataType.BLOCK_STORAGE, blockStorageConfig);
 
             BlockDataController blockDataController =

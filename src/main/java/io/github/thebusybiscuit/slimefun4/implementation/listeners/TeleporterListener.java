@@ -46,7 +46,7 @@ public class TeleporterListener implements Listener {
         }
 
         Block b = e.getClickedBlock();
-        SlimefunItem item = StorageCacheUtils.getSfItem(b.getLocation());
+        SlimefunItem item = StorageCacheUtils.getSlimefunItem(b.getLocation());
         Player p = e.getPlayer();
 
         // Fixes #2966 - Check if Players can use these
@@ -105,7 +105,8 @@ public class TeleporterListener implements Listener {
      */
     private boolean checkForPylons(Block teleporter) {
         for (BlockFace face : faces) {
-            if (!(StorageCacheUtils.getSfItem(teleporter.getRelative(face).getLocation()) instanceof TeleporterPylon)) {
+            if (!(StorageCacheUtils.getSlimefunItem(teleporter.getRelative(face).getLocation())
+                    instanceof TeleporterPylon)) {
                 return false;
             }
         }

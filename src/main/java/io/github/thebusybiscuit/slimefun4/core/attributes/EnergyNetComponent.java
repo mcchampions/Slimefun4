@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ASlimefunDataContainer;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
@@ -74,7 +75,7 @@ public interface EnergyNetComponent extends ItemAttribute {
             return 0;
         }
 
-        SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
+        var blockData = StorageCacheUtils.getDataContainer(l);
         if (blockData == null || blockData.isPendingRemove()) {
             return 0;
         }
@@ -101,7 +102,7 @@ public interface EnergyNetComponent extends ItemAttribute {
             return 0;
         }
 
-        SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
+        var blockData = StorageCacheUtils.getDataContainer(l);
         if (blockData == null || blockData.isPendingRemove()) {
             return 0;
         }
@@ -114,20 +115,20 @@ public interface EnergyNetComponent extends ItemAttribute {
         return getCharge(l, blockData);
     }
 
+    default int getCharge(Location l, ASlimefunDataContainer data) {
+        return NumberUtils.longToInt(getChargeLong(l, data));
+    }
+
     @Deprecated
     default int getCharge(Location l, SlimefunBlockData data) {
         return NumberUtils.longToInt(getChargeLong(l, data));
     }
 
-    /**
-     * This returns the currently stored charge at a given {@link Location}.
-     * object for this {@link Location}.
-     *
-     * @param l    The target {@link Location}
-     * @param data The data at this {@link Location}
-     * @return The charge stored at that {@link Location}
-     */
     default long getChargeLong(Location l, SlimefunBlockData data) {
+        return getChargeLong(l, (ASlimefunDataContainer) data);
+    }
+
+    default long getChargeLong(Location l, ASlimefunDataContainer data) {
         // Emergency fallback, this cannot hold a charge, so we'll just return zero
         if (!isChargeable()) {
             return 0;
@@ -143,7 +144,6 @@ public interface EnergyNetComponent extends ItemAttribute {
         }
     }
 
-    @Deprecated
     default void setCharge(Location l, int charge) {
         setCharge(l, (long) charge);
     }
@@ -158,7 +158,7 @@ public interface EnergyNetComponent extends ItemAttribute {
 
                 // Do we even need to update the value?
                 if (charge != getCharge(l)) {
-                    SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
+                    var blockData = StorageCacheUtils.getDataContainer(l);
 
                     if (blockData == null || blockData.isPendingRemove()) {
                         return;

@@ -2,6 +2,7 @@ package com.xzavier0722.mc.plugin.slimefun4.storage.util;
 
 import city.norain.slimefun4.api.menu.UniversalMenu;
 
+import city.norain.slimefun4.utils.TaskUtil;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ADataContainer;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ASlimefunDataContainer;
@@ -38,11 +39,31 @@ public class StorageCacheUtils {
     }
 
     public static boolean hasUniversalBlock(Location l) {
-        return Slimefun.getBlockDataService().getUniversalDataUUID(l.getBlock()).isPresent();
+        var uniDataByNBT = TaskUtil.runSyncMethod(() -> Slimefun.getBlockDataService()
+                .getUniversalDataUUID(l.getBlock())
+                .isPresent());
+
+        if (uniDataByNBT) {
+            return true;
+        }
+
+        return Slimefun.getDatabaseManager()
+                .getBlockDataController()
+                .getUniversalBlockDataFromCache(l)
+                .isPresent();
     }
 
     public static SlimefunBlockData getBlock(Location l) {
         return Slimefun.getDatabaseManager().getBlockDataController().getBlockDataFromCache(l);
+    }
+
+     public static ASlimefunDataContainer getDataContainer(Location l) {
+        var blockData = getBlock(l);
+        if (blockData != null) {
+            return blockData;
+        }
+
+        return getUniversalBlock(l);
     }
 
     public static boolean isBlock(Location l, String id) {
@@ -50,8 +71,11 @@ public class StorageCacheUtils {
         return blockData != null && id.equals(blockData.getSfId());
     }
 
-    public static SlimefunItem getSfItem(Location l) {
-        SlimefunBlockData blockData = getBlock(l);
+    /**
+     * @deprecated use {@link #getSlimefunItem(Location)} instead
+     */
+    public static SlimefunItem getSlimefunItem(Location l) {
+        var blockData = getBlock(l);
 
         if (blockData != null) {
             return SlimefunItem.getById(blockData.getSfId());
@@ -137,10 +161,15 @@ public class StorageCacheUtils {
         return uniData;
     }
 
+
     public static SlimefunUniversalBlockData getUniversalBlock(UUID uuid, Location l) {
+        return getUniversalBlock(uuid, l, true);
+    }
+
+    public static SlimefunUniversalBlockData getUniversalBlock(UUID uuid, Location l, boolean updateLastPresent) {
         var uniData = getUniversalBlock(uuid);
 
-        if (uniData != null) {
+        if (uniData != null && updateLastPresent) {
             uniData.setLastPresent(new BlockPosition(l));
         }
 
@@ -269,6 +298,10 @@ public class StorageCacheUtils {
                 loadingData.remove(data);
             }
         });
+    }
+
+    public static void move(ASlimefunDataContainer data, Location to) {
+        Slimefun.getDatabaseManager().getBlockDataController().move(data, to);
     }
 
     public static void executeAfterLoad(ASlimefunDataContainer data, Runnable execute, boolean runOnMainThread) {

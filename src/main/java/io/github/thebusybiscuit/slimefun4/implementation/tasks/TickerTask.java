@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import lombok.Getter;
 import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.qscbm.slimefun4.tasks.BaseTickerTask;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -34,7 +33,7 @@ import org.bukkit.scheduler.BukkitScheduler;
  * @author TheBusyBiscuit
  * @see BlockTicker
  */
-public class TickerTask extends BaseTickerTask {
+public class TickerTask implements Runnable {
     /**
      * This Map holds all currently actively ticking locations.
      * The value of this map (Set entries) MUST be thread-safe and mutable.
@@ -66,7 +65,6 @@ public class TickerTask extends BaseTickerTask {
      *
      * @param plugin The instance of our {@link Slimefun}
      */
-    @Override
     public void start(Slimefun plugin) {
         this.tickRate = Slimefun.getCfg().getInt("URID.custom-ticker-delay");
 
@@ -81,7 +79,6 @@ public class TickerTask extends BaseTickerTask {
         running = false;
     }
 
-    @Override
     public void run() {
         if (paused) {
             return;
@@ -256,7 +253,6 @@ public class TickerTask extends BaseTickerTask {
         }
     }
 
-    @Override
     public void halt() {
         halted = true;
     }
@@ -329,7 +325,6 @@ public class TickerTask extends BaseTickerTask {
      *
      * @param l The {@link Location} to remove
      */
-    @Override
     public void disableTicker(Location l) {
         ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);
         Set<TickLocation> locations = tickingLocations.get(chunk);

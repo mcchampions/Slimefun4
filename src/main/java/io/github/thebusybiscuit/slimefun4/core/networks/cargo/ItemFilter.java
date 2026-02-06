@@ -1,30 +1,31 @@
 package io.github.thebusybiscuit.slimefun4.core.networks.cargo;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ASlimefunDataContainer;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.cargo.CargoNode;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
-import lombok.Getter;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
+import lombok.Getter;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
+
 /**
  * The {@link ItemFilter} is a performance-optimization for our {@link CargoNet}.
  * It is a snapshot of a cargo node's configuration.
  *
  * @author TheBusyBiscuit
- *
  * @see CargoNet
  * @see CargoNetworkTask
  *
@@ -68,8 +69,7 @@ class ItemFilter implements Predicate<ItemStack> {
      * This creates a new {@link ItemFilter} for the given {@link Block}.
      * This will copy all settings from that {@link Block} to this filter.
      *
-     * @param b
-     *            The {@link Block}
+     * @param b The {@link Block}
      */
     public ItemFilter(Block b) {
         update(b);
@@ -79,38 +79,36 @@ class ItemFilter implements Predicate<ItemStack> {
      * This updates or refreshes the {@link ItemFilter} to copy the settings
      * from the given {@link Block}. It takes a new snapshot.
      *
-     * @param b
-     *            The {@link Block}
+     * @param b The {@link Block}
      */
     public void update(Block b) {
         if (!dirty || isLoading) {
             return;
         }
 
-        SlimefunBlockData blockData = StorageCacheUtils.getBlock(b.getLocation());
+        var blockData = StorageCacheUtils.getDataContainer(b.getLocation());
         if (blockData.isDataLoaded()) {
             update(blockData);
         } else {
             isLoading = true;
-            Slimefun.getDatabaseManager()
-                    .getBlockDataController()
-                    .loadBlockDataAsync(blockData, new IAsyncReadCallback<>() {
-                        @Override
-                        public void onResult(SlimefunBlockData result) {
-                            update(blockData);
-                            isLoading = false;
-                        }
-                    });
+            Slimefun.getDatabaseManager().getBlockDataController().loadDataAsync(blockData, new IAsyncReadCallback<>() {
+                @Override
+                public void onResult(ASlimefunDataContainer result) {
+                    update(blockData);
+                    isLoading = false;
+                }
+            });
         }
     }
 
-    private void update(SlimefunBlockData blockData) {
+    private void update(ASlimefunDataContainer data) {
         if (!dirty) {
             return;
         }
 
-        SlimefunItem item = SlimefunItem.getById(blockData.getSfId());
-        BlockMenu menu = blockData.getBlockMenu();
+        SlimefunItem item = SlimefunItem.getById(data.getSfId());
+        var menu =
+                data instanceof SlimefunBlockData sbd ? sbd.getBlockMenu() : ((SlimefunUniversalData) data).getMenu();
 
         if (!(item instanceof CargoNode node) || menu == null) {
             // Don't filter for a non-existing item (safety check)
@@ -140,8 +138,8 @@ class ItemFilter implements Predicate<ItemStack> {
                     }
 
                     this.items.clear();
-                    this.checkLore = Objects.equals(blockData.getData("filter-lore"), "true");
-                    this.rejectOnMatch = !Objects.equals(blockData.getData("filter-type"), "whitelist");
+                    this.checkLore = Objects.equals(data.getData("filter-lore"), "true");
+                    this.rejectOnMatch = !Objects.equals(data.getData("filter-type"), "whitelist");
 
                     for (int slot : slots) {
                         ItemStack stack = menu.getItemInSlot(slot);
@@ -163,8 +161,7 @@ class ItemFilter implements Predicate<ItemStack> {
      * This will clear the {@link ItemFilter} and reject <strong>any</strong>
      * {@link ItemStack}.
      *
-     * @param rejectOnMatch
-     *            Whether the item should be rejected on matches
+     * @param rejectOnMatch Whether the item should be rejected on matches
      */
     private void clear(boolean rejectOnMatch) {
         this.items.clear();

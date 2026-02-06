@@ -46,7 +46,7 @@ public class MiddleClickListener implements Listener {
             }
 
             // find the actual slimefun item the user is looking at
-            SlimefunItem sfItem = StorageCacheUtils.getSfItem(b.getLocation());
+            SlimefunItem sfItem = StorageCacheUtils.getSlimefunItem(b.getLocation());
 
             // vanilla block -> ignore
             if (sfItem == null) {

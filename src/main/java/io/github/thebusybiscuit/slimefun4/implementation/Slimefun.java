@@ -94,7 +94,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SolarHelmet
 import io.github.thebusybiscuit.slimefun4.integrations.IntegrationsManager;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import me.qscbm.slimefun4.integrations.GeyserIntegration;
 import me.qscbm.slimefun4.listeners.GuideListener;
@@ -102,7 +101,6 @@ import me.qscbm.slimefun4.utils.PinyinUtils;
 import me.qscbm.slimefun4.utils.QsConstants;
 import me.qscbm.slimefun4.utils.QsItemUtils;
 import me.qscbm.slimefun4.services.LanguageService;
-import me.qscbm.slimefun4.tasks.CargoTickerTask;
 import me.qscbm.slimefun4.utils.VersionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -203,8 +201,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private static BukkitScheduler bukkitScheduler;
 
     // fork
-    @Getter
-    private final CargoTickerTask cargoTickerTask = new CargoTickerTask();
 
     /**
      * Our default constructor for {@link Slimefun}.
@@ -381,7 +377,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         AutoSavingService.start(this, config.getInt("options.auto-save-delay-in-minutes"));
         hologramsService.start();
         ticker.start(this);
-        cargoTickerTask.start(this);
         logger.log(Level.INFO, "正在加载第三方插件支持...");
         integrations.start();
         logger.log(Level.INFO, "正在映射原版物品名称...");
@@ -426,8 +421,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         // Finishes all started movements/removals of block data
         ticker.setPaused(true);
         ticker.halt();
-        cargoTickerTask.setPaused(true);
-        cargoTickerTask.halt();
 
         // Save all Player Profiles that are still in memory
         PlayerProfile.iterator().forEachRemaining(profile -> {

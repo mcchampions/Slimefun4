@@ -37,7 +37,7 @@ public class CompatibilityUtil {
                     var mat = blockData.getMaterial();
                     var enumName = blockData.getMaterial().name();
 
-                    if (Ageable.class.equals(mat.data) && enumName.endsWith("S")) {
+                    if (Ageable.class.equals(mat.data) && !enumName.isEmpty() && enumName.charAt(enumName.length() - 1) == 'S') {
                         var itemMat = Material.getMaterial(enumName.substring(0, enumName.length() - 1));
                         return itemMat != null && itemMat.isItem() ? itemMat : mat;
                     }

@@ -6,7 +6,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.papermc.paper.event.player.PlayerPickItemEvent;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
@@ -41,7 +41,7 @@ public class VersionedMiddleClickListener implements Listener {
                 && pickBlockEventClass.isInstance(event)) {
             try {
                 Block block = (Block) getBlockMethod.invoke(event);
-                SlimefunItem sfItem = StorageCacheUtils.getSfItem(block.getLocation());
+                SlimefunItem sfItem = StorageCacheUtils.getSlimefunItem(block.getLocation());
                 if (sfItem == null) {
                     return;
                 }

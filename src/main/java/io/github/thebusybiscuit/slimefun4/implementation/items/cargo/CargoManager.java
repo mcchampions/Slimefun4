@@ -11,11 +11,8 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotRotatable
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.cargo.CargoNet;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.qscbm.slimefun4.handlers.CargoTicker;
-import me.qscbm.slimefun4.tasks.BaseTickerTask;
 import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -39,22 +36,13 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
         };
     }
 
-    public static CargoTicker getTicker() {
-        return new CargoTicker() {
-            @Override
-            public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
-                CargoNet.getNetworkFromLocationOrCreate(b.getLocation()).tick(b, data);
-            }
-        };
-    }
-
     @Override
     public void preRegister() {
         addItemHandler(
                 new BlockTicker() {
                     @Override
                     public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
-                        Slimefun.getTickerTask().disableTicker(b.getLocation());
+                        CargoNet.getNetworkFromLocationOrCreate(b.getLocation()).tick(b, data);
                     }
 
                     @Override
@@ -81,8 +69,4 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
                 });
     }
 
-    @Override
-    public BaseTickerTask getTickerTask() {
-        return Slimefun.instance().getCargoTickerTask();
-    }
 }

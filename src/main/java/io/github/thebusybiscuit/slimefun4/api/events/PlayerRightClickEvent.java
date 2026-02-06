@@ -121,7 +121,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
         if (!slimefunBlock.isComputed()) {
             if (clickedBlock.isPresent()) {
                 slimefunBlock.compute(
-                        StorageCacheUtils.getSfItem(clickedBlock.get().getLocation()));
+                        StorageCacheUtils.getSlimefunItem(clickedBlock.get().getLocation()));
             } else {
                 slimefunBlock = TriStateOptional.empty();
             }

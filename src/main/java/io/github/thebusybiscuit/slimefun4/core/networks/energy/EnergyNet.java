@@ -115,7 +115,7 @@ public class EnergyNet extends Network implements HologramOwner {
             for (Map.Entry<Location, EnergyNetComponent> entry : consumers.entrySet()) {
                 Location loc = entry.getKey();
 
-                var data = StorageCacheUtils.getBlock(loc);
+                var data = StorageCacheUtils.getDataContainer(loc);
                 if (data == null || data.isPendingRemove()) {
                     continue;
                 }
@@ -125,6 +125,7 @@ public class EnergyNet extends Network implements HologramOwner {
                     var newItem = SlimefunItem.getById(data.getSfId());
                     if (!(newItem instanceof EnergyNetComponent newComponent)
                         || newComponent.getEnergyComponentType() != EnergyNetComponentType.CONSUMER) {
+
                         continue;
                     }
                     consumers.put(loc, newComponent);
@@ -165,7 +166,7 @@ public class EnergyNet extends Network implements HologramOwner {
         for (Map.Entry<Location, EnergyNetComponent> entry : capacitors.entrySet()) {
             Location loc = entry.getKey();
 
-            SlimefunBlockData data = StorageCacheUtils.getBlock(loc);
+            var data = StorageCacheUtils.getDataContainer(loc);
             if (data == null || data.isPendingRemove() || !data.isDataLoaded()) {
                 continue;
             }
@@ -190,7 +191,7 @@ public class EnergyNet extends Network implements HologramOwner {
         for (Map.Entry<Location, EnergyNetProvider> entry : generators.entrySet()) {
             Location loc = entry.getKey();
 
-            SlimefunBlockData data = StorageCacheUtils.getBlock(loc);
+            var data = StorageCacheUtils.getDataContainer(loc);
             if (data == null || data.isPendingRemove() || !data.isDataLoaded()) {
                 continue;
             }
@@ -223,7 +224,7 @@ public class EnergyNet extends Network implements HologramOwner {
             SlimefunItem item = (SlimefunItem) provider;
 
             try {
-                SlimefunBlockData data = StorageCacheUtils.getBlock(loc);
+                var data = StorageCacheUtils.getDataContainer(loc);
                 if (data == null || data.isPendingRemove()) {
                     continue;
                 }
@@ -299,7 +300,7 @@ public class EnergyNet extends Network implements HologramOwner {
     }
 
     private static EnergyNetComponent getComponent(Location l) {
-        SlimefunItem item = StorageCacheUtils.getSfItem(l);
+        SlimefunItem item = StorageCacheUtils.getSlimefunItem(l);
 
         if (item instanceof EnergyNetComponent component) {
             return component;
