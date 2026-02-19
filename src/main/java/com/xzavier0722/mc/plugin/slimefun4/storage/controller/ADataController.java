@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.OverridingMethodsMustInvokeSuper;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -30,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * 该类提供了对数据库的增删查改操作以及异步读写的支持。
  */
 @Slf4j
+@Getter
 public abstract class ADataController {
     private final DataType dataType;
     private final Map<ScopeKey, QueuedWriteTask> scheduledWriteTasks;
