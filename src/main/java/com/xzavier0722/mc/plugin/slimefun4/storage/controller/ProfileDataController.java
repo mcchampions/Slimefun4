@@ -1,6 +1,5 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
-import city.norain.slimefun4.compatibillty.CompatibilityUtil;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataType;
@@ -17,6 +16,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -112,6 +112,16 @@ public class ProfileDataController extends ADataController {
         scheduleReadTask(() -> invokeCallback(callback, getProfile(p)));
     }
 
+    public CompletableFuture<PlayerBackpack> getBackpackAsync(OfflinePlayer owner, int num) {
+        checkDestroy();
+        var uuid = owner.getUniqueId().toString();
+        var re = backpackCache.get(uuid, num);
+        if (re != null) {
+            return CompletableFuture.completedFuture(re);
+        }
+        return CompletableFuture.supplyAsync(() -> getBackpack(owner, num), readExecutor);
+    }
+
     @Nullable public PlayerBackpack getBackpack(OfflinePlayer owner, int num) {
         String uuid = owner.getUniqueId().toString();
         PlayerBackpack re = backpackCache.get(uuid, num);
@@ -146,8 +156,18 @@ public class ProfileDataController extends ADataController {
         return re;
     }
 
+    public CompletableFuture<PlayerBackpack> getBackpackAsync(String uuid) {
+        checkDestroy();
+        var re = backpackCache.get(uuid);
+        if (re != null) {
+            return CompletableFuture.completedFuture(re);
+        }
+        return CompletableFuture.supplyAsync(() -> getBackpack(uuid), readExecutor);
+    }
+
     @Nullable public PlayerBackpack getBackpack(String uuid) {
-        PlayerBackpack re = backpackCache.get(uuid);
+        checkDestroy();
+        var re = backpackCache.get(uuid);
         if (re != null) {
             return re;
         }
@@ -186,10 +206,17 @@ public class ProfileDataController extends ADataController {
         key.addField(FieldKey.INVENTORY_ITEM);
         key.addCondition(FieldKey.BACKPACK_ID, uuid);
 
-        List<RecordSet> invResult = getData(key);
-        ItemStack[] re = new ItemStack[size];
-        invResult.forEach(
-                each -> re[each.getInt(FieldKey.INVENTORY_SLOT)] = each.getItemStack(FieldKey.INVENTORY_ITEM));
+        var invResult = getData(key);
+        var re = new ItemStack[size];
+        for (RecordSet each : invResult) {
+            var slot = each.getInt(FieldKey.INVENTORY_SLOT);
+            try {
+                re[slot] = each.getItemStack(FieldKey.INVENTORY_ITEM);
+            } catch (Exception e) {
+                re[slot] = null;
+                logger.log(Level.SEVERE, "无法反序列化玩家背包物品, 已替换为空气 [" + uuid + ":" + slot + "]", e);
+            }
+        }
 
         return re;
     }
@@ -209,10 +236,12 @@ public class ProfileDataController extends ADataController {
                 .collect(Collectors.toSet());
     }
 
+    @Deprecated
     public void getBackpackAsync(OfflinePlayer owner, int num, IAsyncReadCallback<PlayerBackpack> callback) {
         scheduleReadTask(() -> invokeCallback(callback, getBackpack(owner, num)));
     }
 
+    @Deprecated
     public void getBackpackAsync(String uuid, IAsyncReadCallback<PlayerBackpack> callback) {
         scheduleReadTask(() -> invokeCallback(callback, getBackpack(uuid)));
     }
@@ -308,29 +337,46 @@ public class ProfileDataController extends ADataController {
         scheduleWriteTask(new UUIDKey(DataScope.NONE, uuid), key, getRecordSet(profile), false);
     }
 
-    public void saveBackpackInventory(PlayerBackpack bp, Set<Integer> slots) {
-        var id = bp.getUniqueId().toString();
-        var inv = bp.getInventory();
-        slots.forEach(slot -> {
-            RecordKey key = new RecordKey(DataScope.BACKPACK_INVENTORY);
-            key.addCondition(FieldKey.BACKPACK_ID, id);
-            key.addCondition(FieldKey.INVENTORY_SLOT, slot + "");
-            key.addField(FieldKey.INVENTORY_ITEM);
-            var is = inv.getItem(slot);
-            if (is == null) {
-                scheduleDeleteTask(new UUIDKey(DataScope.NONE, bp.getOwner().getUniqueId()), key, false);
-            } else {
-                RecordSet data = new RecordSet();
-                data.put(FieldKey.BACKPACK_ID, id);
-                data.put(FieldKey.INVENTORY_SLOT, slot + "");
-                data.put(FieldKey.INVENTORY_ITEM, is);
-                scheduleWriteTask(new UUIDKey(DataScope.NONE, bp.getOwner().getUniqueId()), key, data, false);
-            }
-        });
+    public void saveBackpackInventory(PlayerBackpack bp, Set<Integer> slotsIgnored) {
+        // we decided to compute slots internal, and the argument is ignored to avoid potential data desync
+        saveBackpackInventory(bp);
     }
 
+    public void saveBackpackInventory(PlayerBackpack bp) {
+        // avoid asynchronous save
+        synchronized (bp) {
+            Set<Integer> slots = bp.getSnapshot().getChangedSlots(bp.getInventory());
+            bp.refreshSnapshot();
+            var id = bp.getUniqueId().toString();
+            var inv = bp.getInventory();
+            slots.forEach(slot -> {
+                var key = new RecordKey(DataScope.BACKPACK_INVENTORY);
+                key.addCondition(FieldKey.BACKPACK_ID, id);
+                key.addCondition(FieldKey.INVENTORY_SLOT, slot + "");
+                key.addField(FieldKey.INVENTORY_ITEM);
+                var is = inv.getItem(slot);
+                if (is == null) {
+                    scheduleDeleteTask(new UUIDKey(DataScope.NONE, bp.getOwner().getUniqueId()), key, false);
+                } else {
+                    try {
+                        var data = new RecordSet();
+                        data.put(FieldKey.BACKPACK_ID, id);
+                        data.put(FieldKey.INVENTORY_SLOT, slot + "");
+                        data.put(FieldKey.INVENTORY_ITEM, is);
+                        scheduleWriteTask(
+                                new UUIDKey(DataScope.NONE, bp.getOwner().getUniqueId()), key, data, false);
+                    } catch (IllegalArgumentException e) {
+                        Slimefun.logger().log(Level.WARNING, e.getMessage());
+                    }
+                }
+            });
+        }
+    }
+
+    @Deprecated(forRemoval = true)
     public void saveBackpackInventory(PlayerBackpack bp, Integer... slots) {
-        saveBackpackInventory(bp, Set.of(slots));
+        // we decided to compute slots internal, and the argument is ignored to avoid potential data desync
+        saveBackpackInventory(bp);
     }
 
     public UUID getPlayerUuid(String pName) {
@@ -407,10 +453,6 @@ public class ProfileDataController extends ADataController {
             @Override
             public void run() {
                 if (invalidingBackpackTasks.remove(pUuid) != this) {
-                    return;
-                }
-
-                if (CompatibilityUtil.isConnected(Bukkit.getOfflinePlayer(UUID.fromString(pUuid)))) {
                     return;
                 }
 

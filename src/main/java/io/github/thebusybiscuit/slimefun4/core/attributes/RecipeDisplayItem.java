@@ -26,15 +26,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public interface RecipeDisplayItem extends ItemAttribute {
-    /**
-     * This is the list of items to display alongside this {@link SlimefunItem}.
-     * Note that these items will be filled in from top to bottom first.
-     * So if you want it to express a recipe, add your input {@link ItemStack}
-     * and then your output {@link ItemStack}.
-     *
-     * @return The recipes to display in the {@link SlimefunGuide}
-     */
-
     List<ItemStack> getDisplayRecipes();
 
     default String getLabelLocalPath() {

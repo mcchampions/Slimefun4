@@ -30,41 +30,85 @@ public interface EnergyNetProvider extends EnergyNetComponent {
         return EnergyNetComponentType.GENERATOR;
     }
 
-    default long getGeneratedOutputLong(Location l, SlimefunBlockData data) {
-        return getGeneratedOutput(l, data);
-    }
-
-    /**
-     * This method returns how much energy this {@link EnergyNetProvider} provides to the {@link EnergyNet}.
-     * We call this method every time we tick a energy regulator, so make sure to keep it light and fast.
-     * Stored energy does not have to be handled in here.
-     *
-     * @param l    The {@link Location} of this {@link EnergyNetProvider}
-     * @param data The stored block data
-     * @return The generated output energy of this {@link EnergyNetProvider}.
-     */
-    default long getGeneratedOutputLong(Location l, ASlimefunDataContainer data) {
-        return getGeneratedOutput(l, data);
-    }
-
 
     default int getGeneratedOutput(Location l, SlimefunBlockData data) {
         return getGeneratedOutput(l, new BlockDataConfigWrapper(data));
     }
 
+    /**
+     * This method returns how much energy this {@link EnergyNetProvider} provides to the {@link EnergyNet}.
+     * Stored energy does not have to be handled in here.
+     * <br/>
+     * if your machine outputs energy values higher than Integer.MAX_VALUE,
+     * please return Integer.MAX_VALUE here
+     * and override {@link EnergyNetProvider#getGeneratedOutputLong(Location, SlimefunBlockData)} instead.
+     *
+     * @param l    The {@link Location} of this {@link EnergyNetProvider}
+     * @param data The stored {@link SlimefunBlockData}
+     * @return The generated output energy of this {@link EnergyNetProvider}.
+     */
     default int getGeneratedOutput(Location l, ASlimefunDataContainer data) {
-        return getGeneratedOutput(l, new BlockDataConfigWrapper(data));
+        if (data instanceof SlimefunBlockData blockData) {
+            return getGeneratedOutput(l, blockData);
+        }
+
+        throw new IllegalStateException(
+                "You must implement getGeneratedOutput for " + data.getClass().getName());
     }
 
+    /**
+     * @deprecated use {@link EnergyNetProvider#getGeneratedOutputLong(Location, SlimefunBlockData)} instead
+     *
+     * This method only for backward compatibility.
+     *
+     * @param l The {@link Location} of this {@link EnergyNetProvider}
+     * @param data The stored {@link Config}
+     * @return The generated output energy of this {@link EnergyNetProvider}
+     */
+    @Deprecated(forRemoval = true)
     default int getGeneratedOutput(Location l, Config data) {
         return 0;
     }
 
-    default boolean willExplode(Location l, SlimefunBlockData data) {
-        return willExplode(l, new BlockDataConfigWrapper(data));
+    /**
+     * @deprecated use {@link EnergyNetProvider#getGeneratedOutputLong(Location, ASlimefunDataContainer)} instead
+     *
+     * @param l    The {@link Location} of this {@link EnergyNetProvider}
+     * @param data The stored block data
+     * @return The generated output energy of this {@link EnergyNetProvider}.
+     */
+    @Deprecated(forRemoval = true)
+    default long getGeneratedOutputLong(Location l, SlimefunBlockData data) {
+        return getGeneratedOutput(l, (ASlimefunDataContainer) data);
     }
 
+    default long getGeneratedOutputLong(Location l, ASlimefunDataContainer data) {
+        if (data instanceof SlimefunBlockData blockData) {
+            return getGeneratedOutputLong(l, blockData);
+        }
+
+        return getGeneratedOutput(l, data);
+    }
+
+    /**
+     * This method returns whether the given {@link Location} is going to explode on the
+     * next tick.
+     *
+     * @param l    The {@link Location} of this {@link EnergyNetProvider}
+     * @param data The stored block data
+     * @return Whether or not this {@link Location} will explode.
+     */
     default boolean willExplode(Location l, ASlimefunDataContainer data) {
+        if (data instanceof SlimefunBlockData blockData) {
+            return willExplode(l, blockData);
+        }
+
+        throw new IllegalStateException(
+                "You must implement willExplode for " + data.getClass().getName());
+    }
+
+
+    default boolean willExplode(Location l, SlimefunBlockData data) {
         return willExplode(l, new BlockDataConfigWrapper(data));
     }
 

@@ -19,6 +19,7 @@ import lombok.Getter;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.logging.Level;
 
 public class SlimefunDatabaseManager {
@@ -34,15 +35,16 @@ public class SlimefunDatabaseManager {
     private IDataSourceAdapter<?> profileAdapter;
     private IDataSourceAdapter<?> blockStorageAdapter;
 
+    public ProfileDataController profileDataController;
     public SlimefunDatabaseManager(Slimefun plugin) {
         this.plugin = plugin;
 
         if (!new File(plugin.getDataFolder(), PROFILE_CONFIG_FILE_NAME).exists()) {
-            plugin.saveResource(PROFILE_CONFIG_FILE_NAME, false);
+            plugin.saveResource(PROFILE_CONFIG_FILE_NAME, true);
         }
 
         if (!new File(plugin.getDataFolder(), BLOCK_STORAGE_FILE_NAME).exists()) {
-            plugin.saveResource(BLOCK_STORAGE_FILE_NAME, false);
+            plugin.saveResource(BLOCK_STORAGE_FILE_NAME, true);
         }
 
         profileConfig = new Config(plugin, PROFILE_CONFIG_FILE_NAME);
@@ -57,6 +59,13 @@ public class SlimefunDatabaseManager {
             var readExecutorThread = blockStorageConfig.getInt("readExecutorThread");
             var writeExecutorThread =
                     blockDataStorageType == StorageType.SQLITE ? 1 : blockStorageConfig.getInt("writeExecutorThread");
+
+            var connectionPoolSize = getConnectionPoolSize(blockDataStorageType, blockStorageConfig);
+
+            if (readExecutorThread + writeExecutorThread > connectionPoolSize) {
+                plugin.getLogger().log(Level.WARNING, "检测到 block-storage 连接池大小配置小于读写线程总和, 可能会导致性能问题");
+            }
+
             initAdapter(blockDataStorageType, DataType.BLOCK_STORAGE, blockStorageConfig);
 
             BlockDataController blockDataController =
@@ -80,6 +89,11 @@ public class SlimefunDatabaseManager {
             int readExecutorThread = profileConfig.getInt("readExecutorThread");
             int writeExecutorThread =
                     profileStorageType == StorageType.SQLITE ? 1 : profileConfig.getInt("writeExecutorThread");
+            var connectionPoolSize = getConnectionPoolSize(profileStorageType, profileConfig);
+
+            if (readExecutorThread + writeExecutorThread > connectionPoolSize) {
+                plugin.getLogger().log(Level.WARNING, "检测到 profile-storage 连接池大小配置小于读写线程总和, 可能会导致性能问题");
+            }
 
             initAdapter(profileStorageType, DataType.PLAYER_PROFILE, profileConfig);
             ProfileDataController profileController = ControllerHolder.createController(ProfileDataController.class, profileStorageType);
@@ -151,8 +165,13 @@ public class SlimefunDatabaseManager {
         }
     }
 
-    @Getter
-    public ProfileDataController profileDataController;
+    private int getConnectionPoolSize(StorageType storageType, Config config) {
+        return config.getInt(storageType.name().toLowerCase(Locale.ROOT) + ".maxConnection");
+    }
+
+    public ProfileDataController getProfileDataController() {
+        return ControllerHolder.getController(ProfileDataController.class, profileStorageType);
+    }
 
 
     @Getter
@@ -191,10 +210,23 @@ public class SlimefunDatabaseManager {
     }
 
     private void initDefaultVal() {
-        profileConfig.setDefaultValue("sqlite.maxConnection", 5);
-        profileConfig.save();
-        blockStorageConfig.setDefaultValue("sqlite.maxConnection", 5);
-        blockStorageConfig.setDefaultValue("dataLoadMode", "LOAD_WITH_CHUNK");
-        blockStorageConfig.save();
+        if (profileConfig.getString("sqlite.maxConnection") == null) {
+            profileConfig.setDefaultValue("sqlite.maxConnection", 5);
+            profileConfig.save();
+        }
+
+        boolean changed = false;
+
+        if (blockStorageConfig.getString("sqlite.maxConnection") == null) {
+            blockStorageConfig.setDefaultValue("sqlite.maxConnection", 5);
+            changed = true;
+        }
+
+        if (blockStorageConfig.getString("dataLoadMode") == null) {
+            blockStorageConfig.setDefaultValue("dataLoadMode", "LOAD_WITH_CHUNK");
+            changed = true;
+        }
+
+        if (changed) blockStorageConfig.save();
     }
 }

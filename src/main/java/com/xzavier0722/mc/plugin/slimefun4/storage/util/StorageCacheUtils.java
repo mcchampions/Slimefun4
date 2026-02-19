@@ -101,8 +101,8 @@ public class StorageCacheUtils {
         }
     }
 
-    public static String getUniversalBlock(UUID uuid, Location loc, String key) {
-        SlimefunUniversalBlockData universalData = getUniversalBlock(uuid, loc);
+     public static String getUniversalBlockData(UUID uuid, Location loc, String key) {
+        var universalData = getUniversalBlock(uuid, loc);
         return universalData == null ? null : universalData.getData(key);
     }
 

@@ -2,7 +2,6 @@ package com.xzavier0722.mc.plugin.slimefun4.storage.migrator;
 
 import lombok.Getter;
 
-@Deprecated
 public class PlayerProfileMigrator implements IMigrator {
     @Getter
     private static final PlayerProfileMigrator instance = new PlayerProfileMigrator();

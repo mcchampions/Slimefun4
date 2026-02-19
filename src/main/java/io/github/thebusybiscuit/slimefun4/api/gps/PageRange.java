@@ -2,9 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.gps;
 
 import lombok.Getter;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-
 /**
  * Represents a calculated, immutable page window over a linear collection.
  * <p>
@@ -33,8 +30,8 @@ public class PageRange {
         this.page = page;
     }
 
-    @ParametersAreNonnullByDefault
-    public static @Nonnull PageRange compute(int total, int pageSize, int currentPage) {
+
+    public static PageRange compute(int total, int pageSize, int currentPage) {
         int totalPages = Math.max(1, (total + pageSize - 1) / pageSize);
 
         int page = currentPage;

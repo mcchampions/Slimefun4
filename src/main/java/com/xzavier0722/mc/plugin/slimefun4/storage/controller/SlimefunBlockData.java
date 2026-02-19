@@ -43,6 +43,11 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
     }
 
     public void setData(String key, String val) {
+        if (isPendingRemove()) {
+            // someone is modifying a removed blockData or a virtual blockData, DO NOT SAVE
+            return;
+        }
+
         setCacheInternal(key, val, true);
         Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedBlockDataUpdate(this, key);
     }

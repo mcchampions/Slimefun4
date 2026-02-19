@@ -249,7 +249,6 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
     protected boolean matches(ItemStack item, Predicate<ItemStack> predicate) {
         return predicate.test(item);
     }
-
     public boolean matchesAny(Inventory inv, Map<Integer, Integer> itemQuantities, Predicate<ItemStack> predicate) {
         ItemStack[] contents = inv.getContents();
 

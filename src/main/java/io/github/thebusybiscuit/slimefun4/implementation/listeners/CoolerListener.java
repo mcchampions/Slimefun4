@@ -117,7 +117,7 @@ public class CoolerListener implements Listener {
                 p.setSaturation(6.0F);
                 SoundEffect.COOLER_CONSUME_SOUND.playFor(p);
                 inv.setItem(slot, null);
-                Slimefun.getDatabaseManager().getProfileDataController().saveBackpackInventory(backpack, slot);
+                Slimefun.getDatabaseManager().getProfileDataController().saveBackpackInventory(backpack);
 
                 return true;
             } else {

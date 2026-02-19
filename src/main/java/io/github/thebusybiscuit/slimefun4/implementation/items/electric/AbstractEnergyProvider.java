@@ -85,6 +85,10 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
         fuelTypes.add(fuel);
     }
 
+    public Set<MachineFuel> getFuelTypes() {
+        return fuelTypes;
+    }
+
     @Override
     public String getLabelLocalPath() {
         return "guide.tooltips.recipes.generator";

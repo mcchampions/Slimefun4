@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.ASlimefunDataContainer;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.BlockDataController;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
@@ -332,7 +333,7 @@ public abstract class Reactor extends AbstractEnergyProvider
     }
 
     @Override
-    public int getGeneratedOutput(Location l, SlimefunBlockData data) {
+    public int getGeneratedOutput(Location l, ASlimefunDataContainer data) {
         BlockMenu inv = StorageCacheUtils.getMenu(l);
         BlockMenu accessPort = getAccessPort(inv, l);
         FuelOperation operation = processor.getOperation(l);
@@ -354,7 +355,7 @@ public abstract class Reactor extends AbstractEnergyProvider
 
     private int generateEnergy(
             Location l,
-            SlimefunBlockData data,
+            ASlimefunDataContainer data,
             BlockMenu inv,
             @Nullable BlockMenu accessPort,
             FuelOperation operation) {
@@ -387,7 +388,7 @@ public abstract class Reactor extends AbstractEnergyProvider
     }
 
     @Override
-    public boolean willExplode(Location l, SlimefunBlockData data) {
+    public boolean willExplode(Location l, ASlimefunDataContainer data) {
         boolean explosion = explosionsQueue.contains(l);
 
         if (explosion) {
@@ -395,7 +396,7 @@ public abstract class Reactor extends AbstractEnergyProvider
                 ReactorExplodeEvent event = new ReactorExplodeEvent(l, Reactor.this);
                 Bukkit.getPluginManager().callEvent(event);
 
-                data.getBlockMenu().close();
+                ((SlimefunBlockData) data).getBlockMenu().close();
                 removeHologram(l.getBlock());
             });
 

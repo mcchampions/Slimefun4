@@ -49,7 +49,7 @@ public class SlimefunPoolExecutor extends ThreadPoolExecutor {
             if (t != null) {
                 Slimefun.logger()
                         .log(
-                                Level.WARNING,
+                                Level.SEVERE,
                                 "An error occurred in " + name + "("
                                         + Thread.currentThread().getName() + ")",
                                 t);
@@ -61,10 +61,10 @@ public class SlimefunPoolExecutor extends ThreadPoolExecutor {
                 } catch (Exception e) {
                     Slimefun.logger()
                             .log(
-                                    Level.WARNING,
+                                    Level.SEVERE,
                                     "An error occurred in " + name + "("
                                             + Thread.currentThread().getName() + ")",
-                                    t);
+                                    e);
                 }
             }
         } finally {

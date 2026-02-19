@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api.gps;
 
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.Material;
 
@@ -44,7 +43,7 @@ public class PageHelper {
      *        the "next page" button. This handler is only applied when the button
      *        is active.
      */
-    @ParametersAreNonnullByDefault
+
     public static void renderPageButton(
             ChestMenu menu,
             int prevSlot,
