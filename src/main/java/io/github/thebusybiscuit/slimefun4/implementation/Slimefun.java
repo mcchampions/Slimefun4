@@ -25,6 +25,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.BackupService;
 import io.github.thebusybiscuit.slimefun4.core.services.BlockDataService;
 import io.github.thebusybiscuit.slimefun4.core.services.CustomItemDataService;
 import io.github.thebusybiscuit.slimefun4.core.services.CustomTextureService;
+import io.github.thebusybiscuit.slimefun4.core.services.ItemStackService;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
 import io.github.thebusybiscuit.slimefun4.core.services.MetricsService;
 import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
@@ -185,6 +186,8 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final HologramsService hologramsService = new HologramsService(this);
     private final SoundService soundService = new SoundService(this);
     private final ThreadService threadService = new ThreadService(this);
+    private final ItemStackService itemStackService = new ItemStackService();
+
     // Some other things we need
     private final IntegrationsManager integrations = new IntegrationsManager(this);
     private final SlimefunProfiler profiler = new SlimefunProfiler();
@@ -831,6 +834,11 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
     public static BlockDataService getBlockDataService() {
         return instance.blockDataService;
+    }
+
+    public static @Nonnull ItemStackService getItemStackService() {
+        validateInstance();
+        return instance.itemStackService;
     }
 
     /**

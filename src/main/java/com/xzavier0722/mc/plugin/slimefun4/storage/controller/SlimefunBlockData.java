@@ -48,7 +48,6 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         return super.getSfId();
     }
 
-    
     public void setData(String key, String val) {
         checkData();
 
@@ -61,7 +60,7 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedBlockDataUpdate(this, key);
     }
 
-    
+
     public void removeData(String key) {
         if (removeCacheInternal(key) != null || !isDataLoaded()) {
             Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedBlockDataUpdate(this, key);
@@ -92,5 +91,11 @@ public class SlimefunBlockData extends ASlimefunDataContainer {
         }
 
         return re;
+    }
+
+    @Override
+    @ParametersAreNonnullByDefault
+    public void scheduleUpdateData(String key) {
+        Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedBlockDataUpdate(this, key);
     }
 }
