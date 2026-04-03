@@ -225,9 +225,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
     public Slimefun(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
         super(loader, description, dataFolder, file);
-
-        // This is only invoked during a Unit Test
-        minecraftVersion = MinecraftVersion.UNIT_TEST;
     }
 
     /**
@@ -417,7 +414,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     @Override
     public void onDisable() {
         // Slimefun never loaded successfully, so we don't even bother doing stuff here
-        if (instance() == null || minecraftVersion == MinecraftVersion.UNIT_TEST) {
+        if (instance() == null) {
             return;
         }
 
@@ -1015,15 +1012,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
     public static @Nullable BukkitTask runSync(Runnable runnable, long delay) {
-
-
-
-        // Run the task instantly within a Unit Test
-        if (getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            runnable.run();
-            return null;
-        }
-
         if (instance == null || !instance.isEnabled()) {
             return null;
         }
@@ -1044,14 +1032,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
     public static @Nullable BukkitTask runSync(Runnable runnable) {
-
-
-        // Run the task instantly within a Unit Test
-        if (getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            runnable.run();
-            return null;
-        }
-
         if (instance == null || !instance.isEnabled()) {
             return null;
         }

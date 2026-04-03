@@ -203,9 +203,11 @@ import io.github.thebusybiscuit.slimefun4.utils.ColoredMaterial;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -219,13 +221,13 @@ import org.bukkit.potion.PotionType;
 /**
  * This class holds the recipes of all items.
  * This is the place where all items from Slimefun are registered.
- *
  */
 public final class SlimefunItemSetup {
 
     private static boolean registeredItems;
 
-    private SlimefunItemSetup() {}
+    private SlimefunItemSetup() {
+    }
 
     public static void setup(Slimefun plugin) {
         if (registeredItems) {
@@ -7803,12 +7805,10 @@ public final class SlimefunItemSetup {
                         })
                 .register(plugin);
 
-        if (minecraftVersion.isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
             new Juice(itemGroups.food, SlimefunItems.GLOW_BERRY_JUICE, RecipeType.JUICER, new ItemStack[] {
                         new ItemStack(Material.GLOW_BERRIES), null, null, null, null, null, null, null, null
                     })
                     .register(plugin);
-        }
 
         new ElytraCap(itemGroups.magicalArmor, SlimefunItems.ELYTRA_CAP, RecipeType.ARMOR_FORGE, new ItemStack[] {
                     new ItemStack(Material.SLIME_BALL),
@@ -7958,20 +7958,20 @@ public final class SlimefunItemSetup {
 
 
     private static void registerArmorSet(
-            ItemGroup itemGroup,
-            ItemStack baseComponent,
-            ItemStack[] items,
-            String idSyntax,
-            boolean vanilla,
-            PotionEffect[][] effects,
-            SlimefunAddon addon) {
-        String[] components = new String[] {"_HELMET", "_CHESTPLATE", "_LEGGINGS", "_BOOTS"};
+        ItemGroup itemGroup,
+        ItemStack baseComponent,
+        ItemStack[] items,
+        String idSyntax,
+        boolean vanilla,
+        PotionEffect[][] effects,
+        SlimefunAddon addon) {
+        String[] components = new String[]{"_HELMET", "_CHESTPLATE", "_LEGGINGS", "_BOOTS"};
         List<ItemStack[]> recipes = new ArrayList<>();
 
-        recipes.add(new ItemStack[] {
+        recipes.add(new ItemStack[]{
             baseComponent, baseComponent, baseComponent, baseComponent, null, baseComponent, null, null, null
         });
-        recipes.add(new ItemStack[] {
+        recipes.add(new ItemStack[]{
             baseComponent,
             null,
             baseComponent,
@@ -7982,7 +7982,7 @@ public final class SlimefunItemSetup {
             baseComponent,
             baseComponent
         });
-        recipes.add(new ItemStack[] {
+        recipes.add(new ItemStack[]{
             baseComponent,
             baseComponent,
             baseComponent,
@@ -7993,29 +7993,29 @@ public final class SlimefunItemSetup {
             null,
             baseComponent
         });
-        recipes.add(new ItemStack[] {
+        recipes.add(new ItemStack[]{
             null, null, null, baseComponent, null, baseComponent, baseComponent, null, baseComponent
         });
 
         for (int i = 0; i < 4; i++) {
             if (vanilla) {
                 new VanillaItem(itemGroup, items[i], idSyntax + components[i], RecipeType.ARMOR_FORGE, recipes.get(i))
-                        .register(addon);
+                    .register(addon);
             } else if (i < effects.length && effects[i].length > 0) {
                 new SlimefunArmorPiece(
-                                itemGroup,
-                                new SlimefunItemStack(idSyntax + components[i], items[i]),
-                                RecipeType.ARMOR_FORGE,
-                                recipes.get(i),
-                                effects[i])
-                        .register(addon);
+                    itemGroup,
+                    new SlimefunItemStack(idSyntax + components[i], items[i]),
+                    RecipeType.ARMOR_FORGE,
+                    recipes.get(i),
+                    effects[i])
+                    .register(addon);
             } else {
                 new SlimefunItem(
-                                itemGroup,
-                                new SlimefunItemStack(idSyntax + components[i], items[i]),
-                                RecipeType.ARMOR_FORGE,
-                                recipes.get(i))
-                        .register(addon);
+                    itemGroup,
+                    new SlimefunItemStack(idSyntax + components[i], items[i]),
+                    RecipeType.ARMOR_FORGE,
+                    recipes.get(i))
+                    .register(addon);
             }
         }
     }

@@ -63,11 +63,6 @@ public class RainbowTickHandler extends BlockTicker {
      * @return Whether the array contained any {@link GlassPane} materials
      */
     private boolean containsGlassPanes(List<Material> materials) {
-        if (Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            // BlockData is not available to us during Unit Tests :/
-            return false;
-        }
-
         for (Material type : materials) {
             /*
             This BlockData is purely virtual and only created on startup, it should have

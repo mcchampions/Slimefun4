@@ -14,6 +14,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.implementation.settings.ClimbableSurface;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEnchantment;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
@@ -26,6 +27,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
@@ -45,7 +47,6 @@ import org.bukkit.util.Vector;
  *
  * @author Linox
  * @author TheBusyBiscuit
- *
  */
 public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements DamageableItem, RecipeDisplayItem {
 
@@ -114,13 +115,11 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     /**
      * This returns the climbing speed for a given {@link Material}.
      *
-     * @param type
-     *            The {@link Material}
-     *
+     * @param type The {@link Material}
      * @return The climbing speed for this {@link Material} or 0.
      */
     public double getClimbingSpeed(Material type) {
-        
+
         ClimbableSurface surface = surfaces.get(type);
 
         if (surface != null) {
@@ -133,11 +132,8 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     /**
      * This returns the climbing speed for a given {@link Material} and the used {@link ItemStack}.
      *
-     * @param item
-     *            the {@link ClimbingPick}'s {@link ItemStack}
-     * @param type
-     *            The {@link Material}
-     *
+     * @param item the {@link ClimbingPick}'s {@link ItemStack}
+     * @param type The {@link Material}
      * @return The climbing speed or 0.
      */
     public double getClimbingSpeed(ItemStack item, Material type) {
@@ -248,14 +244,12 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     private void playAnimation(Player p, Block b, EquipmentSlot hand) {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
 
-        if (version != MinecraftVersion.UNIT_TEST) {
-            p.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());
+        p.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());
 
-            if (hand == EquipmentSlot.HAND) {
-                p.swingMainHand();
-            } else {
-                p.swingOffHand();
-            }
+        if (hand == EquipmentSlot.HAND) {
+            p.swingMainHand();
+        } else {
+            p.swingOffHand();
         }
     }
 

@@ -8,9 +8,11 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -22,13 +24,12 @@ import org.bukkit.inventory.ItemStack;
  * It also allows you to convert Rotten Flesh into Leather.
  *
  * @author Linox
- *
  */
 public class AutoDrier extends AContainer implements RecipeDisplayItem, NotHopperable {
 
     private List<ItemStack> recipeList;
 
-    
+
     public AutoDrier(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -78,10 +79,9 @@ public class AutoDrier extends AContainer implements RecipeDisplayItem, NotHoppe
         recipeList.add(new ItemStack(Material.COOKED_SALMON));
         recipeList.add(SlimefunItems.FISH_JERKY);
 
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
-            recipeList.add(new ItemStack(Material.MUD));
-            recipeList.add(new ItemStack(Material.CLAY));
-        }
+        recipeList.add(new ItemStack(Material.MUD));
+        recipeList.add(new ItemStack(Material.CLAY));
+
 
         for (Material sapling : Tag.SAPLINGS.getValues()) {
             recipeList.add(new ItemStack(sapling));

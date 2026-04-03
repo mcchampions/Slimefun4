@@ -1026,11 +1026,6 @@ public class SlimefunItem implements Placeable {
         }
 
         addon.getLogger().log(Level.SEVERE, message, throwable);
-
-        // We definitely want to re-throw them during Unit Tests
-        if (throwable instanceof RuntimeException e && Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            throw e;
-        }
     }
 
     /**

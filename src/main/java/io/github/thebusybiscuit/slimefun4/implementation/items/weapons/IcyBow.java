@@ -6,8 +6,10 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BowShootHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
+
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
@@ -21,11 +23,10 @@ import org.bukkit.potion.PotionEffect;
  *
  * @author TheBusyBiscuit
  * @author martinbrom
- *
  */
 public class IcyBow extends SlimefunBow {
 
-    
+
     public IcyBow(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe) {
         super(itemGroup, item, recipe);
     }
@@ -40,9 +41,7 @@ public class IcyBow extends SlimefunBow {
                     return;
                 }
 
-                if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-                    player.setFreezeTicks(60);
-                }
+                player.setFreezeTicks(60);
             }
             n.getWorld().playEffect(n.getLocation(), Effect.STEP_SOUND, Material.ICE);
             n.getWorld().playEffect(n.getEyeLocation(), Effect.STEP_SOUND, Material.ICE);

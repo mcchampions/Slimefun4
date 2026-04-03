@@ -11,10 +11,12 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -30,7 +32,7 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
 
 
     public WoodcutterAndroid(
-            ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, tier, item, recipeType, recipe);
     }
 
@@ -55,7 +57,7 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
                 log.getWorld().playEffect(log.getLocation(), Effect.STEP_SOUND, log.getType());
 
                 OfflinePlayer owner = Bukkit.getOfflinePlayer(UUID.fromString(
-                        StorageCacheUtils.getUniversalBlockData(menu.getUuid(), b.getLocation(), "owner")));
+                    StorageCacheUtils.getUniversalBlockData(menu.getUuid(), b.getLocation(), "owner")));
                 if (Slimefun.getProtectionManager().hasPermission(owner, log.getLocation(), Interaction.BREAK_BLOCK)) {
                     breakLog(log, b, menu, face);
                 }
@@ -122,38 +124,39 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
                 saplingType = Material.WARPED_FUNGUS;
                 soilRequirement = SlimefunTag.FUNGUS_SOIL::isTagged;
             }
-            default -> {}
-        }
-
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
-            switch (logType) {
-                case MANGROVE_LOG, STRIPPED_MANGROVE_LOG -> {
-                    saplingType = Material.MANGROVE_PROPAGULE;
-                    soilRequirement = SlimefunTag.MANGROVE_BASE_BLOCKS::isTagged;
-                }
-                default -> {}
+            default -> {
             }
         }
 
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20)) {
-            switch (logType) {
-                case CHERRY_LOG, STRIPPED_CHERRY_LOG -> {
-                    saplingType = Material.CHERRY_SAPLING;
-                    soilRequirement = SlimefunTag.DIRT_VARIANTS::isTagged;
-                }
-                default -> {}
+        switch (logType) {
+            case MANGROVE_LOG, STRIPPED_MANGROVE_LOG -> {
+                saplingType = Material.MANGROVE_PROPAGULE;
+                soilRequirement = SlimefunTag.MANGROVE_BASE_BLOCKS::isTagged;
+            }
+            default -> {
             }
         }
 
-        if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 21, 2)) {
-            switch (logType) {
-                case PALE_OAK_LOG, PALE_OAK_WOOD, STRIPPED_PALE_OAK_LOG, STRIPPED_PALE_OAK_WOOD -> {
-                    saplingType = Material.PALE_OAK_SAPLING;
-                    soilRequirement = SlimefunTag.DIRT_VARIANTS::isTagged;
-                }
-                default -> {}
+
+        switch (logType) {
+            case CHERRY_LOG, STRIPPED_CHERRY_LOG -> {
+                saplingType = Material.CHERRY_SAPLING;
+                soilRequirement = SlimefunTag.DIRT_VARIANTS::isTagged;
+            }
+            default -> {
             }
         }
+
+
+        switch (logType) {
+            case PALE_OAK_LOG, PALE_OAK_WOOD, STRIPPED_PALE_OAK_LOG, STRIPPED_PALE_OAK_WOOD -> {
+                saplingType = Material.PALE_OAK_SAPLING;
+                soilRequirement = SlimefunTag.DIRT_VARIANTS::isTagged;
+            }
+            default -> {
+            }
+        }
+
 
         if (saplingType != null && soilRequirement != null) {
             if (soilRequirement.test(block.getRelative(BlockFace.DOWN).getType())) {

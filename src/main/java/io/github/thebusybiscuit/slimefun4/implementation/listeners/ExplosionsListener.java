@@ -47,9 +47,8 @@ public class ExplosionsListener implements Listener {
          * Wind charge **doesn't** break block but spigot still give us break list,
          * so we just ignore it.
          */
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)
-                && (e.getEntityType() == EntityType.WIND_CHARGE
-                        || e.getEntityType() == EntityType.BREEZE_WIND_CHARGE)) {
+        if (e.getEntityType() == EntityType.WIND_CHARGE
+                        || e.getEntityType() == EntityType.BREEZE_WIND_CHARGE) {
             return;
         }
 
@@ -58,8 +57,7 @@ public class ExplosionsListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockExplode(BlockExplodeEvent e) {
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21)
-                && e.getExplosionResult() == ExplosionResult.TRIGGER_BLOCK) {
+        if (e.getExplosionResult() == ExplosionResult.TRIGGER_BLOCK) {
             return;
         }
 

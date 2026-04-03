@@ -4,6 +4,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import java.util.Optional;
 import javax.annotation.Nullable;
+
+import io.papermc.paper.persistence.PersistentDataContainerView;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -85,24 +87,6 @@ public class CustomItemDataService implements Keyed {
     }
 
     /**
-     * This method returns an {@link Optional} holding the data stored on the given {@link ItemStack}.
-     * The {@link Optional} will be empty if the given {@link ItemStack} is null, doesn't have any {@link ItemMeta}
-     * or if the requested data simply does not exist on that {@link ItemStack}.
-     *
-     * @param item
-     *            The {@link ItemStack} to check
-     *
-     * @return An {@link Optional} describing the result
-     */
-    public Optional<String> getItemData(@Nullable ItemStack item) {
-        if (item == null || item.getType() == Material.AIR || !item.hasItemMeta()) {
-            return Optional.empty();
-        }
-
-        return getItemData(item.getItemMeta());
-    }
-
-    /**
      * This method returns an {@link Optional}, either empty or holding the data stored
      * on the given {@link ItemMeta}.
      *
@@ -112,9 +96,16 @@ public class CustomItemDataService implements Keyed {
      * @return An {@link Optional} describing the result
      */
     public Optional<String> getItemData(ItemMeta meta) {
-        
-
         PersistentDataContainer container = meta.getPersistentDataContainer();
+        return Optional.ofNullable(container.get(namespacedKey, PersistentDataType.STRING));
+    }
+
+
+    public Optional<String> getItemData(ItemStack stack) {
+        if (stack == null || stack.getType() == Material.AIR || !stack.hasItemMeta()) {
+            return Optional.empty();
+        }
+        PersistentDataContainerView container = stack.getPersistentDataContainer();
         return Optional.ofNullable(container.get(namespacedKey, PersistentDataType.STRING));
     }
 
@@ -131,9 +122,6 @@ public class CustomItemDataService implements Keyed {
      * @return Whether both metas have data on them and its the same.
      */
     public boolean hasEqualItemData(ItemMeta meta1, ItemMeta meta2) {
-        
-        
-
         Optional<String> data1 = getItemData(meta1);
 
         // Check if the first data is present

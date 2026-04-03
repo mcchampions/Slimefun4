@@ -80,8 +80,7 @@ public class SwordOfBeheading extends SimpleSlimefunItem<EntityKillHandler> {
                     }
                 }
                 case PIGLIN -> {
-                    if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20)
-                            && random.nextInt(100) < chancePiglin.getValue()) {
+                    if (random.nextInt(100) < chancePiglin.getValue()) {
                         e.getDrops().add(new ItemStack(Material.PIGLIN_HEAD));
                     }
                 }

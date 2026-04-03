@@ -372,10 +372,6 @@ public abstract class SlimefunLocalization implements Keyed {
 
 
     public void sendMessage(CommandSender recipient, String key, boolean addPrefix, UnaryOperator<String> function) {
-        if (Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            return;
-        }
-
         String prefix = addPrefix ? getChatPrefix() : "";
 
         if (recipient instanceof Player player) {

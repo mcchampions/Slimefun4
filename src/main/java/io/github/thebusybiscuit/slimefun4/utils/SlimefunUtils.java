@@ -210,16 +210,10 @@ public final class SlimefunUtils {
      * @return An {@link ItemStack} with this Head texture
      */
     public static ItemStack getCustomHead(String texture) {
-        
-
         if (Slimefun.instance() == null) {
             throw new PrematureCodeException("You cannot instantiate a custom head before Slimefun was loaded.");
         }
 
-        if (Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            // com.mojang.authlib.GameProfile does not exist in a Test Environment
-            return new ItemStack(Material.PLAYER_HEAD);
-        }
 
         String base64 = texture;
 
@@ -487,8 +481,7 @@ public final class SlimefunUtils {
      * @return Whether the two lores are equal
      */
     public static boolean equalsLore(List<String> lore1, List<String> lore2) {
-        
-        
+
 
         List<String> longerList = lore1.size() > lore2.size() ? lore1 : lore2;
         List<String> shorterList = lore1.size() > lore2.size() ? lore2 : lore1;
@@ -527,8 +520,8 @@ public final class SlimefunUtils {
 
     @Deprecated(forRemoval = true)
     public static void updateCapacitorTexture(Location l, int charge, int capacity) {
-        
-        
+
+
         updateCapacitorTexture(l, (double) charge / capacity);
     }
 
@@ -549,7 +542,7 @@ public final class SlimefunUtils {
      * @return Whether the {@link Player} is able to use that item.
      */
     public static boolean canPlayerUseItem(Player p, @Nullable ItemStack item, boolean sendMessage) {
-        
+
 
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
@@ -632,16 +625,8 @@ public final class SlimefunUtils {
      * @return True if the inventory is empty and false otherwise
      */
     public static boolean isInventoryEmpty(Inventory inventory) {
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_16)) {
-            return inventory.isEmpty();
-        } else {
-            for (ItemStack is : inventory.getStorageContents()) {
-                if (is != null && !is.getType().isAir()) {
-                    return false;
-                }
-            }
-            return true;
-        }
+        return inventory.isEmpty();
+
     }
 
     /**

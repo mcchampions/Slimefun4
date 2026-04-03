@@ -170,7 +170,7 @@ public class TalismanListener implements Listener {
         /*
          * Return because allay is so cute, DO NOT KILL THEM.
          */
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19) && entity instanceof Allay) {
+        if (entity instanceof Allay) {
             return;
         }
 

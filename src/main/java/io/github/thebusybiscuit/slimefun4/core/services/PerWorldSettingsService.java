@@ -212,11 +212,7 @@ public class PerWorldSettingsService {
 
             if (config.getBoolean("enabled")) {
                 loadItemsFromWorldConfig(name, config, items);
-
-                // We don't actually wanna write to disk during a Unit test
-                if (Slimefun.getMinecraftVersion() != MinecraftVersion.UNIT_TEST) {
-                    config.save();
-                }
+                config.save();
             } else {
                 disabledWorlds.add(world.getUID());
             }

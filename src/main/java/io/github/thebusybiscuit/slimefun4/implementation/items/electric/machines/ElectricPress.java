@@ -9,7 +9,9 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.rotations.NotDiagonallyRotatable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -19,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
  * It allows you to compact items into their block variant, e.g. 9 diamonds into a diamond block.
  *
  * @author TheBusyBiscuit
- *
  */
 public class ElectricPress extends AContainer implements RecipeDisplayItem, NotDiagonallyRotatable {
 
@@ -75,19 +76,17 @@ public class ElectricPress extends AContainer implements RecipeDisplayItem, NotD
 
         addRecipe(16, new ItemStack(Material.NETHERITE_INGOT, 9), new ItemStack(Material.NETHERITE_BLOCK));
 
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            addRecipe(4, new ItemStack(Material.AMETHYST_SHARD, 4), new ItemStack(Material.AMETHYST_BLOCK));
+        addRecipe(4, new ItemStack(Material.AMETHYST_SHARD, 4), new ItemStack(Material.AMETHYST_BLOCK));
 
-            addRecipe(5, new ItemStack(Material.COPPER_INGOT, 9), new ItemStack(Material.COPPER_BLOCK));
-            addRecipe(5, new ItemStack(Material.RAW_IRON, 9), new ItemStack(Material.RAW_IRON_BLOCK));
-            addRecipe(5, new ItemStack(Material.RAW_GOLD, 9), new ItemStack(Material.RAW_GOLD_BLOCK));
-            addRecipe(5, new ItemStack(Material.RAW_COPPER, 9), new ItemStack(Material.RAW_COPPER_BLOCK));
-        }
+        addRecipe(5, new ItemStack(Material.COPPER_INGOT, 9), new ItemStack(Material.COPPER_BLOCK));
+        addRecipe(5, new ItemStack(Material.RAW_IRON, 9), new ItemStack(Material.RAW_IRON_BLOCK));
+        addRecipe(5, new ItemStack(Material.RAW_GOLD, 9), new ItemStack(Material.RAW_GOLD_BLOCK));
+        addRecipe(5, new ItemStack(Material.RAW_COPPER, 9), new ItemStack(Material.RAW_COPPER_BLOCK));
     }
 
 
     private void addRecipe(int seconds, ItemStack input, ItemStack output) {
-        registerRecipe(seconds, new ItemStack[] {input}, new ItemStack[] {output});
+        registerRecipe(seconds, new ItemStack[]{input}, new ItemStack[]{output});
     }
 
     @Override

@@ -82,9 +82,7 @@ public class ResourceManager {
             Slimefun.getRegistry().getGEOResources().add(resource);
         }
 
-        if (Slimefun.getMinecraftVersion() != MinecraftVersion.UNIT_TEST) {
-            config.save();
-        }
+        config.save();
     }
 
     /**

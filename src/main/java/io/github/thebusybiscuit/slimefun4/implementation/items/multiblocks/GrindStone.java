@@ -12,9 +12,11 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.papermc.lib.PaperLib;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -30,20 +32,20 @@ public class GrindStone extends MultiBlockMachine {
 
     public GrindStone(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
-                itemGroup,
-                item,
-                new ItemStack[] {
-                    null,
-                    null,
-                    null,
-                    null,
-                    new ItemStack(Material.OAK_FENCE),
-                    null,
-                    null,
-                    new CustomItemStack(Material.DISPENSER, "发射器 (朝上)"),
-                    null
-                },
-                BlockFace.SELF);
+            itemGroup,
+            item,
+            new ItemStack[]{
+                null,
+                null,
+                null,
+                null,
+                new ItemStack(Material.OAK_FENCE),
+                null,
+                null,
+                new CustomItemStack(Material.DISPENSER, "发射器 (朝上)"),
+                null
+            },
+            BlockFace.SELF);
     }
 
     @Override
@@ -96,13 +98,12 @@ public class GrindStone extends MultiBlockMachine {
         recipes.add(new ItemStack(Material.BASALT, 2));
         recipes.add(new ItemStack(Material.BLACKSTONE));
 
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            recipes.add(new ItemStack(Material.AMETHYST_BLOCK));
-            recipes.add(new ItemStack(Material.AMETHYST_SHARD, 4));
+        recipes.add(new ItemStack(Material.AMETHYST_BLOCK));
+        recipes.add(new ItemStack(Material.AMETHYST_SHARD, 4));
 
-            recipes.add(new ItemStack(Material.COBBLED_DEEPSLATE));
-            recipes.add(new ItemStack(Material.GRAVEL));
-        }
+        recipes.add(new ItemStack(Material.COBBLED_DEEPSLATE));
+        recipes.add(new ItemStack(Material.GRAVEL));
+
 
         recipes.add(SlimefunItems.MAGIC_LUMP_2);
         recipes.add(new SlimefunItemStack(SlimefunItems.MAGIC_LUMP_1, 4));

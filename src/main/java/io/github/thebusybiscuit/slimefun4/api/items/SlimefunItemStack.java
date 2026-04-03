@@ -292,10 +292,6 @@ public class SlimefunItemStack extends ItemStack {
     }
 
     private static ItemStack getSkull(String id, String texture) {
-        if (Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
-            return new ItemStack(Material.PLAYER_HEAD);
-        }
-
         PlayerSkin skin = PlayerSkin.fromBase64(getTexture(id, texture));
         return PlayerHead.getItemStack(skin);
     }

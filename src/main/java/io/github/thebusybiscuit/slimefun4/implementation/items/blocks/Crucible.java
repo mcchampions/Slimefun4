@@ -15,11 +15,13 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.World.Environment;
@@ -37,7 +39,6 @@ import org.bukkit.inventory.ItemStack;
  *
  * @author TheBusyBiscuit
  * @author Sfiguz7
- *
  */
 public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements RecipeDisplayItem {
 
@@ -92,16 +93,15 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
         items.add(new ItemStack(Material.BASALT, 12));
         items.add(new ItemStack(Material.LAVA_BUCKET));
 
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            items.add(new ItemStack(Material.COBBLED_DEEPSLATE, 12));
-            items.add(new ItemStack(Material.LAVA_BUCKET));
+        items.add(new ItemStack(Material.COBBLED_DEEPSLATE, 12));
+        items.add(new ItemStack(Material.LAVA_BUCKET));
 
-            items.add(new ItemStack(Material.DEEPSLATE, 10));
-            items.add(new ItemStack(Material.LAVA_BUCKET));
+        items.add(new ItemStack(Material.DEEPSLATE, 10));
+        items.add(new ItemStack(Material.LAVA_BUCKET));
 
-            items.add(new ItemStack(Material.TUFF, 8));
-            items.add(new ItemStack(Material.LAVA_BUCKET));
-        }
+        items.add(new ItemStack(Material.TUFF, 8));
+        items.add(new ItemStack(Material.LAVA_BUCKET));
+
 
         return items;
     }
@@ -118,8 +118,8 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
                 Block b = optional.get();
 
                 if (p.hasPermission("slimefun.inventory.bypass")
-                        || Slimefun.getProtectionManager()
-                                .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK)) {
+                    || Slimefun.getProtectionManager()
+                        .hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK)) {
                     ItemStack input = e.getItem();
                     Block block = b.getRelative(BlockFace.UP);
 
@@ -157,17 +157,15 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
     /**
      * This method starts the process of generating liquids.
      *
-     * @param block
-     *            The {@link Block} where to generate the liquid
-     * @param isWater
-     *            Whether we generate water or lava.
+     * @param block   The {@link Block} where to generate the liquid
+     * @param isWater Whether we generate water or lava.
      */
     private void generateLiquid(Block block, boolean isWater) {
         // Fixes #2877 - If water in the nether is disabled, abort and play an effect.
         if (isWater && block.getWorld().getEnvironment() == Environment.NETHER && !allowWaterInNether.getValue()) {
             // We will still consume the items but won't generate water in the Nether.
             block.getWorld()
-                    .spawnParticle(VersionedParticle.SMOKE, block.getLocation().add(0.5, 0.5, 0.5), 4);
+                .spawnParticle(VersionedParticle.SMOKE, block.getLocation().add(0.5, 0.5, 0.5), 4);
             SoundEffect.CRUCIBLE_GENERATE_LIQUID_SOUND.playAt(block);
             return;
         }
@@ -192,15 +190,15 @@ public class Crucible extends SimpleSlimefunItem<BlockUseHandler> implements Rec
 
         if (level == 0) {
             Slimefun.runSync(() -> runPostTask(
-                    block, water ? SoundEffect.CRUCIBLE_ADD_WATER_SOUND : SoundEffect.CRUCIBLE_ADD_LAVA_SOUND, 1));
+                block, water ? SoundEffect.CRUCIBLE_ADD_WATER_SOUND : SoundEffect.CRUCIBLE_ADD_LAVA_SOUND, 1));
         } else {
             int finalLevel = 7 - level;
             Slimefun.runSync(
-                    () -> runPostTask(
-                            block,
-                            water ? SoundEffect.CRUCIBLE_ADD_WATER_SOUND : SoundEffect.CRUCIBLE_ADD_LAVA_SOUND,
-                            finalLevel),
-                    50L);
+                () -> runPostTask(
+                    block,
+                    water ? SoundEffect.CRUCIBLE_ADD_WATER_SOUND : SoundEffect.CRUCIBLE_ADD_LAVA_SOUND,
+                    finalLevel),
+                50L);
         }
     }
 
