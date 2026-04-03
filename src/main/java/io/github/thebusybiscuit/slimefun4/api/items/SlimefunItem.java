@@ -34,8 +34,10 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import io.papermc.paper.persistence.PersistentDataContainerView;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -45,6 +47,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.Permission;
+import org.bukkit.persistence.PersistentDataType;
 
 /**
  * A {@link SlimefunItem} is a custom item registered by a {@link SlimefunAddon}.
@@ -1151,17 +1154,6 @@ public class SlimefunItem implements Placeable {
     }
 
     /**
-     * Retrieve a {@link SlimefunItem} by its id.
-     *
-     * @param id
-     *            The id of the {@link SlimefunItem}
-     * @return The {@link SlimefunItem} associated with that id. Null if non-existent
-     */
-    public static @Nullable SlimefunItem getById(String id) {
-        return Slimefun.getRegistry().getSlimefunItemIds().get(id);
-    }
-
-    /**
      * Retrieve a {@link Optional} {@link SlimefunItem} by its id.
      *
      * @param id
@@ -1172,26 +1164,28 @@ public class SlimefunItem implements Placeable {
         return Optional.ofNullable(getById(id));
     }
 
-    /**
-     * Retrieve a {@link SlimefunItem} from an {@link ItemStack}.
-     *
-     * @param item
-     *            The {@link ItemStack} to check
-     * @return The {@link SlimefunItem} associated with this {@link ItemStack} if present, otherwise null
-     */
-    public static @Nullable SlimefunItem getByItem(@Nullable ItemStack item) {
-        if (item == null || item.getType() == Material.AIR) {
+
+    @Nullable
+    public static SlimefunItem getByItem(@Nullable ItemStack item) {
+        if (item != null && item.getType() != Material.AIR) {
+            if (item instanceof SlimefunItemStack stack) {
+                return getById(stack.getItemId());
+            } else {
+                PersistentDataContainerView c = item.getPersistentDataContainer();
+                String itemID = c.get(Slimefun.getItemDataService().getKey(), PersistentDataType.STRING);
+                if (itemID == null) {
+                    return null;
+                }
+                return getById(itemID);
+            }
+        } else {
             return null;
         }
+    }
 
-        if (item instanceof SlimefunItemStack stack) {
-            return getById(stack.getItemId());
-        }
-
-        Optional<String> itemID = Slimefun.getItemDataService().getItemData(item);
-
-        return itemID.map(SlimefunItem::getById).orElse(null);
-
+    @Nullable
+    public static SlimefunItem getById(@Nonnull String id) {
+        return Slimefun.getRegistry().getSlimefunItemIds().get(id);
     }
 
     /**
