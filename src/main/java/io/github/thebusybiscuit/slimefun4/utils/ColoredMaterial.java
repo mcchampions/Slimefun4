@@ -1,8 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import java.util.Arrays;
-import java.util.Collections;
+
 import java.util.List;
 import javax.annotation.Nonnull;
 import org.bukkit.DyeColor;

@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.UUID;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;

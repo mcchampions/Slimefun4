@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.services;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import java.util.Optional;
-import javax.annotation.Nullable;
 
 import io.papermc.paper.persistence.PersistentDataContainerView;
 import org.bukkit.Keyed;

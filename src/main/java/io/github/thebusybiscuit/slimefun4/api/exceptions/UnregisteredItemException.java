@@ -1,8 +1,9 @@
 package io.github.thebusybiscuit.slimefun4.api.exceptions;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.plugin.Plugin;
+
+import java.io.Serial;
 
 /**
  * An {@link UnregisteredItemException} is thrown whenever a {@link Plugin} tried to
@@ -17,6 +18,7 @@ import org.bukkit.plugin.Plugin;
  */
 public class UnregisteredItemException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -4684752240435069678L;
 
     /**

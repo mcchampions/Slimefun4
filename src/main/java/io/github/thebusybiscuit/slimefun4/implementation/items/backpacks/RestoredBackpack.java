@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerBackpack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 

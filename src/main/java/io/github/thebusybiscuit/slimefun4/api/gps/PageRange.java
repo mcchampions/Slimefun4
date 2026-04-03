@@ -1,7 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.api.gps;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 /**
  * Represents a calculated, immutable page window over a linear collection.
  * <p>

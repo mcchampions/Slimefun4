@@ -1,7 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.api.exceptions;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import javax.annotation.ParametersAreNonnullByDefault;
+
+import java.io.Serial;
 
 /**
  * An {@link IdConflictException} is thrown whenever two Addons try to add
@@ -12,6 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 public class IdConflictException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -733012666374895255L;
 
     /**

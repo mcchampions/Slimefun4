@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
@@ -117,9 +117,9 @@ public class TagParser implements Keyed {
                         throw new TagMisconfigurationException(
                                 key,
                                 "Unexpected value format: "
-                                        + element.getClass().getSimpleName()
-                                        + " - "
-                                        + element.toString());
+                                + element.getClass().getSimpleName()
+                                + " - "
+                                + element);
                     }
                 }
 

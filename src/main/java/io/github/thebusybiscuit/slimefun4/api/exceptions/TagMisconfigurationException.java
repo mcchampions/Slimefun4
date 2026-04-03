@@ -1,8 +1,9 @@
 package io.github.thebusybiscuit.slimefun4.api.exceptions;
 
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.NamespacedKey;
+
+import java.io.Serial;
 
 /**
  * An {@link TagMisconfigurationException} is thrown whenever a {@link SlimefunTag}
@@ -12,6 +13,7 @@ import org.bukkit.NamespacedKey;
  */
 public class TagMisconfigurationException extends Exception {
 
+    @Serial
     private static final long serialVersionUID = 5412127960821774280L;
 
     /**

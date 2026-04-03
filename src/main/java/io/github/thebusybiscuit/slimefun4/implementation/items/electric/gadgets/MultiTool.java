@@ -13,7 +13,7 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedEntityTyp
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;

@@ -11,7 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.listeners.ElytraImpactL
 import io.github.thebusybiscuit.slimefun4.utils.UnbreakingAlgorithm;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.GameMode;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;

@@ -207,7 +207,7 @@ public class BlockStorageMigrator implements IMigrator {
                         gson.fromJson(cfg.getString(key), new TypeToken<Map<String, String>>() {}.getType());
                 var chunkData =
                         Slimefun.getDatabaseManager().getBlockDataController().getChunkData(c);
-                data.forEach((key1, value) -> chunkData.setData(key1, value));
+                data.forEach(chunkData::setData);
             } catch (Throwable e) {
                 Slimefun.logger().log(Level.SEVERE, "迁移区块数据时发生错误: " + key, e);
             }

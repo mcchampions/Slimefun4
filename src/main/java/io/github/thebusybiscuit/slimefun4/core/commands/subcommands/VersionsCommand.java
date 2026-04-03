@@ -10,7 +10,7 @@ import io.papermc.lib.PaperLib;
 import java.net.URI;
 import java.util.Collection;
 import java.util.Locale;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;

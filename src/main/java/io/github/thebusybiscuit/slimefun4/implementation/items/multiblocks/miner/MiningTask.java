@@ -8,10 +8,10 @@ import io.github.thebusybiscuit.slimefun4.api.items.virtual.VirtualItemHandler.I
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
-import io.papermc.lib.PaperLib;
+
 import java.util.UUID;
 import java.util.logging.Level;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;

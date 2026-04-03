@@ -7,7 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Telepo
 import java.util.Objects;
 import java.util.UUID;
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;

@@ -65,8 +65,7 @@ public class CompatibilityUtil {
      * @return 玩家连接或在线
      */
     public boolean isConnected(OfflinePlayer player) {
-        if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20)
-                && Slimefun.instance().getServer().getOnlineMode()) {
+        if (Slimefun.instance().getServer().getOnlineMode()) {
             return player.isConnected();
         } else {
             return player.isOnline();
@@ -80,10 +79,6 @@ public class CompatibilityUtil {
      * @return 最大生命值属性
      */
     public static Attribute getMaxHealth() {
-        if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 21, 3)) {
-            return Registry.ATTRIBUTE.get(NamespacedKey.fromString("max_health"));
-        } else {
-            return Attribute.valueOf("GENERIC_MAX_HEALTH");
-        }
+        return Registry.ATTRIBUTE.get(NamespacedKey.fromString("max_health"));
     }
 }

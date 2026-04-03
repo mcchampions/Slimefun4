@@ -3,8 +3,9 @@ package io.github.thebusybiscuit.slimefun4.api.exceptions;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DamageableItem;
-import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.inventory.ItemStack;
+
+import java.io.Serial;
 
 /**
  * A {@link WrongItemStackException} is thrown when someone tries to alter an {@link ItemStack}
@@ -21,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class WrongItemStackException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 9144658137363309071L;
 
     /**

@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
-import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;

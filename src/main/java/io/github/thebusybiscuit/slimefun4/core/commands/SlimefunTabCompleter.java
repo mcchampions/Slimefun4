@@ -21,7 +21,7 @@ public class SlimefunTabCompleter {
         int size = args.size();
         switch (size) {
             case 1 -> {
-                return createReturnList(Slimefun.getCommand().getSubCommandNames(), args.get(0));
+                return createReturnList(Slimefun.getCommand().getSubCommandNames(), args.getFirst());
             }
             case 2 -> {
                 String param = args.get(0).toLowerCase();

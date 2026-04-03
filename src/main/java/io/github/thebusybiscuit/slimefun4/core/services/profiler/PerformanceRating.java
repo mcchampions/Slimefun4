@@ -1,8 +1,9 @@
 package io.github.thebusybiscuit.slimefun4.core.services.profiler;
 
 import java.util.function.Predicate;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import org.bukkit.ChatColor;
 
 /**
@@ -14,8 +15,8 @@ import org.bukkit.ChatColor;
  * @see SlimefunProfiler
  *
  */
+@Deprecated
 public enum PerformanceRating implements Predicate<Float> {
-
     // Thresholds might change in the future!
 
     UNKNOWN(ChatColor.WHITE, -1),
@@ -28,11 +29,11 @@ public enum PerformanceRating implements Predicate<Float> {
     HURTFUL(ChatColor.DARK_RED, 500),
     BAD(ChatColor.DARK_RED, Float.MAX_VALUE);
 
+    @Getter
     private final ChatColor color;
     private final float threshold;
 
     PerformanceRating(ChatColor color, float threshold) {
-        
         this.color = color;
         this.threshold = threshold;
     }
@@ -47,8 +48,4 @@ public enum PerformanceRating implements Predicate<Float> {
         return value <= threshold;
     }
 
-    @Nonnull
-    public ChatColor getColor() {
-        return color;
-    }
 }

@@ -206,7 +206,6 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEff
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Material;

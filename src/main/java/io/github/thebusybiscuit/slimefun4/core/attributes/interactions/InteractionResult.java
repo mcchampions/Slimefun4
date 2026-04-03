@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.core.attributes.interactions;
 
 import io.github.thebusybiscuit.slimefun4.core.attributes.ExternallyInteractable;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * This class represents the result of an interaction on an {@link ExternallyInteractable} item.

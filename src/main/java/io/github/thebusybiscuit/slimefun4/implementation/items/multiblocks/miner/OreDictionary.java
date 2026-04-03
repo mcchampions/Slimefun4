@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 
 import java.util.Random;
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
