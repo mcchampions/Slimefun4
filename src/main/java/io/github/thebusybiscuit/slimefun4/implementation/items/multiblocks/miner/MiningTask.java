@@ -272,7 +272,7 @@ class MiningTask implements Runnable {
         // Check if there is enough fuel to run
         if (fuelLevel > 0) {
             if (chest.getType() == Material.CHEST) {
-                BlockState state = PaperLib.getBlockState(chest, false).getState();
+                BlockState state = chest.getState(false);
 
                 if (state instanceof Chest chestState) {
                     Inventory inv = chestState.getBlockInventory();
@@ -303,7 +303,7 @@ class MiningTask implements Runnable {
      */
     private void consumeFuel() {
         if (chest.getType() == Material.CHEST) {
-            BlockState state = PaperLib.getBlockState(chest, false).getState();
+            BlockState state = chest.getState(false);
 
             if (state instanceof Chest chestState) {
                 Inventory inv = chestState.getBlockInventory();

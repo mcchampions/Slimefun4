@@ -103,7 +103,7 @@ public class BlockDataService implements Keyed {
             } catch (Exception x) {
                 Slimefun.logger().log(Level.SEVERE, "Please check if your Server Software is up to date!");
 
-                String serverSoftware = PaperLib.isSpigot() && !PaperLib.isPaper() ? "Spigot" : Bukkit.getName();
+                String serverSoftware = Bukkit.getName();
                 Slimefun.logger()
                         .log(
                                 Level.SEVERE,
@@ -155,7 +155,7 @@ public class BlockDataService implements Keyed {
     public Optional<String> getBlockData(Block b, NamespacedKey key) {
         
 
-        BlockState state = PaperLib.getBlockState(b, false).getState();
+        BlockState state = b.getState(false);
         PersistentDataContainer container = getPersistentDataContainer(state);
 
         if (container != null) {

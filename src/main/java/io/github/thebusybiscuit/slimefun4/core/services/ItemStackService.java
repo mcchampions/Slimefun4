@@ -30,8 +30,8 @@ public final class ItemStackService {
         return resolveHandler(item) != null;
     }
 
-    public @Nonnull ComparisonResult matches(
-            @Nullable ItemStack left, @Nullable ItemStack right, @Nonnull MatchContext context) {
+    public ComparisonResult matches(
+            @Nullable ItemStack left, @Nullable ItemStack right, MatchContext context) {
         VirtualItemHandler leftHandler = resolveHandler(left);
         VirtualItemHandler rightHandler = resolveHandler(right);
 
@@ -63,7 +63,7 @@ public final class ItemStackService {
     public boolean isSimilar(
             @Nullable ItemStack left,
             @Nullable ItemStack right,
-            @Nonnull MatchContext context,
+            MatchContext context,
             boolean checkLore,
             boolean checkAmount) {
         ComparisonResult comparison = matches(left, right, context);
@@ -79,7 +79,7 @@ public final class ItemStackService {
     }
 
     public boolean matchesPredicate(
-            @Nonnull ItemStack item, @Nonnull Predicate<ItemStack> predicate, @Nonnull MatchContext context) {
+            ItemStack item, Predicate<ItemStack> predicate, MatchContext context) {
         VirtualItemHandler handler = resolveHandler(item);
         if (handler != null) {
             ComparisonResult comparison = handler.matchesPredicate(item, predicate, context);
@@ -95,7 +95,7 @@ public final class ItemStackService {
         return predicate.test(item);
     }
 
-    public int getMaxStackSize(@Nonnull ItemStack item, @Nonnull InventoryContext context, int defaultMaxStackSize) {
+    public int getMaxStackSize(ItemStack item, InventoryContext context, int defaultMaxStackSize) {
         Validate.notNull(item, "The item cannot be null");
 
         VirtualItemHandler handler = resolveHandler(item);
@@ -106,7 +106,7 @@ public final class ItemStackService {
         return Math.max(1, handler.getMaxStackSize(item, context, defaultMaxStackSize));
     }
 
-    public @Nonnull AdmissionResult allows(@Nonnull ItemStack item, @Nonnull InventoryContext context) {
+    public AdmissionResult allows(ItemStack item, InventoryContext context) {
         VirtualItemHandler handler = resolveHandler(item);
         if (handler == null) {
             return AdmissionResult.NOT_HANDLED;
@@ -115,12 +115,12 @@ public final class ItemStackService {
         return handler.allows(item, context);
     }
 
-    public boolean canInsertIntoEmptySlot(@Nonnull ItemStack item, @Nonnull InventoryContext context) {
+    public boolean canInsertIntoEmptySlot(ItemStack item, InventoryContext context) {
         return allows(item, context) != AdmissionResult.DENY;
     }
 
-    public @Nonnull ItemResult consume(
-            @Nullable ItemStack item, int amount, boolean replaceConsumables, @Nonnull ConsumeContext context) {
+    public ItemResult consume(
+            @Nullable ItemStack item, int amount, boolean replaceConsumables, ConsumeContext context) {
         VirtualItemHandler handler = resolveHandler(item);
         if (handler == null) {
             return ItemResult.notHandled();
@@ -129,7 +129,7 @@ public final class ItemStackService {
         return handler.consume(item, amount, replaceConsumables, context);
     }
 
-    public @Nonnull ItemResult getRemainder(@Nullable ItemStack item, @Nonnull RemainderContext context) {
+    public ItemResult getRemainder(@Nullable ItemStack item, RemainderContext context) {
         VirtualItemHandler handler = resolveHandler(item);
         if (handler == null) {
             return ItemResult.notHandled();
@@ -139,7 +139,7 @@ public final class ItemStackService {
     }
 
     public boolean fits(
-            @Nonnull Inventory inventory, @Nonnull ItemStack item, @Nonnull InventoryContext context, int... slots) {
+            Inventory inventory, ItemStack item, InventoryContext context, int... slots) {
         if (!hasVirtualItemsInSlots(inventory, slots) && !isVirtualItem(item) && SlimefunItem.getByItem(item) == null) {
             if (slots.length == 0) {
                 return InvUtils.fits(inventory, item);
@@ -155,7 +155,7 @@ public final class ItemStackService {
     }
 
     public boolean fitAll(
-            @Nonnull Inventory inventory, @Nonnull ItemStack[] items, @Nonnull InventoryContext context, int... slots) {
+            Inventory inventory, ItemStack[] items, InventoryContext context, int... slots) {
         boolean hasVirtualItems = false;
         for (ItemStack item : items) {
             if (item != null && isVirtualItem(item)) {
@@ -190,7 +190,7 @@ public final class ItemStackService {
     }
 
     public @Nullable ItemStack addItem(
-            @Nonnull Inventory inventory, @Nonnull ItemStack item, @Nonnull InventoryContext context, int... slots) {
+            Inventory inventory, ItemStack item, InventoryContext context, int... slots) {
         Validate.notNull(item, "The item cannot be null");
 
         boolean hasVirtualItems = hasVirtualItemsInSlots(inventory, slots);
@@ -224,7 +224,7 @@ public final class ItemStackService {
     }
 
     private @Nullable ItemStack addItemDirectly(
-            @Nonnull Inventory inventory, @Nonnull ItemStack item, @Nonnull InventoryContext context, int... slots) {
+            Inventory inventory, ItemStack item, InventoryContext context, int... slots) {
         int amountLeft = item.getAmount();
         int inventoryMaxStackSize = inventory.getMaxStackSize();
 
@@ -271,10 +271,10 @@ public final class ItemStackService {
     }
 
     private int insertIntoSnapshot(
-            @Nonnull ItemStack[] contents,
+            ItemStack[] contents,
             int inventoryMaxStackSize,
-            @Nonnull ItemStack item,
-            @Nonnull InventoryContext context,
+            ItemStack item,
+            InventoryContext context,
             int... slots) {
         int amountLeft = item.getAmount();
         int[] resolvedSlots = resolveSlots(contents.length, slots);
@@ -317,7 +317,7 @@ public final class ItemStackService {
         return amountLeft;
     }
 
-    private boolean canMerge(@Nonnull ItemStack existing, @Nonnull ItemStack incoming) {
+    private boolean canMerge(ItemStack existing, ItemStack incoming) {
         ComparisonResult comparison = matches(existing, incoming, MatchContext.STACK_MERGE);
         if (comparison == ComparisonResult.MATCH) {
             return true;
@@ -335,7 +335,7 @@ public final class ItemStackService {
         return ItemUtils.canStack(wrapper, existing);
     }
 
-    private boolean hasVirtualItemsInSlots(@Nonnull Inventory inventory, int... slots) {
+    private boolean hasVirtualItemsInSlots(Inventory inventory, int... slots) {
         for (int slot : resolveSlots(inventory.getSize(), slots)) {
             if (resolveHandler(inventory.getItem(slot)) != null) {
                 return true;

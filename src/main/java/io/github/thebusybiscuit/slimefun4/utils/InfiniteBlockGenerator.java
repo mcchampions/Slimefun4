@@ -139,7 +139,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
     @Nonnull
     public BlockFormEvent callEvent(Block block) {
         
-        BlockState state = PaperLib.getBlockState(block, false).getState();
+        BlockState state = block.getState(false);
         BlockFormEvent event = new BlockFormEvent(block, state);
         Bukkit.getPluginManager().callEvent(event);
         return event;

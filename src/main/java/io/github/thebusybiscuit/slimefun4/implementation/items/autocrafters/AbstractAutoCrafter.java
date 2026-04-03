@@ -241,7 +241,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
                 interactor = CrafterInteractorManager.getInteractor(targetBlock);
             } else {
                 // No custom interactor, check if the vanilla inventory
-                BlockState state = PaperLib.getBlockState(targetBlock, false).getState();
+                BlockState state = targetBlock.getState(false);
                 if (state instanceof InventoryHolder) {
                     interactor = new ChestInventoryParser(((InventoryHolder) state).getInventory());
                 }
@@ -457,7 +457,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
     private void setRecipeEnabled(Player p, Block b, boolean enabled) {
         p.closeInventory();
         SoundEffect.AUTO_CRAFTER_GUI_CLICK_SOUND.playFor(p);
-        BlockState state = PaperLib.getBlockState(b, false).getState();
+        BlockState state = b.getState(false);
 
         // Make sure the block is still a Skull
         if (state instanceof Skull skull) {

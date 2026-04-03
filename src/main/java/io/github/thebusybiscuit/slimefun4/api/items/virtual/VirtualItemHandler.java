@@ -92,11 +92,11 @@ public interface VirtualItemHandler extends ItemHandler {
 
         private static final ItemResult NOT_HANDLED = new ItemResult(false, null);
 
-        public static @Nonnull ItemResult notHandled() {
+        public static ItemResult notHandled() {
             return NOT_HANDLED;
         }
 
-        public static @Nonnull ItemResult handled(@Nullable ItemStack item) {
+        public static ItemResult handled(@Nullable ItemStack item) {
             return new ItemResult(true, item);
         }
     }
@@ -126,8 +126,8 @@ public interface VirtualItemHandler extends ItemHandler {
      *
      * @return The comparison result
      */
-    default @Nonnull ComparisonResult matches(
-            @Nullable ItemStack left, @Nullable ItemStack right, @Nonnull MatchContext context) {
+    default ComparisonResult matches(
+            @Nullable ItemStack left, @Nullable ItemStack right, MatchContext context) {
         return ComparisonResult.NOT_HANDLED;
     }
 
@@ -143,8 +143,8 @@ public interface VirtualItemHandler extends ItemHandler {
      *
      * @return The comparison result
      */
-    default @Nonnull ComparisonResult matchesPredicate(
-            @Nonnull ItemStack item, @Nonnull Predicate<ItemStack> predicate, @Nonnull MatchContext context) {
+    default ComparisonResult matchesPredicate(
+            ItemStack item, Predicate<ItemStack> predicate, MatchContext context) {
         return ComparisonResult.NOT_HANDLED;
     }
 
@@ -160,7 +160,7 @@ public interface VirtualItemHandler extends ItemHandler {
      *
      * @return The effective max stack size
      */
-    default int getMaxStackSize(@Nonnull ItemStack item, @Nonnull InventoryContext context, int defaultMaxStackSize) {
+    default int getMaxStackSize(ItemStack item, InventoryContext context, int defaultMaxStackSize) {
         return defaultMaxStackSize;
     }
 
@@ -174,7 +174,7 @@ public interface VirtualItemHandler extends ItemHandler {
      *
      * @return The admission result
      */
-    default @Nonnull AdmissionResult allows(@Nonnull ItemStack item, @Nonnull InventoryContext context) {
+    default AdmissionResult allows(ItemStack item, InventoryContext context) {
         return AdmissionResult.NOT_HANDLED;
     }
 
@@ -192,8 +192,8 @@ public interface VirtualItemHandler extends ItemHandler {
      *
      * @return The replacement result
      */
-    default @Nonnull ItemResult consume(
-            @Nonnull ItemStack item, int amount, boolean replaceConsumables, @Nonnull ConsumeContext context) {
+    default ItemResult consume(
+            ItemStack item, int amount, boolean replaceConsumables, ConsumeContext context) {
         return ItemResult.notHandled();
     }
 
@@ -207,7 +207,7 @@ public interface VirtualItemHandler extends ItemHandler {
      *
      * @return The remainder result
      */
-    default @Nonnull ItemResult getRemainder(@Nonnull ItemStack item, @Nonnull RemainderContext context) {
+    default ItemResult getRemainder(ItemStack item, RemainderContext context) {
         return ItemResult.notHandled();
     }
 }

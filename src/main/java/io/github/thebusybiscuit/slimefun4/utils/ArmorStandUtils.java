@@ -50,12 +50,6 @@ public class ArmorStandUtils {
         // The consumer method was moved from World to RegionAccessor in 1.20.2
         // Due to this, we need to use a rubbish workaround to support 1.20.1 and below
         // This causes flicker on these versions which sucks but not sure a better way around this right now.
-        if (PaperLib.getMinecraftVersion() < 20
-                || (PaperLib.getMinecraftVersion() == 20 && PaperLib.getMinecraftPatchVersion() < 2)) {
-            ArmorStand armorStand = location.getWorld().spawn(location, ArmorStand.class);
-            setupArmorStand(armorStand);
-            return armorStand;
-        }
 
         return location.getWorld().spawn(location, ArmorStand.class, ArmorStandUtils::setupArmorStand);
     }

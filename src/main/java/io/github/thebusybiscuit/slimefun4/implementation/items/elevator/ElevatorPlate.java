@@ -253,7 +253,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                     yaw,
                     player.getEyeLocation().getPitch());
 
-            PaperLib.teleportAsync(player, destination).thenAccept(teleported -> {
+            player.teleportAsync(destination).thenAccept(teleported -> {
                 if (teleported) {
                     player.sendTitle(ChatColor.WHITE + ChatColors.color(floor.getName()), null, 20, 60, 20);
                 }

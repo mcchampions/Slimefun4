@@ -1178,7 +1178,7 @@ public class SlimefunItem implements Placeable {
     }
 
     @Nullable
-    public static SlimefunItem getById(@Nonnull String id) {
+    public static SlimefunItem getById(String id) {
         return Slimefun.getRegistry().getSlimefunItemIds().get(id);
     }
 
