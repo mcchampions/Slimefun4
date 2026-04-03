@@ -5,15 +5,14 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 import java.util.Optional;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 class StatsCommand extends SubCommand {
-
-
     StatsCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "stats", false);
     }
@@ -32,17 +31,20 @@ class StatsCommand extends SubCommand {
 
                 if (player.isPresent()) {
                     PlayerProfile.get(player.get(), profile -> profile.sendStats(sender));
-                } else {
-                    Slimefun.getLocalization()
-                            .sendMessage(sender, "messages.not-online", true, msg -> msg.replace("%player%", args[1]));
+                    return;
                 }
-            } else {
-                Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+                Slimefun.getLocalization()
+                    .sendMessage(sender, "messages.not-online", true, msg -> msg.replace("%player%", args[1]));
+                return;
             }
-        } else if (sender instanceof Player player) {
-            PlayerProfile.get(player, profile -> profile.sendStats(sender));
-        } else {
-            Slimefun.getLocalization().sendMessage(sender, "messages.only-players", true);
+            Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);
+            return;
         }
+        if (sender instanceof Player player) {
+            PlayerProfile.get(player, profile -> profile.sendStats(sender));
+            return;
+        }
+        Slimefun.getLocalization().sendMessage(sender, "messages.only-players", true);
+
     }
 }

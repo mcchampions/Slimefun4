@@ -121,6 +121,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
+import me.qscbm.slimefun4.listeners.AsyncTabCompleteListener;
 import net.guizhanss.slimefun4.updater.AutoUpdateTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -1042,8 +1043,8 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
     public static @Nullable BukkitTask runSync(Runnable runnable, long delay) {
-        
-        
+
+
 
         // Run the task instantly within a Unit Test
         if (getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
@@ -1071,7 +1072,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
     public static @Nullable BukkitTask runSync(Runnable runnable) {
-        
+
 
         // Run the task instantly within a Unit Test
         if (getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {

@@ -43,7 +43,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public final class SlimefunRegistry {
-
     private final Map<String, SlimefunItem> slimefunIds = new HashMap<>();
     private final List<SlimefunItem> slimefunItems = new ArrayList<>();
     private final List<SlimefunItem> enabledItems = new ArrayList<>();

@@ -3,8 +3,7 @@ package io.github.thebusybiscuit.slimefun4.core.commands;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Map;
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.HelpCommand;
@@ -20,13 +19,11 @@ import org.bukkit.entity.Player;
  *
  */
 public abstract class SubCommand {
-
     protected final Slimefun plugin;
     protected final SlimefunCommand cmd;
 
     private final String name;
     private final boolean hidden;
-
 
     protected SubCommand(Slimefun plugin, SlimefunCommand cmd, String name, boolean hidden) {
         this.plugin = plugin;
@@ -42,7 +39,7 @@ public abstract class SubCommand {
      *
      * @return The name of this {@link SubCommand}
      */
-    @Nonnull
+
     public final String getName() {
         return name;
     }
@@ -62,7 +59,6 @@ public abstract class SubCommand {
 
     public abstract void onExecute(CommandSender sender, String[] args);
 
-    @Nonnull
     protected String getDescription() {
         return "commands." + name;
     }
@@ -72,16 +68,10 @@ public abstract class SubCommand {
      * If the given {@link CommandSender} is a {@link Player}, the description
      * will be localized with the currently selected {@link Language} of that {@link Player}.
      *
-     * @param sender
-     *            The {@link CommandSender} who requested the description
-     *
+     * @param sender The {@link CommandSender} who requested the description
      * @return A possibly localized description of this {@link SubCommand}
      */
     public String getDescription(CommandSender sender) {
-        if (sender instanceof Player player) {
-            return Slimefun.getLocalization().getMessage(player, getDescription());
-        } else {
-            return Slimefun.getLocalization().getMessage(getDescription());
-        }
+        return Slimefun.getLocalization().getMessage(getDescription());
     }
 }

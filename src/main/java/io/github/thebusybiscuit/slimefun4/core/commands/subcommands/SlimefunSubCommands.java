@@ -32,16 +32,12 @@ public final class SlimefunSubCommands {
         commands.add(new GiveCommand(plugin, cmd));
         commands.add(new ResearchCommand(plugin, cmd));
         commands.add(new StatsCommand(plugin, cmd));
-        commands.add(new TimingsCommand(plugin, cmd));
         commands.add(new TeleporterCommand(plugin, cmd));
         commands.add(new OpenGuideCommand(plugin, cmd));
         commands.add(new SearchCommand(plugin, cmd));
         commands.add(new BackpackCommand(plugin, cmd));
         commands.add(new ChargeCommand(plugin, cmd));
-        commands.add(new DebugCommand(plugin, cmd));
         commands.add(new ItemIdCommand(plugin, cmd));
-        commands.add(new ReloadCommand(plugin, cmd));
-        commands.add(new MigrateCommand(plugin, cmd));
         commands.add(new BlockDataCommand(plugin, cmd));
         commands.add(new BanItemCommand(plugin, cmd));
         commands.add(new UnbanItemCommand(plugin, cmd));
