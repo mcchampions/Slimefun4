@@ -5,9 +5,11 @@ import io.github.thebusybiscuit.slimefun4.api.exceptions.BiomeMapException;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.biomes.BiomeMap;
+
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
@@ -20,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
  * in our {@link GEOResource} implementations.
  *
  * @author TheBusyBiscuit
- *
  */
 abstract class AbstractResource implements GEOResource {
 
@@ -30,11 +31,9 @@ abstract class AbstractResource implements GEOResource {
     private final int maxDeviation;
     private final boolean geoMiner;
 
-    
+
     AbstractResource(String key, String defaultName, ItemStack item, int maxDeviation, boolean geoMiner) {
-        
-        
-        
+
 
         this.key = new NamespacedKey(Slimefun.instance(), key);
         this.defaultName = defaultName;
@@ -75,30 +74,21 @@ abstract class AbstractResource implements GEOResource {
      * Internal helper method for reading a {@link BiomeMap} of {@link Integer} type values from
      * a resource file.
      *
-     * @param resource
-     *            The {@link AbstractResource} instance
-     * @param path
-     *            The path to our biome map file
-     *
+     * @param resource The {@link AbstractResource} instance
+     * @param path     The path to our biome map file
      * @return A {@link BiomeMap} for this resource
      */
-    
+
     static BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
-        
-        
+
 
         try {
             return BiomeMap.fromResource(resource.key, Slimefun.instance(), path, JsonElement::getAsInt);
         } catch (BiomeMapException x) {
-            if (Slimefun.instance().isUnitTest()) {
-                // Unit Tests should always fail here, so we re-throw the exception
-                throw new IllegalStateException(x);
-            } else {
-                // In a server environment, we should just print a warning and carry on
-                Slimefun.logger()
-                        .log(Level.WARNING, x, () -> "Failed to load BiomeMap for GEO-resource: " + resource.key);
-                return new BiomeMap<>(resource.key);
-            }
+            // In a server environment, we should just print a warning and carry on
+            Slimefun.logger()
+                .log(Level.WARNING, x, () -> "Failed to load BiomeMap for GEO-resource: " + resource.key);
+            return new BiomeMap<>(resource.key);
         }
     }
 }

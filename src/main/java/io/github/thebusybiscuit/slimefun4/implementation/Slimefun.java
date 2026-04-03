@@ -242,44 +242,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     @Override
     public void onEnable() {
         instance = this;
-
-        if (isUnitTest()) {
-            // We handle Unit Tests seperately.
-            onUnitTestStart();
-        } else if (isVersionUnsupported()) {
-            // We wanna ensure that the Server uses a compatible version of Minecraft.
-            getServer().getPluginManager().disablePlugin(this);
-        } else if (!SlimefunExtended.checkEnvironment(this)) {
-            // We want to ensure that the Server uses a compatible server software and have no
-            // incompatible plugins
-            getServer().getPluginManager().disablePlugin(this);
-        } else if (!PaperLib.isPaper()) {
-            getLogger().log(Level.WARNING, "#######################################################");
-            getLogger().log(Level.WARNING, "");
-            getLogger().log(Level.WARNING, "自 24/12/22 起 Slimefun 汉化版");
-            getLogger().log(Level.WARNING, "转为 Paper 插件, 你必须要使用 Paper");
-            getLogger().log(Level.WARNING, "或其分支才可使用 Slimefun.");
-            getLogger().log(Level.WARNING, "立即下载 Paper: https://papermc.io/downloads/paper");
-            getLogger().log(Level.WARNING, "");
-            getLogger().log(Level.WARNING, "#######################################################");
-            getServer().getPluginManager().disablePlugin(this);
-        } else {
-            // The Environment has been validated.
-            onPluginStart();
-        }
-    }
-
-    /**
-     * This is our start method for a Unit Test environment.
-     */
-    private void onUnitTestStart() {
-        local = new LocalizationService(this, "", null);
-        networkManager = new NetworkManager(200);
-        command.register();
-        cfgManager.load();
-        registry.load(this);
-        loadTags();
-        soundService.reload(false);
+        onPluginStart();
     }
 
     /**
@@ -352,7 +315,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
         // Setting up bStats and analytics
         new Thread(metricsService::start, "Slimefun Metrics").start();
-        analyticsService.start();
 
         // Registering all GEO Resources
         logger.log(Level.INFO, "加载矿物资源...");
@@ -564,7 +526,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Our {@link Logger} instance
      */
     public static Logger logger() {
-        validateInstance();
         return instance.getLogger();
     }
 
@@ -631,7 +592,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Our {@link GPSNetwork} instance
      */
     public static GPSNetwork getGPSNetwork() {
-        validateInstance();
         return instance.gpsNetwork;
     }
 
@@ -810,7 +770,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Slimefun's {@link MinecraftRecipeService} instance
      */
     public static MinecraftRecipeService getMinecraftRecipeService() {
-        validateInstance();
         return instance.recipeService;
     }
 
@@ -820,22 +779,18 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The currently installed version of Slimefun
      */
     public static String getVersion() {
-        validateInstance();
         return instance.getDescription().getVersion();
     }
 
     public static Config getCfg() {
-        validateInstance();
         return instance.cfgManager.getPluginConfig();
     }
 
     public static Config getResearchCfg() {
-        validateInstance();
         return instance.researches;
     }
 
     public static Config getItemCfg() {
-        validateInstance();
         return instance.items;
     }
 
@@ -848,12 +803,10 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Our instance of {@link PerWorldSettingsService}
      */
     public static PerWorldSettingsService getWorldSettingsService() {
-        validateInstance();
         return instance.worldSettingsService;
     }
 
     public static TickerTask getTickerTask() {
-        validateInstance();
         return instance.ticker;
     }
 
@@ -863,7 +816,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The {@link LocalizationService} of Slimefun
      */
     public static LocalizationService getLocalization() {
-        validateInstance();
         return instance.local;
     }
 
@@ -874,27 +826,22 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Our instance of {@link HologramsService}
      */
     public static HologramsService getHologramsService() {
-        validateInstance();
         return instance.hologramsService;
     }
 
     public static CustomItemDataService getItemDataService() {
-        validateInstance();
         return instance.itemDataService;
     }
 
     public static CustomTextureService getItemTextureService() {
-        validateInstance();
         return instance.textureService;
     }
 
     public static PermissionsService getPermissionsService() {
-        validateInstance();
         return instance.permissionsService;
     }
 
     public static BlockDataService getBlockDataService() {
-        validateInstance();
         return instance.blockDataService;
     }
 
@@ -905,7 +852,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Our instance of {@link IntegrationsManager}
      */
     public static IntegrationsManager getIntegrations() {
-        validateInstance();
         return instance.integrations;
     }
 
@@ -926,7 +872,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      */
     @Nonnull
     public static SoundService getSoundService() {
-        validateInstance();
         return instance.soundService;
     }
 
@@ -937,7 +882,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Our {@link NetworkManager} instance
      */
     public static NetworkManager getNetworkManager() {
-        validateInstance();
         return instance.networkManager;
     }
 
@@ -964,7 +908,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The {@link UpdaterService} for Slimefun
      */
     public static UpdaterService getUpdater() {
-        validateInstance();
         return instance.updaterService;
     }
 
@@ -975,7 +918,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The {@link MetricsService} for Slimefun
      */
     public static MetricsService getMetricsService() {
-        validateInstance();
         return instance.metricsService;
     }
 
@@ -986,7 +928,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The {@link GitHubService} for Slimefun
      */
     public static GitHubService getGitHubService() {
-        validateInstance();
         return instance.gitHubService;
     }
 
@@ -997,36 +938,30 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Whether we are inside a unit test
      */
     public boolean isUnitTest() {
-        return minecraftVersion == MinecraftVersion.UNIT_TEST;
+        return false;
     }
 
     public static SlimefunConfigManager getConfigManager() {
-        validateInstance();
         return instance.cfgManager;
     }
 
     public static SlimefunDatabaseManager getDatabaseManager() {
-        validateInstance();
         return instance.databaseManager;
     }
 
     public static SlimefunRegistry getRegistry() {
-        validateInstance();
         return instance.registry;
     }
 
     public static GrapplingHookListener getGrapplingHookListener() {
-        validateInstance();
         return instance.grapplingHookListener;
     }
 
     public static BackpackListener getBackpackListener() {
-        validateInstance();
         return instance.backpackListener;
     }
 
     public static SlimefunBowListener getBowListener() {
-        validateInstance();
         return instance.bowListener;
     }
 
@@ -1036,7 +971,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Slimefun's command
      */
     public static SlimefunCommand getCommand() {
-        validateInstance();
         return instance.command;
     }
 
@@ -1047,12 +981,10 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The {@link SlimefunProfiler}
      */
     public static SlimefunProfiler getProfiler() {
-        validateInstance();
         return instance.profiler;
     }
 
     public static SQLProfiler getSQLProfiler() {
-        validateInstance();
         return instance.sqlProfiler;
     }
 
@@ -1062,7 +994,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return The current version of Minecraft
      */
     public static MinecraftVersion getMinecraftVersion() {
-        validateInstance();
         return instance.minecraftVersion;
     }
 
@@ -1073,7 +1004,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return Whether this is a new installation of Slimefun
      */
     public static boolean isNewlyInstalled() {
-        validateInstance();
         return instance.isNewlyInstalled;
     }
 
@@ -1086,7 +1016,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @return A {@link Set} of every {@link Plugin} that is dependent on Slimefun
      */
     public static Set<Plugin> getInstalledAddons() {
-        validateInstance();
         String pluginName = instance.getName();
 
         // @formatter:off - Collect any Plugin that (soft)-depends on Slimefun
@@ -1165,7 +1094,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     }
 
     public static PlayerChatCatcher getChatCatcher() {
-        validateInstance();
         return instance.chatCatcher;
     }
 
