@@ -32,6 +32,7 @@ public final class SlimefunExtended {
             sf.getLogger().log(Level.WARNING, "无法识别你正在使用的服务端版本 :(");
             return false;
         }
+        return true;
     }
 
     public static void init(Slimefun sf) {;
