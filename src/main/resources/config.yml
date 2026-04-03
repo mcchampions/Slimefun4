@@ -9,15 +9,13 @@
 #    legacy-ore-grinder - 是否使用旧版的碎矿机机制
 #    language - 粘液科技文本语言 (不包括物品)
 #    enable-translations - 多语言功能
-#    backwards-compatibility - 物品向后兼容模式, 关闭后物品会使用新版物品系统
-#                             将会提升性能
 #    log-duplicate-block-entries - 是否输出发现重复方块的警告
 #    burn-players-when-radioactive - 是否在当玩家暴露在辐射中时灼烧玩家
 #    drop-excess-sf-give-items - 是否在背包已满时使用命令给予 Slimefun 物品直接掉落溢出的物品
 #    backup-data - 自动备份数据
 #    bypass-environment-check - 跳过兼容性检查 (注意: 打开后将不予接受问题反馈)
 options:
-  auto-update: true
+  auto-update: false
   chat-prefix: '&a&lSlimefun 4 &7> '
   armor-update-interval: 10
   enable-armor-effects: true
