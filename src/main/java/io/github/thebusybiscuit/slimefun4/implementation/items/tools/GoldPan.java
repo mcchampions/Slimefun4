@@ -51,7 +51,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
     private final Set<Material> inputMaterials = EnumSet.of(Material.GRAVEL);
     private final Set<GoldPanDrop> drops = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
+
     public GoldPan(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

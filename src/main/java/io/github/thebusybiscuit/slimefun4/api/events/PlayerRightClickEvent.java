@@ -5,7 +5,6 @@ import io.github.bakedlibs.dough.data.TriStateOptional;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import java.util.Optional;
 import javax.annotation.Nonnull;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -167,12 +166,10 @@ public class PlayerRightClickEvent extends PlayerEvent {
     }
 
     public void setUseItem(Result result) {
-        Validate.notNull(result, "Result cannot be null");
         itemResult = result;
     }
 
     public void setUseBlock(Result result) {
-        Validate.notNull(result, "Result cannot be null");
         blockResult = result;
     }
 

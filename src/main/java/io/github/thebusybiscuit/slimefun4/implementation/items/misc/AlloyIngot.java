@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class AlloyIngot extends SlimefunItem {
 
-    @ParametersAreNonnullByDefault
+
     public AlloyIngot(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe) {
         super(itemGroup, item, RecipeType.SMELTERY, recipe);
     }

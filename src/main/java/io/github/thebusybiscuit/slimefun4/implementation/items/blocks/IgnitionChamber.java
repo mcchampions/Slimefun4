@@ -13,7 +13,6 @@ import io.papermc.lib.PaperLib;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -43,7 +42,7 @@ public class IgnitionChamber extends SlimefunItem {
 
     // @formatter:on
 
-    @ParametersAreNonnullByDefault
+
     public IgnitionChamber(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -63,10 +62,10 @@ public class IgnitionChamber extends SlimefunItem {
      *         This will return <code>false</code> when there is no
      *         chamber or no flint and steel present
      */
-    @ParametersAreNonnullByDefault
+
     public static boolean useFlintAndSteel(Player p, Block smelteryBlock) {
-        Validate.notNull(p, "The Player must not be null!");
-        Validate.notNull(smelteryBlock, "The smeltery block cannot be null!");
+        
+        
 
         Inventory inv = findIgnitionChamber(smelteryBlock);
 

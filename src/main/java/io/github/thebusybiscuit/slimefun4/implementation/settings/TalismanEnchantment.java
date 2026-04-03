@@ -20,7 +20,7 @@ public class TalismanEnchantment extends ItemSetting<Boolean> {
     private final Enchantment enchantment;
     private final int level;
 
-    @ParametersAreNonnullByDefault
+
     public TalismanEnchantment(MagicianTalisman talisman, Enchantment enchantment, int level) {
         super(
                 talisman,

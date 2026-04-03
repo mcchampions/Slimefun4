@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class CarbonPress extends AContainer implements RecipeDisplayItem {
 
-    @ParametersAreNonnullByDefault
+
     public CarbonPress(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

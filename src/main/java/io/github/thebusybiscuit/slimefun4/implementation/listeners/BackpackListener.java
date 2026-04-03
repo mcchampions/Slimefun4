@@ -185,14 +185,14 @@ public class BackpackListener implements Listener {
         return backpack.isItemAllowed(item, SlimefunItem.getByItem(item));
     }
 
-    @ParametersAreNonnullByDefault
+
     public void openBackpack(Player p, ItemStack item, SlimefunBackpack backpack) {
         if (backpack.canUse(p, true) && !PlayerProfile.get(p, profile -> openBackpackInternal(p, item, backpack))) {
             Slimefun.getLocalization().sendMessage(p, "messages.opening-backpack");
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void openBackpackInternal(Player p, ItemStack item, SlimefunBackpack backpackItem) {
         if (item.getAmount() != 1) {
             Slimefun.getLocalization().sendMessage(p, "backpack.no-stack", true);

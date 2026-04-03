@@ -50,7 +50,7 @@ public class OreWasher extends MultiBlockMachine {
 
     private final boolean legacyMode;
 
-    @ParametersAreNonnullByDefault
+    
     public OreWasher(ItemGroup itemGroup, SlimefunItemStack item) {
         // @formatter:off
         super(
@@ -163,7 +163,7 @@ public class OreWasher extends MultiBlockMachine {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void removeItem(
             Player p,
             Block b,

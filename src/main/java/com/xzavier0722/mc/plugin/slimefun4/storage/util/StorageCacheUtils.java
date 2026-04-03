@@ -29,17 +29,17 @@ import org.bukkit.block.Block;
 public class StorageCacheUtils {
     private static final Set<ADataContainer> loadingData = new CopyOnWriteArraySet<>();
 
-    @ParametersAreNonnullByDefault
+
     public static boolean hasSlimefunBlock(Location l) {
         return hasBlock(l) || hasUniversalBlock(l);
     }
 
-    @ParametersAreNonnullByDefault
+
     public static boolean hasBlock(Location l) {
         return getBlock(l) != null;
     }
 
-    @ParametersAreNonnullByDefault
+
     public static boolean hasUniversalBlock(Location l) {
         var uniDataByNBT = TaskUtil.runSyncMethod(() -> Slimefun.getBlockDataService()
                 .getUniversalDataUUID(l.getBlock())
@@ -55,12 +55,12 @@ public class StorageCacheUtils {
                 .isPresent();
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static SlimefunBlockData getBlock(Location l) {
         return Slimefun.getDatabaseManager().getBlockDataController().getBlockDataFromCache(l);
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static ASlimefunDataContainer getDataContainer(Location l) {
         var blockData = getBlock(l);
         if (blockData != null) {
@@ -70,7 +70,7 @@ public class StorageCacheUtils {
         return getUniversalBlock(l);
     }
 
-    @ParametersAreNonnullByDefault
+
     public static boolean isBlock(Location l, String id) {
         var blockData = getBlock(l);
         return blockData != null && id.equals(blockData.getSfId());
@@ -80,12 +80,12 @@ public class StorageCacheUtils {
      * @deprecated use {@link #getSlimefunItem(Location)} instead
      */
     @Deprecated(forRemoval = true)
-    @ParametersAreNonnullByDefault
+
     @Nullable public static SlimefunItem getSfItem(Location l) {
         return getSlimefunItem(l);
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static SlimefunItem getSlimefunItem(Location l) {
         var blockData = getBlock(l);
 
@@ -97,7 +97,7 @@ public class StorageCacheUtils {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static String getData(Location loc, String key) {
         var blockData = getBlock(loc);
 
@@ -114,13 +114,13 @@ public class StorageCacheUtils {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static String getUniversalBlockData(UUID uuid, Location loc, String key) {
         var universalData = getUniversalBlock(uuid, loc);
         return universalData == null ? null : universalData.getData(key);
     }
 
-    @ParametersAreNonnullByDefault
+
     public static void setData(Location loc, String key, String val) {
         var block = getBlock(loc);
         if (block != null) {
@@ -134,7 +134,7 @@ public class StorageCacheUtils {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     public static void removeData(Location loc, String key) {
         var block = getBlock(loc);
         if (block != null) {
@@ -148,7 +148,7 @@ public class StorageCacheUtils {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static BlockMenu getMenu(Location loc) {
         var blockData = getBlock(loc);
         if (blockData == null) {
@@ -163,7 +163,7 @@ public class StorageCacheUtils {
         return blockData.getBlockMenu();
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static SlimefunUniversalBlockData getUniversalBlock(UUID uuid) {
         var uniData = Slimefun.getDatabaseManager().getBlockDataController().getUniversalBlockDataFromCache(uuid);
 
@@ -179,12 +179,12 @@ public class StorageCacheUtils {
         return uniData;
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static SlimefunUniversalBlockData getUniversalBlock(UUID uuid, Location l) {
         return getUniversalBlock(uuid, l, true);
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static SlimefunUniversalBlockData getUniversalBlock(UUID uuid, Location l, boolean updateLastPresent) {
         var uniData = getUniversalBlock(uuid);
 
@@ -201,7 +201,7 @@ public class StorageCacheUtils {
      * @param location {@link Location}
      * @return {@link SlimefunUniversalBlockData}
      */
-    @ParametersAreNonnullByDefault
+
     @Nullable public static SlimefunUniversalBlockData getUniversalBlock(Location location) {
         return Slimefun.getDatabaseManager()
                 .getBlockDataController()
@@ -215,7 +215,7 @@ public class StorageCacheUtils {
      * @param block {@link Block}
      * @return {@link SlimefunUniversalBlockData}
      */
-    @ParametersAreNonnullByDefault
+
     @Nullable public static SlimefunUniversalBlockData getUniversalBlock(Block block) {
         return getUniversalBlock(block.getLocation());
     }
@@ -226,7 +226,7 @@ public class StorageCacheUtils {
      * @param block {@link Block}
      * @return {@link SlimefunUniversalData}
      */
-    @ParametersAreNonnullByDefault
+
     @Nullable public static UniversalMenu getUniversalMenu(Block block) {
         var uniData = getUniversalBlock(block);
 
@@ -237,7 +237,7 @@ public class StorageCacheUtils {
         return uniData.getMenu();
     }
 
-    @ParametersAreNonnullByDefault
+
     @Nullable public static UniversalMenu getUniversalMenu(UUID uuid, Location l) {
         var uniData = Slimefun.getDatabaseManager().getBlockDataController().getUniversalBlockDataFromCache(uuid);
 

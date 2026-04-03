@@ -21,7 +21,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -69,12 +68,12 @@ public final class TeleportationManager {
      * @param b
      *            {@link Block} from where the {@link Player} is being teleported
      */
-    @ParametersAreNonnullByDefault
+    
     public void openTeleporterGUI(Player p, UUID ownerUUID, Block b) {
         openTeleporterGUI(p, ownerUUID, b, Slimefun.getGPSNetwork().getNetworkComplexity(ownerUUID));
     }
 
-    @ParametersAreNonnullByDefault
+    
     public void openTeleporterGUI(Player p, UUID ownerUUID, Block b, int complexity) {
         if (teleporterUsers.add(p.getUniqueId())) {
             SoundEffect.TELEPORTATION_MANAGER_OPEN_GUI.playFor(p);
@@ -163,7 +162,7 @@ public final class TeleportationManager {
         };
     }
 
-    @ParametersAreNonnullByDefault
+    
     public void teleport(UUID uuid, int complexity, Location source, Location destination, boolean resistance) {
         teleporterUsers.add(uuid);
 
@@ -195,9 +194,6 @@ public final class TeleportationManager {
      * @return The amount of time the teleportation will take
      */
     public int getTeleportationTime(int complexity, Location source, Location destination) {
-        Validate.notNull(source, "Source cannot be null");
-        Validate.notNull(source, "Destination cannot be null");
-
         if (complexity < 100) {
             return 100;
         }
@@ -210,7 +206,7 @@ public final class TeleportationManager {
         return Math.max(1, NumberUtils.longToInt(unsafeTime));
     }
 
-    @ParametersAreNonnullByDefault
+    
     private long distanceSquared(Location source, Location destination) {
         if (source.getWorld().getUID().equals(destination.getWorld().getUID())) {
             long distance = (long) source.distanceSquared(destination);
@@ -240,7 +236,7 @@ public final class TeleportationManager {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void updateProgress(
             UUID uuid, int speed, int progress, Location source, Location destination, boolean resistance) {
         Player p = Bukkit.getPlayer(uuid);
@@ -273,7 +269,7 @@ public final class TeleportationManager {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void onTeleport(Player p, Location destination, boolean success, boolean resistance) {
         /*
          * This needs to run on the main Thread so we force it, as

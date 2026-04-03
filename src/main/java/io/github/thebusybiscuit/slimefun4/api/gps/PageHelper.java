@@ -44,7 +44,7 @@ public class PageHelper {
      *        the "next page" button. This handler is only applied when the button
      *        is active.
      */
-    @ParametersAreNonnullByDefault
+
     public static void renderPageButton(
             ChestMenu menu,
             int prevSlot,

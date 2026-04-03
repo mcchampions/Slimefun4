@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ExplosivePickaxe extends ExplosiveTool {
 
-    @ParametersAreNonnullByDefault
+
     public ExplosivePickaxe(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

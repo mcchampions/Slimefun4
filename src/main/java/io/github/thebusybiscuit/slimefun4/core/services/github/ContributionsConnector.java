@@ -30,7 +30,7 @@ class ContributionsConnector extends GitHubConnector {
 
     private boolean finished;
 
-    @ParametersAreNonnullByDefault
+
     ContributionsConnector(GitHubService github, String prefix, int page, String repository, ContributorRole role) {
         super(github, repository);
 

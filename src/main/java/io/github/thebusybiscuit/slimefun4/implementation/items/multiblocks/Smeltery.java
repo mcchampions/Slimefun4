@@ -45,7 +45,7 @@ public class Smeltery extends AbstractSmeltery {
     private final ItemSetting<Integer> fireBreakingChance =
             new IntRangeSetting(this, "fire-breaking-chance", 0, 34, 100);
 
-    @ParametersAreNonnullByDefault
+    
     public Smeltery(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,
@@ -97,7 +97,7 @@ public class Smeltery extends AbstractSmeltery {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void consumeFire(Player p, Block dispenser, Block b) {
         boolean isFireRenewed = IgnitionChamber.useFlintAndSteel(p, dispenser);
 

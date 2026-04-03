@@ -31,7 +31,7 @@ public class OilPump extends AContainer implements RecipeDisplayItem, NotDiagona
 
     private final ItemStack emptyBucket = new ItemStack(Material.BUCKET);
 
-    @ParametersAreNonnullByDefault
+
     public OilPump(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

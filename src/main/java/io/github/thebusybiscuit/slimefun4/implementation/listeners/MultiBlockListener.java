@@ -69,7 +69,7 @@ public class MultiBlockListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private boolean compareMaterials(Block b, Material[] blocks, boolean onlyTwoWay) {
         if (!compareMaterialsVertical(b, blocks[1], blocks[4], blocks[7])) {
             return false;
@@ -97,7 +97,7 @@ public class MultiBlockListener implements Listener {
                 && (bottom == null || equals(b.getRelative(BlockFace.DOWN).getType(), bottom));
     }
 
-    @ParametersAreNonnullByDefault
+
     private boolean equals(Material a, Material b) {
         if (a == b) {
             return true;

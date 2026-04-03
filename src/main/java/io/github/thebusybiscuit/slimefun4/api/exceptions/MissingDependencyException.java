@@ -21,7 +21,7 @@ public class MissingDependencyException extends RuntimeException {
      * @param addon      The {@link SlimefunAddon} that caused this exception
      * @param dependency The dependency that is required ("Slimefun")
      */
-    @ParametersAreNonnullByDefault
+    
     public MissingDependencyException(SlimefunAddon addon, String dependency) {
         super("Slimefun Addon \""
                 + addon.getName()

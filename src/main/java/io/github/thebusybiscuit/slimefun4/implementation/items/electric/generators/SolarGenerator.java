@@ -38,7 +38,7 @@ public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
     private final int nightEnergy;
     private final int capacity;
 
-    @ParametersAreNonnullByDefault
+
     public SolarGenerator(
             ItemGroup itemGroup,
             int dayEnergy,
@@ -56,7 +56,7 @@ public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
         addItemSetting(useNightEnergyInOtherDimensions);
     }
 
-    @ParametersAreNonnullByDefault
+
     public SolarGenerator(
             ItemGroup itemGroup,
             int dayEnergy,

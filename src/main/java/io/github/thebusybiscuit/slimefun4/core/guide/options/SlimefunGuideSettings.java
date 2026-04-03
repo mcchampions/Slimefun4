@@ -57,7 +57,7 @@ public final class SlimefunGuideSettings {
         options.add(option);
     }
 
-    @ParametersAreNonnullByDefault
+
     public static void openSettings(Player p, ItemStack guide) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "guide.title.settings"));
 
@@ -72,7 +72,7 @@ public final class SlimefunGuideSettings {
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
+
     private static void addHeader(Player p, ChestMenu menu, ItemStack guide) {
         LocalizationService locale = Slimefun.getLocalization();
 
@@ -240,7 +240,7 @@ public final class SlimefunGuideSettings {
                 });
     }
 
-    @ParametersAreNonnullByDefault
+
     private static void addConfigurableOptions(Player p, ChestMenu menu, ItemStack guide) {
         int i = 19;
 

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -24,12 +23,12 @@ public class NestedItemGroup extends FlexItemGroup {
     private static final int GROUP_SIZE = 36;
     private final List<SubItemGroup> subGroups = new ArrayList<>();
 
-    @ParametersAreNonnullByDefault
+    
     public NestedItemGroup(NamespacedKey key, ItemStack item) {
         this(key, item, 3);
     }
 
-    @ParametersAreNonnullByDefault
+    
     public NestedItemGroup(NamespacedKey key, ItemStack item, int tier) {
         super(key, item, tier);
     }
@@ -41,7 +40,7 @@ public class NestedItemGroup extends FlexItemGroup {
      *            The {@link SubItemGroup} to add.
      */
     public void addSubGroup(SubItemGroup group) {
-        Validate.notNull(group, "The sub item group cannot be null!");
+        
 
         subGroups.add(group);
     }
@@ -53,24 +52,22 @@ public class NestedItemGroup extends FlexItemGroup {
      *            The {@link SubItemGroup} to remove.
      */
     public void removeSubGroup(SubItemGroup group) {
-        Validate.notNull(group, "The sub item group cannot be null!");
-
         subGroups.remove(group);
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+    
     public boolean isVisible(Player p, PlayerProfile profile, SlimefunGuideMode mode) {
         return mode == SlimefunGuideMode.SURVIVAL_MODE;
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+    
     public void open(Player p, PlayerProfile profile, SlimefunGuideMode mode) {
         openGuide(p, profile, mode, 1);
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void openGuide(Player p, PlayerProfile profile, SlimefunGuideMode mode, int page) {
         GuideHistory history = profile.getGuideHistory();
 

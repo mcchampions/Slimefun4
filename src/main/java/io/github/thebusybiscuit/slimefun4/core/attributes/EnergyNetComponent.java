@@ -14,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 
 /**
@@ -103,7 +102,7 @@ public interface EnergyNetComponent extends ItemAttribute {
     default int getCharge(Location l, Config config) {
         Slimefun.logger().log(Level.FINE, "正在调用旧 BlockStorage 的方法, 建议使用对应附属的新方块存储适配版.");
 
-        Validate.notNull(l, "Location was null!");
+        
 
         // Emergency fallback, this cannot hold a charge, so we'll just return zero
         if (!isChargeable()) {
@@ -149,8 +148,8 @@ public interface EnergyNetComponent extends ItemAttribute {
      * @return The charge stored at that {@link Location}
      */
     default long getChargeLong(Location l, ASlimefunDataContainer data) {
-        Validate.notNull(l, "Location was null!");
-        Validate.notNull(data, "data was null!");
+        
+        
 
         // Emergency fallback, this cannot hold a charge, so we'll just return zero
         if (!isChargeable()) {
@@ -183,8 +182,8 @@ public interface EnergyNetComponent extends ItemAttribute {
      *            The new charge
      */
     default void setCharge(Location l, long charge) {
-        Validate.notNull(l, "Location was null!");
-        Validate.isTrue(charge >= 0, "You can only set a charge of zero or more!");
+        
+        
 
         try {
             long capacity = getCapacity();
@@ -232,8 +231,8 @@ public interface EnergyNetComponent extends ItemAttribute {
     }
 
     default void addCharge(Location l, long charge) {
-        Validate.notNull(l, "Location was null!");
-        Validate.isTrue(charge > 0, "You can only add a positive charge!");
+        
+        
 
         try {
             long capacity = getCapacityLong();
@@ -271,8 +270,8 @@ public interface EnergyNetComponent extends ItemAttribute {
     }
 
     default void removeCharge(Location l, long charge) {
-        Validate.notNull(l, "Location was null!");
-        Validate.isTrue(charge > 0, "The charge to remove must be greater than zero!");
+        
+        
 
         try {
             long capacity = getCapacityLong();

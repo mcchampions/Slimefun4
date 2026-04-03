@@ -29,7 +29,7 @@ public class AndroidMineEvent extends Event implements Cancellable {
      * @param android
      *            The {@link AndroidInstance} that triggered this {@link Event}
      */
-    @ParametersAreNonnullByDefault
+
     public AndroidMineEvent(Block block, AndroidInstance android) {
         this.block = block;
         this.android = android;

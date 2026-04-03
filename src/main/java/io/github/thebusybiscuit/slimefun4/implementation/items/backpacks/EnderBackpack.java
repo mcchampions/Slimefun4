@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class EnderBackpack extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-    @ParametersAreNonnullByDefault
+    
     public EnderBackpack(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

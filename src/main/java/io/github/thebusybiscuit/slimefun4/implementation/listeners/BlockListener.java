@@ -240,7 +240,7 @@ public class BlockListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void callToolHandler(BlockBreakEvent e, ItemStack item, int fortune, List<ItemStack> drops) {
         SlimefunItem tool = SlimefunItem.getByItem(item);
 
@@ -253,7 +253,7 @@ public class BlockListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void callBlockHandler(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
         var loc = e.getBlock().getLocation();
         SlimefunItem sfItem = StorageCacheUtils.getSlimefunItem(loc);
@@ -270,7 +270,7 @@ public class BlockListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void dropItems(
             BlockBreakEvent e, ItemStack item, Block block, @Nullable SlimefunItem sfBlock, List<ItemStack> drops) {
         if (!drops.isEmpty()) {
@@ -311,7 +311,7 @@ public class BlockListener implements Listener {
      * @param block  The {@link Block} that was broken
      * @param item   The {@link ItemStack} that was used to break the {@link Block}
      */
-    @ParametersAreNonnullByDefault
+
     private void checkForSensitiveBlockAbove(Player player, Block block, ItemStack item) {
         Block blockAbove = block.getRelative(BlockFace.UP);
 
@@ -363,7 +363,7 @@ public class BlockListener implements Listener {
      * @param block The {@link Block} in question
      * @param count The amount of times this has been recursively called
      */
-    @ParametersAreNonnullByDefault
+
     private void checkForSensitiveBlocks(Block block, Integer count, boolean isDropItems) {
         /**if (count >= Bukkit.getServer().getMaxChainedNeighborUpdates()) {
          * return;
@@ -397,7 +397,7 @@ public class BlockListener implements Listener {
      * @param block     The {@link Block} the {@link BlockData} would be at
      * @return Whether the {@link BlockData} would be supported at the given {@link Block}
      */
-    @ParametersAreNonnullByDefault
+
     private boolean isSupported(BlockData blockData, Block block) {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
             return blockData.isSupported(block);

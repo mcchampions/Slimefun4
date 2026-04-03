@@ -79,7 +79,7 @@ public class DebugFishListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void onLeftClick(Player p, Block b, PlayerInteractEvent e) {
         if (p.isSneaking()) {
             var controller = Slimefun.getDatabaseManager().getBlockDataController();
@@ -92,7 +92,7 @@ public class DebugFishListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void onRightClick(Player p, Block b, BlockFace face) {
         if (p.isSneaking()) {
             // Fixes #2655 - Delaying the placement to prevent a new event from being fired
@@ -191,7 +191,7 @@ public class DebugFishListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void sendInfo(Player p, Block b, ASlimefunDataContainer data) {
         SlimefunItem item = SlimefunItem.getById(data.getSfId());
 

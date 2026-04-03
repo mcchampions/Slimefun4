@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 
 /**
@@ -45,8 +44,8 @@ public class Contributor {
      *            A link to their GitHub profile
      */
     public Contributor(String minecraftName, String profile) {
-        Validate.notNull(minecraftName, "Username must never be null!");
-        Validate.notNull(profile, "The profile cannot be null!");
+        
+        
 
         githubUsername = profile.substring(profile.lastIndexOf('/') + 1);
         minecraftUsername = minecraftName;
@@ -60,7 +59,7 @@ public class Contributor {
      *            The username of this {@link Contributor}
      */
     public Contributor(String username) {
-        Validate.notNull(username, "Username must never be null!");
+        
 
         githubUsername = username;
         minecraftUsername = username;
@@ -77,8 +76,8 @@ public class Contributor {
      *            The amount of contributions made as that role
      */
     public void setContributions(String role, int commits) {
-        Validate.notNull(role, "The role cannot be null!");
-        Validate.isTrue(commits >= 0, "Contributions cannot be negative");
+        
+        
 
         contributions.put(role, commits);
     }
@@ -137,7 +136,7 @@ public class Contributor {
      * @return The amount of contributions this {@link Contributor} submitted as the given role
      */
     public int getContributions(String role) {
-        Validate.notNull(role, "The role cannot be null!");
+        
 
         return contributions.getOrDefault(role, 0);
     }

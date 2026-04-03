@@ -23,7 +23,7 @@ import org.bukkit.inventory.RecipeChoice.MaterialChoice;
  */
 public class ElectricFurnace extends AContainer implements NotHopperable {
 
-    @ParametersAreNonnullByDefault
+
     public ElectricFurnace(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

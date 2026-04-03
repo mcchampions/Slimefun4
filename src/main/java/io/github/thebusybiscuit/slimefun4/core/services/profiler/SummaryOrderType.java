@@ -28,7 +28,7 @@ public enum SummaryOrderType {
      */
     AVERAGE;
 
-    @ParametersAreNonnullByDefault
+    
     List<Map.Entry<String, Long>> sort(SlimefunProfiler profiler, Set<Map.Entry<String, Long>> entrySet) {
         switch (this) {
             case HIGHEST:

@@ -83,8 +83,6 @@ public final class VersionedSound {
      */
     @Nonnull
     public static Sound valueOf(String name) throws IllegalArgumentException {
-        Preconditions.checkArgument(name != null, "Sound 名称不能为空");
-
         String enumName = name.toUpperCase(Locale.ROOT).replace('.', '_').replace('-', '_');
         try {
             if (VALUE_OF_METHOD != null) {

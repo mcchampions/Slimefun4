@@ -22,12 +22,12 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class FlexItemGroup extends ItemGroup {
 
-    @ParametersAreNonnullByDefault
+
     protected FlexItemGroup(NamespacedKey key, ItemStack item) {
         this(key, item, 3);
     }
 
-    @ParametersAreNonnullByDefault
+
     protected FlexItemGroup(NamespacedKey key, ItemStack item, int tier) {
         super(key, item, tier);
     }
@@ -55,7 +55,7 @@ public abstract class FlexItemGroup extends ItemGroup {
      *
      * @return Whether to display this {@link FlexItemGroup}
      */
-    @ParametersAreNonnullByDefault
+
     public abstract boolean isVisible(Player p, PlayerProfile profile, SlimefunGuideMode layout);
 
     /**

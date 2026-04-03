@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.papermc.lib.PaperLib;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 
 /**
@@ -206,22 +205,20 @@ public enum MinecraftVersion {
      * @return Whether this {@link MinecraftVersion} is newer or equal to the given {@link MinecraftVersion}
      */
     public boolean isAtLeast(MinecraftVersion version) {
-        Validate.notNull(version, "A Minecraft version cannot be null!");
-
         if (this == UNKNOWN) {
             return false;
         }
 
-        /**
-         * Unit-Test only code.
-         * Running #isAtLeast(...) should always be meaningful.
-         * If the provided version equals the lowest supported version, then
-         * this will essentially always return true and result in a tautology.
-         * This is most definitely an oversight from us and should be fixed, therefore
-         * we will trigger an exception.
-         *
-         * In order to not disrupt server operations, this exception is only thrown during
-         * unit tests since the oversight itself will be harmless.
+        /*
+          Unit-Test only code.
+          Running #isAtLeast(...) should always be meaningful.
+          If the provided version equals the lowest supported version, then
+          this will essentially always return true and result in a tautology.
+          This is most definitely an oversight from us and should be fixed, therefore
+          we will trigger an exception.
+
+          In order to not disrupt server operations, this exception is only thrown during
+          unit tests since the oversight itself will be harmless.
          */
         if (this == UNIT_TEST && version.ordinal() == 0) {
             throw new IllegalArgumentException("Version " + version + " is the lowest supported version already!");
@@ -249,7 +246,7 @@ public enum MinecraftVersion {
      */
     public boolean isBefore(MinecraftVersion version) {
         return !isAtLeast(version);
-        //        Validate.notNull(version, "A Minecraft version cannot be null!");
+        //        
         //
         //        if (this == UNKNOWN) {
         //            return true;

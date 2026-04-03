@@ -54,7 +54,7 @@ public class MinerAndroid extends ProgrammableAndroid {
     private final ItemSetting<Boolean> firesEvent = new ItemSetting<>(this, "trigger-event-for-generators", false);
     private final ItemSetting<Boolean> applyOptimizations = new ItemSetting<>(this, "reduced-block-updates", true);
 
-    @ParametersAreNonnullByDefault
+
     public MinerAndroid(
             ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, tier, item, recipeType, recipe);
@@ -69,7 +69,7 @@ public class MinerAndroid extends ProgrammableAndroid {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+
     protected void dig(Block b, UniversalMenu menu, Block block) {
         Collection<ItemStack> drops = block.getDrops(effectivePickaxe);
 
@@ -94,7 +94,7 @@ public class MinerAndroid extends ProgrammableAndroid {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+
     protected void moveAndDig(Block b, UniversalMenu menu, BlockFace face, Block block) {
         Collection<ItemStack> drops = block.getDrops(effectivePickaxe);
 
@@ -123,7 +123,7 @@ public class MinerAndroid extends ProgrammableAndroid {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void breakBlock(UniversalMenu menu, Collection<ItemStack> drops, Block block) {
 
         if (!block.getWorld().getWorldBorder().isInside(block.getLocation())) {

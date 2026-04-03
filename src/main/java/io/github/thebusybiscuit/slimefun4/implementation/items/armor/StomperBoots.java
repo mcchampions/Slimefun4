@@ -32,7 +32,7 @@ import org.bukkit.util.Vector;
  */
 public class StomperBoots extends SlimefunItem {
 
-    @ParametersAreNonnullByDefault
+    
     public StomperBoots(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

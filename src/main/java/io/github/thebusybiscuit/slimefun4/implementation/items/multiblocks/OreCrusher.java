@@ -39,7 +39,7 @@ public class OreCrusher extends MultiBlockMachine {
 
     private final DoubleOreSetting doubleOres = new DoubleOreSetting(this);
 
-    @ParametersAreNonnullByDefault
+
     public OreCrusher(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,

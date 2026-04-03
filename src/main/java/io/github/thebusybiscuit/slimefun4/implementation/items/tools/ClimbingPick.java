@@ -26,7 +26,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
@@ -62,7 +61,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     private final Map<Material, ClimbableSurface> surfaces = new EnumMap<>(Material.class);
     private final Set<UUID> users = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
+
     public ClimbingPick(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         addItemSetting(dualWielding, damageOnUse);
@@ -121,7 +120,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      * @return The climbing speed for this {@link Material} or 0.
      */
     public double getClimbingSpeed(Material type) {
-        Validate.notNull(type, "The surface cannot be null");
+        
         ClimbableSurface surface = surfaces.get(type);
 
         if (surface != null) {
@@ -184,7 +183,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     }
 
     @Nonnull
-    @ParametersAreNonnullByDefault
+
     private ItemStack getOtherHandItem(Player p, EquipmentSlot hand) {
         if (hand == EquipmentSlot.HAND) {
             return p.getInventory().getItemInOffHand();
@@ -193,7 +192,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void climb(Player p, EquipmentSlot hand, ItemStack item, Block block) {
         double power = getClimbingSpeed(item, block.getType());
 
@@ -217,7 +216,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void swing(Player p, Block b, EquipmentSlot hand, ItemStack item) {
         if (isDualWieldingEnabled()) {
             if (ThreadLocalRandom.current().nextBoolean()) {
@@ -245,7 +244,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         return damageOnUse.getValue();
     }
 
-    @ParametersAreNonnullByDefault
+
     private void playAnimation(Player p, Block b, EquipmentSlot hand) {
         MinecraftVersion version = Slimefun.getMinecraftVersion();
 

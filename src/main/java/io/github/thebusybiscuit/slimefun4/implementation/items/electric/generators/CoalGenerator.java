@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class CoalGenerator extends AGenerator implements NotDiagonallyRotatable {
 
-    @ParametersAreNonnullByDefault
+
     public CoalGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

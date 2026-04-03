@@ -20,13 +20,13 @@ public class RecordSet {
         data = new EnumMap<>(FieldKey.class);
     }
 
-    @ParametersAreNonnullByDefault
+
     public void put(FieldKey key, String val) {
         checkReadonly();
         data.put(key, val);
     }
 
-    @ParametersAreNonnullByDefault
+
     public void put(FieldKey key, ItemStack itemStack) {
         checkReadonly();
         data.put(key, DataUtils.serializeItemStack(itemStack));
@@ -36,32 +36,32 @@ public class RecordSet {
         put(key, val ? "1" : "0");
     }
 
-    @ParametersAreNonnullByDefault
+
     public Map<FieldKey, String> getAll() {
         return Collections.unmodifiableMap(data);
     }
 
-    @ParametersAreNonnullByDefault
+
     public String get(FieldKey key) {
         return data.get(key);
     }
 
-    @ParametersAreNonnullByDefault
+
     public String getOrDef(FieldKey key, String def) {
         return data.getOrDefault(key, def);
     }
 
-    @ParametersAreNonnullByDefault
+
     public int getInt(FieldKey key) {
         return Integer.parseInt(data.get(key));
     }
 
-    @ParametersAreNonnullByDefault
+
     public ItemStack getItemStack(FieldKey key) {
         return DataUtils.deserializeItemStack(data.get(key));
     }
 
-    @ParametersAreNonnullByDefault
+
     public UUID getUUID(FieldKey key) {
         return UUID.fromString(data.get(key));
     }

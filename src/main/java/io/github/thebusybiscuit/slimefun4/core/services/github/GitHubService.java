@@ -14,7 +14,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 
 /**
  * This Service is responsible for grabbing every {@link Contributor} to this project
@@ -102,10 +101,10 @@ public class GitHubService {
 
     public Contributor addContributor(
             String minecraftName, String profileURL, String role, int commits) {
-        Validate.notNull(minecraftName, "Minecraft username must not be null.");
-        Validate.notNull(profileURL, "GitHub profile url must not be null.");
-        Validate.notNull(role, "Role should not be null.");
-        Validate.isTrue(commits >= 0, "Commit count cannot be negative.");
+        
+        
+        
+        
 
         String username = profileURL.substring(profileURL.lastIndexOf('/') + 1);
 
@@ -117,9 +116,9 @@ public class GitHubService {
     }
 
     public Contributor addContributor(String username, String role, int commits) {
-        Validate.notNull(username, "Username must not be null.");
-        Validate.notNull(role, "Role should not be null.");
-        Validate.isTrue(commits >= 0, "Commit count cannot be negative.");
+        
+        
+        
 
         Contributor contributor = contributors.computeIfAbsent(username, key -> new Contributor(username));
         contributor.setContributions(role, commits);

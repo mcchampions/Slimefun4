@@ -35,7 +35,7 @@ public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
      * @param input The input items of the craft
      * @param output The resulting item of the craft
      */
-    @ParametersAreNonnullByDefault
+
     public MultiBlockCraftEvent(Player p, MultiBlockMachine machine, ItemStack[] input, ItemStack output) {
         super(p);
         this.machine = machine;
@@ -51,7 +51,7 @@ public class MultiBlockCraftEvent extends PlayerEvent implements Cancellable {
      * @param input The input item of the craft
      * @param output The resulting item of the craft
      */
-    @ParametersAreNonnullByDefault
+
     public MultiBlockCraftEvent(Player p, MultiBlockMachine machine, ItemStack input, ItemStack output) {
         this(p, machine, new ItemStack[] {input}, output);
     }

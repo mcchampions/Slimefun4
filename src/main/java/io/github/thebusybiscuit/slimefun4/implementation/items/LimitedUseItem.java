@@ -14,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
 import java.util.Collections;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -39,7 +38,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
     private final NamespacedKey defaultUsageKey;
     private int maxUseCount = -1;
 
-    @ParametersAreNonnullByDefault
+
     protected LimitedUseItem(ItemGroup group, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(group, item, recipeType, recipe);
 
@@ -66,7 +65,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
      * @return The {@link LimitedUseItem} for chaining of setters
      */
     public final LimitedUseItem setMaxUseCount(int count) {
-        Validate.isTrue(count > 0, "The maximum use count must be greater than zero!");
+        
 
         maxUseCount = count;
         return this;
@@ -91,7 +90,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     protected void damageItem(Player p, ItemStack item) {
         if (item.getAmount() > 1) {
             item.setAmount(item.getAmount() - 1);
@@ -125,7 +124,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void updateItemLore(ItemStack item, ItemMeta meta, int usesLeft) {
         List<String> lore = meta.getLore();
 

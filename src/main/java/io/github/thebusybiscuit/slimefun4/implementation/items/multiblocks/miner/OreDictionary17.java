@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 class OreDictionary17 extends OreDictionary16 {
 
     @Override
-    @ParametersAreNonnullByDefault
+
     public ItemStack getDrops(Material material, Random random) {
         // In 1.17, breaking metal ores should get raw metals. Also support deepslate ores.
         return switch (material) {

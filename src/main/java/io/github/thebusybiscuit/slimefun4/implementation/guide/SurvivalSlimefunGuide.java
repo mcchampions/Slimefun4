@@ -38,7 +38,6 @@ import java.util.logging.Level;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -223,7 +222,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+    
     public void openItemGroup(PlayerProfile profile, ItemGroup itemGroup, int page) {
         Player p = profile.getPlayer();
 
@@ -370,7 +369,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+    
     public void openSearch(PlayerProfile profile, String input, boolean addToHistory) {
         Player p = profile.getPlayer();
 
@@ -433,20 +432,20 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
+    
     private boolean isItemGroupAccessible(Player p, SlimefunItem slimefunItem) {
         return Slimefun.getConfigManager().isShowHiddenItemGroupsInSearch()
                 || slimefunItem.getItemGroup().isAccessible(p);
     }
 
-    @ParametersAreNonnullByDefault
+    
     private boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm) {
         String itemName = ChatColor.stripColor(slimefunItem.getItemName()).toLowerCase(Locale.ROOT);
         return !itemName.isEmpty() && (itemName.contains(searchTerm));
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+    
     public void displayItem(PlayerProfile profile, ItemStack item, int index, boolean addToHistory) {
         Player p = profile.getPlayer();
 
@@ -563,7 +562,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+    
     public void displayItem(PlayerProfile profile, SlimefunItem item, boolean addToHistory) {
         Player p = profile.getPlayer();
 
@@ -657,11 +656,11 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         menu.addItem(16, output, ChestMenuUtils.getEmptyClickHandler());
     }
 
-    @ParametersAreNonnullByDefault
+    
     public void createHeader(Player p, PlayerProfile profile, ChestMenu menu) {
-        Validate.notNull(p, "The Player cannot be null!");
-        Validate.notNull(profile, "The Profile cannot be null!");
-        Validate.notNull(menu, "The Inventory cannot be null!");
+        
+        
+        
 
         for (int i = 0; i < 9; i++) {
             menu.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
@@ -722,7 +721,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private static ItemStack getDisplayItem(Player p, boolean isSlimefunRecipe, ItemStack item) {
         if (isSlimefunRecipe) {
             SlimefunItem slimefunItem = SlimefunItem.getByItem(item);
@@ -747,7 +746,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void displayRecipes(Player p, PlayerProfile profile, ChestMenu menu, RecipeDisplayItem sfItem, int page) {
         List<ItemStack> recipes = sfItem.getDisplayRecipes();
 
@@ -830,7 +829,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private static boolean hasPermission(Player p, SlimefunItem item) {
         return Slimefun.getPermissionsService().hasPermission(p, item);
     }
@@ -843,13 +842,13 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         return menu;
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void printErrorMessage(Player p, Throwable x) {
         p.sendMessage(ChatColor.DARK_RED + "服务器发生了一个内部错误. 请联系管理员处理.");
         Slimefun.logger().log(Level.SEVERE, "在打开指南书里的 Slimefun 物品时发生了意外!", x);
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void printErrorMessage(Player p, SlimefunItem item, Throwable x) {
         p.sendMessage(ChatColor.DARK_RED
                 + "An internal server error has occurred. Please inform an admin, check the console for"

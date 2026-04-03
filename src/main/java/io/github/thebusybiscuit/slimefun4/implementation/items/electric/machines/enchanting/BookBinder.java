@@ -32,7 +32,7 @@ public class BookBinder extends AContainer {
     private final ItemSetting<Integer> customMaxLevel =
             new IntRangeSetting(this, "custom-max-level", 0, 15, Integer.MAX_VALUE);
 
-    @ParametersAreNonnullByDefault
+
     public BookBinder(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -135,7 +135,7 @@ public class BookBinder extends AContainer {
     }
 
     @Nonnull
-    @ParametersAreNonnullByDefault
+
     private Map<Enchantment, Integer> combineEnchantments(
             Map<Enchantment, Integer> ech1, Map<Enchantment, Integer> ech2) {
         Map<Enchantment, Integer> enchantments = new HashMap<>(ech1);

@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 class OreDictionary16 implements OreDictionary {
 
     @Override
-    @ParametersAreNonnullByDefault
+
     public ItemStack getDrops(Material material, Random random) {
         return switch (material) {
             case COAL_ORE -> new ItemStack(Material.COAL);

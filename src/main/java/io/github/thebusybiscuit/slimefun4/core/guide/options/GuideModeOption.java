@@ -105,7 +105,7 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+    
     public void setSelectedOption(Player p, ItemStack guide, SlimefunGuideMode value) {
         guide.setItemMeta(SlimefunGuide.getItem(value).getItemMeta());
     }

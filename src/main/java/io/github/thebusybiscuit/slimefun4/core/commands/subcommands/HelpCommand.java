@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 
 class HelpCommand extends SubCommand {
 
-    @ParametersAreNonnullByDefault
+
     HelpCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "help", false);
     }

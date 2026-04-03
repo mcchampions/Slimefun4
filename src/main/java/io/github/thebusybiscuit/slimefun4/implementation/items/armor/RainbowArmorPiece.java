@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.Arrays;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.inventory.ItemStack;
@@ -30,7 +29,7 @@ public class RainbowArmorPiece extends SlimefunArmorPiece {
      * @param recipe An Array representing the recipe of this {@link RainbowArmorPiece}
      * @param dyeColors An Array representing the {@link DyeColor}s this {@link RainbowArmorPiece} will cycle between
      */
-    @ParametersAreNonnullByDefault
+    
     public RainbowArmorPiece(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -41,8 +40,6 @@ public class RainbowArmorPiece extends SlimefunArmorPiece {
 
         // TODO Change this validation over to our custom validation blocked by
         // https://github.com/baked-libs/dough/pull/184
-        Validate.notEmpty(dyeColors, "RainbowArmorPiece colors cannot be empty!");
-
         if (!SlimefunTag.LEATHER_ARMOR.isTagged(item.getType())) {
             throw new IllegalArgumentException("Rainbow armor needs to be a leather armor piece!");
         }

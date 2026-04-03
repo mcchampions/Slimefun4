@@ -25,7 +25,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class FortuneCookie extends SimpleSlimefunItem<ItemConsumptionHandler> {
 
-    @ParametersAreNonnullByDefault
+
     public FortuneCookie(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

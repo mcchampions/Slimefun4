@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.annotation.Nonnull;
-import org.apache.commons.lang.Validate;
 
 /**
  * The data which backs {@link io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile}
@@ -35,12 +34,12 @@ public class PlayerData {
     }
 
     public void addResearch(Research research) {
-        Validate.notNull(research, "Cannot add a 'null' research!");
+        
         researches.add(research);
     }
 
     public void removeResearch(Research research) {
-        Validate.notNull(research, "Cannot remove a 'null' research!");
+        
         researches.remove(research);
     }
 
@@ -55,12 +54,12 @@ public class PlayerData {
     }
 
     public void addBackpack(PlayerBackpack backpack) {
-        Validate.notNull(backpack, "Cannot add a 'null' backpack!");
+        
         backpacks.put(backpack.getId(), backpack);
     }
 
     public void removeBackpack(PlayerBackpack backpack) {
-        Validate.notNull(backpack, "Cannot remove a 'null' backpack!");
+        
         backpacks.remove(backpack.getId());
     }
 
@@ -69,7 +68,7 @@ public class PlayerData {
     }
 
     public void addWaypoint(Waypoint waypoint) {
-        Validate.notNull(waypoint, "Cannot add a 'null' waypoint!");
+        
 
         for (Waypoint wp : waypoints) {
             if (wp.getId().equals(waypoint.getId())) {
@@ -86,7 +85,7 @@ public class PlayerData {
     }
 
     public void removeWaypoint(Waypoint waypoint) {
-        Validate.notNull(waypoint, "Cannot remove a 'null' waypoint!");
+        
         waypoints.remove(waypoint);
     }
 }

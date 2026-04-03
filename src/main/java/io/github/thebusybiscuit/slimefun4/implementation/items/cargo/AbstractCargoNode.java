@@ -20,7 +20,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -37,7 +36,7 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
 
     protected static final String FREQUENCY = "frequency";
 
-    @ParametersAreNonnullByDefault
+    
     AbstractCargoNode(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -90,7 +89,7 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         };
     }
 
-    @ParametersAreNonnullByDefault
+    
     protected void addChannelSelector(Block b, BlockMenu menu, int slotPrev, int slotCurrent, int slotNext) {
         int channel = getSelectedChannel(b);
 
@@ -138,7 +137,7 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
 
     @Override
     public int getSelectedChannel(Block b) {
-        Validate.notNull(b, "Block must not be null");
+        
 
         String frequency = StorageCacheUtils.getData(b.getLocation(), FREQUENCY);
 

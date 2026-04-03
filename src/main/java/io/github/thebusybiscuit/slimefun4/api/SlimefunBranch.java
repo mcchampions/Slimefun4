@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.api;
 
 import io.github.bakedlibs.dough.common.CommonPatterns;
-import org.apache.commons.lang.Validate;
 
 /**
  * This enum represents the branch this Slimefun build is on.
@@ -37,7 +36,7 @@ public enum SlimefunBranch {
     private final boolean official;
 
     SlimefunBranch(String name, boolean official) {
-        Validate.notNull(name, "The branch name cannot be null");
+        
 
         this.name = name;
         this.official = official;

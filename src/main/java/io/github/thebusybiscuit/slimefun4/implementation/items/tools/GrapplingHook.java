@@ -38,7 +38,7 @@ public class GrapplingHook extends SimpleSlimefunItem<ItemUseHandler> {
     private final ItemSetting<Integer> despawnTicks =
             new IntRangeSetting(this, "despawn-seconds", 0, 60, Integer.MAX_VALUE);
 
-    @ParametersAreNonnullByDefault
+    
     public GrapplingHook(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

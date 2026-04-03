@@ -22,7 +22,6 @@ import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
@@ -92,7 +91,7 @@ public class TagParser implements Keyed {
      */
     public void parse(String json, BiConsumer<Set<Material>, Set<Tag<Material>>> callback)
             throws TagMisconfigurationException {
-        Validate.notNull(json, "Cannot parse a null String");
+        
 
         try {
             Set<Material> materials = EnumSet.noneOf(Material.class);
@@ -135,7 +134,7 @@ public class TagParser implements Keyed {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void parsePrimitiveValue(
             String value, Set<Material> materials, Set<Tag<Material>> tags, boolean throwException)
             throws TagMisconfigurationException {
@@ -182,7 +181,7 @@ public class TagParser implements Keyed {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void parseComplexValue(JsonObject entry, Set<Material> materials, Set<Tag<Material>> tags)
             throws TagMisconfigurationException {
         JsonElement id = entry.get("id");

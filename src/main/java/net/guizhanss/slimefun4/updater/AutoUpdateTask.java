@@ -24,7 +24,7 @@ public class AutoUpdateTask implements Runnable {
     private final File file;
     private final String version;
 
-    @ParametersAreNonnullByDefault
+    
     public AutoUpdateTask(Plugin plugin, File file) {
         this.plugin = plugin;
         this.file = file;

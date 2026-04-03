@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
@@ -45,13 +44,13 @@ public class VanillaInventoryDropHandler<T extends BlockState & InventoryHolder>
      */
     public VanillaInventoryDropHandler(Class<T> blockStateClass) {
         super(false, true);
-        Validate.notNull(blockStateClass, "The provided class must not be null!");
+        
 
         this.blockStateClass = blockStateClass;
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+
     public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
         Block b = e.getBlock();
         BlockState state = b.getState(false);

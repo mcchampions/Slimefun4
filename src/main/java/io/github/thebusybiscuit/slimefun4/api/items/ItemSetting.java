@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 
 /**
  * This class represents a Setting for a {@link SlimefunItem} that can be modified via
@@ -35,12 +34,8 @@ public class ItemSetting<T> {
      * @param defaultValue
      *            The default value for this {@link ItemSetting}
      */
-    @ParametersAreNonnullByDefault
-    public ItemSetting(SlimefunItem item, String key, T defaultValue) {
-        Validate.notNull(item, "The provided SlimefunItem must not be null!");
-        Validate.notNull(key, "The key of an ItemSetting is not allowed to be null!");
-        Validate.notNull(defaultValue, "The default value of an ItemSetting is not allowed to be null!");
 
+    public ItemSetting(SlimefunItem item, String key, T defaultValue) {
         this.item = item;
         this.key = key;
         this.defaultValue = defaultValue;
@@ -160,8 +155,6 @@ public class ItemSetting<T> {
      */
     @SuppressWarnings("unchecked")
     public void reload() {
-        Validate.notNull(item, "Cannot apply settings for a non-existing SlimefunItem");
-
         Slimefun.getItemCfg().setDefaultValue(item.getId() + '.' + key, defaultValue);
         Object configuredValue = Slimefun.getItemCfg().getValue(item.getId() + '.' + key);
 

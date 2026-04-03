@@ -45,7 +45,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
 
     private static final String OFFSET_PARAMETER = "offset";
 
-    @ParametersAreNonnullByDefault
+
     public HologramProjector(
             ItemGroup itemGroup,
             SlimefunItemStack item,

@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.Smeltery;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -27,13 +26,13 @@ public class GoldIngot extends SlimefunItem {
      */
     private final int caratRating;
 
-    @ParametersAreNonnullByDefault
+    
     public GoldIngot(
             ItemGroup itemGroup, int caratRating, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
-        Validate.isTrue(caratRating > 0, "Carat rating must be above zero.");
-        Validate.isTrue(caratRating <= 24, "Carat rating cannot go above 24.");
+        
+        
         this.caratRating = caratRating;
     }
 

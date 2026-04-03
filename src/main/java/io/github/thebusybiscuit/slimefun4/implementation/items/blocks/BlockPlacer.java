@@ -52,7 +52,7 @@ public class BlockPlacer extends SlimefunItem {
     private final ItemSetting<List<String>> unplaceableBlocks =
             new MaterialTagSetting(this, "unplaceable-blocks", SlimefunTag.UNBREAKABLE_MATERIALS);
 
-    @ParametersAreNonnullByDefault
+
     public BlockPlacer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -125,7 +125,7 @@ public class BlockPlacer extends SlimefunItem {
      *
      * @return Whether this action is permitted or not
      */
-    @ParametersAreNonnullByDefault
+
     private boolean hasPermission(Dispenser dispenser, Block target) {
         String owner = StorageCacheUtils.getData(dispenser.getLocation(), "owner");
 
@@ -180,7 +180,7 @@ public class BlockPlacer extends SlimefunItem {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void placeSlimefunBlock(SlimefunItem sfItem, ItemStack item, Block block, Dispenser dispenser) {
         BlockPlacerPlaceEvent e = new BlockPlacerPlaceEvent(dispenser.getBlock(), item, block);
         Bukkit.getPluginManager().callEvent(e);
@@ -210,7 +210,7 @@ public class BlockPlacer extends SlimefunItem {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void placeBlock(ItemStack item, Block facedBlock, Dispenser dispenser) {
         BlockPlacerPlaceEvent e = new BlockPlacerPlaceEvent(dispenser.getBlock(), item, facedBlock);
         Bukkit.getPluginManager().callEvent(e);
@@ -239,7 +239,7 @@ public class BlockPlacer extends SlimefunItem {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void schedulePlacement(Block b, Inventory inv, ItemStack item, Runnable runnable) {
         // We need to delay this due to Dispenser-Inventory synchronization issues in Spigot.
         Slimefun.runSync(

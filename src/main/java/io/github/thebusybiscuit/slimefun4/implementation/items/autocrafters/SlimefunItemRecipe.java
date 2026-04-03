@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -50,8 +49,8 @@ class SlimefunItemRecipe extends AbstractRecipe {
 
     @Override
     public void show(ChestMenu menu, AsyncRecipeChoiceTask task) {
-        Validate.notNull(menu, "The ChestMenu cannot be null!");
-        Validate.notNull(task, "The RecipeChoiceTask cannot be null!");
+        
+        
         menu.addItem(24, getResult().clone(), ChestMenuUtils.getEmptyClickHandler());
         ItemStack[] recipe = item.getRecipe();
 

@@ -21,7 +21,7 @@ public class TagMisconfigurationException extends Exception {
      * @param key     The {@link NamespacedKey} of our {@link SlimefunTag}
      * @param message The message to display
      */
-    @ParametersAreNonnullByDefault
+
     public TagMisconfigurationException(NamespacedKey key, String message) {
         super("Tag '" + key + "' has been misconfigured: " + message);
     }
@@ -33,7 +33,7 @@ public class TagMisconfigurationException extends Exception {
      * @param key   The {@link NamespacedKey} of our {@link SlimefunTag}
      * @param cause The {@link Throwable} which has caused this to happen
      */
-    @ParametersAreNonnullByDefault
+
     public TagMisconfigurationException(NamespacedKey key, Throwable cause) {
         super("Tag '" + key + "' has been misconfigured (" + cause.getMessage() + ')', cause);
     }

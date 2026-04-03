@@ -29,13 +29,13 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class SimpleSlimefunItem<T extends ItemHandler> extends SlimefunItem {
 
-    @ParametersAreNonnullByDefault
+
     protected SimpleSlimefunItem(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @ParametersAreNonnullByDefault
+
     protected SimpleSlimefunItem(
             ItemGroup itemGroup,
             SlimefunItemStack item,

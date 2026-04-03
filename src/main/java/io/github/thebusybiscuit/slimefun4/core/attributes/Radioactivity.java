@@ -52,7 +52,7 @@ public enum Radioactivity {
     private final String displayName;
     private final int exposureModifier;
 
-    @ParametersAreNonnullByDefault
+
     Radioactivity(ChatColor color, String displayName, int exposureModifier) {
         this.color = color;
         this.displayName = displayName;

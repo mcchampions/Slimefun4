@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class GPSMarkerTool extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-    @ParametersAreNonnullByDefault
+    
     public GPSMarkerTool(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

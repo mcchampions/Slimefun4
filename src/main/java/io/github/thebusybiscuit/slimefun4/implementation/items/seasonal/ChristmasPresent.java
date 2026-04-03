@@ -28,7 +28,7 @@ public class ChristmasPresent extends SimpleSlimefunItem<ItemUseHandler> impleme
 
     private final ItemStack[] gifts;
 
-    @ParametersAreNonnullByDefault
+    
     public ChristmasPresent(
             ItemGroup itemGroup,
             SlimefunItemStack item,

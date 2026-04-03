@@ -23,7 +23,7 @@ public class EnumSetting<T extends Enum<T>> extends ItemSetting<String> {
 
     private final Class<T> enumClass;
 
-    @ParametersAreNonnullByDefault
+    
     public EnumSetting(SlimefunItem item, String key, Class<T> enumClass, T defaultValue) {
         super(item, key, defaultValue.name());
 

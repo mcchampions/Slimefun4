@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -47,7 +46,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     protected final List<ItemStack> displayRecipes;
     protected final MultiBlock multiblock;
 
-    @ParametersAreNonnullByDefault
+    
     protected MultiBlockMachine(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -63,7 +62,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
         registerDefaultRecipes(displayRecipes);
     }
 
-    @ParametersAreNonnullByDefault
+    
     protected MultiBlockMachine(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, BlockFace trigger) {
         this(itemGroup, item, recipe, new ItemStack[0], trigger);
     }
@@ -86,7 +85,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     }
 
     public void addRecipe(ItemStack[] input, ItemStack output) {
-        Validate.notNull(output, "Recipes must have an Output!");
+        
 
         recipes.add(input);
         recipes.add(new ItemStack[] {output});
@@ -110,9 +109,6 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
     @Override
     public void load() {
         super.load();
-
-        Preconditions.checkArgument(
-                displayRecipes.size() % 2 == 0, "This MultiBlockMachine's display recipes were illegally modified!");
 
         for (int i = 0; i < displayRecipes.size(); i += 2) {
             ItemStack inputStack = displayRecipes.get(i);
@@ -164,12 +160,12 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
      *
      * @return The target {@link Inventory}
      */
-    @ParametersAreNonnullByDefault
+    
     protected @Nullable Inventory findOutputInventory(ItemStack adding, Block dispBlock, Inventory dispInv) {
         return findOutputInventory(adding, dispBlock, dispInv, dispInv);
     }
 
-    @ParametersAreNonnullByDefault
+    
     protected @Nullable Inventory findOutputInventory(
             ItemStack product, Block dispBlock, Inventory dispInv, Inventory placeCheckerInv) {
         Optional<Inventory> outputChest = OutputChest.findOutputChestFor(dispBlock, product);
@@ -197,7 +193,7 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
      *            The {@link Inventory} of our {@link Container}
      *
      */
-    @ParametersAreNonnullByDefault
+    
     protected void handleCraftedItem(ItemStack outputItem, Block block, Inventory blockInv) {
         Inventory outputInv = findOutputInventory(outputItem, block, blockInv);
 

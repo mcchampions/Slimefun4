@@ -14,7 +14,7 @@ import org.bukkit.command.ConsoleCommandSender;
  * @author StarWishsama
  */
 public class ReloadCommand extends SubCommand {
-    @ParametersAreNonnullByDefault
+
     ReloadCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "reload", false);
     }

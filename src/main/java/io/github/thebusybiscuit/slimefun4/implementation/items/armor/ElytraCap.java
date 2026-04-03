@@ -28,7 +28,7 @@ public class ElytraCap extends SlimefunArmorPiece implements DamageableItem, Pro
 
     private final NamespacedKey key;
 
-    @ParametersAreNonnullByDefault
+
     public ElytraCap(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe, null);
 

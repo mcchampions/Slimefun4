@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.guide.CheatSheetSlimefu
 import io.github.thebusybiscuit.slimefun4.implementation.guide.SurvivalSlimefunGuide;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -31,12 +30,8 @@ public class PlayerPreResearchEvent extends Event implements Cancellable {
     private final SlimefunItem slimefunItem;
     private boolean cancelled;
 
-    @ParametersAreNonnullByDefault
+    
     public PlayerPreResearchEvent(Player p, Research research, SlimefunItem slimefunItem) {
-        Validate.notNull(p, "The Player cannot be null");
-        Validate.notNull(research, "Research cannot be null");
-        Validate.notNull(slimefunItem, "SlimefunItem cannot be null");
-
         this.player = p;
         this.research = research;
         this.slimefunItem = slimefunItem;

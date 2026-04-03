@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class Vitamins extends MedicalSupply<ItemUseHandler> {
 
-    @ParametersAreNonnullByDefault
+    
     public Vitamins(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, 8, item, recipeType, recipe);
     }

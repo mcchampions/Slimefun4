@@ -20,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class SlimefunBow extends SlimefunItem {
 
-    @ParametersAreNonnullByDefault
+    
     protected SlimefunBow(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe) {
         super(itemGroup, item, RecipeType.MAGIC_WORKBENCH, recipe);
     }

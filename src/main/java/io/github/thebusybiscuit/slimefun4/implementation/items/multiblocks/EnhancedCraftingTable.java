@@ -25,7 +25,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class EnhancedCraftingTable extends AbstractCraftingTable {
 
-    @ParametersAreNonnullByDefault
+    
     public EnhancedCraftingTable(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,

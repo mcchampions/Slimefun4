@@ -23,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class PortableCrafter extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-    @ParametersAreNonnullByDefault
+
     public PortableCrafter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

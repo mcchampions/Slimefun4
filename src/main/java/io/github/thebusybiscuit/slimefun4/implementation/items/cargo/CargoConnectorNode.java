@@ -26,7 +26,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class CargoConnectorNode extends SimpleSlimefunItem<BlockUseHandler> implements NotRotatable {
 
-    @ParametersAreNonnullByDefault
+
     public CargoConnectorNode(
             ItemGroup itemGroup,
             SlimefunItemStack item,

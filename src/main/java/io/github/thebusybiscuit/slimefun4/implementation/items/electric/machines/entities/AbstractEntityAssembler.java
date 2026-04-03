@@ -70,7 +70,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
      * @param recipeType  The recipe type used to craft this item
      * @param recipe      The recipe to craft this item
      */
-    @ParametersAreNonnullByDefault
+
     protected AbstractEntityAssembler(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

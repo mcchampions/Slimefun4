@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class HeatedPressureChamber extends AContainer {
 
-    @ParametersAreNonnullByDefault
+
     public HeatedPressureChamber(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

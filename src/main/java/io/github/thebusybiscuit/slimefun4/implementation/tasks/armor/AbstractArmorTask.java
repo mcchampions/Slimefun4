@@ -42,8 +42,6 @@ public abstract class AbstractArmorTask implements Runnable {
      *            Delay between two "runs" of this task in ticks
      */
     public final void schedule(Slimefun plugin, long tickInterval) {
-        Preconditions.checkNotNull(plugin, "The plugin instance cannot be null!");
-
         if (tickInterval < 1) {
             tickInterval = 1;
             plugin.getLogger()
@@ -73,6 +71,6 @@ public abstract class AbstractArmorTask implements Runnable {
      * @param profile
      *            The {@link Player}'s {@link PlayerProfile}
      */
-    @ParametersAreNonnullByDefault
+
     protected abstract void onPlayerTick(Player p, PlayerProfile profile);
 }

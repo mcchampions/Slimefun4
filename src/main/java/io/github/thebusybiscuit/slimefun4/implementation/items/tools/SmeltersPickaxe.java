@@ -26,7 +26,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class SmeltersPickaxe extends SimpleSlimefunItem<ToolUseHandler> implements DamageableItem {
 
-    @ParametersAreNonnullByDefault
+    
     public SmeltersPickaxe(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -57,7 +57,7 @@ public class SmeltersPickaxe extends SimpleSlimefunItem<ToolUseHandler> implemen
         };
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void smelt(Block b, ItemStack drop, int fortune) {
         Optional<ItemStack> furnaceOutput = Slimefun.getMinecraftRecipeService().getFurnaceOutput(drop);
 

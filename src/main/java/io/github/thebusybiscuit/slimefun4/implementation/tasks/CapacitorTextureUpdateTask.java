@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.electric.Capacito
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.papermc.lib.PaperLib;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
@@ -41,7 +40,7 @@ public class CapacitorTextureUpdateTask implements Runnable {
      *            The percentage of charge in this {@link Capacitor}
      */
     public CapacitorTextureUpdateTask(Location l, double percentage) {
-        Validate.notNull(l, "The Location cannot be null");
+        
 
         this.l = l;
         this.filledPercentage = NumberUtils.clamp(0.0D, percentage, 1.0D);

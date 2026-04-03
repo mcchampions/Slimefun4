@@ -13,7 +13,7 @@ class GitHubIssuesConnector extends GitHubConnector {
 
     private final IssuesCallback callback;
 
-    @ParametersAreNonnullByDefault
+
     GitHubIssuesConnector(GitHubService github, String repository, IssuesCallback callback) {
         super(github, repository);
         this.callback = callback;

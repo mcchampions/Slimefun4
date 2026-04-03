@@ -116,7 +116,7 @@ public class ExplosionsListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void handleExplosion(BlockBreakHandler handler, Block block, SlimefunItem item, Runnable destroyBlockCb) {
         if (handler.isExplosionAllowed(block)) {
             // fix : 1187, machine should drop themselves first, in explosion
@@ -133,7 +133,7 @@ public class ExplosionsListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void updateNearbyNetwork(SlimefunItem item, Location loc) {
         if (!(item instanceof EnergyNetComponent) && !(item instanceof CargoNode)) {
             return;

@@ -7,7 +7,6 @@ import io.papermc.paper.event.player.PlayerPickItemEvent;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -23,7 +22,7 @@ public class VersionedMiddleClickListener implements Listener {
         try {
             pickBlockEventClass = (Class<? extends PlayerPickItemEvent>)
                     Class.forName("io.papermc.paper.event.player.PlayerPickBlockEvent");
-            Validate.isTrue(PlayerPickItemEvent.class.isAssignableFrom(pickBlockEventClass));
+            
             getBlockMethod = pickBlockEventClass.getMethod("getBlock");
             getBlockMethod.setAccessible(true);
             plugin.getServer().getPluginManager().registerEvents(this, plugin);

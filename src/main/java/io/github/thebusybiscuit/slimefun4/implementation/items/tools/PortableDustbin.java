@@ -26,7 +26,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class PortableDustbin extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-    @ParametersAreNonnullByDefault
+    
     public PortableDustbin(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

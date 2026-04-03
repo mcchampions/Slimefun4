@@ -12,7 +12,7 @@ class GitHubActivityConnector extends GitHubConnector {
 
     private final ActivityCallback callback;
 
-    @ParametersAreNonnullByDefault
+
     GitHubActivityConnector(GitHubService github, String repository, ActivityCallback callback) {
         super(github, repository);
         this.callback = callback;

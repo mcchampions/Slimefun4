@@ -18,7 +18,6 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -52,9 +51,8 @@ public class SlimefunItemStack extends ItemStack {
             setItemMeta(item.getItemMeta());
         }
 
-        Validate.notNull(id, "The Item id must never be null!");
-        Validate.isTrue(
-                id.equals(id.toUpperCase(Locale.ROOT)), "Slimefun Item Ids must be uppercase! (e.g. 'MY_ITEM_ID')");
+        
+        
 
         if (Slimefun.instance() == null) {
             throw new PrematureCodeException(
@@ -301,9 +299,6 @@ public class SlimefunItemStack extends ItemStack {
     }
 
     private static String getTexture(String id, String texture) {
-        Validate.notNull(id, "The id cannot be null");
-        Validate.notNull(texture, "The texture cannot be null");
-
         if (texture.startsWith("ey")) {
             return texture;
         } else if (CommonPatterns.HEXADECIMAL.matcher(texture).matches()) {

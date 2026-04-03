@@ -28,7 +28,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class EnergyConnector extends SimpleSlimefunItem<BlockUseHandler> implements EnergyNetComponent, NotRotatable {
 
-    @ParametersAreNonnullByDefault
+
     public EnergyConnector(
             ItemGroup itemGroup,
             SlimefunItemStack item,

@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.profiler.PerformanceInsp
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SummaryOrderType;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 
@@ -43,10 +42,10 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      * @param orderType
      *            The {@link SummaryOrderType} of the timings
      */
-    @ParametersAreNonnullByDefault
+
     public ConsolePerformanceInspector(CommandSender console, boolean verbose, SummaryOrderType orderType) {
-        Validate.notNull(console, "CommandSender cannot be null");
-        Validate.notNull(orderType, "SummaryOrderType cannot be null");
+        
+        
 
         this.console = console;
         this.verbose = verbose;

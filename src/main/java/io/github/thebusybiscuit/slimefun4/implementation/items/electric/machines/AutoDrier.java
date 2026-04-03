@@ -28,7 +28,7 @@ public class AutoDrier extends AContainer implements RecipeDisplayItem, NotHoppe
 
     private List<ItemStack> recipeList;
 
-    @ParametersAreNonnullByDefault
+    
     public AutoDrier(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

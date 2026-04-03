@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.UUID;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -31,7 +30,7 @@ import org.bukkit.entity.Player;
 class BackpackCommand extends SubCommand {
     private static final int DISPLAY_START_SLOT = 9;
 
-    @ParametersAreNonnullByDefault
+
     BackpackCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "backpack", false);
     }
@@ -92,7 +91,7 @@ class BackpackCommand extends SubCommand {
     }
 
     private void openBackpackMenu(OfflinePlayer owner, Player p) {
-        Validate.notNull(p, "The player cannot be null!");
+        
 
         Slimefun.getDatabaseManager()
                 .getProfileDataController()

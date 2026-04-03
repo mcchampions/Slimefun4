@@ -15,7 +15,6 @@ import java.util.UUID;
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -42,18 +41,18 @@ public final class Script {
      *            The {@link Config}
      */
     private Script(Config config) {
-        Validate.notNull(config);
+        
 
         this.config = config;
         this.name = config.getString("name");
         this.code = config.getString("code");
         String uuid = config.getString("author");
 
-        Validate.notNull(name);
-        Validate.notNull(code);
-        Validate.notNull(uuid);
-        Validate.notNull(config.getStringList("rating.positive"));
-        Validate.notNull(config.getStringList("rating.negative"));
+        
+        
+        
+        
+        
 
         OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString(uuid));
         this.author = player.getName() != null ? player.getName() : config.getString("author_name");
@@ -254,7 +253,7 @@ public final class Script {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     public static void upload(Player p, AndroidType androidType, int id, String name, String code) {
         Config config =
                 new Config("plugins/Slimefun/scripts/" + androidType.name() + '/' + p.getName() + ' ' + id + ".sfs");

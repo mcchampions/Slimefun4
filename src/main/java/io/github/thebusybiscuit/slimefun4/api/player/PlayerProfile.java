@@ -29,7 +29,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -180,7 +179,7 @@ public class PlayerProfile {
      *            Whether the {@link Research} should be unlocked or locked
      */
     public void setResearched(Research research, boolean unlock) {
-        Validate.notNull(research, "Research must not be null!");
+        
         // markDirty();
 
         if (unlock) {
@@ -255,8 +254,6 @@ public class PlayerProfile {
      *            The {@link Waypoint} to add
      */
     public void addWaypoint(Waypoint waypoint) {
-        Validate.notNull(waypoint, "Cannot add a 'null' waypoint!");
-
         for (Waypoint wp : waypoints) {
             if (wp.getId().equals(waypoint.getId())) {
                 throw new IllegalArgumentException("A Waypoint with that id already exists for this Player");
@@ -282,8 +279,6 @@ public class PlayerProfile {
      *            The {@link Waypoint} to remove
      */
     public void removeWaypoint(Waypoint waypoint) {
-        Validate.notNull(waypoint, "Cannot remove a 'null' waypoint!");
-
         if (waypoints.remove(waypoint)) {
             waypointsFile.setValue(waypoint.getId(), null);
             markDirty();
@@ -419,7 +414,7 @@ public class PlayerProfile {
      * @return If the {@link OfflinePlayer} was cached or not.
      */
     public static boolean get(OfflinePlayer p, Consumer<PlayerProfile> callback) {
-        Validate.notNull(p, "Cannot get a PlayerProfile for: null!");
+        
 
         UUID uuid = p.getUniqueId();
         PlayerProfile profile = Slimefun.getRegistry().getPlayerProfiles().get(uuid);
@@ -451,8 +446,6 @@ public class PlayerProfile {
      * @return Whether the {@link PlayerProfile} was already loaded
      */
     public static boolean request(OfflinePlayer p) {
-        Validate.notNull(p, "Cannot request a Profile for null");
-
         var profile = Slimefun.getRegistry().getPlayerProfiles().get(p.getUniqueId());
         if (profile == null || profile.markedForDeletion) {
             // 当前玩家档案正在被加载
@@ -490,7 +483,7 @@ public class PlayerProfile {
     }
 
     public boolean hasFullProtectionAgainst(ProtectionType type) {
-        Validate.notNull(type, "ProtectionType must not be null.");
+        
 
         int armorCount = 0;
         NamespacedKey setId = null;

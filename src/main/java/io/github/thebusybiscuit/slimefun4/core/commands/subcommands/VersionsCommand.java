@@ -43,7 +43,7 @@ class VersionsCommand extends SubCommand {
      */
     private static final String JAVA_VERSION_NOTICE = "在 Minecraft 1.17 发布时需要 Java 16+!";
 
-    @ParametersAreNonnullByDefault
+    
     VersionsCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "versions", false);
     }

@@ -85,7 +85,7 @@ public abstract class Reactor extends AbstractEnergyProvider
     private final Set<Location> explosionsQueue = new HashSet<>();
     private final MachineProcessor<FuelOperation> processor = new MachineProcessor<>(this);
 
-    @ParametersAreNonnullByDefault
+
     protected Reactor(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -525,7 +525,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         return Math.round(((((COOLANT_DURATION - passed) * 100.0F) / COOLANT_DURATION) * 100.0F) / 100.0F);
     }
 
-    @ParametersAreNonnullByDefault
+
     private void restockFuel(BlockMenu menu, BlockMenu port) {
         for (int slot : getFuelSlots()) {
             for (MachineFuel fuelType : fuelTypes) {
@@ -538,7 +538,7 @@ public abstract class Reactor extends AbstractEnergyProvider
         }
     }
 
-    @Nullable @ParametersAreNonnullByDefault
+    @Nullable
     private MachineFuel findFuel(BlockMenu menu, Map<Integer, Integer> found) {
         for (MachineFuel fuel : fuelTypes) {
             for (int slot : getInputSlots()) {

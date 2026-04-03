@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ExplosiveShovel extends ExplosiveTool {
 
-    @ParametersAreNonnullByDefault
+
     public ExplosiveShovel(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

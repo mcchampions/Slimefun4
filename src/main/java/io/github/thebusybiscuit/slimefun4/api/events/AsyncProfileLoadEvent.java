@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import java.util.UUID;
 import javax.annotation.Nonnull;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -32,8 +31,6 @@ public class AsyncProfileLoadEvent extends Event {
         // we are not sure
         super(!Bukkit.isPrimaryThread());
 
-        Validate.notNull(profile, "The Profile cannot be null");
-
         this.uniqueId = profile.getUUID();
         this.profile = profile;
     }
@@ -56,9 +53,6 @@ public class AsyncProfileLoadEvent extends Event {
      *            The {@link PlayerProfile}
      */
     public void setProfile(PlayerProfile profile) {
-        Validate.notNull(profile, "The PlayerProfile cannot be null!");
-        Validate.isTrue(profile.getUUID().equals(uniqueId), "Cannot inject a PlayerProfile with a different UUID");
-
         this.profile = profile;
     }
 

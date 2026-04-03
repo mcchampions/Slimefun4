@@ -33,7 +33,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class SlimefunBackpack extends SimpleSlimefunItem<ItemUseHandler> implements DistinctiveItem, NotPlaceable {
     private final int size;
 
-    @ParametersAreNonnullByDefault
+
     public SlimefunBackpack(
             int size, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

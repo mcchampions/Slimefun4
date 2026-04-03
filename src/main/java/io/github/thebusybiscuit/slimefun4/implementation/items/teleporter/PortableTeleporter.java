@@ -31,7 +31,7 @@ public class PortableTeleporter extends SimpleSlimefunItem<ItemUseHandler> imple
     private final ItemSetting<Integer> cost =
             new IntRangeSetting(this, "teleportation-cost", 0, DEFAULT_COST, CAPACITY);
 
-    @ParametersAreNonnullByDefault
+    
     public PortableTeleporter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

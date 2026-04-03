@@ -34,7 +34,7 @@ public abstract class AbstractTeleporterPlate extends SlimefunItem {
      * @param recipeType  The recipe type used to craft this item
      * @param recipe      The recipe to craft this item
      */
-    @ParametersAreNonnullByDefault
+
     protected AbstractTeleporterPlate(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

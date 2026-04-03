@@ -23,7 +23,6 @@ import java.util.OptionalInt;
 import java.util.concurrent.ThreadLocalRandom;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
@@ -70,9 +69,6 @@ public class ResourceManager {
      *            The {@link GEOResource} to register
      */
     void register(GEOResource resource) {
-        Validate.notNull(resource, "Cannot register null as a GEO-Resource");
-        Validate.notNull(resource.getKey(), "GEO-Resources must have a NamespacedKey which is not null");
-
         // Resources may only be registered once
         if (Slimefun.getRegistry().getGEOResources().containsKey(resource.getKey())) {
             throw new IllegalArgumentException(
@@ -108,9 +104,6 @@ public class ResourceManager {
      * @return An {@link OptionalInt}, either empty or containing the amount of the given {@link GEOResource}
      */
     public OptionalInt getSupplies(GEOResource resource, World world, int x, int z) {
-        Validate.notNull(resource, "Cannot get supplies for null");
-        Validate.notNull(world, "World must not be null");
-
         String key = resource.getKey().toString().replace(':', '-');
         var chunkData = Slimefun.getDatabaseManager().getBlockDataController().getChunkData(world.getChunkAt(x, z));
         if (chunkData == null) {
@@ -164,9 +157,6 @@ public class ResourceManager {
      *            The new supply value
      */
     public void setSupplies(GEOResource resource, World world, int x, int z, int value) {
-        Validate.notNull(resource, "Cannot set supplies for null");
-        Validate.notNull(world, "World cannot be null");
-
         String key = resource.getKey().toString().replace(':', '-');
         Slimefun.getDatabaseManager()
                 .getBlockDataController()
@@ -195,18 +185,9 @@ public class ResourceManager {
      * @return The new supply value
      */
     private int generate(GEOResource resource, World world, int x, int y, int z) {
-        Validate.notNull(resource, "Cannot generate resources for null");
-        Validate.notNull(world, "World cannot be null");
-
         // Get the corresponding Block (and Biome)
         Block block = world.getBlockAt(x << 4, y, z << 4);
         Biome biome = block.getBiome();
-
-        /*
-         * getBiome() is marked as NotNull, but it seems like some servers ignore this entirely.
-         * We have seen multiple reports on Tuinity where it has indeed returned null.
-         */
-        Validate.notNull(biome, "Biome appears to be null for position: " + new BlockPosition(block));
 
         // Make sure the value is not below zero.
         int value = Math.max(0, resource.getDefaultSupply(world.getEnvironment(), biome));

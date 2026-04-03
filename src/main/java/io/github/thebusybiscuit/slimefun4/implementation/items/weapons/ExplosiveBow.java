@@ -35,7 +35,7 @@ public class ExplosiveBow extends SlimefunBow {
 
     private final ItemSetting<Integer> range = new IntRangeSetting(this, "explosion-range", 1, 3, Integer.MAX_VALUE);
 
-    @ParametersAreNonnullByDefault
+
     public ExplosiveBow(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe) {
         super(itemGroup, item, recipe);
 

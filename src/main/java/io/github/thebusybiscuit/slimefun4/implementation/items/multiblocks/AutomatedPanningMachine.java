@@ -42,7 +42,7 @@ public class AutomatedPanningMachine extends MultiBlockMachine {
     private final GoldPan goldPan = SlimefunItems.GOLD_PAN.getItem(GoldPan.class);
     private final NetherGoldPan netherGoldPan = SlimefunItems.NETHER_GOLD_PAN.getItem(NetherGoldPan.class);
 
-    @ParametersAreNonnullByDefault
+
     public AutomatedPanningMachine(ItemGroup itemGroup, SlimefunItemStack item) {
         super(
                 itemGroup,

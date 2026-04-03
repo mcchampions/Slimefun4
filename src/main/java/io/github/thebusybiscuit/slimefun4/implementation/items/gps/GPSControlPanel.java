@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class GPSControlPanel extends SimpleSlimefunItem<BlockUseHandler> implements NotDiagonallyRotatable {
 
-    @ParametersAreNonnullByDefault
+
     public GPSControlPanel(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -40,7 +40,7 @@ public class GPSControlPanel extends SimpleSlimefunItem<BlockUseHandler> impleme
         };
     }
 
-    @ParametersAreNonnullByDefault
+
     private boolean hasAccess(Player p, Location l) {
         return p.hasPermission("slimefun.gps.bypass")
                 || (Slimefun.getProtectionManager().hasPermission(p, l, Interaction.INTERACT_BLOCK));

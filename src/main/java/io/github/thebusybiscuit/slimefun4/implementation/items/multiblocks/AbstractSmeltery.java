@@ -30,7 +30,7 @@ import org.bukkit.inventory.ItemStack;
  */
 abstract class AbstractSmeltery extends MultiBlockMachine {
 
-    @ParametersAreNonnullByDefault
+
     protected AbstractSmeltery(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, BlockFace trigger) {
         super(itemGroup, item, recipe, trigger);
     }

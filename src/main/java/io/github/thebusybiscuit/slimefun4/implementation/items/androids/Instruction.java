@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -255,14 +254,14 @@ public enum Instruction {
     private final AndroidType type;
     private final AndroidAction method;
 
-    @ParametersAreNonnullByDefault
+
     Instruction(AndroidType type, HeadTexture head, @Nullable AndroidAction method) {
         this.type = type;
         this.item = SlimefunUtils.getCustomHead(head.getTexture());
         this.method = method;
     }
 
-    @ParametersAreNonnullByDefault
+
     Instruction(AndroidType type, HeadTexture head) {
         this(type, head, null);
     }
@@ -277,9 +276,9 @@ public enum Instruction {
         return type;
     }
 
-    @ParametersAreNonnullByDefault
+
     public void execute(ProgrammableAndroid android, Block b, UniversalMenu inventory, BlockFace face) {
-        Validate.notNull(method, "Instruction '" + name() + "' must be executed manually!");
+        
         method.perform(android, b, inventory, face);
     }
 
@@ -295,7 +294,7 @@ public enum Instruction {
      * @return The {@link Instruction} or null if it does not exist.
      */
     @Nullable public static Instruction getInstruction(String value) {
-        Validate.notNull(value, "An Instruction cannot be null!");
+        
         return nameLookup.get(value);
     }
 }

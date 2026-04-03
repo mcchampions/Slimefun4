@@ -35,7 +35,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
     private static final String FILTER_TYPE = "filter-type";
     private static final String FILTER_LORE = "filter-lore";
 
-    @ParametersAreNonnullByDefault
+
     protected AbstractFilterNode(
             ItemGroup itemGroup,
             SlimefunItemStack item,

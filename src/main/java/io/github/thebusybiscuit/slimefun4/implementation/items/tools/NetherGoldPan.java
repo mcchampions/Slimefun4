@@ -24,7 +24,7 @@ public class NetherGoldPan extends GoldPan {
 
     private final Set<Material> inputMaterials = EnumSet.of(Material.SOUL_SAND, Material.SOUL_SOIL);
 
-    @ParametersAreNonnullByDefault
+    
     public NetherGoldPan(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

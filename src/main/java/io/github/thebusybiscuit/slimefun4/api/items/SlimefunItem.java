@@ -38,7 +38,6 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -127,7 +126,7 @@ public class SlimefunItem implements Placeable {
      * @param recipe
      *            An Array representing the recipe of this {@link SlimefunItem}
      */
-    @ParametersAreNonnullByDefault
+
     public SlimefunItem(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         this(itemGroup, item, recipeType, recipe, null);
     }
@@ -146,17 +145,13 @@ public class SlimefunItem implements Placeable {
      * @param recipeOutput
      *            The result of crafting this item
      */
-    @ParametersAreNonnullByDefault
+
     public SlimefunItem(
             ItemGroup itemGroup,
             SlimefunItemStack item,
             RecipeType recipeType,
             ItemStack[] recipe,
             @Nullable ItemStack recipeOutput) {
-        Validate.notNull(itemGroup, "'itemGroup' is not allowed to be null!");
-        Validate.notNull(item, "'item' is not allowed to be null!");
-        Validate.notNull(recipeType, "'recipeType' is not allowed to be null!");
-
         this.itemGroup = itemGroup;
         this.itemStackTemplate = item;
         this.id = item.getItemId();
@@ -166,13 +161,8 @@ public class SlimefunItem implements Placeable {
     }
 
     // Previously deprecated constructor, now only for internal purposes
-    @ParametersAreNonnullByDefault
-    protected SlimefunItem(ItemGroup itemGroup, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe) {
-        Validate.notNull(itemGroup, "'itemGroup' is not allowed to be null!");
-        Validate.notNull(item, "'item' is not allowed to be null!");
-        Validate.notNull(id, "'id' is not allowed to be null!");
-        Validate.notNull(recipeType, "'recipeType' is not allowed to be null!");
 
+    protected SlimefunItem(ItemGroup itemGroup, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe) {
         this.itemGroup = itemGroup;
         this.itemStackTemplate = item;
         this.id = id;
@@ -411,9 +401,6 @@ public class SlimefunItem implements Placeable {
      * @param addon The {@link SlimefunAddon} that this {@link SlimefunItem} belongs to.
      */
     public void register(SlimefunAddon addon) {
-        Validate.notNull(addon, "A SlimefunAddon cannot be null!");
-        Validate.notNull(addon.getJavaPlugin(), "SlimefunAddon#getJavaPlugin() is not allowed to return null!");
-
         this.addon = addon;
 
         try {
@@ -724,7 +711,6 @@ public class SlimefunItem implements Placeable {
      *            The {@link RecipeType} for this {@link SlimefunItem}
      */
     public void setRecipeType(RecipeType type) {
-        Validate.notNull(type, "The RecipeType is not allowed to be null!");
         this.recipeType = type;
     }
 
@@ -735,8 +721,6 @@ public class SlimefunItem implements Placeable {
      *            The new {@link ItemGroup}
      */
     public void setItemGroup(ItemGroup itemGroup) {
-        Validate.notNull(itemGroup, "The ItemGroup is not allowed to be null!");
-
         this.itemGroup.remove(this);
         itemGroup.add(this);
 
@@ -832,9 +816,6 @@ public class SlimefunItem implements Placeable {
      *            Any {@link ItemHandler} that should be added to this {@link SlimefunItem}
      */
     public final void addItemHandler(ItemHandler... handlers) {
-        Validate.notEmpty(handlers, "You cannot add zero handlers...");
-        Validate.noNullElements(handlers, "You cannot add any 'null' ItemHandler!");
-
         // Make sure they are added before the item was registered.
         if (state != ItemState.UNREGISTERED) {
             throw new UnsupportedOperationException(
@@ -861,9 +842,6 @@ public class SlimefunItem implements Placeable {
      *            Any {@link ItemSetting} that should be added to this {@link SlimefunItem}
      */
     public final void addItemSetting(ItemSetting<?>... settings) {
-        Validate.notEmpty(settings, "You cannot add zero settings...");
-        Validate.noNullElements(settings, "You cannot add any 'null' ItemSettings!");
-
         if (state != ItemState.UNREGISTERED) {
             throw new UnsupportedOperationException(
                     "You cannot add an ItemSetting after the SlimefunItem was registered.");
@@ -921,8 +899,6 @@ public class SlimefunItem implements Placeable {
      */
     @Deprecated
     public final void addOfficialWikipage(String page) {
-        Validate.notNull(page, "Wiki page cannot be null.");
-        // 转换链接
         page = page.replace("#", "?id=");
         wikiURL = Optional.of("https://slimefun-wiki.guizhanss.cn/" + page);
     }
@@ -933,8 +909,6 @@ public class SlimefunItem implements Placeable {
      * @param page 物品的 Wiki 页面
      */
     public final void addWikiPage(String page) {
-        Validate.notNull(page, "Wiki page cannot be null.");
-
         if (addon == null) {
             Slimefun.logger().warning("该物品\"" + id + "\"暂未注册, 请在物品注册后再添加Wiki页面");
             return;
@@ -998,7 +972,7 @@ public class SlimefunItem implements Placeable {
      *
      * @return Whether or not an {@link ItemHandler} was found.
      */
-    @ParametersAreNonnullByDefault
+
     public <T extends ItemHandler> boolean callItemHandler(Class<T> c, Consumer<T> callable) {
         Optional<ItemHandler> handler = itemHandlers.get(c);
 
@@ -1058,10 +1032,8 @@ public class SlimefunItem implements Placeable {
      * @param message
      *            The message to send
      */
-    @ParametersAreNonnullByDefault
-    public void info(String message) {
-        Validate.notNull(addon, "Cannot log a message for an unregistered item!");
 
+    public void info(String message) {
         String msg = this + ": " + message;
         addon.getLogger().log(Level.INFO, msg);
     }
@@ -1074,10 +1046,8 @@ public class SlimefunItem implements Placeable {
      * @param message
      *            The message to send
      */
-    @ParametersAreNonnullByDefault
-    public void warn(String message) {
-        Validate.notNull(addon, "Cannot send a warning for an unregistered item!");
 
+    public void warn(String message) {
         String msg = this + ": " + message;
         addon.getLogger().log(Level.WARNING, msg);
 
@@ -1096,9 +1066,8 @@ public class SlimefunItem implements Placeable {
      * @param throwable
      *            The {@link Throwable} to throw as a stacktrace.
      */
-    @ParametersAreNonnullByDefault
+
     public void error(String message, Throwable throwable) {
-        Validate.notNull(addon, "Cannot send an error for an unregistered item!");
         addon.getLogger().log(Level.SEVERE, "Item \"{0}\" from {1} v{2} has caused an Error!", new Object[] {
             id, addon.getName(), addon.getPluginVersion()
         });
@@ -1123,9 +1092,9 @@ public class SlimefunItem implements Placeable {
      * @param player
      *            The {@link Player} to inform.
      */
-    @ParametersAreNonnullByDefault
+
     public void sendDeprecationWarning(Player player) {
-        Validate.notNull(player, "The Player must not be null.");
+        
         Slimefun.getLocalization().sendMessage(player, "messages.deprecated-item");
     }
 
@@ -1151,7 +1120,7 @@ public class SlimefunItem implements Placeable {
      * @return Whether this {@link Player} is able to use this {@link SlimefunItem}.
      */
     public boolean canUse(Player p, boolean sendMessage) {
-        Validate.notNull(p, "The Player cannot be null!");
+        
 
         if (state == ItemState.VANILLA_FALLBACK) {
             // Vanilla items (which fell back) can always be used.

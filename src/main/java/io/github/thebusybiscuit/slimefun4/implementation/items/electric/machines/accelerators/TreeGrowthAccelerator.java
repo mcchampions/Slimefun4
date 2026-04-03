@@ -34,7 +34,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
     private static final int ENERGY_CONSUMPTION = 24;
     private static final int RADIUS = 9;
 
-    @ParametersAreNonnullByDefault
+    
     public TreeGrowthAccelerator(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -67,7 +67,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private boolean tryToBoostGrowth(Block machine, BlockMenu inv, Block sapling) {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
             // On 1.17+ we can actually simulate bonemeal :O
@@ -79,7 +79,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private boolean applyBoneMeal(Block machine, Block sapling, BlockMenu inv) {
         for (int slot : getInputSlots()) {
             if (isFertilizer(inv.getItemInSlot(slot))) {
@@ -103,7 +103,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
         return false;
     }
 
-    @ParametersAreNonnullByDefault
+    
     private boolean updateSaplingData(Block machine, Block block, BlockMenu inv, Sapling sapling) {
         for (int slot : getInputSlots()) {
             if (isFertilizer(inv.getItemInSlot(slot))) {

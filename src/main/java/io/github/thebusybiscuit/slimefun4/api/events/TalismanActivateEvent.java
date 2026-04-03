@@ -32,7 +32,7 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
      * @param talismanItem
      * 		The {@link ItemStack} corresponding to the Talisman.
      */
-    @ParametersAreNonnullByDefault
+
     public TalismanActivateEvent(Player player, Talisman talisman, ItemStack talismanItem) {
         super(player);
         this.talisman = talisman;

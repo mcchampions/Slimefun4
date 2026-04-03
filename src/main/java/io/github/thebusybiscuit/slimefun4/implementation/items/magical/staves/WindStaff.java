@@ -28,7 +28,7 @@ public class WindStaff extends SimpleSlimefunItem<ItemUseHandler> {
 
     private final ItemSetting<Integer> multiplier = new IntRangeSetting(this, "power", 1, 4, Integer.MAX_VALUE);
 
-    @ParametersAreNonnullByDefault
+
     public WindStaff(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

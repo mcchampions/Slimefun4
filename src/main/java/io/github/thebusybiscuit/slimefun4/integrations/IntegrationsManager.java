@@ -160,7 +160,7 @@ public class IntegrationsManager {
      * @param throwable
      *            The {@link Throwable} to throw
      */
-    @ParametersAreNonnullByDefault
+
     protected void logError(String name, Throwable throwable) {
         Plugin externalPlugin = Bukkit.getPluginManager().getPlugin(name);
 

@@ -25,7 +25,7 @@ public class UnregisteredItemException extends RuntimeException {
      * @param item
      *            The {@link SlimefunItem} that was affected by this
      */
-    @ParametersAreNonnullByDefault
+
     public UnregisteredItemException(SlimefunItem item) {
         super(item + " has not been registered yet.");
     }

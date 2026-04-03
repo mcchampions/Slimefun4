@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -35,10 +34,10 @@ public final class ChargeUtils {
     private ChargeUtils() {}
 
     public static void setCharge(ItemMeta meta, float charge, float capacity) {
-        Validate.notNull(meta, "Meta cannot be null!");
-        Validate.isTrue(charge >= 0, "Charge has to be equal to or greater than 0!");
-        Validate.isTrue(capacity > 0, "Capacity has to be greater than 0!");
-        Validate.isTrue(charge <= capacity, "Charge may not be bigger than the capacity!");
+        
+        
+        
+        
 
         BigDecimal decimal = BigDecimal.valueOf(charge).setScale(2, RoundingMode.HALF_UP);
         float value = decimal.floatValue();
@@ -62,7 +61,7 @@ public final class ChargeUtils {
     }
 
     public static float getCharge(ItemMeta meta) {
-        Validate.notNull(meta, "Meta cannot be null!");
+        
 
         NamespacedKey key = Slimefun.getRegistry().getItemChargeDataKey();
         PersistentDataContainer container = meta.getPersistentDataContainer();

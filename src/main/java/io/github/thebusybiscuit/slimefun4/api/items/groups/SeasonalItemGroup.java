@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import java.time.LocalDate;
 import java.time.Month;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -34,10 +33,10 @@ public class SeasonalItemGroup extends ItemGroup {
      * @param item
      *            The display item for this {@link ItemGroup}
      */
-    @ParametersAreNonnullByDefault
+
     public SeasonalItemGroup(NamespacedKey key, Month month, int tier, ItemStack item) {
         super(key, item, tier);
-        Validate.notNull(month, "The Month cannot be null");
+        
 
         this.month = month;
     }

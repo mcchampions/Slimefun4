@@ -266,7 +266,7 @@ public class BlockDataController extends ADataController {
      * @return 通用方块数据, {@link SlimefunUniversalBlockData}
      */
     @Nonnull
-    @ParametersAreNonnullByDefault
+
     public SlimefunUniversalBlockData createUniversalBlock(Location l, String sfId) {
         checkDestroy();
 
@@ -474,7 +474,7 @@ public class BlockDataController extends ADataController {
      * @param l slimefun block location {@link Location}
      * @return {@link SlimefunBlockData}
      */
-    @Nullable @ParametersAreNonnullByDefault
+    @Nullable
     public SlimefunBlockData getBlockData(Location l) {
         checkDestroy();
         if (chunkDataLoadMode.readCacheOnly()) {
@@ -1048,7 +1048,7 @@ public class BlockDataController extends ADataController {
         invokeCallback(callback, blockDataList);
     }
 
-    @ParametersAreNonnullByDefault
+
     public void loadUniversalData(SlimefunUniversalData uniData) {
         if (uniData.isDataLoaded()) {
             return;
@@ -1141,7 +1141,7 @@ public class BlockDataController extends ADataController {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     public void loadUniversalDataAsync(
             SlimefunUniversalData uniData, IAsyncReadCallback<SlimefunUniversalData> callback) {
         scheduleReadTask(() -> {

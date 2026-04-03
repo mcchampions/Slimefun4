@@ -23,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class BrokenSpawner extends AbstractMonsterSpawner implements NotPlaceable {
 
-    @ParametersAreNonnullByDefault
+
     public BrokenSpawner(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

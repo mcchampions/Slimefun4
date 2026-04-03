@@ -42,7 +42,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -112,7 +111,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @param recipeType  The recipe type used to craft this item
      * @param recipe      The recipe to craft this item
      */
-    @ParametersAreNonnullByDefault
+
     protected AbstractAutoCrafter(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -166,10 +165,10 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @param p
      *            The {@link Player} who clicked
      */
-    @ParametersAreNonnullByDefault
+
     public void onRightClick(Block b, Player p) {
-        Validate.notNull(b, "The Block must not be null!");
-        Validate.notNull(p, "The Player cannot be null!");
+        
+        
 
         // Check if we have a valid chest below
         if (!isValidInventory(b.getRelative(BlockFace.DOWN))) {
@@ -269,7 +268,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return Whether the {@link Predicate} matches the {@link ItemStack}
      */
-    @ParametersAreNonnullByDefault
+
     protected boolean matches(ItemStack item, Predicate<ItemStack> predicate) {
         return predicate.test(item);
     }
@@ -284,7 +283,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *
      * @return Whether any item in the inventory matches the predicate
      */
-    @ParametersAreNonnullByDefault
+
     public boolean matchesAny(Inventory inv, Map<Integer, Integer> itemQuantities, Predicate<ItemStack> predicate) {
         ItemStack[] contents = inv.getContents();
 
@@ -360,7 +359,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      *            The {@link AbstractRecipe} to select
      */
     protected void setSelectedRecipe(Block b, @Nullable AbstractRecipe recipe) {
-        Validate.notNull(b, "The Block cannot be null!");
+        
 
         BlockStateSnapshotResult result = PaperLib.getBlockState(b, false);
         BlockState state = result.getState();
@@ -394,11 +393,11 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @param recipe
      *            The {@link AbstractRecipe} to show them
      */
-    @ParametersAreNonnullByDefault
+
     protected void showRecipe(Player p, Block b, AbstractRecipe recipe) {
-        Validate.notNull(p, "The Player should not be null");
-        Validate.notNull(b, "The Block should not be null");
-        Validate.notNull(recipe, "The Recipe should not be null");
+        
+        
+        
 
         ChestMenu menu = new ChestMenu(getItemName());
         menu.setPlayerInventoryClickable(false);
@@ -452,7 +451,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void setRecipeEnabled(Player p, Block b, boolean enabled) {
         p.closeInventory();
         SoundEffect.AUTO_CRAFTER_GUI_CLICK_SOUND.playFor(p);
@@ -470,7 +469,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void deleteRecipe(Player p, Block b) {
         setSelectedRecipe(b, null);
         p.closeInventory();
@@ -493,8 +492,8 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      * @return Whether this crafting operation was successful or not
      */
     public boolean craft(CrafterInteractable inv, AbstractRecipe recipe) {
-        Validate.notNull(inv, "The Inventory must not be null");
-        Validate.notNull(recipe, "The Recipe shall not be null");
+        
+        
 
         // Make sure that the Recipe is actually enabled
         if (!recipe.isEnabled()) {
@@ -599,7 +598,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      */
     @Nonnull
     public final AbstractAutoCrafter setCapacity(int capacity) {
-        Validate.isTrue(capacity > 0, "The capacity must be greater than zero!");
+        
 
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
@@ -619,11 +618,9 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
      */
     @Nonnull
     public final AbstractAutoCrafter setEnergyConsumption(int energyConsumption) {
-        Validate.isTrue(energyConsumption > 0, "The energy consumption must be greater than zero!");
-        Validate.isTrue(energyCapacity > 0, "You must specify the capacity before you can set the consumption amount.");
-        Validate.isTrue(
-                energyConsumption <= energyCapacity,
-                "The energy consumption cannot be higher than the capacity (" + energyCapacity + ')');
+        
+        
+        
 
         this.energyConsumed = energyConsumption;
         return this;
@@ -631,7 +628,7 @@ public abstract class AbstractAutoCrafter extends SlimefunItem implements Energy
 
     @Override
     public void register(SlimefunAddon addon) {
-        Validate.notNull(addon, "A SlimefunAddon cannot be null!");
+        
         this.addon = addon;
 
         if (energyCapacity <= 0) {

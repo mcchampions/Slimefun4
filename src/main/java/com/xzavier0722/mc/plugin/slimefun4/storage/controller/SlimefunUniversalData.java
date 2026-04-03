@@ -26,18 +26,18 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
 
     private final Set<UniversalDataTrait> traits = EnumSet.noneOf(UniversalDataTrait.class);
 
-    @ParametersAreNonnullByDefault
+
     SlimefunUniversalData(UUID uuid, String sfId) {
         super(uuid.toString(), sfId);
     }
 
-    @ParametersAreNonnullByDefault
+
     SlimefunUniversalData(UUID uuid, String sfId, Set<UniversalDataTrait> traits) {
         super(uuid.toString(), sfId);
         this.traits.addAll(traits);
     }
 
-    @ParametersAreNonnullByDefault
+
     @SneakyThrows
     public void setData(String key, String val) {
         checkData();
@@ -54,7 +54,7 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
         Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedUniversalDataUpdate(this, key);
     }
 
-    @ParametersAreNonnullByDefault
+
     protected void setTraitData(UniversalDataTrait trait, String val) {
         checkData();
 
@@ -67,7 +67,7 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     public void removeData(String key) {
         if (removeCacheInternal(key) != null || !isDataLoaded()) {
             Slimefun.getDatabaseManager().getBlockDataController().scheduleDelayedUniversalDataUpdate(this, key);

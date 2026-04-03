@@ -14,7 +14,6 @@ import java.util.Comparator;
 import java.util.List;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -53,7 +52,7 @@ public class ItemGroup implements Keyed {
      * @param item
      *            The {@link ItemStack} that is used to display this {@link ItemGroup}
      */
-    @ParametersAreNonnullByDefault
+    
     public ItemGroup(NamespacedKey key, ItemStack item) {
         this(key, item, 3);
     }
@@ -71,11 +70,8 @@ public class ItemGroup implements Keyed {
      *            in
      *            the {@link SlimefunGuide}
      */
-    @ParametersAreNonnullByDefault
+    
     public ItemGroup(NamespacedKey key, ItemStack item, int tier) {
-        Validate.notNull(key, "An item group's NamespacedKey must not be null!");
-        Validate.notNull(item, "An item group's ItemStack must not be null!");
-
         this.item = item;
         this.key = key;
 
@@ -102,8 +98,6 @@ public class ItemGroup implements Keyed {
      *            The {@link SlimefunAddon} that wants to register this {@link ItemGroup}
      */
     public void register(SlimefunAddon addon) {
-        Validate.notNull(addon, "The Addon cannot be null");
-
         if (isRegistered()) {
             throw new UnsupportedOperationException("This ItemGroup has already been registered!");
         }
@@ -175,8 +169,6 @@ public class ItemGroup implements Keyed {
      *            the {@link SlimefunItem} that should be added to this {@link ItemGroup}
      */
     public void add(SlimefunItem item) {
-        Validate.notNull(item, "Cannot add null Items to an ItemGroup!");
-
         if (items.contains(item)) {
             // Ignore duplicate entries
             return;
@@ -199,7 +191,6 @@ public class ItemGroup implements Keyed {
      *            the {@link SlimefunItem} that should be removed from this {@link ItemGroup}
      */
     public void remove(SlimefunItem item) {
-        Validate.notNull(item, "Cannot remove null from an ItemGroup!");
         items.remove(item);
     }
 

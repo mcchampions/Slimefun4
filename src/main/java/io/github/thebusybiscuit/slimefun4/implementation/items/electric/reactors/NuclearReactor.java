@@ -23,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class NuclearReactor extends Reactor {
 
-    @ParametersAreNonnullByDefault
+
     protected NuclearReactor(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

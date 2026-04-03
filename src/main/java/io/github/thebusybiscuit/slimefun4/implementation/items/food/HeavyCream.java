@@ -20,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class HeavyCream extends SimpleSlimefunItem<ItemUseHandler> {
 
-    @ParametersAreNonnullByDefault
+
     public HeavyCream(
             ItemGroup itemGroup,
             SlimefunItemStack item,

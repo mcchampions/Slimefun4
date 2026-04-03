@@ -24,7 +24,6 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -126,7 +125,7 @@ public class TickerTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void tickChunk(ChunkPosition chunk, Set<BlockTicker> tickers, Set<TickLocation> locations) {
         try {
             // Only continue if the Chunk is actually loaded
@@ -186,7 +185,7 @@ public class TickerTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void tickUniversalLocation(UUID uuid, Location l, Set<BlockTicker> tickers) {
         var data = StorageCacheUtils.getUniversalBlock(uuid);
         var item = SlimefunItem.getById(data.getSfId());
@@ -224,7 +223,7 @@ public class TickerTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void tickBlock(Location l, SlimefunItem item, ASlimefunDataContainer data, long timestamp) {
         try {
             if (item.getBlockTicker().isUniversal()) {
@@ -247,7 +246,7 @@ public class TickerTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void reportErrors(Location l, SlimefunItem item, Throwable x) {
         BlockPosition position = new BlockPosition(l);
         int errors = bugs.getOrDefault(position, 0) + 1;
@@ -331,7 +330,7 @@ public class TickerTask implements Runnable {
      */
     @Nonnull
     public Set<Location> getLocations(Chunk chunk) {
-        Validate.notNull(chunk, "The Chunk cannot be null!");
+        
 
         Set<TickLocation> locations = tickingLocations.getOrDefault(new ChunkPosition(chunk), Collections.emptySet());
         return locations.stream().map(TickLocation::getLocation).collect(Collectors.toUnmodifiableSet());
@@ -351,7 +350,7 @@ public class TickerTask implements Runnable {
      */
     @Nonnull
     public Set<TickLocation> getTickLocations(Chunk chunk) {
-        Validate.notNull(chunk, "The Chunk cannot be null!");
+        
 
         return tickingLocations.getOrDefault(new ChunkPosition(chunk), Collections.emptySet());
     }
@@ -367,7 +366,7 @@ public class TickerTask implements Runnable {
     }
 
     public void enableTicker(Location l, @Nullable UUID uuid) {
-        Validate.notNull(l, "Location cannot be null!");
+        
 
         synchronized (tickingLocations) {
             ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);
@@ -405,7 +404,7 @@ public class TickerTask implements Runnable {
      *            The {@link Location} to remove
      */
     public void disableTicker(Location l) {
-        Validate.notNull(l, "Location cannot be null!");
+        
 
         synchronized (tickingLocations) {
             ChunkPosition chunk = new ChunkPosition(l.getWorld(), l.getBlockX() >> 4, l.getBlockZ() >> 4);
@@ -432,7 +431,7 @@ public class TickerTask implements Runnable {
      *            The {@link UUID} to remove
      */
     public void disableTicker(UUID uuid) {
-        Validate.notNull(uuid, "Universal Data ID cannot be null!");
+        
 
         synchronized (tickingLocations) {
             tickingLocations.values().forEach(loc -> loc.removeIf(tk -> uuid.equals(tk.getUuid())));

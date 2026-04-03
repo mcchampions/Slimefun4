@@ -22,7 +22,7 @@ import org.bukkit.inventory.meta.FireworkEffectMeta;
  */
 public class ColoredFireworkStar extends CustomItemStack {
 
-    @ParametersAreNonnullByDefault
+
     public ColoredFireworkStar(Color color, String name, String... lore) {
         super(Material.FIREWORK_STAR, im -> {
             if (name != null) {

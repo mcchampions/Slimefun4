@@ -61,7 +61,7 @@ public class AutoBrewer extends AContainer implements NotHopperable {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     public AutoBrewer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -139,7 +139,7 @@ public class AutoBrewer extends AContainer implements NotHopperable {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private @Nullable ItemStack brew(Material input, Material potionType, PotionMeta potion) {
         if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
             return brewPostBasePotionType(input, potionType, potion);
@@ -164,7 +164,7 @@ public class AutoBrewer extends AContainer implements NotHopperable {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private ItemStack brewPostBasePotionType(Material input, Material potionType, PotionMeta potion) {
         PotionType type = potion.getBasePotionType();
         if (type == PotionType.WATER) {
@@ -210,7 +210,7 @@ public class AutoBrewer extends AContainer implements NotHopperable {
         return null;
     }
 
-    @ParametersAreNonnullByDefault
+
     @SuppressWarnings("deprecration")
     private ItemStack brewPreBasePotionType(Material input, Material potionType, PotionMeta potion) {
         PotionData data = potion.getBasePotionData();

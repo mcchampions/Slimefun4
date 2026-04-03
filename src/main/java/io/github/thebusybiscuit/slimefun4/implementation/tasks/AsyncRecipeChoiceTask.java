@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -44,7 +43,7 @@ public class AsyncRecipeChoiceTask implements Runnable {
      *            The {@link Inventory} to start this task for
      */
     public void start(Inventory inv) {
-        Validate.notNull(inv, "Inventory must not be null");
+        
 
         inventory = inv;
         id = Bukkit.getScheduler()
@@ -53,7 +52,7 @@ public class AsyncRecipeChoiceTask implements Runnable {
     }
 
     public void add(int slot, MaterialChoice choice) {
-        Validate.notNull(choice, "Cannot add a null RecipeChoice");
+        
 
         lock.writeLock().lock();
 
@@ -65,7 +64,7 @@ public class AsyncRecipeChoiceTask implements Runnable {
     }
 
     public void add(int slot, Tag<Material> tag) {
-        Validate.notNull(tag, "Cannot add a null Tag");
+        
 
         lock.writeLock().lock();
 

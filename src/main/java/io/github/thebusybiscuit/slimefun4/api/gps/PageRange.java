@@ -28,7 +28,7 @@ public class PageRange {
         this.page = page;
     }
 
-    @ParametersAreNonnullByDefault
+    
     public static PageRange compute(int total, int pageSize, int currentPage) {
         int totalPages = Math.max(1, (total + pageSize - 1) / pageSize);
 

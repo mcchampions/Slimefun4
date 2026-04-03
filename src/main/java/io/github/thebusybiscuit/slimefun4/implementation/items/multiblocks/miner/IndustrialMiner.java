@@ -18,7 +18,6 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -51,7 +50,7 @@ public class IndustrialMiner extends MultiBlockMachine {
     private final boolean silkTouch;
     private final int range;
 
-    @ParametersAreNonnullByDefault
+
     public IndustrialMiner(
             ItemGroup itemGroup, SlimefunItemStack item, Material baseMaterial, boolean silkTouch, int range) {
         // @formatter:off
@@ -150,8 +149,8 @@ public class IndustrialMiner extends MultiBlockMachine {
      *            The item that shall be consumed
      */
     public void addFuelType(int ores, ItemStack item) {
-        Validate.isTrue(ores > 1 && ores % 2 == 0, "矿石的数量必须 >= 2 且为 2 的倍数.");
-        Validate.notNull(item, "The fuel item cannot be null");
+        
+        
 
         fuelTypes.add(new MachineFuel(ores / 2, item));
     }

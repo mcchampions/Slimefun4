@@ -28,7 +28,7 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
 
     private static final int MAX_REACH = 160;
 
-    @ParametersAreNonnullByDefault
+
     public WoodcutterAndroid(
             ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, tier, item, recipeType, recipe);
@@ -67,7 +67,7 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
         return true;
     }
 
-    @ParametersAreNonnullByDefault
+
     private void breakLog(Block log, Block android, UniversalMenu menu, BlockFace face) {
         ItemStack drop = new ItemStack(log.getType());
 

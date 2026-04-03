@@ -19,7 +19,6 @@ import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -68,8 +67,8 @@ public class Research implements Keyed {
      */
     public Research(
             NamespacedKey key, int id, String defaultName, int levelCost, double currencyCost) {
-        Validate.notNull(key, "A NamespacedKey must be provided");
-        Validate.notNull(defaultName, "A default name must be specified");
+        
+        
 
         this.key = key;
         this.id = id;
@@ -96,8 +95,8 @@ public class Research implements Keyed {
      *
      */
     public Research(NamespacedKey key, int id, String defaultName, int defaultCost) {
-        Validate.notNull(key, "A NamespacedKey must be provided");
-        Validate.notNull(defaultName, "A default name must be specified");
+        
+        
 
         this.key = key;
         this.id = id;
@@ -287,7 +286,7 @@ public class Research implements Keyed {
      *            The page number of where the {@link Player} was in the {@link ItemGroup};
      *
      */
-    @ParametersAreNonnullByDefault
+    
     public void unlockFromGuide(
             SlimefunGuideImplementation guide,
             Player player,

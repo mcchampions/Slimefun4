@@ -34,7 +34,7 @@ import org.bukkit.inventory.Recipe;
  */
 public class AutoCrafterListener implements Listener {
 
-    @ParametersAreNonnullByDefault
+    
     public AutoCrafterListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -91,7 +91,7 @@ public class AutoCrafterListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private boolean hasUnlockedRecipe(Player p, ItemStack item) {
         for (Recipe recipe : Slimefun.getMinecraftRecipeService().getRecipesFor(item)) {
             if (recipe instanceof Keyed keyed && !p.hasDiscoveredRecipe(keyed.getKey())) {

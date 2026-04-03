@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 
 /**
  * This variation of {@link ItemSetting} allows you to define an {@link Integer} range
@@ -21,11 +20,9 @@ public class IntRangeSetting extends ItemSetting<Integer> {
     private final int min;
     private final int max;
 
-    @ParametersAreNonnullByDefault
+
     public IntRangeSetting(SlimefunItem item, String key, int min, int defaultValue, int max) {
         super(item, key, defaultValue);
-        Validate.isTrue(defaultValue >= min && defaultValue <= max, "The default value is not in range.");
-
         this.min = min;
         this.max = max;
     }

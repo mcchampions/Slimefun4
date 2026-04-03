@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class HardenedGlass extends WitherProofBlock {
-    @ParametersAreNonnullByDefault
+
     public HardenedGlass(
             ItemGroup itemGroup,
             SlimefunItemStack item,

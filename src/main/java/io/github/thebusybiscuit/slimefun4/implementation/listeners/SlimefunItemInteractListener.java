@@ -92,7 +92,7 @@ public class SlimefunItemInteractListener implements Listener {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private boolean rightClickItem(PlayerInteractEvent e, PlayerRightClickEvent event, boolean defaultValue) {
         Optional<SlimefunItem> optional = event.getSlimefunItem();
 
@@ -109,7 +109,7 @@ public class SlimefunItemInteractListener implements Listener {
         return defaultValue;
     }
 
-    @ParametersAreNonnullByDefault
+    
     private boolean rightClickBlock(PlayerRightClickEvent event) {
         Optional<SlimefunItem> optional = event.getSlimefunBlock();
 
@@ -137,7 +137,7 @@ public class SlimefunItemInteractListener implements Listener {
         return true;
     }
 
-    @ParametersAreNonnullByDefault
+    
     private void openInventory(Player p, SlimefunItem item, Block clickedBlock, PlayerRightClickEvent event) {
         try {
             if (!p.isSneaking() || event.getItem().getType() == Material.AIR) {

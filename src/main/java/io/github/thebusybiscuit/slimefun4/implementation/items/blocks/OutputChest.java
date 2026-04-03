@@ -37,7 +37,7 @@ public class OutputChest extends SlimefunItem {
 
     // @formatter:on
 
-    @ParametersAreNonnullByDefault
+
     public OutputChest(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 

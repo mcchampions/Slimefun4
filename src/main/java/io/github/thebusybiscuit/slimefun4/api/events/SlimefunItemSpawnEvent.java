@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import java.util.Optional;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -31,7 +30,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
     private final ItemSpawnReason itemSpawnReason;
     private final Player player;
 
-    @ParametersAreNonnullByDefault
+    
     public SlimefunItemSpawnEvent(
             @Nullable Player player, Location location, ItemStack itemStack, ItemSpawnReason itemSpawnReason) {
         this.location = location;
@@ -41,7 +40,7 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
         this.player = player;
     }
 
-    @ParametersAreNonnullByDefault
+    
     public SlimefunItemSpawnEvent(Location location, ItemStack itemStack, ItemSpawnReason itemSpawnReason) {
         this(null, location, itemStack, itemSpawnReason);
     }
@@ -80,8 +79,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *            The {@link Location} where to drop the {@link ItemStack}
      */
     public void setLocation(Location location) {
-        Validate.notNull(location, "The Location cannot be null!");
-
         this.location = location;
     }
 
@@ -101,9 +98,6 @@ public class SlimefunItemSpawnEvent extends Event implements Cancellable {
      *            The {@link ItemStack} to drop
      */
     public void setItemStack(ItemStack itemStack) {
-        Validate.notNull(itemStack, "Cannot drop null.");
-        Validate.isTrue(!itemStack.getType().isAir(), "Cannot drop air.");
-
         this.itemStack = itemStack;
     }
 

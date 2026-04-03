@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.lang.Validate;
 
 /**
  * This Service creates a Backup of your Slimefun world data on every server shutdown.
@@ -88,7 +87,7 @@ public class BackupService implements Runnable {
     }
 
     private void createBackup(ZipOutputStream output) throws IOException {
-        Validate.notNull(output, "The Output Stream cannot be null!");
+        
 
         if (Slimefun.getDatabaseManager().getProfileStorageType() == StorageType.SQLITE) {
             addFile(output, new File("data-storage/Slimefun", "profile.db"), "");

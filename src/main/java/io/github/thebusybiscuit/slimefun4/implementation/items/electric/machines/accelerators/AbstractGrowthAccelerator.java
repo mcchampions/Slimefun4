@@ -40,7 +40,7 @@ public abstract class AbstractGrowthAccelerator extends SlimefunItem implements 
      * @param recipeType  The recipe type used to craft this item
      * @param recipe      The recipe to craft this item
      */
-    @ParametersAreNonnullByDefault
+
     protected AbstractGrowthAccelerator(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

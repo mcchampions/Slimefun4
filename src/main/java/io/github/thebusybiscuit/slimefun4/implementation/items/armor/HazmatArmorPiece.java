@@ -26,7 +26,7 @@ public class HazmatArmorPiece extends SlimefunArmorPiece implements ProtectiveAr
     private final NamespacedKey namespacedKey;
     private final ProtectionType[] types;
 
-    @ParametersAreNonnullByDefault
+
     public HazmatArmorPiece(
             ItemGroup itemGroup,
             SlimefunItemStack item,

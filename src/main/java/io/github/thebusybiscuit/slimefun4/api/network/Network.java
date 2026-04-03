@@ -9,7 +9,6 @@ import java.util.Queue;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -50,8 +49,8 @@ public abstract class Network {
      *            The {@link Location} marking the regulator of this {@link Network}.
      */
     protected Network(NetworkManager manager, Location regulator) {
-        Validate.notNull(manager, "A NetworkManager must be provided");
-        Validate.notNull(regulator, "No regulator was specified");
+        
+        
 
         this.manager = manager;
         this.regulator = regulator;

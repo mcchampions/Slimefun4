@@ -24,7 +24,7 @@ public class ButcherAndroid extends ProgrammableAndroid {
 
     private static final String METADATA_KEY = "android_killer";
 
-    @ParametersAreNonnullByDefault
+
     public ButcherAndroid(
             ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, tier, item, recipeType, recipe);

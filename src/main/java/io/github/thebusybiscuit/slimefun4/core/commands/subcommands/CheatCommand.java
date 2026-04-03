@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 class CheatCommand extends SubCommand {
 
-    @ParametersAreNonnullByDefault
+
     CheatCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "cheat", false);
     }

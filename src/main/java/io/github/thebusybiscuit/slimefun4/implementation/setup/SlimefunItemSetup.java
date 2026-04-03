@@ -7956,7 +7956,7 @@ public final class SlimefunItemSetup {
         // @formatter:on
     }
 
-    @ParametersAreNonnullByDefault
+
     private static void registerArmorSet(
             ItemGroup itemGroup,
             ItemStack baseComponent,

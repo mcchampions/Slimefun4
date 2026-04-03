@@ -50,7 +50,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -86,7 +85,7 @@ public class ProgrammableAndroid extends SlimefunItem
     protected final String texture;
     private final int tier;
 
-    @ParametersAreNonnullByDefault
+
     public ProgrammableAndroid(
             ItemGroup itemGroup, int tier, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -279,7 +278,7 @@ public class ProgrammableAndroid extends SlimefunItem
         });
     }
 
-    @ParametersAreNonnullByDefault
+
     public void openScript(Player p, SlimefunUniversalBlockData uniData, String sourceCode) {
         ChestMenu menu =
                 new ChestMenu(ChatColor.DARK_AQUA + Slimefun.getLocalization().getMessage(p, "android.scripts.editor"));
@@ -390,7 +389,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
+
     private String addInstruction(String[] script, int index, Instruction instruction) {
         int i = 0;
         StringBuilder builder = new StringBuilder(Instruction.START.name() + '-');
@@ -542,7 +541,7 @@ public class ProgrammableAndroid extends SlimefunItem
         menu.open(p);
     }
 
-    @ParametersAreNonnullByDefault
+
     private void uploadScript(Player p, SlimefunUniversalBlockData uniData, int page) {
         String code = getScript(uniData);
         int nextId = 1;
@@ -679,19 +678,17 @@ public class ProgrammableAndroid extends SlimefunItem
 
     @Nonnull
     public String getScript(SlimefunUniversalBlockData ubd) {
-        Validate.notNull(ubd, "SlimefunUniversalBlockData for android not specified");
+        
         String script = ubd.getData("script");
         return script != null ? script : DEFAULT_SCRIPT;
     }
 
     public void setScript(SlimefunUniversalBlockData ubd, String script) {
-        Validate.notNull(ubd, "SlimefunUniversalBlockData for android not specified");
-        Validate.notNull(script, "No script given");
-        Validate.isTrue(script.startsWith(Instruction.START.name() + '-'), "A script must begin with a 'START' token.");
-        Validate.isTrue(script.endsWith('-' + Instruction.REPEAT.name()), "A script must end with a 'REPEAT' token.");
-        Validate.isTrue(
-                CommonPatterns.DASH.split(script).length <= MAX_SCRIPT_LENGTH,
-                "Scripts may not have more than " + MAX_SCRIPT_LENGTH + " segments");
+        
+        
+        
+        
+        
 
         ubd.setData("script", script);
     }
@@ -733,7 +730,7 @@ public class ProgrammableAndroid extends SlimefunItem
     }
 
     public void registerFuelType(MachineFuel fuel) {
-        Validate.notNull(fuel, "Cannot register null as a Fuel type");
+        
 
         fuelTypes.add(fuel);
     }
@@ -819,7 +816,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void executeInstruction(
             Instruction instruction, Block b, UniversalMenu inv, SlimefunUniversalData data, int index) {
         if ("true".equals(data.getData("paused"))) {
@@ -937,7 +934,7 @@ public class ProgrammableAndroid extends SlimefunItem
         return false;
     }
 
-    @ParametersAreNonnullByDefault
+
     private void consumeFuel(Block b, UniversalMenu menu) {
         ItemStack item = menu.getItemInSlot(43);
 
@@ -981,9 +978,9 @@ public class ProgrammableAndroid extends SlimefunItem
         preset.addItem(34, getFuelSource().getItem(), ChestMenuUtils.getEmptyClickHandler());
     }
 
-    @ParametersAreNonnullByDefault
+
     public void addItems(Block b, ItemStack... items) {
-        Validate.notNull(b, "The Block cannot be null.");
+        
 
         Optional<UUID> uuid =
                 TaskUtil.runSyncMethod(() -> Slimefun.getBlockDataService().getUniversalDataUUID(b));
@@ -1001,7 +998,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     protected void move(Block from, BlockFace face, Block to) {
         var uniData = StorageCacheUtils.getUniversalBlock(from);
 

@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ElectricOreGrinder extends AContainer implements RecipeDisplayItem, NotHopperable {
 
-    @ParametersAreNonnullByDefault
+
     public ElectricOreGrinder(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

@@ -21,7 +21,7 @@ public abstract class ADataContainer {
      *
      * @param key The key for this container
      */
-    @ParametersAreNonnullByDefault
+
     public ADataContainer(String key) {
         this.key = key;
         data = new ConcurrentHashMap<>();
@@ -33,7 +33,7 @@ public abstract class ADataContainer {
      * @param key   The key for this container
      * @param other The other container to copy data from
      */
-    @ParametersAreNonnullByDefault
+
     public ADataContainer(String key, ADataContainer other) {
         this.key = key;
         this.data = other.data;

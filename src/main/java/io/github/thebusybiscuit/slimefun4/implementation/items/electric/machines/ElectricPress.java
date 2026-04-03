@@ -23,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ElectricPress extends AContainer implements RecipeDisplayItem, NotDiagonallyRotatable {
 
-    @ParametersAreNonnullByDefault
+
     public ElectricPress(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -85,7 +85,7 @@ public class ElectricPress extends AContainer implements RecipeDisplayItem, NotD
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void addRecipe(int seconds, ItemStack input, ItemStack output) {
         registerRecipe(seconds, new ItemStack[] {input}, new ItemStack[] {output});
     }

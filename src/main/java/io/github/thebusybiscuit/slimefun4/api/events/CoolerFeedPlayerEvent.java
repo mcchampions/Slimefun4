@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.events;
 import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Cooler;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -30,7 +29,7 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
     private ItemStack consumedItem;
     private boolean cancelled;
 
-    @ParametersAreNonnullByDefault
+    
     public CoolerFeedPlayerEvent(Player player, Cooler cooler, ItemStack coolerItem, ItemStack consumedItem) {
         super(player);
 
@@ -79,9 +78,6 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      * @param item The new {@link ItemStack}
      */
     public void setConsumedItem(ItemStack item) {
-        Validate.notNull(item, "The consumed Item cannot be null!");
-        Validate.isTrue(item.getItemMeta() instanceof PotionMeta, "The item must be a potion!");
-
         this.consumedItem = item;
     }
 

@@ -19,14 +19,14 @@ import org.bukkit.inventory.ItemStack;
  */
 public class SharedActivationPlate extends AbstractTeleporterPlate {
 
-    @ParametersAreNonnullByDefault
+
     public SharedActivationPlate(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
     @Override
-    @ParametersAreNonnullByDefault
+
     public boolean hasAccess(Player p, Block b) {
         // Shared - Everyone has access
         return true;

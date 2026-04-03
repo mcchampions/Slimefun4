@@ -17,7 +17,7 @@ import org.bukkit.entity.Player;
  * @author ybw0014
  */
 class BlockDataCommand extends SubCommand {
-    @ParametersAreNonnullByDefault
+    
     BlockDataCommand(Slimefun plugin, SlimefunCommand cmd) {
         super(plugin, cmd, "blockdata", false);
     }

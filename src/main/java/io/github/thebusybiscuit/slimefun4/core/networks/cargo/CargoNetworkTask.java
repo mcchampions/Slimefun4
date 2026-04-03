@@ -49,7 +49,7 @@ class CargoNetworkTask implements Runnable {
     private final Map<Location, Integer> inputs;
     private final Map<Integer, List<Location>> outputs;
 
-    @ParametersAreNonnullByDefault
+
     CargoNetworkTask(CargoNet network, Map<Location, Integer> inputs, Map<Integer, List<Location>> outputs) {
         this.network = network;
         this.manager = Slimefun.getNetworkManager();
@@ -91,7 +91,7 @@ class CargoNetworkTask implements Runnable {
         Slimefun.getProfiler().closeEntry(network.getRegulator(), SlimefunItems.CARGO_MANAGER.getItem(), timestamp);
     }
 
-    @ParametersAreNonnullByDefault
+
     private void routeItems(
             Location inputNode, Block inputTarget, int frequency, Map<Integer, List<Location>> outputNodes) {
         ItemStackAndInteger slot = CargoUtils.withdraw(network, inventories, inputNode.getBlock(), inputTarget);
@@ -113,7 +113,7 @@ class CargoNetworkTask implements Runnable {
         }
     }
 
-    @ParametersAreNonnullByDefault
+
     private void insertItem(Block inputTarget, int previousSlot, ItemStack item) {
         Inventory inv = inventories.get(inputTarget.getLocation());
 
@@ -145,7 +145,7 @@ class CargoNetworkTask implements Runnable {
         }
     }
 
-    @Nullable @ParametersAreNonnullByDefault
+    @Nullable
     private ItemStack distributeItem(ItemStack stack, Location inputNode, List<Location> outputNodes) {
         ItemStack item = stack;
 

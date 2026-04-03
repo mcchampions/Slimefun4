@@ -19,7 +19,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
-import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -47,7 +46,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
      * @param recipeType  The recipe type used to craft this item
      * @param recipe      The recipe to craft this item
      */
-    @ParametersAreNonnullByDefault
+
     protected AbstractEnergyProvider(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -101,7 +100,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
      * @param fuel The {@link MachineFuel} to register
      */
     public void registerFuel(MachineFuel fuel) {
-        Validate.notNull(fuel, "Machine Fuel cannot be null!");
+        
         fuelTypes.add(fuel);
     }
 

@@ -28,7 +28,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -241,7 +240,7 @@ public class GPSNetwork {
      *
      * @return An icon for this waypoint
      */
-    @ParametersAreNonnullByDefault
+    
     public ItemStack getIcon(String name, Environment environment) {
         if (name.startsWith("player:death ")) {
             return HeadTexture.DEATHPOINT.getAsItemStack();
@@ -254,7 +253,7 @@ public class GPSNetwork {
         }
     }
 
-    @ParametersAreNonnullByDefault
+    
     private String getStatusText(Player player, int complexity) {
         if (complexity > 0) {
             return "&2&l" + Slimefun.getLocalization().getMessage(player, "gps.status-online");
@@ -365,9 +364,6 @@ public class GPSNetwork {
      *            The {@link Location} of the new waypoint
      */
     public void createWaypoint(Player p, Location l) {
-        Validate.notNull(p, "Player cannot be null!");
-        Validate.notNull(l, "Waypoint Location cannot be null!");
-
         PlayerProfile.get(p, profile -> {
             if (profile.getWaypoints().size() >= maxWaypoints) {
                 Slimefun.getLocalization().sendMessage(p, "gps.waypoint.max", true);
@@ -392,10 +388,6 @@ public class GPSNetwork {
      *            The {@link Location} of this waypoint
      */
     public void addWaypoint(Player p, String name, Location l) {
-        Validate.notNull(p, "Player cannot be null!");
-        Validate.notNull(name, "Waypoint name cannot be null!");
-        Validate.notNull(l, "Waypoint Location cannot be null!");
-
         PlayerProfile.get(p, profile -> {
             if (profile.getWaypoints().size() >= maxWaypoints) {
                 Slimefun.getLocalization().sendMessage(p, "gps.waypoint.max", true);

@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class MagnesiumGenerator extends AGenerator implements NotDiagonallyRotatable {
 
-    @ParametersAreNonnullByDefault
+
     public MagnesiumGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

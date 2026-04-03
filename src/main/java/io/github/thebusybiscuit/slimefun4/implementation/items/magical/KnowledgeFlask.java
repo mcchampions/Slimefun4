@@ -23,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class KnowledgeFlask extends SimpleSlimefunItem<ItemUseHandler> {
 
-    @ParametersAreNonnullByDefault
+    
     public KnowledgeFlask(
             ItemGroup itemGroup,
             SlimefunItemStack item,

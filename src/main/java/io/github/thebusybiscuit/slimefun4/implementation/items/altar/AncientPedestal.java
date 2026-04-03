@@ -50,7 +50,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
 
     public static final String ITEM_PREFIX = ChatColors.color("&dALTAR &3Probe - &e");
 
-    @ParametersAreNonnullByDefault
+
     public AncientPedestal(
             ItemGroup itemGroup,
             SlimefunItemStack item,

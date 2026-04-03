@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class CombustionGenerator extends AGenerator implements NotDiagonallyRotatable {
 
-    @ParametersAreNonnullByDefault
+
     public CombustionGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }

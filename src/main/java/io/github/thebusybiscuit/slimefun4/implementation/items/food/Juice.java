@@ -35,12 +35,12 @@ public class Juice extends SimpleSlimefunItem<ItemConsumptionHandler> {
 
     private final List<PotionEffect> effects;
 
-    @ParametersAreNonnullByDefault
+
     public Juice(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         this(itemGroup, item, recipeType, recipe, null);
     }
 
-    @ParametersAreNonnullByDefault
+
     public Juice(
             ItemGroup itemGroup,
             SlimefunItemStack item,
@@ -85,7 +85,7 @@ public class Juice extends SimpleSlimefunItem<ItemConsumptionHandler> {
      * @param item
      *            The {@link ItemStack} in question
      */
-    @ParametersAreNonnullByDefault
+
     private void removeGlassBottle(Player p, ItemStack item) {
         if (SlimefunUtils.isItemSimilar(item, p.getInventory().getItemInMainHand(), true)) {
             if (p.getInventory().getItemInMainHand().getAmount() == 1) {

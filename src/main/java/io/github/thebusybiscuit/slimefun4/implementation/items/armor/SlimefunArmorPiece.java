@@ -14,7 +14,7 @@ public class SlimefunArmorPiece extends SlimefunItem {
 
     private final PotionEffect[] effects;
 
-    @ParametersAreNonnullByDefault
+
     public SlimefunArmorPiece(
             ItemGroup itemGroup,
             SlimefunItemStack item,

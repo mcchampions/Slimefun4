@@ -30,7 +30,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -49,7 +48,7 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
     private int energyProducedPerTick = -1;
     private int energyCapacity = -1;
 
-    @ParametersAreNonnullByDefault
+    
     protected AGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -253,7 +252,7 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
      * @return This method will return the current instance of {@link AGenerator}, so that can be chained.
      */
     public final AGenerator setCapacity(int capacity) {
-        Validate.isTrue(capacity >= 0, "The capacity cannot be negative!");
+        
 
         if (getState() == ItemState.UNREGISTERED) {
             this.energyCapacity = capacity;
@@ -272,7 +271,7 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
      * @return This method will return the current instance of {@link AGenerator}, so that can be chained.
      */
     public final AGenerator setEnergyProduction(int energyProduced) {
-        Validate.isTrue(energyProduced > 0, "The energy production must be greater than zero!");
+        
 
         this.energyProducedPerTick = energyProduced;
         return this;

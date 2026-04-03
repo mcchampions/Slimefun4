@@ -24,7 +24,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Ageable;
@@ -48,7 +47,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
     private final ItemSetting<Integer> range = new IntRangeSetting(this, "range", 1, 2, 32);
     private final Set<AnimalProduce> animalProduces = new HashSet<>();
 
-    @ParametersAreNonnullByDefault
+
     public ProduceCollector(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -85,7 +84,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
      *            The {@link AnimalProduce} to add
      */
     public void addProduce(AnimalProduce produce) {
-        Validate.notNull(produce, "A produce cannot be null");
+        
 
         this.animalProduces.add(produce);
     }
@@ -146,7 +145,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
         return null;
     }
 
-    @ParametersAreNonnullByDefault
+
     private boolean isAnimalNearby(Block b, Predicate<LivingEntity> predicate) {
         int radius = range.getValue();
         return !b.getWorld()
@@ -154,7 +153,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
                 .isEmpty();
     }
 
-    @ParametersAreNonnullByDefault
+
     private boolean isValidAnimal(Entity n, Predicate<LivingEntity> predicate) {
         if (n instanceof LivingEntity livingEntity) {
             return predicate.test(livingEntity);

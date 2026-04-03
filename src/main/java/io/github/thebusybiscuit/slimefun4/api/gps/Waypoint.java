@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;
@@ -49,7 +48,7 @@ public class Waypoint {
      * @deprecated Use {@link #Waypoint(UUID, String, Location, String)} instead
      */
     @Deprecated
-    @ParametersAreNonnullByDefault
+    
     public Waypoint(PlayerProfile profile, String id, Location loc, String name) {
         this(profile.getUUID(), id, loc, name);
     }
@@ -66,13 +65,8 @@ public class Waypoint {
      * @param name
      *            The name of this {@link Waypoint}
      */
-    @ParametersAreNonnullByDefault
+    
     public Waypoint(UUID ownerId, String id, Location loc, String name) {
-        Validate.notNull(ownerId, "owner ID must never be null!");
-        Validate.notNull(id, "id must never be null!");
-        Validate.notNull(loc, "Location must never be null!");
-        Validate.notNull(name, "Name must never be null!");
-
         this.ownerId = ownerId;
         this.id = id;
         this.location = loc;

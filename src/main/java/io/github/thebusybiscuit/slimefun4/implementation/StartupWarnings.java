@@ -20,7 +20,7 @@ final class StartupWarnings {
 
     private StartupWarnings() {}
 
-    @ParametersAreNonnullByDefault
+    
     static void discourageCSCoreLib(Logger logger) {
         logger.log(Level.SEVERE, BORDER);
         logger.log(Level.SEVERE, PREFIX + "似乎你还在使用 CS-CoreLib。");
@@ -32,7 +32,7 @@ final class StartupWarnings {
         logger.log(Level.SEVERE, BORDER);
     }
 
-    @ParametersAreNonnullByDefault
+    
     static void invalidMinecraftVersion(Logger logger, int majorVersion, String slimefunVersion) {
         logger.log(Level.SEVERE, BORDER);
         logger.log(Level.SEVERE, PREFIX + "Slimefun 未被正确安装!");
@@ -44,7 +44,7 @@ final class StartupWarnings {
         logger.log(Level.SEVERE, BORDER);
     }
 
-    @ParametersAreNonnullByDefault
+    
     static void invalidServerSoftware(Logger logger) {
         logger.log(Level.SEVERE, BORDER);
         logger.log(Level.SEVERE, PREFIX + "Slimefun 未被正确安装!");
@@ -56,7 +56,7 @@ final class StartupWarnings {
         logger.log(Level.SEVERE, BORDER);
     }
 
-    @ParametersAreNonnullByDefault
+    
     static void oldJavaVersion(Logger logger, int recommendedJavaVersion) {
         int javaVersion = NumberUtils.getJavaVersion();
 

@@ -25,7 +25,7 @@ import org.bukkit.potion.PotionEffect;
  */
 public class IcyBow extends SlimefunBow {
 
-    @ParametersAreNonnullByDefault
+    
     public IcyBow(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe) {
         super(itemGroup, item, recipe);
     }
