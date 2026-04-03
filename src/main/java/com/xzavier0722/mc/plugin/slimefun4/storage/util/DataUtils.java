@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
+
+import me.qscbm.slimefun4.utils.Base64Utils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
@@ -29,7 +31,7 @@ public class DataUtils {
         try (var stream = new ByteArrayOutputStream();
                 var bs = new BukkitObjectOutputStream(stream)) {
             bs.writeObject(itemStack);
-            var itemStr = Base64.getEncoder().encodeToString(stream.toByteArray());
+            var itemStr = Base64Utils.encodeLines(stream.toByteArray());
 
             if (!Slimefun.getConfigManager().isBypassItemLengthCheck()
                     && Slimefun.getDatabaseManager().getBlockDataStorageType() == StorageType.MYSQL
@@ -89,7 +91,7 @@ public class DataUtils {
     }
 
     public static String base64Encode(String text) {
-        return Base64.getEncoder().encodeToString(text.getBytes(StandardCharsets.UTF_8));
+        return Base64Utils.encodeLines((text.getBytes(StandardCharsets.UTF_8));
     }
 
     public static String base64Decode(String base64Str) {

@@ -18,6 +18,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
+
+import me.qscbm.slimefun4.utils.Base64Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -52,7 +54,7 @@ public class SlimefunItemStack extends ItemStack {
         }
 
         
-        
+
 
         if (Slimefun.instance() == null) {
             throw new PrematureCodeException(
@@ -304,7 +306,7 @@ public class SlimefunItemStack extends ItemStack {
         } else if (CommonPatterns.HEXADECIMAL.matcher(texture).matches()) {
             String value =
                     "{\"textures\":{\"SKIN\":{\"url\":\"http://textures.minecraft.net/texture/" + texture + "\"}}}";
-            return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
+            return Base64Utils.encodeLines(value.getBytes(StandardCharsets.UTF_8));
         } else {
             throw new IllegalArgumentException(
                     "The provided texture for Item \"" + id + "\" does not seem to be a valid texture String!");
