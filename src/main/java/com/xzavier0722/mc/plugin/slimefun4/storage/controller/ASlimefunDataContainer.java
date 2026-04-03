@@ -69,7 +69,6 @@ public abstract class ASlimefunDataContainer extends ADataContainer {
             // someone is modifying a removed blockData or a virtual blockData, DO NOT SAVE
             // save the key-value for other later use
             setWhilePendingRemove(key, val);
-            return;
         } else {
             scheduleUpdateData(key);
         }

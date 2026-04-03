@@ -176,10 +176,9 @@ public abstract class SlimefunLocalization implements Keyed {
 
         // Fallback to default configuration
         FileConfiguration defaults = getDefaultFile(file);
-        String defaultValue = defaults.getString(path);
 
         // Return the default value or an error message
-        return defaultValue;
+        return defaults.getString(path);
     }
 
 

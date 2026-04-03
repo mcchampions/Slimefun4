@@ -61,9 +61,7 @@ public class SlimefunDatabaseManager {
                 plugin.getLogger().log(Level.WARNING, "检测到 block-storage 连接池大小配置小于读写线程总和, 可能会导致性能问题");
             }
 
-            try {
-                initAdapter(blockDataStorageType, DataType.BLOCK_STORAGE, blockStorageConfig);
-            } catch (IOException ignored) {}
+            initAdapter(blockDataStorageType, DataType.BLOCK_STORAGE, blockStorageConfig);
 
             var blockDataController =
                     ControllerHolder.createController(BlockDataController.class, blockDataStorageType);
@@ -88,14 +86,12 @@ public class SlimefunDatabaseManager {
             plugin.getLogger().log(Level.WARNING, "检测到 profile-storage 连接池大小配置小于读写线程总和, 可能会导致性能问题");
         }
 
-        try {
-            initAdapter(profileStorageType, DataType.PLAYER_PROFILE, profileConfig);
-        } catch (IOException ignored) {}
+        initAdapter(profileStorageType, DataType.PLAYER_PROFILE, profileConfig);
         var profileController = ControllerHolder.createController(ProfileDataController.class, profileStorageType);
         profileController.init(profileAdapter, readExecutorThread, writeExecutorThread);
     }
 
-    private void initAdapter(StorageType storageType, DataType dataType, Config databaseConfig) throws IOException {
+    private void initAdapter(StorageType storageType, DataType dataType, Config databaseConfig) {
         switch (storageType) {
             case MYSQL -> {
                 var adapter = new MysqlAdapter();
