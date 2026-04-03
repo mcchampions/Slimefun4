@@ -6,7 +6,7 @@ name: Slimefun Builder
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'src/**'
       - 'pom.xml'
