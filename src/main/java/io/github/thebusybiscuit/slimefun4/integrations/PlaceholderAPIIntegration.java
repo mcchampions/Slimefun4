@@ -127,10 +127,6 @@ class PlaceholderAPIIntegration extends PlaceholderExpansion {
             return String.valueOf(Slimefun.getGPSNetwork().getNetworkComplexity(p.getUniqueId()));
         }
 
-        if (isPlaceholder(p, false, params, "timings_lag")) {
-            return Slimefun.getProfiler().getTime();
-        }
-
         if (isPlaceholder(p, false, params, "language") && p instanceof Player player) {
             return Slimefun.getLocalization().getLanguage(player).getName(player);
         }

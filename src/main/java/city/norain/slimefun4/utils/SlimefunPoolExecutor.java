@@ -32,8 +32,6 @@ public class SlimefunPoolExecutor extends ThreadPoolExecutor {
         setRejectedExecutionHandler(new SlimefunRejectedExecutionHandler());
 
         this.name = name;
-
-        Slimefun.getProfiler().registerPool(this);
     }
 
     @Override

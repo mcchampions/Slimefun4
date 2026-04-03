@@ -149,11 +149,7 @@ public abstract class ADataController {
                 var currentTask = scheduledWriteTasks.size();
 
                 if (pendingTask == currentTask) {
-                    if (timer.peek() / 1000 > 10) {
-                        Slimefun.logger().log(Level.WARNING, "检测到耗时保存任务, 请将下面的线程堆栈 完整 发送给开发者以便定位问题: ");
-                        Slimefun.logger()
-                                .log(Level.WARNING, Slimefun.getProfiler().snapshotThreads());
-                    }
+
                 } else {
                     timer.reset();
                 }

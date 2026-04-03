@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.attributes.HologramOwner;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,8 +17,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.function.LongConsumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Location;
@@ -139,76 +136,69 @@ public class EnergyNet extends Network implements HologramOwner {
     }
 
     public void tick(Block b, SlimefunBlockData blockData) {
-        AtomicLong timestamp = new AtomicLong(Slimefun.getProfiler().newEntry());
-        try {
-            if (!regulator.equals(b.getLocation())) {
-                updateHologram(b, "&4检测到附近有其他调节器", blockData::isPendingRemove);
+        if (!regulator.equals(b.getLocation())) {
+            updateHologram(b, "&4检测到附近有其他调节器", blockData::isPendingRemove);
 
-                return;
-            }
+            return;
+        }
 
-            super.tick();
+        super.tick();
 
-            if (connectorNodes.isEmpty() && terminusNodes.isEmpty()) {
-                updateHologram(b, "&4找不到能源网络", blockData::isPendingRemove);
-            } else {
-                long generatorsSupply = tickAllGenerators(timestamp::getAndAdd);
-                long capacitorsSupply = tickAllCapacitors();
-                long supply = NumberUtils.flowSafeAddition(generatorsSupply, capacitorsSupply);
-                long remainingEnergy = supply;
-                long demand = 0;
+        if (connectorNodes.isEmpty() && terminusNodes.isEmpty()) {
+            updateHologram(b, "&4找不到能源网络", blockData::isPendingRemove);
+        } else {
+            long generatorsSupply = tickAllGenerators();
+            long capacitorsSupply = tickAllCapacitors();
+            long supply = NumberUtils.flowSafeAddition(generatorsSupply, capacitorsSupply);
+            long remainingEnergy = supply;
+            long demand = 0;
 
-                for (Map.Entry<Location, EnergyNetComponent> entry : consumers.entrySet()) {
-                    Location loc = entry.getKey();
+            for (Map.Entry<Location, EnergyNetComponent> entry : consumers.entrySet()) {
+                Location loc = entry.getKey();
 
-                    var data = StorageCacheUtils.getDataContainer(loc);
-                    if (data == null || data.isPendingRemove()) {
+                var data = StorageCacheUtils.getDataContainer(loc);
+                if (data == null || data.isPendingRemove()) {
+                    continue;
+                }
+
+                EnergyNetComponent component = entry.getValue();
+                if (!((SlimefunItem) component).getId().equals(data.getSfId())) {
+                    var newItem = SlimefunItem.getById(data.getSfId());
+                    if (!(newItem instanceof EnergyNetComponent newComponent)
+                            || newComponent.getEnergyComponentType() != EnergyNetComponentType.CONSUMER) {
                         continue;
                     }
+                    consumers.put(loc, newComponent);
+                    component = newComponent;
+                }
 
-                    EnergyNetComponent component = entry.getValue();
-                    if (!((SlimefunItem) component).getId().equals(data.getSfId())) {
-                        var newItem = SlimefunItem.getById(data.getSfId());
-                        if (!(newItem instanceof EnergyNetComponent newComponent)
-                                || newComponent.getEnergyComponentType() != EnergyNetComponentType.CONSUMER) {
-                            continue;
-                        }
-                        consumers.put(loc, newComponent);
-                        component = newComponent;
-                    }
+                if (!data.isDataLoaded()) {
+                    StorageCacheUtils.requestLoad(data);
+                    continue;
+                }
 
-                    if (!data.isDataLoaded()) {
-                        StorageCacheUtils.requestLoad(data);
-                        continue;
-                    }
+                long capacity = component.getCapacityLong();
+                long charge = component.getChargeLong(loc);
 
-                    long capacity = component.getCapacityLong();
-                    long charge = component.getChargeLong(loc);
+                if (charge < capacity) {
+                    long availableSpace = capacity - charge;
+                    demand = NumberUtils.flowSafeAddition(demand, availableSpace);
 
-                    if (charge < capacity) {
-                        long availableSpace = capacity - charge;
-                        demand = NumberUtils.flowSafeAddition(demand, availableSpace);
+                    if (remainingEnergy > 0) {
+                        if (remainingEnergy > availableSpace) {
+                            component.setCharge(loc, capacity);
+                            remainingEnergy -= availableSpace;
+                        } else {
+                            long curCharge = NumberUtils.flowSafeAddition(charge, remainingEnergy);
+                            component.setCharge(loc, curCharge);
 
-                        if (remainingEnergy > 0) {
-                            if (remainingEnergy > availableSpace) {
-                                component.setCharge(loc, capacity);
-                                remainingEnergy -= availableSpace;
-                            } else {
-                                long curCharge = NumberUtils.flowSafeAddition(charge, remainingEnergy);
-                                component.setCharge(loc, curCharge);
-
-                                remainingEnergy = 0;
-                            }
+                            remainingEnergy = 0;
                         }
                     }
                 }
-                storeRemainingEnergy(remainingEnergy);
-                updateHologram(blockData, supply, demand);
             }
-        } finally {
-            // We have subtracted the timings from Generators, so they do not show up twice.
-            Slimefun.getProfiler()
-                    .closeEntry(b.getLocation(), SlimefunItems.ENERGY_REGULATOR.getItem(), timestamp.get());
+            storeRemainingEnergy(remainingEnergy);
+            updateHologram(blockData, supply, demand);
         }
     }
 
@@ -263,12 +253,11 @@ public class EnergyNet extends Network implements HologramOwner {
         }
     }
 
-    private long tickAllGenerators(LongConsumer timings) {
+    private long tickAllGenerators() {
         Set<Location> explodedBlocks = new HashSet<>();
         long supply = 0;
 
         for (Map.Entry<Location, EnergyNetProvider> entry : generators.entrySet()) {
-            long timestamp = Slimefun.getProfiler().newEntry();
             Location loc = entry.getKey();
             EnergyNetProvider provider = entry.getValue();
             SlimefunItem item = (SlimefunItem) provider;
@@ -314,9 +303,6 @@ public class EnergyNet extends Network implements HologramOwner {
                 explodedBlocks.add(loc);
                 new ErrorReport<>(throwable, loc, item);
             }
-
-            long time = Slimefun.getProfiler().closeEntry(loc, item, timestamp);
-            timings.accept(time);
         }
 
         // Remove all generators which have exploded
