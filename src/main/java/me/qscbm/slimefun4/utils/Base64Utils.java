@@ -18,14 +18,17 @@ public class Base64Utils {
         int l;
         for (int ip = 0; ip < iLen; ip += l) {
             l = Math.min(iLen - ip, blockLen);
-            sb.append(encode(in, ip, l));
+            encode(in, ip, l);
             sb.append(SYSTEM_LINE_SEPARATOR);
         }
 
         return sb.toString();
     }
+    private static final String systemLineSeparator = System.getProperty("line.separator");
     private static final char[] map1 = new char[64];
-    public static char[] encode(byte[] in, int iOff, int iLen) {
+    private static final byte[] map2;
+
+     public static char[] encode(byte[] in, int iOff, int iLen) {
         int oDataLen = (iLen * 4 + 2) / 3;
         int oLen = (iLen + 2) / 3 * 4;
         char[] out = new char[oLen];
@@ -49,7 +52,7 @@ public class Base64Utils {
 
         return out;
     }
-    private static final byte[] map2;
+
     static {
         int i = 0;
 

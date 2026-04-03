@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -299,7 +300,7 @@ public class SlimefunItemStack extends ItemStack {
         } else if (CommonPatterns.HEXADECIMAL.matcher(texture).matches()) {
             String value =
                     "{\"textures\":{\"SKIN\":{\"url\":\"http://textures.minecraft.net/texture/" + texture + "\"}}}";
-            return Base64Utils.encodeLines(value.getBytes(StandardCharsets.UTF_8));
+            return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
         } else {
             throw new IllegalArgumentException(
                     "The provided texture for Item \"" + id + "\" does not seem to be a valid texture String!");

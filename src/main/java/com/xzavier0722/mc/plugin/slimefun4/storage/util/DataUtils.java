@@ -31,7 +31,7 @@ public class DataUtils {
         try (var stream = new ByteArrayOutputStream();
                 var bs = new BukkitObjectOutputStream(stream)) {
             bs.writeObject(itemStack);
-            var itemStr = Base64Utils.encodeLines(stream.toByteArray());
+            var itemStr = Base64.getEncoder().encodeToString(stream.toByteArray());
 
             if (!Slimefun.getConfigManager().isBypassItemLengthCheck()
                     && Slimefun.getDatabaseManager().getBlockDataStorageType() == StorageType.MYSQL
@@ -91,7 +91,7 @@ public class DataUtils {
     }
 
     public static String base64Encode(String text) {
-        return Base64Utils.encodeLines(text.getBytes(StandardCharsets.UTF_8));
+        return Base64.getEncoder().encodeToString(text.getBytes(StandardCharsets.UTF_8));
     }
 
     public static String base64Decode(String base64Str) {
