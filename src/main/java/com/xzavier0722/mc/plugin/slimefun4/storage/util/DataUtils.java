@@ -91,7 +91,7 @@ public class DataUtils {
     }
 
     public static String base64Encode(String text) {
-        return Base64Utils.encodeLines((text.getBytes(StandardCharsets.UTF_8));
+        return Base64Utils.encodeLines(text.getBytes(StandardCharsets.UTF_8));
     }
 
     public static String base64Decode(String base64Str) {

@@ -5,7 +5,6 @@ import io.github.bakedlibs.dough.collections.OptionalMap;
 import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.IdConflictException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.IncompatibleItemHandlerException;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.MissingDependencyException;
@@ -36,7 +35,7 @@ import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -534,9 +533,6 @@ public class SlimefunItem implements Placeable {
             itemGroup.register(addon);
         }
 
-        // Send out deprecation warnings for any classes or interfaces
-        checkForDeprecations(getClass());
-
         // Check for an illegal stack size
         if (itemStackTemplate.getAmount() != 1) {
             // @formatter:off
@@ -569,11 +565,6 @@ public class SlimefunItem implements Placeable {
             if (exception.isPresent()) {
                 throw exception.get();
             } else {
-                /*
-                 * Make developers or at least Server admins aware that an Item
-                 * is using a deprecated ItemHandler
-                 */
-                checkForDeprecations(handler.getClass());
             }
 
             /*
@@ -621,52 +612,6 @@ public class SlimefunItem implements Placeable {
 
         if (conflictingItem != null) {
             throw new IdConflictException(this, conflictingItem);
-        }
-    }
-
-    /**
-     * This method checks recursively for all {@link Class} parents to look for any {@link Deprecated}
-     * elements.
-     *
-     * If a {@link Deprecated} element was found, a warning message will be printed.
-     *
-     * @param c
-     *            The {@link Class} from which to start this operation.
-     */
-    private void checkForDeprecations(@Nullable Class<?> c) {
-        if (Slimefun.getUpdater().getBranch() == SlimefunBranch.DEVELOPMENT) {
-            /*
-             * This method is currently way too spammy with all the restructuring going on...
-             * Since DEV builds are anyway under "development", things may be relocated.
-             * So we fire these only for stable versions, since devs should update then, so
-             * it's the perfect moment to tell them to act.
-             */
-            return;
-        }
-
-        /*
-         * We do not wanna throw an Exception here since this could also mean that.
-         * We have reached the end of the Class hierarchy
-         */
-        if (c != null) {
-            // Check if this Class is deprecated
-            if (c.isAnnotationPresent(Deprecated.class)) {
-                warn("The inherited Class \""
-                        + c.getName()
-                        + "\" has been deprecated. Check the documentation for more details!");
-            }
-
-            for (Class<?> parent : c.getInterfaces()) {
-                // Check if this Interface is deprecated
-                if (parent.isAnnotationPresent(Deprecated.class)) {
-                    warn("The implemented Interface \""
-                            + parent.getName()
-                            + "\" has been deprecated. Check the documentation for more details!");
-                }
-            }
-
-            // Recursively lookup the super class
-            checkForDeprecations(c.getSuperclass());
         }
     }
 

@@ -31,7 +31,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
 import io.github.thebusybiscuit.slimefun4.core.services.PerWorldSettingsService;
 import io.github.thebusybiscuit.slimefun4.core.services.PermissionsService;
 import io.github.thebusybiscuit.slimefun4.core.services.ThreadService;
-import io.github.thebusybiscuit.slimefun4.core.services.UpdaterService;
 import io.github.thebusybiscuit.slimefun4.core.services.github.GitHubService;
 import io.github.thebusybiscuit.slimefun4.core.services.holograms.HologramsService;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SlimefunProfiler;
@@ -121,7 +120,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
-import me.qscbm.slimefun4.listeners.AsyncTabCompleteListener;
 import net.guizhanss.slimefun4.updater.AutoUpdateTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -180,8 +178,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final BlockDataService blockDataService = new BlockDataService(this, "slimefun_block");
     private final CustomTextureService textureService = new CustomTextureService(new Config(this, "item-models.yml"));
     private final GitHubService gitHubService = new GitHubService("SlimefunGuguProject/Slimefun4");
-    private final UpdaterService updaterService =
-            new UpdaterService(this, getDescription().getVersion(), getFile());
     private final MetricsService metricsService = new MetricsService(this);
     private final AutoSavingService autoSavingService = new AutoSavingService();
     private final BackupService backupService = new BackupService();
@@ -898,16 +894,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         } else {
             return NumberUtils.roundDecimalNumber(ms) + "ms";
         }
-    }
-
-    /**
-     * This method returns the {@link UpdaterService} of Slimefun.
-     * It is used to handle automatic updates.
-     *
-     * @return The {@link UpdaterService} for Slimefun
-     */
-    public static UpdaterService getUpdater() {
-        return instance.updaterService;
     }
 
     /**

@@ -204,31 +204,7 @@ public final class SlimefunGuideSettings {
             ChatUtils.sendURL(pl, "https://slimefun-wiki.guizhanss.cn/Addons");
             return false;
         });
-
-        if (Slimefun.getUpdater().getBranch().isOfficial()) {
-            // @formatter:off
-            menu.addItem(
-                    49,
-                    new CustomItemStack(
-                            Material.REDSTONE_TORCH,
-                            "&4" + locale.getMessage(p, "guide.title.bugs"),
-                            "",
-                            "&7&oBug reports have to be made in English!",
-                            "",
-                            "&7Open Issues: &a" + github.getOpenIssues(),
-                            "&7Pending Pull Requests: &a" + github.getPendingPullRequests(),
-                            "",
-                            "&7\u21E8 &eClick to go to the Slimefun4 Bug Tracker"));
-            // @formatter:on
-
-            menu.addMenuClickHandler(49, (pl, slot, item, action) -> {
-                pl.closeInventory();
-                ChatUtils.sendURL(pl, "https://github.com/SlimefunGuguProject/Slimefun4/issues");
-                return false;
-            });
-        } else {
-            menu.addItem(49, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
-        }
+        menu.addItem(49, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
 
         menu.addItem(
                 51,
