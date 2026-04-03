@@ -52,7 +52,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.listeners.ButcherAndroi
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.CargoNodeListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.CoolerListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.DeathpointListener;
-import io.github.thebusybiscuit.slimefun4.implementation.listeners.DebugFishListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.DispenserListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.ElytraImpactListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.EnhancedFurnaceListener;
@@ -120,7 +119,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.MenuListener;
 import net.guizhanss.slimefun4.updater.AutoUpdateTask;
 import org.bukkit.Bukkit;
@@ -641,7 +640,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         new ItemDropListener(this);
         new DeathpointListener(this);
         new ExplosionsListener(this);
-        new DebugFishListener(this);
         new FireworksListener(this);
         new WitherListener(this);
         new IronGolemListener(this);

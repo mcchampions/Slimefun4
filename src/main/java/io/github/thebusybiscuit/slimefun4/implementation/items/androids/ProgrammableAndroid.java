@@ -33,6 +33,8 @@ import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.papermc.lib.PaperLib;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -202,7 +204,11 @@ public class ProgrammableAndroid extends SlimefunItem
                     }
                 }));
 
-                PlayerHead.setSkin(b, PlayerSkin.fromBase64(texture), true);
+                try {
+                    PlayerHead.setSkin(b, PlayerSkin.fromBase64(texture), true);
+                } catch (InvocationTargetException | InstantiationException | IllegalAccessException ex) {
+                    ex.printStackTrace();
+                }
             }
         };
     }
@@ -1044,7 +1050,11 @@ public class ProgrammableAndroid extends SlimefunItem
                 Material type = to.getType();
                 // Ensure that this Block is still a Player Head
                 if (type == Material.PLAYER_HEAD || type == Material.PLAYER_WALL_HEAD) {
-                    PlayerHead.setSkin(to, skin, true);
+                    try {
+                        PlayerHead.setSkin(to, skin, true);
+                    } catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 

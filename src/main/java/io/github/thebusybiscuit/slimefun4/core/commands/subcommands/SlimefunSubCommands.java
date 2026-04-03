@@ -36,7 +36,6 @@ public final class SlimefunSubCommands {
         commands.add(new TeleporterCommand(plugin, cmd));
         commands.add(new OpenGuideCommand(plugin, cmd));
         commands.add(new SearchCommand(plugin, cmd));
-        commands.add(new DebugFishCommand(plugin, cmd));
         commands.add(new BackpackCommand(plugin, cmd));
         commands.add(new ChargeCommand(plugin, cmd));
         commands.add(new DebugCommand(plugin, cmd));
