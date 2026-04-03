@@ -5,19 +5,17 @@ import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.core.services.LocalizationService;
-import io.github.thebusybiscuit.slimefun4.core.services.github.GitHubService;
 import io.github.thebusybiscuit.slimefun4.core.services.localization.Language;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -48,7 +46,6 @@ public final class SlimefunGuideSettings {
         options.add(new GuideModeOption());
         options.add(new FireworksOption());
         options.add(new LearningAnimationOption());
-        options.add(new PlayerLanguageOption());
     }
 
     private SlimefunGuideSettings() {}
@@ -91,33 +88,6 @@ public final class SlimefunGuideSettings {
             return false;
         });
 
-        GitHubService github = Slimefun.getGitHubService();
-
-        List<String> contributorsLore = new ArrayList<>();
-        contributorsLore.add("");
-        contributorsLore.addAll(locale.getMessages(
-                p,
-                "guide.credits.description",
-                msg -> msg.replace(
-                        "%contributors%",
-                        String.valueOf(github.getContributors().size()))));
-        contributorsLore.add("");
-        contributorsLore.add("&7\u21E8 &e" + locale.getMessage(p, "guide.credits.open"));
-
-        // @formatter:off
-        menu.addItem(
-                2,
-                new CustomItemStack(
-                        SlimefunUtils.getCustomHead("e952d2b3f351a6b0487cc59db31bf5f2641133e5ba0006b18576e996a0293e52"),
-                        "&c" + locale.getMessage(p, "guide.title.credits"),
-                        contributorsLore.toArray(new String[0])));
-        // @formatter:on
-
-        menu.addMenuClickHandler(2, (pl, slot, action, item) -> {
-            ContributorsMenu.open(pl, 0);
-            return false;
-        });
-
         // @formatter:off
         menu.addItem(
                 4,
@@ -143,10 +113,6 @@ public final class SlimefunGuideSettings {
                 new CustomItemStack(
                         Material.COMPARATOR,
                         "&e" + locale.getMessage(p, "guide.title.source"),
-                        "",
-                        "&7最近活动于: &a" + NumberUtils.getElapsedTime(github.getLastUpdate()) + " 前",
-                        "&7Forks: &e" + github.getForks(),
-                        "&7Stars: &e" + github.getStars(),
                         "",
                         "&7&oSlimefun 4 是一个由社区参与的项目,",
                         "&7&o源代码可以在 GitHub 上找到",

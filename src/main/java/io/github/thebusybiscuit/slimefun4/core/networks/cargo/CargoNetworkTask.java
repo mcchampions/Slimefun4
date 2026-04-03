@@ -1,16 +1,15 @@
 package io.github.thebusybiscuit.slimefun4.core.networks.cargo;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
@@ -20,7 +19,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -30,7 +29,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * The {@link CargoNetworkTask} is the actual {@link Runnable} responsible for moving {@link ItemStack ItemStacks}
  * around the {@link CargoNet}.
- *
+ * <p>
  * Inbefore this was just a method in the {@link CargoNet} class.
  * However for aesthetic reasons but mainly to prevent the Cargo Task from showing up as
  * "lambda:xyz-123" in timing reports... this was moved.
@@ -38,17 +37,14 @@ import org.bukkit.inventory.ItemStack;
  * @see CargoNet
  * @see CargoUtils
  * @see AbstractItemNetwork
- *
  */
 class CargoNetworkTask implements Runnable {
-
     private final NetworkManager manager;
     private final CargoNet network;
     private final Map<Location, Inventory> inventories = new HashMap<>();
 
     private final Map<Location, Integer> inputs;
     private final Map<Integer, List<Location>> outputs;
-
 
     CargoNetworkTask(CargoNet network, Map<Location, Integer> inputs, Map<Integer, List<Location>> outputs) {
         this.network = network;
@@ -60,40 +56,27 @@ class CargoNetworkTask implements Runnable {
 
     @Override
     public void run() {
-        long timestamp = System.nanoTime();
-
         try {
-            /**
-             * All operations happen here: Everything gets iterated from the Input Nodes.
-             * (Apart from ChestTerminal Buses)
-             */
-            SlimefunItem inputNode = SlimefunItems.CARGO_INPUT_NODE.getItem();
             for (Map.Entry<Location, Integer> entry : inputs.entrySet()) {
-                long nodeTimestamp = System.nanoTime();
                 Location input = entry.getKey();
                 Optional<Block> attachedBlock = network.getAttachedBlock(input);
 
                 attachedBlock.ifPresent(block -> routeItems(input, block, entry.getValue(), outputs));
 
                 // This will prevent this timings from showing up for the Cargo Manager
-                timestamp += Slimefun.getProfiler().closeEntry(entry.getKey(), inputNode, nodeTimestamp);
             }
-        } catch (Exception | LinkageError x) {
+        } catch (RuntimeException | LinkageError x) {
             Slimefun.logger()
-                    .log(
-                            Level.SEVERE,
-                            x,
-                            () -> "An Exception was caught while ticking a Cargo network @ "
-                                    + new BlockPosition(network.getRegulator()));
+                .log(
+                    Level.SEVERE,
+                    x,
+                    () -> "An Exception was caught while ticking a Cargo network @ "
+                          + new BlockPosition(network.getRegulator()));
         }
-
-        // Submit a timings report
-        Slimefun.getProfiler().closeEntry(network.getRegulator(), SlimefunItems.CARGO_MANAGER.getItem(), timestamp);
     }
 
-
     private void routeItems(
-            Location inputNode, Block inputTarget, int frequency, Map<Integer, List<Location>> outputNodes) {
+        Location inputNode, Block inputTarget, int frequency, Map<Integer, List<Location>> outputNodes) {
         ItemStackAndInteger slot = CargoUtils.withdraw(network, inventories, inputNode.getBlock(), inputTarget);
 
         if (slot == null) {
@@ -113,7 +96,6 @@ class CargoNetworkTask implements Runnable {
         }
     }
 
-
     private void insertItem(Block inputTarget, int previousSlot, ItemStack item) {
         Inventory inv = inventories.get(inputTarget.getLocation());
 
@@ -128,7 +110,7 @@ class CargoNetworkTask implements Runnable {
                 if (rest != null && !manager.isItemDeletionEnabled()) {
                     // If the item still couldn't be inserted, simply drop it on the ground
                     SlimefunUtils.spawnItem(
-                            inputTarget.getLocation().add(0, 1, 0), rest, ItemSpawnReason.CARGO_OVERFLOW);
+                        inputTarget.getLocation().add(0, 1, 0), rest, ItemSpawnReason.CARGO_OVERFLOW);
                 }
             }
         } else {
@@ -139,7 +121,7 @@ class CargoNetworkTask implements Runnable {
                     menu.replaceExistingItem(previousSlot, item);
                 } else if (!manager.isItemDeletionEnabled()) {
                     SlimefunUtils.spawnItem(
-                            inputTarget.getLocation().add(0, 1, 0), item, ItemSpawnReason.CARGO_OVERFLOW);
+                        inputTarget.getLocation().add(0, 1, 0), item, ItemSpawnReason.CARGO_OVERFLOW);
                 }
             }
         }
@@ -149,7 +131,7 @@ class CargoNetworkTask implements Runnable {
     private ItemStack distributeItem(ItemStack stack, Location inputNode, List<Location> outputNodes) {
         ItemStack item = stack;
 
-        var blockData = StorageCacheUtils.getBlock(inputNode);
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(inputNode);
         boolean roundrobin = Objects.equals(blockData.getData("round-robin"), "true");
         boolean smartFill = Objects.equals(blockData.getData("smart-fill"), "true");
 
@@ -168,9 +150,7 @@ class CargoNetworkTask implements Runnable {
             roundRobinSort(index, tempDestinations);
             destinations = tempDestinations;
         } else {
-            // Using an ArrayList here since we won't need to sort the destinations
-            // The ArrayList has the best performance for iteration bar a primitive array
-            destinations = new ArrayList<>(outputNodes);
+            destinations = outputNodes;
         }
 
         for (Location output : destinations) {
@@ -179,7 +159,7 @@ class CargoNetworkTask implements Runnable {
             if (target.isPresent()) {
                 ItemStackWrapper wrapper = ItemStackWrapper.wrap(item);
                 item = CargoUtils.insert(
-                        network, inventories, output.getBlock(), target.get(), smartFill, item, wrapper);
+                    network, inventories, output.getBlock(), target.get(), smartFill, item, wrapper);
 
                 if (item == null) {
                     if (roundrobin) {
@@ -199,12 +179,10 @@ class CargoNetworkTask implements Runnable {
      * This method sorts a given {@link Deque} of output node locations using a semi-accurate
      * round-robin method.
      *
-     * @param index
-     *            The round-robin index of the input node
-     * @param outputNodes
-     *            A {@link Deque} of {@link Location Locations} of the output nodes
+     * @param index       The round-robin index of the input node
+     * @param outputNodes A {@link Deque} of {@link Location Locations} of the output nodes
      */
-    private void roundRobinSort(int index, Deque<Location> outputNodes) {
+    private static void roundRobinSort(int index, Deque<Location> outputNodes) {
         if (index < outputNodes.size()) {
             // Not ideal but actually not bad performance-wise over more elegant alternatives
             for (int i = 0; i < index; i++) {

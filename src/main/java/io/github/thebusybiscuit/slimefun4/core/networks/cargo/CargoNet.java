@@ -38,7 +38,6 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class CargoNet extends AbstractItemNetwork implements HologramOwner {
-
     private static final int RANGE = 5;
 
     private final Set<Location> inputNodes = new HashSet<>();
@@ -49,8 +48,8 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
 
     public static @Nullable CargoNet getNetworkFromLocation(Location l) {
         return Slimefun.getNetworkManager()
-                .getNetworkFromLocation(l, CargoNet.class)
-                .orElse(null);
+            .getNetworkFromLocation(l, CargoNet.class)
+            .orElse(null);
     }
 
     public static CargoNet getNetworkFromLocationOrCreate(Location l) {
@@ -87,7 +86,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
 
     @Override
     public NetworkComponent classifyLocation(Location l) {
-        var data = StorageCacheUtils.getBlock(l);
+        SlimefunBlockData data = StorageCacheUtils.getBlock(l);
 
         if (data == null) {
             return null;
@@ -111,10 +110,11 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
         }
 
         if (to == NetworkComponent.TERMINUS) {
-            var data = StorageCacheUtils.getBlock(l);
+            SlimefunBlockData data = StorageCacheUtils.getBlock(l);
             switch (data.getSfId()) {
                 case "CARGO_NODE_INPUT" -> inputNodes.add(l);
                 case "CARGO_NODE_OUTPUT", "CARGO_NODE_OUTPUT_ADVANCED" -> outputNodes.add(l);
+
                 default -> {}
             }
         }
@@ -122,7 +122,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
 
     public void tick(Block b, SlimefunBlockData blockData) {
         if (!regulator.equals(b.getLocation())) {
-            updateHologram(b, "&4发现附近有多个货运网络调节机", blockData::isPendingRemove);
+            updateHologram(b, "§4发现附近有多个货运网络调节机", blockData::isPendingRemove);
             return;
         }
 
@@ -154,14 +154,13 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
                 if (blockData.isPendingRemove()) {
                     return;
                 }
-                var event = new CargoTickEvent(inputs, outputs);
+                CargoTickEvent event = new CargoTickEvent(inputs, outputs);
                 Bukkit.getPluginManager().callEvent(event);
                 event.getHologramMsg().ifPresent(msg -> updateHologram(b, msg));
                 if (event.isCancelled()) {
                     return;
                 }
 
-                Slimefun.getProfiler().scheduleEntries(inputs.size() + 1);
                 new CargoNetworkTask(this, inputs, outputs).run();
             });
         }
@@ -227,7 +226,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
      * @return The frequency of the given node
      */
     private static int getFrequency(Location node) {
-        var data = StorageCacheUtils.getBlock(node);
+        SlimefunBlockData data = StorageCacheUtils.getBlock(node);
         if (data == null) {
             return -1;
         }
@@ -243,18 +242,18 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
             return -1;
         } else if (!CommonPatterns.NUMERIC.matcher(frequency).matches()) {
             Slimefun.logger()
-                    .log(
-                            Level.SEVERE,
-                            () -> "Failed to parse a Cargo Node Frequency ("
-                                    + node.getWorld().getName()
-                                    + " - "
-                                    + node.getBlockX()
-                                    + ','
-                                    + node.getBlockY()
-                                    + ','
-                                    + node.getBlockZ()
-                                    + "): "
-                                    + frequency);
+                .log(
+                    Level.SEVERE,
+                    () -> "Failed to parse a Cargo Node Frequency ("
+                          + node.getWorld().getName()
+                          + " - "
+                          + node.getBlockX()
+                          + ','
+                          + node.getBlockY()
+                          + ','
+                          + node.getBlockZ()
+                          + "): "
+                          + frequency);
             return -1;
         } else {
             return Integer.parseInt(frequency);

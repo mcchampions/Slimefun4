@@ -31,7 +31,6 @@ import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
 import io.github.thebusybiscuit.slimefun4.core.services.PerWorldSettingsService;
 import io.github.thebusybiscuit.slimefun4.core.services.PermissionsService;
 import io.github.thebusybiscuit.slimefun4.core.services.ThreadService;
-import io.github.thebusybiscuit.slimefun4.core.services.github.GitHubService;
 import io.github.thebusybiscuit.slimefun4.core.services.holograms.HologramsService;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SlimefunProfiler;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundService;
@@ -177,7 +176,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final CustomItemDataService itemDataService = new CustomItemDataService(this, "slimefun_item");
     private final BlockDataService blockDataService = new BlockDataService(this, "slimefun_block");
     private final CustomTextureService textureService = new CustomTextureService(new Config(this, "item-models.yml"));
-    private final GitHubService gitHubService = new GitHubService("SlimefunGuguProject/Slimefun4");
     private final MetricsService metricsService = new MetricsService(this);
     private final AutoSavingService autoSavingService = new AutoSavingService();
     private final BackupService backupService = new BackupService();
@@ -387,8 +385,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
         logger.log(Level.INFO, "正在加载第三方插件支持...");
         integrations.start();
-
-        gitHubService.start(this);
 
         if (cfgManager.isAutoUpdate()) {
             // 汉化版自动更新
@@ -904,16 +900,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      */
     public static MetricsService getMetricsService() {
         return instance.metricsService;
-    }
-
-    /**
-     * This method returns the {@link GitHubService} of Slimefun.
-     * It is used to retrieve data from GitHub repositories.
-     *
-     * @return The {@link GitHubService} for Slimefun
-     */
-    public static GitHubService getGitHubService() {
-        return instance.gitHubService;
     }
 
     /**
