@@ -1164,7 +1164,6 @@ public class SlimefunItem implements Placeable {
         return Optional.ofNullable(getById(id));
     }
 
-
     @Nullable
     public static SlimefunItem getByItem(@Nullable ItemStack item) {
         if (item != null && item.getType() != Material.AIR) {
