@@ -117,8 +117,8 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
          */
         if (Bukkit.getPluginManager().isPluginEnabled("ExoticGarden")) {
             blocksToDestroy.sort((block1, block2) -> Boolean.compare(
-                    block2.getType().equals(Material.PLAYER_HEAD),
-                    block1.getType().equals(Material.PLAYER_HEAD)));
+                block2.getType() == Material.PLAYER_HEAD,
+                block1.getType() == Material.PLAYER_HEAD));
         }
 
         if (!event.isCancelled()) {
@@ -129,7 +129,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
     }
 
     @Nonnull
-    private List<Block> findBlocks(@Nonnull Block b) {
+    private List<Block> findBlocks(Block b) {
         List<Block> blocks = new ArrayList<>(26);
 
         for (int x = -1; x <= 1; x++) {
@@ -153,7 +153,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         return damageOnUse.getValue();
     }
 
-    protected boolean canBreak(@Nonnull Player p, @Nonnull Block b) {
+    protected boolean canBreak(Player p, Block b) {
         if (b.isEmpty() || b.isLiquid()) {
             return false;
         } else if (SlimefunTag.UNBREAKABLE_MATERIALS.isTagged(b.getType())) {
@@ -189,7 +189,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
                      * 若为叶子则尝试获取该处的 SlimefunItem，若能获取得到则此处应为异域花园植物，将叶子处直接设置为 AIR 并移除该处 Slimefun 方块数据。
                      */
                     if (Bukkit.getPluginManager().isPluginEnabled("ExoticGarden")
-                            && block.getType().equals(Material.PLAYER_HEAD)) {
+                        && block.getType() == Material.PLAYER_HEAD) {
                         Location leavesLocation = blockLocation.clone();
                         leavesLocation.setY(leavesLocation.getY() - 1);
 

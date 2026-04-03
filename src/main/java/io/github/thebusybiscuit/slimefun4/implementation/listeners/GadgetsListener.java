@@ -12,7 +12,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.player.JetBootsTa
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.player.JetpackTask;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.player.ParachuteTask;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import javax.annotation.Nonnull;
+
 import javax.annotation.Nullable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,7 +34,7 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
  */
 public class GadgetsListener implements Listener {
 
-    public GadgetsListener(@Nonnull Slimefun plugin) {
+    public GadgetsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -64,7 +64,7 @@ public class GadgetsListener implements Listener {
         }
     }
 
-    private void handleChestplate(@Nonnull Player p, @Nullable SlimefunItem chestplate) {
+    private void handleChestplate(Player p, @Nullable SlimefunItem chestplate) {
         if (chestplate == null || !chestplate.canUse(p, true)) {
             return;
         }
@@ -80,7 +80,7 @@ public class GadgetsListener implements Listener {
         }
     }
 
-    private void handleBoots(@Nonnull Player p, @Nullable SlimefunItem boots) {
+    private void handleBoots(Player p, @Nullable SlimefunItem boots) {
         if (boots instanceof JetBoots jetBoots && boots.canUse(p, true)) {
             double speed = jetBoots.getSpeed();
 

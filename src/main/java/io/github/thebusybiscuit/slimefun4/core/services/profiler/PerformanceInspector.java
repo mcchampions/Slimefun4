@@ -27,7 +27,7 @@ public interface PerformanceInspector {
      * @param msg
      *            The message to send
      */
-    void sendMessage(@Nonnull String msg);
+    void sendMessage(String msg);
 
     /**
      * This determines whether the {@link PerformanceInspector} will get the full view

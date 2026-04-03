@@ -157,7 +157,7 @@ public class Talisman extends SlimefunItem {
     @Override
     public void postRegister() {
         addWikiPage(WIKI_PAGE);
-        EnderTalisman talisman = new EnderTalisman(this, getEnderVariant());
+        EnderTalisman talisman = new EnderTalisman(this, enderTalisman);
         talisman.register(getAddon());
         talisman.addWikiPage(WIKI_PAGE);
     }
@@ -169,7 +169,7 @@ public class Talisman extends SlimefunItem {
     }
 
     void loadEnderTalisman() {
-        EnderTalisman talisman = (EnderTalisman) SlimefunItem.getByItem(getEnderVariant());
+        EnderTalisman talisman = (EnderTalisman) SlimefunItem.getByItem(enderTalisman);
         Optional<Research> research = Research.getResearch(new NamespacedKey(Slimefun.instance(), "ender_talismans"));
 
         if (talisman != null && research.isPresent()) {
@@ -198,7 +198,7 @@ public class Talisman extends SlimefunItem {
             return false;
         }
 
-        if (ThreadLocalRandom.current().nextInt(100) > talisman.getChance()) {
+        if (ThreadLocalRandom.current().nextInt(100) > talisman.chance) {
             return false;
         }
 
@@ -218,7 +218,7 @@ public class Talisman extends SlimefunItem {
                 return false;
             }
         } else {
-            SlimefunItemStack enderTalismanItem = talisman.getEnderVariant();
+            SlimefunItemStack enderTalismanItem = talisman.enderTalisman;
             if (enderTalismanItem == null) {
                 return false;
             }
@@ -259,12 +259,10 @@ public class Talisman extends SlimefunItem {
 
     @ParametersAreNonnullByDefault
     private static void consumeItem(Inventory inv, Talisman talisman, ItemStack talismanItem) {
-        if (talisman.isConsumable()) {
+        if (talisman.consumable) {
             ItemStack[] contents = inv.getContents();
 
-            for (int i = 0; i < contents.length; i++) {
-                ItemStack item = contents[i];
-
+            for (ItemStack item : contents) {
                 if (SlimefunUtils.isItemSimilar(item, talismanItem, true, false)) {
                     ItemUtils.consumeItem(item, false);
                     return;
@@ -282,7 +280,7 @@ public class Talisman extends SlimefunItem {
 
     @ParametersAreNonnullByDefault
     private static void cancelEvent(Event e, Talisman talisman) {
-        if (e instanceof Cancellable cancellable && talisman.isEventCancelled()) {
+        if (e instanceof Cancellable cancellable && talisman.cancel) {
             cancellable.setCancelled(true);
         }
     }
@@ -295,7 +293,7 @@ public class Talisman extends SlimefunItem {
      * @return Whether this {@link Talisman} is silent
      */
     public boolean isSilent() {
-        return getMessageSuffix() == null;
+        return suffix == null;
     }
 
     @Nullable protected final String getMessageSuffix() {
@@ -310,13 +308,13 @@ public class Talisman extends SlimefunItem {
      * @param p
      *            The {@link Player} who shall receive the message
      */
-    public void sendMessage(@Nonnull Player p) {
+    public void sendMessage(Player p) {
         Validate.notNull(p, "The Player must not be null.");
 
         // Check if this Talisman has a message
         if (!isSilent()) {
             try {
-                String messageKey = "messages.talisman." + getMessageSuffix();
+                String messageKey = "messages.talisman." + suffix;
 
                 if (Slimefun.getConfigManager().useActionbarForTalismans()) {
                     // Use the actionbar
@@ -331,7 +329,7 @@ public class Talisman extends SlimefunItem {
         }
     }
 
-    private boolean canEffectsBeApplied(@Nonnull Player p) {
+    private boolean canEffectsBeApplied(Player p) {
         for (PotionEffect effect : getEffects()) {
             if (effect != null && p.hasPotionEffect(effect.getType())) {
                 return false;
@@ -341,7 +339,7 @@ public class Talisman extends SlimefunItem {
         return true;
     }
 
-    @Nullable private static Player getPlayerByEventType(@Nonnull Event e) {
+    @Nullable private static Player getPlayerByEventType(Event e) {
         if (e instanceof EntityDeathEvent entityDeathEvent) {
             return entityDeathEvent.getEntity().getKiller();
         } else if (e instanceof BlockBreakEvent blockBreakEvent) {

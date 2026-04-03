@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+import java.util.regex.Pattern;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.apache.commons.lang.Validate;
@@ -38,6 +38,7 @@ public final class AndroidShareMenu {
     private static final int DISPLAY_START_SLOT = 9;
     private static final NamespacedKey BLOCK_INFO_KEY = new NamespacedKey(Slimefun.instance(), "share-users");
     private static final int SHARED_USERS_LIMIT = 15;
+    private static final Pattern PATTERN = Pattern.compile(", ");
 
     private AndroidShareMenu() {}
 
@@ -184,7 +185,7 @@ public final class AndroidShareMenu {
      * @param value list raw string
      * @return parse trusted player list
      */
-    private @Nonnull static List<String> parseBlockInfoToList(@Nonnull String value) {
+    private static List<String> parseBlockInfoToList(String value) {
         Validate.notNull(value, "The trusted player list cannot be null!");
 
         String replacedText = value.replace("[", "").replace("]", "");
@@ -192,7 +193,7 @@ public final class AndroidShareMenu {
         if (replacedText.isEmpty()) {
             return new ArrayList<>();
         } else {
-            return new ArrayList<>(Arrays.asList(replacedText.split(", ")));
+            return new ArrayList<>(Arrays.asList(PATTERN.split(replacedText)));
         }
     }
 
@@ -202,13 +203,13 @@ public final class AndroidShareMenu {
      * @param b the block of android
      * @return trusted users list
      */
-    public @Nonnull static List<String> getTrustedUsers(@Nonnull Block b) {
+    public static List<String> getTrustedUsers(Block b) {
         Validate.notNull(b, "The android block cannot be null!");
 
         Optional<String> trustUsers = getSharedUserData(b.getState());
 
         // Checks for old Android
-        if (!trustUsers.isPresent()) {
+        if (trustUsers.isEmpty()) {
             List<String> emptyUsers = new ArrayList<>();
             setSharedUserData(b.getState(), String.valueOf(emptyUsers));
             return emptyUsers;
@@ -234,7 +235,7 @@ public final class AndroidShareMenu {
         return trustUsers.map(s -> s.contains(uuid.toString())).orElse(false);
     }
 
-    private static void setSharedUserData(@Nonnull BlockState state, @Nonnull String value) {
+    private static void setSharedUserData(BlockState state, String value) {
         Validate.notNull(state, "The android block state cannot be null!");
         Validate.notNull(value, "The data value cannot be null!");
 
@@ -252,7 +253,7 @@ public final class AndroidShareMenu {
         }
     }
 
-    private @Nonnull static Optional<String> getSharedUserData(@Nonnull BlockState state) {
+    private static Optional<String> getSharedUserData(BlockState state) {
         Validate.notNull(state, "The android block state cannot be null!");
 
         if (!(state instanceof TileState)) {

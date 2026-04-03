@@ -14,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -52,7 +51,7 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
             List<Block> list = Vein.find(target, MAX_REACH, block -> Tag.LOGS.isTagged(block.getType()));
 
             if (!list.isEmpty()) {
-                Block log = list.get(list.size() - 1);
+                Block log = list.getLast();
                 log.getWorld().playEffect(log.getLocation(), Effect.STEP_SOUND, log.getType());
 
                 OfflinePlayer owner = Bukkit.getOfflinePlayer(UUID.fromString(
@@ -85,7 +84,7 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
         }
     }
 
-    private void replant(@Nonnull Block block) {
+    private void replant(Block block) {
         Material logType = block.getType();
         Material saplingType = null;
         Predicate<Material> soilRequirement = null;

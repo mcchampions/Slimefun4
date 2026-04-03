@@ -2,7 +2,7 @@ package io.github.thebusybiscuit.slimefun4.utils;
 
 import io.github.thebusybiscuit.slimefun4.core.attributes.DamageableItem;
 import java.util.function.IntFunction;
-import javax.annotation.Nonnull;
+
 import org.bukkit.enchantments.Enchantment;
 
 /**
@@ -28,7 +28,7 @@ public enum UnbreakingAlgorithm {
 
     private final IntFunction<Boolean> function;
 
-    UnbreakingAlgorithm(@Nonnull IntFunction<Boolean> function) {
+    UnbreakingAlgorithm(IntFunction<Boolean> function) {
         this.function = function;
     }
 

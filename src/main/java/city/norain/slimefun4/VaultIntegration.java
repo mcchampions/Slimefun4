@@ -3,7 +3,7 @@ package city.norain.slimefun4;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Objects;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.OfflinePlayer;
 
@@ -13,9 +13,9 @@ import org.bukkit.OfflinePlayer;
  * @author StarWishsama
  */
 public class VaultIntegration {
-    private static Economy econ = null;
+    private static Economy econ;
 
-    protected static void register(@Nonnull Slimefun plugin) {
+    protected static void register(Slimefun plugin) {
         if (plugin.getServer().getPluginManager().isPluginEnabled("Vault")) {
             var rsp = plugin.getServer().getServicesManager().getRegistration(Economy.class);
             if (rsp != null) {

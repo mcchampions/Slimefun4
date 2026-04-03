@@ -53,11 +53,11 @@ public class TickerTask implements Runnable {
     private final Map<BlockPosition, Integer> bugs = new ConcurrentHashMap<>();
 
     private int tickRate;
-    private boolean halted = false;
-    private boolean running = false;
+    private boolean halted;
+    private boolean running;
 
     @Setter
-    private volatile boolean paused = false;
+    private volatile boolean paused;
 
     /**
      * This method starts the {@link TickerTask} on an asynchronous schedule.
@@ -65,7 +65,7 @@ public class TickerTask implements Runnable {
      * @param plugin
      *            The instance of our {@link Slimefun}
      */
-    public void start(@Nonnull Slimefun plugin) {
+    public void start(Slimefun plugin) {
         this.tickRate = Slimefun.getCfg().getInt("URID.custom-ticker-delay");
 
         BukkitScheduler scheduler = plugin.getServer().getScheduler();
@@ -145,7 +145,7 @@ public class TickerTask implements Runnable {
         }
     }
 
-    private void tickLocation(@Nonnull Set<BlockTicker> tickers, @Nonnull Location l) {
+    private void tickLocation(Set<BlockTicker> tickers, Location l) {
         var blockData = StorageCacheUtils.getBlock(l);
         if (blockData == null || !blockData.isDataLoaded() || blockData.isPendingRemove()) {
             return;
@@ -187,7 +187,7 @@ public class TickerTask implements Runnable {
     }
 
     @ParametersAreNonnullByDefault
-    private void tickUniversalLocation(UUID uuid, Location l, @Nonnull Set<BlockTicker> tickers) {
+    private void tickUniversalLocation(UUID uuid, Location l, Set<BlockTicker> tickers) {
         var data = StorageCacheUtils.getUniversalBlock(uuid);
         var item = SlimefunItem.getById(data.getSfId());
 
@@ -330,7 +330,7 @@ public class TickerTask implements Runnable {
      * @return A {@link Set} of all ticking {@link Location Locations}
      */
     @Nonnull
-    public Set<Location> getLocations(@Nonnull Chunk chunk) {
+    public Set<Location> getLocations(Chunk chunk) {
         Validate.notNull(chunk, "The Chunk cannot be null!");
 
         Set<TickLocation> locations = tickingLocations.getOrDefault(new ChunkPosition(chunk), Collections.emptySet());
@@ -350,7 +350,7 @@ public class TickerTask implements Runnable {
      * @return 包含所有机器 Tick {@link TickLocation 位置}的只读 {@link Map}
      */
     @Nonnull
-    public Set<TickLocation> getTickLocations(@Nonnull Chunk chunk) {
+    public Set<TickLocation> getTickLocations(Chunk chunk) {
         Validate.notNull(chunk, "The Chunk cannot be null!");
 
         return tickingLocations.getOrDefault(new ChunkPosition(chunk), Collections.emptySet());
@@ -362,11 +362,11 @@ public class TickerTask implements Runnable {
      * @param l
      *            The {@link Location} to activate
      */
-    public void enableTicker(@Nonnull Location l) {
+    public void enableTicker(Location l) {
         enableTicker(l, null);
     }
 
-    public void enableTicker(@Nonnull Location l, @Nullable UUID uuid) {
+    public void enableTicker(Location l, @Nullable UUID uuid) {
         Validate.notNull(l, "Location cannot be null!");
 
         synchronized (tickingLocations) {
@@ -388,6 +388,7 @@ public class TickerTask implements Runnable {
              * This is faster than doing computeIfAbsent(...)
              * on a ConcurrentHashMap because it won't block the Thread for too long
              */
+            //noinspection ReplaceNullCheck
             if (oldValue != null) {
                 oldValue.add(tickPosition);
             } else {
@@ -403,7 +404,7 @@ public class TickerTask implements Runnable {
      * @param l
      *            The {@link Location} to remove
      */
-    public void disableTicker(@Nonnull Location l) {
+    public void disableTicker(Location l) {
         Validate.notNull(l, "Location cannot be null!");
 
         synchronized (tickingLocations) {
@@ -430,7 +431,7 @@ public class TickerTask implements Runnable {
      * @param uuid
      *            The {@link UUID} to remove
      */
-    public void disableTicker(@Nonnull UUID uuid) {
+    public void disableTicker(UUID uuid) {
         Validate.notNull(uuid, "Universal Data ID cannot be null!");
 
         synchronized (tickingLocations) {

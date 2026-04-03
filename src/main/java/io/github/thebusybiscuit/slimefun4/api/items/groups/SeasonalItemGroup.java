@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.api.items.groups;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import java.time.LocalDate;
 import java.time.Month;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
@@ -48,12 +47,12 @@ public class SeasonalItemGroup extends ItemGroup {
      *
      * @return the {@link Month} in which this {@link SeasonalItemGroup} appears
      */
-    public @Nonnull Month getMonth() {
+    public Month getMonth() {
         return month;
     }
 
     @Override
-    public boolean isAccessible(@Nonnull Player p) {
+    public boolean isAccessible(Player p) {
         // Block this ItemGroup if the month differs
         if (month != LocalDate.now().getMonth()) {
             return false;

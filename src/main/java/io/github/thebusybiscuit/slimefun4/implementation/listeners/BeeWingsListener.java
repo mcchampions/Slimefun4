@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.BeeWings;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.player.BeeWingsTask;
-import javax.annotation.Nonnull;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,7 +25,7 @@ public class BeeWingsListener implements Listener {
 
     private final BeeWings wings;
 
-    public BeeWingsListener(@Nonnull Slimefun plugin, @Nonnull BeeWings wings) {
+    public BeeWingsListener(Slimefun plugin, BeeWings wings) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
         this.wings = wings;
@@ -35,11 +34,10 @@ public class BeeWingsListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onApproachGround(EntityToggleGlideEvent e) {
 
-        if (wings == null || !e.isGliding() || wings.isDisabled() || !(e.getEntity() instanceof Player)) {
+        if (wings == null || !e.isGliding() || wings.isDisabled() || !(e.getEntity() instanceof Player player)) {
             return;
         }
 
-        Player player = (Player) e.getEntity();
         ItemStack chestplate = player.getInventory().getChestplate();
 
         if (wings.isItem(chestplate) && wings.canUse(player, true)) {

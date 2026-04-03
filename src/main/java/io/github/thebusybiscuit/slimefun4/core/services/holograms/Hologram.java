@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.services.holograms;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
@@ -41,7 +40,7 @@ class Hologram {
      *
      * @param uniqueId The {@link UUID} of the corresponding {@link ArmorStand}
      */
-    Hologram(@Nonnull UUID uniqueId) {
+    Hologram(UUID uniqueId) {
         this.uniqueId = uniqueId;
         this.lastAccess = System.currentTimeMillis();
     }

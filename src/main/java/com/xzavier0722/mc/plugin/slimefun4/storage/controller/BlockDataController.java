@@ -84,9 +84,9 @@ public class BlockDataController extends ADataController {
     /**
      * 延时加载模式标志
      */
-    private boolean enableDelayedSaving = false;
+    private boolean enableDelayedSaving;
 
-    private int delayedSecond = 0;
+    private int delayedSecond;
     private BukkitTask looperTask;
     /**
      * 区块数据加载模式
@@ -501,7 +501,7 @@ public class BlockDataController extends ADataController {
 
         var result = getData(key);
         var re =
-                result.isEmpty() ? null : new SlimefunBlockData(l, result.get(0).get(FieldKey.SLIMEFUN_ID));
+                result.isEmpty() ? null : new SlimefunBlockData(l, result.getFirst().get(FieldKey.SLIMEFUN_ID));
         if (re != null) {
             // fix issue #935
             SlimefunChunkData chunkData = getChunkDataCache(l, true);
@@ -552,7 +552,7 @@ public class BlockDataController extends ADataController {
     /**
      * 从数据库中获取 {@link SlimefunUniversalData}
      */
-    @Nullable public SlimefunUniversalData getUniversalData(@Nonnull UUID uuid) {
+    @Nullable public SlimefunUniversalData getUniversalData(UUID uuid) {
         checkDestroy();
 
         var key = new RecordKey(DataScope.UNIVERSAL_RECORD);
@@ -566,14 +566,14 @@ public class BlockDataController extends ADataController {
             return null;
         }
 
-        var traits = StringUtil.getTraitsFromStr(result.get(0).get(FieldKey.UNIVERSAL_TRAITS));
+        var traits = StringUtil.getTraitsFromStr(result.getFirst().get(FieldKey.UNIVERSAL_TRAITS));
 
         if (traits.contains(UniversalDataTrait.BLOCK)) {
-            var ubd = new SlimefunUniversalBlockData(uuid, result.get(0).get(FieldKey.SLIMEFUN_ID));
+            var ubd = new SlimefunUniversalBlockData(uuid, result.getFirst().get(FieldKey.SLIMEFUN_ID));
             traits.forEach(ubd::addTrait);
             return ubd;
         } else {
-            return new SlimefunUniversalData(uuid, result.get(0).get(FieldKey.SLIMEFUN_ID), traits);
+            return new SlimefunUniversalData(uuid, result.getFirst().get(FieldKey.SLIMEFUN_ID), traits);
         }
     }
 
@@ -582,7 +582,7 @@ public class BlockDataController extends ADataController {
      *
      * @param uuid universal data uuid {@link UUID}
      */
-    @Nullable public SlimefunUniversalBlockData getUniversalBlockData(@Nonnull UUID uuid) {
+    @Nullable public SlimefunUniversalBlockData getUniversalBlockData(UUID uuid) {
         SlimefunUniversalData universalData = getUniversalData(uuid);
 
         if (universalData instanceof SlimefunUniversalBlockData ubd) {
@@ -598,7 +598,7 @@ public class BlockDataController extends ADataController {
      * @param uuid     universal data uuid {@link UUID}
      * @param callback operation when block data fetched {@link IAsyncReadCallback}
      */
-    public void getUniversalBlockData(@Nonnull UUID uuid, IAsyncReadCallback<SlimefunUniversalBlockData> callback) {
+    public void getUniversalBlockData(UUID uuid, IAsyncReadCallback<SlimefunUniversalBlockData> callback) {
         scheduleReadTask(() -> invokeCallback(callback, getUniversalBlockData(uuid)));
     }
 
@@ -608,7 +608,7 @@ public class BlockDataController extends ADataController {
      * @param uuid 通用数据 UUID
      * @return {@link SlimefunUniversalData}
      */
-    @Nullable public SlimefunUniversalData getUniversalDataFromCache(@Nonnull UUID uuid) {
+    @Nullable public SlimefunUniversalData getUniversalDataFromCache(UUID uuid) {
         checkDestroy();
 
         return loadedUniversalData.get(uuid);
@@ -619,7 +619,7 @@ public class BlockDataController extends ADataController {
      *
      * @param uuid universal data uuid {@link UUID}
      */
-    @Nullable public SlimefunUniversalBlockData getUniversalBlockDataFromCache(@Nonnull UUID uuid) {
+    @Nullable public SlimefunUniversalBlockData getUniversalBlockDataFromCache(UUID uuid) {
         var cache = getUniversalDataFromCache(uuid);
 
         if (cache instanceof SlimefunUniversalBlockData ubd) {
@@ -634,7 +634,7 @@ public class BlockDataController extends ADataController {
      *
      * @param l Slimefun block location {@link Location}
      */
-    public Optional<SlimefunUniversalBlockData> getUniversalBlockDataFromCache(@Nonnull Location l) {
+    public Optional<SlimefunUniversalBlockData> getUniversalBlockDataFromCache(Location l) {
         checkDestroy();
 
         for (SlimefunUniversalData uniData : loadedUniversalData.values()) {
@@ -1271,7 +1271,7 @@ public class BlockDataController extends ADataController {
         });
     }
 
-    public void saveUniversalInventory(@Nonnull SlimefunUniversalData universalData) {
+    public void saveUniversalInventory(SlimefunUniversalData universalData) {
         var universalID = universalData.getUUID();
 
         var currentInv = universalData.getMenuContents();
@@ -1576,10 +1576,10 @@ public class BlockDataController extends ADataController {
      * 迁移旧 Slimefun 机器数据至通用数据
      */
     private void migrateUniversalData(
-            @Nonnull Location l,
-            @Nonnull String sfId,
-            @Nonnull List<RecordSet> kvData,
-            @Nonnull List<RecordSet> invData) {
+            Location l,
+            String sfId,
+            List<RecordSet> kvData,
+            List<RecordSet> invData) {
         try {
             if (l == null || sfId == null) {
                 return;

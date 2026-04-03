@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.LimitedUseItem;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -43,12 +43,12 @@ public class StormStaff extends LimitedUseItem {
     }
 
     @Override
-    protected @Nonnull NamespacedKey getStorageKey() {
+    protected NamespacedKey getStorageKey() {
         return usageKey;
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             Player p = e.getPlayer();
             ItemStack item = e.getItem();

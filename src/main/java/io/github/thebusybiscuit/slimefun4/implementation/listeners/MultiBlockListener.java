@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.MultiBlockInteractionHan
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlock;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.LinkedList;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
@@ -33,7 +32,7 @@ import org.bukkit.inventory.EquipmentSlot;
  */
 public class MultiBlockListener implements Listener {
 
-    public MultiBlockListener(@Nonnull Slimefun plugin) {
+    public MultiBlockListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -92,7 +91,7 @@ public class MultiBlockListener implements Listener {
     }
 
     private boolean compareMaterialsVertical(
-            @Nonnull Block b, @Nullable Material top, @Nullable Material center, @Nullable Material bottom) {
+            Block b, @Nullable Material top, @Nullable Material center, @Nullable Material bottom) {
         return (center == null || equals(b.getType(), center))
                 && (top == null || equals(b.getRelative(BlockFace.UP).getType(), top))
                 && (bottom == null || equals(b.getRelative(BlockFace.DOWN).getType(), bottom));

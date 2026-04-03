@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.entity.EnderPearl;
 import org.bukkit.entity.Player;
@@ -31,7 +31,7 @@ public class MagicEyeOfEnder extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
 
@@ -48,7 +48,7 @@ public class MagicEyeOfEnder extends SimpleSlimefunItem<ItemUseHandler> {
         };
     }
 
-    private boolean hasArmor(@Nonnull PlayerInventory inv) {
+    private boolean hasArmor(PlayerInventory inv) {
         // @formatter:off
         return SlimefunItem.getByItem(inv.getHelmet()) == SlimefunItems.ENDER_HELMET.getItem()
                 && SlimefunItem.getByItem(inv.getChestplate()) == SlimefunItems.ENDER_CHESTPLATE.getItem()

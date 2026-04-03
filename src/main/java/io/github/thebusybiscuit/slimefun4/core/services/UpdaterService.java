@@ -7,7 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.io.File;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -47,7 +47,7 @@ public class UpdaterService {
      * @param file
      *            The {@link File} of this {@link Plugin}
      */
-    public UpdaterService(@Nonnull Slimefun plugin, @Nonnull String version, @Nonnull File file) {
+    public UpdaterService(Slimefun plugin, String version, File file) {
         this.plugin = plugin;
 
         branch = SlimefunBranch.UNOFFICIAL;
@@ -62,7 +62,7 @@ public class UpdaterService {
      *
      * @return The branch this build of Slimefun is on.
      */
-    public @Nonnull SlimefunBranch getBranch() {
+    public SlimefunBranch getBranch() {
         return branch;
     }
 

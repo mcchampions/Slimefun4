@@ -5,7 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectionType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Optional;
-import javax.annotation.Nonnull;
+
 import org.bukkit.entity.Bee;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,17 +22,16 @@ import org.bukkit.inventory.ItemStack;
  */
 public class BeeListener implements Listener {
 
-    public BeeListener(@Nonnull Slimefun plugin) {
+    public BeeListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e) {
-        if (e.getDamager() instanceof Bee && e.getEntity() instanceof Player) {
-            Player p = (Player) e.getEntity();
+        if (e.getDamager() instanceof Bee && e.getEntity() instanceof Player p) {
             Optional<PlayerProfile> optional = PlayerProfile.find(p);
 
-            if (!optional.isPresent()) {
+            if (optional.isEmpty()) {
                 PlayerProfile.request(p);
                 return;
             }

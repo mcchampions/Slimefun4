@@ -12,7 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
 
 /**
  * This class reads all translators of this project.
@@ -28,7 +27,7 @@ final class TranslatorsReader {
     private final GitHubService github;
 
     // We maybe should switch to a json file in our resources folder at some point.
-    TranslatorsReader(@Nonnull GitHubService github) {
+    TranslatorsReader(GitHubService github) {
         this.github = github;
     }
 

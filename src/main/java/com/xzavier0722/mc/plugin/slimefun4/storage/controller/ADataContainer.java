@@ -14,7 +14,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public abstract class ADataContainer {
     private final String key;
     private final Map<String, String> data;
-    private volatile boolean isDataLoaded = false;
+    private volatile boolean isDataLoaded;
 
     /**
      * Constructs a new ADataContainer.

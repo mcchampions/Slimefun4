@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.function.BiConsumer;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.ChatColor;
@@ -152,7 +151,7 @@ public class RecipeType implements Keyed {
         this.item = item;
         this.machine = machine;
 
-        if (machine.length() > 0) {
+        if (!machine.isEmpty()) {
             this.key = new NamespacedKey(Slimefun.instance(), machine.toLowerCase(Locale.ROOT));
         } else {
             this.key = new NamespacedKey(Slimefun.instance(), "unknown");
@@ -234,7 +233,7 @@ public class RecipeType implements Keyed {
         return this.item;
     }
 
-    public @Nonnull ItemStack getItem(Player p) {
+    public ItemStack getItem(Player p) {
         return Slimefun.getLocalization().getRecipeTypeItem(p, this);
     }
 
@@ -243,14 +242,14 @@ public class RecipeType implements Keyed {
     }
 
     @Override
-    public final @Nonnull NamespacedKey getKey() {
+    public final NamespacedKey getKey() {
         return key;
     }
 
     @Override
     public final boolean equals(Object obj) {
         if (obj instanceof RecipeType recipeType) {
-            return recipeType.getKey().equals(this.getKey());
+            return recipeType.key.equals(this.key);
         } else {
             return false;
         }
@@ -258,7 +257,7 @@ public class RecipeType implements Keyed {
 
     @Override
     public final int hashCode() {
-        return getKey().hashCode();
+        return key.hashCode();
     }
 
     @ParametersAreNonnullByDefault

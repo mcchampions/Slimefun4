@@ -56,7 +56,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
      * @param originalEvent
      *            The original {@link PlayerInteractEvent}
      */
-    public PlayerRightClickEvent(@Nonnull PlayerInteractEvent originalEvent) {
+    public PlayerRightClickEvent(PlayerInteractEvent originalEvent) {
         super(originalEvent.getPlayer());
 
         event = originalEvent;
@@ -166,12 +166,12 @@ public class PlayerRightClickEvent extends PlayerEvent {
         return blockResult;
     }
 
-    public void setUseItem(@Nonnull Result result) {
+    public void setUseItem(Result result) {
         Validate.notNull(result, "Result cannot be null");
         itemResult = result;
     }
 
-    public void setUseBlock(@Nonnull Result result) {
+    public void setUseBlock(Result result) {
         Validate.notNull(result, "Result cannot be null");
         blockResult = result;
     }
@@ -184,6 +184,6 @@ public class PlayerRightClickEvent extends PlayerEvent {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

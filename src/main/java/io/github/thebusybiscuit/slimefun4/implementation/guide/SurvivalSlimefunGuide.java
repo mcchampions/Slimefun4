@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
@@ -80,12 +79,12 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     }
 
     @Override
-    public @Nonnull SlimefunGuideMode getMode() {
+    public SlimefunGuideMode getMode() {
         return SlimefunGuideMode.SURVIVAL_MODE;
     }
 
     @Override
-    public @Nonnull ItemStack getItem() {
+    public ItemStack getItem() {
         return item;
     }
 
@@ -103,7 +102,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
      *
      * @return a {@link List} of visible {@link ItemGroup} instances
      */
-    protected @Nonnull List<ItemGroup> getVisibleItemGroups(@Nonnull Player p, @Nonnull PlayerProfile profile) {
+    protected List<ItemGroup> getVisibleItemGroups(Player p, PlayerProfile profile) {
         List<ItemGroup> groups = new LinkedList<>();
 
         for (ItemGroup group : Slimefun.getRegistry().getAllItemGroups()) {
@@ -443,7 +442,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     @ParametersAreNonnullByDefault
     private boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm) {
         String itemName = ChatColor.stripColor(slimefunItem.getItemName()).toLowerCase(Locale.ROOT);
-        return !itemName.isEmpty() && (itemName.equals(searchTerm) || itemName.contains(searchTerm));
+        return !itemName.isEmpty() && (itemName.contains(searchTerm));
     }
 
     @Override
@@ -545,7 +544,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         RecipeChoice[] choices = Slimefun.getMinecraftRecipeService().getRecipeShape(recipe);
 
         if (choices.length == 1 && choices[0] instanceof MaterialChoice materialChoice) {
-            recipeItems[4] = new ItemStack(materialChoice.getChoices().get(0));
+            recipeItems[4] = new ItemStack(materialChoice.getChoices().getFirst());
 
             if (materialChoice.getChoices().size() > 1) {
                 task.add(recipeSlots[4], materialChoice);
@@ -553,7 +552,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         } else {
             for (int i = 0; i < choices.length; i++) {
                 if (choices[i] instanceof MaterialChoice materialChoice) {
-                    recipeItems[i] = new ItemStack(materialChoice.getChoices().get(0));
+                    recipeItems[i] = new ItemStack(materialChoice.getChoices().getFirst());
 
                     if (materialChoice.getChoices().size() > 1) {
                         task.add(recipeSlots[i], materialChoice);
@@ -724,7 +723,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     }
 
     @ParametersAreNonnullByDefault
-    private static @Nonnull ItemStack getDisplayItem(Player p, boolean isSlimefunRecipe, ItemStack item) {
+    private static ItemStack getDisplayItem(Player p, boolean isSlimefunRecipe, ItemStack item) {
         if (isSlimefunRecipe) {
             SlimefunItem slimefunItem = SlimefunItem.getByItem(item);
 
@@ -836,7 +835,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         return Slimefun.getPermissionsService().hasPermission(p, item);
     }
 
-    private @Nonnull ChestMenu create(@Nonnull Player p) {
+    private ChestMenu create(Player p) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "guide.title.main"));
 
         menu.setEmptySlotsClickable(false);

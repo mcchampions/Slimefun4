@@ -89,7 +89,7 @@ public class ElectricSmeltery extends AContainer implements NotHopperable {
                     // All slots with that item are already full
                     return new int[0];
                 } else {
-                    Collections.sort(slots, compareSlots(menu));
+                    slots.sort(compareSlots(menu));
                     int[] array = new int[slots.size()];
 
                     for (int i = 0; i < slots.size(); i++) {
@@ -103,7 +103,7 @@ public class ElectricSmeltery extends AContainer implements NotHopperable {
     }
 
     @Nonnull
-    private Comparator<Integer> compareSlots(@Nonnull DirtyChestMenu menu) {
+    private Comparator<Integer> compareSlots(DirtyChestMenu menu) {
         return Comparator.comparingInt(slot -> menu.getItemInSlot(slot).getAmount());
     }
 

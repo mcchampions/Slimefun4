@@ -11,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.apache.commons.lang.Validate;
@@ -43,7 +42,7 @@ class BackpackCommand extends SubCommand {
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender instanceof Player player) {
             if (sender.hasPermission("slimefun.command.backpack")) {
                 if (args.length < 1) {
@@ -92,7 +91,7 @@ class BackpackCommand extends SubCommand {
         }
     }
 
-    private void openBackpackMenu(@Nonnull OfflinePlayer owner, @Nonnull Player p) {
+    private void openBackpackMenu(OfflinePlayer owner, Player p) {
         Validate.notNull(p, "The player cannot be null!");
 
         Slimefun.getDatabaseManager()

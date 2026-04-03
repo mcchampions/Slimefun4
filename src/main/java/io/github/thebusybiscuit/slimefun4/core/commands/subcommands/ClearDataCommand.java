@@ -22,15 +22,15 @@ public class ClearDataCommand extends SubCommand {
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.cleardata") || sender instanceof ConsoleCommandSender) {
-            if (args.length == 4 && args[3].equalsIgnoreCase("confirm")) {
+            if (args.length == 4 && "confirm".equalsIgnoreCase(args[3])) {
                 List<World> worlds = new ArrayList<>();
                 List<String> clearTypes = new ArrayList<>();
                 String block = Slimefun.getLocalization().getMessage("commands.cleardata.block");
                 String oil = Slimefun.getLocalization().getMessage("commands.cleardata.oil");
                 BlockDataController controller = Slimefun.getDatabaseManager().getBlockDataController();
-                if (args[1].equals("*")) {
+                if ("*".equals(args[1])) {
                     worlds.addAll(Bukkit.getWorlds());
                 } else {
                     World toAdd = Bukkit.getWorld(args[1]);
@@ -42,7 +42,7 @@ public class ClearDataCommand extends SubCommand {
                     worlds.add(toAdd);
                 }
 
-                if (args[2].equals("*")) {
+                if ("*".equals(args[2])) {
                     clearTypes.addAll(ValidClearTypes);
                 } else if (ValidClearTypes.contains(args[2])) {
                     clearTypes.add(args[2]);
@@ -50,14 +50,14 @@ public class ClearDataCommand extends SubCommand {
 
                 for (World world : worlds) {
                     for (String cleartype : clearTypes) {
-                        if (cleartype.equals("block")) {
+                        if ("block".equals(cleartype)) {
                             controller.removeAllDataInWorldAsync(
                                     world,
                                     () -> Slimefun.runSync(() -> Slimefun.getLocalization()
                                             .sendMessage(sender, "commands.cleardata.success", true, msg -> msg.replace(
                                                             "{0}", world.getName())
                                                     .replace("{1}", block))));
-                        } else if (cleartype.equals("oil")) {
+                        } else if ("oil".equals(cleartype)) {
                             GEOResource oilresource = null;
                             for (GEOResource resource :
                                     Slimefun.getRegistry().getGEOResources().values()) {

@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 class ContributionsConnector extends GitHubConnector {
@@ -29,7 +28,7 @@ class ContributionsConnector extends GitHubConnector {
     private final String role;
     private final int page;
 
-    private boolean finished = false;
+    private boolean finished;
 
     @ParametersAreNonnullByDefault
     ContributionsConnector(GitHubService github, String prefix, int page, String repository, ContributorRole role) {
@@ -87,7 +86,7 @@ class ContributionsConnector extends GitHubConnector {
     }
 
     @Override
-    public void onSuccess(@Nonnull JsonElement response) {
+    public void onSuccess(JsonElement response) {
         finished = true;
 
         if (response.isJsonArray()) {
@@ -121,7 +120,7 @@ class ContributionsConnector extends GitHubConnector {
         return parameters;
     }
 
-    private void computeContributors(@Nonnull JsonArray array) {
+    private void computeContributors(JsonArray array) {
         for (JsonElement element : array) {
             JsonObject object = element.getAsJsonObject();
 

@@ -21,7 +21,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
@@ -341,12 +340,12 @@ public enum SlimefunTag implements Tag<Material> {
     }
 
     @Override
-    public @Nonnull NamespacedKey getKey() {
+    public NamespacedKey getKey() {
         return key;
     }
 
     @Override
-    public boolean isTagged(@Nonnull Material item) {
+    public boolean isTagged(Material item) {
         if (includedMaterials.contains(item)) {
             return true;
         } else {
@@ -363,7 +362,7 @@ public enum SlimefunTag implements Tag<Material> {
     }
 
     @Override
-    public @Nonnull Set<Material> getValues() {
+    public Set<Material> getValues() {
         if (additionalTags.isEmpty()) {
             return Collections.unmodifiableSet(includedMaterials);
         } else {
@@ -398,7 +397,7 @@ public enum SlimefunTag implements Tag<Material> {
      *
      * @return An immutable {@link Set} of all sub tags.
      */
-    public @Nonnull Set<Tag<Material>> getSubTags() {
+    public Set<Tag<Material>> getSubTags() {
         return Collections.unmodifiableSet(additionalTags);
     }
 
@@ -407,7 +406,7 @@ public enum SlimefunTag implements Tag<Material> {
      *
      * @return A {@link Material} array for this {@link Tag}
      */
-    public @Nonnull Material[] toArray() {
+    public Material[] toArray() {
         return getValues().toArray(new Material[0]);
     }
 
@@ -416,7 +415,7 @@ public enum SlimefunTag implements Tag<Material> {
      *
      * @return A {@link Stream} of {@link Material Materials}
      */
-    public @Nonnull Stream<Material> stream() {
+    public Stream<Material> stream() {
         return getValues().stream();
     }
 
@@ -431,7 +430,7 @@ public enum SlimefunTag implements Tag<Material> {
      *
      * @return The {@link SlimefunTag} or null if it does not exist.
      */
-    public static @Nullable SlimefunTag getTag(@Nonnull String value) {
+    public static @Nullable SlimefunTag getTag(String value) {
         Validate.notNull(value, "A tag cannot be null!");
 
         return nameLookup.get(value);

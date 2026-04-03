@@ -50,7 +50,7 @@ public class SlimefunDatabaseManager {
     public void init() {
         initDefaultVal();
 
-        try {
+        {
             blockDataStorageType = StorageType.valueOf(blockStorageConfig.getString("storageType"));
             var readExecutorThread = blockStorageConfig.getInt("readExecutorThread");
             var writeExecutorThread =
@@ -74,28 +74,21 @@ public class SlimefunDatabaseManager {
                         blockStorageConfig.getInt("delayedWriting.delayedSecond"),
                         blockStorageConfig.getInt("delayedWriting.forceSavePeriod"));
             }
-        } catch (IOException e) {
-            plugin.getLogger().log(Level.SEVERE, "加载 Slimefun 方块存储适配器失败", e);
-            return;
         }
 
-        try {
-            profileStorageType = StorageType.valueOf(profileConfig.getString("storageType"));
-            var readExecutorThread = profileConfig.getInt("readExecutorThread");
-            var writeExecutorThread =
-                    profileStorageType == StorageType.SQLITE ? 1 : profileConfig.getInt("writeExecutorThread");
-            var connectionPoolSize = getConnectionPoolSize(profileStorageType, profileConfig);
+        profileStorageType = StorageType.valueOf(profileConfig.getString("storageType"));
+        var readExecutorThread = profileConfig.getInt("readExecutorThread");
+        var writeExecutorThread =
+                profileStorageType == StorageType.SQLITE ? 1 : profileConfig.getInt("writeExecutorThread");
+        var connectionPoolSize = getConnectionPoolSize(profileStorageType, profileConfig);
 
-            if (readExecutorThread + writeExecutorThread > connectionPoolSize) {
-                plugin.getLogger().log(Level.WARNING, "检测到 profile-storage 连接池大小配置小于读写线程总和, 可能会导致性能问题");
-            }
-
-            initAdapter(profileStorageType, DataType.PLAYER_PROFILE, profileConfig);
-            var profileController = ControllerHolder.createController(ProfileDataController.class, profileStorageType);
-            profileController.init(profileAdapter, readExecutorThread, writeExecutorThread);
-        } catch (IOException e) {
-            plugin.getLogger().log(Level.SEVERE, "加载玩家档案适配器失败", e);
+        if (readExecutorThread + writeExecutorThread > connectionPoolSize) {
+            plugin.getLogger().log(Level.WARNING, "检测到 profile-storage 连接池大小配置小于读写线程总和, 可能会导致性能问题");
         }
+
+        initAdapter(profileStorageType, DataType.PLAYER_PROFILE, profileConfig);
+        var profileController = ControllerHolder.createController(ProfileDataController.class, profileStorageType);
+        profileController.init(profileAdapter, readExecutorThread, writeExecutorThread);
     }
 
     private void initAdapter(StorageType storageType, DataType dataType, Config databaseConfig) throws IOException {

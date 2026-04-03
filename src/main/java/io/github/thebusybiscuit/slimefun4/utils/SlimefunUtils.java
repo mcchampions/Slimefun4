@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.utils;
 
-import city.norain.slimefun4.SlimefunExtended;
 import io.github.bakedlibs.dough.common.CommonPatterns;
 import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
 import io.github.bakedlibs.dough.skins.PlayerHead;
@@ -14,22 +13,21 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Soulbound;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
-import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.CapacitorTextureUpdateTask;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -60,17 +58,17 @@ public final class SlimefunUtils {
     private static final String NO_PICKUP_METADATA = "no_pickup";
     private static final String SOULBOUND_LORE = ChatColor.GRAY + "灵魂绑定";
 
-    private SlimefunUtils() {}
+    private SlimefunUtils() {
+    }
 
     /**
      * This method quickly returns whether an {@link Item} was marked as "no_pickup" by
      * a Slimefun device.
      *
-     * @param item
-     *            The {@link Item} to query
+     * @param item The {@link Item} to query
      * @return Whether the {@link Item} is excluded from being picked up
      */
-    public static boolean hasNoPickupFlag(@Nonnull Item item) {
+    public static boolean hasNoPickupFlag(Item item) {
         return item.hasMetadata(NO_PICKUP_METADATA);
     }
 
@@ -78,12 +76,10 @@ public final class SlimefunUtils {
      * This will prevent the given {@link Item} from being picked up.
      * This is useful for display items which the {@link AncientPedestal} uses.
      *
-     * @param item
-     *            The {@link Item} to prevent from being picked up
-     * @param context
-     *            The context in which this {@link Item} was flagged
+     * @param item    The {@link Item} to prevent from being picked up
+     * @param context The context in which this {@link Item} was flagged
      */
-    public static void markAsNoPickup(@Nonnull Item item, @Nonnull String context) {
+    public static void markAsNoPickup(Item item, String context) {
         item.setMetadata(NO_PICKUP_METADATA, new FixedMetadataValue(Slimefun.instance(), context));
         /*
          * Max the pickup delay - This makes it so no Player can pick up items ever without need for an event.
@@ -96,8 +92,7 @@ public final class SlimefunUtils {
     /**
      * This method checks whether the given {@link ItemStack} is considered {@link Soulbound}.
      *
-     * @param item
-     *            The {@link ItemStack} to check for
+     * @param item The {@link ItemStack} to check for
      * @return Whether the given item is soulbound
      */
     public static boolean isSoulbound(@Nullable ItemStack item) {
@@ -111,11 +106,9 @@ public final class SlimefunUtils {
      * If the provided item is {@link Soulbound} through the {@link SlimefunItems#SOULBOUND_RUNE}, then this
      * method will also check that the {@link SlimefunItems#SOULBOUND_RUNE} is enabled in the provided {@link World}
      *
-     * @param item
-     *            The {@link ItemStack} to check for
-     * @param world
-     *            The {@link World} to check if the {@link SlimefunItem} is enabled in if applicable.
-     *            If {@code null} then this will not do a world check.
+     * @param item  The {@link ItemStack} to check for
+     * @param world The {@link World} to check if the {@link SlimefunItem} is enabled in if applicable.
+     *              If {@code null} then this will not do a world check.
      * @return Whether the given item is soulbound
      */
     public static boolean isSoulbound(@Nullable ItemStack item, @Nullable World world) {
@@ -124,9 +117,9 @@ public final class SlimefunUtils {
 
             SlimefunItem rune = SlimefunItems.SOULBOUND_RUNE.getItem();
             if (rune != null
-                    && !rune.isDisabled()
-                    && (world == null || !rune.isDisabledIn(world))
-                    && hasSoulboundFlag(meta)) {
+                && !rune.isDisabled()
+                && (world == null || !rune.isDisabledIn(world))
+                && hasSoulboundFlag(meta)) {
                 return true;
             }
 
@@ -163,11 +156,8 @@ public final class SlimefunUtils {
      * by {@link #isSoulbound(ItemStack)}.<br>
      * If false is passed, this property will be removed.
      *
-     * @param item
-     *            The {@link ItemStack} you want to add/remove Soulbound from.
-     * @param makeSoulbound
-     *            If the item should be soulbound.
-     *
+     * @param item          The {@link ItemStack} you want to add/remove Soulbound from.
+     * @param makeSoulbound If the item should be soulbound.
      * @see #isSoulbound(ItemStack)
      */
     public static void setSoulbound(@Nullable ItemStack item, boolean makeSoulbound) {
@@ -206,9 +196,7 @@ public final class SlimefunUtils {
     /**
      * This method checks whether the given {@link ItemStack} is radioactive.
      *
-     * @param item
-     *            The {@link ItemStack} to check
-     *
+     * @param item The {@link ItemStack} to check
      * @return Whether this {@link ItemStack} is radioactive or not
      */
     public static boolean isRadioactive(@Nullable ItemStack item) {
@@ -219,12 +207,10 @@ public final class SlimefunUtils {
      * This method returns an {@link ItemStack} for the given texture.
      * The result will be a Player Head with this texture.
      *
-     * @param texture
-     *            The texture for this head (base64 or hash)
-     *
+     * @param texture The texture for this head (base64 or hash)
      * @return An {@link ItemStack} with this Head texture
      */
-    public static @Nonnull ItemStack getCustomHead(@Nonnull String texture) {
+    public static ItemStack getCustomHead(String texture) {
         Validate.notNull(texture, "The provided texture is null");
 
         if (Slimefun.instance() == null) {
@@ -240,10 +226,10 @@ public final class SlimefunUtils {
 
         if (CommonPatterns.HEXADECIMAL.matcher(texture).matches()) {
             base64 = Base64.getEncoder()
-                    .encodeToString(("{\"textures\":{\"SKIN\":{\"url\":\"http://textures.minecraft.net/texture/"
-                                    + texture
-                                    + "\"}}}")
-                            .getBytes(StandardCharsets.UTF_8));
+                .encodeToString(("{\"textures\":{\"SKIN\":{\"url\":\"http://textures.minecraft.net/texture/"
+                                 + texture
+                                 + "\"}}}")
+                    .getBytes(StandardCharsets.UTF_8));
         }
 
         PlayerSkin skin = PlayerSkin.fromBase64(base64);
@@ -278,35 +264,35 @@ public final class SlimefunUtils {
     }
 
     public static boolean isItemSimilar(
-            @Nullable ItemStack item, @Nullable ItemStack sfitem, boolean checkLore, boolean checkAmount) {
+        @Nullable ItemStack item, @Nullable ItemStack sfitem, boolean checkLore, boolean checkAmount) {
         return isItemSimilar(item, sfitem, checkLore, checkAmount, true, true);
     }
 
     public static boolean isItemSimilar(
-            @Nullable ItemStack item,
-            @Nullable ItemStack sfitem,
-            boolean checkLore,
-            boolean checkAmount,
-            boolean checkDistinctiveItem) {
+        @Nullable ItemStack item,
+        @Nullable ItemStack sfitem,
+        boolean checkLore,
+        boolean checkAmount,
+        boolean checkDistinctiveItem) {
         return isItemSimilar(item, sfitem, checkLore, checkAmount, checkDistinctiveItem, true);
     }
 
     public static boolean isItemSimilar(
-            @Nullable ItemStack item,
-            @Nullable ItemStack sfitem,
-            boolean checkLore,
-            boolean checkAmount,
-            boolean checkDistinctiveItem,
-            boolean checkCustomModelData) {
+        @Nullable ItemStack item,
+        @Nullable ItemStack sfitem,
+        boolean checkLore,
+        boolean checkAmount,
+        boolean checkDistinctiveItem,
+        boolean checkCustomModelData) {
         if (item == null) {
             return sfitem == null;
         } else if (sfitem == null
-                || item.getType() != sfitem.getType()
-                || checkAmount && item.getAmount() < sfitem.getAmount()) {
+                   || item.getType() != sfitem.getType()
+                   || checkAmount && item.getAmount() < sfitem.getAmount()) {
             return false;
         } else if (checkDistinctiveItem
-                && sfitem instanceof SlimefunItemStack stackOne
-                && item instanceof SlimefunItemStack stackTwo) {
+                   && sfitem instanceof SlimefunItemStack stackOne
+                   && item instanceof SlimefunItemStack stackTwo) {
             if (stackOne.getItemId().equals(stackTwo.getItemId())) {
                 /*
                  * PR #3417
@@ -347,17 +333,17 @@ public final class SlimefunUtils {
                     return id.equals(sfItemStack.getItemId());
                 }
 
-                ItemMetaSnapshot meta = ((SlimefunItemStack) sfitem).getItemMetaSnapshot();
+                ItemMetaSnapshot meta = sfItemStack.getItemMetaSnapshot();
                 return equalsItemMeta(itemMeta, meta, checkLore);
             } else {
                 // issue # 1178 should compare sfid even if the second one isn't a ItemStackWrapper
                 if (sfitem.hasItemMeta()) {
                     ItemMeta possibleSfItemMeta = sfitem.getItemMeta();
                     String id =
-                            Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
+                        Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
                     String possibleItemId = Slimefun.getItemDataService()
-                            .getItemData(possibleSfItemMeta)
-                            .orElse(null);
+                        .getItemData(possibleSfItemMeta)
+                        .orElse(null);
                     // Prioritize SlimefunItem id comparison over ItemMeta comparison
                     if (id != null && possibleItemId != null) {
                         /*
@@ -388,7 +374,7 @@ public final class SlimefunUtils {
         }
     }
 
-    private static @Nonnull Optional<DistinctiveItem> getDistinctiveItem(@Nonnull String id) {
+    private static Optional<DistinctiveItem> getDistinctiveItem(String id) {
         SlimefunItem slimefunItem = SlimefunItem.getById(id);
         if (slimefunItem instanceof DistinctiveItem distinctiveItem) {
             return Optional.of(distinctiveItem);
@@ -397,22 +383,22 @@ public final class SlimefunUtils {
     }
 
     private static boolean equalsItemMeta(
-            @Nonnull ItemMeta itemMeta, @Nonnull ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
+        ItemMeta itemMeta, ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
         return equalsItemMeta(itemMeta, itemMetaSnapshot, checkLore, false);
     }
 
     private static boolean equalsItemMeta(
-            @Nonnull ItemMeta itemMeta,
-            @Nonnull ItemMetaSnapshot itemMetaSnapshot,
-            boolean checkLore,
-            boolean checkCustomModelCheck) {
+        ItemMeta itemMeta,
+        ItemMetaSnapshot itemMetaSnapshot,
+        boolean checkLore,
+        boolean checkCustomModelCheck) {
         Optional<String> displayName = itemMetaSnapshot.getDisplayName();
 
         if (itemMeta.hasDisplayName() != displayName.isPresent()) {
             return false;
         } else if (itemMeta.hasDisplayName()
-                && displayName.isPresent()
-                && !itemMeta.getDisplayName().equals(displayName.get())) {
+                   && displayName.isPresent()
+                   && !itemMeta.getDisplayName().equals(displayName.get())) {
             return false;
         } else if (checkLore) {
             Optional<List<String>> itemLore = itemMetaSnapshot.getLore();
@@ -431,30 +417,28 @@ public final class SlimefunUtils {
         // Fixes #3133: name and lore are not enough
         OptionalInt itemCustomModelData = itemMetaSnapshot.getCustomModelData();
         if (itemMeta.hasCustomModelData()
-                && itemCustomModelData.isPresent()
-                && itemMeta.getCustomModelData() != itemCustomModelData.getAsInt()) {
+            && itemCustomModelData.isPresent()
+            && itemMeta.getCustomModelData() != itemCustomModelData.getAsInt()) {
             return false;
         } else {
             return itemMeta.hasCustomModelData() == itemCustomModelData.isPresent();
         }
     }
 
-    private static boolean equalsItemMeta(@Nonnull ItemMeta itemMeta, @Nonnull ItemMeta sfitemMeta, boolean checkLore) {
+    private static boolean equalsItemMeta(ItemMeta itemMeta, ItemMeta sfitemMeta, boolean checkLore) {
         return equalsItemMeta(itemMeta, sfitemMeta, checkLore, true);
     }
 
     private static boolean equalsItemMeta(
-            @Nonnull ItemMeta itemMeta,
-            @Nonnull ItemMeta sfitemMeta,
-            boolean checkLore,
-            boolean checkCustomModelCheck) {
+        ItemMeta itemMeta,
+        ItemMeta sfitemMeta,
+        boolean checkLore,
+        boolean checkCustomModelCheck) {
         if (itemMeta.hasDisplayName() != sfitemMeta.hasDisplayName()) {
-            Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing has display name failed");
             return false;
         } else if (itemMeta.hasDisplayName()
-                && sfitemMeta.hasDisplayName()
-                && !itemMeta.getDisplayName().equals(sfitemMeta.getDisplayName())) {
-            Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing display name failed");
+                   && sfitemMeta.hasDisplayName()
+                   && !itemMeta.getDisplayName().equals(sfitemMeta.getDisplayName())) {
             return false;
         } else if (checkLore) {
             boolean hasItemMetaLore = itemMeta.hasLore();
@@ -462,11 +446,9 @@ public final class SlimefunUtils {
 
             if (hasItemMetaLore && hasSfItemMetaLore) {
                 if (!equalsLore(itemMeta.getLore(), sfitemMeta.getLore())) {
-                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing lore failed");
                     return false;
                 }
             } else if (hasItemMetaLore != hasSfItemMetaLore) {
-                Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing has lore failed");
                 return false;
             }
         }
@@ -476,8 +458,8 @@ public final class SlimefunUtils {
             boolean hasItemMetaCustomModelData = itemMeta.hasCustomModelData();
             boolean hasSfItemMetaCustomModelData = sfitemMeta.hasCustomModelData();
             if (hasItemMetaCustomModelData
-                    && hasSfItemMetaCustomModelData
-                    && itemMeta.getCustomModelData() != sfitemMeta.getCustomModelData()) {
+                && hasSfItemMetaCustomModelData
+                && itemMeta.getCustomModelData() != sfitemMeta.getCustomModelData()) {
                 return false;
             } else if (hasItemMetaCustomModelData != hasSfItemMetaCustomModelData) {
                 return false;
@@ -485,22 +467,14 @@ public final class SlimefunUtils {
         }
 
         if (itemMeta instanceof PotionMeta potionMeta && sfitemMeta instanceof PotionMeta sfPotionMeta) {
-            if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)) {
-                if (!potionMeta.hasBasePotionType() && !sfPotionMeta.hasBasePotionType()) {
-                    return true;
-                }
-
-                return potionMeta.hasBasePotionType()
-                        && sfPotionMeta.hasBasePotionType()
-                        && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
-            } else if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
-                return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
-            } else {
-                return potionMeta.getBasePotionData().equals(sfPotionMeta.getBasePotionData());
+            if (!potionMeta.hasBasePotionType() && !sfPotionMeta.hasBasePotionType()) {
+                return true;
             }
-        }
 
-        Debug.log(TestCase.CARGO_INPUT_TESTING, "  All meta checked.");
+            return potionMeta.hasBasePotionType()
+                   && sfPotionMeta.hasBasePotionType()
+                   && potionMeta.getBasePotionType() == sfPotionMeta.getBasePotionType();
+        }
 
         return true;
     }
@@ -509,14 +483,11 @@ public final class SlimefunUtils {
      * This checks if the two provided lores are equal.
      * This method will ignore any lines such as the soulbound one.
      *
-     * @param lore1
-     *            The first lore
-     * @param lore2
-     *            The second lore
-     *
+     * @param lore1 The first lore
+     * @param lore2 The second lore
      * @return Whether the two lores are equal
      */
-    public static boolean equalsLore(@Nonnull List<String> lore1, @Nonnull List<String> lore2) {
+    public static boolean equalsLore(List<String> lore1, List<String> lore2) {
         Validate.notNull(lore1, "Cannot compare lore that is null!");
         Validate.notNull(lore2, "Cannot compare lore that is null!");
 
@@ -551,18 +522,18 @@ public final class SlimefunUtils {
         return b == shorterList.size();
     }
 
-    private static boolean isLineIgnored(@Nonnull String line) {
+    private static boolean isLineIgnored(String line) {
         return line.equals(SOULBOUND_LORE);
     }
 
     @Deprecated(forRemoval = true)
-    public static void updateCapacitorTexture(@Nonnull Location l, int charge, int capacity) {
+    public static void updateCapacitorTexture(Location l, int charge, int capacity) {
         Validate.notNull(l, "Cannot update a texture for null");
         Validate.isTrue(capacity > 0, "Capacity must be greater than zero!");
         updateCapacitorTexture(l, (double) charge / capacity);
     }
 
-    public static void updateCapacitorTexture(@Nonnull Location l, double percentage) {
+    public static void updateCapacitorTexture(Location l, double percentage) {
 
         Slimefun.runSync(new CapacitorTextureUpdateTask(l, percentage));
     }
@@ -573,16 +544,12 @@ public final class SlimefunUtils {
      * <p>
      * If you already have an instance of {@link SlimefunItem}, please use {@link SlimefunItem#canUse(Player, boolean)}.
      *
-     * @param p
-     *            The {@link Player}
-     * @param item
-     *            The {@link ItemStack} to check
-     * @param sendMessage
-     *            Whether to send a message response to the {@link Player}
-     *
+     * @param p           The {@link Player}
+     * @param item        The {@link ItemStack} to check
+     * @param sendMessage Whether to send a message response to the {@link Player}
      * @return Whether the {@link Player} is able to use that item.
      */
-    public static boolean canPlayerUseItem(@Nonnull Player p, @Nullable ItemStack item, boolean sendMessage) {
+    public static boolean canPlayerUseItem(Player p, @Nullable ItemStack item, boolean sendMessage) {
         Validate.notNull(p, "The player cannot be null");
 
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
@@ -599,22 +566,16 @@ public final class SlimefunUtils {
      * This method automatically calls a {@link SlimefunItemSpawnEvent} to allow
      * other plugins to catch the item being dropped.
      *
-     * @param loc
-     *            The {@link Location} where to drop the item
-     * @param item
-     *            The {@link ItemStack} to drop
-     * @param reason
-     *            The {@link ItemSpawnReason} why the item is being dropped
-     * @param addRandomOffset
-     *            Whether a random offset should be added (see {@link World#dropItemNaturally(Location, ItemStack)})
-     * @param player
-     *            The player that caused this {@link SlimefunItemSpawnEvent}
-     *
+     * @param loc             The {@link Location} where to drop the item
+     * @param item            The {@link ItemStack} to drop
+     * @param reason          The {@link ItemSpawnReason} why the item is being dropped
+     * @param addRandomOffset Whether a random offset should be added (see {@link World#dropItemNaturally(Location, ItemStack)})
+     * @param player          The player that caused this {@link SlimefunItemSpawnEvent}
      * @return The dropped {@link Item} (or null if the {@link SlimefunItemSpawnEvent} was cancelled)
      */
     @ParametersAreNonnullByDefault
     public static @Nullable Item spawnItem(
-            Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset, @Nullable Player player) {
+        Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset, @Nullable Player player) {
         SlimefunItemSpawnEvent event = new SlimefunItemSpawnEvent(player, loc, item, reason);
         Slimefun.instance().getServer().getPluginManager().callEvent(event);
 
@@ -636,20 +597,15 @@ public final class SlimefunUtils {
      * This method automatically calls a {@link SlimefunItemSpawnEvent} to allow
      * other plugins to catch the item being dropped.
      *
-     * @param loc
-     *            The {@link Location} where to drop the item
-     * @param item
-     *            The {@link ItemStack} to drop
-     * @param reason
-     *            The {@link ItemSpawnReason} why the item is being dropped
-     * @param addRandomOffset
-     *            Whether a random offset should be added (see {@link World#dropItemNaturally(Location, ItemStack)})
-     *
+     * @param loc             The {@link Location} where to drop the item
+     * @param item            The {@link ItemStack} to drop
+     * @param reason          The {@link ItemSpawnReason} why the item is being dropped
+     * @param addRandomOffset Whether a random offset should be added (see {@link World#dropItemNaturally(Location, ItemStack)})
      * @return The dropped {@link Item} (or null if the {@link SlimefunItemSpawnEvent} was cancelled)
      */
     @ParametersAreNonnullByDefault
     public static @Nullable Item spawnItem(
-            Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset) {
+        Location loc, ItemStack item, ItemSpawnReason reason, boolean addRandomOffset) {
         return spawnItem(loc, item, reason, addRandomOffset, null);
     }
 
@@ -658,13 +614,9 @@ public final class SlimefunUtils {
      * This method automatically calls a {@link SlimefunItemSpawnEvent} to allow
      * other plugins to catch the item being dropped.
      *
-     * @param loc
-     *            The {@link Location} where to drop the item
-     * @param item
-     *            The {@link ItemStack} to drop
-     * @param reason
-     *            The {@link ItemSpawnReason} why the item is being dropped
-     *
+     * @param loc    The {@link Location} where to drop the item
+     * @param item   The {@link ItemStack} to drop
+     * @param reason The {@link ItemSpawnReason} why the item is being dropped
      * @return The dropped {@link Item} (or null if the {@link SlimefunItemSpawnEvent} was cancelled)
      */
     @ParametersAreNonnullByDefault
@@ -677,12 +629,10 @@ public final class SlimefunUtils {
      * If the MC version is 1.16 or above
      * this will call {@link Inventory#isEmpty()} (Which calls MC code resulting in a faster method).
      *
-     * @param inventory
-     *            The {@link Inventory} to check.
-     *
+     * @param inventory The {@link Inventory} to check.
      * @return True if the inventory is empty and false otherwise
      */
-    public static boolean isInventoryEmpty(@Nonnull Inventory inventory) {
+    public static boolean isInventoryEmpty(Inventory inventory) {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_16)) {
             return inventory.isEmpty();
         } else {
@@ -701,7 +651,7 @@ public final class SlimefunUtils {
      * @param item The item need to check.
      * @return Is the item a kind of Dust
      */
-    public static boolean isDust(@Nonnull ItemStack item) {
+    public static boolean isDust(ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
         return sfItem != null && sfItem.getId().endsWith("_DUST");
     }

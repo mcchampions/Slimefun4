@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -24,7 +24,7 @@ import org.bukkit.inventory.meta.ItemMeta;
  */
 public class SlimefunGuideItem extends ItemStack {
 
-    public SlimefunGuideItem(@Nonnull SlimefunGuideImplementation implementation, @Nonnull String name) {
+    public SlimefunGuideItem(SlimefunGuideImplementation implementation, String name) {
         super(Material.ENCHANTED_BOOK);
 
         ItemMeta meta = getItemMeta();

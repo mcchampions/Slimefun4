@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Effect;
 import org.bukkit.block.Block;
@@ -33,7 +32,7 @@ public class SmeltersPickaxe extends SimpleSlimefunItem<ToolUseHandler> implemen
     }
 
     @Override
-    public @Nonnull ToolUseHandler getItemHandler() {
+    public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             Block b = e.getBlock();
 

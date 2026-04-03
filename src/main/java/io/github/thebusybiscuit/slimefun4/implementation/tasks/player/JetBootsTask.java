@@ -4,7 +4,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.JetBoots;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
+
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.SoundCategory;
@@ -17,7 +17,7 @@ public class JetBootsTask extends AbstractPlayerTask {
 
     private final JetBoots boots;
 
-    public JetBootsTask(@Nonnull Player p, @Nonnull JetBoots boots) {
+    public JetBootsTask(Player p, JetBoots boots) {
         super(p);
         this.boots = boots;
     }

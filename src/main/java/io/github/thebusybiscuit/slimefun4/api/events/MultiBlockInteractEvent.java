@@ -81,6 +81,6 @@ public class MultiBlockInteractEvent extends PlayerEvent implements Cancellable 
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

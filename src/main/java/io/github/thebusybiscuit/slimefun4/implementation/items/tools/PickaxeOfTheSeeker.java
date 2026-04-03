@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import javax.annotation.Nonnull;
+
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Location;
@@ -37,7 +37,7 @@ public class PickaxeOfTheSeeker extends SimpleSlimefunItem<ItemUseHandler> imple
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             Player p = e.getPlayer();
             Block closest = findClosestOre(p);
@@ -56,7 +56,7 @@ public class PickaxeOfTheSeeker extends SimpleSlimefunItem<ItemUseHandler> imple
 
                 float yaw = alpha2 > 90 ? (180 - alpha1) : alpha1;
                 float pitch = (float)
-                        ((-Math.atan((closest.getY() - 0.5 - p.getLocation().getY()) / Math.sqrt(l * l + w * w)))
+                        ((-Math.atan((closest.getY() - 0.5 - p.getLocation().getY()) / c))
                                 * 180
                                 / Math.PI);
 
@@ -76,7 +76,7 @@ public class PickaxeOfTheSeeker extends SimpleSlimefunItem<ItemUseHandler> imple
         };
     }
 
-    private @Nullable Block findClosestOre(@Nonnull Player p) {
+    private @Nullable Block findClosestOre(Player p) {
         Block start = p.getLocation().getBlock();
         Block closest = null;
         double lastDistance = Double.MAX_VALUE;

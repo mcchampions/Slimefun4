@@ -9,7 +9,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import lombok.Getter;
@@ -71,7 +70,7 @@ public class SlimefunConfigManager {
     @Getter
     private boolean bypassItemLengthCheck;
 
-    public SlimefunConfigManager(@Nonnull Slimefun plugin) {
+    public SlimefunConfigManager(Slimefun plugin) {
         Validate.notNull(plugin, "The Plugin instance cannot be null");
 
         this.plugin = plugin;

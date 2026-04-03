@@ -51,7 +51,7 @@ public class MultiBlock {
     private final BlockFace trigger;
     private final boolean isSymmetric;
 
-    public MultiBlock(@Nonnull SlimefunItem item, Material[] build, @Nonnull BlockFace trigger) {
+    public MultiBlock(SlimefunItem item, Material[] build, BlockFace trigger) {
         Validate.notNull(item, "A MultiBlock requires a SlimefunItem!");
 
         if (build == null || build.length != 9) {
@@ -73,7 +73,7 @@ public class MultiBlock {
         return item;
     }
 
-    private static boolean isSymmetric(@Nonnull Material[] blocks) {
+    private static boolean isSymmetric(Material[] blocks) {
         return blocks[0] == blocks[2] && blocks[3] == blocks[5] && blocks[6] == blocks[8];
     }
 
@@ -89,13 +89,11 @@ public class MultiBlock {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof MultiBlock)) {
+        if (!(obj instanceof MultiBlock mb)) {
             return false;
         }
 
-        MultiBlock mb = (MultiBlock) obj;
-
-        if (trigger == mb.getTriggerBlock() && isSymmetric == mb.isSymmetric) {
+        if (trigger == mb.trigger && isSymmetric == mb.isSymmetric) {
             for (int i = 0; i < mb.getStructure().length; i++) {
                 if (!compareBlocks(blocks[i], mb.getStructure()[i])) {
                     return false;
@@ -129,9 +127,7 @@ public class MultiBlock {
                 return a == Material.MOVING_PISTON;
             }
 
-            if (b != a) {
-                return false;
-            }
+            return b == a;
         }
 
         return true;

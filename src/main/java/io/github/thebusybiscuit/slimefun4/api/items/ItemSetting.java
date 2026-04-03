@@ -4,7 +4,6 @@ import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 
@@ -68,7 +67,7 @@ public class ItemSetting<T> {
      * @param newValue
      *            The new value for this {@link ItemSetting}
      */
-    public void update(@Nonnull T newValue) {
+    public void update(T newValue) {
         if (validateInput(newValue)) {
             this.value = newValue;
         } else {
@@ -83,7 +82,7 @@ public class ItemSetting<T> {
      *
      * @return The key under which this setting is stored (relative to the {@link SlimefunItem})
      */
-    public @Nonnull String getKey() {
+    public String getKey() {
         return key;
     }
 
@@ -92,7 +91,7 @@ public class ItemSetting<T> {
      *
      * @return The associated {@link SlimefunItem}
      */
-    protected @Nonnull SlimefunItem getItem() {
+    protected SlimefunItem getItem() {
         return item;
     }
 
@@ -101,7 +100,7 @@ public class ItemSetting<T> {
      *
      * @return The current value
      */
-    public @Nonnull T getValue() {
+    public T getValue() {
         if (value != null) {
             /**
              * If the value has been initialized, return it immediately.
@@ -128,7 +127,7 @@ public class ItemSetting<T> {
      *
      * @return The default value
      */
-    public @Nonnull T getDefaultValue() {
+    public T getDefaultValue() {
         return defaultValue;
     }
 
@@ -140,7 +139,7 @@ public class ItemSetting<T> {
      *
      * @return Whether this {@link ItemSetting} stores the given type
      */
-    public boolean isType(@Nonnull Class<?> c) {
+    public boolean isType(Class<?> c) {
         return c.isInstance(defaultValue);
     }
 
@@ -150,7 +149,7 @@ public class ItemSetting<T> {
      *
      * @return An error message which is displayed when this {@link ItemSetting} is misconfigured.
      */
-    protected @Nonnull String getErrorMessage() {
+    protected String getErrorMessage() {
         return "请使用在 '" + defaultValue.getClass().getSimpleName() + "' 范围内的值!";
     }
 
@@ -163,8 +162,8 @@ public class ItemSetting<T> {
     public void reload() {
         Validate.notNull(item, "Cannot apply settings for a non-existing SlimefunItem");
 
-        Slimefun.getItemCfg().setDefaultValue(item.getId() + '.' + getKey(), getDefaultValue());
-        Object configuredValue = Slimefun.getItemCfg().getValue(item.getId() + '.' + getKey());
+        Slimefun.getItemCfg().setDefaultValue(item.getId() + '.' + key, defaultValue);
+        Object configuredValue = Slimefun.getItemCfg().getValue(item.getId() + '.' + key);
 
         if (defaultValue.getClass().isInstance(configuredValue)
                 || (configuredValue instanceof List && defaultValue instanceof List)) {
@@ -179,7 +178,7 @@ public class ItemSetting<T> {
                         + "\n  在 \""
                         + item.getId()
                         + "."
-                        + getKey()
+                        + key
                         + "\""
                         + "\n  "
                         + configuredValue
@@ -200,7 +199,7 @@ public class ItemSetting<T> {
                     + "\n  在 \""
                     + item.getId()
                     + "."
-                    + getKey()
+                    + key
                     + "\""
                     + "\n  期望值为 \""
                     + defaultValue.getClass().getSimpleName()
@@ -215,13 +214,13 @@ public class ItemSetting<T> {
     public String toString() {
         T currentValue = this.value != null ? this.value : defaultValue;
         return getClass().getSimpleName()
-                + " {"
-                + getKey()
-                + " = "
-                + currentValue
-                + " (default: "
-                + getDefaultValue()
-                + ")";
+               + " {"
+               + key
+               + " = "
+               + currentValue
+               + " (default: "
+               + defaultValue
+               + ")";
     }
 
     @Override
@@ -231,9 +230,8 @@ public class ItemSetting<T> {
 
     @Override
     public final boolean equals(Object obj) {
-        if (obj instanceof ItemSetting) {
-            ItemSetting<?> setting = (ItemSetting<?>) obj;
-            return Objects.equals(getKey(), setting.getKey()) && Objects.equals(getItem(), setting.getItem());
+        if (obj instanceof ItemSetting<?> setting) {
+            return Objects.equals(key, setting.key) && Objects.equals(item, setting.item);
         } else {
             return false;
         }

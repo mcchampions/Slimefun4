@@ -14,7 +14,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Bukkit;
 
@@ -33,7 +32,7 @@ class GitHubTask implements Runnable {
     private static final int MAX_REQUESTS_PER_MINUTE = 16;
     private final GitHubService gitHubService;
 
-    GitHubTask(@Nonnull GitHubService github) {
+    GitHubTask(GitHubService github) {
         gitHubService = github;
     }
 
@@ -97,7 +96,7 @@ class GitHubTask implements Runnable {
         gitHubService.saveCache();
     }
 
-    private int requestTexture(@Nonnull Contributor contributor, @Nonnull Map<String, String> skins) {
+    private int requestTexture(Contributor contributor, Map<String, String> skins) {
         if (!contributor.hasTexture()) {
             try {
                 if (skins.containsKey(contributor.getMinecraftName())) {
@@ -140,11 +139,11 @@ class GitHubTask implements Runnable {
         return 0;
     }
 
-    private @Nullable String pullTexture(@Nonnull Contributor contributor, @Nonnull Map<String, String> skins)
+    private @Nullable String pullTexture(Contributor contributor, Map<String, String> skins)
             throws InterruptedException, ExecutionException, TimeoutException {
         Optional<UUID> uuid = contributor.getUniqueId();
 
-        if (!uuid.isPresent()) {
+        if (uuid.isEmpty()) {
             CompletableFuture<UUID> future =
                     UUIDLookup.getUuidFromUsername(Slimefun.instance(), contributor.getMinecraftName());
 

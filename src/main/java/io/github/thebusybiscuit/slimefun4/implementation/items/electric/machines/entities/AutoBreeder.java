@@ -127,7 +127,7 @@ public class AutoBreeder extends SlimefunItem implements InventoryBlock, EnergyN
         return SlimefunItem.getByItem(item) instanceof OrganicFood;
     }
 
-    private boolean canBreed(@Nonnull Entity n) {
+    private boolean canBreed(Entity n) {
         if (n.isValid() && n instanceof Animals animal) {
             return animal.isAdult() && animal.canBreed() && !animal.isLoveMode();
         }

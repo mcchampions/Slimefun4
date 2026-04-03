@@ -4,7 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.events.AndroidMineEvent;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
 import java.util.List;
-import javax.annotation.Nonnull;
+
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -36,7 +36,7 @@ public abstract class SimpleBlockBreakHandler extends BlockBreakHandler {
      * @param b
      *            The broken {@link Block}
      */
-    public abstract void onBlockBreak(@Nonnull Block b);
+    public abstract void onBlockBreak(Block b);
 
     @Override
     public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {

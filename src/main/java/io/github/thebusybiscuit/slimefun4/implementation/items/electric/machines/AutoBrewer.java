@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionType;
 import java.util.EnumMap;
 import java.util.Map;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
@@ -262,17 +261,17 @@ public class AutoBrewer extends AContainer implements NotHopperable {
      *
      * @return Whether this {@link Material} is a valid potion
      */
-    private boolean isPotion(@Nonnull Material mat) {
+    private boolean isPotion(Material mat) {
         return mat == Material.POTION || mat == Material.SPLASH_POTION || mat == Material.LINGERING_POTION;
     }
 
     @Override
-    public @Nonnull ItemStack getProgressBar() {
+    public ItemStack getProgressBar() {
         return new ItemStack(Material.FISHING_ROD);
     }
 
     @Override
-    public @Nonnull String getMachineIdentifier() {
+    public String getMachineIdentifier() {
         return "AUTO_BREWER";
     }
 }

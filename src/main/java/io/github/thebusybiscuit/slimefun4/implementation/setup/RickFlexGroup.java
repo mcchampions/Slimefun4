@@ -7,7 +7,7 @@ import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import java.time.LocalDate;
 import java.time.Month;
-import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -21,7 +21,7 @@ import org.bukkit.entity.Player;
 class RickFlexGroup extends FlexItemGroup {
 
     // Never instantiate more than once.
-    RickFlexGroup(@Nonnull NamespacedKey key) {
+    RickFlexGroup(NamespacedKey key) {
         super(key, new CustomItemStack(Material.NETHER_STAR, "&6&l超级神秘物品"), 1);
     }
 

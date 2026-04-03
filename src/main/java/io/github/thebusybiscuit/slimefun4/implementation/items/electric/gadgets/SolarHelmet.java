@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.settings.DoubleRangeSetting;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.SolarHelmetTask;
-import javax.annotation.Nonnull;
+
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.entity.Player;
@@ -55,7 +55,7 @@ public class SolarHelmet extends SlimefunItem {
      * @param p
      *            The {@link Player} wearing this {@link SolarHelmet}
      */
-    public void rechargeItems(@Nonnull Player p) {
+    public void rechargeItems(Player p) {
         PlayerInventory inv = p.getInventory();
 
         // No need to charge the helmet since that slot is occupied by the Solar Helmet

@@ -60,7 +60,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
     private final int[] bodySlots = {25, 34};
     private final int[] bodyBorder = {15, 16, 17, 24, 26, 33, 35, 42, 43, 44};
 
-    private int lifetime = 0;
+    private int lifetime;
 
     /**
      * Constructs a new AbstractEntityAssembler.

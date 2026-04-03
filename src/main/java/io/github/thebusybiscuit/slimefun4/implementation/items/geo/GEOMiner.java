@@ -81,7 +81,7 @@ public class GEOMiner extends SlimefunItem
     }
 
     @Override
-    public @Nonnull MachineProcessor<GEOMiningOperation> getMachineProcessor() {
+    public MachineProcessor<GEOMiningOperation> getMachineProcessor() {
         return processor;
     }
 
@@ -171,27 +171,27 @@ public class GEOMiner extends SlimefunItem
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         this.addon = addon;
 
-        if (getCapacity() <= 0) {
+        if (energyCapacity <= 0) {
             warn("The capacity has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyCapacity(...)' before registering!");
         }
 
-        if (getEnergyConsumption() <= 0) {
+        if (energyConsumedPerTick <= 0) {
             warn("The energy consumption has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '"
                     + getClass().getSimpleName()
                     + "#setEnergyConsumption(...)' before registering!");
         }
 
-        if (getSpeed() <= 0) {
+        if (processingSpeed <= 0) {
             warn("The processing speed has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setProcessingSpeed(...)' before registering!");
         }
 
-        if (getCapacity() > 0 && getEnergyConsumption() > 0 && getSpeed() > 0) {
+        if (energyCapacity > 0 && energyConsumedPerTick > 0 && processingSpeed > 0) {
             super.register(addon);
         }
     }
@@ -212,7 +212,7 @@ public class GEOMiner extends SlimefunItem
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 removeHologram(b);
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
@@ -252,7 +252,7 @@ public class GEOMiner extends SlimefunItem
     }
 
     @Override
-    public @Nonnull String getLabelLocalPath() {
+    public String getLabelLocalPath() {
         return "guide.tooltips.recipes.miner";
     }
 
@@ -261,7 +261,7 @@ public class GEOMiner extends SlimefunItem
         return EnergyNetComponentType.CONSUMER;
     }
 
-    protected void constructMenu(@Nonnull BlockMenuPreset preset) {
+    protected void constructMenu(BlockMenuPreset preset) {
         for (int i : BORDER) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
@@ -306,7 +306,7 @@ public class GEOMiner extends SlimefunItem
         });
     }
 
-    protected void tick(@Nonnull Block b) {
+    protected void tick(Block b) {
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
         GEOMiningOperation operation = processor.getOperation(b);
 
@@ -314,12 +314,12 @@ public class GEOMiner extends SlimefunItem
             if (!operation.isFinished()) {
                 processor.updateProgressBar(inv, 4, operation);
 
-                if (getCharge(b.getLocation()) < getEnergyConsumption()) {
+                if (getCharge(b.getLocation()) < energyConsumedPerTick) {
                     return;
                 }
 
-                removeCharge(b.getLocation(), getEnergyConsumption());
-                operation.addProgress(getSpeed());
+                removeCharge(b.getLocation(), energyConsumedPerTick);
+                operation.addProgress(processingSpeed);
             } else {
                 inv.replaceExistingItem(4, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
                 inv.pushItem(operation.getResult(), OUTPUT_SLOTS);
@@ -351,7 +351,7 @@ public class GEOMiner extends SlimefunItem
         }
     }
 
-    private void start(@Nonnull Block b, @Nonnull BlockMenu inv) {
+    private void start(Block b, BlockMenu inv) {
         boolean success = Slimefun.getRegistry().getGEOResources().values().isEmpty();
         for (GEOResource resource : Slimefun.getRegistry().getGEOResources().values()) {
             if (resource.isObtainableFromGEOMiner()) {

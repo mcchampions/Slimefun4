@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 class GitHubActivityConnector extends GitHubConnector {
@@ -20,7 +19,7 @@ class GitHubActivityConnector extends GitHubConnector {
     }
 
     @Override
-    public void onSuccess(@Nonnull JsonElement response) {
+    public void onSuccess(JsonElement response) {
         JsonObject object = response.getAsJsonObject();
         int forks = object.get("forks").getAsInt();
         int stars = object.get("stargazers_count").getAsInt();

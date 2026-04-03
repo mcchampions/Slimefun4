@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.api;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.papermc.lib.PaperLib;
-import javax.annotation.Nonnull;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 
@@ -82,7 +81,7 @@ public enum MinecraftVersion {
      * @param majorVersion The major version of minecraft as an {@link Integer}
      * @param name         The display name of this {@link MinecraftVersion}
      */
-    MinecraftVersion(int majorVersion, @Nonnull String name) {
+    MinecraftVersion(int majorVersion, String name) {
         this.name = name;
         this.majorVersion = majorVersion;
         this.minorVersion = -1;
@@ -98,7 +97,7 @@ public enum MinecraftVersion {
      * @param minor        The minor (patch in semver, minor in MC land) version of minecraft as an {@link Integer}
      * @param name         The display name of this {@link MinecraftVersion}
      */
-    MinecraftVersion(int majorVersion, int minor, @Nonnull String name) {
+    MinecraftVersion(int majorVersion, int minor, String name) {
         this.name = name;
         this.majorVersion = majorVersion;
         this.minorVersion = minor;
@@ -113,7 +112,7 @@ public enum MinecraftVersion {
      * @param name    The display name of this {@link MinecraftVersion}
      * @param virtual Whether this {@link MinecraftVersion} is virtual
      */
-    MinecraftVersion(@Nonnull String name, boolean virtual) {
+    MinecraftVersion(String name, boolean virtual) {
         this.name = name;
         this.majorVersion = 0;
         this.minorVersion = -1;
@@ -125,7 +124,7 @@ public enum MinecraftVersion {
      *
      * @return The name of this {@link MinecraftVersion}
      */
-    public @Nonnull String getName() {
+    public String getName() {
         return name;
     }
 
@@ -174,7 +173,7 @@ public enum MinecraftVersion {
      * @return Whether this {@link MinecraftVersion} matches the specified version id
      */
     public boolean isMinecraftVersion(int minecraftVersion, int patchVersion) {
-        if (isVirtual()) {
+        if (virtual) {
             return false;
         }
 
@@ -186,9 +185,9 @@ public enum MinecraftVersion {
         // checking patchVersion, if next Version is not a virtual version and it is in the same majorVersion as this,
         // then we should ensure patchVersion is lower than nextVersion
         return patchVersion >= this.minorVersion
-                && (nextVersion.isVirtual()
-                        || nextVersion.majorVersion != this.majorVersion
-                        || nextVersion.minorVersion > patchVersion);
+                && (nextVersion.virtual
+                    || nextVersion.majorVersion != this.majorVersion
+                    || nextVersion.minorVersion > patchVersion);
 
         //        if (this.majorVersion == 20) {
         //            return this.minorVersion == -1 ? patchVersion < 5 : patchVersion >= this.minorVersion;
@@ -206,7 +205,7 @@ public enum MinecraftVersion {
      * @param version The {@link MinecraftVersion} to compare
      * @return Whether this {@link MinecraftVersion} is newer or equal to the given {@link MinecraftVersion}
      */
-    public boolean isAtLeast(@Nonnull MinecraftVersion version) {
+    public boolean isAtLeast(MinecraftVersion version) {
         Validate.notNull(version, "A Minecraft version cannot be null!");
 
         if (this == UNKNOWN) {
@@ -248,7 +247,7 @@ public enum MinecraftVersion {
      * @param version The {@link MinecraftVersion} to compare
      * @return Whether this {@link MinecraftVersion} is older than the given one
      */
-    public boolean isBefore(@Nonnull MinecraftVersion version) {
+    public boolean isBefore(MinecraftVersion version) {
         return !isAtLeast(version);
         //        Validate.notNull(version, "A Minecraft version cannot be null!");
         //

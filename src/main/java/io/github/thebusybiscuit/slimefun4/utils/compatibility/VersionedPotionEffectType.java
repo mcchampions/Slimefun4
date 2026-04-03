@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.utils.compatibility;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.lang.reflect.Field;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.potion.PotionEffectType;
 
@@ -51,7 +50,7 @@ public class VersionedPotionEffectType {
                 : getKey("DAMAGE_RESISTANCE");
     }
 
-    @Nullable private static PotionEffectType getKey(@Nonnull String key) {
+    @Nullable private static PotionEffectType getKey(String key) {
         try {
             Field field = PotionEffectType.class.getDeclaredField(key);
             return (PotionEffectType) field.get(null);

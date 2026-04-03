@@ -96,6 +96,6 @@ public class AncientAltarCraftEvent extends PlayerEvent implements Cancellable {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

@@ -1,7 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.talismans.Talisman;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -19,8 +19,8 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private final Talisman talisman;
     private final ItemStack talismanItemStack;
-    private boolean preventConsumption = false;
-    private boolean cancelled = false;
+    private boolean preventConsumption;
+    private boolean cancelled;
 
     /**
      * @param player
@@ -42,14 +42,14 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
     /**
      * @return The {@link Talisman} used.
      */
-    public @Nonnull Talisman getTalisman() {
+    public Talisman getTalisman() {
         return this.talisman;
     }
 
     /**
      * @return The {@link ItemStack} of the used {@link Talisman}.
      */
-    public @Nonnull ItemStack getTalismanItem() {
+    public ItemStack getTalismanItem() {
         return this.talismanItemStack;
     }
 
@@ -84,11 +84,11 @@ public class TalismanActivateEvent extends PlayerEvent implements Cancellable {
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
-        return getHandlerList();
+    public HandlerList getHandlers() {
+        return handlers;
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 }

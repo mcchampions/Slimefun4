@@ -12,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.utils.FireworkUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
@@ -42,7 +41,7 @@ public class ChristmasPresent extends SimpleSlimefunItem<ItemUseHandler> impleme
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
 

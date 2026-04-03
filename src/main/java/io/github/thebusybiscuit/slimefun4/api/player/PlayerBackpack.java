@@ -50,7 +50,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
     private final int id;
     private String name;
     private int size;
-    private boolean isInvalid = false;
+    private boolean isInvalid;
     // This snapshot holds the inventory's last save content , it should be recreated after each save by using
     // PlayerBackpack#refreshSnapshot
     @Nonnull
@@ -218,7 +218,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         for (var i = 0; i < lore.size(); i++) {
             var line = lore.get(i);
             if (COLORED_LORE_OWNER.equals(line)) {
-                lore.set(i, COLORED_LORE_OWNER + bp.getOwner().getName());
+                lore.set(i, COLORED_LORE_OWNER + bp.owner.getName());
                 break;
             }
         }

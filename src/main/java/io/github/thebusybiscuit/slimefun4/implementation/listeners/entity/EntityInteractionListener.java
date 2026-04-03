@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemState;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class EntityInteractionListener implements Listener {
 
-    public EntityInteractionListener(@Nonnull Slimefun plugin) {
+    public EntityInteractionListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

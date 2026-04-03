@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -148,7 +147,7 @@ public class SeismicAxe extends SimpleSlimefunItem<ItemUseHandler> implements No
         }
     }
 
-    private @Nonnull Block findGround(@Nonnull Block b) {
+    private Block findGround(Block b) {
         if (b.getType() == Material.AIR) {
             int minHeight = b.getWorld().getMinHeight();
             for (int y = 0; b.getY() - y > minHeight; y++) {

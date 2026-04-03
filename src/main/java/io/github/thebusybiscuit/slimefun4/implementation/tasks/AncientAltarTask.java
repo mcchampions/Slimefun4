@@ -14,7 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -130,10 +129,10 @@ public class AncientAltarTask implements Runnable {
         }
     }
 
-    private void checkPedestal(@Nonnull Block pedestal) {
+    private void checkPedestal(Block pedestal) {
         Optional<Item> item = pedestalItem.getPlacedItem(pedestal);
 
-        if (!item.isPresent() || positionLock.remove(item.get()) == null) {
+        if (item.isEmpty() || positionLock.remove(item.get()) == null) {
             abort();
         } else {
             Item entity = item.get();

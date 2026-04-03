@@ -43,7 +43,7 @@ public interface GEOResource extends Keyed {
      *
      * @return The default supply found in a {@link Chunk} with the given {@link Biome}
      */
-    int getDefaultSupply(@Nonnull Environment environment, @Nonnull Biome biome);
+    int getDefaultSupply(Environment environment, Biome biome);
 
     /**
      * Returns how much the value may deviate from the default supply (positive only).
@@ -93,7 +93,7 @@ public interface GEOResource extends Keyed {
      * @return The localized name for this {@link GEOResource}
      */
     @Nonnull
-    default String getName(@Nonnull Player p) {
+    default String getName(Player p) {
         String name = Slimefun.getLocalization()
                 .getResourceString(p, "resources." + getKey().getNamespace() + "." + getKey().getKey());
         return name == null ? getName() : name;

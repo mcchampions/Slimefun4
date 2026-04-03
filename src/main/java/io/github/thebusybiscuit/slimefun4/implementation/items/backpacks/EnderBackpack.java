@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.block.EnderChest;
 import org.bukkit.entity.Player;
@@ -30,7 +30,7 @@ public class EnderBackpack extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     @Override
-    public @Nonnull ItemUseHandler getItemHandler() {
+    public ItemUseHandler getItemHandler() {
         return e -> {
             Player p = e.getPlayer();
             InventoryUtil.openInventory(p, p.getEnderChest());

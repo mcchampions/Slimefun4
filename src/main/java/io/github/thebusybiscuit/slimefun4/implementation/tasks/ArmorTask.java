@@ -48,14 +48,7 @@ public class ArmorTask implements Runnable {
     public ArmorTask(boolean radioactiveFire) {
         this.radioactiveFire = radioactiveFire;
 
-        Set<PotionEffect> effects = new HashSet<>();
-        effects.add(new PotionEffect(PotionEffectType.WITHER, 400, 2));
-        effects.add(new PotionEffect(PotionEffectType.BLINDNESS, 400, 3));
-        effects.add(new PotionEffect(VersionedPotionEffectType.NAUSEA, 400, 3));
-        effects.add(new PotionEffect(PotionEffectType.WEAKNESS, 400, 2));
-        effects.add(new PotionEffect(VersionedPotionEffectType.SLOWNESS, 400, 1));
-        effects.add(new PotionEffect(VersionedPotionEffectType.MINING_FATIGUE, 400, 1));
-        radiationEffects = Collections.unmodifiableSet(effects);
+        radiationEffects = Set.of(new PotionEffect(PotionEffectType.WITHER, 400, 2), new PotionEffect(PotionEffectType.BLINDNESS, 400, 3), new PotionEffect(VersionedPotionEffectType.NAUSEA, 400, 3), new PotionEffect(PotionEffectType.WEAKNESS, 400, 2), new PotionEffect(VersionedPotionEffectType.SLOWNESS, 400, 1), new PotionEffect(VersionedPotionEffectType.MINING_FATIGUE, 400, 1));
     }
 
     /**
@@ -123,7 +116,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private void checkForSolarHelmet(@Nonnull Player p) {
+    private void checkForSolarHelmet(Player p) {
         ItemStack helmet = p.getInventory().getHelmet();
         SlimefunItem item = SlimefunItem.getByItem(helmet);
 
@@ -132,7 +125,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private boolean hasSunlight(@Nonnull Player p) {
+    private boolean hasSunlight(Player p) {
         World world = p.getWorld();
 
         if (world.getEnvironment() != Environment.NORMAL) {
@@ -144,7 +137,7 @@ public class ArmorTask implements Runnable {
                 && p.getEyeLocation().getBlock().getLightFromSky() == 15;
     }
 
-    private void checkForRadiation(@Nonnull Player p, @Nonnull PlayerProfile profile) {
+    private void checkForRadiation(Player p, PlayerProfile profile) {
         if (!profile.hasFullProtectionAgainst(ProtectionType.RADIATION)) {
             for (ItemStack item : p.getInventory()) {
                 if (checkAndApplyRadiation(p, item)) {
@@ -154,7 +147,7 @@ public class ArmorTask implements Runnable {
         }
     }
 
-    private boolean checkAndApplyRadiation(@Nonnull Player p, @Nullable ItemStack item) {
+    private boolean checkAndApplyRadiation(Player p, @Nullable ItemStack item) {
         if (item == null || item.getType() == Material.AIR) {
             return false;
         }

@@ -13,9 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import javax.annotation.Nonnull;
+
 import org.apache.commons.lang.Validate;
 
 /**
@@ -30,6 +31,7 @@ public class BackupService implements Runnable {
      * The maximum amount of backups to maintain
      */
     private static final int MAX_BACKUPS = 20;
+    private static final Pattern PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$");
 
     /**
      * Our {@link DateTimeFormatter} for formatting file names.
@@ -39,7 +41,7 @@ public class BackupService implements Runnable {
     /**
      * The directory in which to create the backups
      */
-    private final File directory = new File("data-storage/Slimefun/block-backups");
+    private static final File directory = new File("data-storage/Slimefun/block-backups");
 
     @Override
     public void run() {
@@ -85,7 +87,7 @@ public class BackupService implements Runnable {
         }
     }
 
-    private void createBackup(@Nonnull ZipOutputStream output) throws IOException {
+    private void createBackup(ZipOutputStream output) throws IOException {
         Validate.notNull(output, "The Output Stream cannot be null!");
 
         if (Slimefun.getDatabaseManager().getProfileStorageType() == StorageType.SQLITE) {
@@ -112,7 +114,7 @@ public class BackupService implements Runnable {
         output.closeEntry();
     }
 
-    private void addDirectory(@Nonnull ZipOutputStream output, @Nonnull File directory, @Nonnull String zipPath)
+    private void addDirectory(ZipOutputStream output, File directory, String zipPath)
             throws IOException {
         for (File file : directory.listFiles()) {
             addFile(output, file, zipPath);
@@ -128,9 +130,9 @@ public class BackupService implements Runnable {
      * @throws IOException
      *             An {@link IOException} is thrown if a {@link File} could not be deleted
      */
-    private void purgeBackups(@Nonnull List<File> backups) throws IOException {
+    private void purgeBackups(List<File> backups) throws IOException {
         var matchedBackup = backups.stream()
-                .filter(f -> f.getName().matches("^\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$"))
+                .filter(f -> PATTERN.matcher(f.getName()).matches())
                 .sorted((a, b) -> {
                     LocalDateTime time1 = LocalDateTime.parse(
                             a.getName().substring(0, a.getName().length() - 4), format);

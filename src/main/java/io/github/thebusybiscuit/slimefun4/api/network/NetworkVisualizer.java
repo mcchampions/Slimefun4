@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.api.network;
 
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
-import javax.annotation.Nonnull;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -31,7 +30,7 @@ class NetworkVisualizer implements Runnable {
      * @param network
      *            The {@link Network} to visualize
      */
-    NetworkVisualizer(@Nonnull Network network, @Nonnull Color color) {
+    NetworkVisualizer(Network network, Color color) {
         Validate.notNull(network, "The network should not be null.");
         Validate.notNull(color, "The color cannot be null.");
 
@@ -56,7 +55,7 @@ class NetworkVisualizer implements Runnable {
      * @param l
      *            The {@link Location} of our node
      */
-    private void spawnParticles(@Nonnull Location l) {
+    private void spawnParticles(Location l) {
         l.getWorld()
                 .spawnParticle(
                         VersionedParticle.DUST,

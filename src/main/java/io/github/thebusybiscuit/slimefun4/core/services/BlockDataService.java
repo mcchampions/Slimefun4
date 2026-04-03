@@ -6,7 +6,6 @@ import io.papermc.lib.PaperLib;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -45,7 +44,7 @@ public class BlockDataService implements Keyed {
      * @param key
      *            The key under which to store data
      */
-    public BlockDataService(@Nonnull Plugin plugin, @Nonnull String key) {
+    public BlockDataService(Plugin plugin, String key) {
         namespacedKey = new NamespacedKey(plugin, key);
         universalDataKey = new NamespacedKey(plugin, "slimefun_unidata_uuid");
     }
@@ -63,7 +62,7 @@ public class BlockDataService implements Keyed {
      * @param value
      *            The value to store
      */
-    public void setBlockData(@Nonnull Block b, @Nonnull String value) {
+    public void setBlockData(Block b, String value) {
         setBlockData(b, namespacedKey, value);
     }
 
@@ -75,7 +74,7 @@ public class BlockDataService implements Keyed {
      * @param uuid
      *            The uuid linked to certain slimefun item
      */
-    public void updateUniversalDataUUID(@Nonnull Block b, @Nonnull String uuid) {
+    public void updateUniversalDataUUID(Block b, String uuid) {
         setBlockData(b, universalDataKey, uuid);
     }
 
@@ -87,7 +86,7 @@ public class BlockDataService implements Keyed {
      * @param value
      *            The value to store
      */
-    public void setBlockData(@Nonnull Block b, @Nonnull NamespacedKey key, @Nonnull String value) {
+    public void setBlockData(Block b, NamespacedKey key, String value) {
         Validate.notNull(b, "The block cannot be null!");
         Validate.notNull(value, "The value cannot be null!");
 
@@ -128,11 +127,11 @@ public class BlockDataService implements Keyed {
      *
      * @return The stored value
      */
-    public Optional<String> getBlockData(@Nonnull Block b) {
+    public Optional<String> getBlockData(Block b) {
         return getBlockData(b, namespacedKey);
     }
 
-    public Optional<UUID> getUniversalDataUUID(@Nonnull Block b) {
+    public Optional<UUID> getUniversalDataUUID(Block b) {
         var uuid = getBlockData(b, universalDataKey);
 
         return uuid.map(data -> {
@@ -154,7 +153,7 @@ public class BlockDataService implements Keyed {
         });
     }
 
-    public Optional<String> getBlockData(@Nonnull Block b, @Nonnull NamespacedKey key) {
+    public Optional<String> getBlockData(Block b, NamespacedKey key) {
         Validate.notNull(b, "The block cannot be null!");
 
         BlockState state = PaperLib.getBlockState(b, false).getState();
@@ -167,7 +166,7 @@ public class BlockDataService implements Keyed {
         }
     }
 
-    @Nullable private PersistentDataContainer getPersistentDataContainer(@Nonnull BlockState state) {
+    @Nullable private PersistentDataContainer getPersistentDataContainer(BlockState state) {
         if (state instanceof TileState tileState) {
             return tileState.getPersistentDataContainer();
         } else {

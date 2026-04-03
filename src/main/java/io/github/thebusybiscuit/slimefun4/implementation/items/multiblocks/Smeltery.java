@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -68,7 +67,7 @@ public class Smeltery extends AbstractSmeltery {
     }
 
     @Override
-    protected void registerDefaultRecipes(@Nonnull List<ItemStack> recipes) {
+    protected void registerDefaultRecipes(List<ItemStack> recipes) {
         recipes.add(SlimefunItems.IRON_DUST);
         recipes.add(new ItemStack(Material.IRON_INGOT));
     }

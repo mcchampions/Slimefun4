@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
@@ -65,7 +64,7 @@ public class MagicianTalisman extends Talisman {
                             Level.SEVERE,
                             x,
                             () -> "The following Exception was thrown when initializing the settings for "
-                                    + toString());
+                                  + this);
         }
     }
 
@@ -82,7 +81,7 @@ public class MagicianTalisman extends Talisman {
      * @return An applicable {@link TalismanEnchantment} or null
      */
     @Nullable public TalismanEnchantment getRandomEnchantment(
-            @Nonnull ItemStack item, @Nonnull Set<Enchantment> existingEnchantments) {
+            ItemStack item, Set<Enchantment> existingEnchantments) {
         Validate.notNull(item, "The ItemStack cannot be null");
         Validate.notNull(existingEnchantments, "The Enchantments Set cannot be null");
 
@@ -92,7 +91,7 @@ public class MagicianTalisman extends Talisman {
                         || e.getEnchantment().canEnchantItem(item))
                 .filter(e -> hasConflicts(existingEnchantments, e))
                 .filter(TalismanEnchantment::getValue)
-                .collect(Collectors.toList());
+                .toList();
         // @formatter:on
 
         return enabled.isEmpty()

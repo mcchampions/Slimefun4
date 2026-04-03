@@ -6,7 +6,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.annotation.Nonnull;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,7 +26,7 @@ public class SoulboundListener implements Listener {
 
     private final Map<UUID, Map<Integer, ItemStack>> soulbound = new HashMap<>();
 
-    public SoulboundListener(@Nonnull Slimefun plugin) {
+    public SoulboundListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -63,7 +63,7 @@ public class SoulboundListener implements Listener {
         returnSoulboundItems(e.getPlayer());
     }
 
-    private void returnSoulboundItems(@Nonnull Player p) {
+    private void returnSoulboundItems(Player p) {
         Map<Integer, ItemStack> items = soulbound.remove(p.getUniqueId());
 
         if (items != null) {

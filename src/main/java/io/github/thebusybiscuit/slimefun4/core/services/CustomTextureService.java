@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -37,14 +36,14 @@ public class CustomTextureService {
      * This nullable {@link StringBuffer} represents the "version" of the used item-models file.
      * This version is served with our resource pack.
      */
-    private String version = null;
+    private String version;
 
     /**
      * This boolean represents whether the file was modified anyway.
      * This is equivalent to at least one value being set to a number which
      * is not zero!
      */
-    private boolean modified = false;
+    private boolean modified;
 
     /**
      * This creates a new {@link CustomTextureService} for the provided {@link Config}
@@ -52,16 +51,18 @@ public class CustomTextureService {
      * @param config
      *            The {@link Config} to read custom model data from
      */
-    public CustomTextureService(@Nonnull Config config) {
+    public CustomTextureService(Config config) {
         this.config = config;
         config.getConfiguration()
                 .options()
-                .header("This file is used to assign items from Slimefun or any of its addons\n"
-                        + "the 'CustomModelData' NBT tag. This can be used in conjunction with a custom"
-                        + " resource pack\n"
-                        + "to give items custom textures.\n"
-                        + "0 means there is no data assigned to that item.\n\n"
-                        + "There is no official Slimefun resource pack at the moment.");
+                .header("""
+                        This file is used to assign items from Slimefun or any of its addons
+                        the 'CustomModelData' NBT tag. This can be used in conjunction with a custom\
+                         resource pack
+                        to give items custom textures.
+                        0 means there is no data assigned to that item.
+                        
+                        There is no official Slimefun resource pack at the moment.""");
         config.getConfiguration().options().copyHeader(true);
     }
 
@@ -74,7 +75,7 @@ public class CustomTextureService {
      * @param save
      *            Whether to save this file
      */
-    public void register(@Nonnull Collection<SlimefunItem> items, boolean save) {
+    public void register(Collection<SlimefunItem> items, boolean save) {
         Validate.notEmpty(items, "items must neither be null or empty.");
 
         loadDefaultValues();
@@ -132,7 +133,7 @@ public class CustomTextureService {
      *
      * @return The configured custom model data
      */
-    public int getModelData(@Nonnull String id) {
+    public int getModelData(String id) {
         Validate.notNull(id, "Cannot get the ModelData for 'null'");
 
         return config.getInt(id);
@@ -147,7 +148,7 @@ public class CustomTextureService {
      * @param id
      *            The id for which to get the configured model data
      */
-    public void setTexture(@Nonnull ItemStack item, @Nonnull String id) {
+    public void setTexture(ItemStack item, String id) {
         Validate.notNull(item, "The Item cannot be null!");
         Validate.notNull(id, "Cannot store null on an Item!");
 
@@ -165,7 +166,7 @@ public class CustomTextureService {
      * @param id
      *            The id for which to get the configured model data
      */
-    public void setTexture(@Nonnull ItemMeta im, @Nonnull String id) {
+    public void setTexture(ItemMeta im, String id) {
         Validate.notNull(im, "The ItemMeta cannot be null!");
         Validate.notNull(id, "Cannot store null on an ItemMeta!");
 

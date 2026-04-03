@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.attributes;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import javax.annotation.Nonnull;
 import org.bukkit.inventory.meta.ItemMeta;
 
 /**
@@ -27,5 +26,5 @@ public interface DistinctiveItem extends ItemAttribute {
      *
      * @return Whether the two {@link ItemMeta}s are stackable
      */
-    boolean canStack(@Nonnull ItemMeta itemMetaOne, @Nonnull ItemMeta itemMetaTwo);
+    boolean canStack(ItemMeta itemMetaOne, ItemMeta itemMetaTwo);
 }

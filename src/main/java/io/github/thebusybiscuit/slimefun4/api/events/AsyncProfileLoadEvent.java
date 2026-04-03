@@ -27,7 +27,7 @@ public class AsyncProfileLoadEvent extends Event {
     private final UUID uniqueId;
     private PlayerProfile profile;
 
-    public AsyncProfileLoadEvent(@Nonnull PlayerProfile profile) {
+    public AsyncProfileLoadEvent(PlayerProfile profile) {
         // this event may be called in main-thread by accident, or while migration
         // we are not sure
         super(!Bukkit.isPrimaryThread());
@@ -55,7 +55,7 @@ public class AsyncProfileLoadEvent extends Event {
      * @param profile
      *            The {@link PlayerProfile}
      */
-    public void setProfile(@Nonnull PlayerProfile profile) {
+    public void setProfile(PlayerProfile profile) {
         Validate.notNull(profile, "The PlayerProfile cannot be null!");
         Validate.isTrue(profile.getUUID().equals(uniqueId), "Cannot inject a PlayerProfile with a different UUID");
 
@@ -70,6 +70,6 @@ public class AsyncProfileLoadEvent extends Event {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

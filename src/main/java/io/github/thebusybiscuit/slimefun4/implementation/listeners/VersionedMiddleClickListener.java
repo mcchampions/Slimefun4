@@ -6,7 +6,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.papermc.paper.event.player.PlayerPickItemEvent;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
@@ -19,7 +19,7 @@ public class VersionedMiddleClickListener implements Listener {
     Class<? extends PlayerPickItemEvent> pickBlockEventClass;
     Method getBlockMethod;
 
-    public VersionedMiddleClickListener(@Nonnull Slimefun plugin) {
+    public VersionedMiddleClickListener(Slimefun plugin) {
         try {
             pickBlockEventClass = (Class<? extends PlayerPickItemEvent>)
                     Class.forName("io.papermc.paper.event.player.PlayerPickBlockEvent");

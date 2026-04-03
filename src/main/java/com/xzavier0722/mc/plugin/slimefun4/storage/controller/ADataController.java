@@ -55,7 +55,7 @@ public abstract class ADataController {
     /**
      * 标记当前控制器是否已被关闭
      */
-    private volatile boolean destroyed = false;
+    private volatile boolean destroyed;
 
     /**
      * The logger for this data controller.
@@ -173,9 +173,7 @@ public abstract class ADataController {
         scheduleWriteTask(
                 scopeKey,
                 key,
-                () -> {
-                    dataAdapter.deleteData(key);
-                },
+                () -> dataAdapter.deleteData(key),
                 forceScopeKey);
     }
 

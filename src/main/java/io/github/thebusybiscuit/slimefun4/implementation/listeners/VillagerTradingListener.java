@@ -5,7 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.VanillaItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.misc.SyntheticEmerald;
-import javax.annotation.Nonnull;
+
 import javax.annotation.Nullable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
@@ -25,7 +25,7 @@ import org.bukkit.inventory.Inventory;
  */
 public class VillagerTradingListener implements Listener {
 
-    public VillagerTradingListener(@Nonnull Slimefun plugin) {
+    public VillagerTradingListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -47,7 +47,7 @@ public class VillagerTradingListener implements Listener {
             }
 
             if (e.getResult() == Result.DENY) {
-                Slimefun.getLocalization().sendMessage((Player) e.getWhoClicked(), "villagers.no-trading", true);
+                Slimefun.getLocalization().sendMessage(e.getWhoClicked(), "villagers.no-trading", true);
             }
         }
     }

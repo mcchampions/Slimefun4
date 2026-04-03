@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 
@@ -34,14 +33,14 @@ public class GitHubService {
     private final Config uuidCache = new Config("plugins/Slimefun/cache/github/uuids.yml");
     private final Config texturesCache = new Config("plugins/Slimefun/cache/github/skins.yml");
 
-    private boolean logging = false;
+    private boolean logging;
 
     private LocalDateTime lastUpdate = LocalDateTime.now();
 
-    private int openIssues = 0;
-    private int pendingPullRequests = 0;
-    private int publicForks = 0;
-    private int stargazers = 0;
+    private int openIssues;
+    private int pendingPullRequests;
+    private int publicForks;
+    private int stargazers;
 
     /**
      * This creates a new {@link GitHubService} for the given repository.
@@ -49,7 +48,7 @@ public class GitHubService {
      * @param repository
      *            The repository to create this {@link GitHubService} for
      */
-    public GitHubService(@Nonnull String repository) {
+    public GitHubService(String repository) {
         this.repository = repository;
 
         connectors = new HashSet<>();
@@ -63,7 +62,7 @@ public class GitHubService {
      * @param plugin
      *            Our instance of {@link Slimefun}
      */
-    public void start(@Nonnull Slimefun plugin) {
+    public void start(Slimefun plugin) {
         loadConnectors(false);
 
         long period = TimeUnit.HOURS.toMillis(1);
@@ -94,15 +93,15 @@ public class GitHubService {
         }
     }
 
-    private void addContributor(@Nonnull String name, @Nonnull String role) {
+    private void addContributor(String name, String role) {
         Contributor contributor = new Contributor(name);
         contributor.setContributions(role, 0);
         contributor.setUniqueId(uuidCache.getUUID(name));
         contributors.put(name, contributor);
     }
 
-    public @Nonnull Contributor addContributor(
-            @Nonnull String minecraftName, @Nonnull String profileURL, @Nonnull String role, int commits) {
+    public Contributor addContributor(
+            String minecraftName, String profileURL, String role, int commits) {
         Validate.notNull(minecraftName, "Minecraft username must not be null.");
         Validate.notNull(profileURL, "GitHub profile url must not be null.");
         Validate.notNull(role, "Role should not be null.");
@@ -117,7 +116,7 @@ public class GitHubService {
         return contributor;
     }
 
-    public @Nonnull Contributor addContributor(@Nonnull String username, @Nonnull String role, int commits) {
+    public Contributor addContributor(String username, String role, int commits) {
         Validate.notNull(username, "Username must not be null.");
         Validate.notNull(role, "Role should not be null.");
         Validate.isTrue(commits >= 0, "Commit count cannot be negative.");
@@ -157,7 +156,7 @@ public class GitHubService {
         }));
     }
 
-    protected @Nonnull Set<GitHubConnector> getConnectors() {
+    protected Set<GitHubConnector> getConnectors() {
         return connectors;
     }
 
@@ -170,7 +169,7 @@ public class GitHubService {
      *
      * @return A {@link ConcurrentMap} containing all {@link Contributor Contributors}
      */
-    public @Nonnull ConcurrentMap<String, Contributor> getContributors() {
+    public ConcurrentMap<String, Contributor> getContributors() {
         return contributors;
     }
 
@@ -206,7 +205,7 @@ public class GitHubService {
      *
      * @return The id of our GitHub Repository
      */
-    public @Nonnull String getRepository() {
+    public String getRepository() {
         return repository;
     }
 
@@ -224,7 +223,7 @@ public class GitHubService {
      *
      * @return A {@link LocalDateTime} object representing the date and time of the latest commit
      */
-    public @Nonnull LocalDateTime getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
@@ -258,7 +257,7 @@ public class GitHubService {
      *
      * @return The cached skin texture for that user (or null)
      */
-    protected @Nullable String getCachedTexture(@Nonnull String username) {
+    protected @Nullable String getCachedTexture(String username) {
         return texturesCache.getString(username);
     }
 }

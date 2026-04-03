@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
 import java.util.Collections;
 import java.util.List;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
@@ -66,7 +65,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
      *
      * @return The {@link LimitedUseItem} for chaining of setters
      */
-    public final @Nonnull LimitedUseItem setMaxUseCount(int count) {
+    public final LimitedUseItem setMaxUseCount(int count) {
         Validate.isTrue(count > 0, "The maximum use count must be greater than zero!");
 
         maxUseCount = count;
@@ -78,13 +77,13 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
      *
      * @return The {@link NamespacedKey} to store/load the amount of uses
      */
-    protected @Nonnull NamespacedKey getStorageKey() {
+    protected NamespacedKey getStorageKey() {
         return defaultUsageKey;
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
-        if (getMaxUseCount() < 1) {
+    public void register(SlimefunAddon addon) {
+        if (maxUseCount < 1) {
             warn("The use count has not been configured correctly. It needs to be at least 1. The Item was"
                     + " disabled.");
         } else {
@@ -111,7 +110,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
             ItemMeta meta = item.getItemMeta();
             NamespacedKey key = getStorageKey();
             PersistentDataContainer pdc = meta.getPersistentDataContainer();
-            int usesLeft = pdc.getOrDefault(key, PersistentDataType.INTEGER, getMaxUseCount());
+            int usesLeft = pdc.getOrDefault(key, PersistentDataType.INTEGER, maxUseCount);
 
             if (usesLeft == 1) {
                 SoundEffect.LIMITED_USE_ITEM_BREAK_SOUND.playFor(p);

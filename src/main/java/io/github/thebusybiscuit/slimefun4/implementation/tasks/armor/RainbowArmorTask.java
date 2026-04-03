@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
  */
 public class RainbowArmorTask extends AbstractArmorTask {
 
-    private long currentColorIndex = 0;
+    private long currentColorIndex;
 
     @Override
     protected void onTick() {

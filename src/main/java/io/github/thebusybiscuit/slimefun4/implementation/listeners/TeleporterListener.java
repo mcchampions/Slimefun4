@@ -11,7 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Abstra
 import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.Teleporter;
 import io.github.thebusybiscuit.slimefun4.implementation.items.teleporter.TeleporterPylon;
 import java.util.UUID;
-import javax.annotation.Nonnull;
+
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -40,7 +40,7 @@ public class TeleporterListener implements Listener {
 
     // @formatter:on
 
-    public TeleporterListener(@Nonnull Slimefun plugin) {
+    public TeleporterListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -108,7 +108,7 @@ public class TeleporterListener implements Listener {
      *
      * @return Whether the teleporter is surrounded by pylons.
      */
-    private boolean checkForPylons(@Nonnull Block teleporter) {
+    private boolean checkForPylons(Block teleporter) {
         for (BlockFace face : faces) {
             if (!(StorageCacheUtils.getSlimefunItem(teleporter.getRelative(face).getLocation())
                     instanceof TeleporterPylon)) {

@@ -205,7 +205,6 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEffectType;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -224,11 +223,11 @@ import org.bukkit.potion.PotionType;
  */
 public final class SlimefunItemSetup {
 
-    private static boolean registeredItems = false;
+    private static boolean registeredItems;
 
     private SlimefunItemSetup() {}
 
-    public static void setup(@Nonnull Slimefun plugin) {
+    public static void setup(Slimefun plugin) {
         if (registeredItems) {
             throw new UnsupportedOperationException("Slimefun Items can only be registered once!");
         }

@@ -47,5 +47,5 @@ public enum EnergyNetComponentType {
      * A fallback value to use when a {@link Block} cannot be classified as any of the
      * other options.
      */
-    NONE;
+    NONE
 }

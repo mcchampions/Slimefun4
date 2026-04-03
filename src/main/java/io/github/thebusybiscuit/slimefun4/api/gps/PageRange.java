@@ -1,6 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.api.gps;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
@@ -30,7 +29,7 @@ public class PageRange {
     }
 
     @ParametersAreNonnullByDefault
-    public static @Nonnull PageRange compute(int total, int pageSize, int currentPage) {
+    public static PageRange compute(int total, int pageSize, int currentPage) {
         int totalPages = Math.max(1, (total + pageSize - 1) / pageSize);
 
         int page = currentPage;

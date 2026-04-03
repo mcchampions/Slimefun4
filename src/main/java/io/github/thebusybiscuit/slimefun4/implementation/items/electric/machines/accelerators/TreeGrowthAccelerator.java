@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.misc.OrganicFertilizer;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
-import javax.annotation.Nonnull;
+
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -46,7 +46,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
     }
 
     @Override
-    protected void tick(@Nonnull Block b) {
+    protected void tick(Block b) {
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
         if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {

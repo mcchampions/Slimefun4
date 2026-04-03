@@ -4,7 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Iterator;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -17,8 +17,6 @@ import org.bukkit.entity.Player;
  */
 public class AutoSavingService {
 
-    private int interval;
-
     /**
      * This method starts the {@link AutoSavingService} with the given interval.
      *
@@ -27,8 +25,7 @@ public class AutoSavingService {
      * @param interval
      *            The interval in which to run this task
      */
-    public void start(@Nonnull Slimefun plugin, int interval) {
-        this.interval = interval;
+    public void start(Slimefun plugin, int interval) {
 
         plugin.getServer().getScheduler().runTaskTimer(plugin, this::saveAllPlayers, 2000L, interval * 60L * 20L);
         plugin.getServer()

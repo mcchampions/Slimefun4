@@ -71,7 +71,7 @@ public class TalismanListener implements Listener {
 
     private final int[] armorSlots = {39, 38, 37, 36};
 
-    public TalismanListener(@Nonnull Slimefun plugin) {
+    public TalismanListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -113,7 +113,7 @@ public class TalismanListener implements Listener {
         }
     }
 
-    private void onProjectileDamage(@Nonnull EntityDamageByEntityEvent e) {
+    private void onProjectileDamage(EntityDamageByEntityEvent e) {
         // "Fixes" #1022 - We just ignore Tridents now.
         if (e.getDamager() instanceof Projectile projectile && !(e.getDamager() instanceof Trident)) {
             if (Talisman.trigger(e, SlimefunItems.TALISMAN_WHIRLWIND)) {
@@ -132,7 +132,7 @@ public class TalismanListener implements Listener {
      * @param projectile
      *            The {@link Projectile} that hit this {@link Player}
      */
-    private void returnProjectile(@Nonnull Player p, @Nonnull Projectile projectile) {
+    private void returnProjectile(Player p, Projectile projectile) {
         Vector direction = p.getEyeLocation().getDirection().multiply(2.0);
         Location loc = p.getEyeLocation().add(direction.getX(), direction.getY(), direction.getZ());
 
@@ -419,7 +419,7 @@ public class TalismanListener implements Listener {
         }
     }
 
-    private int getAmountWithFortune(@Nonnull Material type, int fortuneLevel) {
+    private int getAmountWithFortune(Material type, int fortuneLevel) {
         if (fortuneLevel > 0) {
             Random random = ThreadLocalRandom.current();
             int amount = random.nextInt(fortuneLevel + 2) - 1;

@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners.entity;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.VanillaItem;
-import javax.annotation.Nonnull;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
@@ -23,7 +22,7 @@ import org.bukkit.inventory.PlayerInventory;
  */
 public class IronGolemListener implements Listener {
 
-    public IronGolemListener(@Nonnull Slimefun plugin) {
+    public IronGolemListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

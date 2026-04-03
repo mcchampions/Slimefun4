@@ -4,7 +4,6 @@ import com.google.common.base.Preconditions;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -42,7 +41,7 @@ public abstract class AbstractArmorTask implements Runnable {
      * @param tickInterval
      *            Delay between two "runs" of this task in ticks
      */
-    public final void schedule(@Nonnull Slimefun plugin, long tickInterval) {
+    public final void schedule(Slimefun plugin, long tickInterval) {
         Preconditions.checkNotNull(plugin, "The plugin instance cannot be null!");
 
         if (tickInterval < 1) {

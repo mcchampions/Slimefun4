@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
@@ -20,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class CraftingTableListener implements SlimefunCraftingListener {
 
-    public CraftingTableListener(@Nonnull Slimefun plugin) {
+    public CraftingTableListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -31,7 +30,7 @@ public class CraftingTableListener implements SlimefunCraftingListener {
 
             if (sfItem != null && !sfItem.isUseableInWorkbench()) {
                 e.setResult(Result.DENY);
-                Slimefun.getLocalization().sendMessage((Player) e.getWhoClicked(), "workbench.not-enhanced", true);
+                Slimefun.getLocalization().sendMessage(e.getWhoClicked(), "workbench.not-enhanced", true);
                 break;
             }
         }

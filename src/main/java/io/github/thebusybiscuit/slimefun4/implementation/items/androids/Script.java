@@ -41,7 +41,7 @@ public final class Script {
      * @param config
      *            The {@link Config}
      */
-    private Script(@Nonnull Config config) {
+    private Script(Config config) {
         Validate.notNull(config);
 
         this.config = config;
@@ -101,7 +101,7 @@ public final class Script {
      *
      * @return Whether the given {@link OfflinePlayer} is the author of this {@link Script}.
      */
-    public boolean isAuthor(@Nonnull OfflinePlayer p) {
+    public boolean isAuthor(OfflinePlayer p) {
         return p.getUniqueId().equals(config.getUUID("author"));
     }
 
@@ -114,7 +114,7 @@ public final class Script {
      *
      * @return Whether the given {@link Player} is able to rate this {@link Script}
      */
-    public boolean canRate(@Nonnull Player p) {
+    public boolean canRate(Player p) {
         if (isAuthor(p)) {
             return false;
         }
@@ -126,9 +126,9 @@ public final class Script {
     }
 
     @Nonnull
-    ItemStack getAsItemStack(@Nonnull ProgrammableAndroid android, @Nonnull Player p) {
+    ItemStack getAsItemStack(ProgrammableAndroid android, Player p) {
         List<String> lore = new LinkedList<>();
-        lore.add("&7作者 &f" + getAuthor());
+        lore.add("&7作者 &f" + author);
         lore.add("");
         lore.add("&7下载量: &f" + getDownloads());
         lore.add("&7评分: " + getScriptRatingPercentage());
@@ -143,7 +143,7 @@ public final class Script {
             lore.add("&eShift + 右键 &f差评");
         }
 
-        return new CustomItemStack(android.getItem(), "&b" + getName(), lore.toArray(new String[0]));
+        return new CustomItemStack(android.getItem(), "&b" + name, lore.toArray(new String[0]));
     }
 
     @Nonnull
@@ -200,7 +200,7 @@ public final class Script {
         config.save();
     }
 
-    public void rate(@Nonnull Player p, boolean positive) {
+    public void rate(Player p, boolean positive) {
         config.reload();
 
         String path = "rating." + (positive ? "positive" : "negative");
@@ -212,7 +212,7 @@ public final class Script {
     }
 
     @Nonnull
-    public static List<Script> getUploadedScripts(@Nonnull AndroidType androidType) {
+    public static List<Script> getUploadedScripts(AndroidType androidType) {
         List<Script> scripts = new LinkedList<>();
 
         loadScripts(scripts, androidType);
@@ -221,11 +221,11 @@ public final class Script {
             loadScripts(scripts, AndroidType.NONE);
         }
 
-        Collections.sort(scripts, Comparator.comparingInt(script -> -script.getUpvotes() + 1 - script.getDownvotes()));
+        scripts.sort(Comparator.comparingInt(script -> -script.getUpvotes() + 1 - script.getDownvotes()));
         return scripts;
     }
 
-    private static void loadScripts(@Nonnull List<Script> scripts, @Nonnull AndroidType type) {
+    private static void loadScripts(List<Script> scripts, AndroidType type) {
         File directory = new File("plugins/Slimefun/scripts/" + type.name());
         if (!directory.exists()) {
             directory.mkdirs();

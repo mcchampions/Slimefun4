@@ -5,9 +5,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.settings.GoldPanDrop;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class NetherGoldPan extends GoldPan {
 
-    private final Set<Material> inputMaterials = new HashSet<>(Arrays.asList(Material.SOUL_SAND, Material.SOUL_SOIL));
+    private final Set<Material> inputMaterials = EnumSet.of(Material.SOUL_SAND, Material.SOUL_SOIL);
 
     @ParametersAreNonnullByDefault
     public NetherGoldPan(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -36,12 +36,12 @@ public class NetherGoldPan extends GoldPan {
     }
 
     @Override
-    public @Nonnull Set<Material> getInputMaterials() {
+    public Set<Material> getInputMaterials() {
         return inputMaterials;
     }
 
     @Override
-    protected @Nonnull Set<GoldPanDrop> getGoldPanDrops() {
+    protected Set<GoldPanDrop> getGoldPanDrops() {
         Set<GoldPanDrop> settings = new HashSet<>();
 
         settings.add(new GoldPanDrop(this, "chance.QUARTZ", 50, new ItemStack(Material.QUARTZ)));

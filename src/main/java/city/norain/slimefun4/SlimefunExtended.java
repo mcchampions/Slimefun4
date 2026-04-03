@@ -10,7 +10,7 @@ import io.github.bakedlibs.dough.versions.MinecraftVersion;
 import io.github.bakedlibs.dough.versions.UnknownServerVersionException;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import lombok.Getter;
 import org.apache.logging.log4j.core.config.Configurator;
 
@@ -18,7 +18,7 @@ public final class SlimefunExtended {
     private static SlimefunMigrateListener migrateListener = new SlimefunMigrateListener();
 
     @Getter
-    private static boolean databaseDebugMode = false;
+    private static boolean databaseDebugMode;
 
     @Getter
     private static MinecraftVersion minecraftVersion;
@@ -36,7 +36,7 @@ public final class SlimefunExtended {
         }
     }
 
-    public static boolean checkEnvironment(@Nonnull Slimefun sf) {
+    public static boolean checkEnvironment(Slimefun sf) {
         try {
             minecraftVersion = MinecraftVersion.of(sf.getServer());
         } catch (UnknownServerVersionException e) {
@@ -72,7 +72,7 @@ public final class SlimefunExtended {
         }
     }
 
-    public static void init(@Nonnull Slimefun sf) {
+    public static void init(Slimefun sf) {
         EnvironmentChecker.scheduleSlimeGlueCheck(sf);
 
         EnvUtil.init();

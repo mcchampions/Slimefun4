@@ -11,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.papermc.lib.PaperLib;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
@@ -86,7 +85,7 @@ public class OreWasher extends MultiBlockMachine {
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         return recipes.stream().map(items -> items[0]).toList();
     }
 
@@ -191,7 +190,7 @@ public class OreWasher extends MultiBlockMachine {
      *
      * @return A randomly picked dust item
      */
-    public @Nonnull ItemStack getRandomDust() {
+    public ItemStack getRandomDust() {
         int index = ThreadLocalRandom.current().nextInt(dusts.length);
         return dusts[index].clone();
     }

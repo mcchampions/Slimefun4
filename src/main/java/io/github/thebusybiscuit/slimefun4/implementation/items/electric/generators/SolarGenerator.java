@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNet;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -93,12 +93,12 @@ public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
     }
 
     @Override
-    public int getGeneratedOutput(@Nonnull Location l, @Nonnull ASlimefunDataContainer data) {
+    public int getGeneratedOutput(Location l, ASlimefunDataContainer data) {
         World world = l.getWorld();
 
         if (world.getEnvironment() != Environment.NORMAL) {
             if (useNightEnergyInOtherDimensions.getValue()) {
-                return getNightEnergy();
+                return nightEnergy;
             }
 
             return 0;
@@ -106,13 +106,13 @@ public class SolarGenerator extends SlimefunItem implements EnergyNetProvider {
             boolean isDaytime = isDaytime(world);
 
             // Performance optimization for daytime-only solar generators
-            if (!isDaytime && getNightEnergy() < 1) {
+            if (!isDaytime && nightEnergy < 1) {
                 return 0;
             } else if (!world.isChunkLoaded(l.getBlockX() >> 4, l.getBlockZ() >> 4)
                     || l.getBlock().getLightFromSky() < 15) {
                 return 0;
             } else {
-                return isDaytime ? getDayEnergy() : getNightEnergy();
+                return isDaytime ? dayEnergy : nightEnergy;
             }
         }
     }

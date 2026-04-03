@@ -11,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.guide.SurvivalSlimefunG
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.apache.commons.lang.Validate;
@@ -41,7 +40,7 @@ public class NestedItemGroup extends FlexItemGroup {
      * @param group
      *            The {@link SubItemGroup} to add.
      */
-    public void addSubGroup(@Nonnull SubItemGroup group) {
+    public void addSubGroup(SubItemGroup group) {
         Validate.notNull(group, "The sub item group cannot be null!");
 
         subGroups.add(group);
@@ -53,7 +52,7 @@ public class NestedItemGroup extends FlexItemGroup {
      * @param group
      *            The {@link SubItemGroup} to remove.
      */
-    public void removeSubGroup(@Nonnull SubItemGroup group) {
+    public void removeSubGroup(SubItemGroup group) {
         Validate.notNull(group, "The sub item group cannot be null!");
 
         subGroups.remove(group);

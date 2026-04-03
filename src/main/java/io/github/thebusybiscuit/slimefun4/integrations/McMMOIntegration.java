@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.VanillaItem;
-import javax.annotation.Nonnull;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -24,7 +23,7 @@ class McMMOIntegration implements Listener {
 
     private final Slimefun plugin;
 
-    McMMOIntegration(@Nonnull Slimefun plugin) {
+    McMMOIntegration(Slimefun plugin) {
         this.plugin = plugin;
     }
 
@@ -70,7 +69,7 @@ class McMMOIntegration implements Listener {
      *
      * @return Whether this item can be safely salvaged
      */
-    private boolean isSalvageable(@Nonnull ItemStack item) {
+    private boolean isSalvageable(ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
         return sfItem == null || sfItem instanceof VanillaItem;
     }

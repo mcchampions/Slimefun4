@@ -43,7 +43,7 @@ final class ProfiledBlock {
      * @param item
      *            The {@link SlimefunItem} found at that {@link Location}
      */
-    ProfiledBlock(@Nonnull Location l, @Nonnull SlimefunItem item) {
+    ProfiledBlock(Location l, SlimefunItem item) {
         this.world = l.getWorld();
         this.position = getLocationAsLong((int) l.getX(), (int) l.getY(), (int) l.getZ());
         this.item = item;
@@ -56,7 +56,7 @@ final class ProfiledBlock {
      * @param b
      *            A {@link Block}
      */
-    ProfiledBlock(@Nonnull Block b) {
+    ProfiledBlock(Block b) {
         this.world = b.getWorld();
         this.position = getLocationAsLong(b.getX(), b.getY(), b.getZ());
         this.item = null;

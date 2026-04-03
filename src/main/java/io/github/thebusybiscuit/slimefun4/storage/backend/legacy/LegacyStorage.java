@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 public class LegacyStorage implements Storage {
 
     @Override
-    public PlayerData loadPlayerData(@Nonnull UUID uuid) {
+    public PlayerData loadPlayerData(UUID uuid) {
         long start = System.nanoTime();
 
         Config playerFile = new Config("data-storage/Slimefun/Players/" + uuid + ".yml");
@@ -82,15 +82,12 @@ public class LegacyStorage implements Storage {
             }
         }
 
-        long end = System.nanoTime();
-        Slimefun.getAnalyticsService().recordPlayerProfileDataTime("legacy", true, end - start);
-
         return new PlayerData(researches, backpacks, waypoints);
     }
 
     // The current design of saving all at once isn't great, this will be refined.
     @Override
-    public void savePlayerData(@Nonnull UUID uuid, @Nonnull PlayerData data) {
+    public void savePlayerData(UUID uuid, PlayerData data) {
         long start = System.nanoTime();
 
         Config playerFile = new Config("data-storage/Slimefun/Players/" + uuid + ".yml");
@@ -113,7 +110,7 @@ public class LegacyStorage implements Storage {
                 // Sooooo we're gonna hack this for now while we move away from the Legacy Storage
                 // Let's make sure the user doesn't have _any_ research with this ID and _then_ remove it
             } else if (playerFile.contains("researches." + research.getID())
-                    && !data.getResearches().stream().anyMatch((r) -> r.getID() == research.getID())) {
+                       && data.getResearches().stream().noneMatch((r) -> r.getID() == research.getID())) {
                 playerFile.setValue("researches." + research.getID(), null);
             }
         }
@@ -145,8 +142,5 @@ public class LegacyStorage implements Storage {
         // Save files
         playerFile.save();
         waypointsFile.save();
-
-        long end = System.nanoTime();
-        Slimefun.getAnalyticsService().recordPlayerProfileDataTime("legacy", false, end - start);
     }
 }

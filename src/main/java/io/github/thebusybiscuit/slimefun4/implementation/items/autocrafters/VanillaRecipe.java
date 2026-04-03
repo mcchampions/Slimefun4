@@ -32,13 +32,13 @@ class VanillaRecipe extends AbstractRecipe {
     private final int[] slots = {11, 12, 13, 20, 21, 22, 29, 30, 31};
     private final Recipe recipe;
 
-    VanillaRecipe(@Nonnull ShapelessRecipe recipe) {
+    VanillaRecipe(ShapelessRecipe recipe) {
         super(new ArrayList<>(recipe.getChoiceList()), recipe.getResult());
 
         this.recipe = recipe;
     }
 
-    VanillaRecipe(@Nonnull ShapedRecipe recipe) {
+    VanillaRecipe(ShapedRecipe recipe) {
         super(getChoices(recipe), recipe.getResult());
 
         this.recipe = recipe;
@@ -49,7 +49,7 @@ class VanillaRecipe extends AbstractRecipe {
     }
 
     @Nonnull
-    private static Collection<Predicate<ItemStack>> getChoices(@Nonnull ShapedRecipe recipe) {
+    private static Collection<Predicate<ItemStack>> getChoices(ShapedRecipe recipe) {
         List<Predicate<ItemStack>> choices = new ArrayList<>();
 
         for (String row : recipe.getShape()) {
@@ -66,12 +66,12 @@ class VanillaRecipe extends AbstractRecipe {
     }
 
     @Nonnull
-    private static RecipeChoice[] getShape(@Nonnull Recipe recipe) {
+    private static RecipeChoice[] getShape(Recipe recipe) {
         return Slimefun.getMinecraftRecipeService().getRecipeShape(recipe);
     }
 
     @Override
-    public void show(@Nonnull ChestMenu menu, @Nonnull AsyncRecipeChoiceTask task) {
+    public void show(ChestMenu menu, AsyncRecipeChoiceTask task) {
         Validate.notNull(menu, "The ChestMenu cannot be null!");
         Validate.notNull(task, "The RecipeChoiceTask cannot be null!");
 
@@ -82,7 +82,7 @@ class VanillaRecipe extends AbstractRecipe {
         ItemStack[] items = new ItemStack[9];
 
         if (choices.length == 1 && choices[0] instanceof MaterialChoice materialChoice) {
-            items[4] = new ItemStack(materialChoice.getChoices().get(0));
+            items[4] = new ItemStack(materialChoice.getChoices().getFirst());
 
             if (materialChoice.getChoices().size() > 1) {
                 task.add(slots[4], materialChoice);
@@ -90,7 +90,7 @@ class VanillaRecipe extends AbstractRecipe {
         } else {
             for (int i = 0; i < choices.length; i++) {
                 if (choices[i] instanceof MaterialChoice materialChoice) {
-                    items[i] = new ItemStack(materialChoice.getChoices().get(0));
+                    items[i] = new ItemStack(materialChoice.getChoices().getFirst());
 
                     if (materialChoice.getChoices().size() > 1) {
                         task.add(slots[i], materialChoice);

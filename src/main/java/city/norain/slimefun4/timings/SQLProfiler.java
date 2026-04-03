@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
+
 import lombok.Getter;
 import org.bukkit.command.CommandSender;
 
@@ -31,7 +31,7 @@ public class SQLProfiler {
     });
 
     @Getter
-    private volatile boolean isProfiling = false;
+    private volatile boolean isProfiling;
 
     private final Map<TimingEntry, Long> samplingEntries = new HashMap<>();
 
@@ -41,7 +41,7 @@ public class SQLProfiler {
 
     private long startTime = -1L;
 
-    public void initSlowSqlCheck(@Nonnull Slimefun plugin) {
+    public void initSlowSqlCheck(Slimefun plugin) {
         plugin.getServer()
                 .getScheduler()
                 .runTaskTimerAsynchronously(plugin, new SlowSqlCheckTask(() -> samplingEntries), 20L, 20L);
@@ -59,7 +59,7 @@ public class SQLProfiler {
         isProfiling = true;
     }
 
-    public void subscribe(@Nonnull CommandSender sender) {
+    public void subscribe(CommandSender sender) {
         subscribers.add(sender);
     }
 

@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.core.attributes;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.WitherProofBlock;
-import javax.annotation.Nonnull;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Wither;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
@@ -29,7 +28,7 @@ public interface WitherProof extends ItemAttribute {
      * @param wither
      *            The {@link Wither} who attacked.
      */
-    void onAttack(@Nonnull Block block, @Nonnull Wither wither);
+    void onAttack(Block block, Wither wither);
 
     /**
      * This method is called when a {@link Wither} tried to attack the block.

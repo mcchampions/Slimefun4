@@ -74,6 +74,6 @@ public class AndroidMineEvent extends Event implements Cancellable {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

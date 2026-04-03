@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.UUID;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
@@ -16,7 +16,7 @@ public class PlayerProfileMigrator implements IMigrator {
     private static final PlayerProfileMigrator instance = new PlayerProfileMigrator();
 
     private static final File playerFolder = new File("data-storage/Slimefun/Players/");
-    private static volatile boolean migrateLock = false;
+    private static volatile boolean migrateLock;
 
     private PlayerProfileMigrator() {}
 
@@ -100,7 +100,7 @@ public class PlayerProfileMigrator implements IMigrator {
         return result;
     }
 
-    private void migratePlayerProfile(@Nonnull OfflinePlayer p) {
+    private void migratePlayerProfile(OfflinePlayer p) {
         var uuid = p.getUniqueId();
         var configFile = new Config("data-storage/Slimefun/Players/" + uuid + ".yml");
 

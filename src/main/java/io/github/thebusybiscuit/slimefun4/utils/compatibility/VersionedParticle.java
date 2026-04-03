@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.utils.compatibility;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.lang.reflect.Field;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Particle;
 
@@ -51,7 +50,7 @@ public class VersionedParticle {
         ENCHANT = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? Particle.ENCHANT : getKey("ENCHANTMENT_TABLE");
     }
 
-    @Nullable private static Particle getKey(@Nonnull String key) {
+    @Nullable private static Particle getKey(String key) {
         try {
             Field field = Particle.class.getDeclaredField(key);
             return (Particle) field.get(null);

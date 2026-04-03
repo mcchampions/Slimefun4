@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.utils.RadiationUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -118,7 +117,7 @@ public class RadiationTask extends AbstractArmorTask {
      *
      * @return Returns true if the {@link Player} is within their grace period.
      */
-    private boolean withinGracePeriod(@Nonnull Player player) {
+    private boolean withinGracePeriod(Player player) {
         Long gracePeriodEnd = ACTIVE_GRACE_PERIODS.get(player.getUniqueId());
 
         if (gracePeriodEnd == null) {
@@ -139,7 +138,7 @@ public class RadiationTask extends AbstractArmorTask {
      *
      * @param player The player to add the grace period to.
      */
-    public static void addGracePeriod(@Nonnull Player player) {
+    public static void addGracePeriod(Player player) {
         ACTIVE_GRACE_PERIODS.put(player.getUniqueId(), System.currentTimeMillis() + (GRACE_PERIOD_DURATION * 1000L));
     }
 }

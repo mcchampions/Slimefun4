@@ -23,7 +23,7 @@ public class SlimefunGuideListener implements Listener {
 
     private final boolean giveOnFirstJoin;
 
-    public SlimefunGuideListener(@Nonnull Slimefun plugin, boolean giveOnFirstJoin) {
+    public SlimefunGuideListener(Slimefun plugin, boolean giveOnFirstJoin) {
         this.giveOnFirstJoin = giveOnFirstJoin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

@@ -11,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.papermc.lib.PaperLib;
 import java.util.UUID;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Bukkit;
@@ -51,9 +50,9 @@ class MiningTask implements Runnable {
     private final BlockPosition end;
     private final int height;
 
-    private boolean running = false;
-    private int fuelLevel = 0;
-    private int ores = 0;
+    private boolean running;
+    private int fuelLevel;
+    private int ores;
 
     private int x;
     private int z;
@@ -80,7 +79,7 @@ class MiningTask implements Runnable {
      * @param b
      *            The {@link Block} which marks the center of this {@link IndustrialMiner}
      */
-    void start(@Nonnull Block b) {
+    void start(Block b) {
         miner.activeMiners.put(b.getLocation(), this);
         running = true;
 
@@ -102,7 +101,7 @@ class MiningTask implements Runnable {
      * @param reason
      *            The reason why we stop
      */
-    void stop(@Nonnull MinerStoppingReason reason) {
+    void stop(MinerStoppingReason reason) {
         Player p = Bukkit.getPlayer(owner);
 
         if (p != null) {
@@ -139,7 +138,6 @@ class MiningTask implements Runnable {
             if (fuelLevel <= 0) {
                 // This Miner has not got enough fuel to run.
                 stop(MinerStoppingReason.NO_FUEL);
-                return;
             }
         });
 
@@ -265,7 +263,7 @@ class MiningTask implements Runnable {
      *
      * @return Whether the operation was successful
      */
-    private boolean push(@Nonnull ItemStack item) {
+    private boolean push(ItemStack item) {
         if (fuelLevel < 1) {
             // Restock fuel
             consumeFuel();
@@ -314,7 +312,7 @@ class MiningTask implements Runnable {
         }
     }
 
-    private int grabFuelFrom(@Nonnull Inventory inv) {
+    private int grabFuelFrom(Inventory inv) {
         for (int i = 0; i < inv.getSize(); i++) {
             for (MachineFuel fuelType : miner.fuelTypes) {
                 ItemStack item = inv.getContents()[i];
@@ -339,7 +337,7 @@ class MiningTask implements Runnable {
         return 0;
     }
 
-    private void setPistonState(@Nonnull Block block, boolean extended) {
+    private void setPistonState(Block block, boolean extended) {
         if (!running) {
             return;
         }
@@ -385,7 +383,7 @@ class MiningTask implements Runnable {
         }
     }
 
-    private void setExtended(@Nonnull Block block, @Nonnull Piston piston, boolean extended) {
+    private void setExtended(Block block, Piston piston, boolean extended) {
         piston.setExtended(extended);
         block.setBlockData(piston, false);
 

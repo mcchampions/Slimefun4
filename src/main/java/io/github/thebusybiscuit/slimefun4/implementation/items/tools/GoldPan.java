@@ -19,6 +19,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.settings.GoldPanDrop;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +48,7 @@ import org.bukkit.inventory.ItemStack;
 public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements RecipeDisplayItem {
 
     private final RandomizedSet<ItemStack> randomizer = new RandomizedSet<>();
-    private final Set<Material> inputMaterials = new HashSet<>(List.of(Material.GRAVEL));
+    private final Set<Material> inputMaterials = EnumSet.of(Material.GRAVEL);
     private final Set<GoldPanDrop> drops = new HashSet<>();
 
     @ParametersAreNonnullByDefault
@@ -74,7 +75,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return The {@link Set} of {@link Material Materials} this {@link GoldPan} can be used on.
      */
-    public @Nonnull Set<Material> getInputMaterials() {
+    public Set<Material> getInputMaterials() {
         return Collections.unmodifiableSet(inputMaterials);
     }
 
@@ -83,7 +84,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return The {@link Set} of {@link GoldPanDrop GoldPanDrops} this {@link GoldPan} can drop.
      */
-    protected @Nonnull Set<GoldPanDrop> getGoldPanDrops() {
+    protected Set<GoldPanDrop> getGoldPanDrops() {
         Set<GoldPanDrop> settings = new HashSet<>();
 
         settings.add(new GoldPanDrop(this, "chance.FLINT", 40, new ItemStack(Material.FLINT)));
@@ -122,7 +123,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return a random {@link ItemStack} obtained by this {@link GoldPan}
      */
-    public @Nonnull ItemStack getRandomOutput() {
+    public ItemStack getRandomOutput() {
         ItemStack item = randomizer.getRandom();
 
         // Fixes #2804
@@ -225,7 +226,7 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
      *
      * @return If the {@link Material} is valid
      */
-    public boolean isValidInputMaterial(@Nonnull Material material) {
+    public boolean isValidInputMaterial(Material material) {
         return getInputMaterials().contains(material);
     }
 }

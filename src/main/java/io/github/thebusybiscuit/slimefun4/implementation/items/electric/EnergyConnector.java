@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNet;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -39,9 +39,9 @@ public class EnergyConnector extends SimpleSlimefunItem<BlockUseHandler> impleme
     }
 
     @Override
-    public @Nonnull BlockUseHandler getItemHandler() {
+    public BlockUseHandler getItemHandler() {
         return e -> {
-            if (!e.getClickedBlock().isPresent()) {
+            if (e.getClickedBlock().isEmpty()) {
                 return;
             }
 
@@ -57,7 +57,7 @@ public class EnergyConnector extends SimpleSlimefunItem<BlockUseHandler> impleme
     }
 
     @Override
-    public final @Nonnull EnergyNetComponentType getEnergyComponentType() {
+    public final EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONNECTOR;
     }
 

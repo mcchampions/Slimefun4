@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import java.util.List;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -34,7 +33,7 @@ public abstract class FlexItemGroup extends ItemGroup {
     }
 
     @Override
-    public final boolean isVisible(@Nonnull Player p) {
+    public final boolean isVisible(Player p) {
         /*
          * We can stop this method right here.
          * We provide a custom method with more parameters for this.
@@ -74,12 +73,12 @@ public abstract class FlexItemGroup extends ItemGroup {
     public abstract void open(Player p, PlayerProfile profile, SlimefunGuideMode layout);
 
     @Override
-    public final void add(@Nonnull SlimefunItem item) {
+    public final void add(SlimefunItem item) {
         throw new UnsupportedOperationException("You cannot add items to a FlexItemGroup!");
     }
 
     @Override
-    public final @Nonnull List<SlimefunItem> getItems() {
+    public final List<SlimefunItem> getItems() {
         throw new UnsupportedOperationException("A FlexItemGroup has no items!");
     }
 
@@ -89,7 +88,7 @@ public abstract class FlexItemGroup extends ItemGroup {
     }
 
     @Override
-    public final void remove(@Nonnull SlimefunItem item) {
+    public final void remove(SlimefunItem item) {
         throw new UnsupportedOperationException("A FlexItemGroup has no items, so there is nothing remove!");
     }
 }

@@ -1,7 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.api.events;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -24,7 +24,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
     private final ItemStack placedItem;
     private final Player player;
 
-    private boolean cancelled = false;
+    private boolean cancelled;
 
     /**
      * @param player
@@ -38,7 +38,6 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      */
     @ParametersAreNonnullByDefault
     public SlimefunBlockPlaceEvent(Player player, ItemStack placedItem, Block blockPlaced, SlimefunItem slimefunItem) {
-        super();
 
         this.player = player;
         this.placedItem = placedItem;
@@ -51,7 +50,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      *
      * @return The placed {@link Block}
      */
-    public @Nonnull Block getBlockPlaced() {
+    public Block getBlockPlaced() {
         return blockPlaced;
     }
 
@@ -60,7 +59,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      *
      * @return The {@link SlimefunItem} being placed
      */
-    public @Nonnull SlimefunItem getSlimefunItem() {
+    public SlimefunItem getSlimefunItem() {
         return slimefunItem;
     }
 
@@ -69,7 +68,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      *
      * @return The placed {@link ItemStack}
      */
-    public @Nonnull ItemStack getItemStack() {
+    public ItemStack getItemStack() {
         return placedItem;
     }
 
@@ -78,7 +77,7 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
      *
      * @return The {@link Player}
      */
-    public @Nonnull Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
@@ -92,12 +91,12 @@ public class SlimefunBlockPlaceEvent extends Event implements Cancellable {
         this.cancelled = cancelled;
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
-        return getHandlerList();
+    public HandlerList getHandlers() {
+        return handlers;
     }
 }

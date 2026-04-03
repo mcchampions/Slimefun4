@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.annotation.Nonnull;
+
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -67,7 +67,7 @@ public class ChestMenu extends SlimefunInventoryHolder {
 
         this.open = p -> {};
         this.close = p -> {};
-        this.playerclick = (p, slot, item, action) -> isPlayerInventoryClickable();
+        this.playerclick = (p, slot, item, action) -> clickable;
     }
 
     public ChestMenu(String title, int size) {
@@ -246,15 +246,15 @@ public class ChestMenu extends SlimefunInventoryHolder {
         return this.inventory.getContents();
     }
 
-    public void addViewer(@Nonnull UUID uuid) {
+    public void addViewer(UUID uuid) {
         viewers.add(uuid);
     }
 
-    public void removeViewer(@Nonnull UUID uuid) {
+    public void removeViewer(UUID uuid) {
         viewers.remove(uuid);
     }
 
-    public boolean contains(@Nonnull Player viewer) {
+    public boolean contains(Player viewer) {
         return viewers.contains(viewer.getUniqueId());
     }
 
@@ -411,23 +411,23 @@ public class ChestMenu extends SlimefunInventoryHolder {
     @FunctionalInterface
     public interface MenuClickHandler {
 
-        public boolean onClick(Player p, int slot, ItemStack item, ClickAction action);
+        boolean onClick(Player p, int slot, ItemStack item, ClickAction action);
     }
 
     public interface AdvancedMenuClickHandler extends MenuClickHandler {
 
-        public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action);
+        boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action);
     }
 
     @FunctionalInterface
     public interface MenuOpeningHandler {
 
-        public void onOpen(Player p);
+        void onOpen(Player p);
     }
 
     @FunctionalInterface
     public interface MenuCloseHandler {
 
-        public void onClose(Player p);
+        void onClose(Player p);
     }
 }

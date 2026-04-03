@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
@@ -195,7 +194,7 @@ public final class TeleportationManager {
      *
      * @return The amount of time the teleportation will take
      */
-    public int getTeleportationTime(int complexity, @Nonnull Location source, @Nonnull Location destination) {
+    public int getTeleportationTime(int complexity, Location source, Location destination) {
         Validate.notNull(source, "Source cannot be null");
         Validate.notNull(source, "Destination cannot be null");
 
@@ -221,14 +220,14 @@ public final class TeleportationManager {
         }
     }
 
-    private boolean isValid(@Nullable Player p, @Nonnull Location source) {
+    private boolean isValid(@Nullable Player p, Location source) {
         return p != null
                 && p.isValid()
                 && p.getWorld().getUID().equals(source.getWorld().getUID())
                 && p.getLocation().distanceSquared(source) < 2.0;
     }
 
-    private void cancel(@Nonnull UUID uuid, @Nullable Player p) {
+    private void cancel(UUID uuid, @Nullable Player p) {
         teleporterUsers.remove(uuid);
 
         if (p != null) {

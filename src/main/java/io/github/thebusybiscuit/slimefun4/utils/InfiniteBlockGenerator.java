@@ -46,7 +46,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
 
     private final Material material;
 
-    InfiniteBlockGenerator(@Nonnull String type) {
+    InfiniteBlockGenerator(String type) {
         this.material = Material.matchMaterial(type);
     }
 
@@ -71,14 +71,14 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
      * @return Whether this {@link InfiniteBlockGenerator} exists at the given {@link Block}
      */
     @Override
-    public boolean test(@Nonnull Block b) {
+    public boolean test(Block b) {
         Validate.notNull(b, "Block cannot be null!");
 
         /*
          * This will eliminate non-matching base materials If we
          * are on a version without Basalt, it will be null here and not match.
          */
-        if (b.getType() == getGeneratedMaterial()) {
+        if (b.getType() == material) {
             switch (this) {
                 case COBBLESTONE_GENERATOR:
                     return hasSurroundingMaterials(b, Material.WATER, Material.LAVA);
@@ -141,7 +141,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
      * @return Our called {@link BlockFormEvent}
      */
     @Nonnull
-    public BlockFormEvent callEvent(@Nonnull Block block) {
+    public BlockFormEvent callEvent(Block block) {
         Validate.notNull(block, "The Block cannot be null!");
         BlockState state = PaperLib.getBlockState(block, false).getState();
         BlockFormEvent event = new BlockFormEvent(block, state);
@@ -157,7 +157,7 @@ public enum InfiniteBlockGenerator implements Predicate<Block> {
      *
      * @return An {@link InfiniteBlockGenerator} or null if none was found.
      */
-    @Nullable public static InfiniteBlockGenerator findAt(@Nonnull Block b) {
+    @Nullable public static InfiniteBlockGenerator findAt(Block b) {
         Validate.notNull(b, "Cannot find a generator without a Location!");
 
         for (InfiniteBlockGenerator generator : valuesCached) {

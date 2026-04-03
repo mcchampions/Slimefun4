@@ -38,7 +38,7 @@ public interface ItemHandler {
      *         should there be an issue
      */
     @Nonnull
-    default Optional<IncompatibleItemHandlerException> validate(@Nonnull SlimefunItem item) {
+    default Optional<IncompatibleItemHandlerException> validate(SlimefunItem item) {
         return Optional.empty();
     }
 

@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.TeleporterListener;
 import io.github.thebusybiscuit.slimefun4.implementation.setup.PostSetup;
-import javax.annotation.Nonnull;
 import org.bukkit.Bukkit;
 
 /**
@@ -31,7 +30,7 @@ public class SlimefunStartupTask implements Runnable {
      * @param runnable
      *            A {@link Runnable} containing additional operations that need to be run
      */
-    public SlimefunStartupTask(@Nonnull Slimefun plugin, @Nonnull Runnable runnable) {
+    public SlimefunStartupTask(Slimefun plugin, Runnable runnable) {
         this.plugin = plugin;
         this.runnable = runnable;
     }

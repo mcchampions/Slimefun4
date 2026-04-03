@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Flow.Subscription;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.plugin.Plugin;
 
@@ -74,8 +73,8 @@ public class MetricsService {
     private final HttpClient client = HttpClient.newHttpClient();
 
     private URLClassLoader moduleClassLoader;
-    private String metricVersion = null;
-    private boolean hasDownloadedUpdate = false;
+    private String metricVersion;
+    private boolean hasDownloadedUpdate;
 
     /**
      * This constructs a new instance of our {@link MetricsService}.
@@ -83,7 +82,7 @@ public class MetricsService {
      * @param plugin
      *            Our {@link Slimefun} instance
      */
-    public MetricsService(@Nonnull Slimefun plugin) {
+    public MetricsService(Slimefun plugin) {
         this.plugin = plugin;
         this.parentFolder = new File(plugin.getDataFolder(), "cache" + File.separatorChar + "modules");
 
@@ -288,7 +287,7 @@ public class MetricsService {
         return Slimefun.instance().getConfig().getBoolean("metrics.auto-update");
     }
 
-    private HttpRequest buildBaseRequest(@Nonnull URI uri) {
+    private HttpRequest buildBaseRequest(URI uri) {
         return HttpRequest.newBuilder()
                 .uri(uri)
                 .timeout(Duration.ofSeconds(5))
@@ -298,11 +297,11 @@ public class MetricsService {
     }
 
     private <T> BodyHandler<T> downloadMonitor(BodyHandler<T> h) {
-        return info -> new BodySubscriber<T>() {
+        return info -> new BodySubscriber<>() {
 
             private BodySubscriber<T> delegateSubscriber = h.apply(info);
-            private int lastPercentPosted = 0;
-            private long bytesWritten = 0;
+            private int lastPercentPosted;
+            private long bytesWritten;
 
             @Override
             public void onSubscribe(Subscription subscription) {
@@ -313,16 +312,16 @@ public class MetricsService {
             public void onNext(List<ByteBuffer> item) {
                 bytesWritten += item.stream().mapToLong(ByteBuffer::capacity).sum();
                 long totalBytes = info.headers()
-                        .firstValue("Content-Length")
-                        .map(Long::parseLong)
-                        .orElse(-1L);
+                    .firstValue("Content-Length")
+                    .map(Long::parseLong)
+                    .orElse(-1L);
 
                 int percent = (int) (20 * (Math.round((((double) bytesWritten / totalBytes) * 100) / 20)));
 
                 if (percent != 0 && percent != lastPercentPosted) {
                     plugin.getLogger()
-                            .info("# Downloading... " + percent + "% " + "(" + bytesWritten + "/" + totalBytes
-                                    + " bytes)");
+                        .info("# Downloading... " + percent + "% " + "(" + bytesWritten + "/" + totalBytes
+                              + " bytes)");
                     lastPercentPosted = percent;
                 }
 

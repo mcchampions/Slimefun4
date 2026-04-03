@@ -70,7 +70,7 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
     }
 
     @Override
-    public void onClick(@Nonnull Player p, @Nonnull ItemStack guide) {
+    public void onClick(Player p, ItemStack guide) {
         Optional<SlimefunGuideMode> current = getSelectedOption(p, guide);
 
         if (current.isPresent()) {
@@ -82,7 +82,7 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
     }
 
     @Nonnull
-    private SlimefunGuideMode getNextMode(@Nonnull Player p, @Nonnull SlimefunGuideMode mode) {
+    private SlimefunGuideMode getNextMode(Player p, SlimefunGuideMode mode) {
         if (p.hasPermission("slimefun.cheat.items")) {
             if (mode == SlimefunGuideMode.SURVIVAL_MODE) {
                 return SlimefunGuideMode.CHEAT_MODE;
@@ -96,7 +96,7 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
 
     @Nonnull
     @Override
-    public Optional<SlimefunGuideMode> getSelectedOption(@Nonnull Player p, @Nonnull ItemStack guide) {
+    public Optional<SlimefunGuideMode> getSelectedOption(Player p, ItemStack guide) {
         if (SlimefunUtils.isItemSimilar(guide, SlimefunGuide.getItem(SlimefunGuideMode.CHEAT_MODE), true, false)) {
             return Optional.of(SlimefunGuideMode.CHEAT_MODE);
         } else {

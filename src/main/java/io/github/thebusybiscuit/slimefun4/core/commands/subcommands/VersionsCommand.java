@@ -10,7 +10,6 @@ import io.papermc.lib.PaperLib;
 import java.net.URI;
 import java.util.Collection;
 import java.util.Locale;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -50,7 +49,7 @@ class VersionsCommand extends SubCommand {
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.versions") || sender instanceof ConsoleCommandSender) {
             /*
              * After all these years... Spigot still displays as "CraftBukkit".
@@ -113,7 +112,7 @@ class VersionsCommand extends SubCommand {
         }
     }
 
-    private void addJavaVersion(@Nonnull net.kyori.adventure.text.TextComponent.Builder builder) {
+    private void addJavaVersion(net.kyori.adventure.text.TextComponent.Builder builder) {
         int version = NumberUtils.getJavaVersion();
 
         if (version < RECOMMENDED_JAVA_VERSION) {
@@ -132,7 +131,7 @@ class VersionsCommand extends SubCommand {
     }
 
     @SuppressWarnings("deprecation")
-    private void addPluginVersions(@Nonnull net.kyori.adventure.text.TextComponent.Builder builder) {
+    private void addPluginVersions(net.kyori.adventure.text.TextComponent.Builder builder) {
         Collection<Plugin> addons = Slimefun.getInstalledAddons();
 
         if (addons.isEmpty()) {

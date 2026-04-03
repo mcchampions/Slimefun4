@@ -1,7 +1,6 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.event;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunChunkData;
-import javax.annotation.Nonnull;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.event.Event;
@@ -27,12 +26,12 @@ public class SlimefunChunkDataLoadEvent extends Event {
         return chunkData.getChunk();
     }
 
-    public static @Nonnull HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
     @Override
-    public @Nonnull HandlerList getHandlers() {
-        return getHandlerList();
+    public HandlerList getHandlers() {
+        return handlers;
     }
 }

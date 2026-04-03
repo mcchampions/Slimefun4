@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Location;
@@ -47,7 +46,7 @@ public class GrapplingHookListener implements Listener {
     private final Map<UUID, GrapplingHookEntity> activeHooks = new HashMap<>();
     private final Set<UUID> invulnerability = new HashSet<>();
 
-    public void register(@Nonnull Slimefun plugin, @Nonnull GrapplingHook grapplingHook) {
+    public void register(Slimefun plugin, GrapplingHook grapplingHook) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
         this.grapplingHook = grapplingHook;
@@ -192,11 +191,9 @@ public class GrapplingHookListener implements Listener {
                     player.teleport(l);
 
                     double g = -0.08;
-                    double d = target.distance(l);
-                    double t = d;
-                    double vX = (1.0 + 0.08 * t) * (target.getX() - l.getX()) / t;
-                    double vY = (1.0 + 0.04 * t) * (target.getY() - l.getY()) / t - 0.5D * g * t;
-                    double vZ = (1.0 + 0.08 * t) * (target.getZ() - l.getZ()) / t;
+                    double vX = (1.0 + 0.08 * target.distance(l)) * (target.getX() - l.getX()) / target.distance(l);
+                    double vY = (1.0 + 0.04 * target.distance(l)) * (target.getY() - l.getY()) / target.distance(l) - 0.5D * g * target.distance(l);
+                    double vZ = (1.0 + 0.08 * target.distance(l)) * (target.getZ() - l.getZ()) / target.distance(l);
 
                     velocity = player.getVelocity();
                     velocity.setX(vX);
@@ -212,7 +209,7 @@ public class GrapplingHookListener implements Listener {
         }
     }
 
-    public boolean isGrappling(@Nonnull UUID uuid) {
+    public boolean isGrappling(UUID uuid) {
         return activeHooks.containsKey(uuid);
     }
 

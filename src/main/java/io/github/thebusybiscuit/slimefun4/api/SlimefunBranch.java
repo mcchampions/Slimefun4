@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.api;
 
 import io.github.bakedlibs.dough.common.CommonPatterns;
-import javax.annotation.Nonnull;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -37,7 +36,7 @@ public enum SlimefunBranch {
     private final String name;
     private final boolean official;
 
-    SlimefunBranch(@Nonnull String name, boolean official) {
+    SlimefunBranch(String name, boolean official) {
         Validate.notNull(name, "The branch name cannot be null");
 
         this.name = name;
@@ -55,7 +54,7 @@ public enum SlimefunBranch {
      *
      * @return The name of this {@link SlimefunBranch}
      */
-    public @Nonnull String getName() {
+    public String getName() {
         return name;
     }
 

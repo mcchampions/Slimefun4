@@ -48,7 +48,7 @@ abstract class GitHubConnector {
      * @param repository
      *            The repository we want to connect to
      */
-    GitHubConnector(@Nonnull GitHubService github, @Nonnull String repository) {
+    GitHubConnector(GitHubService github, String repository) {
         this.github = github;
         this.url = API_URL + "repos/" + repository + getEndpoint();
     }
@@ -84,7 +84,7 @@ abstract class GitHubConnector {
      * @param response
      *            The response
      */
-    public abstract void onSuccess(@Nonnull JsonElement response);
+    public abstract void onSuccess(JsonElement response);
 
     /**
      * This method is called when the connection has failed.
@@ -169,7 +169,7 @@ abstract class GitHubConnector {
         }
     }
 
-    private void writeCacheFile(@Nonnull JsonElement node) {
+    private void writeCacheFile(JsonElement node) {
         try (FileOutputStream output = new FileOutputStream(file)) {
             output.write(node.toString().getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {

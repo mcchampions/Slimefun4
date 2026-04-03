@@ -3,7 +3,7 @@ package io.github.thebusybiscuit.slimefun4.integrations;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.Iterator;
-import javax.annotation.Nonnull;
+
 import me.minebuilders.clearlag.Clearlag;
 import me.minebuilders.clearlag.events.EntityRemoveEvent;
 import org.bukkit.entity.Entity;
@@ -22,7 +22,7 @@ class ClearLagIntegration implements Listener {
 
     private final Slimefun plugin;
 
-    ClearLagIntegration(@Nonnull Slimefun plugin) {
+    ClearLagIntegration(Slimefun plugin) {
         this.plugin = plugin;
     }
 
@@ -32,14 +32,7 @@ class ClearLagIntegration implements Listener {
 
     @EventHandler
     public void onEntityRemove(EntityRemoveEvent e) {
-        Iterator<Entity> iterator = e.getEntityList().iterator();
 
-        while (iterator.hasNext()) {
-            Entity n = iterator.next();
-
-            if (n instanceof Item item && SlimefunUtils.hasNoPickupFlag(item)) {
-                iterator.remove();
-            }
-        }
+        e.getEntityList().removeIf(n -> n instanceof Item item && SlimefunUtils.hasNoPickupFlag(item));
     }
 }

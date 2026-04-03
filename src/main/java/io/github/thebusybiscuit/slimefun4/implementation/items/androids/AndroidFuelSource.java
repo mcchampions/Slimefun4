@@ -30,7 +30,7 @@ public enum AndroidFuelSource {
 
     private final String[] lore;
 
-    AndroidFuelSource(@Nonnull String... lore) {
+    AndroidFuelSource(String... lore) {
         this.lore = lore;
     }
 

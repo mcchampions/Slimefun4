@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.tasks.player;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.InfusedMagnet;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import javax.annotation.Nonnull;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -34,7 +33,7 @@ public class InfusedMagnetTask extends AbstractPlayerTask {
      * @param radius
      *            The radius in which items should be picked up
      */
-    public InfusedMagnetTask(@Nonnull Player p, double radius) {
+    public InfusedMagnetTask(Player p, double radius) {
         super(p);
 
         this.radius = radius;

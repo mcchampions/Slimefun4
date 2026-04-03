@@ -2,7 +2,7 @@ package me.mrCookieSlime.CSCoreLibPlugin.general.Inventory;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
 import org.bukkit.Material;
@@ -68,7 +68,7 @@ public class MenuListener implements Listener {
         }
     }
 
-    private void handleEvent(@Nonnull InventoryClickEvent e, @Nonnull MenuClickHandler handler) {
+    private void handleEvent(InventoryClickEvent e, MenuClickHandler handler) {
         if (handler instanceof AdvancedMenuClickHandler advancedHandler) {
             e.setCancelled(!advancedHandler.onClick(
                     e,

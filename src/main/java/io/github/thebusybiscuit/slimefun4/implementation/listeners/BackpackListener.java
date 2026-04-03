@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
@@ -54,7 +53,7 @@ public class BackpackListener implements Listener {
     private final Map<UUID, UUID> backpacks = new HashMap<>();
     private final Map<UUID, SlimefunBackpack> backpackInstances = new HashMap<>();
 
-    public void register(@Nonnull Slimefun plugin) {
+    public void register(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -178,7 +177,7 @@ public class BackpackListener implements Listener {
         }
     }
 
-    private boolean isAllowed(@Nonnull SlimefunBackpack backpack, @Nullable ItemStack item) {
+    private boolean isAllowed(SlimefunBackpack backpack, @Nullable ItemStack item) {
         if (item == null || item.getType() == Material.AIR) {
             return true;
         }
@@ -233,13 +232,11 @@ public class BackpackListener implements Listener {
                     return;
                 }
                 // Create the backpack, and bind
-                PlayerProfile.get(player, profile -> {
-                    PlayerBackpack.bindItem(
-                            item,
-                            Slimefun.getDatabaseManager()
-                                    .getProfileDataController()
-                                    .createBackpack(player, name, profile.nextBackpackNum(), backpackItem.getSize()));
-                });
+                PlayerProfile.get(player, profile -> PlayerBackpack.bindItem(
+                        item,
+                        Slimefun.getDatabaseManager()
+                                .getProfileDataController()
+                                .createBackpack(player, name, profile.nextBackpackNum(), backpackItem.getSize())));
             });
             return;
         }

@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.events.SlimefunBlockPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.network.Network;
 import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -29,7 +28,7 @@ public class NetworkListener implements Listener {
      */
     private final NetworkManager manager;
 
-    public NetworkListener(@Nonnull Slimefun plugin, @Nonnull NetworkManager manager) {
+    public NetworkListener(Slimefun plugin, NetworkManager manager) {
         this.manager = manager;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

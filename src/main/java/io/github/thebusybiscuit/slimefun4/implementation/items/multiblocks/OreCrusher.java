@@ -16,7 +16,6 @@ import io.papermc.lib.PaperLib;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -225,7 +224,7 @@ public class OreCrusher extends MultiBlockMachine {
         }
     }
 
-    private class DoubleOreSetting extends ItemSetting<Boolean> {
+    private static class DoubleOreSetting extends ItemSetting<Boolean> {
 
         private final ItemStack coal = new ItemStack(Material.COAL, 1);
         private final ItemStack lapis = new ItemStack(Material.LAPIS_LAZULI, 7);
@@ -235,7 +234,7 @@ public class OreCrusher extends MultiBlockMachine {
         private final ItemStack quartz = new ItemStack(Material.QUARTZ, 1);
         private final ItemStack goldNuggets = new ItemStack(Material.GOLD_NUGGET, 4);
 
-        DoubleOreSetting(@Nonnull OreCrusher oreCrusher) {
+        DoubleOreSetting(OreCrusher oreCrusher) {
             super(oreCrusher, "double-ores", true);
         }
 
@@ -271,31 +270,31 @@ public class OreCrusher extends MultiBlockMachine {
             apply(getValue());
         }
 
-        public @Nonnull ItemStack getCoal() {
+        public ItemStack getCoal() {
             return coal;
         }
 
-        public @Nonnull ItemStack getLapisLazuli() {
+        public ItemStack getLapisLazuli() {
             return lapis;
         }
 
-        public @Nonnull ItemStack getRedstone() {
+        public ItemStack getRedstone() {
             return redstone;
         }
 
-        public @Nonnull ItemStack getDiamond() {
+        public ItemStack getDiamond() {
             return diamond;
         }
 
-        public @Nonnull ItemStack getEmerald() {
+        public ItemStack getEmerald() {
             return emerald;
         }
 
-        public @Nonnull ItemStack getNetherQuartz() {
+        public ItemStack getNetherQuartz() {
             return quartz;
         }
 
-        public @Nonnull ItemStack getGoldNuggets() {
+        public ItemStack getGoldNuggets() {
             return goldNuggets;
         }
     }

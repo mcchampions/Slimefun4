@@ -140,6 +140,6 @@ public class GEOResourceGenerationEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

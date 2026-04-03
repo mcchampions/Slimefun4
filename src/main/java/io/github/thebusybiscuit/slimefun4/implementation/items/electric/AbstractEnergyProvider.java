@@ -100,7 +100,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
      *
      * @param fuel The {@link MachineFuel} to register
      */
-    public void registerFuel(@Nonnull MachineFuel fuel) {
+    public void registerFuel(MachineFuel fuel) {
         Validate.notNull(fuel, "Machine Fuel cannot be null!");
         fuelTypes.add(fuel);
     }

@@ -21,7 +21,7 @@ public final class SlimefunSubCommands {
     private SlimefunSubCommands() {}
 
     @Nonnull
-    public static Collection<SubCommand> getAllCommands(@Nonnull SlimefunCommand cmd) {
+    public static Collection<SubCommand> getAllCommands(SlimefunCommand cmd) {
         Slimefun plugin = cmd.getPlugin();
         List<SubCommand> commands = new LinkedList<>();
 

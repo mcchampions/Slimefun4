@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.core.handlers;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import javax.annotation.Nonnull;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -27,7 +26,7 @@ public interface WeaponUseHandler extends ItemHandler {
      * @param item
      *            The {@link ItemStack} that was used to attack
      */
-    void onHit(@Nonnull EntityDamageByEntityEvent e, @Nonnull Player player, @Nonnull ItemStack item);
+    void onHit(EntityDamageByEntityEvent e, Player player, ItemStack item);
 
     @Override
     default Class<? extends ItemHandler> getIdentifier() {

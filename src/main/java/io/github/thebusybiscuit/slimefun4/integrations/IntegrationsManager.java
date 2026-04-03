@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoDisenchanter;
 import java.util.function.Consumer;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -46,15 +45,15 @@ public class IntegrationsManager {
     /**
      * This boolean determines whether {@link #start()} was run.
      */
-    private boolean isEnabled = false;
+    private boolean isEnabled;
 
     // Soft dependencies
-    private boolean isPlaceholderAPIInstalled = false;
-    private boolean isWorldEditInstalled = false;
-    private boolean isMcMMOInstalled = false;
-    private boolean isClearLagInstalled = false;
-    private boolean isItemsAdderInstalled = false;
-    private boolean isOrebfuscatorInstalled = false;
+    private boolean isPlaceholderAPIInstalled;
+    private boolean isWorldEditInstalled;
+    private boolean isMcMMOInstalled;
+    private boolean isClearLagInstalled;
+    private boolean isItemsAdderInstalled;
+    private boolean isOrebfuscatorInstalled;
 
     /**
      * This initializes the {@link IntegrationsManager}
@@ -62,7 +61,7 @@ public class IntegrationsManager {
      * @param plugin
      *            Our instance of {@link Slimefun}
      */
-    public IntegrationsManager(@Nonnull Slimefun plugin) {
+    public IntegrationsManager(Slimefun plugin) {
         this.plugin = plugin;
     }
 
@@ -195,7 +194,7 @@ public class IntegrationsManager {
      * @param consumer
      *            The callback to run if that {@link Plugin} is installed and enabled
      */
-    private void load(@Nonnull String pluginName, @Nonnull Consumer<Plugin> consumer) {
+    private void load(String pluginName, Consumer<Plugin> consumer) {
         Plugin integration = plugin.getServer().getPluginManager().getPlugin(pluginName);
 
         if (integration != null && integration.isEnabled()) {
@@ -218,7 +217,7 @@ public class IntegrationsManager {
      *
      * @return Our instanceof of the {@link ProtectionManager}
      */
-    public @Nonnull ProtectionManager getProtectionManager() {
+    public ProtectionManager getProtectionManager() {
         return protectionManager;
     }
 
@@ -231,7 +230,7 @@ public class IntegrationsManager {
      *
      * @return Whether this is a fake event
      */
-    public boolean isEventFaked(@Nonnull Event event) {
+    public boolean isEventFaked(Event event) {
         // This can be changed to "FakeEvent" in a later version
         if (isMcMMOInstalled) {
             if (event instanceof FakeBlockBreakEvent) {
@@ -239,10 +238,7 @@ public class IntegrationsManager {
             }
         }
         // Fix #1071
-        if (event.getClass().getName().startsWith("com.ghostchu.quickshop.util.PermissionChecker")) {
-            return true;
-        }
-        return false;
+        return event.getClass().getName().startsWith("com.ghostchu.quickshop.util.PermissionChecker");
     }
 
     /**
@@ -255,7 +251,7 @@ public class IntegrationsManager {
      * @return Whether a different custom {@link Block} exists at that {@link Location}
      */
     @SuppressWarnings("deprecation")
-    public boolean isCustomBlock(@Nonnull Block block) {
+    public boolean isCustomBlock(Block block) {
         if (isItemsAdderInstalled) {
             try {
                 return CustomBlock.byAlreadyPlaced(block) != null;
@@ -277,7 +273,7 @@ public class IntegrationsManager {
      * @return Whether this {@link ItemStack} is a custom item
      */
     @SuppressWarnings("deprecation")
-    public boolean isCustomItem(@Nonnull ItemStack item) {
+    public boolean isCustomItem(ItemStack item) {
         if (isItemsAdderInstalled) {
             try {
                 return ItemsAdder.isCustomItem(item);
@@ -298,7 +294,7 @@ public class IntegrationsManager {
      * @param item
      *            The {@link ItemStack}
      */
-    public void removeTemporaryEnchantments(@Nonnull ItemStack item) {
+    public void removeTemporaryEnchantments(ItemStack item) {
         if (isMcMMOInstalled) {
             try {
                 SkillUtils.removeAbilityBuff(item);

@@ -28,7 +28,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -60,13 +59,13 @@ public class PlayerProfile {
     /**
      * `dirty` indicates whether the profile has unsaved changes.
      */
-    private boolean dirty = false;
+    private boolean dirty;
 
     /**
      * `markedForDeletion` indicates whether the profile is marked for deletion.
      * If true, means the profile should be removed from memory later.
      */
-    private boolean markedForDeletion = false;
+    private boolean markedForDeletion;
 
     private final Set<Research> researches;
     private final List<Waypoint> waypoints = new CopyOnWriteArrayList<>();
@@ -76,11 +75,11 @@ public class PlayerProfile {
         new HashedArmorpiece(), new HashedArmorpiece(), new HashedArmorpiece(), new HashedArmorpiece()
     };
 
-    public PlayerProfile(@Nonnull OfflinePlayer p, int backpackNum) {
+    public PlayerProfile(OfflinePlayer p, int backpackNum) {
         this(p, backpackNum, new HashSet<>());
     }
 
-    public PlayerProfile(@Nonnull OfflinePlayer p, int backpackNum, Set<Research> researches) {
+    public PlayerProfile(OfflinePlayer p, int backpackNum, Set<Research> researches) {
         owner = p.getUniqueId();
         this.backpackNum = backpackNum;
         this.researches = researches;
@@ -115,7 +114,7 @@ public class PlayerProfile {
      *
      * @return The cached armor for this {@link Player}
      */
-    public @Nonnull HashedArmorpiece[] getArmor() {
+    public HashedArmorpiece[] getArmor() {
         return armor;
     }
 
@@ -124,7 +123,7 @@ public class PlayerProfile {
      *
      * @return The {@link UUID} of our {@link PlayerProfile}
      */
-    public @Nonnull UUID getUUID() {
+    public UUID getUUID() {
         return owner;
     }
 
@@ -180,7 +179,7 @@ public class PlayerProfile {
      * @param unlock
      *            Whether the {@link Research} should be unlocked or locked
      */
-    public void setResearched(@Nonnull Research research, boolean unlock) {
+    public void setResearched(Research research, boolean unlock) {
         Validate.notNull(research, "Research must not be null!");
         // markDirty();
 
@@ -234,7 +233,7 @@ public class PlayerProfile {
      *
      * @return A {@code Hashset<Research>} of all Researches this {@link Player} has unlocked
      */
-    public @Nonnull Set<Research> getResearches() {
+    public Set<Research> getResearches() {
         return ImmutableSet.copyOf(researches);
     }
 
@@ -244,7 +243,7 @@ public class PlayerProfile {
      *
      * @return A {@link List} containing every {@link Waypoint}
      */
-    public @Nonnull List<Waypoint> getWaypoints() {
+    public List<Waypoint> getWaypoints() {
         return ImmutableList.copyOf(waypoints);
     }
 
@@ -255,7 +254,7 @@ public class PlayerProfile {
      * @param waypoint
      *            The {@link Waypoint} to add
      */
-    public void addWaypoint(@Nonnull Waypoint waypoint) {
+    public void addWaypoint(Waypoint waypoint) {
         Validate.notNull(waypoint, "Cannot add a 'null' waypoint!");
 
         for (Waypoint wp : waypoints) {
@@ -282,7 +281,7 @@ public class PlayerProfile {
      * @param waypoint
      *            The {@link Waypoint} to remove
      */
-    public void removeWaypoint(@Nonnull Waypoint waypoint) {
+    public void removeWaypoint(Waypoint waypoint) {
         Validate.notNull(waypoint, "Cannot remove a 'null' waypoint!");
 
         if (waypoints.remove(waypoint)) {
@@ -323,7 +322,7 @@ public class PlayerProfile {
         Slimefun.getDatabaseManager().getProfileDataController().saveProfileBackpackCount(this);
     }
 
-    private int countNonEmptyResearches(@Nonnull Collection<Research> researches) {
+    private int countNonEmptyResearches(Collection<Research> researches) {
         int count = 0;
         for (Research research : researches) {
             if (research.hasEnabledItems()) {
@@ -340,7 +339,7 @@ public class PlayerProfile {
      *
      * @return The research title of this {@link PlayerProfile}
      */
-    public @Nonnull String getTitle() {
+    public String getTitle() {
         List<String> titles = Slimefun.getRegistry().getResearchRanks();
 
         int allResearches = countNonEmptyResearches(Slimefun.getRegistry().getResearches());
@@ -357,7 +356,7 @@ public class PlayerProfile {
      *
      * @param sender The {@link CommandSender} for which to get the statistics and send them to.
      */
-    public void sendStats(@Nonnull CommandSender sender) {
+    public void sendStats(CommandSender sender) {
         int unlockedResearches = countNonEmptyResearches(getResearches());
         int levels = getResearches().stream().mapToInt(Research::getLevelCost).sum();
         int allResearches = countNonEmptyResearches(Slimefun.getRegistry().getResearches());
@@ -401,11 +400,11 @@ public class PlayerProfile {
      *
      * @return The {@link GuideHistory} of this {@link Player}
      */
-    public @Nonnull GuideHistory getGuideHistory() {
+    public GuideHistory getGuideHistory() {
         return guideHistory;
     }
 
-    public static boolean fromUUID(@Nonnull UUID uuid, @Nonnull Consumer<PlayerProfile> callback) {
+    public static boolean fromUUID(UUID uuid, Consumer<PlayerProfile> callback) {
         return get(Bukkit.getOfflinePlayer(uuid), callback);
     }
 
@@ -419,7 +418,7 @@ public class PlayerProfile {
      *
      * @return If the {@link OfflinePlayer} was cached or not.
      */
-    public static boolean get(@Nonnull OfflinePlayer p, @Nonnull Consumer<PlayerProfile> callback) {
+    public static boolean get(OfflinePlayer p, Consumer<PlayerProfile> callback) {
         Validate.notNull(p, "Cannot get a PlayerProfile for: null!");
 
         UUID uuid = p.getUniqueId();
@@ -451,7 +450,7 @@ public class PlayerProfile {
      *
      * @return Whether the {@link PlayerProfile} was already loaded
      */
-    public static boolean request(@Nonnull OfflinePlayer p) {
+    public static boolean request(OfflinePlayer p) {
         Validate.notNull(p, "Cannot request a Profile for null");
 
         var profile = Slimefun.getRegistry().getPlayerProfiles().get(p.getUniqueId());
@@ -478,7 +477,7 @@ public class PlayerProfile {
      *
      * @return An {@link Optional} describing the result
      */
-    public static @Nonnull Optional<PlayerProfile> find(@Nonnull OfflinePlayer p) {
+    public static Optional<PlayerProfile> find(OfflinePlayer p) {
         var re = Slimefun.getRegistry().getPlayerProfiles().get(p.getUniqueId());
         if (re == null || re.markedForDeletion) {
             return Optional.empty();
@@ -486,11 +485,11 @@ public class PlayerProfile {
         return Optional.of(re);
     }
 
-    public static @Nonnull Iterator<PlayerProfile> iterator() {
+    public static Iterator<PlayerProfile> iterator() {
         return Slimefun.getRegistry().getPlayerProfiles().values().iterator();
     }
 
-    public boolean hasFullProtectionAgainst(@Nonnull ProtectionType type) {
+    public boolean hasFullProtectionAgainst(ProtectionType type) {
         Validate.notNull(type, "ProtectionType must not be null.");
 
         int armorCount = 0;

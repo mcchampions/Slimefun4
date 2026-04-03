@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.WeaponUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -37,7 +36,7 @@ public class VampireBlade extends SimpleSlimefunItem<WeaponUseHandler> {
     }
 
     @Override
-    public @Nonnull WeaponUseHandler getItemHandler() {
+    public WeaponUseHandler getItemHandler() {
         return (e, p, item) -> {
             if (ThreadLocalRandom.current().nextInt(100) < getChance()) {
                 SoundEffect.VAMPIRE_BLADE_HEALING_SOUND.playFor(p);

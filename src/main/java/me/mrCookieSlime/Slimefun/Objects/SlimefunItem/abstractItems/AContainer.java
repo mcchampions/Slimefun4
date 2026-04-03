@@ -257,27 +257,27 @@ public abstract class AContainer extends SlimefunItem
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         this.addon = addon;
 
-        if (getCapacity() <= 0) {
+        if (energyCapacity <= 0) {
             warn("The capacity has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyCapacity(...)' before registering!");
         }
 
-        if (getEnergyConsumption() <= 0) {
+        if (energyConsumedPerTick <= 0) {
             warn("The energy consumption has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '"
                     + getClass().getSimpleName()
                     + "#setEnergyConsumption(...)' before registering!");
         }
 
-        if (getSpeed() <= 0) {
+        if (processingSpeed <= 0) {
             warn("The processing speed has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setProcessingSpeed(...)' before registering!");
         }
 
-        if (getCapacity() > 0 && getEnergyConsumption() > 0 && getSpeed() > 0) {
+        if (energyCapacity > 0 && energyConsumedPerTick > 0 && processingSpeed > 0) {
             super.register(addon);
         }
     }
@@ -339,7 +339,7 @@ public abstract class AContainer extends SlimefunItem
     }
 
     public void registerRecipe(MachineRecipe recipe) {
-        recipe.setTicks(recipe.getTicks() / getSpeed());
+        recipe.setTicks(recipe.getTicks() / processingSpeed);
         recipes.add(recipe);
     }
 
@@ -407,17 +407,17 @@ public abstract class AContainer extends SlimefunItem
      *            location to try to remove charge from
      * @return Whether charge was taken if its chargeable
      */
-    protected boolean takeCharge(@Nonnull Location l) {
+    protected boolean takeCharge(Location l) {
         Validate.notNull(l, "Can't attempt to take charge from a null location!");
 
         if (isChargeable()) {
             long charge = getChargeLong(l);
 
-            if (charge < getEnergyConsumption()) {
+            if (charge < energyConsumedPerTick) {
                 return false;
             }
 
-            setCharge(l, (long) charge - getEnergyConsumption());
+            setCharge(l, charge - energyConsumedPerTick);
             return true;
         } else {
             return true;

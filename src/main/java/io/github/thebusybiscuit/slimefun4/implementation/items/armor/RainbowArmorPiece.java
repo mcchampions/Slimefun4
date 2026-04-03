@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.Arrays;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
@@ -56,7 +55,7 @@ public class RainbowArmorPiece extends SlimefunArmorPiece {
      *
      * @return The {@link Color}s of this {@link RainbowArmorPiece}
      */
-    public @Nonnull Color[] getColors() {
+    public Color[] getColors() {
         return colors;
     }
 }

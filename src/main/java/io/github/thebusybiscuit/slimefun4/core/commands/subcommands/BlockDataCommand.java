@@ -76,7 +76,7 @@ class BlockDataCommand extends SubCommand {
                     return;
                 }
 
-                if (key.equalsIgnoreCase("id")) {
+                if ("id".equalsIgnoreCase(key)) {
                     ChatUtils.sendMessage(player, "&c你不能修改方块的 ID!");
                     return;
                 }
@@ -88,7 +88,7 @@ class BlockDataCommand extends SubCommand {
                         .replace("%value%", value));
             }
             case "remove" -> {
-                if (key.equalsIgnoreCase("id")) {
+                if ("id".equalsIgnoreCase(key)) {
                     ChatUtils.sendMessage(player, "&c你不能修改方块的 ID!");
                     return;
                 }
@@ -96,14 +96,12 @@ class BlockDataCommand extends SubCommand {
                 blockData.removeData(key);
                 ChatUtils.sendMessage(player, "&a已移除该方块 &b%key% &a的值", msg -> msg.replace("%key%", key));
             }
-            default -> {
-                Slimefun.getLocalization()
-                        .sendMessage(
-                                sender,
-                                "messages.usage",
-                                true,
-                                msg -> msg.replace("%usage%", "/sf blockdata get/set/remove <key> [value]"));
-            }
+            default -> Slimefun.getLocalization()
+                    .sendMessage(
+                            sender,
+                            "messages.usage",
+                            true,
+                            msg -> msg.replace("%usage%", "/sf blockdata get/set/remove <key> [value]"));
         }
     }
 }

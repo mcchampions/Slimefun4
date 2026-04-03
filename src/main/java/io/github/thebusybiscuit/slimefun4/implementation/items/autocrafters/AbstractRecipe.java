@@ -115,7 +115,7 @@ public abstract class AbstractRecipe {
      * @param task
      *            The {@link AsyncRecipeChoiceTask} instance
      */
-    public abstract void show(@Nonnull ChestMenu menu, @Nonnull AsyncRecipeChoiceTask task);
+    public abstract void show(ChestMenu menu, AsyncRecipeChoiceTask task);
 
     /**
      * This is our static accessor for the {@link AbstractRecipe} class.
@@ -152,7 +152,7 @@ public abstract class AbstractRecipe {
      *
      * @return The wrapped {@link AbstractRecipe} or null
      */
-    @Nullable public static AbstractRecipe of(@Nullable SlimefunItem item, @Nonnull RecipeType recipeType) {
+    @Nullable public static AbstractRecipe of(@Nullable SlimefunItem item, RecipeType recipeType) {
         if (item != null && item.getRecipeType().equals(recipeType)) {
             return new SlimefunItemRecipe(item);
         } else {

@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import lombok.Getter;
 
 public class SlimefunPoolExecutor extends ThreadPoolExecutor {
@@ -24,9 +24,9 @@ public class SlimefunPoolExecutor extends ThreadPoolExecutor {
             int corePoolSize,
             int maximumPoolSize,
             long keepAliveTime,
-            @Nonnull TimeUnit unit,
-            @Nonnull BlockingQueue<Runnable> workQueue,
-            @Nonnull ThreadFactory threadFactory) {
+            TimeUnit unit,
+            BlockingQueue<Runnable> workQueue,
+            ThreadFactory threadFactory) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory);
 
         setRejectedExecutionHandler(new SlimefunRejectedExecutionHandler());

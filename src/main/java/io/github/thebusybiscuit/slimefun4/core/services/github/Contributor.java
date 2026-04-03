@@ -44,7 +44,7 @@ public class Contributor {
      * @param profile
      *            A link to their GitHub profile
      */
-    public Contributor(@Nonnull String minecraftName, @Nonnull String profile) {
+    public Contributor(String minecraftName, String profile) {
         Validate.notNull(minecraftName, "Username must never be null!");
         Validate.notNull(profile, "The profile cannot be null!");
 
@@ -59,7 +59,7 @@ public class Contributor {
      * @param username
      *            The username of this {@link Contributor}
      */
-    public Contributor(@Nonnull String username) {
+    public Contributor(String username) {
         Validate.notNull(username, "Username must never be null!");
 
         githubUsername = username;
@@ -76,7 +76,7 @@ public class Contributor {
      * @param commits
      *            The amount of contributions made as that role
      */
-    public void setContributions(@Nonnull String role, int commits) {
+    public void setContributions(String role, int commits) {
         Validate.notNull(role, "The role cannot be null!");
         Validate.isTrue(commits >= 0, "Contributions cannot be negative");
 
@@ -136,7 +136,7 @@ public class Contributor {
      *
      * @return The amount of contributions this {@link Contributor} submitted as the given role
      */
-    public int getContributions(@Nonnull String role) {
+    public int getContributions(String role) {
         Validate.notNull(role, "The role cannot be null!");
 
         return contributions.getOrDefault(role, 0);
@@ -186,7 +186,7 @@ public class Contributor {
      * @return A Base64-Head Texture
      */
     @Nonnull
-    protected String getTexture(@Nonnull GitHubService github) {
+    protected String getTexture(GitHubService github) {
         if (!headTexture.isComputed() || !headTexture.isPresent()) {
             String cached = github.getCachedTexture(githubUsername);
 

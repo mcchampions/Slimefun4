@@ -35,7 +35,7 @@ class PerformanceSummary {
     private final Map<String, Long> plugins;
     private final Map<String, Long> items;
 
-    PerformanceSummary(@Nonnull SlimefunProfiler profiler, long totalElapsedTime, int totalTickedBlocks) {
+    PerformanceSummary(SlimefunProfiler profiler, long totalElapsedTime, int totalTickedBlocks) {
         this.profiler = profiler;
         this.rating = profiler.getPerformance();
         this.percentage = profiler.getPercentageOfTick();
@@ -48,7 +48,7 @@ class PerformanceSummary {
         items = profiler.getByItem();
     }
 
-    public void send(@Nonnull PerformanceInspector sender) {
+    public void send(PerformanceInspector sender) {
         sender.sendMessage("");
         sender.sendMessage(ChatColor.GREEN + "===== Slimefun 性能分析器 =====");
         sender.sendMessage(

@@ -1,7 +1,6 @@
 package city.norain.slimefun4.api.menu;
 
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -17,11 +16,11 @@ public class UniversalMenu extends DirtyChestMenu {
     @Getter
     private final UUID uuid;
 
-    public UniversalMenu(@Nonnull UniversalMenuPreset preset, @Nonnull UUID uuid) {
+    public UniversalMenu(UniversalMenuPreset preset, UUID uuid) {
         this(preset, uuid, (Location) null);
     }
 
-    public UniversalMenu(@Nonnull UniversalMenuPreset preset, @Nonnull UUID uuid, @Nullable Location lastPresent) {
+    public UniversalMenu(UniversalMenuPreset preset, UUID uuid, @Nullable Location lastPresent) {
         super(preset);
         this.uuid = uuid;
 
@@ -30,8 +29,8 @@ public class UniversalMenu extends DirtyChestMenu {
     }
 
     public UniversalMenu(
-            @Nonnull UniversalMenuPreset preset,
-            @Nonnull UUID uuid,
+            UniversalMenuPreset preset,
+            UUID uuid,
             @Nullable Location lastPresent,
             ItemStack[] contents) {
         super(preset);
@@ -49,7 +48,7 @@ public class UniversalMenu extends DirtyChestMenu {
         this.getContents();
     }
 
-    public UniversalMenu(@Nonnull UniversalMenuPreset preset, @Nonnull UUID uuid, ItemStack[] contents) {
+    public UniversalMenu(UniversalMenuPreset preset, UUID uuid, ItemStack[] contents) {
         this(preset, uuid, null, contents);
     }
 

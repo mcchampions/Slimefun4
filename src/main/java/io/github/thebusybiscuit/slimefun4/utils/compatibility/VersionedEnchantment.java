@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.utils.compatibility;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.lang.reflect.Field;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.enchantments.Enchantment;
 
@@ -52,7 +51,7 @@ public class VersionedEnchantment {
                 : getKey("LOOT_BONUS_BLOCKS");
     }
 
-    @Nullable private static Enchantment getKey(@Nonnull String key) {
+    @Nullable private static Enchantment getKey(String key) {
         try {
             Field field = Enchantment.class.getDeclaredField(key);
             return (Enchantment) field.get(null);

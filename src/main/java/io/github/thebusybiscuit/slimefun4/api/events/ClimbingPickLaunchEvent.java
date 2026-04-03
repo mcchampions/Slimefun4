@@ -59,7 +59,7 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
      * @param velocity
      *            The {@link Vector} velocity to apply
      */
-    public void setVelocity(@Nonnull Vector velocity) {
+    public void setVelocity(Vector velocity) {
         Validate.notNull(velocity);
         this.velocity = velocity;
     }
@@ -112,6 +112,6 @@ public class ClimbingPickLaunchEvent extends PlayerEvent implements Cancellable 
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

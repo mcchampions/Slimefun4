@@ -48,7 +48,7 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem implements Dis
      * @return An {@link Optional} describing the result
      */
     @Nonnull
-    public Optional<EntityType> getEntityType(@Nonnull ItemStack item) {
+    public Optional<EntityType> getEntityType(ItemStack item) {
         Validate.notNull(item, "The Item cannot be null");
 
         ItemMeta meta = item.getItemMeta();
@@ -125,7 +125,7 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem implements Dis
     }
     // to fix the bug of stacking two BROKEN_SPAWNER/REINFORCED_SPAWNER containing different EntityType using cargo or
     // machine
-    public boolean canStack(@Nonnull ItemMeta itemMetaOne, @Nonnull ItemMeta itemMetaTwo) {
+    public boolean canStack(ItemMeta itemMetaOne, ItemMeta itemMetaTwo) {
         if (itemMetaOne instanceof BlockStateMeta blockStateMeta1
                 && itemMetaTwo instanceof BlockStateMeta blockStateMeta2) {
             if (blockStateMeta1.hasBlockState() && blockStateMeta2.hasBlockState()) {

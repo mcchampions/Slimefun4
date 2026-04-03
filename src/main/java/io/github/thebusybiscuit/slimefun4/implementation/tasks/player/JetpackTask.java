@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.tasks.player;
 
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.Jetpack;
-import javax.annotation.Nonnull;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.SoundCategory;
@@ -15,7 +14,7 @@ public class JetpackTask extends AbstractPlayerTask {
 
     private final Jetpack jetpack;
 
-    public JetpackTask(@Nonnull Player p, @Nonnull Jetpack jetpack) {
+    public JetpackTask(Player p, Jetpack jetpack) {
         super(p);
         this.jetpack = jetpack;
     }

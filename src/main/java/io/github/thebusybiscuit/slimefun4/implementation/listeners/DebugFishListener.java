@@ -23,7 +23,6 @@ import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import java.util.EnumSet;
 import java.util.Set;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -50,7 +49,7 @@ public class DebugFishListener implements Listener {
     private final String greenCheckmark;
     private final String redCross;
 
-    public DebugFishListener(@Nonnull Slimefun plugin) {
+    public DebugFishListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
         greenCheckmark = "&2\u2714";

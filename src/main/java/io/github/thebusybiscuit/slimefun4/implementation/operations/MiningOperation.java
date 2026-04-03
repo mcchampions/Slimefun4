@@ -17,9 +17,9 @@ public class MiningOperation implements MachineOperation {
     private final ItemStack result;
 
     private final int totalTicks;
-    private int currentTicks = 0;
+    private int currentTicks;
 
-    public MiningOperation(@Nonnull ItemStack result, int totalTicks) {
+    public MiningOperation(ItemStack result, int totalTicks) {
         Validate.notNull(result, "The result cannot be null");
         Validate.isTrue(
                 totalTicks >= 0,

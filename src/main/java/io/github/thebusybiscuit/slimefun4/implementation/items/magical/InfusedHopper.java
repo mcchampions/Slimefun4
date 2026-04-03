@@ -12,7 +12,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.VanillaInventoryDropHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Location;
@@ -50,7 +50,7 @@ public class InfusedHopper extends SimpleSlimefunItem<BlockTicker> {
     }
 
     @Override
-    public @Nonnull BlockTicker getItemHandler() {
+    public BlockTicker getItemHandler() {
         return new BlockTicker() {
 
             @Override
@@ -101,7 +101,7 @@ public class InfusedHopper extends SimpleSlimefunItem<BlockTicker> {
         };
     }
 
-    private boolean isValidItem(@Nonnull Location l, @Nonnull Entity entity) {
+    private boolean isValidItem(Location l, Entity entity) {
         if (entity instanceof Item item && entity.isValid()) {
             // Check if the item cannot be picked up or has the "no pickup" metadata
             return item.getPickupDelay() <= 0

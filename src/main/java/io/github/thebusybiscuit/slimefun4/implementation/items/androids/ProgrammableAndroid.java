@@ -250,12 +250,12 @@ public class ProgrammableAndroid extends SlimefunItem
      * @return The required type of fuel
      */
     public AndroidFuelSource getFuelSource() {
-        return switch (getTier()) {
+        return switch (tier) {
             case 1 -> AndroidFuelSource.SOLID;
             case 2 -> AndroidFuelSource.LIQUID;
             case 3 -> AndroidFuelSource.NUCLEAR;
             default -> throw new IllegalStateException(
-                    "Cannot convert the following Android tier to a fuel type: " + getTier());
+                    "Cannot convert the following Android tier to a fuel type: " + tier);
         };
     }
 
@@ -410,7 +410,7 @@ public class ProgrammableAndroid extends SlimefunItem
         return builder.toString();
     }
 
-    private String duplicateInstruction(@Nonnull String[] script, int index) {
+    private String duplicateInstruction(String[] script, int index) {
         int i = 0;
         StringBuilder builder = new StringBuilder(Instruction.START + "-");
 
@@ -678,13 +678,13 @@ public class ProgrammableAndroid extends SlimefunItem
     }
 
     @Nonnull
-    public String getScript(@Nonnull SlimefunUniversalBlockData ubd) {
+    public String getScript(SlimefunUniversalBlockData ubd) {
         Validate.notNull(ubd, "SlimefunUniversalBlockData for android not specified");
         String script = ubd.getData("script");
         return script != null ? script : DEFAULT_SCRIPT;
     }
 
-    public void setScript(@Nonnull SlimefunUniversalBlockData ubd, @Nonnull String script) {
+    public void setScript(SlimefunUniversalBlockData ubd, String script) {
         Validate.notNull(ubd, "SlimefunUniversalBlockData for android not specified");
         Validate.notNull(script, "No script given");
         Validate.isTrue(script.startsWith(Instruction.START.name() + '-'), "A script must begin with a 'START' token.");
@@ -732,7 +732,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    public void registerFuelType(@Nonnull MachineFuel fuel) {
+    public void registerFuelType(MachineFuel fuel) {
         Validate.notNull(fuel, "Cannot register null as a Fuel type");
 
         fuelTypes.add(fuel);
@@ -926,7 +926,7 @@ public class ProgrammableAndroid extends SlimefunItem
             int rest = newFuel.getType().getMaxStackSize() - currentFuel.getAmount();
 
             if (rest > 0) {
-                int amount = newFuel.getAmount() > rest ? rest : newFuel.getAmount();
+                int amount = Math.min(newFuel.getAmount(), rest);
                 menu.replaceExistingItem(43, new CustomItemStack(newFuel, currentFuel.getAmount() + amount));
                 ItemUtils.consumeItem(newFuel, amount, false);
             }
@@ -958,7 +958,7 @@ public class ProgrammableAndroid extends SlimefunItem
         }
     }
 
-    private void constructMenu(@Nonnull UniversalMenuPreset preset) {
+    private void constructMenu(UniversalMenuPreset preset) {
         preset.drawBackground(BORDER);
         preset.drawBackground(ChestMenuUtils.getOutputSlotTexture(), OUTPUT_BORDER);
 

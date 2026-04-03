@@ -2,7 +2,7 @@ package io.github.thebusybiscuit.slimefun4.core.services.profiler.inspectors;
 
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.PerformanceInspector;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SummaryOrderType;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.CommandSender;
@@ -74,7 +74,7 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      * {@inheritDoc}
      */
     @Override
-    public @Nonnull SummaryOrderType getOrderType() {
+    public SummaryOrderType getOrderType() {
         return orderType;
     }
 
@@ -82,7 +82,7 @@ public class ConsolePerformanceInspector implements PerformanceInspector {
      * {@inheritDoc}
      */
     @Override
-    public void sendMessage(@Nonnull String msg) {
+    public void sendMessage(String msg) {
         console.sendMessage(msg);
     }
 }

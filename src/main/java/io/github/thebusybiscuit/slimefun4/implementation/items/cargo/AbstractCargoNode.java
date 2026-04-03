@@ -14,7 +14,7 @@ import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ColoredMaterial;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
-import javax.annotation.Nonnull;
+
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -137,7 +137,7 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
     }
 
     @Override
-    public int getSelectedChannel(@Nonnull Block b) {
+    public int getSelectedChannel(Block b) {
         Validate.notNull(b, "Block must not be null");
 
         String frequency = StorageCacheUtils.getData(b.getLocation(), FREQUENCY);
@@ -150,11 +150,11 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         }
     }
 
-    abstract void onPlace(@Nonnull BlockPlaceEvent e);
+    abstract void onPlace(BlockPlaceEvent e);
 
-    abstract void createBorder(@Nonnull BlockMenuPreset preset);
+    abstract void createBorder(BlockMenuPreset preset);
 
-    abstract void updateBlockMenu(@Nonnull BlockMenu menu, @Nonnull Block b);
+    abstract void updateBlockMenu(BlockMenu menu, Block b);
 
-    abstract void markDirty(@Nonnull Location loc);
+    abstract void markDirty(Location loc);
 }

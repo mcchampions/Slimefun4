@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.miner;
 
 import java.util.Random;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -16,7 +15,7 @@ class OreDictionary16 implements OreDictionary {
 
     @Override
     @ParametersAreNonnullByDefault
-    public @Nonnull ItemStack getDrops(Material material, Random random) {
+    public ItemStack getDrops(Material material, Random random) {
         return switch (material) {
             case COAL_ORE -> new ItemStack(Material.COAL);
             case DIAMOND_ORE -> new ItemStack(Material.DIAMOND);

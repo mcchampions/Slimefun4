@@ -4,14 +4,14 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 
 class EnvironmentChecker {
     private static final List<String> UNSUPPORTED_PLUGINS = List.of(
             "BedrockTechnology", "SlimefunFix", "SlimefunBugFixer", "Slimefunbookfix", "PlaceItemsOnGroundRebuilt");
 
-    static boolean checkIncompatiblePlugins(@Nonnull Logger logger) {
+    static boolean checkIncompatiblePlugins(Logger logger) {
         List<String> plugins = UNSUPPORTED_PLUGINS.stream()
                 .filter(name -> Bukkit.getServer().getPluginManager().isPluginEnabled(name))
                 .toList();
@@ -73,7 +73,7 @@ class EnvironmentChecker {
         return serverVer.contains("arclight") || serverVer.contains("mohist");
     }
 
-    static void scheduleSlimeGlueCheck(@Nonnull Slimefun sf) {
+    static void scheduleSlimeGlueCheck(Slimefun sf) {
         Bukkit.getScheduler()
                 .runTaskLater(
                         sf,
@@ -86,7 +86,7 @@ class EnvironmentChecker {
                         300); // 15s
     }
 
-    private static void printBorder(@Nonnull Logger logger) {
+    private static void printBorder(Logger logger) {
         logger.log(Level.WARNING, "#######################################################");
     }
 }

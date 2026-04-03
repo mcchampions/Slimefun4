@@ -55,7 +55,7 @@ public class BookBinder extends AContainer {
                         combineEnchantments(storedItemEnchantments, storedTargetEnchantments);
 
                 // Just return if no enchantments exist. This shouldn't ever happen. :NotLikeThis:
-                if (enchantments.size() > 0) {
+                if (!enchantments.isEmpty()) {
                     if (hasIllegalEnchants(storedItemEnchantments) || hasIllegalEnchants(storedTargetEnchantments)) {
                         return null;
                     }

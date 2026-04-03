@@ -85,7 +85,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
         }
     }
 
-    protected void addSurface(@Nonnull Material type, double defaultValue) {
+    protected void addSurface(Material type, double defaultValue) {
         ClimbableSurface surface = new ClimbableSurface(this, type, defaultValue);
         addItemSetting(surface);
         surfaces.put(type, surface);
@@ -120,7 +120,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      *
      * @return The climbing speed for this {@link Material} or 0.
      */
-    public double getClimbingSpeed(@Nonnull Material type) {
+    public double getClimbingSpeed(Material type) {
         Validate.notNull(type, "The surface cannot be null");
         ClimbableSurface surface = surfaces.get(type);
 
@@ -141,7 +141,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
      *
      * @return The climbing speed or 0.
      */
-    public double getClimbingSpeed(@Nonnull ItemStack item, @Nonnull Material type) {
+    public double getClimbingSpeed(ItemStack item, Material type) {
         double speed = getClimbingSpeed(type);
 
         if (speed > 0) {
@@ -158,7 +158,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
-            if (!e.getClickedBlock().isPresent()) {
+            if (e.getClickedBlock().isEmpty()) {
                 return;
             }
 
@@ -234,7 +234,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     }
 
     @Override
-    public void damageItem(@Nonnull Player p, @Nullable ItemStack item) {
+    public void damageItem(Player p, @Nullable ItemStack item) {
         if (p.getGameMode() != GameMode.CREATIVE) {
             DamageableItem.super.damageItem(p, item);
         }

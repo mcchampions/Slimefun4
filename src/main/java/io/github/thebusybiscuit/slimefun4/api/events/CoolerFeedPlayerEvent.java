@@ -78,7 +78,7 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
      *
      * @param item The new {@link ItemStack}
      */
-    public void setConsumedItem(@Nonnull ItemStack item) {
+    public void setConsumedItem(ItemStack item) {
         Validate.notNull(item, "The consumed Item cannot be null!");
         Validate.isTrue(item.getItemMeta() instanceof PotionMeta, "The item must be a potion!");
 
@@ -103,6 +103,6 @@ public class CoolerFeedPlayerEvent extends PlayerEvent implements Cancellable {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

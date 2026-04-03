@@ -1,7 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.services.sounds;
 
-import javax.annotation.Nonnull;
-
 /**
  * This structure class holds configured values for a {@link SoundEffect}.
  *
@@ -17,13 +15,13 @@ public class SoundConfiguration {
     private final float volume;
     private final float pitch;
 
-    protected SoundConfiguration(@Nonnull String sound, float volume, float pitch) {
+    protected SoundConfiguration(String sound, float volume, float pitch) {
         this.sound = sound;
         this.volume = volume;
         this.pitch = pitch;
     }
 
-    public @Nonnull String getSoundId() {
+    public String getSoundId() {
         return sound;
     }
 

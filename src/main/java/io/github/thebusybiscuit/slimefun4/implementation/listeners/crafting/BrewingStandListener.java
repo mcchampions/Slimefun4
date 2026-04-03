@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners.crafting;
 import city.norain.slimefun4.compatibillty.VersionedEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
 import org.bukkit.block.BrewingStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
@@ -26,7 +25,7 @@ import org.bukkit.inventory.Inventory;
  */
 public class BrewingStandListener implements SlimefunCraftingListener {
 
-    public BrewingStandListener(@Nonnull Slimefun plugin) {
+    public BrewingStandListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -50,7 +49,7 @@ public class BrewingStandListener implements SlimefunCraftingListener {
             }
 
             if (e.getResult() == Result.DENY) {
-                Slimefun.getLocalization().sendMessage((Player) e.getWhoClicked(), "brewing_stand.not-working", true);
+                Slimefun.getLocalization().sendMessage(e.getWhoClicked(), "brewing_stand.not-working", true);
             }
         }
     }

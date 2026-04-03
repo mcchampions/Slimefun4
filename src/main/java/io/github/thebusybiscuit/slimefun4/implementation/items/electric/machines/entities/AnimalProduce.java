@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.entities;
 
 import java.util.function.Predicate;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import org.apache.commons.lang.Validate;
@@ -29,7 +28,7 @@ public class AnimalProduce extends MachineRecipe implements Predicate<LivingEnti
     }
 
     @Override
-    public boolean test(@Nonnull LivingEntity entity) {
+    public boolean test(LivingEntity entity) {
         return predicate.test(entity);
     }
 }

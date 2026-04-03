@@ -14,9 +14,9 @@ public class ConnectionPool {
     private final Deque<Connection> freeConn;
     private final Set<Connection> usingConn;
 
-    private boolean destroyed = false;
-    private int currConnCount = 0;
-    private int waitingCount = 0;
+    private boolean destroyed;
+    private int currConnCount;
+    private int waitingCount;
 
     public ConnectionPool(Supplier<Connection> connCreator, int maxConnCount) {
         this.connCreator = connCreator;
@@ -25,7 +25,7 @@ public class ConnectionPool {
         this.usingConn = new HashSet<>();
     }
 
-    public synchronized Connection getConn() throws SQLException, InterruptedException {
+    public synchronized Connection getConn() throws InterruptedException {
         checkDestroy();
 
         if (freeConn.isEmpty()) {

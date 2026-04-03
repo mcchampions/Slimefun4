@@ -27,6 +27,6 @@ public class SlimefunItemRegistryFinalizedEvent extends Event {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

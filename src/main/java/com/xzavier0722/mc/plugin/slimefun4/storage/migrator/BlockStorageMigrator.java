@@ -25,7 +25,7 @@ public class BlockStorageMigrator implements IMigrator {
     private static final File chunk = new File("data-storage/Slimefun/stored-chunks/chunks.sfc");
     private static final File blockFolder = new File("data-storage/Slimefun/stored-blocks/");
     private static final Gson gson = new Gson();
-    private static volatile boolean migrateLock = false;
+    private static volatile boolean migrateLock;
 
     private BlockStorageMigrator() {}
 
@@ -207,7 +207,7 @@ public class BlockStorageMigrator implements IMigrator {
                         gson.fromJson(cfg.getString(key), new TypeToken<Map<String, String>>() {}.getType());
                 var chunkData =
                         Slimefun.getDatabaseManager().getBlockDataController().getChunkData(c);
-                data.entrySet().forEach(each -> chunkData.setData(each.getKey(), each.getValue()));
+                data.forEach((key1, value) -> chunkData.setData(key1, value));
             } catch (Throwable e) {
                 Slimefun.logger().log(Level.SEVERE, "迁移区块数据时发生错误: " + key, e);
             }

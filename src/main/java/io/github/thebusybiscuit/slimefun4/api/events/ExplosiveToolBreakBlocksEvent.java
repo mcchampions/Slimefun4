@@ -107,6 +107,6 @@ public class ExplosiveToolBreakBlocksEvent extends PlayerEvent implements Cancel
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

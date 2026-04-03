@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.ChatColor;
@@ -72,7 +71,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         addItemHandler(onPlace());
     }
 
-    private @Nonnull BlockPlaceHandler onPlace() {
+    private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
             @Override
@@ -85,7 +84,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
     }
 
     @Override
-    public @Nonnull BlockUseHandler getItemHandler() {
+    public BlockUseHandler getItemHandler() {
         return e -> {
             Block b = e.getClickedBlock().get();
 
@@ -95,7 +94,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         };
     }
 
-    public void getFloors(@Nonnull Block b, @Nonnull Consumer<List<ElevatorFloor>> action) {
+    public void getFloors(Block b, Consumer<List<ElevatorFloor>> action) {
         var blockDataList = new ArrayList<SlimefunBlockData>();
         var shouldLoad = false;
 
@@ -255,7 +254,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                     player.getEyeLocation().getPitch());
 
             PaperLib.teleportAsync(player, destination).thenAccept(teleported -> {
-                if (teleported.booleanValue()) {
+                if (teleported) {
                     player.sendTitle(ChatColor.WHITE + ChatColors.color(floor.getName()), null, 20, 60, 20);
                 }
             });

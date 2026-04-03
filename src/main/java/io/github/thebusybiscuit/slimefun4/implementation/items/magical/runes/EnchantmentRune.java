@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -99,7 +98,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         };
     }
 
-    private void addRandomEnchantment(@Nonnull Player p, @Nonnull Item rune) {
+    private void addRandomEnchantment(Player p, Item rune) {
         // Being sure the entity is still valid and not picked up or whatsoever.
         if (!rune.isValid()) {
             return;
@@ -187,7 +186,7 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
         }
     }
 
-    private int getRandomlevel(@Nonnull Enchantment enchantment) {
+    private int getRandomlevel(Enchantment enchantment) {
         int level = 1;
 
         if (enchantment.getMaxLevel() != 1) {
@@ -198,22 +197,15 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
     }
 
     private void removeIllegalEnchantments(
-            @Nonnull ItemStack target, @Nonnull List<Enchantment> potentialEnchantments) {
+            ItemStack target, List<Enchantment> potentialEnchantments) {
         for (Enchantment enchantment : target.getEnchantments().keySet()) {
-            Iterator<Enchantment> iterator = potentialEnchantments.iterator();
 
-            while (iterator.hasNext()) {
-                Enchantment possibleEnchantment = iterator.next();
-
-                // Duplicate or conflict
-                if (possibleEnchantment.equals(enchantment) || possibleEnchantment.conflictsWith(enchantment)) {
-                    iterator.remove();
-                }
-            }
+            // Duplicate or conflict
+            potentialEnchantments.removeIf(possibleEnchantment -> possibleEnchantment.equals(enchantment) || possibleEnchantment.conflictsWith(enchantment));
         }
     }
 
-    private boolean findCompatibleItem(@Nonnull Entity n) {
+    private boolean findCompatibleItem(Entity n) {
         if (n instanceof Item item) {
             return !isItem(item.getItemStack());
         }

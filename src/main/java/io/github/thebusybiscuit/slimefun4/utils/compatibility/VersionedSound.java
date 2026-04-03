@@ -55,9 +55,9 @@ public final class VersionedSound {
      * @return Sound 名称
      */
     @Nonnull
-    public static String getSoundName(@Nonnull Sound sound) {
+    public static String getSoundName(Sound sound) {
         try {
-            if (isEnum()) {
+            if (IS_ENUM) {
                 return ((Enum<?>) sound).name();
             } else if (GET_KEY_METHOD != null) {
                 Object key = GET_KEY_METHOD.invoke(sound);
@@ -82,7 +82,7 @@ public final class VersionedSound {
      * @throws IllegalArgumentException 名称无效
      */
     @Nonnull
-    public static Sound valueOf(@Nonnull String name) throws IllegalArgumentException {
+    public static Sound valueOf(String name) throws IllegalArgumentException {
         Preconditions.checkArgument(name != null, "Sound 名称不能为空");
 
         String enumName = name.toUpperCase(Locale.ROOT).replace('.', '_').replace('-', '_');

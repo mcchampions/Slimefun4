@@ -1,12 +1,11 @@
 package io.github.thebusybiscuit.slimefun4.implementation.tasks.player;
 
-import javax.annotation.Nonnull;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 public class ParachuteTask extends AbstractPlayerTask {
 
-    public ParachuteTask(@Nonnull Player p) {
+    public ParachuteTask(Player p) {
         super(p);
     }
 

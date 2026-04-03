@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.cargo.CargoNet;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -37,9 +37,9 @@ public class CargoConnectorNode extends SimpleSlimefunItem<BlockUseHandler> impl
     }
 
     @Override
-    public @Nonnull BlockUseHandler getItemHandler() {
+    public BlockUseHandler getItemHandler() {
         return e -> {
-            if (!e.getClickedBlock().isPresent()) {
+            if (e.getClickedBlock().isEmpty()) {
                 return;
             }
 

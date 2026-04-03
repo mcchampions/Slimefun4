@@ -5,7 +5,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.PiglinBarterDrop;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Piglin;
@@ -30,7 +30,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class PiglinListener implements Listener {
 
-    public PiglinListener(@Nonnull Slimefun plugin) {
+    public PiglinListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

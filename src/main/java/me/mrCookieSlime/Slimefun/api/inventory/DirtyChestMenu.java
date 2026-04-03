@@ -22,7 +22,7 @@ public class DirtyChestMenu extends ChestMenu {
     protected final BlockMenuPreset preset;
     protected int changes = 1;
 
-    public DirtyChestMenu(@Nonnull BlockMenuPreset preset) {
+    public DirtyChestMenu(BlockMenuPreset preset) {
         super(preset.getTitle());
 
         this.preset = preset;
@@ -75,7 +75,7 @@ public class DirtyChestMenu extends ChestMenu {
         InventoryUtil.closeInventory(toInventory());
     }
 
-    public boolean fits(@Nonnull ItemStack item, int... slots) {
+    public boolean fits(ItemStack item, int... slots) {
         var isSfItem = SlimefunItem.getByItem(item) != null;
         var wrapper = ItemStackWrapper.wrap(item);
         var remain = item.getAmount();

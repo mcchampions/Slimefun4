@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,7 +25,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
  */
 public class SlimefunCommand implements CommandExecutor, Listener {
 
-    private boolean registered = false;
+    private boolean registered;
     private final Slimefun plugin;
     private final List<SubCommand> commands = new LinkedList<>();
     private final Map<SubCommand, Integer> commandUsage = new HashMap<>();
@@ -36,7 +36,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
      * @param plugin
      *            The instance of our {@link Slimefun}
      */
-    public SlimefunCommand(@Nonnull Slimefun plugin) {
+    public SlimefunCommand(Slimefun plugin) {
         this.plugin = plugin;
     }
 
@@ -51,7 +51,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
         commands.addAll(SlimefunSubCommands.getAllCommands(this));
     }
 
-    public @Nonnull Slimefun getPlugin() {
+    public Slimefun getPlugin() {
         return plugin;
     }
 
@@ -60,7 +60,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
      *
      * @return A {@link Map} holding the amount of times each command was run
      */
-    public @Nonnull Map<SubCommand, Integer> getCommandUsage() {
+    public Map<SubCommand, Integer> getCommandUsage() {
         return commandUsage;
     }
 
@@ -87,7 +87,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
         return !commands.isEmpty();
     }
 
-    public void sendHelp(@Nonnull CommandSender sender) {
+    public void sendHelp(CommandSender sender) {
         sender.sendMessage("");
         sender.sendMessage(ChatColors.color("&aSlimefun &2v" + Slimefun.getVersion()));
         sender.sendMessage("");
@@ -101,7 +101,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
 
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent e) {
-        if (e.getMessage().equalsIgnoreCase("/help slimefun")) {
+        if ("/help slimefun".equalsIgnoreCase(e.getMessage())) {
             sendHelp(e.getPlayer());
             e.setCancelled(true);
         }
@@ -112,7 +112,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
      *
      * @return A {@link List} containing every {@link SubCommand}
      */
-    public @Nonnull List<String> getSubCommandNames() {
+    public List<String> getSubCommandNames() {
         // @formatter:off
         return commands.stream().map(SubCommand::getName).collect(Collectors.toList());
         // @formatter:on

@@ -21,7 +21,7 @@ public class ReactorExplodeEvent extends Event {
     private final Location location;
     private final Reactor reactor;
 
-    public ReactorExplodeEvent(@Nonnull Location l, @Nonnull Reactor reactor) {
+    public ReactorExplodeEvent(Location l, Reactor reactor) {
         Validate.notNull(l, "A Location must be provided");
         Validate.notNull(reactor, "A Reactor cannot be null");
 
@@ -57,6 +57,6 @@ public class ReactorExplodeEvent extends Event {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

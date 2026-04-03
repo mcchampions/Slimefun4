@@ -15,7 +15,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.RepairedSp
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.papermc.lib.PaperLib;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
@@ -45,7 +44,7 @@ public class PickaxeOfContainment extends SimpleSlimefunItem<ToolUseHandler> {
     }
 
     @Override
-    public @Nonnull ToolUseHandler getItemHandler() {
+    public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             Block b = e.getBlock();
 
@@ -62,7 +61,7 @@ public class PickaxeOfContainment extends SimpleSlimefunItem<ToolUseHandler> {
         };
     }
 
-    private @Nullable ItemStack breakSpawner(@Nonnull Block b) {
+    private @Nullable ItemStack breakSpawner(Block b) {
         AbstractMonsterSpawner spawner;
 
         /*

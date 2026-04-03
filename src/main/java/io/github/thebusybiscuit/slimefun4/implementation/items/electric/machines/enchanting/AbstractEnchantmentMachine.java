@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Collections;
 import java.util.List;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -61,7 +60,7 @@ abstract class AbstractEnchantmentMachine extends AContainer {
         return !useEnchantLimit.getValue() || enchantLimit.getValue() >= count;
     }
 
-    protected void showEnchantmentLevelWarning(@Nonnull BlockMenu menu) {
+    protected void showEnchantmentLevelWarning(BlockMenu menu) {
         if (!useLevelLimit.getValue()) {
             throw new IllegalStateException("自动附/祛魔机等级限制未被启用, 无法展示警告信息.");
         }
@@ -72,7 +71,7 @@ abstract class AbstractEnchantmentMachine extends AContainer {
         menu.replaceExistingItem(22, progressBar);
     }
 
-    protected void showEnchantmentLimitWarning(@Nonnull BlockMenu menu) {
+    protected void showEnchantmentLimitWarning(BlockMenu menu) {
         if (!useEnchantLimit.getValue()) {
             throw new IllegalStateException("自动附/祛魔机附魔数量限制未被启用, 无法展示警告信息.");
         }
@@ -83,7 +82,7 @@ abstract class AbstractEnchantmentMachine extends AContainer {
         menu.replaceExistingItem(22, progressBar);
     }
 
-    protected boolean hasIgnoredLore(@Nonnull ItemStack item) {
+    protected boolean hasIgnoredLore(ItemStack item) {
         if (useIgnoredLores.getValue() && item.hasItemMeta()) {
             ItemMeta itemMeta = item.getItemMeta();
 

@@ -11,7 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.papermc.lib.PaperLib;
 import io.papermc.lib.features.blockstatesnapshot.BlockStateSnapshotResult;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
+
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -103,9 +103,9 @@ public class EnhancedFurnace extends SimpleSlimefunItem<BlockTicker> {
         };
     }
 
-    private void setProgress(@Nonnull Furnace furnace) {
+    private void setProgress(Furnace furnace) {
         // Update the cooktime
-        int cookTime = furnace.getCookTime() + getProcessingSpeed() * 10;
+        int cookTime = furnace.getCookTime() + speed * 10;
         furnace.setCookTime((short) Math.min(cookTime, furnace.getCookTimeTotal() - 1));
     }
 }

@@ -21,7 +21,7 @@ enum ContributorRole {
 
     private final String id;
 
-    ContributorRole(@Nonnull String id) {
+    ContributorRole(String id) {
         this.id = id;
     }
 

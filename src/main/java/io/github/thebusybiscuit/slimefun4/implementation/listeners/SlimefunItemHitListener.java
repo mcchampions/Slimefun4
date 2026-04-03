@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.WeaponUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -21,17 +20,16 @@ import org.bukkit.inventory.ItemStack;
  */
 public class SlimefunItemHitListener implements Listener {
 
-    public SlimefunItemHitListener(@Nonnull Slimefun plugin) {
+    public SlimefunItemHitListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onDamage(EntityDamageByEntityEvent e) {
-        if (!(e.getDamager() instanceof Player)) {
+        if (!(e.getDamager() instanceof Player p)) {
             return;
         }
 
-        Player p = (Player) e.getDamager();
         ItemStack item = p.getInventory().getItemInMainHand();
 
         if (!item.getType().isAir()) {

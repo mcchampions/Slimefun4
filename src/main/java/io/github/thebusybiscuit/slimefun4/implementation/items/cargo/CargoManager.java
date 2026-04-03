@@ -36,7 +36,7 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 removeHologram(b);
             }
         };
@@ -57,26 +57,22 @@ public class CargoManager extends SlimefunItem implements HologramOwner, NotRota
                         return false;
                     }
                 },
-                new BlockUseHandler() {
+            (BlockUseHandler) e -> {
+                Optional<Block> block = e.getClickedBlock();
 
-                    @Override
-                    public void onRightClick(PlayerRightClickEvent e) {
-                        Optional<Block> block = e.getClickedBlock();
+                if (block.isPresent()) {
+                    Player p = e.getPlayer();
+                    Block b = block.get();
 
-                        if (block.isPresent()) {
-                            Player p = e.getPlayer();
-                            Block b = block.get();
-
-                            var blockData = StorageCacheUtils.getBlock(b.getLocation());
-                            if (blockData.getData("visualizer") == null) {
-                                blockData.setData("visualizer", "disabled");
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c货运网络可视化: " + "&4\u2718"));
-                            } else {
-                                blockData.removeData("visualizer");
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c货运网络可视化: " + "&2\u2714"));
-                            }
-                        }
+                    var blockData = StorageCacheUtils.getBlock(b.getLocation());
+                    if (blockData.getData("visualizer") == null) {
+                        blockData.setData("visualizer", "disabled");
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c货运网络可视化: " + "&4\u2718"));
+                    } else {
+                        blockData.removeData("visualizer");
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c货运网络可视化: " + "&2\u2714"));
                     }
-                });
+                }
+            });
     }
 }

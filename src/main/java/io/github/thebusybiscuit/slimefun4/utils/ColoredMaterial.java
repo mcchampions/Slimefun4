@@ -206,12 +206,12 @@ public enum ColoredMaterial {
      *
      * @param materials The {@link Material Materials} for this {@link ColoredMaterial}.
      */
-    ColoredMaterial(@Nonnull Material[] materials) {
+    ColoredMaterial(Material[] materials) {
         Validate.noNullElements(materials, "The List cannot contain any null elements");
         Validate.isTrue(
                 materials.length == 16, "Expected 16, received: " + materials.length + ". Did you miss a color?");
 
-        list = Collections.unmodifiableList(Arrays.asList(materials));
+        list = List.of(materials);
     }
 
     @Nonnull
@@ -226,7 +226,7 @@ public enum ColoredMaterial {
         return list.get(index);
     }
 
-    public Material get(@Nonnull DyeColor color) {
+    public Material get(DyeColor color) {
         Validate.notNull(color, "Color cannot be null!");
 
         return get(color.ordinal());

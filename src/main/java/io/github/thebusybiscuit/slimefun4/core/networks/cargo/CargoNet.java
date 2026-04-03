@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -46,15 +45,15 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
     private final Set<Location> outputNodes = new HashSet<>();
 
     protected final Map<Location, Integer> roundRobin = new HashMap<>();
-    private int tickDelayThreshold = 0;
+    private int tickDelayThreshold;
 
-    public static @Nullable CargoNet getNetworkFromLocation(@Nonnull Location l) {
+    public static @Nullable CargoNet getNetworkFromLocation(Location l) {
         return Slimefun.getNetworkManager()
                 .getNetworkFromLocation(l, CargoNet.class)
                 .orElse(null);
     }
 
-    public static @Nonnull CargoNet getNetworkFromLocationOrCreate(@Nonnull Location l) {
+    public static CargoNet getNetworkFromLocationOrCreate(Location l) {
         Optional<CargoNet> cargoNetwork = Slimefun.getNetworkManager().getNetworkFromLocation(l, CargoNet.class);
 
         if (cargoNetwork.isPresent()) {
@@ -72,7 +71,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
      * @param l
      *            The {@link Location} marking the manager of this {@link Network}.
      */
-    protected CargoNet(@Nonnull Location l) {
+    protected CargoNet(Location l) {
         super(l);
     }
 
@@ -87,7 +86,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
     }
 
     @Override
-    public NetworkComponent classifyLocation(@Nonnull Location l) {
+    public NetworkComponent classifyLocation(Location l) {
         var data = StorageCacheUtils.getBlock(l);
 
         if (data == null) {
@@ -121,7 +120,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
         }
     }
 
-    public void tick(@Nonnull Block b, SlimefunBlockData blockData) {
+    public void tick(Block b, SlimefunBlockData blockData) {
         if (!regulator.equals(b.getLocation())) {
             updateHologram(b, "&4发现附近有多个货运网络调节机", blockData::isPendingRemove);
             return;
@@ -168,7 +167,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
         }
     }
 
-    private @Nonnull Map<Location, Integer> mapInputNodes() {
+    private Map<Location, Integer> mapInputNodes() {
         Map<Location, Integer> inputs = new HashMap<>();
 
         for (Location node : inputNodes) {
@@ -182,7 +181,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
         return inputs;
     }
 
-    private @Nonnull Map<Integer, List<Location>> mapOutputNodes() {
+    private Map<Integer, List<Location>> mapOutputNodes() {
         Map<Integer, List<Location>> output = new HashMap<>();
 
         List<Location> list = new LinkedList<>();
@@ -227,7 +226,7 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
      *
      * @return The frequency of the given node
      */
-    private static int getFrequency(@Nonnull Location node) {
+    private static int getFrequency(Location node) {
         var data = StorageCacheUtils.getBlock(node);
         if (data == null) {
             return -1;

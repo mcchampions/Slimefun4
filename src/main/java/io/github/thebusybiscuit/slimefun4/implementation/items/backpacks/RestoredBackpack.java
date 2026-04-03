@@ -4,7 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerBackpack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -30,7 +30,7 @@ public class RestoredBackpack extends SlimefunBackpack {
      *            the {@link ItemGroup} to bind this {@link SlimefunBackpack} to
      */
     @ParametersAreNonnullByDefault
-    public RestoredBackpack(@Nonnull ItemGroup itemGroup) {
+    public RestoredBackpack(ItemGroup itemGroup) {
         super(54, itemGroup, SlimefunItems.RESTORED_BACKPACK, RecipeType.NULL, new ItemStack[9]);
 
         this.hidden = true;

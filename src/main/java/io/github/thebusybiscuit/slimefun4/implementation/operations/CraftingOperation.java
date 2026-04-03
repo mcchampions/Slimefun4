@@ -18,13 +18,13 @@ public class CraftingOperation implements MachineOperation {
     private final ItemStack[] results;
 
     private final int totalTicks;
-    private int currentTicks = 0;
+    private int currentTicks;
 
-    public CraftingOperation(@Nonnull MachineRecipe recipe) {
+    public CraftingOperation(MachineRecipe recipe) {
         this(recipe.getInput(), recipe.getOutput(), recipe.getTicks());
     }
 
-    public CraftingOperation(@Nonnull ItemStack[] ingredients, @Nonnull ItemStack[] results, int totalTicks) {
+    public CraftingOperation(ItemStack[] ingredients, ItemStack[] results, int totalTicks) {
         Validate.notEmpty(ingredients, "The Ingredients array cannot be empty or null");
         Validate.notEmpty(results, "The results array cannot be empty or null");
         Validate.isTrue(

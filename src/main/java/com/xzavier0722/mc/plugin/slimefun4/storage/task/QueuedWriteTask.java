@@ -9,8 +9,8 @@ import java.util.Queue;
 public class QueuedWriteTask implements Runnable {
     private final Queue<RecordKey> queue = new LinkedList<>();
     private final Map<RecordKey, Runnable> tasks = new HashMap<>();
-    private volatile boolean done = false;
-    private volatile boolean aborted = false;
+    private volatile boolean done;
+    private volatile boolean aborted;
 
     @Override
     public final void run() {

@@ -84,12 +84,12 @@ abstract class AbstractResource implements GEOResource {
      * @return A {@link BiomeMap} for this resource
      */
     @ParametersAreNonnullByDefault
-    static final @Nonnull BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
+    static BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
         Validate.notNull(resource, "Resource cannot be null.");
         Validate.notNull(path, "Path cannot be null.");
 
         try {
-            return BiomeMap.fromResource(resource.getKey(), Slimefun.instance(), path, JsonElement::getAsInt);
+            return BiomeMap.fromResource(resource.key, Slimefun.instance(), path, JsonElement::getAsInt);
         } catch (BiomeMapException x) {
             if (Slimefun.instance().isUnitTest()) {
                 // Unit Tests should always fail here, so we re-throw the exception
@@ -97,8 +97,8 @@ abstract class AbstractResource implements GEOResource {
             } else {
                 // In a server environment, we should just print a warning and carry on
                 Slimefun.logger()
-                        .log(Level.WARNING, x, () -> "Failed to load BiomeMap for GEO-resource: " + resource.getKey());
-                return new BiomeMap<>(resource.getKey());
+                        .log(Level.WARNING, x, () -> "Failed to load BiomeMap for GEO-resource: " + resource.key);
+                return new BiomeMap<>(resource.key);
             }
         }
     }

@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.services.github;
 
 import java.time.LocalDateTime;
-import javax.annotation.Nonnull;
 
 @FunctionalInterface
 interface ActivityCallback {
@@ -13,5 +12,5 @@ interface ActivityCallback {
      * @param stars The amount of stars
      * @param date  The {@link LocalDateTime} of the last activity
      */
-    void accept(int forks, int stars, @Nonnull LocalDateTime date);
+    void accept(int forks, int stars, LocalDateTime date);
 }

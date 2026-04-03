@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -32,7 +31,7 @@ public class ButcherAndroidListener implements Listener {
 
     private static final String METADATA_KEY = "android_killer";
 
-    public ButcherAndroidListener(@Nonnull Slimefun plugin) {
+    public ButcherAndroidListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -40,7 +39,7 @@ public class ButcherAndroidListener implements Listener {
     public void onDeath(EntityDeathEvent e) {
         if (e.getEntity().hasMetadata(METADATA_KEY)) {
             AndroidInstance obj = (AndroidInstance)
-                    e.getEntity().getMetadata(METADATA_KEY).get(0).value();
+                    e.getEntity().getMetadata(METADATA_KEY).getFirst().value();
 
             Slimefun.runSync(
                     () -> {

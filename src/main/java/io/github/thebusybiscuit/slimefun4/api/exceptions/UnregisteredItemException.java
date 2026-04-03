@@ -27,6 +27,6 @@ public class UnregisteredItemException extends RuntimeException {
      */
     @ParametersAreNonnullByDefault
     public UnregisteredItemException(SlimefunItem item) {
-        super(item.toString() + " has not been registered yet.");
+        super(item + " has not been registered yet.");
     }
 }

@@ -22,7 +22,7 @@ public class PlayerLanguageChangeEvent extends Event {
     private final Language from;
     private final Language to;
 
-    public PlayerLanguageChangeEvent(@Nonnull Player p, @Nonnull Language from, @Nonnull Language to) {
+    public PlayerLanguageChangeEvent(Player p, Language from, Language to) {
         player = p;
         this.from = from;
         this.to = to;
@@ -65,6 +65,6 @@ public class PlayerLanguageChangeEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

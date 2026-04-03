@@ -32,7 +32,7 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
     private final boolean deathpoint;
     private boolean cancelled;
 
-    public WaypointCreateEvent(@Nonnull Player player, @Nonnull String name, @Nonnull Location location) {
+    public WaypointCreateEvent(Player player, String name, Location location) {
         super(player);
 
         Validate.notNull(location, "Location must not be null!");
@@ -59,7 +59,7 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
      *
      * @param loc The {@link Location} to set
      */
-    public void setLocation(@Nonnull Location loc) {
+    public void setLocation(Location loc) {
         Validate.notNull(loc, "Cannot set the Location to null!");
         this.location = loc;
     }
@@ -80,7 +80,7 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
      * @param name
      *            The name for this waypoint
      */
-    public void setName(@Nonnull String name) {
+    public void setName(String name) {
         Validate.notEmpty(name, "The name of a waypoint must not be empty!");
         this.name = name;
     }
@@ -113,6 +113,6 @@ public class WaypointCreateEvent extends PlayerEvent implements Cancellable {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

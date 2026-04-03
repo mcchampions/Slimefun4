@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -72,11 +71,11 @@ public class AncientAltarListener implements Listener {
      *
      * @return A {@link Set} of every {@link AncientAltar} currently in use
      */
-    public @Nonnull Set<Location> getAltarsInUse() {
+    public Set<Location> getAltarsInUse() {
         return altarsInUse;
     }
 
-    public @Nonnull List<Block> getAltars() {
+    public List<Block> getAltars() {
         return altars;
     }
 
@@ -87,7 +86,7 @@ public class AncientAltarListener implements Listener {
         }
 
         Optional<Block> blockOptional = e.getClickedBlock();
-        if (!blockOptional.isPresent()) {
+        if (blockOptional.isEmpty()) {
             return;
         }
 
@@ -97,7 +96,7 @@ public class AncientAltarListener implements Listener {
         }
 
         Optional<SlimefunItem> slimefunBlock = e.getSlimefunBlock();
-        if (!slimefunBlock.isPresent()) {
+        if (slimefunBlock.isEmpty()) {
             return;
         }
 
@@ -121,7 +120,7 @@ public class AncientAltarListener implements Listener {
         }
     }
 
-    private void usePedestal(@Nonnull Block pedestal, @Nonnull Player p) {
+    private void usePedestal(Block pedestal, Player p) {
         if (altarsInUse.contains(pedestal.getLocation())) {
             return;
         }
@@ -134,7 +133,7 @@ public class AncientAltarListener implements Listener {
         // getting the currently placed item
         Optional<Item> stack = pedestalItem.getPlacedItem(pedestal);
 
-        if (!stack.isPresent()) {
+        if (stack.isEmpty()) {
             // Check if the Item in hand is valid
             if (p.getInventory().getItemInMainHand().getType() != Material.AIR) {
                 // Check for pedestal obstructions
@@ -170,7 +169,7 @@ public class AncientAltarListener implements Listener {
         }
     }
 
-    private void useAltar(@Nonnull Block altar, @Nonnull Player p) {
+    private void useAltar(Block altar, Player p) {
         if (!Slimefun.getProtectionManager().hasPermission(p, altar, Interaction.INTERACT_BLOCK)) {
             Slimefun.getLocalization().sendMessage(p, "inventory.no-access", true);
             altarsInUse.remove(altar.getLocation());
@@ -283,7 +282,7 @@ public class AncientAltarListener implements Listener {
         }
     }
 
-    private @Nonnull List<Block> getPedestals(@Nonnull Block altar) {
+    private List<Block> getPedestals(Block altar) {
         List<Block> list = new ArrayList<>();
         var id = pedestalItem.getId();
 
@@ -315,7 +314,7 @@ public class AncientAltarListener implements Listener {
         return list;
     }
 
-    public @Nonnull Optional<ItemStack> getRecipeOutput(@Nonnull ItemStack catalyst, @Nonnull List<ItemStack> inputs) {
+    public Optional<ItemStack> getRecipeOutput(ItemStack catalyst, List<ItemStack> inputs) {
         if (inputs.size() != 8) {
             return Optional.empty();
         }
@@ -324,7 +323,7 @@ public class AncientAltarListener implements Listener {
         List<ItemStackWrapper> items = ItemStackWrapper.wrapList(inputs);
 
         if (SlimefunUtils.isItemSimilar(wrapper, SlimefunItems.BROKEN_SPAWNER, false, false, false)) {
-            if (!checkRecipe(SlimefunItems.BROKEN_SPAWNER, items).isPresent()) {
+            if (checkRecipe(SlimefunItems.BROKEN_SPAWNER, items).isEmpty()) {
                 return Optional.empty();
             }
 
@@ -336,8 +335,8 @@ public class AncientAltarListener implements Listener {
         return checkRecipe(wrapper, items);
     }
 
-    private @Nonnull Optional<ItemStack> checkRecipe(
-            @Nonnull ItemStack catalyst, @Nonnull List<ItemStackWrapper> items) {
+    private Optional<ItemStack> checkRecipe(
+            ItemStack catalyst, List<ItemStackWrapper> items) {
         for (AltarRecipe recipe : altarItem.getRecipes()) {
             if (SlimefunUtils.isItemSimilar(catalyst, recipe.getCatalyst(), true)) {
                 Optional<ItemStack> optional = checkPedestals(items, recipe);
@@ -351,10 +350,10 @@ public class AncientAltarListener implements Listener {
         return Optional.empty();
     }
 
-    private @Nonnull Optional<ItemStack> checkPedestals(
-            @Nonnull List<ItemStackWrapper> items, @Nonnull AltarRecipe recipe) {
+    private Optional<ItemStack> checkPedestals(
+            List<ItemStackWrapper> items, AltarRecipe recipe) {
         for (int i = 0; i < 8; i++) {
-            if (SlimefunUtils.isItemSimilar(items.get(i), recipe.getInput().get(0), true)) {
+            if (SlimefunUtils.isItemSimilar(items.get(i), recipe.getInput().getFirst(), true)) {
                 for (int j = 1; j < 8; j++) {
                     if (!SlimefunUtils.isItemSimilar(
                             items.get((i + j) % items.size()), recipe.getInput().get(j), true)) {

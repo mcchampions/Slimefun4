@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import javax.annotation.Nonnull;
+
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,7 +33,7 @@ public class ElytraImpactListener implements Listener {
 
     private final Set<UUID> gliding = new HashSet<>();
 
-    public ElytraImpactListener(@Nonnull Slimefun plugin) {
+    public ElytraImpactListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

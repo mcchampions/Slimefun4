@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
@@ -85,7 +84,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
      * @param produce
      *            The {@link AnimalProduce} to add
      */
-    public void addProduce(@Nonnull AnimalProduce produce) {
+    public void addProduce(AnimalProduce produce) {
         Validate.notNull(produce, "A produce cannot be null");
 
         this.animalProduces.add(produce);
@@ -109,7 +108,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>();
 
         displayRecipes.add(new CustomItemStack(Material.BUCKET, null, "&f需要附近有 &b牛 &f才会生产"));
@@ -127,7 +126,7 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    protected @Nullable MachineRecipe findNextRecipe(@Nonnull BlockMenu inv) {
+    protected @Nullable MachineRecipe findNextRecipe(BlockMenu inv) {
         for (int slot : getInputSlots()) {
             for (AnimalProduce produce : animalProduces) {
                 ItemStack item = inv.getItemInSlot(slot);
@@ -165,12 +164,12 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    public @Nonnull String getMachineIdentifier() {
+    public String getMachineIdentifier() {
         return "PRODUCE_COLLECTOR";
     }
 
     @Override
-    public @Nonnull ItemStack getProgressBar() {
+    public ItemStack getProgressBar() {
         return new ItemStack(Material.SHEARS);
     }
 }

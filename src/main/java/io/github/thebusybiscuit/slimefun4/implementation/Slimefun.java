@@ -20,7 +20,6 @@ import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.config.SlimefunConfigManager;
 import io.github.thebusybiscuit.slimefun4.core.config.SlimefunDatabaseManager;
 import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;
-import io.github.thebusybiscuit.slimefun4.core.services.AnalyticsService;
 import io.github.thebusybiscuit.slimefun4.core.services.AutoSavingService;
 import io.github.thebusybiscuit.slimefun4.core.services.BackupService;
 import io.github.thebusybiscuit.slimefun4.core.services.BlockDataService;
@@ -167,7 +166,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     /**
      * Keep track of whether this is a fresh install or a regular boot up.
      */
-    private boolean isNewlyInstalled = false;
+    private boolean isNewlyInstalled;
 
     // Various things we need
     private final SlimefunConfigManager cfgManager = new SlimefunConfigManager(this);
@@ -193,8 +192,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final HologramsService hologramsService = new HologramsService(this);
     private final SoundService soundService = new SoundService(this);
     private final ThreadService threadService = new ThreadService(this);
-    private final AnalyticsService analyticsService = new AnalyticsService(this);
-
     // Some other things we need
     private final IntegrationsManager integrations = new IntegrationsManager(this);
     private final SlimefunProfiler profiler = new SlimefunProfiler();
@@ -218,7 +215,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * Our default constructor for {@link Slimefun}.
      */
     public Slimefun() {
-        super();
     }
 
     /**
@@ -246,7 +242,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      */
     @Override
     public void onEnable() {
-        setInstance(this);
+        instance = this;
 
         if (isUnitTest()) {
             // We handle Unit Tests seperately.
@@ -514,7 +510,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         metricsService.cleanUp();
 
         // Terminate our Plugin instance
-        setInstance(null);
+        instance = null;
 
         /**
          * Close all inventories on the server to prevent item dupes
@@ -549,7 +545,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return A {@link Collection} of all compatible minecraft versions as strings
      */
-    static @Nonnull Collection<String> getSupportedVersions() {
+    static Collection<String> getSupportedVersions() {
         List<String> list = new ArrayList<>();
 
         for (MinecraftVersion version : MinecraftVersion.values()) {
@@ -568,7 +564,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Our {@link Logger} instance
      */
-    public static @Nonnull Logger logger() {
+    public static Logger logger() {
         validateInstance();
         return instance.getLogger();
     }
@@ -582,7 +578,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private boolean isVersionUnsupported() {
         try {
             // First check if they still use the unsupported CraftBukkit software.
-            if (!PaperLib.isSpigot() && Bukkit.getName().equals("CraftBukkit")) {
+            if (!PaperLib.isSpigot() && "CraftBukkit".equals(Bukkit.getName())) {
                 StartupWarnings.invalidServerSoftware(getLogger());
                 return true;
             }
@@ -635,7 +631,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Our {@link GPSNetwork} instance
      */
-    public static @Nonnull GPSNetwork getGPSNetwork() {
+    public static GPSNetwork getGPSNetwork() {
         validateInstance();
         return instance.gpsNetwork;
     }
@@ -814,7 +810,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Slimefun's {@link MinecraftRecipeService} instance
      */
-    public static @Nonnull MinecraftRecipeService getMinecraftRecipeService() {
+    public static MinecraftRecipeService getMinecraftRecipeService() {
         validateInstance();
         return instance.recipeService;
     }
@@ -824,22 +820,22 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The currently installed version of Slimefun
      */
-    public static @Nonnull String getVersion() {
+    public static String getVersion() {
         validateInstance();
         return instance.getDescription().getVersion();
     }
 
-    public static @Nonnull Config getCfg() {
+    public static Config getCfg() {
         validateInstance();
         return instance.cfgManager.getPluginConfig();
     }
 
-    public static @Nonnull Config getResearchCfg() {
+    public static Config getResearchCfg() {
         validateInstance();
         return instance.researches;
     }
 
-    public static @Nonnull Config getItemCfg() {
+    public static Config getItemCfg() {
         validateInstance();
         return instance.items;
     }
@@ -852,12 +848,12 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Our instance of {@link PerWorldSettingsService}
      */
-    public static @Nonnull PerWorldSettingsService getWorldSettingsService() {
+    public static PerWorldSettingsService getWorldSettingsService() {
         validateInstance();
         return instance.worldSettingsService;
     }
 
-    public static @Nonnull TickerTask getTickerTask() {
+    public static TickerTask getTickerTask() {
         validateInstance();
         return instance.ticker;
     }
@@ -867,7 +863,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link LocalizationService} of Slimefun
      */
-    public static @Nonnull LocalizationService getLocalization() {
+    public static LocalizationService getLocalization() {
         validateInstance();
         return instance.local;
     }
@@ -878,27 +874,27 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Our instance of {@link HologramsService}
      */
-    public static @Nonnull HologramsService getHologramsService() {
+    public static HologramsService getHologramsService() {
         validateInstance();
         return instance.hologramsService;
     }
 
-    public static @Nonnull CustomItemDataService getItemDataService() {
+    public static CustomItemDataService getItemDataService() {
         validateInstance();
         return instance.itemDataService;
     }
 
-    public static @Nonnull CustomTextureService getItemTextureService() {
+    public static CustomTextureService getItemTextureService() {
         validateInstance();
         return instance.textureService;
     }
 
-    public static @Nonnull PermissionsService getPermissionsService() {
+    public static PermissionsService getPermissionsService() {
         validateInstance();
         return instance.permissionsService;
     }
 
-    public static @Nonnull BlockDataService getBlockDataService() {
+    public static BlockDataService getBlockDataService() {
         validateInstance();
         return instance.blockDataService;
     }
@@ -909,7 +905,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Our instance of {@link IntegrationsManager}
      */
-    public static @Nonnull IntegrationsManager getIntegrations() {
+    public static IntegrationsManager getIntegrations() {
         validateInstance();
         return instance.integrations;
     }
@@ -920,7 +916,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Our instanceof of the {@link ProtectionManager}
      */
-    public static @Nonnull ProtectionManager getProtectionManager() {
+    public static ProtectionManager getProtectionManager() {
         return getIntegrations().getProtectionManager();
     }
 
@@ -941,7 +937,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Our {@link NetworkManager} instance
      */
-    public static @Nonnull NetworkManager getNetworkManager() {
+    public static NetworkManager getNetworkManager() {
         validateInstance();
         return instance.networkManager;
     }
@@ -952,7 +948,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      * @param timestamp The time at which we started to load Slimefun.
      * @return The total time it took to load Slimefun (in ms or s)
      */
-    private @Nonnull String getStartupTime(long timestamp) {
+    private String getStartupTime(long timestamp) {
         long ms = (System.nanoTime() - timestamp) / 1000000;
 
         if (ms > 1000) {
@@ -968,7 +964,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link UpdaterService} for Slimefun
      */
-    public static @Nonnull UpdaterService getUpdater() {
+    public static UpdaterService getUpdater() {
         validateInstance();
         return instance.updaterService;
     }
@@ -979,20 +975,9 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link MetricsService} for Slimefun
      */
-    public static @Nonnull MetricsService getMetricsService() {
+    public static MetricsService getMetricsService() {
         validateInstance();
         return instance.metricsService;
-    }
-
-    /**
-     * This method returns the {@link AnalyticsService} of Slimefun.
-     * It is used to handle sending analytic information.
-     *
-     * @return The {@link AnalyticsService} for Slimefun
-     */
-    public static @Nonnull AnalyticsService getAnalyticsService() {
-        validateInstance();
-        return instance.analyticsService;
     }
 
     /**
@@ -1001,7 +986,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link GitHubService} for Slimefun
      */
-    public static @Nonnull GitHubService getGitHubService() {
+    public static GitHubService getGitHubService() {
         validateInstance();
         return instance.gitHubService;
     }
@@ -1016,32 +1001,32 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         return minecraftVersion == MinecraftVersion.UNIT_TEST;
     }
 
-    public static @Nonnull SlimefunConfigManager getConfigManager() {
+    public static SlimefunConfigManager getConfigManager() {
         validateInstance();
         return instance.cfgManager;
     }
 
-    public static @Nonnull SlimefunDatabaseManager getDatabaseManager() {
+    public static SlimefunDatabaseManager getDatabaseManager() {
         validateInstance();
         return instance.databaseManager;
     }
 
-    public static @Nonnull SlimefunRegistry getRegistry() {
+    public static SlimefunRegistry getRegistry() {
         validateInstance();
         return instance.registry;
     }
 
-    public static @Nonnull GrapplingHookListener getGrapplingHookListener() {
+    public static GrapplingHookListener getGrapplingHookListener() {
         validateInstance();
         return instance.grapplingHookListener;
     }
 
-    public static @Nonnull BackpackListener getBackpackListener() {
+    public static BackpackListener getBackpackListener() {
         validateInstance();
         return instance.backpackListener;
     }
 
-    public static @Nonnull SlimefunBowListener getBowListener() {
+    public static SlimefunBowListener getBowListener() {
         validateInstance();
         return instance.bowListener;
     }
@@ -1051,7 +1036,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return Slimefun's command
      */
-    public static @Nonnull SlimefunCommand getCommand() {
+    public static SlimefunCommand getCommand() {
         validateInstance();
         return instance.command;
     }
@@ -1062,12 +1047,12 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link SlimefunProfiler}
      */
-    public static @Nonnull SlimefunProfiler getProfiler() {
+    public static SlimefunProfiler getProfiler() {
         validateInstance();
         return instance.profiler;
     }
 
-    public static @Nonnull SQLProfiler getSQLProfiler() {
+    public static SQLProfiler getSQLProfiler() {
         validateInstance();
         return instance.sqlProfiler;
     }
@@ -1077,7 +1062,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The current version of Minecraft
      */
-    public static @Nonnull MinecraftVersion getMinecraftVersion() {
+    public static MinecraftVersion getMinecraftVersion() {
         validateInstance();
         return instance.minecraftVersion;
     }
@@ -1101,7 +1086,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return A {@link Set} of every {@link Plugin} that is dependent on Slimefun
      */
-    public static @Nonnull Set<Plugin> getInstalledAddons() {
+    public static Set<Plugin> getInstalledAddons() {
         validateInstance();
         String pluginName = instance.getName();
 
@@ -1130,7 +1115,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
-    public static @Nullable BukkitTask runSync(@Nonnull Runnable runnable, long delay) {
+    public static @Nullable BukkitTask runSync(Runnable runnable, long delay) {
         Validate.notNull(runnable, "Cannot run null");
         Validate.isTrue(delay >= 0, "The delay cannot be negative");
 
@@ -1159,7 +1144,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The resulting {@link BukkitTask} or null if Slimefun was disabled
      */
-    public static @Nullable BukkitTask runSync(@Nonnull Runnable runnable) {
+    public static @Nullable BukkitTask runSync(Runnable runnable) {
         Validate.notNull(runnable, "Cannot run null");
 
         // Run the task instantly within a Unit Test
@@ -1180,7 +1165,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
         return super.getFile();
     }
 
-    public static @Nonnull PlayerChatCatcher getChatCatcher() {
+    public static PlayerChatCatcher getChatCatcher() {
         validateInstance();
         return instance.chatCatcher;
     }
@@ -1191,7 +1176,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
      *
      * @return The {@link ThreadService} for Slimefun
      */
-    public static @Nonnull ThreadService getThreadService() {
+    public static ThreadService getThreadService() {
         return instance().threadService;
     }
 }

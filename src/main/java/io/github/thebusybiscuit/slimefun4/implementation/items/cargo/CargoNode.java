@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.cargo;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import javax.annotation.Nonnull;
 import org.bukkit.block.Block;
 
 /**
@@ -22,7 +21,7 @@ public interface CargoNode {
      *
      * @return The channel which this {@link CargoNode} is currently on
      */
-    int getSelectedChannel(@Nonnull Block b);
+    int getSelectedChannel(Block b);
 
     /**
      * This returns whether this {@link CargoNode} has item filtering capabilities.

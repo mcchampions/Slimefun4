@@ -32,10 +32,10 @@ public abstract class DatabasePatch {
                     FIELD_TABLE_METADATA_KEY,
                     FIELD_TABLE_METADATA_VALUE,
                     METADATA_VERSION,
-                    getVersion(),
+                    version,
                     FIELD_TABLE_METADATA_KEY,
                     FIELD_TABLE_METADATA_VALUE,
-                    getVersion()));
+                    version));
         } else {
             stmt.execute(String.format(
                     "INSERT INTO %s (%s, %s) VALUES ('%s', '%s') ON DUPLICATE KEY UPDATE %s='%s', %s=%s",
@@ -43,11 +43,11 @@ public abstract class DatabasePatch {
                     FIELD_TABLE_METADATA_KEY,
                     FIELD_TABLE_METADATA_VALUE,
                     METADATA_VERSION,
-                    getVersion(),
+                    version,
                     FIELD_TABLE_METADATA_KEY,
                     METADATA_VERSION,
                     FIELD_TABLE_METADATA_VALUE,
-                    getVersion()));
+                    version));
         }
     }
 

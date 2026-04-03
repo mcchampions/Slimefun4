@@ -24,7 +24,7 @@ class SlimefunTabCompleter implements TabCompleter {
 
     private final SlimefunCommand command;
 
-    public SlimefunTabCompleter(@Nonnull SlimefunCommand command) {
+    public SlimefunTabCompleter(SlimefunCommand command) {
         this.command = command;
     }
 
@@ -33,14 +33,14 @@ class SlimefunTabCompleter implements TabCompleter {
         if (args.length == 1) {
             return createReturnList(command.getSubCommandNames(), args[0]);
         } else if (args.length == 2) {
-            if (args[0].equalsIgnoreCase("banitem")) {
+            if ("banitem".equalsIgnoreCase(args[0])) {
                 return createReturnList(getSlimefunItems(), args[1]);
-            } else if (args[0].equalsIgnoreCase("unbanitem")) {
+            } else if ("unbanitem".equalsIgnoreCase(args[0])) {
                 List<String> list = Slimefun.getRegistry().getDisabledSlimefunItems().stream()
                         .map(SlimefunItem::getId)
                         .collect(Collectors.toList());
                 return createReturnList(list, args[1]);
-            } else if (args[0].equalsIgnoreCase("cleardata")) {
+            } else if ("cleardata".equalsIgnoreCase(args[0])) {
                 List<String> list = new ArrayList<>(
                         Bukkit.getWorlds().stream().map(WorldInfo::getName).toList());
                 list.add("*");
@@ -48,9 +48,9 @@ class SlimefunTabCompleter implements TabCompleter {
             }
             return null;
         } else if (args.length == 3) {
-            if (args[0].equalsIgnoreCase("give")) {
+            if ("give".equalsIgnoreCase(args[0])) {
                 return createReturnList(getSlimefunItems(), args[2]);
-            } else if (args[0].equalsIgnoreCase("research")) {
+            } else if ("research".equalsIgnoreCase(args[0])) {
                 List<Research> researches = Slimefun.getRegistry().getResearches();
                 List<String> suggestions = new LinkedList<>();
 
@@ -62,13 +62,13 @@ class SlimefunTabCompleter implements TabCompleter {
                 }
 
                 return createReturnList(suggestions, args[2]);
-            } else if (args[0].equalsIgnoreCase("cleardata")) {
+            } else if ("cleardata".equalsIgnoreCase(args[0])) {
                 return createReturnList(List.of("block", "oil", "*"), args[2]);
             } else {
                 // Returning null will make it fallback to the default arguments (all online players)
                 return null;
             }
-        } else if (args.length == 4 && args[0].equalsIgnoreCase("give")) {
+        } else if (args.length == 4 && "give".equalsIgnoreCase(args[0])) {
             return createReturnList(Arrays.asList("1", "2", "4", "8", "16", "32", "64"), args[3]);
         } else {
             // Returning null will make it fallback to the default arguments (all online players)
@@ -86,7 +86,7 @@ class SlimefunTabCompleter implements TabCompleter {
      * @return Sublist if string is not empty
      */
     @Nonnull
-    private List<String> createReturnList(@Nonnull List<String> list, @Nonnull String string) {
+    private List<String> createReturnList(List<String> list, String string) {
         if (string.isEmpty()) {
             if (list.size() >= MAX_SUGGESTIONS) {
                 return list.subList(0, MAX_SUGGESTIONS);

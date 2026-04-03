@@ -2,7 +2,7 @@ package city.norain.slimefun4.api.menu;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
+
 import javax.annotation.Nullable;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
@@ -16,7 +16,7 @@ public abstract class UniversalMenuPreset extends BlockMenuPreset {
      *
      * @param title The title of the Menu
      */
-    public UniversalMenuPreset(@Nonnull String id, @Nonnull String title) {
+    public UniversalMenuPreset(String id, String title) {
         super(id, title);
     }
 
@@ -26,12 +26,12 @@ public abstract class UniversalMenuPreset extends BlockMenuPreset {
      * @param menu {@link UniversalMenu} 通用菜单
      * @param b 当前实例对应的方块，方块可能为空
      */
-    public void newInstance(@Nonnull UniversalMenu menu, @Nullable Block b) {
+    public void newInstance(UniversalMenu menu, @Nullable Block b) {
         // This method can optionally be overridden by implementations
     }
 
     @Override
-    protected void clone(@Nonnull DirtyChestMenu menu) {
+    protected void clone(DirtyChestMenu menu) {
         if (menu instanceof UniversalMenu universalMenu) {
             var uniData = StorageCacheUtils.getUniversalBlock(universalMenu.getUuid());
 
@@ -43,7 +43,7 @@ public abstract class UniversalMenuPreset extends BlockMenuPreset {
         }
     }
 
-    protected void clone(@Nonnull UniversalMenu menu, @Nullable Location lastPresent) {
+    protected void clone(UniversalMenu menu, @Nullable Location lastPresent) {
         menu.setPlayerInventoryClickable(true);
 
         for (int slot : occupiedSlots) {

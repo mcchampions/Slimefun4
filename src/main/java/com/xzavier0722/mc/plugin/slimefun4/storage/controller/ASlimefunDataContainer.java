@@ -18,7 +18,7 @@ public abstract class ASlimefunDataContainer extends ADataContainer {
 
     @Setter
     @Getter
-    private volatile boolean pendingRemove = false;
+    private volatile boolean pendingRemove;
 
     public ASlimefunDataContainer(String key, String sfId) {
         super(key);

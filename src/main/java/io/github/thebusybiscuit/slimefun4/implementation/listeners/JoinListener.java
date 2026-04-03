@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.armor.RadiationTask;
-import javax.annotation.Nonnull;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,12 +20,12 @@ import org.bukkit.inventory.ItemStack;
  */
 public class JoinListener implements Listener {
 
-    public JoinListener(@Nonnull Slimefun plugin) {
+    public JoinListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
-    public void onJoin(@Nonnull PlayerJoinEvent e) {
+    public void onJoin(PlayerJoinEvent e) {
         final var p = e.getPlayer();
 
         PlayerProfile.get(p, playerProfile -> {

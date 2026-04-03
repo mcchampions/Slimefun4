@@ -4,7 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -57,11 +57,11 @@ public final class FireworkUtils {
 
     private FireworkUtils() {}
 
-    public static void launchFirework(@Nonnull Location l, @Nonnull Color color) {
+    public static void launchFirework(Location l, Color color) {
         createFirework(l, color);
     }
 
-    public static @Nonnull Firework createFirework(@Nonnull Location l, @Nonnull Color color) {
+    public static Firework createFirework(Location l, Color color) {
         Firework fw = (Firework) l.getWorld().spawnEntity(l, firework);
         FireworkMeta meta = fw.getFireworkMeta();
 
@@ -74,7 +74,7 @@ public final class FireworkUtils {
         return fw;
     }
 
-    public static void launchRandom(@Nonnull Entity n, int amount) {
+    public static void launchRandom(Entity n, int amount) {
         Random random = ThreadLocalRandom.current();
 
         for (int i = 0; i < amount; i++) {
@@ -96,7 +96,7 @@ public final class FireworkUtils {
      *
      * @return A randomized {@link FireworkEffect}
      */
-    public static @Nonnull FireworkEffect getRandomEffect(@Nonnull Random random, @Nonnull Color color) {
+    public static FireworkEffect getRandomEffect(Random random, Color color) {
         // @formatter:off
         return FireworkEffect.builder()
                 .flicker(random.nextBoolean())
@@ -112,7 +112,7 @@ public final class FireworkUtils {
      *
      * @return A random {@link Color}
      */
-    private static @Nonnull Color getRandomColor() {
+    private static Color getRandomColor() {
         return COLORS[ThreadLocalRandom.current().nextInt(COLORS.length)];
     }
 }

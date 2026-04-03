@@ -5,7 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.TeleporterListener;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -51,5 +51,5 @@ public abstract class AbstractTeleporterPlate extends SlimefunItem {
      *
      * @return Whether the {@link Player} can access the {@link Teleporter}
      */
-    public abstract boolean hasAccess(@Nonnull Player p, @Nonnull Block block);
+    public abstract boolean hasAccess(Player p, Block block);
 }

@@ -4,7 +4,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
 
 /**
  * Some helper methods for dealing with Json data.
@@ -29,7 +28,7 @@ public final class JsonUtils {
      * @return The parsed {@link JsonElement}
      */
     @SuppressWarnings("deprecation")
-    public static @Nonnull JsonElement parseString(@Nonnull String json) {
+    public static JsonElement parseString(String json) {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_18)) {
             /*
              * As of 1.18 Spigot includes a newer version of Gson that

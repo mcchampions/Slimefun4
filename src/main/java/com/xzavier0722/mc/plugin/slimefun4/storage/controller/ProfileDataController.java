@@ -96,11 +96,11 @@ public class ProfileDataController extends ADataController {
 
         // check player name changed or not
         var currentPlayerName = p.getName();
-        if (currentPlayerName != null && !currentPlayerName.equals(result.get(0).get(FieldKey.PLAYER_NAME))) {
+        if (currentPlayerName != null && !currentPlayerName.equals(result.getFirst().get(FieldKey.PLAYER_NAME))) {
             updateUsername(uuid, currentPlayerName);
         }
 
-        var bNum = result.get(0).getInt(FieldKey.BACKPACK_NUMBER);
+        var bNum = result.getFirst().getInt(FieldKey.BACKPACK_NUMBER);
 
         var researches = new HashSet<Research>();
         getUnlockedResearchKeys(uuid).forEach(rKey -> Research.getResearch(rKey).ifPresent(researches::add));
@@ -146,8 +146,8 @@ public class ProfileDataController extends ADataController {
             return null;
         }
 
-        var result = bResult.get(0);
-        var size = Integer.parseInt(bResult.get(0).get(FieldKey.BACKPACK_SIZE));
+        var result = bResult.getFirst();
+        var size = Integer.parseInt(bResult.getFirst().get(FieldKey.BACKPACK_SIZE));
         var idStr = result.get(FieldKey.BACKPACK_ID);
 
         re = new PlayerBackpack(
@@ -190,7 +190,7 @@ public class ProfileDataController extends ADataController {
             return null;
         }
 
-        var result = resultSet.get(0);
+        var result = resultSet.getFirst();
         var idStr = result.get(FieldKey.BACKPACK_ID);
         var size = result.getInt(FieldKey.BACKPACK_SIZE);
 
@@ -355,7 +355,7 @@ public class ProfileDataController extends ADataController {
         saveBackpackInventory(bp);
     }
 
-    public void saveBackpackInventory(@Nonnull PlayerBackpack bp) {
+    public void saveBackpackInventory(PlayerBackpack bp) {
         // avoid asynchronous save
         synchronized (bp) {
             Set<Integer> slots = bp.getSnapshot().getChangedSlots(bp.getInventory());
@@ -403,7 +403,7 @@ public class ProfileDataController extends ADataController {
             return null;
         }
 
-        return UUID.fromString(result.get(0).get(FieldKey.PLAYER_UUID));
+        return UUID.fromString(result.getFirst().get(FieldKey.PLAYER_UUID));
     }
 
     public void getPlayerUuidAsync(String pName, IAsyncReadCallback<UUID> callback) {

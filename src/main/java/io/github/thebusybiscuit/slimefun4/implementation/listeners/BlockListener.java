@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
@@ -63,7 +62,7 @@ public class BlockListener implements Listener {
         BlockFace.WEST, BlockFace.EAST, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.DOWN, BlockFace.UP
     };
 
-    public BlockListener(@Nonnull Slimefun plugin) {
+    public BlockListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -408,7 +407,7 @@ public class BlockListener implements Listener {
         }
     }
 
-    private int getBonusDropsWithFortune(@Nullable ItemStack item, @Nonnull Block b) {
+    private int getBonusDropsWithFortune(@Nullable ItemStack item, Block b) {
         int amount = 1;
 
         if (item != null && !item.getType().isAir() && item.hasItemMeta()) {

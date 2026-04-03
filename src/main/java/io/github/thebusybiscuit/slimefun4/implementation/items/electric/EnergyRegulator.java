@@ -43,7 +43,7 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 removeHologram(b);
             }
         };
@@ -78,7 +78,7 @@ public class EnergyRegulator extends SlimefunItem implements HologramOwner, NotR
         });
     }
 
-    private void tick(@Nonnull Block b, SlimefunBlockData blockData) {
+    private void tick(Block b, SlimefunBlockData blockData) {
         EnergyNet network = EnergyNet.getNetworkFromLocationOrCreate(b.getLocation());
         network.tick(b, blockData);
     }

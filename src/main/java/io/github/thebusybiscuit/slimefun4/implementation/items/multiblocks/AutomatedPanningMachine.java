@@ -15,7 +15,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.tools.NetherGoldP
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -63,7 +62,7 @@ public class AutomatedPanningMachine extends MultiBlockMachine {
     }
 
     @Override
-    public @Nonnull List<ItemStack> getDisplayRecipes() {
+    public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> recipes = new ArrayList<>();
 
         recipes.addAll(goldPan.getDisplayRecipes());

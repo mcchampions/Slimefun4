@@ -25,7 +25,7 @@ public class ResearchUnlockEvent extends Event implements Cancellable {
     private final Research research;
     private boolean cancelled;
 
-    public ResearchUnlockEvent(@Nonnull Player p, @Nonnull Research research) {
+    public ResearchUnlockEvent(Player p, Research research) {
         super(!Bukkit.isPrimaryThread());
 
         Validate.notNull(p, "The Player cannot be null");
@@ -63,6 +63,6 @@ public class ResearchUnlockEvent extends Event implements Cancellable {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

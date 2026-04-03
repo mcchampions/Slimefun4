@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.core.services.profiler.inspectors;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.PerformanceInspector;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SummaryOrderType;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.Validate;
@@ -37,7 +36,7 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
      * @param orderType
      *            The {@link SummaryOrderType} of the timings
      */
-    public PlayerPerformanceInspector(@Nonnull Player player, @Nonnull SummaryOrderType orderType) {
+    public PlayerPerformanceInspector(Player player, SummaryOrderType orderType) {
         Validate.notNull(player, "Player cannot be null");
         Validate.notNull(orderType, "SummaryOrderType cannot be null");
 
@@ -73,7 +72,7 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
      * {@inheritDoc}
      */
     @Override
-    public @Nonnull SummaryOrderType getOrderType() {
+    public SummaryOrderType getOrderType() {
         return orderType;
     }
 
@@ -81,7 +80,7 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
      * {@inheritDoc}
      */
     @Override
-    public void sendMessage(@Nonnull String msg) {
+    public void sendMessage(String msg) {
         Player player = getPlayer();
 
         if (player != null) {
@@ -89,7 +88,7 @@ public class PlayerPerformanceInspector implements PerformanceInspector {
         }
     }
 
-    public void sendMessage(@Nonnull TextComponent component) {
+    public void sendMessage(TextComponent component) {
         Player player = getPlayer();
 
         if (player != null) {

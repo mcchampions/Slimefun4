@@ -57,7 +57,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
@@ -100,7 +100,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
         var blockData = StorageCacheUtils.getBlock(b.getLocation());
         String filterType = blockData.getData(FILTER_TYPE);
 
-        if (filterType == null || filterType.equals("whitelist")) {
+        if (filterType == null || "whitelist".equals(filterType)) {
             menu.replaceExistingItem(15, new CustomItemStack(Material.WHITE_WOOL, "&7模式: &r白名单", "", "&e> 单击切换至黑名单"));
             menu.addMenuClickHandler(15, (p, slot, item, action) -> {
                 StorageCacheUtils.setData(b.getLocation(), FILTER_TYPE, "blacklist");
@@ -141,7 +141,7 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
     }
 
     @Override
-    protected void markDirty(@Nonnull Location loc) {
+    protected void markDirty(Location loc) {
         CargoNet network = CargoNet.getNetworkFromLocation(loc);
 
         if (network != null) {

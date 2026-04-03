@@ -75,7 +75,7 @@ public final class SlimefunRegistry {
 
     private final Map<Class<? extends ItemHandler>, Set<ItemHandler>> globalItemHandlers = new HashMap<>();
 
-    public void load(@Nonnull Slimefun plugin) {
+    public void load(Slimefun plugin) {
         Validate.notNull(plugin, "The Plugin cannot be null!");
 
         soulboundKey = new NamespacedKey(plugin, "soulbound");
@@ -104,7 +104,7 @@ public final class SlimefunRegistry {
      *
      * @return A {@link List} containing every {@link SlimefunItem}
      */
-    public @Nonnull List<SlimefunItem> getAllSlimefunItems() {
+    public List<SlimefunItem> getAllSlimefunItems() {
         return slimefunItems;
     }
 
@@ -113,8 +113,8 @@ public final class SlimefunRegistry {
      *
      * @return A {@link List} containing every disabled{@link SlimefunItem}
      */
-    public @Nonnull List<SlimefunItem> getDisabledSlimefunItems() {
-        List<SlimefunItem> allItems = new ArrayList<>(getAllSlimefunItems());
+    public List<SlimefunItem> getDisabledSlimefunItems() {
+        List<SlimefunItem> allItems = new ArrayList<>(slimefunItems);
         return new ArrayList<>(
                 allItems.stream().filter(SlimefunItem::isDisabled).toList());
     }
@@ -180,7 +180,7 @@ public final class SlimefunRegistry {
      * @return The corresponding {@link SlimefunGuideImplementation}
      */
     @Nonnull
-    public SlimefunGuideImplementation getSlimefunGuide(@Nonnull SlimefunGuideMode mode) {
+    public SlimefunGuideImplementation getSlimefunGuide(SlimefunGuideMode mode) {
         Validate.notNull(mode, "The Guide mode cannot be null");
 
         SlimefunGuideImplementation guide = guides.get(mode);
@@ -245,7 +245,7 @@ public final class SlimefunRegistry {
     }
 
     @Nonnull
-    public Set<ItemHandler> getGlobalItemHandlers(@Nonnull Class<? extends ItemHandler> identifier) {
+    public Set<ItemHandler> getGlobalItemHandlers(Class<? extends ItemHandler> identifier) {
         Validate.notNull(identifier, "The identifier for an ItemHandler cannot be null!");
 
         return globalItemHandlers.computeIfAbsent(identifier, c -> new HashSet<>());

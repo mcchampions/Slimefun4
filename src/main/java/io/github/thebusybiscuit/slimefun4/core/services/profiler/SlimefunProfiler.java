@@ -55,7 +55,7 @@ public class SlimefunProfiler {
      * Our internal instance of {@link SlimefunThreadFactory}, it provides the naming
      * convention for our {@link Thread} pool and also the count of this pool.
      */
-    private final SlimefunThreadFactory threadFactory = new SlimefunThreadFactory(2);
+    private static final SlimefunThreadFactory threadFactory = new SlimefunThreadFactory(2);
 
     /**
      * This is our {@link Thread} pool to evaluate timings data.
@@ -77,7 +77,7 @@ public class SlimefunProfiler {
      * This boolean marks whether we are currently profiling or not.
      */
     @Getter
-    private volatile boolean isProfiling = false;
+    private volatile boolean isProfiling;
 
     /**
      * This {@link AtomicInteger} holds the amount of blocks that still need to be
@@ -153,7 +153,7 @@ public class SlimefunProfiler {
      * @param timestamp The timestamp marking the start of this entry, you can retrieve it using {@link #newEntry()}
      * @return The total timings of this entry
      */
-    public long closeEntry(@Nonnull Location l, @Nonnull SlimefunItem item, long timestamp) {
+    public long closeEntry(Location l, SlimefunItem item, long timestamp) {
         Validate.notNull(l, "Location must not be null!");
         Validate.notNull(item, "You need to specify a SlimefunItem!");
 
@@ -267,7 +267,7 @@ public class SlimefunProfiler {
      *
      * @param inspector The {@link PerformanceInspector} who shall receive this summary.
      */
-    public void requestSummary(@Nonnull PerformanceInspector inspector) {
+    public void requestSummary(PerformanceInspector inspector) {
         Validate.notNull(inspector, "Cannot request a summary for null");
 
         requests.add(inspector);
@@ -311,7 +311,7 @@ public class SlimefunProfiler {
         return map;
     }
 
-    protected int getBlocksInChunk(@Nonnull String chunk) {
+    protected int getBlocksInChunk(String chunk) {
         Validate.notNull(chunk, "The chunk cannot be null!");
         int blocks = 0;
 
@@ -328,7 +328,7 @@ public class SlimefunProfiler {
         return blocks;
     }
 
-    protected int getBlocksOfId(@Nonnull String id) {
+    protected int getBlocksOfId(String id) {
         Validate.notNull(id, "The id cannot be null!");
         int blocks = 0;
 
@@ -341,7 +341,7 @@ public class SlimefunProfiler {
         return blocks;
     }
 
-    protected int getBlocksFromPlugin(@Nonnull String pluginName) {
+    protected int getBlocksFromPlugin(String pluginName) {
         Validate.notNull(pluginName, "The Plugin name cannot be null!");
         int blocks = 0;
 
@@ -395,20 +395,20 @@ public class SlimefunProfiler {
      * @param b The {@link Block}
      * @return Whether timings of this {@link Block} have been collected
      */
-    public boolean hasTimings(@Nonnull Block b) {
+    public boolean hasTimings(Block b) {
         Validate.notNull(b, "Cannot get timings for a null Block");
 
         return timings.containsKey(new ProfiledBlock(b));
     }
 
-    public String getTime(@Nonnull Block b) {
+    public String getTime(Block b) {
         Validate.notNull(b, "Cannot get timings for a null Block");
 
         long time = timings.getOrDefault(new ProfiledBlock(b), 0L);
         return NumberUtils.getAsMillis(time);
     }
 
-    public String getTime(@Nonnull Chunk chunk) {
+    public String getTime(Chunk chunk) {
         Validate.notNull(chunk, "Cannot get timings for a null Chunk");
 
         long time = getByChunk()
@@ -416,7 +416,7 @@ public class SlimefunProfiler {
         return NumberUtils.getAsMillis(time);
     }
 
-    public String getTime(@Nonnull SlimefunItem item) {
+    public String getTime(SlimefunItem item) {
         Validate.notNull(item, "Cannot get timings for a null SlimefunItem");
 
         long time = getByItem().getOrDefault(item.getId(), 0L);

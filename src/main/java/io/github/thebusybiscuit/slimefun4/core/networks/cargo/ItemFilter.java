@@ -6,8 +6,6 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
-import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.cargo.CargoNode;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
@@ -16,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
@@ -58,7 +56,7 @@ class ItemFilter implements Predicate<ItemStack> {
      */
     private volatile boolean dirty = true;
 
-    private volatile boolean isLoading = false;
+    private volatile boolean isLoading;
 
     /**
      * This creates a new {@link ItemFilter} for the given {@link Block}.
@@ -66,7 +64,7 @@ class ItemFilter implements Predicate<ItemStack> {
      *
      * @param b The {@link Block}
      */
-    public ItemFilter(@Nonnull Block b) {
+    public ItemFilter(Block b) {
         update(b);
     }
 
@@ -76,8 +74,8 @@ class ItemFilter implements Predicate<ItemStack> {
      *
      * @param b The {@link Block}
      */
-    public void update(@Nonnull Block b) {
-        if (!isDirty() || isLoading) {
+    public void update(Block b) {
+        if (!dirty || isLoading) {
             return;
         }
 
@@ -97,7 +95,7 @@ class ItemFilter implements Predicate<ItemStack> {
     }
 
     private void update(ASlimefunDataContainer data) {
-        if (!isDirty()) {
+        if (!dirty) {
             return;
         }
 
@@ -182,16 +180,11 @@ class ItemFilter implements Predicate<ItemStack> {
     }
 
     @Override
-    public boolean test(@Nonnull ItemStack item) {
-        if (isDirty()) {
+    public boolean test(ItemStack item) {
+        if (dirty) {
             return false;
         }
 
-        Debug.log(TestCase.CARGO_INPUT_TESTING, "ItemFilter#test({})", item);
-        /*
-         * An empty Filter does not need to be iterated over.
-         * We can just return our default value in this scenario.
-         */
         if (items.isEmpty()) {
             return rejectOnMatch;
         }
@@ -213,7 +206,6 @@ class ItemFilter implements Predicate<ItemStack> {
 
         if (potentialMatches == 0) {
             // If there is no match, we can safely assume the default value
-            return rejectOnMatch;
         } else {
             /*
              * If there is more than one potential match, create a wrapper to save
@@ -237,7 +229,7 @@ class ItemFilter implements Predicate<ItemStack> {
             }
 
             // If no particular item was matched, we fallback to our default value.
-            return rejectOnMatch;
         }
+        return rejectOnMatch;
     }
 }

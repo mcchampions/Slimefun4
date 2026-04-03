@@ -26,7 +26,7 @@ public class ReloadCommand extends SubCommand {
     }
 
     @Override
-    public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
+    public void onExecute(CommandSender sender, String[] args) {
         if (sender.hasPermission("slimefun.command.reload") || sender instanceof ConsoleCommandSender) {
             if (Slimefun.getConfigManager().load(true)) {
                 Slimefun.getLocalization().sendMessage(sender, "commands.reload.reload-success", true);

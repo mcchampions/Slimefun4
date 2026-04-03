@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Stream;
-import javax.annotation.Nonnull;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import net.guizhanss.slimefun4.utils.WikiUtils;
@@ -179,11 +179,9 @@ public final class PostSetup {
 
             for (SlimefunItem item : Slimefun.getRegistry().getEnabledSlimefunItems()) {
                 if (item instanceof AContainer machine) {
-                    if (machine.getMachineIdentifier().equals("ELECTRIC_SMELTERY")) {
+                    if ("ELECTRIC_SMELTERY".equals(machine.getMachineIdentifier())) {
                         List<MachineRecipe> recipes = machine.getMachineRecipes();
-                        Collections.sort(
-                                recipes,
-                                Comparator.comparingInt(recipe -> recipe == null ? 0 : -recipe.getInput().length));
+                        recipes.sort(Comparator.comparingInt(recipe -> recipe == null ? 0 : -recipe.getInput().length));
                     }
                 }
             }
@@ -201,20 +199,20 @@ public final class PostSetup {
         }
 
         // We want to redirect Dust to Ingot Recipes
-        if (ingredients.size() == 1 && isDust(ingredients.get(0))) {
-            makeshiftSmeltery.addRecipe(new ItemStack[] {ingredients.get(0)}, output[0]);
+        if (ingredients.size() == 1 && isDust(ingredients.getFirst())) {
+            makeshiftSmeltery.addRecipe(new ItemStack[] {ingredients.getFirst()}, output[0]);
 
             registerMachineRecipe(
-                    "ELECTRIC_INGOT_FACTORY", 8, new ItemStack[] {ingredients.get(0)}, new ItemStack[] {output[0]});
+                    "ELECTRIC_INGOT_FACTORY", 8, new ItemStack[] {ingredients.getFirst()}, new ItemStack[] {output[0]});
             registerMachineRecipe(
-                    "ELECTRIC_INGOT_PULVERIZER", 3, new ItemStack[] {output[0]}, new ItemStack[] {ingredients.get(0)});
+                    "ELECTRIC_INGOT_PULVERIZER", 3, new ItemStack[] {output[0]}, new ItemStack[] {ingredients.getFirst()});
         } else {
             registerMachineRecipe(
                     "ELECTRIC_SMELTERY", 12, ingredients.toArray(new ItemStack[0]), new ItemStack[] {output[0]});
         }
     }
 
-    private static boolean isDust(@Nonnull ItemStack item) {
+    private static boolean isDust(ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
         return sfItem != null && sfItem.getId().endsWith("_DUST");
     }

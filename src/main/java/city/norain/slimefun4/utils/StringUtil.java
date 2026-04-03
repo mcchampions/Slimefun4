@@ -4,6 +4,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.Univers
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import java.lang.management.ThreadInfo;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 import org.bukkit.inventory.ItemStack;
@@ -27,10 +28,10 @@ public class StringUtil {
 
     public static Set<UniversalDataTrait> getTraitsFromStr(String str) {
         if (str == null || str.isEmpty()) {
-            return new HashSet<>();
+            return EnumSet.noneOf(UniversalDataTrait.class);
         }
 
-        var traits = new HashSet<UniversalDataTrait>();
+        var traits = EnumSet.noneOf(UniversalDataTrait.class);
 
         for (String t : str.split(",")) {
             try {
@@ -114,13 +115,10 @@ public class StringUtil {
     }
 
     private static String getThreadStateDescription(ThreadInfo threadInfo) {
-        switch (threadInfo.getThreadState()) {
-            case BLOCKED:
-                return "blocked on " + threadInfo.getLockName();
-            case WAITING, TIMED_WAITING:
-                return "waiting on " + threadInfo.getLockName();
-            default:
-                return threadInfo.getThreadState().toString().toLowerCase();
-        }
+        return switch (threadInfo.getThreadState()) {
+            case BLOCKED -> "blocked on " + threadInfo.getLockName();
+            case WAITING, TIMED_WAITING -> "waiting on " + threadInfo.getLockName();
+            default -> threadInfo.getThreadState().toString().toLowerCase();
+        };
     }
 }

@@ -151,7 +151,7 @@ public class BlockPlacer extends SlimefunItem {
      *
      * @return Whether placing this {@link Material} is allowed
      */
-    private boolean isAllowed(@Nonnull Block facedBlock, @Nonnull Material type) {
+    private boolean isAllowed(Block facedBlock, Material type) {
         if (!type.isBlock()) {
             // Make sure the material is actually a block.
             return false;

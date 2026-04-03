@@ -82,7 +82,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         };
     }
 
-    private void constructMenu(@Nonnull BlockMenuPreset preset) {
+    private void constructMenu(BlockMenuPreset preset) {
         for (int i : border) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
@@ -131,7 +131,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         return 512;
     }
 
-    protected void tick(@Nonnull Block b) {
+    protected void tick(Block b) {
         Block fluid = b.getRelative(BlockFace.DOWN);
 
         if (fluid.isLiquid() && getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
@@ -182,7 +182,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         }
     }
 
-    @Nullable private Block findNextFluid(@Nonnull Block fluid) {
+    @Nullable private Block findNextFluid(Block fluid) {
         if (fluid.getType() == Material.WATER || fluid.getType() == Material.BUBBLE_COLUMN) {
             /**
              * With water we can be sure to find an infinite source whenever we
@@ -207,7 +207,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         return null;
     }
 
-    private @Nonnull ItemStack getFilledBottle(@Nonnull Block fluid) {
+    private ItemStack getFilledBottle(Block fluid) {
         switch (fluid.getType()) {
             case WATER:
             case BUBBLE_COLUMN:
@@ -221,7 +221,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
         }
     }
 
-    private @Nonnull ItemStack getFilledBucket(@Nonnull Block fluid) {
+    private ItemStack getFilledBucket(Block fluid) {
         return switch (fluid.getType()) {
             case LAVA -> new ItemStack(Material.LAVA_BUCKET);
             case WATER, BUBBLE_COLUMN -> new ItemStack(Material.WATER_BUCKET);
@@ -239,7 +239,7 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
      *
      * @return Whether that {@link Block} is a liquid and a source {@link Block}.
      */
-    private boolean isSource(@Nonnull Block block) {
+    private boolean isSource(Block block) {
         if (block.isLiquid()) {
             BlockData data = block.getBlockData();
 

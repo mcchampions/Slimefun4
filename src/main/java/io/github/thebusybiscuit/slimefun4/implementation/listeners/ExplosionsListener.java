@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.cargo.CargoNode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.ExplosionResult;
 import org.bukkit.Location;
@@ -38,7 +37,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ExplosionsListener implements Listener {
 
-    public ExplosionsListener(@Nonnull Slimefun plugin) {
+    public ExplosionsListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -67,7 +66,7 @@ public class ExplosionsListener implements Listener {
         removeResistantBlocks(e.blockList().iterator());
     }
 
-    private void removeResistantBlocks(@Nonnull Iterator<Block> blocks) {
+    private void removeResistantBlocks(Iterator<Block> blocks) {
         while (blocks.hasNext()) {
             Block block = blocks.next();
             var loc = block.getLocation();
@@ -78,7 +77,6 @@ public class ExplosionsListener implements Listener {
                 blocks.remove();
                 // add WitherProof api
                 if (item instanceof WitherProof) {
-                    continue;
                 } else {
                     Runnable destroyTask = () -> {
                         block.setType(Material.AIR);

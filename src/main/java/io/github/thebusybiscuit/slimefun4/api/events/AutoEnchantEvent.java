@@ -25,13 +25,13 @@ public class AutoEnchantEvent extends Event implements Cancellable {
     private Block block;
     private boolean cancelled;
 
-    public AutoEnchantEvent(@Nonnull ItemStack item) {
+    public AutoEnchantEvent(ItemStack item) {
         super(true);
 
         this.item = item;
     }
 
-    public AutoEnchantEvent(@Nonnull ItemStack item, @Nullable Block block) {
+    public AutoEnchantEvent(ItemStack item, @Nullable Block block) {
         super(true);
 
         this.item = item;
@@ -75,6 +75,6 @@ public class AutoEnchantEvent extends Event implements Cancellable {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return getHandlerList();
+        return handlers;
     }
 }

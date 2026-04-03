@@ -14,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArraySet;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -256,7 +255,7 @@ public class StorageCacheUtils {
         return uniData.getMenu();
     }
 
-    public static boolean isBlockPendingRemove(@Nonnull Block block) {
+    public static boolean isBlockPendingRemove(Block block) {
         if (hasBlock(block.getLocation())) {
             return getBlock(block.getLocation()).isPendingRemove();
         }

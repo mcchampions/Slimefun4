@@ -40,7 +40,7 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @return The generated output energy of this {@link EnergyNetProvider}
      */
     @Deprecated(forRemoval = true)
-    default int getGeneratedOutput(@Nonnull Location l, @Nonnull SlimefunBlockData data) {
+    default int getGeneratedOutput(Location l, SlimefunBlockData data) {
         return getGeneratedOutput(l, new BlockDataConfigWrapper(data));
     }
 
@@ -56,7 +56,7 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @param data The stored {@link SlimefunBlockData}
      * @return The generated output energy of this {@link EnergyNetProvider}.
      */
-    default int getGeneratedOutput(@Nonnull Location l, @Nonnull ASlimefunDataContainer data) {
+    default int getGeneratedOutput(Location l, ASlimefunDataContainer data) {
         if (data instanceof SlimefunBlockData blockData) {
             return getGeneratedOutput(l, blockData);
         }
@@ -75,7 +75,7 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @return The generated output energy of this {@link EnergyNetProvider}
      */
     @Deprecated(forRemoval = true)
-    default int getGeneratedOutput(@Nonnull Location l, @Nonnull Config data) {
+    default int getGeneratedOutput(Location l, Config data) {
         return 0;
     }
 
@@ -87,7 +87,7 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @return The generated output energy of this {@link EnergyNetProvider}.
      */
     @Deprecated(forRemoval = true)
-    default long getGeneratedOutputLong(@Nonnull Location l, @Nonnull SlimefunBlockData data) {
+    default long getGeneratedOutputLong(Location l, SlimefunBlockData data) {
         return getGeneratedOutput(l, (ASlimefunDataContainer) data);
     }
 
@@ -100,7 +100,7 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @param data The stored block data
      * @return The generated output energy of this {@link EnergyNetProvider}.
      */
-    default long getGeneratedOutputLong(@Nonnull Location l, @Nonnull ASlimefunDataContainer data) {
+    default long getGeneratedOutputLong(Location l, ASlimefunDataContainer data) {
         if (data instanceof SlimefunBlockData blockData) {
             return getGeneratedOutputLong(l, blockData);
         }
@@ -116,7 +116,7 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @param data The stored block data
      * @return Whether or not this {@link Location} will explode.
      */
-    default boolean willExplode(@Nonnull Location l, @Nonnull ASlimefunDataContainer data) {
+    default boolean willExplode(Location l, ASlimefunDataContainer data) {
         if (data instanceof SlimefunBlockData blockData) {
             return willExplode(l, blockData);
         }
@@ -133,7 +133,7 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @return Whether or not this {@link Location} will explode.
      */
     @Deprecated(forRemoval = true)
-    default boolean willExplode(@Nonnull Location l, @Nonnull SlimefunBlockData data) {
+    default boolean willExplode(Location l, SlimefunBlockData data) {
         return willExplode(l, new BlockDataConfigWrapper(data));
     }
 
@@ -147,7 +147,7 @@ public interface EnergyNetProvider extends EnergyNetComponent {
      * @return Whether or not this {@link Location} will explode.
      */
     @Deprecated(forRemoval = true)
-    default boolean willExplode(@Nonnull Location l, @Nonnull Config data) {
+    default boolean willExplode(Location l, Config data) {
         return false;
     }
 }

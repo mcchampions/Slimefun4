@@ -150,7 +150,7 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
     }
 
     @Override
-    public int getGeneratedOutput(@Nonnull Location l, @Nonnull ASlimefunDataContainer data) {
+    public int getGeneratedOutput(Location l, ASlimefunDataContainer data) {
         BlockMenu inv = StorageCacheUtils.getMenu(l);
         FuelOperation operation = processor.getOperation(l);
 
@@ -161,15 +161,15 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
                 if (isChargeable()) {
                     long charge = getChargeLong(l, data);
 
-                    if (getCapacityLong() - charge >= getEnergyProduction()) {
+                    if (getCapacityLong() - charge >= energyProducedPerTick) {
                         operation.addProgress(1);
-                        return getEnergyProduction();
+                        return energyProducedPerTick;
                     }
 
                     return 0;
                 } else {
                     operation.addProgress(1);
-                    return getEnergyProduction();
+                    return energyProducedPerTick;
                 }
             } else {
                 ItemStack fuel = operation.getIngredient();
@@ -279,20 +279,20 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
     }
 
     @Override
-    public void register(@Nonnull SlimefunAddon addon) {
+    public void register(SlimefunAddon addon) {
         this.addon = addon;
 
-        if (getCapacity() < 0) {
+        if (energyCapacity < 0) {
             warn("The capacity has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyCapacity(...)' before registering!");
         }
 
-        if (getEnergyProduction() <= 0) {
+        if (energyProducedPerTick <= 0) {
             warn("The energy consumption has not been configured correctly. The Item was disabled.");
             warn("Make sure to call '" + getClass().getSimpleName() + "#setEnergyProduction(...)' before registering!");
         }
 
-        if (getCapacity() >= 0 && getEnergyProduction() > 0) {
+        if (energyCapacity >= 0 && energyProducedPerTick > 0) {
             super.register(addon);
         }
     }

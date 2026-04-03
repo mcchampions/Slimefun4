@@ -1,8 +1,11 @@
 package com.xzavier0722.mc.plugin.slimefun4.storage.controller;
 
 import city.norain.slimefun4.api.menu.UniversalMenu;
+import com.xzavier0722.mc.plugin.slimefun4.storage.common.FieldKey;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.attributes.UniversalDataTrait;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +24,7 @@ public class SlimefunUniversalData extends ASlimefunDataContainer {
     @Setter
     private volatile UniversalMenu menu;
 
-    private final Set<UniversalDataTrait> traits = new HashSet<>();
+    private final Set<UniversalDataTrait> traits = EnumSet.noneOf(UniversalDataTrait.class);
 
     @ParametersAreNonnullByDefault
     SlimefunUniversalData(UUID uuid, String sfId) {

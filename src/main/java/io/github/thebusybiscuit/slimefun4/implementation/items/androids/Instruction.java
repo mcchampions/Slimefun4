@@ -294,7 +294,7 @@ public enum Instruction {
      *
      * @return The {@link Instruction} or null if it does not exist.
      */
-    @Nullable public static Instruction getInstruction(@Nonnull String value) {
+    @Nullable public static Instruction getInstruction(String value) {
         Validate.notNull(value, "An Instruction cannot be null!");
         return nameLookup.get(value);
     }

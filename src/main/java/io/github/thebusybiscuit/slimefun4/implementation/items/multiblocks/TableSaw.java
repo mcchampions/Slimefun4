@@ -12,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.OutputChes
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
@@ -93,7 +92,7 @@ public class TableSaw extends MultiBlockMachine {
      *
      * @return An {@link Optional} containing the corresponding plank type (or an empty {@link Optional})
      */
-    private @Nonnull Optional<Material> getPlanks(@Nonnull Material log) {
+    private Optional<Material> getPlanks(Material log) {
         String materialName = log.name().replace("STRIPPED_", "");
         int endIndex = materialName.lastIndexOf('_');
 
@@ -113,7 +112,7 @@ public class TableSaw extends MultiBlockMachine {
     }
 
     @Override
-    public void onInteract(@Nonnull Player p, @Nonnull Block b) {
+    public void onInteract(Player p, Block b) {
         ItemStack item = p.getInventory().getItemInMainHand();
         ItemStack output = getOutputFromMaterial(item.getType());
 
@@ -142,15 +141,11 @@ public class TableSaw extends MultiBlockMachine {
         b.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, item.getType());
     }
 
-    private @Nullable ItemStack getOutputFromMaterial(@Nonnull Material item) {
+    private @Nullable ItemStack getOutputFromMaterial(Material item) {
         if (Tag.LOGS.isTagged(item)) {
             Optional<Material> planks = getPlanks(item);
 
-            if (planks.isPresent()) {
-                return new ItemStack(planks.get(), 8);
-            } else {
-                return null;
-            }
+            return planks.map(material -> new ItemStack(material, 8)).orElse(null);
         } else if (Tag.PLANKS.isTagged(item)) {
             return new ItemStack(Material.STICK, 4);
         } else {
@@ -158,7 +153,7 @@ public class TableSaw extends MultiBlockMachine {
         }
     }
 
-    private void outputItems(@Nonnull Block b, @Nonnull ItemStack output) {
+    private void outputItems(Block b, ItemStack output) {
         Optional<Inventory> outputChest = OutputChest.findOutputChestFor(b, output);
 
         if (outputChest.isPresent()) {

@@ -6,7 +6,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import javax.annotation.Nonnull;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +24,7 @@ public class DeathpointListener implements Listener {
 
     private final DateTimeFormatter format = DateTimeFormatter.ofPattern("(MMM dd, yyyy @ hh:mm)", Locale.ROOT);
 
-    public DeathpointListener(@Nonnull Slimefun plugin) {
+    public DeathpointListener(Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

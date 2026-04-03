@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.function.Consumer;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
@@ -43,10 +42,10 @@ public class SlimefunItemStack extends ItemStack {
     private String id;
     private ItemMetaSnapshot itemMetaSnapshot;
 
-    private boolean locked = false;
-    private String texture = null;
+    private boolean locked;
+    private String texture;
 
-    public SlimefunItemStack(@Nonnull String id, @Nonnull ItemStack item) {
+    public SlimefunItemStack(String id, ItemStack item) {
         super(item.getType(), item.getAmount());
 
         if (item.hasItemMeta()) {
@@ -72,7 +71,7 @@ public class SlimefunItemStack extends ItemStack {
         setItemMeta(meta);
     }
 
-    public SlimefunItemStack(@Nonnull String id, @Nonnull ItemStack item, @Nonnull Consumer<ItemMeta> consumer) {
+    public SlimefunItemStack(String id, ItemStack item, Consumer<ItemMeta> consumer) {
         this(id, item);
 
         ItemMeta im = getItemMeta();
@@ -80,12 +79,12 @@ public class SlimefunItemStack extends ItemStack {
         setItemMeta(im);
     }
 
-    public SlimefunItemStack(@Nonnull String id, @Nonnull Material type, @Nonnull Consumer<ItemMeta> consumer) {
+    public SlimefunItemStack(String id, Material type, Consumer<ItemMeta> consumer) {
         this(id, new ItemStack(type), consumer);
     }
 
     public SlimefunItemStack(
-            @Nonnull String id, @Nonnull Material type, @Nullable String name, @Nonnull Consumer<ItemMeta> consumer) {
+            String id, Material type, @Nullable String name, Consumer<ItemMeta> consumer) {
         this(id, type, meta -> {
             if (name != null) {
                 meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
@@ -95,7 +94,7 @@ public class SlimefunItemStack extends ItemStack {
         });
     }
 
-    public SlimefunItemStack(@Nonnull String id, @Nonnull ItemStack item, @Nullable String name, String... lore) {
+    public SlimefunItemStack(String id, ItemStack item, @Nullable String name, String... lore) {
         this(id, item, im -> {
             if (name != null) {
                 im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
@@ -112,12 +111,12 @@ public class SlimefunItemStack extends ItemStack {
         });
     }
 
-    public SlimefunItemStack(@Nonnull String id, @Nonnull Material type, @Nullable String name, String... lore) {
+    public SlimefunItemStack(String id, Material type, @Nullable String name, String... lore) {
         this(id, new ItemStack(type), name, lore);
     }
 
     public SlimefunItemStack(
-            @Nonnull String id, @Nonnull Material type, @Nonnull Color color, @Nullable String name, String... lore) {
+            String id, Material type, Color color, @Nullable String name, String... lore) {
         this(id, type, im -> {
             if (name != null) {
                 im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
@@ -144,9 +143,9 @@ public class SlimefunItemStack extends ItemStack {
     }
 
     public SlimefunItemStack(
-            @Nonnull String id,
-            @Nonnull Color color,
-            @Nonnull PotionEffect effect,
+            String id,
+            Color color,
+            PotionEffect effect,
             @Nullable String name,
             String... lore) {
         this(id, Material.POTION, im -> {
@@ -175,22 +174,22 @@ public class SlimefunItemStack extends ItemStack {
         });
     }
 
-    public SlimefunItemStack(@Nonnull SlimefunItemStack item, int amount) {
-        this(item.getItemId(), item);
+    public SlimefunItemStack(SlimefunItemStack item, int amount) {
+        this(item.id, item);
         setAmount(amount);
     }
 
-    public SlimefunItemStack(@Nonnull String id, @Nonnull String texture, @Nullable String name, String... lore) {
+    public SlimefunItemStack(String id, String texture, @Nullable String name, String... lore) {
         this(id, getSkull(id, texture), name, lore);
         this.texture = getTexture(id, texture);
     }
 
-    public SlimefunItemStack(@Nonnull String id, @Nonnull HeadTexture head, @Nullable String name, String... lore) {
+    public SlimefunItemStack(String id, HeadTexture head, @Nullable String name, String... lore) {
         this(id, head.getTexture(), name, lore);
     }
 
     public SlimefunItemStack(
-            @Nonnull String id, @Nonnull String texture, @Nullable String name, @Nonnull Consumer<ItemMeta> consumer) {
+            String id, String texture, @Nullable String name, Consumer<ItemMeta> consumer) {
         this(id, getSkull(id, texture), meta -> {
             if (name != null) {
                 meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
@@ -202,7 +201,7 @@ public class SlimefunItemStack extends ItemStack {
         this.texture = getTexture(id, texture);
     }
 
-    public SlimefunItemStack(@Nonnull String id, @Nonnull String texture, @Nonnull Consumer<ItemMeta> consumer) {
+    public SlimefunItemStack(String id, String texture, Consumer<ItemMeta> consumer) {
         this(id, getSkull(id, texture), consumer);
         this.texture = getTexture(id, texture);
     }
@@ -212,7 +211,7 @@ public class SlimefunItemStack extends ItemStack {
      *
      * @return The {@link SlimefunItem} id for this {@link SlimefunItemStack}
      */
-    public final @Nonnull String getItemId() {
+    public final String getItemId() {
         return id;
     }
 
@@ -240,12 +239,12 @@ public class SlimefunItemStack extends ItemStack {
      *
      * @return The {@link SlimefunItem} this {@link SlimefunItem} represents, casted to the given type
      */
-    public @Nullable <T extends SlimefunItem> T getItem(@Nonnull Class<T> type) {
+    public @Nullable <T extends SlimefunItem> T getItem(Class<T> type) {
         SlimefunItem item = getItem();
         return type.isInstance(item) ? type.cast(item) : null;
     }
 
-    public @Nonnull ItemMetaSnapshot getItemMetaSnapshot() {
+    public ItemMetaSnapshot getItemMetaSnapshot() {
         return itemMetaSnapshot;
     }
 
@@ -279,7 +278,7 @@ public class SlimefunItemStack extends ItemStack {
         locked = true;
     }
 
-    public @Nonnull Optional<String> getSkullTexture() {
+    public Optional<String> getSkullTexture() {
         return Optional.ofNullable(texture);
     }
 
@@ -292,7 +291,7 @@ public class SlimefunItemStack extends ItemStack {
         return itemMetaSnapshot.getDisplayName().orElse(null);
     }
 
-    private static @Nonnull ItemStack getSkull(@Nonnull String id, @Nonnull String texture) {
+    private static ItemStack getSkull(String id, String texture) {
         if (Slimefun.getMinecraftVersion() == MinecraftVersion.UNIT_TEST) {
             return new ItemStack(Material.PLAYER_HEAD);
         }
@@ -301,7 +300,7 @@ public class SlimefunItemStack extends ItemStack {
         return PlayerHead.getItemStack(skin);
     }
 
-    private static @Nonnull String getTexture(@Nonnull String id, @Nonnull String texture) {
+    private static String getTexture(String id, String texture) {
         Validate.notNull(id, "The id cannot be null");
         Validate.notNull(texture, "The texture cannot be null");
 

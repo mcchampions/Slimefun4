@@ -19,7 +19,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.tasks.AncientAltarTask;
 import io.github.thebusybiscuit.slimefun4.utils.ArmorStandUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.Optional;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.GameMode;
@@ -63,11 +62,11 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         addItemHandler(onBreak());
     }
 
-    private @Nonnull BlockBreakHandler onBreak() {
+    private BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
-            public void onBlockBreak(@Nonnull Block b) {
+            public void onBlockBreak(Block b) {
                 Optional<Item> entity = getPlacedItem(b);
                 ArmorStand armorStand = getArmorStand(b, false);
 
@@ -89,11 +88,11 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
     }
 
     @Override
-    public @Nonnull BlockDispenseHandler getItemHandler() {
+    public BlockDispenseHandler getItemHandler() {
         return (e, d, block, machine) -> e.setCancelled(true);
     }
 
-    public @Nonnull Optional<Item> getPlacedItem(@Nonnull Block pedestal) {
+    public Optional<Item> getPlacedItem(Block pedestal) {
         Location l = pedestal.getLocation().add(0.5, 1.2, 0.5);
 
         for (Entity n : l.getWorld().getNearbyEntities(l, 0.5, 0.5, 0.5, AncientPedestal::testItem)) {
@@ -105,7 +104,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         return Optional.empty();
     }
 
-    public @Nullable ArmorStand getArmorStand(@Nonnull Block pedestal, boolean createIfNoneExists) {
+    public @Nullable ArmorStand getArmorStand(Block pedestal, boolean createIfNoneExists) {
         Optional<Item> entity = getPlacedItem(pedestal);
 
         if (entity.isPresent() && entity.get().getVehicle() instanceof ArmorStand armorStand) {
@@ -141,7 +140,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         }
     }
 
-    public @Nonnull ItemStack getOriginalItemStack(@Nonnull Item item) {
+    public ItemStack getOriginalItemStack(Item item) {
         ItemStack stack = item.getItemStack().clone();
         ItemMeta im = stack.getItemMeta();
         String customName = item.getCustomName();
@@ -156,7 +155,7 @@ public class AncientPedestal extends SimpleSlimefunItem<BlockDispenseHandler> im
         return stack;
     }
 
-    public void placeItem(@Nonnull Player p, @Nonnull Block b) {
+    public void placeItem(Player p, Block b) {
         ItemStack hand = p.getInventory().getItemInMainHand();
         String displayName = ITEM_PREFIX + System.nanoTime();
         ItemStack displayItem = new CustomItemStack(hand, displayName);

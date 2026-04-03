@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.SlimefunBackpack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ThreadUtils;
-import javax.annotation.Nonnull;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -36,7 +36,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
         super(itemGroup, item, recipe, trigger);
     }
 
-    protected @Nonnull Inventory createVirtualInventory(@Nonnull Inventory inv) {
+    protected Inventory createVirtualInventory(Inventory inv) {
         Inventory fakeInv = Bukkit.createInventory(null, 9, "Fake Inventory");
 
         for (int j = 0; j < inv.getContents().length; j++) {

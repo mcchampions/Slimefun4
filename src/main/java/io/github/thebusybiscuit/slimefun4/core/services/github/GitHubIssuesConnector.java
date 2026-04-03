@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 class GitHubIssuesConnector extends GitHubConnector {
@@ -21,7 +20,7 @@ class GitHubIssuesConnector extends GitHubConnector {
     }
 
     @Override
-    public void onSuccess(@Nonnull JsonElement response) {
+    public void onSuccess(JsonElement response) {
         if (response.isJsonArray()) {
             JsonArray array = response.getAsJsonArray();
 

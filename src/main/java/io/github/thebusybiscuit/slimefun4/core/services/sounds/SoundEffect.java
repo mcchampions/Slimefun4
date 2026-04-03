@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedSound;
 import java.util.Locale;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -113,7 +112,7 @@ public enum SoundEffect {
     private final float defaultVolume;
     private final float defaultPitch;
 
-    SoundEffect(@Nonnull String sound, float volume, float pitch) {
+    SoundEffect(String sound, float volume, float pitch) {
         Preconditions.checkNotNull(sound, "The Sound id cannot be null!");
         Preconditions.checkArgument(volume >= 0, "The volume cannot be a negative number.");
         Preconditions.checkArgument(pitch >= 0.5, "A pitch below 0.5 has no effect on the sound.");
@@ -123,7 +122,7 @@ public enum SoundEffect {
         this.defaultPitch = pitch;
     }
 
-    SoundEffect(@Nonnull Sound sound, float volume, float pitch) {
+    SoundEffect(Sound sound, float volume, float pitch) {
         Preconditions.checkNotNull(sound, "The Sound id cannot be null!");
         Preconditions.checkArgument(volume >= 0, "The volume cannot be a negative number.");
         Preconditions.checkArgument(pitch >= 0.5, "A pitch below 0.5 has no effect on the sound.");
@@ -150,7 +149,7 @@ public enum SoundEffect {
      *
      * @param player The {@link Player} which to play the {@link Sound} to.
      */
-    public void playFor(@Nonnull Player player) {
+    public void playFor(Player player) {
         Preconditions.checkNotNull(player, "Cannot play sounds to a Player that is null!");
         SoundConfiguration config = getConfiguration();
 
@@ -174,7 +173,7 @@ public enum SoundEffect {
      * @param loc      The {@link Location} at which to play the {@link SoundEffect}.
      * @param category The {@link SoundCategory} that should be used.
      */
-    public void playAt(@Nonnull Location loc, @Nonnull SoundCategory category) {
+    public void playAt(Location loc, SoundCategory category) {
         Preconditions.checkNotNull(loc, "The location should not be null.");
         SoundConfiguration config = getConfiguration();
 
@@ -195,7 +194,7 @@ public enum SoundEffect {
      *
      * @param block The {@link Block} at which to play the {@link SoundEffect}
      */
-    public void playAt(@Nonnull Block block) {
+    public void playAt(Block block) {
         Preconditions.checkNotNull(block, "The block cannot be null.");
         playAt(block.getLocation(), SoundCategory.BLOCKS);
     }
@@ -205,7 +204,7 @@ public enum SoundEffect {
      *
      * @return The default sound id.
      */
-    public @Nonnull String getDefaultSoundId() {
+    public String getDefaultSoundId() {
         return defaultSound;
     }
 

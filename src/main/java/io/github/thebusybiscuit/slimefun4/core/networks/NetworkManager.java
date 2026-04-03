@@ -1,11 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.core.networks;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.network.Network;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
-import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.core.networks.cargo.CargoNet;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.NetworkListener;
@@ -117,7 +114,7 @@ public class NetworkManager {
     }
 
     @Nonnull
-    public <T extends Network> Optional<T> getNetworkFromLocation(@Nullable Location l, @Nonnull Class<T> type) {
+    public <T extends Network> Optional<T> getNetworkFromLocation(@Nullable Location l, Class<T> type) {
         if (l == null) {
             return Optional.empty();
         }
@@ -134,7 +131,7 @@ public class NetworkManager {
     }
 
     @Nonnull
-    public <T extends Network> List<T> getNetworksFromLocation(@Nullable Location l, @Nonnull Class<T> type) {
+    public <T extends Network> List<T> getNetworksFromLocation(@Nullable Location l, Class<T> type) {
         if (l == null) {
             // No networks here, if the location does not even exist
             return new ArrayList<>();
@@ -158,11 +155,8 @@ public class NetworkManager {
      * @param network
      *            The {@link Network} to register
      */
-    public void registerNetwork(@Nonnull Network network) {
+    public void registerNetwork(Network network) {
         Validate.notNull(network, "Cannot register a null Network");
-
-        Debug.log(
-                TestCase.ENERGYNET, "Registering network @ " + LocationUtils.locationToString(network.getRegulator()));
 
         networks.add(network);
     }
@@ -173,12 +167,8 @@ public class NetworkManager {
      * @param network
      *            The {@link Network} to remove
      */
-    public void unregisterNetwork(@Nonnull Network network) {
+    public void unregisterNetwork(Network network) {
         Validate.notNull(network, "Cannot unregister a null Network");
-
-        Debug.log(
-                TestCase.ENERGYNET,
-                "Unregistering network @ " + LocationUtils.locationToString(network.getRegulator()));
 
         networks.remove(network);
     }
@@ -190,11 +180,7 @@ public class NetworkManager {
      * @param l
      *            The {@link Location} to update
      */
-    public void updateAllNetworks(@Nonnull Location l) {
-        Validate.notNull(l, "The Location cannot be null");
-
-        Debug.log(TestCase.ENERGYNET, "Updating all networks now.");
-
+    public void updateAllNetworks(Location l) {
         try {
             /*
              * No need to create a sublist and loop through it if

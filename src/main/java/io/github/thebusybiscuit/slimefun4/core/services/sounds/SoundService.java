@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -27,15 +26,17 @@ public class SoundService {
      */
     private final Map<SoundEffect, SoundConfiguration> soundMap = new EnumMap<>(SoundEffect.class);
 
-    public SoundService(@Nonnull Slimefun plugin) {
+    public SoundService(Slimefun plugin) {
         config = new Config(plugin, "sounds.yml");
 
         // @formatter:off
         config.getConfiguration()
                 .options()
-                .header("This file is used to assign the sounds which Slimefun will play.\n"
-                        + "You can fully customize any sound you want and even change their pitch\n"
-                        + "and volume. To disable a sound, simply set the volume to zero.\n");
+                .header("""
+This file is used to assign the sounds which Slimefun will play.
+You can fully customize any sound you want and even change their pitch
+and volume. To disable a sound, simply set the volume to zero.
+""");
         // @formatter:on
 
         config.getConfiguration().options().copyHeader();
@@ -69,7 +70,7 @@ public class SoundService {
         }
     }
 
-    private void reloadSound(@Nonnull SoundEffect sound) {
+    private void reloadSound(SoundEffect sound) {
         // Set up default values
         config.setDefaultValue(sound.name() + ".sound", sound.getDefaultSoundId());
         config.setDefaultValue(sound.name() + ".volume", sound.getDefaultVolume());
@@ -113,7 +114,7 @@ public class SoundService {
      *
      * @return The corresponding {@link SoundConfiguration}. This may be null if something went wrong
      */
-    public @Nullable SoundConfiguration getConfiguration(@Nonnull SoundEffect sound) {
+    public @Nullable SoundConfiguration getConfiguration(SoundEffect sound) {
         Preconditions.checkNotNull(sound, "The sound must not be null!");
         return soundMap.get(sound);
     }

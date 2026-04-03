@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.utils.compatibility;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.lang.reflect.Field;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.bukkit.entity.EntityType;
 
@@ -24,7 +23,7 @@ public class VersionedEntityType {
         SNOW_GOLEM = version.isAtLeast(MinecraftVersion.MINECRAFT_1_20_5) ? EntityType.SNOW_GOLEM : getKey("SNOWMAN");
     }
 
-    @Nullable private static EntityType getKey(@Nonnull String key) {
+    @Nullable private static EntityType getKey(String key) {
         try {
             Field field = EntityType.class.getDeclaredField(key);
             return (EntityType) field.get(null);

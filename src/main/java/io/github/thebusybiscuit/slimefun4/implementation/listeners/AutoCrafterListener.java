@@ -49,7 +49,7 @@ public class AutoCrafterListener implements Listener {
             Optional<SlimefunItem> slimefunBlock = e.getSlimefunBlock();
 
             // Check if the clicked Block is a Slimefun block.
-            if (!slimefunBlock.isPresent()) {
+            if (slimefunBlock.isEmpty()) {
                 return;
             }
 
