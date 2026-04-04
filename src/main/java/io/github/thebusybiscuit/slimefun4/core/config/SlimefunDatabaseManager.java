@@ -61,7 +61,11 @@ public class SlimefunDatabaseManager {
                 plugin.getLogger().log(Level.WARNING, "检测到 block-storage 连接池大小配置小于读写线程总和, 可能会导致性能问题");
             }
 
-            initAdapter(blockDataStorageType, DataType.BLOCK_STORAGE, blockStorageConfig);
+            try {
+                initAdapter(blockDataStorageType, DataType.BLOCK_STORAGE, blockStorageConfig);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             var blockDataController =
                     ControllerHolder.createController(BlockDataController.class, blockDataStorageType);
@@ -86,7 +90,11 @@ public class SlimefunDatabaseManager {
             plugin.getLogger().log(Level.WARNING, "检测到 profile-storage 连接池大小配置小于读写线程总和, 可能会导致性能问题");
         }
 
-        initAdapter(profileStorageType, DataType.PLAYER_PROFILE, profileConfig);
+        try {
+            initAdapter(profileStorageType, DataType.PLAYER_PROFILE, profileConfig);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         var profileController = ControllerHolder.createController(ProfileDataController.class, profileStorageType);
         profileController.init(profileAdapter, readExecutorThread, writeExecutorThread);
     }
