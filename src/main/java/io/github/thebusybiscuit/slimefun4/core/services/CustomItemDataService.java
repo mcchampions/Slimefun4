@@ -5,6 +5,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import io.papermc.paper.persistence.PersistentDataContainerView;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
@@ -100,8 +102,8 @@ public class CustomItemDataService implements Keyed {
         if (item == null || item.getType() == Material.AIR || !item.hasItemMeta()) {
             return Optional.empty();
         }
-
-        return getItemData(item.getItemMeta());
+        PersistentDataContainerView container = item.getPersistentDataContainer();
+        return Optional.ofNullable(container.get(namespacedKey, PersistentDataType.STRING));
     }
 
     /**

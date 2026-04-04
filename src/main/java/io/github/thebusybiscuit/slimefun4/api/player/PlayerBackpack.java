@@ -64,7 +64,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         Executor executor = runCbOnMainThread
                 ? ThreadUtils.getMainDelayedExecutor()
                 : Slimefun.getDatabaseManager().getProfileDataController().getCallbackExecutor();
-        var bUuid = getBackpackUUID(item.getItemMeta());
+        var bUuid = getBackpackUUID(item);
         if (bUuid.isPresent()) {
             Slimefun.getDatabaseManager()
                     .getProfileDataController()
@@ -118,7 +118,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
             return CompletableFuture.completedFuture(null);
         }
 
-        var bUuid = getBackpackUUID(item.getItemMeta());
+        var bUuid = getBackpackUUID(item);
         if (bUuid.isPresent()) {
             return Slimefun.getDatabaseManager().getProfileDataController().getBackpackAsync(bUuid.get());
         }
@@ -152,6 +152,12 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
             return Optional.empty();
         }
         return Optional.ofNullable(meta.getPersistentDataContainer().get(KEY_BACKPACK_UUID, PersistentDataType.STRING));
+    }
+    public static Optional<String> getBackpackUUID(ItemStack itemStack) {
+        if (itemStack == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(itemStack.getPersistentDataContainer().get(KEY_BACKPACK_UUID, PersistentDataType.STRING));
     }
 
     public static Optional<String> getOwnerUUID(ItemMeta meta) {
