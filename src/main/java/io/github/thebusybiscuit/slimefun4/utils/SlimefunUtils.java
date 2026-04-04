@@ -476,12 +476,12 @@ public final class SlimefunUtils {
             boolean checkLore,
             boolean checkCustomModelCheck) {
         if (itemMeta.hasDisplayName() != sfitemMeta.hasDisplayName()) {
-            Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing has display name failed");
+            
             return false;
         } else if (itemMeta.hasDisplayName()
                 && sfitemMeta.hasDisplayName()
                 && !itemMeta.getDisplayName().equals(sfitemMeta.getDisplayName())) {
-            Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing display name failed");
+            
             return false;
         } else if (checkLore) {
             boolean hasItemMetaLore = itemMeta.hasLore();
@@ -489,11 +489,11 @@ public final class SlimefunUtils {
 
             if (hasItemMetaLore && hasSfItemMetaLore) {
                 if (!equalsLore(itemMeta.getLore(), sfitemMeta.getLore())) {
-                    Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing lore failed");
+                    
                     return false;
                 }
             } else if (hasItemMetaLore != hasSfItemMetaLore) {
-                Debug.log(TestCase.CARGO_INPUT_TESTING, "  Comparing has lore failed");
+                
                 return false;
             }
         }
@@ -527,7 +527,7 @@ public final class SlimefunUtils {
             }
         }
 
-        Debug.log(TestCase.CARGO_INPUT_TESTING, "  All meta checked.");
+        
 
         return true;
     }

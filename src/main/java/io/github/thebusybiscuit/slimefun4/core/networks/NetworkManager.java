@@ -161,8 +161,7 @@ public class NetworkManager {
     public void registerNetwork(@Nonnull Network network) {
         Validate.notNull(network, "Cannot register a null Network");
 
-        Debug.log(
-                TestCase.ENERGYNET, "Registering network @ " + LocationUtils.locationToString(network.getRegulator()));
+        
 
         networks.add(network);
     }
@@ -176,9 +175,7 @@ public class NetworkManager {
     public void unregisterNetwork(@Nonnull Network network) {
         Validate.notNull(network, "Cannot unregister a null Network");
 
-        Debug.log(
-                TestCase.ENERGYNET,
-                "Unregistering network @ " + LocationUtils.locationToString(network.getRegulator()));
+        
 
         networks.remove(network);
     }
@@ -193,7 +190,7 @@ public class NetworkManager {
     public void updateAllNetworks(@Nonnull Location l) {
         Validate.notNull(l, "The Location cannot be null");
 
-        Debug.log(TestCase.ENERGYNET, "Updating all networks now.");
+        
 
         try {
             /*

@@ -63,7 +63,7 @@ public class InvStorageUtils {
             }
         }
 
-        Debug.log(TestCase.BACKPACK, "changedSlots: " + re);
+        
 
         return re;
     }

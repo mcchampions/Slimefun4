@@ -24,7 +24,7 @@ public class DataUtils {
      * @return 序列化后的 Base64 字符串
      */
     public static String serializeItemStack(ItemStack itemStack) {
-        Debug.log(TestCase.BACKPACK, "Serializing itemstack: " + itemStack);
+        
 
         if (itemStack == null) {
             return "";
@@ -62,13 +62,13 @@ public class DataUtils {
             return null;
         }
 
-        Debug.log(TestCase.BACKPACK, "Deserializing itemstack: " + base64Str);
+        
 
         try (var stream = new ByteArrayInputStream(Base64.getMimeDecoder().decode(base64Str));
                 var bs = new BukkitObjectInputStream(stream)) {
             var result = (ItemStack) bs.readObject();
 
-            Debug.log(TestCase.BACKPACK, "Deserialized itemstack: " + result);
+            
 
             if (result.getType().isAir()) {
                 Slimefun.logger().log(Level.SEVERE, "反序列化数据库中的物品失败! 对应物品无法显示.");

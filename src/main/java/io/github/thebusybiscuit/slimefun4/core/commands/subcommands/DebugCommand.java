@@ -33,14 +33,7 @@ public class DebugCommand extends SubCommand {
         }
 
         if (args.length == 1) {
-            String currentCase = String.join(", ", Debug.getTestCase());
-            if (!currentCase.isEmpty()) {
-                Slimefun.getLocalization()
-                        .sendMessage(
-                                sender, "commands.debug.current", true, msg -> msg.replace("%test_case%", currentCase));
-            } else {
-                Slimefun.getLocalization().sendMessage(sender, "commands.debug.none-running", true);
-            }
+            Slimefun.getLocalization().sendMessage(sender, "commands.debug.none-running", true);
             return;
         }
 
@@ -48,14 +41,12 @@ public class DebugCommand extends SubCommand {
 
         switch (test.toLowerCase()) {
             case "disable", "off" -> {
-                Debug.disableTestCase();
                 Slimefun.getLocalization().sendMessage(sender, "commands.debug.disabled");
             }
             default -> {
                 if (TestCase.DATABASE.toString().equals(test)) {
                     Slimefun.getLocalization().sendMessage(sender, "sf-cn.timings.started");
                 }
-                Debug.addTestCase(test);
                 Slimefun.getLocalization()
                         .sendMessage(sender, "commands.debug.running", msg -> msg.replace("%test%", test));
             }
