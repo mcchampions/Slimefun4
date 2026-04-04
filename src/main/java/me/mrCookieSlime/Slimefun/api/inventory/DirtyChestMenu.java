@@ -1,18 +1,16 @@
 package me.mrCookieSlime.Slimefun.api.inventory;
 
 import city.norain.slimefun4.utils.InventoryUtil;
+import io.github.bakedlibs.dough.inventory.InvUtils;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.bakedlibs.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.virtual.VirtualItemHandler.ComparisonResult;
-import io.github.thebusybiscuit.slimefun4.api.items.virtual.VirtualItemHandler.ConsumeContext;
-import io.github.thebusybiscuit.slimefun4.api.items.virtual.VirtualItemHandler.InventoryContext;
-import io.github.thebusybiscuit.slimefun4.api.items.virtual.VirtualItemHandler.MatchContext;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.virtual.VirtualItemHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -20,13 +18,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nullable;
+
 // This class will be deprecated, relocated and rewritten in a future version.
 public class DirtyChestMenu extends ChestMenu {
-
+    @Getter
     protected final BlockMenuPreset preset;
     protected int changes = 1;
 
-    public DirtyChestMenu(@Nonnull BlockMenuPreset preset) {
+    public DirtyChestMenu(BlockMenuPreset preset) {
         super(preset.getTitle());
 
         this.preset = preset;
@@ -50,13 +50,12 @@ public class DirtyChestMenu extends ChestMenu {
         return changes > 0;
     }
 
-    public int getUnsavedChanges() {
-        return changes;
+    public boolean isNoDirty() {
+        return changes == 0;
     }
 
-    @Nonnull
-    public BlockMenuPreset getPreset() {
-        return preset;
+    public int getUnsavedChanges() {
+        return changes;
     }
 
     public boolean canOpen(Block b, Player p) {
@@ -79,30 +78,28 @@ public class DirtyChestMenu extends ChestMenu {
         InventoryUtil.closeInventory(toInventory());
     }
 
-    public boolean fits(@Nonnull ItemStack item, int... slots) {
+    public boolean fits(ItemStack item, int... slots) {
         var virtualItems = Slimefun.getItemStackService();
         var isSfItem = SlimefunItem.getByItem(item) != null || virtualItems.isVirtualItem(item);
 
         if (slots.length == 0) {
-            return virtualItems.fits(toInventory(), item, InventoryContext.MENU_FIT);
+            return virtualItems.fits(toInventory(), item, VirtualItemHandler.InventoryContext.MENU_FIT);
         }
 
         var wrapper = ItemStackWrapper.wrap(item);
         var remain = item.getAmount();
-
         for (int slot : slots) {
             // A small optimization for empty slots
             var slotItem = getItemInSlot(slot);
             if (slotItem == null || slotItem.getType().isAir()) {
-                if (!virtualItems.canInsertIntoEmptySlot(item, InventoryContext.MENU_FIT)) {
+                if (!virtualItems.canInsertIntoEmptySlot(item, VirtualItemHandler.InventoryContext.MENU_FIT)) {
                     continue;
                 }
 
                 int maxStackSize = Math.min(
-                        virtualItems.getMaxStackSize(item, InventoryContext.MENU_FIT, item.getMaxStackSize()),
-                        toInventory().getMaxStackSize());
+                    virtualItems.getMaxStackSize(item, VirtualItemHandler.InventoryContext.MENU_FIT, item.getMaxStackSize()),
+                    toInventory().getMaxStackSize());
                 remain -= maxStackSize;
-
                 if (remain <= 0) {
                     return true;
                 }
@@ -111,12 +108,12 @@ public class DirtyChestMenu extends ChestMenu {
             }
 
             if (isSfItem) {
-                ComparisonResult comparison = virtualItems.matches(slotItem, item, MatchContext.STACK_MERGE);
-                if (comparison == ComparisonResult.NO_MATCH) {
+                VirtualItemHandler.ComparisonResult comparison = virtualItems.matches(slotItem, item, VirtualItemHandler.MatchContext.STACK_MERGE);
+                if (comparison == VirtualItemHandler.ComparisonResult.NO_MATCH) {
                     continue;
                 }
 
-                if (comparison == ComparisonResult.NOT_HANDLED) {
+                if (comparison == VirtualItemHandler.ComparisonResult.NOT_HANDLED) {
                     if (!slotItem.hasItemMeta()) {
                         continue;
                     }
@@ -126,8 +123,8 @@ public class DirtyChestMenu extends ChestMenu {
                 }
 
                 int maxStackSize = Math.min(
-                        virtualItems.getMaxStackSize(slotItem, InventoryContext.MENU_FIT, slotItem.getMaxStackSize()),
-                        toInventory().getMaxStackSize());
+                    virtualItems.getMaxStackSize(slotItem, VirtualItemHandler.InventoryContext.MENU_FIT, slotItem.getMaxStackSize()),
+                    toInventory().getMaxStackSize());
                 var slotRemain = Math.max(0, maxStackSize - slotItem.getAmount());
 
                 remain -= slotRemain;
@@ -141,23 +138,12 @@ public class DirtyChestMenu extends ChestMenu {
         boolean result = false;
 
         if (!isSfItem) {
-            result = virtualItems.fits(toInventory(), item, InventoryContext.MENU_FIT, slots);
+            result = virtualItems.fits(toInventory(), item, VirtualItemHandler.InventoryContext.MENU_FIT, slots);
         }
 
         return result;
     }
 
-    /**
-     * Adds given {@link ItemStack} to any of the given inventory slots.
-     * Items will be added to the inventory slots based on their order in the function argument.
-     * Items will be added either to any empty inventory slots or any partially filled slots, in which case
-     * as many items as can fit will be added to that specific spot.
-     *
-     * @param item  {@link ItemStack} to be added to the inventory
-     * @param slots Numbers of slots to add the {@link ItemStack} to
-     * @return {@link ItemStack} with any items that did not fit into the inventory
-     * or null when everything had fit
-     */
     @Nullable public ItemStack pushItem(ItemStack item, int... slots) {
         if (item == null || item.getType() == Material.AIR) {
             throw new IllegalArgumentException("Cannot push null or AIR");
@@ -179,13 +165,13 @@ public class DirtyChestMenu extends ChestMenu {
             ItemStack stack = getItemInSlot(slot);
 
             if (stack == null || stack.getType().isAir()) {
-                if (!virtualItems.canInsertIntoEmptySlot(item, InventoryContext.MENU_INSERT)) {
+                if (!virtualItems.canInsertIntoEmptySlot(item, VirtualItemHandler.InventoryContext.MENU_INSERT)) {
                     continue;
                 }
 
                 int maxStackSize = Math.min(
-                        virtualItems.getMaxStackSize(item, InventoryContext.MENU_INSERT, item.getMaxStackSize()),
-                        toInventory().getMaxStackSize());
+                    virtualItems.getMaxStackSize(item, VirtualItemHandler.InventoryContext.MENU_INSERT, item.getMaxStackSize()),
+                    toInventory().getMaxStackSize());
                 int movedAmount = Math.min(amount, maxStackSize);
 
                 ItemStack inserted = item.clone();
@@ -194,23 +180,23 @@ public class DirtyChestMenu extends ChestMenu {
                 amount -= movedAmount;
             } else {
                 int maxStackSize = Math.min(
-                        virtualItems.getMaxStackSize(stack, InventoryContext.MENU_INSERT, stack.getMaxStackSize()),
-                        toInventory().getMaxStackSize());
+                    virtualItems.getMaxStackSize(stack, VirtualItemHandler.InventoryContext.MENU_INSERT, stack.getMaxStackSize()),
+                    toInventory().getMaxStackSize());
                 if (stack.getAmount() < maxStackSize) {
                     if (wrapper == null) {
                         wrapper = ItemStackWrapper.wrap(item);
                     }
 
-                    ComparisonResult comparison = virtualItems.matches(stack, item, MatchContext.STACK_MERGE);
-                    if (comparison == ComparisonResult.NO_MATCH) {
+                    VirtualItemHandler.ComparisonResult comparison = virtualItems.matches(stack, item, VirtualItemHandler.MatchContext.STACK_MERGE);
+                    if (comparison == VirtualItemHandler.ComparisonResult.NO_MATCH) {
                         continue;
                     }
 
-                    if (comparison == ComparisonResult.NOT_HANDLED && SlimefunItem.getByItem(item) != null) {
+                    if (comparison == VirtualItemHandler.ComparisonResult.NOT_HANDLED && SlimefunItem.getByItem(item) != null) {
                         if (!SlimefunUtils.isItemSimilarWithoutVirtualItems(stack, wrapper, true, false)) {
                             continue;
                         }
-                    } else if (comparison == ComparisonResult.NOT_HANDLED) {
+                    } else if (comparison == VirtualItemHandler.ComparisonResult.NOT_HANDLED) {
                         if (!ItemUtils.canStack(wrapper, stack)) {
                             continue;
                         }
@@ -229,16 +215,11 @@ public class DirtyChestMenu extends ChestMenu {
             return null;
         }
     }
-
     public void consumeItem(int slot) {
         consumeItem(slot, 1);
     }
 
     public void consumeItem(int slot, int amount) {
-        if (locked()) {
-            throw new IllegalStateException("Cannot consume item when menu is locked");
-        }
-
         consumeItem(slot, amount, false);
     }
 
@@ -249,13 +230,12 @@ public class DirtyChestMenu extends ChestMenu {
 
         ItemStack item = getItemInSlot(slot);
         var virtualItems = Slimefun.getItemStackService();
-        var result = virtualItems.consume(item, amount, replaceConsumables, ConsumeContext.MENU_CONSUME);
+        var result = virtualItems.consume(item, amount, replaceConsumables, VirtualItemHandler.ConsumeContext.MENU_CONSUME);
         if (result.handled()) {
             replaceExistingItem(slot, result.item());
         } else {
             ItemUtils.consumeItem(item, amount, replaceConsumables);
         }
-
         markDirty();
     }
 

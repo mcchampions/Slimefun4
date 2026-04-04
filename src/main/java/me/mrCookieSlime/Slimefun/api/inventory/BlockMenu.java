@@ -5,15 +5,17 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
+
+import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 // This class will be deprecated, relocated and rewritten in a future version.
+@Getter
 public class BlockMenu extends DirtyChestMenu {
-
-    private Location location;
+    private final Location location;
 
     private static String serializeLocation(Location l) {
         return l.getWorld().getName() + ';' + l.getBlockX() + ';' + l.getBlockY() + ';' + l.getBlockZ();
@@ -41,8 +43,8 @@ public class BlockMenu extends DirtyChestMenu {
         preset.clone(this);
 
         if (preset.getSize() > -1
-                && !preset.getPresetSlots().contains(preset.getSize() - 1)
-                && cfg.contains(String.valueOf(preset.getSize() - 1))) {
+            && !preset.getPresetSlots().contains(preset.getSize() - 1)
+            && cfg.contains(String.valueOf(preset.getSize() - 1))) {
             addItem(preset.getSize() - 1, cfg.getItem(String.valueOf(preset.getSize() - 1)));
         }
 
@@ -54,7 +56,7 @@ public class BlockMenu extends DirtyChestMenu {
         this.location = l;
 
         for (int i = 0; i < contents.length; i++) {
-            var item = contents[i];
+            ItemStack item = contents[i];
             if (item == null) {
                 continue;
             }
@@ -72,7 +74,7 @@ public class BlockMenu extends DirtyChestMenu {
     }
 
     public void save(Location l) {
-        if (!isDirty()) {
+        if (isNoDirty()) {
             return;
         }
 
@@ -93,10 +95,6 @@ public class BlockMenu extends DirtyChestMenu {
 
     public Block getBlock() {
         return location.getBlock();
-    }
-
-    public Location getLocation() {
-        return location;
     }
 
     /**
@@ -120,10 +118,10 @@ public class BlockMenu extends DirtyChestMenu {
     }
 
     @Deprecated
-    public void delete(Location l) {
+    public static void delete(Location l) {
         Slimefun.logger()
-                .log(
-                        Level.WARNING,
-                        () -> "BlockMenu#delete(Location l) is not supported anymore. l is " + serializeLocation(l));
+            .log(
+                Level.WARNING,
+                () -> "BlockMenu#delete(Location l) 已经废弃无法使用. 坐标: " + serializeLocation(l));
     }
 }

@@ -3,30 +3,22 @@ package me.mrCookieSlime.CSCoreLibPlugin.Configuration;
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
+
+import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-/**
- * An old remnant of CS-CoreLib.
- * This will be removed once we updated everything.
- * Don't look at the code, it will be gone soon, don't worry.
- *
- * @deprecated Only used by the legacy {@link BlockStorage} system.
- */
-@Deprecated(forRemoval = true)
 public class Config {
-
-    private final File file;
+    /**
+     * -- GETTER --
+     *  Returns the File the Config is handling
+     *
+     */
+    @Getter
+    private File file;
     private FileConfiguration config;
     private static final FileConfiguration BLANK_CONFIGURATION = new YamlConfiguration();
-    /**
-     * internal constructor used for Wrapper
-     */
-    protected Config() {
-        file = new File("");
-        config = BLANK_CONFIGURATION;
-    }
+
     /**
      * Creates a new Config Object for the specified File
      *
@@ -62,13 +54,8 @@ public class Config {
         this.config = YamlConfiguration.loadConfiguration(this.file);
     }
 
-    /**
-     * Returns the File the Config is handling
-     *
-     * @return The File this Config is handling
-     */
-    public File getFile() {
-        return this.file;
+    public Config() {
+        config = BLANK_CONFIGURATION;
     }
 
     /**
@@ -98,7 +85,7 @@ public class Config {
     public void save() {
         try {
             config.save(file);
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 
@@ -111,7 +98,7 @@ public class Config {
     public void save(File file) {
         try {
             config.save(file);
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 
@@ -169,8 +156,7 @@ public class Config {
     public void createFile() {
         try {
             this.file.createNewFile();
-        } catch (IOException e) {
-        }
+        } catch (IOException ignored) {}
     }
 
     /**
@@ -196,7 +182,5 @@ public class Config {
     /**
      * Reloads the Configuration File
      */
-    public void reload() {
-        this.config = YamlConfiguration.loadConfiguration(this.file);
-    }
+    public void reload() {}
 }

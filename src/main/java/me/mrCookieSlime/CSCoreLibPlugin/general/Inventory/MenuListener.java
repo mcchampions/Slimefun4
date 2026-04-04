@@ -2,7 +2,7 @@ package me.mrCookieSlime.CSCoreLibPlugin.general.Inventory;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.logging.Level;
-import javax.annotation.Nonnull;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
 import org.bukkit.Material;
@@ -16,12 +16,8 @@ import org.bukkit.plugin.Plugin;
 /**
  * An old {@link Listener} for CS-CoreLib
  *
- * @deprecated This is an old remnant of CS-CoreLib, the last bits of the past. They will be removed once everything is
- * updated.
  */
-@Deprecated
 public class MenuListener implements Listener {
-
     public MenuListener(Plugin plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -49,8 +45,8 @@ public class MenuListener implements Listener {
 
                     if (handler == null) {
                         e.setCancelled(!menu.isEmptySlotsClickable()
-                                && (e.getCurrentItem() == null
-                                        || e.getCurrentItem().getType() == Material.AIR));
+                                       && (e.getCurrentItem() == null
+                                           || e.getCurrentItem().getType() == Material.AIR));
                     } else {
                         handleEvent(e, handler);
                     }
@@ -68,20 +64,20 @@ public class MenuListener implements Listener {
         }
     }
 
-    private void handleEvent(@Nonnull InventoryClickEvent e, @Nonnull MenuClickHandler handler) {
+    private void handleEvent(InventoryClickEvent e, MenuClickHandler handler) {
         if (handler instanceof AdvancedMenuClickHandler advancedHandler) {
             e.setCancelled(!advancedHandler.onClick(
-                    e,
-                    (Player) e.getWhoClicked(),
-                    e.getSlot(),
-                    e.getCursor(),
-                    new ClickAction(e.isRightClick(), e.isShiftClick())));
+                e,
+                (Player) e.getWhoClicked(),
+                e.getSlot(),
+                e.getCursor(),
+                new ClickAction(e.isRightClick(), e.isShiftClick())));
         } else {
             e.setCancelled(!handler.onClick(
-                    (Player) e.getWhoClicked(),
-                    e.getSlot(),
-                    e.getCurrentItem(),
-                    new ClickAction(e.isRightClick(), e.isShiftClick())));
+                (Player) e.getWhoClicked(),
+                e.getSlot(),
+                e.getCurrentItem(),
+                new ClickAction(e.isRightClick(), e.isShiftClick())));
         }
     }
 }

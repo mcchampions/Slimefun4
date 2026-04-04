@@ -5,8 +5,9 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunChunkData;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import javax.annotation.Nonnull;
+
 import javax.annotation.Nullable;
+
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Chunk;
@@ -20,13 +21,18 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Deprecated: use {@link com.xzavier0722.mc.plugin.slimefun4.storage.controller.BlockDataController} instead
  */
-@Deprecated
 public class BlockStorage {
+    @SuppressWarnings("InstantiationOfUtilityClass")
+    public static final BlockStorage INSTANCE = new BlockStorage();
 
     private static final Config emptyData = new EmptyBlockData();
 
-    @Nullable public static BlockStorage getStorage(@Nonnull World world) {
-        return null;
+    public static BlockStorage getStorage(World world) {
+        return INSTANCE;
+    }
+
+    public static BlockStorage getOrCreate(World world) {
+        return INSTANCE;
     }
 
     public static void store(Block block, ItemStack item) {
@@ -46,12 +52,11 @@ public class BlockStorage {
      * If the specified Block is registered in BlockStorage,
      * its data will be erased from it, regardless of the returned value.
      *
-     * @param block
-     *            the block to retrieve the ItemStack from
-     *
+     * @param block the block to retrieve the ItemStack from
      * @return the SlimefunItem's ItemStack corresponding to the block if it has one, otherwise null
      */
-    @Nullable public static ItemStack retrieve(@Nonnull Block block) {
+    @Nullable
+    public static ItemStack retrieve(Block block) {
         SlimefunItem item = check(block);
 
         if (item == null) {
@@ -63,7 +68,7 @@ public class BlockStorage {
     }
 
     private static SlimefunBlockData getBlockData(Location l) {
-        var re = Slimefun.getDatabaseManager().getBlockDataController().getBlockData(l);
+        SlimefunBlockData re = Slimefun.getDatabaseManager().getBlockDataController().getBlockData(l);
         if (re == null) {
             return null;
         }
@@ -75,7 +80,7 @@ public class BlockStorage {
     }
 
     public static String getLocationInfo(Location l, String key) {
-        var data = getBlockData(l);
+        SlimefunBlockData data = getBlockData(l);
         return data == null ? null : "id".equals(key) ? data.getSfId() : data.getData(key);
     }
 
@@ -96,7 +101,7 @@ public class BlockStorage {
             Slimefun.getDatabaseManager().getBlockDataController().createBlock(l, value);
             return;
         }
-        var data = getBlockData(l);
+        SlimefunBlockData data = getBlockData(l);
         if (data != null) {
             if (value == null) {
                 data.removeData(key);
@@ -130,12 +135,14 @@ public class BlockStorage {
         Slimefun.getDatabaseManager().getBlockDataController().removeBlock(l);
     }
 
-    @Nullable public static SlimefunItem check(@Nonnull Block b) {
+    @Nullable
+    public static SlimefunItem check(Block b) {
         String id = checkID(b);
         return id == null ? null : SlimefunItem.getById(id);
     }
 
-    @Nullable public static SlimefunItem check(@Nonnull Location l) {
+    @Nullable
+    public static SlimefunItem check(Location l) {
         String id = checkID(l);
         return id == null ? null : SlimefunItem.getById(id);
     }
@@ -145,21 +152,23 @@ public class BlockStorage {
         return id != null && id.equals(slimefunItem);
     }
 
-    @Nullable public static String checkID(@Nonnull Block b) {
+    @Nullable
+    public static String checkID(Block b) {
         return checkID(b.getLocation());
     }
 
-    @Nullable public static String checkID(@Nonnull Location l) {
+    @Nullable
+    public static String checkID(Location l) {
         return getLocationInfo(l, "id");
     }
 
-    public static boolean check(@Nonnull Location l, @Nullable String slimefunItem) {
+    public static boolean check(Location l, @Nullable String slimefunItem) {
         if (slimefunItem == null) {
             return false;
         }
 
         String id = checkID(l);
-        return id != null && id.equals(slimefunItem);
+        return slimefunItem.equals(id);
     }
 
     public static BlockMenu getInventory(Block b) {
@@ -167,12 +176,12 @@ public class BlockStorage {
     }
 
     public static boolean hasInventory(Block b) {
-        var data = getBlockData(b.getLocation());
+        SlimefunBlockData data = getBlockData(b.getLocation());
         return data != null && data.getBlockMenu() != null;
     }
 
     public static BlockMenu getInventory(Location l) {
-        var data = getBlockData(l);
+        SlimefunBlockData data = getBlockData(l);
         return data == null ? null : data.getBlockMenu();
     }
 
@@ -193,12 +202,12 @@ public class BlockStorage {
     }
 
     public static Config getLocationInfo(Location location) {
-        var re = getBlockData(location);
+        SlimefunBlockData re = getBlockData(location);
         return re == null ? emptyData : new BlockDataConfigWrapper(re);
     }
 
     public static void deleteLocationInfoUnsafely(Location l, boolean destroy) {
-        var blockData = getBlockData(l);
+        SlimefunBlockData blockData = getBlockData(l);
 
         if (blockData == null) {
             return;
@@ -206,4 +215,6 @@ public class BlockStorage {
 
         Slimefun.getDatabaseManager().getBlockDataController().removeBlock(l);
     }
+
+    public static void saveChunks() {}
 }

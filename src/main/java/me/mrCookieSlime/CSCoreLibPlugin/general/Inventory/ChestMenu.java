@@ -2,16 +2,15 @@ package me.mrCookieSlime.CSCoreLibPlugin.general.Inventory;
 
 import city.norain.slimefun4.holder.SlimefunInventoryHolder;
 import city.norain.slimefun4.utils.InventoryUtil;
+import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.annotation.Nonnull;
+
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,36 +19,33 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.*;
+
 /**
  * An old remnant of CS-CoreLib.
  * This will be removed once we updated everything.
  * Don't look at the code, it will be gone soon, don't worry.
  */
-@Deprecated
 public class ChestMenu extends SlimefunInventoryHolder {
-
     private boolean clickable;
     private boolean emptyClickable;
 
     @Getter
-    private String title;
+    private final String title;
 
-    private List<ItemStack> items;
+    private final List<ItemStack> items;
     /**
      * Size of chestmenu
      * Warning: it DOES NOT present actual size of its inventory!
      */
     private int size = -1;
 
-    private Map<Integer, MenuClickHandler> handlers;
+    private final Map<Integer, MenuClickHandler> handlers;
     private MenuOpeningHandler open;
     private MenuCloseHandler close;
     private MenuClickHandler playerclick;
 
-    @Deprecated(forRemoval = true)
-    // 何意味
     private final Set<UUID> viewers = new CopyOnWriteArraySet<>();
-
     private final AtomicBoolean lock = new AtomicBoolean(false);
 
     /**
@@ -65,9 +61,11 @@ public class ChestMenu extends SlimefunInventoryHolder {
         this.items = new CopyOnWriteArrayList<>();
         this.handlers = new ConcurrentHashMap<>();
 
-        this.open = p -> {};
-        this.close = p -> {};
-        this.playerclick = (p, slot, item, action) -> isPlayerInventoryClickable();
+        this.open = p -> {
+        };
+        this.close = p -> {
+        };
+        this.playerclick = (p, slot, item, action) -> clickable;
     }
 
     public ChestMenu(String title, int size) {
@@ -151,11 +149,17 @@ public class ChestMenu extends SlimefunInventoryHolder {
 
             actual = clone;
         }
-
-        setSize((int) (Math.max(getSize(), Math.ceil((slot + 1) / 9d) * 9)));
+        setSize((int) (Math.max(getSize(), Math.ceil((double) (slot + 1) / 9.0) * 9)));
 
         this.items.set(slot, actual);
-        this.inventory.setItem(slot, actual);
+        try {
+            this.inventory.setItem(slot, actual);
+        } catch (Exception ex) {
+            Slimefun.logger().warning("An exception is thrown in ChestMenu#addItem(int,ItemStack):" + ex.getMessage());
+            Slimefun.logger().warning("Error StackTrace:" + Arrays.toString(ex.getStackTrace()));
+            Slimefun.logger().warning("Error ItemStack Class Name:" + item.getClass().getName());
+            this.inventory.setItem(slot, new CustomItemStack(actual));
+        }
         return this;
     }
 
@@ -246,15 +250,15 @@ public class ChestMenu extends SlimefunInventoryHolder {
         return this.inventory.getContents();
     }
 
-    public void addViewer(@Nonnull UUID uuid) {
+    public void addViewer(UUID uuid) {
         viewers.add(uuid);
     }
 
-    public void removeViewer(@Nonnull UUID uuid) {
+    public void removeViewer(UUID uuid) {
         viewers.remove(uuid);
     }
 
-    public boolean contains(@Nonnull Player viewer) {
+    public boolean contains(Player viewer) {
         return viewers.contains(viewer.getUniqueId());
     }
 
@@ -359,36 +363,30 @@ public class ChestMenu extends SlimefunInventoryHolder {
     }
 
     public int getSize() {
-        return isSizeAutomaticallyInferred() ? Math.max(9, (int) Math.ceil(this.items.size() / 9F) * 9) : size;
+        return isSizeAutomaticallyInferred() ? Math.max(9, (int) Math.ceil(this.items.size() / 9.0F) * 9) : size;
     }
 
     public ChestMenu setSize(int size) {
-        if (size % 9 == 0 && size >= 0 && size < 55) {
-            // Resize items list to match actual inventory size in order to reset inventory.
-            // I'm sure that use size of items as inventory size is somehow strange.
-            if (size > items.size()) {
-                while (items.size() < size) {
-                    this.items.add(null);
-                }
-            } else if (size < items.size()) {
-                while (items.size() > size) {
-                    this.items.remove(items.size() - 1);
-                }
-            } else {
-                return this;
+        // Resize items list to match actual inventory size in order to reset inventory.
+        // I'm sure that use size of items as inventory size is somehow strange.
+        if (size > items.size()) {
+            while (items.size() < size) {
+                this.items.add(null);
             }
-
-            this.size = size;
-
-            reset(false);
-
-            return this;
+        } else if (size < items.size()) {
+            while (items.size() > size) {
+                this.items.remove(items.size() - 1);
+            }
         } else {
-            throw new IllegalArgumentException(
-                    "The size of a ChestMenu must be a multiple of 9 and within the bounds 0-54,"
-                            + " received: "
-                            + size);
+            return this;
         }
+
+        this.size = size;
+
+        reset(false);
+
+        return this;
+
     }
 
     public boolean isSizeAutomaticallyInferred() {
@@ -410,24 +408,20 @@ public class ChestMenu extends SlimefunInventoryHolder {
 
     @FunctionalInterface
     public interface MenuClickHandler {
-
-        public boolean onClick(Player p, int slot, ItemStack item, ClickAction action);
+        boolean onClick(Player p, int slot, ItemStack item, ClickAction action);
     }
 
     public interface AdvancedMenuClickHandler extends MenuClickHandler {
-
-        public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action);
+        boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action);
     }
 
     @FunctionalInterface
     public interface MenuOpeningHandler {
-
-        public void onOpen(Player p);
+        void onOpen(Player p);
     }
 
     @FunctionalInterface
     public interface MenuCloseHandler {
-
-        public void onClose(Player p);
+        void onClose(Player p);
     }
 }

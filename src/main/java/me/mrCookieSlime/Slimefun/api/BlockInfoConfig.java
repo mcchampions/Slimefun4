@@ -6,7 +6,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import javax.annotation.Nonnull;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -22,7 +21,6 @@ import org.bukkit.configuration.file.FileConfiguration;
  * @see BlockStorage
  */
 public class BlockInfoConfig extends Config {
-
     private final Map<String, String> data;
 
     public BlockInfoConfig() {
@@ -34,23 +32,12 @@ public class BlockInfoConfig extends Config {
         this.data = data;
     }
 
-    @Nonnull
     public Map<String, String> getMap() {
         return data;
     }
 
     @Override
     public void setValue(String path, Object value) {
-        if (value != null && !(value instanceof String)) {
-            throw new UnsupportedOperationException("Can't set \""
-                    + path
-                    + "\" to \""
-                    + value
-                    + "\" (type: "
-                    + value.getClass().getSimpleName()
-                    + ") because BlockInfoConfig only supports Strings");
-        }
-
         if (value == null) {
             data.remove(path);
         } else {
@@ -80,40 +67,39 @@ public class BlockInfoConfig extends Config {
 
     @Override
     public Set<String> getKeys(String path) {
-        throw new UnsupportedOperationException("Cannot get keys for BlockInfoConfig");
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public File getFile() {
-        throw new UnsupportedOperationException("BlockInfoConfigs do not have a File");
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public FileConfiguration getConfiguration() {
-        throw new UnsupportedOperationException("BlockInfoConfigs do not have a FileConfiguration");
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void save() {
-        throw new UnsupportedOperationException("BlockInfoConfigs cannot be saved to a File");
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void save(File file) {
-        throw new UnsupportedOperationException("BlockInfoConfigs cannot be saved to a File");
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createFile() {
-        throw new UnsupportedOperationException("BlockInfoConfigs cannot be created from a File");
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void reload() {
-        throw new UnsupportedOperationException("BlockInfoConfigs cannot be reloaded");
+        throw new UnsupportedOperationException();
     }
 
-    @Nonnull
     public String toJSON() {
         return new GsonBuilder().create().toJson(data);
     }

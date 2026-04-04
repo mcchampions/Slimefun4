@@ -3,33 +3,27 @@ package me.mrCookieSlime.Slimefun.api.inventory;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
+
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 // This class will be deprecated, relocated and rewritten in a future version.
 public abstract class BlockMenuPreset extends ChestMenu {
-
     protected final Set<Integer> occupiedSlots = new HashSet<>();
     private final String inventoryTitle;
     private final String id;
 
-    private boolean locked;
-
-    protected BlockMenuPreset(@Nonnull String id, @Nonnull String title) {
+    protected BlockMenuPreset(String id, String title) {
         super(title);
-
-        Validate.notNull(id, "You need to specify an id!");
 
         this.id = id;
         this.inventoryTitle = title;
@@ -39,10 +33,6 @@ public abstract class BlockMenuPreset extends ChestMenu {
     }
 
     private void checkIfLocked() {
-        if (locked) {
-            throw new UnsupportedOperationException(
-                    "You cannot modify the BlockMenuPreset anymore, modify the individual instances" + " instead.");
-        }
     }
 
     public abstract void init();
@@ -52,14 +42,11 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * {@link BlockMenu} of that {@link Block}.
      * Override this as necessary.
      *
-     * @param b
-     *            The {@link Block} trying to be opened
-     * @param p
-     *            The {@link Player} who wants to open the {@link BlockMenu}
-     *
+     * @param b The {@link Block} trying to be opened
+     * @param p The {@link Player} who wants to open the {@link BlockMenu}
      * @return Whether that {@link Player} is allowed
      */
-    public abstract boolean canOpen(@Nonnull Block b, @Nonnull Player p);
+    public abstract boolean canOpen(Block b, Player p);
 
     public abstract int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow);
 
@@ -67,24 +54,16 @@ public abstract class BlockMenuPreset extends ChestMenu {
      * This method is called whenever an {@link ItemStack} changes.
      * You can override this as necessary if you need to listen to these events
      *
-     * @param menu
-     *            The {@link Inventory} affected by this
-     * @param slot
-     *            The affected slot
-     * @param previous
-     *            The {@link ItemStack} in that slot before the operation
-     * @param next
-     *            The {@link ItemStack} that it changes to
-     *
+     * @param next The {@link ItemStack} that it changes to
      * @return The new outcome of this operation
      */
     @Nullable protected ItemStack onItemStackChange(
-            @Nonnull DirtyChestMenu menu, int slot, @Nullable ItemStack previous, @Nullable ItemStack next) {
+        DirtyChestMenu menu, int slot, @Nullable ItemStack previous, @Nullable ItemStack next) {
         // Override this as necessary
         return next;
     }
 
-    public void newInstance(@Nonnull BlockMenu menu, @Nonnull Block b) {
+    public void newInstance(BlockMenu menu, Block b) {
         // This method can optionally be overridden by implementations
     }
 
@@ -101,13 +80,10 @@ public abstract class BlockMenuPreset extends ChestMenu {
     /**
      * This method will draw unclickable background items into this {@link BlockMenuPreset}.
      *
-     * @param item
-     *            The {@link ItemStack} that should be used as background
-     * @param slots
-     *            The slots which should be treated as background
+     * @param item  The {@link ItemStack} that should be used as background
+     * @param slots The slots which should be treated as background
      */
-    public void drawBackground(@Nonnull ItemStack item, @Nonnull int[] slots) {
-        Validate.notNull(item, "The background item cannot be null!");
+    public void drawBackground(ItemStack item, int[] slots) {
         checkIfLocked();
 
         for (int slot : slots) {
@@ -118,10 +94,9 @@ public abstract class BlockMenuPreset extends ChestMenu {
     /**
      * This method will draw unclickable background items into this {@link BlockMenuPreset}.
      *
-     * @param slots
-     *            The slots which should be treated as background
+     * @param slots The slots which should be treated as background
      */
-    public void drawBackground(@Nonnull int[] slots) {
+    public void drawBackground(int[] slots) {
         drawBackground(ChestMenuUtils.getBackground(), slots);
     }
 
@@ -139,21 +114,10 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return super.addMenuClickHandler(slot, handler);
     }
 
-    @Nonnull
     public ChestMenu setSize(int size) {
         checkIfLocked();
 
         return super.setSize(size);
-    }
-
-    /**
-     * This method returns the size of this {@link BlockMenuPreset}.
-     * If the size has not been determined yet, this will return -1.
-     *
-     * @return The size of this {@link BlockMenuPreset}
-     */
-    public int getSize() {
-        return super.getSize();
     }
 
     /**
@@ -166,12 +130,10 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return inventoryTitle;
     }
 
-    @Nonnull
     public Set<Integer> getPresetSlots() {
         return occupiedSlots;
     }
 
-    @Nonnull
     public Set<Integer> getInventorySlots() {
         Set<Integer> emptySlots = new HashSet<>();
 
@@ -192,7 +154,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
         return emptySlots;
     }
 
-    protected void clone(@Nonnull DirtyChestMenu menu) {
+    protected void clone(DirtyChestMenu menu) {
         menu.setPlayerInventoryClickable(true);
 
         if (isSizeAutomaticallyInferred()) {
@@ -217,15 +179,11 @@ public abstract class BlockMenuPreset extends ChestMenu {
         menu.addMenuCloseHandler(getMenuCloseHandler());
     }
 
-    public void newInstance(@Nonnull BlockMenu menu, @Nonnull Location l) {
-        Validate.notNull(l, "Cannot create a new BlockMenu without a Location");
-
+    public void newInstance(BlockMenu menu, Location l) {
         Slimefun.runSync(() -> {
-            locked = true;
-
             try {
                 newInstance(menu, l.getBlock());
-            } catch (Exception | LinkageError x) {
+            } catch (RuntimeException | LinkageError x) {
                 getSlimefunItem().error("An Error occurred while trying to create a BlockMenu", x);
             }
         });
@@ -237,7 +195,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *
      * @return Our identifier
      */
-    @Nonnull
+
     public String getID() {
         return id;
     }
@@ -247,12 +205,13 @@ public abstract class BlockMenuPreset extends ChestMenu {
      *
      * @return The associated {@link SlimefunItem}
      */
-    @Nonnull
+
     public SlimefunItem getSlimefunItem() {
         return SlimefunItem.getById(id);
     }
 
-    @Nullable public static BlockMenuPreset getPreset(@Nullable String id) {
+    @Nullable
+    public static BlockMenuPreset getPreset(@Nullable String id) {
         return id == null ? null : Slimefun.getRegistry().getMenuPresets().get(id);
     }
 
