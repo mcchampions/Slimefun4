@@ -63,10 +63,10 @@ public class SlimefunTabCompleter  {
         if (size == 4 && "give".equalsIgnoreCase(args.get(0))) {
             return createReturnList(COUNT_LIST, args.get(3));
         }
-        if (size > 0) {
-            return createReturnList(getPlayerList(args.get(size-1)), args.get(size-1));
+        if (size == 0) {
+            return Slimefun.getCommand().getSubCommandNames();
         }
-        return Slimefun.getCommand().getSubCommandNames();
+        return getPlayerList(args.get(size-1));
     }
     @SuppressWarnings("deprecation")
     public static List<String> getPlayerList(String input) {
