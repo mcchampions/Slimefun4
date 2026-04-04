@@ -13,6 +13,8 @@ import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * This task is run whenever a {@link Capacitor} needs to update their texture.
  * <strong>This must be executed on the main {@link Server} {@link Thread}!</strong>
@@ -73,7 +75,11 @@ public class CapacitorTextureUpdateTask implements Runnable {
 
     private void setTexture(@Nonnull Block b, @Nonnull HeadTexture texture) {
         PlayerSkin skin = PlayerSkin.fromHashCode(texture.getUniqueId(), texture.getTexture());
-        PlayerHead.setSkin(b, skin, false);
+        try {
+            PlayerHead.setSkin(b, skin, false);
+        } catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         PaperLib.getBlockState(b, false).getState().update(true, false);
     }

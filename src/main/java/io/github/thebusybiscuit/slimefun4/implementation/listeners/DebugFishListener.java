@@ -20,6 +20,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.electric.EnergyRe
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.EnumSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -102,7 +104,11 @@ public class DebugFishListener implements Listener {
                         Block block = b.getRelative(face);
                         block.setType(Material.PLAYER_HEAD);
 
-                        PlayerHead.setSkin(block, HeadTexture.MISSING_TEXTURE.getAsSkin(), true);
+                        try {
+                            PlayerHead.setSkin(block, HeadTexture.MISSING_TEXTURE.getAsSkin(), true);
+                        } catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
+                            throw new RuntimeException(e);
+                        }
                         SoundEffect.DEBUG_FISH_CLICK_SOUND.playFor(p);
                     },
                     2L);
