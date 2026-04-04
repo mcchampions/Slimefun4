@@ -1,71 +1,63 @@
 package io.github.thebusybiscuit.slimefun4.core.commands;
 
-import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.core.commands.subcommands.SlimefunSubCommands;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import org.apache.commons.lang.Validate;
+
+import lombok.Getter;
+import me.qscbm.slimefun4.listeners.AsyncTabCompleteListener;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 /**
  * This {@link CommandExecutor} holds the functionality of our {@code /slimefun} command.
  *
  * @author TheBusyBiscuit
- *
  */
 public class SlimefunCommand implements CommandExecutor, Listener {
-
-    private boolean registered = false;
+    public static Set<String> COMMAND_ALIASES;
+    @Getter
+    private boolean registered;
+    @Getter
     private final Slimefun plugin;
-    private final List<SubCommand> commands = new LinkedList<>();
+    private final List<SubCommand> commands = new ArrayList<>();
+    @Getter
     private final Map<SubCommand, Integer> commandUsage = new HashMap<>();
 
     /**
      * Creates a new instance of {@link SlimefunCommand}
      *
-     * @param plugin
-     *            The instance of our {@link Slimefun}
+     * @param plugin The instance of our {@link Slimefun}
      */
-    public SlimefunCommand(@Nonnull Slimefun plugin) {
+    public SlimefunCommand(Slimefun plugin) {
         this.plugin = plugin;
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public void register() {
-        Validate.isTrue(!registered, "Slimefun's subcommands have already been registered!");
-
+        if (registered) {
+            return;
+        }
         registered = true;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-
         plugin.getCommand("slimefun").setExecutor(this);
-        plugin.getCommand("slimefun").setTabCompleter(new SlimefunTabCompleter(this));
+        COMMAND_ALIASES = plugin.getServer().getPluginCommand("slimefun").getAliases().stream()
+            .map(String::toLowerCase)
+            .collect(Collectors.toSet());
+        Slimefun.logger().info("已加载" + COMMAND_ALIASES.size() + "个命令别名:" + COMMAND_ALIASES);
         commands.addAll(SlimefunSubCommands.getAllCommands(this));
-    }
-
-    public @Nonnull Slimefun getPlugin() {
-        return plugin;
-    }
-
-    /**
-     * Returns a heatmap of how often certain commands are used.
-     *
-     * @return A {@link Map} holding the amount of times each command was run
-     */
-    public @Nonnull Map<SubCommand, Integer> getCommandUsage() {
-        return commandUsage;
+        plugin.getServer().getPluginManager().registerEvents(new AsyncTabCompleteListener(), plugin);
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        String argsStr = String.join(" ", args);
+        args = TextUtils.tokenize(argsStr).toArray(String[]::new);
         if (args.length > 0) {
             for (SubCommand command : commands) {
                 if (args[0].equalsIgnoreCase(command.getName())) {
@@ -87,23 +79,15 @@ public class SlimefunCommand implements CommandExecutor, Listener {
         return !commands.isEmpty();
     }
 
-    public void sendHelp(@Nonnull CommandSender sender) {
+    public void sendHelp(CommandSender sender) {
         sender.sendMessage("");
-        sender.sendMessage(ChatColors.color("&aSlimefun &2v" + Slimefun.getVersion()));
+        sender.sendMessage("§aSlimefun §2v" + Slimefun.getVersion());
         sender.sendMessage("");
 
         for (SubCommand cmd : commands) {
             if (!cmd.isHidden()) {
-                sender.sendMessage(ChatColors.color("&3/sf " + cmd.getName() + " &b") + cmd.getDescription(sender));
+                sender.sendMessage("§3/sf " + cmd.getName() + " §b" + cmd.getDescription(sender));
             }
-        }
-    }
-
-    @EventHandler
-    public void onCommand(PlayerCommandPreprocessEvent e) {
-        if (e.getMessage().equalsIgnoreCase("/help slimefun")) {
-            sendHelp(e.getPlayer());
-            e.setCancelled(true);
         }
     }
 
@@ -112,9 +96,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
      *
      * @return A {@link List} containing every {@link SubCommand}
      */
-    public @Nonnull List<String> getSubCommandNames() {
-        // @formatter:off
+    public List<String> getSubCommandNames() {
         return commands.stream().map(SubCommand::getName).collect(Collectors.toList());
-        // @formatter:on
     }
 }
