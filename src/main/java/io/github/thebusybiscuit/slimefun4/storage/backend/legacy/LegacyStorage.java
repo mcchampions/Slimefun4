@@ -146,7 +146,5 @@ public class LegacyStorage implements Storage {
         playerFile.save();
         waypointsFile.save();
 
-        long end = System.nanoTime();
-        Slimefun.getAnalyticsService().recordPlayerProfileDataTime("legacy", false, end - start);
     }
 }
