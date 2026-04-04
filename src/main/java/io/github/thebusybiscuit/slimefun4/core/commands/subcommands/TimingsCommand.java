@@ -61,7 +61,6 @@ class TimingsCommand extends SubCommand {
         Slimefun.getLocalization().sendMessage(sender, "commands.timings.please-wait", true);
 
         PerformanceInspector inspector = inspectorOf(sender, verbose, orderType);
-        Slimefun.getProfiler().requestSummary(inspector);
     }
 
     @ParametersAreNonnullByDefault

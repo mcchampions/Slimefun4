@@ -1,37 +1,18 @@
 package io.github.thebusybiscuit.slimefun4.core.services.profiler;
 
 import city.norain.slimefun4.utils.SlimefunPoolExecutor;
-import city.norain.slimefun4.utils.StringUtil;
-import com.google.common.util.concurrent.AtomicDouble;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.TickerTask;
-import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
-import java.lang.management.ManagementFactory;
-import java.lang.management.ThreadMXBean;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+
+import java.util.Collections;
 import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
-import org.bukkit.scheduler.BukkitScheduler;
 
 /**
  * The {@link SlimefunProfiler} works closely to the {@link TickerTask} and is
@@ -44,28 +25,6 @@ import org.bukkit.scheduler.BukkitScheduler;
  * @see TickerTask
  */
 public class SlimefunProfiler {
-
-    /**
-     * A minecraft server tick is 50ms and Slimefun ticks are stretched
-     * across two ticks (sync and async blocks), so we use 100ms as a reference here
-     */
-    private static final int MAX_TICK_DURATION = 100;
-
-    /**
-     * Our internal instance of {@link SlimefunThreadFactory}, it provides the naming
-     * convention for our {@link Thread} pool and also the count of this pool.
-     */
-    private final SlimefunThreadFactory threadFactory = new SlimefunThreadFactory(2);
-
-    /**
-     * This is our {@link Thread} pool to evaluate timings data.
-     * We cannot use the {@link BukkitScheduler} here because we need to evaluate
-     * this data in split seconds.
-     * So we cannot simply wait until the next server tick for this.
-     */
-    private final ExecutorService executor =
-            Executors.newFixedThreadPool(threadFactory.getThreadCount(), threadFactory);
-
     /**
      * All possible values of {@link PerformanceRating}.
      * We cache these for fast access since Enum#values() creates
@@ -77,43 +36,19 @@ public class SlimefunProfiler {
      * This boolean marks whether we are currently profiling or not.
      */
     @Getter
-    private volatile boolean isProfiling = false;
-
-    /**
-     * This {@link AtomicInteger} holds the amount of blocks that still need to be
-     * profiled.
-     */
-    private final AtomicInteger queued = new AtomicInteger(0);
-
-    private final List<SlimefunPoolExecutor> threadPools = new CopyOnWriteArrayList<>();
-
-    private long totalElapsedTime;
-
-    private final Map<ProfiledBlock, Long> timings = new ConcurrentHashMap<>();
-    private final Queue<PerformanceInspector> requests = new ConcurrentLinkedQueue<>();
-
-    private final AtomicLong totalMsTicked = new AtomicLong();
-    private final AtomicInteger ticksPassed = new AtomicInteger();
-    private final AtomicLong totalNsTicked = new AtomicLong();
-    private final AtomicDouble averageTimingsPerMachine = new AtomicDouble();
+    private final boolean isProfiling = false;
 
     /**
      * This method terminates the {@link SlimefunProfiler}.
      * We need to call this method when the {@link Server} shuts down to prevent any
      * of our {@link Thread Threads} from being kept alive.
      */
-    public void kill() {
-        executor.shutdown();
-    }
+    public void kill() {}
 
     /**
      * This method starts the profiling, data from previous runs will be cleared.
      */
-    public void start() {
-        isProfiling = true;
-        queued.set(0);
-        timings.clear();
-    }
+    public void start() {}
 
     /**
      * This method starts a new profiler entry.
@@ -121,12 +56,7 @@ public class SlimefunProfiler {
      * @return A timestamp, best fed back into {@link #closeEntry(Location, SlimefunItem, long)}
      */
     public long newEntry() {
-        if (!isProfiling) {
-            return 0;
-        }
-
-        queued.incrementAndGet();
-        return System.nanoTime();
+        return 0;
     }
 
     /**
@@ -138,11 +68,7 @@ public class SlimefunProfiler {
      *
      * @param amount The amount of entries that should be scheduled. Can be negative
      */
-    public void scheduleEntries(int amount) {
-        if (isProfiling) {
-            queued.getAndAdd(amount);
-        }
-    }
+    public void scheduleEntries(int amount) {}
 
     /**
      * This method closes a previously started entry.
@@ -154,112 +80,17 @@ public class SlimefunProfiler {
      * @return The total timings of this entry
      */
     public long closeEntry(@Nonnull Location l, @Nonnull SlimefunItem item, long timestamp) {
-        Validate.notNull(l, "Location must not be null!");
-        Validate.notNull(item, "You need to specify a SlimefunItem!");
-
-        if (timestamp == 0) {
-            return 0;
-        }
-
-        long elapsedTime = System.nanoTime() - timestamp;
-
-        executor.execute(() -> {
-            ProfiledBlock block = new ProfiledBlock(l, item);
-
-            // Merge (if we have multiple samples for whatever reason)
-            timings.merge(block, elapsedTime, Long::sum);
-            queued.decrementAndGet();
-        });
-
-        return elapsedTime;
+        return 0;
     }
 
     /**
      * This stops the profiling.
      */
-    public void stop() {
-        isProfiling = false;
+    public void stop() {}
 
-        if (Slimefun.instance() == null || !Slimefun.instance().isEnabled()) {
-            // Slimefun has been disabled
-            return;
-        }
+    public void registerPool(SlimefunPoolExecutor executor) {}
 
-        executor.execute(this::finishReport);
-    }
-
-    public void registerPool(SlimefunPoolExecutor executor) {
-        Validate.notNull(executor, "Cannot register a null SlimefunPoolExecutor");
-
-        if (threadPools.contains(executor)) {
-            // Already registered
-            return;
-        }
-
-        threadPools.add(executor);
-    }
-
-    private void finishReport() {
-        // We will only wait for a maximum of this many 1ms sleeps
-        int iterations = 4000;
-
-        // Wait for all timing results to come in
-        while (!isProfiling && queued.get() > 0) {
-            try {
-                /*
-                 * Since we got more than one Thread in our pool,
-                 * blocking this one is (hopefully) completely fine
-                 */
-                Thread.sleep(1);
-                iterations--;
-
-                // If we waited for too long, then we should just abort
-                if (iterations <= 0) {
-                    Iterator<PerformanceInspector> iterator = requests.iterator();
-
-                    while (iterator.hasNext()) {
-                        iterator.next()
-                                .sendMessage("Your timings report has timed out, we were still waiting for "
-                                        + queued.get() + " samples to be collected :/");
-                        iterator.remove();
-                    }
-
-                    return;
-                }
-            } catch (InterruptedException e) {
-                Slimefun.logger().log(Level.SEVERE, "A Profiler Thread was interrupted", e);
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        if (isProfiling && queued.get() > 0) {
-            // Looks like the next profiling has already started, abort!
-            return;
-        }
-
-        totalElapsedTime = timings.values().stream().mapToLong(Long::longValue).sum();
-
-        averageTimingsPerMachine.getAndSet(
-                timings.values().stream().mapToLong(Long::longValue).average().orElse(0));
-
-        /*
-         * We log how many milliseconds have been ticked, and how many ticks have passed
-         * This is so when bStats requests the average timings, they're super quick to figure out
-         */
-        totalMsTicked.addAndGet(TimeUnit.NANOSECONDS.toMillis(totalElapsedTime));
-        totalNsTicked.addAndGet(totalElapsedTime);
-        ticksPassed.incrementAndGet();
-
-        if (!requests.isEmpty()) {
-            PerformanceSummary summary = new PerformanceSummary(this, totalElapsedTime, timings.size());
-            Iterator<PerformanceInspector> iterator = requests.iterator();
-
-            while (iterator.hasNext()) {
-                summary.send(iterator.next());
-                iterator.remove();
-            }
-        }
-    }
+    private void finishReport() {}
 
     /**
      * This method requests a summary for the given {@link PerformanceInspector}.
@@ -267,98 +98,37 @@ public class SlimefunProfiler {
      *
      * @param inspector The {@link PerformanceInspector} who shall receive this summary.
      */
-    public void requestSummary(@Nonnull PerformanceInspector inspector) {
-        Validate.notNull(inspector, "Cannot request a summary for null");
-
-        requests.add(inspector);
-    }
+    public void requestSummary(@Nonnull PerformanceInspector inspector) {}
 
     @Nonnull
     protected Map<String, Long> getByItem() {
-        Map<String, Long> map = new HashMap<>();
-
-        for (Map.Entry<ProfiledBlock, Long> entry : timings.entrySet()) {
-            map.merge(entry.getKey().getId(), entry.getValue(), Long::sum);
-        }
-
-        return map;
+        return Collections.emptyMap();
     }
 
     @Nonnull
     protected Map<String, Long> getByPlugin() {
-        Map<String, Long> map = new HashMap<>();
-
-        for (Map.Entry<ProfiledBlock, Long> entry : timings.entrySet()) {
-            map.merge(entry.getKey().getAddon().getName(), entry.getValue(), Long::sum);
-        }
-
-        return map;
+        return Collections.emptyMap();
     }
 
     @Nonnull
     protected Map<String, Long> getByChunk() {
-        Map<String, Long> map = new HashMap<>();
-
-        for (Map.Entry<ProfiledBlock, Long> entry : timings.entrySet()) {
-            ProfiledBlock block = entry.getKey();
-            String world = block.getWorld().getName();
-            int x = block.getChunkX();
-            int z = block.getChunkZ();
-
-            map.merge(world + " (" + x + ',' + z + ')', entry.getValue(), Long::sum);
-        }
-
-        return map;
+        return Collections.emptyMap();
     }
 
     protected int getBlocksInChunk(@Nonnull String chunk) {
-        Validate.notNull(chunk, "The chunk cannot be null!");
-        int blocks = 0;
-
-        for (ProfiledBlock block : timings.keySet()) {
-            String world = block.getWorld().getName();
-            int x = block.getChunkX();
-            int z = block.getChunkZ();
-
-            if (chunk.equals(world + " (" + x + ',' + z + ')')) {
-                blocks++;
-            }
-        }
-
-        return blocks;
+        return 0;
     }
 
     protected int getBlocksOfId(@Nonnull String id) {
-        Validate.notNull(id, "The id cannot be null!");
-        int blocks = 0;
-
-        for (ProfiledBlock block : timings.keySet()) {
-            if (block.getId().equals(id)) {
-                blocks++;
-            }
-        }
-
-        return blocks;
+        return 0;
     }
 
     protected int getBlocksFromPlugin(@Nonnull String pluginName) {
-        Validate.notNull(pluginName, "The Plugin name cannot be null!");
-        int blocks = 0;
-
-        for (ProfiledBlock block : timings.keySet()) {
-            if (block.getAddon().getName().equals(pluginName)) {
-                blocks++;
-            }
-        }
-
-        return blocks;
+        return 0;
     }
 
     protected float getPercentageOfTick() {
-        float millis = totalElapsedTime / 1000000.0F;
-        float fraction = (millis * 100.0F) / MAX_TICK_DURATION;
-
-        return Math.round((fraction * 100.0F) / 100.0F);
+        return 0;
     }
 
     /**
@@ -381,11 +151,11 @@ public class SlimefunProfiler {
 
     @Nonnull
     public String getTime() {
-        return NumberUtils.getAsMillis(totalElapsedTime);
+        return "";
     }
 
     public int getTickRate() {
-        return Slimefun.getTickerTask().getTickRate();
+        return 20;
     }
 
     /**
@@ -396,31 +166,19 @@ public class SlimefunProfiler {
      * @return Whether timings of this {@link Block} have been collected
      */
     public boolean hasTimings(@Nonnull Block b) {
-        Validate.notNull(b, "Cannot get timings for a null Block");
-
-        return timings.containsKey(new ProfiledBlock(b));
+        return false;
     }
 
     public String getTime(@Nonnull Block b) {
-        Validate.notNull(b, "Cannot get timings for a null Block");
-
-        long time = timings.getOrDefault(new ProfiledBlock(b), 0L);
-        return NumberUtils.getAsMillis(time);
+        return "";
     }
 
     public String getTime(@Nonnull Chunk chunk) {
-        Validate.notNull(chunk, "Cannot get timings for a null Chunk");
-
-        long time = getByChunk()
-                .getOrDefault(chunk.getWorld().getName() + " (" + chunk.getX() + ',' + chunk.getZ() + ')', 0L);
-        return NumberUtils.getAsMillis(time);
+        return "";
     }
 
     public String getTime(@Nonnull SlimefunItem item) {
-        Validate.notNull(item, "Cannot get timings for a null SlimefunItem");
-
-        long time = getByItem().getOrDefault(item.getId(), 0L);
-        return NumberUtils.getAsMillis(time);
+        return "";
     }
 
     /**
@@ -429,11 +187,7 @@ public class SlimefunProfiler {
      * @return The average millisecond timing for this {@link SlimefunProfiler}.
      */
     public long getAndResetAverageTimings() {
-        long l = totalMsTicked.get() / ticksPassed.get();
-        totalMsTicked.set(0);
-        ticksPassed.set(0);
-
-        return l;
+        return 0;
     }
 
     /**
@@ -442,11 +196,7 @@ public class SlimefunProfiler {
      * @return The average nanosecond timing for this {@link SlimefunProfiler}.
      */
     public double getAndResetAverageNanosecondTimings() {
-        long l = totalNsTicked.get() / ticksPassed.get();
-        totalNsTicked.set(0);
-        ticksPassed.set(0);
-
-        return l;
+        return 0;
     }
 
     /**
@@ -455,45 +205,14 @@ public class SlimefunProfiler {
      * @return The average millisecond timing for each machine.
      */
     public double getAverageTimingsPerMachine() {
-        return averageTimingsPerMachine.getAndSet(0);
+        return 0;
     }
 
     public String getThreadPoolStatus() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("线程池状态 [ 运行中 | 已完成 | 总任务 | 队列大小 ]\n");
-
-        for (SlimefunPoolExecutor executor : threadPools) {
-            sb.append(executor.getName())
-                    .append(" (")
-                    .append(executor.getCorePoolSize())
-                    .append(" / ")
-                    .append(executor.getMaximumPoolSize())
-                    .append(") ")
-                    .append(": ")
-                    .append("\n")
-                    .append(executor.getActiveCount())
-                    .append(" | ")
-                    .append(executor.getCompletedTaskCount())
-                    .append(" | ")
-                    .append(executor.getTaskCount())
-                    .append(" | ")
-                    .append(executor.getQueue().size())
-                    .append("\n");
-        }
-
-        return sb.toString();
+        return "";
     }
 
     public String snapshotThreads() {
-        StringBuilder sb = new StringBuilder();
-        final ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
-        for (SlimefunPoolExecutor threadPool : threadPools) {
-            for (long id : threadPool.getRunningThreads()) {
-                sb.append(StringUtil.formatDetailedThreadInfo(threadMXBean.getThreadInfo(id, 100)))
-                        .append("\n");
-            }
-        }
-
-        return sb.toString();
+        return "";
     }
 }

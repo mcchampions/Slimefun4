@@ -242,15 +242,6 @@ public class DebugFishListener implements Listener {
                 .ifPresent(tickLoc -> p.sendMessage(ChatColors.color(
                         "&dIn Ticker Queue " + (tickLoc.isUniversal() ? "(Universal)" : "") + ": " + greenCheckmark)));
 
-        if (Slimefun.getProfiler().hasTimings(b)) {
-            p.sendMessage(
-                    ChatColors.color("  &dTimings: &e" + Slimefun.getProfiler().getTime(b)));
-            p.sendMessage(ChatColors.color(
-                    "  &dTotal Timings: &e" + Slimefun.getProfiler().getTime(item)));
-            p.sendMessage(ChatColors.color(
-                    "  &dChunk Timings: &e" + Slimefun.getProfiler().getTime(b.getChunk())));
-        }
-
         if (item instanceof EnergyRegulator) {
             p.sendMessage(ChatColors.color("&dEnergy Regulator"));
             EnergyNet network = EnergyNet.getNetworkFromLocationOrCreate(b.getLocation());

@@ -493,9 +493,6 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
          * + getDescription().getVersion());
          * }*/
 
-        // Kill our Profiler Threads
-        profiler.kill();
-
         // Save all Player Profiles that are still in memory
         PlayerProfile.iterator().forEachRemaining(profile -> {
             if (profile.isDirty()) {

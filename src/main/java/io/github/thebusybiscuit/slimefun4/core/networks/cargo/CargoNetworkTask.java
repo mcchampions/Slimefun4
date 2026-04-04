@@ -61,8 +61,6 @@ class CargoNetworkTask implements Runnable {
 
     @Override
     public void run() {
-        long timestamp = System.nanoTime();
-
         try {
             /**
              * All operations happen here: Everything gets iterated from the Input Nodes.
@@ -75,9 +73,6 @@ class CargoNetworkTask implements Runnable {
                 Optional<Block> attachedBlock = network.getAttachedBlock(input);
 
                 attachedBlock.ifPresent(block -> routeItems(input, block, entry.getValue(), outputs));
-
-                // This will prevent this timings from showing up for the Cargo Manager
-                timestamp += Slimefun.getProfiler().closeEntry(entry.getKey(), inputNode, nodeTimestamp);
             }
         } catch (Exception | LinkageError x) {
             Slimefun.logger()
@@ -87,9 +82,6 @@ class CargoNetworkTask implements Runnable {
                             () -> "An Exception was caught while ticking a Cargo network @ "
                                     + new BlockPosition(network.getRegulator()));
         }
-
-        // Submit a timings report
-        Slimefun.getProfiler().closeEntry(network.getRegulator(), SlimefunItems.CARGO_MANAGER.getItem(), timestamp);
     }
 
     @ParametersAreNonnullByDefault
