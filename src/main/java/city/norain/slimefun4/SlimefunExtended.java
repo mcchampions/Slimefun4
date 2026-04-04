@@ -27,7 +27,6 @@ public final class SlimefunExtended {
         if ("true".equals(System.getProperty("slimefun.database.debug"))) {
             databaseDebugMode = true;
 
-            Slimefun.getSQLProfiler().start();
             Slimefun.logger().log(Level.INFO, "已启动数据库调试模式");
         } else {
             Configurator.setLevel(HikariConfig.class.getName(), org.apache.logging.log4j.Level.OFF);
