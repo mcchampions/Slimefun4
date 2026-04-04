@@ -1,8 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.api.network;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.LocationUtils;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
-import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.NetworkListener;
@@ -36,7 +33,7 @@ public abstract class Network {
     /**
      * The {@link Location} of the regulator of this {@link Network}.
      */
-    protected Location regulator;
+    protected final Location regulator;
 
     private final Queue<Location> nodeQueue = new ArrayDeque<>();
     protected final Set<Location> connectedLocations = new HashSet<>();

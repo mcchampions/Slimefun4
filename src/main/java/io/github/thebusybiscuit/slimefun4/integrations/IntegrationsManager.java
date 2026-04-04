@@ -239,10 +239,7 @@ public class IntegrationsManager {
             }
         }
         // Fix #1071
-        if (event.getClass().getName().startsWith("com.ghostchu.quickshop.util.PermissionChecker")) {
-            return true;
-        }
-        return false;
+        return event.getClass().getName().startsWith("com.ghostchu.quickshop.util.PermissionChecker");
     }
 
     /**

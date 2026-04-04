@@ -233,13 +233,11 @@ public class BackpackListener implements Listener {
                     return;
                 }
                 // Create the backpack, and bind
-                PlayerProfile.get(player, profile -> {
-                    PlayerBackpack.bindItem(
-                            item,
-                            Slimefun.getDatabaseManager()
-                                    .getProfileDataController()
-                                    .createBackpack(player, name, profile.nextBackpackNum(), backpackItem.getSize()));
-                });
+                PlayerProfile.get(player, profile -> PlayerBackpack.bindItem(
+                        item,
+                        Slimefun.getDatabaseManager()
+                                .getProfileDataController()
+                                .createBackpack(player, name, profile.nextBackpackNum(), backpackItem.getSize())));
             });
             return;
         }

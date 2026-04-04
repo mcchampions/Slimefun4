@@ -298,9 +298,9 @@ public class MetricsService {
     }
 
     private <T> BodyHandler<T> downloadMonitor(BodyHandler<T> h) {
-        return info -> new BodySubscriber<T>() {
+        return info -> new BodySubscriber<>() {
 
-            private BodySubscriber<T> delegateSubscriber = h.apply(info);
+            private final BodySubscriber<T> delegateSubscriber = h.apply(info);
             private int lastPercentPosted = 0;
             private long bytesWritten = 0;
 
@@ -313,16 +313,16 @@ public class MetricsService {
             public void onNext(List<ByteBuffer> item) {
                 bytesWritten += item.stream().mapToLong(ByteBuffer::capacity).sum();
                 long totalBytes = info.headers()
-                        .firstValue("Content-Length")
-                        .map(Long::parseLong)
-                        .orElse(-1L);
+                    .firstValue("Content-Length")
+                    .map(Long::parseLong)
+                    .orElse(-1L);
 
                 int percent = (int) (20 * (Math.round((((double) bytesWritten / totalBytes) * 100) / 20)));
 
                 if (percent != 0 && percent != lastPercentPosted) {
                     plugin.getLogger()
-                            .info("# Downloading... " + percent + "% " + "(" + bytesWritten + "/" + totalBytes
-                                    + " bytes)");
+                        .info("# Downloading... " + percent + "% " + "(" + bytesWritten + "/" + totalBytes
+                              + " bytes)");
                     lastPercentPosted = percent;
                 }
 

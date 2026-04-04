@@ -68,7 +68,7 @@ public final class Language {
      * @return A percentage {@code (0.0 - 100.0)} for the progress of translation of this {@link Language}
      */
     public double getTranslationProgress() {
-        if (id.equals("en")) {
+        if ("en".equals(id)) {
             return 100.0;
         } else {
             if (progress < 0) {

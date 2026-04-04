@@ -55,10 +55,10 @@ public class OilPump extends AContainer implements RecipeDisplayItem, NotDiagona
                     return false;
                 }
 
-                if (!Slimefun.getGPSNetwork()
+                if (Slimefun.getGPSNetwork()
                         .getResourceManager()
                         .getSupplies(oil, b.getWorld(), b.getX() >> 4, b.getZ() >> 4)
-                        .isPresent()) {
+                        .isEmpty()) {
                     Slimefun.getLocalization().sendMessage(p, "gps.geo.scan-required", true);
                     return false;
                 }

@@ -1191,7 +1191,7 @@ public class SlimefunItem implements Placeable {
         } else if (hasResearch()) {
             Optional<PlayerProfile> profile = PlayerProfile.find(p);
 
-            if (!profile.isPresent()) {
+            if (profile.isEmpty()) {
                 /*
                  * We will return false since we cannot know the answer yet.
                  * But we will schedule the Profile for loading and not send
@@ -1277,11 +1277,8 @@ public class SlimefunItem implements Placeable {
 
         Optional<String> itemID = Slimefun.getItemDataService().getItemData(item);
 
-        if (itemID.isPresent()) {
-            return getById(itemID.get());
-        }
+        return itemID.map(SlimefunItem::getById).orElse(null);
 
-        return null;
     }
 
     /**

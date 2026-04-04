@@ -222,7 +222,7 @@ public final class NumberUtils {
     }
 
     public static double reparseDouble(double number) {
-        return Double.valueOf(roundDecimalNumber(number));
+        return Double.parseDouble(roundDecimalNumber(number));
     }
 
     public static long getLong(@Nullable Long value, long defaultValue) {
@@ -254,11 +254,7 @@ public final class NumberUtils {
         // are you serious about this shit argument??
         if (value < min) {
             return min;
-        } else if (value > max) {
-            return max;
-        } else {
-            return value;
-        }
+        } else return Math.min(value, max);
     }
     /**
      * This method is a combination of Math.min and Math.max, it clamps the given value
@@ -276,11 +272,7 @@ public final class NumberUtils {
     public static long clamp(long min, long value, long max) {
         if (value < min) {
             return min;
-        } else if (value > max) {
-            return max;
-        } else {
-            return value;
-        }
+        } else return Math.min(value, max);
     }
 
     /**
@@ -299,11 +291,7 @@ public final class NumberUtils {
     public static double clamp(double min, double value, double max) {
         if (value < min) {
             return min;
-        } else if (value > max) {
-            return max;
-        } else {
-            return value;
-        }
+        } else return Math.min(value, max);
     }
 
     public static int getJavaVersion() {

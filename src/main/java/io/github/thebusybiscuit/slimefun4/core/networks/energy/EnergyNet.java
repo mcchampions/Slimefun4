@@ -10,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.attributes.HologramOwner;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
 import java.util.Collections;
@@ -19,8 +18,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.function.LongConsumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -220,10 +217,10 @@ public class EnergyNet extends Network implements HologramOwner {
                 long capacity = component.getCapacityLong();
 
                 if (remainingEnergy > capacity) {
-                    component.setCharge(loc, (long) capacity);
+                    component.setCharge(loc, capacity);
                     remainingEnergy -= capacity;
                 } else {
-                    component.setCharge(loc, (long) remainingEnergy);
+                    component.setCharge(loc, remainingEnergy);
                     remainingEnergy = 0;
                 }
             } else {
@@ -288,7 +285,7 @@ public class EnergyNet extends Network implements HologramOwner {
                 long energy = provider.getGeneratedOutputLong(loc, data);
 
                 if (provider.isChargeable()) {
-                    energy = NumberUtils.flowSafeAddition(energy, (long) provider.getChargeLong(loc));
+                    energy = NumberUtils.flowSafeAddition(energy, provider.getChargeLong(loc));
                 }
 
                 if (provider.willExplode(loc, data)) {

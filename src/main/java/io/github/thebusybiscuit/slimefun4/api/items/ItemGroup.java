@@ -156,7 +156,7 @@ public class ItemGroup implements Keyed {
      */
     private void sortCategoriesByTier() {
         List<ItemGroup> categories = Slimefun.getRegistry().getAllItemGroups();
-        Collections.sort(categories, Comparator.comparingInt(ItemGroup::getTier));
+        categories.sort(Comparator.comparingInt(ItemGroup::getTier));
     }
 
     /**

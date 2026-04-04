@@ -192,11 +192,9 @@ public class GrapplingHookListener implements Listener {
                     player.teleportAsync(l);
 
                     double g = -0.08;
-                    double d = target.distance(l);
-                    double t = d;
-                    double vX = (1.0 + 0.08 * t) * (target.getX() - l.getX()) / t;
-                    double vY = (1.0 + 0.04 * t) * (target.getY() - l.getY()) / t - 0.5D * g * t;
-                    double vZ = (1.0 + 0.08 * t) * (target.getZ() - l.getZ()) / t;
+                    double vX = (1.0 + 0.08 * target.distance(l)) * (target.getX() - l.getX()) / target.distance(l);
+                    double vY = (1.0 + 0.04 * target.distance(l)) * (target.getY() - l.getY()) / target.distance(l) - 0.5D * g * target.distance(l);
+                    double vZ = (1.0 + 0.08 * target.distance(l)) * (target.getZ() - l.getZ()) / target.distance(l);
 
                     velocity = player.getVelocity();
                     velocity.setX(vX);

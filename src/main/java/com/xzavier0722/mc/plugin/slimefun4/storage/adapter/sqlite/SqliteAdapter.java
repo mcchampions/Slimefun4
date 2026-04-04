@@ -20,18 +20,19 @@ import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlC
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.FIELD_UNIVERSAL_UUID;
 import static com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlConstants.METADATA_VERSION;
 
-import city.norain.slimefun4.timings.entry.SQLEntry;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.IDataSourceAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlCommonAdapter;
 import com.xzavier0722.mc.plugin.slimefun4.storage.adapter.sqlcommon.SqlUtils;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataScope;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.DataType;
+import com.xzavier0722.mc.plugin.slimefun4.storage.common.FieldKey;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordKey;
 import com.xzavier0722.mc.plugin.slimefun4.storage.common.RecordSet;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.Map;
 
 public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
     @Override
@@ -56,13 +57,13 @@ public class SqliteAdapter extends SqlCommonAdapter<SqliteConfig> {
 
         var valStr = new StringBuilder();
         var flag = false;
-        for (var field : fields) {
+        for (Map.Entry<FieldKey, String> entry : data.entrySet()) {
             if (flag) {
                 valStr.append(", ");
             } else {
                 flag = true;
             }
-            valStr.append(SqlUtils.toSqlValStr(field, data.get(field)));
+            valStr.append(SqlUtils.toSqlValStr(entry.getKey(), entry.getValue()));
         }
 
         var updateFields = key.getFields();

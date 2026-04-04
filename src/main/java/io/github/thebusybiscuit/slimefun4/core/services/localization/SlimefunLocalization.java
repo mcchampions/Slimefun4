@@ -183,7 +183,7 @@ public abstract class SlimefunLocalization implements Keyed {
         String defaultValue = defaults.getString(path);
 
         // Return the default value or an error message
-        return defaultValue != null ? defaultValue : null;
+        return defaultValue;
     }
 
     @ParametersAreNonnullByDefault
@@ -199,7 +199,7 @@ public abstract class SlimefunLocalization implements Keyed {
 
         if (language == null) {
             // Unit-Test scenario (or something went horribly wrong)
-            return Arrays.asList("Error: No language present");
+            return List.of("Error: No language present");
         }
 
         FileConfiguration config = language.getFile(file);
@@ -224,7 +224,7 @@ public abstract class SlimefunLocalization implements Keyed {
     @ParametersAreNonnullByDefault
     private @Nonnull List<String> getStringList(@Nullable Language language, LanguageFile file, String path) {
         List<String> list = getStringListOrNull(language, file, path);
-        return list != null ? list : Arrays.asList("! Missing string \"" + path + '"');
+        return list != null ? list : List.of("! Missing string \"" + path + '"');
     }
 
     public @Nonnull String getMessage(@Nonnull String key) {

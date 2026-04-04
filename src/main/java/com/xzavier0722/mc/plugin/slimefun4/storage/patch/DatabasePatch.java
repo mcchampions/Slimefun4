@@ -15,7 +15,7 @@ import lombok.Getter;
 
 @Getter
 public abstract class DatabasePatch {
-    protected int version;
+    protected final int version;
 
     public DatabasePatch(int version) {
         this.version = version;

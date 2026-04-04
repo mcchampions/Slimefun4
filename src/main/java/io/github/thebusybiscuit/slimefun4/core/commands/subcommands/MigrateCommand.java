@@ -26,7 +26,7 @@ public class MigrateCommand extends SubCommand {
     @Override
     public void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args) {
         if (sender.hasPermission("slimefun.command.migrate") || sender instanceof ConsoleCommandSender) {
-            if (args.length > 1 && args[1].equalsIgnoreCase("confirm")) {
+            if (args.length > 1 && "confirm".equalsIgnoreCase(args[1])) {
                 Slimefun.getLocalization().sendMessage(sender, "commands.migrate.started", true);
 
                 Bukkit.getScheduler().runTaskAsynchronously(Slimefun.instance(), () -> {

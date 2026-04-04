@@ -24,14 +24,14 @@ public class SlimefunTabCompleter  {
     public static List<String> onTabComplete(List<String> args) {
         int size = args.size();
         if (size == 2) {
-            if (args.get(0).equalsIgnoreCase("banitem")) {
+            if ("banitem".equalsIgnoreCase(args.get(0))) {
                 return createReturnList(getSlimefunItems(), args.get(1));
-            } else if (args.get(0).equalsIgnoreCase("unbanitem")) {
+            } else if ("unbanitem".equalsIgnoreCase(args.get(0))) {
                 List<String> list = Slimefun.getRegistry().getDisabledSlimefunItems().stream()
                         .map(SlimefunItem::getId)
                         .collect(Collectors.toList());
                 return createReturnList(list, args.get(1));
-            } else if (args.get(0).equalsIgnoreCase("cleardata")) {
+            } else if ("cleardata".equalsIgnoreCase(args.get(0))) {
                 List<String> list = new ArrayList<>(
                         Bukkit.getWorlds().stream().map(WorldInfo::getName).toList());
                 list.add("*");
@@ -40,9 +40,9 @@ public class SlimefunTabCompleter  {
             return createReturnList(getPlayerList(args.get(1)), args.get(1));
         }
         if (size == 3) {
-            if (args.get(0).equalsIgnoreCase("give")) {
+            if ("give".equalsIgnoreCase(args.get(0))) {
                 return createReturnList(getSlimefunItems(), args.get(2));
-            } else if (args.get(0).equalsIgnoreCase("research")) {
+            } else if ("research".equalsIgnoreCase(args.get(0))) {
                 List<Research> researches = Slimefun.getRegistry().getResearches();
                 List<String> suggestions = new LinkedList<>();
 
@@ -54,13 +54,13 @@ public class SlimefunTabCompleter  {
                 }
 
                 return createReturnList(suggestions, args.get(2));
-            } else if (args.get(0).equalsIgnoreCase("cleardata")) {
+            } else if ("cleardata".equalsIgnoreCase(args.get(0))) {
                 return createReturnList(COUNT_LIST, args.get(2));
             } else {
                 return createReturnList(getPlayerList(args.get(2)), args.get(2));
             }
         }
-        if (size == 4 && args.get(0).equalsIgnoreCase("give")) {
+        if (size == 4 && "give".equalsIgnoreCase(args.get(0))) {
             return createReturnList(COUNT_LIST, args.get(3));
         }
         if (size > 0) {

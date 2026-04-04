@@ -35,13 +35,14 @@ public class PermissionsService {
         // @formatter:off
         config.getConfiguration()
                 .options()
-                .header("This file is used to assign permission nodes to items from Slimefun or any of its"
-                        + " addons.\n"
-                        + "To assign an item a certain permission node you simply have to set the"
-                        + " 'permission' attribute\n"
-                        + "to your desired permission node.\n"
-                        + "You can also customize the text that is displayed when a Player does not have"
-                        + " that permission.");
+                .header("""
+This file is used to assign permission nodes to items from Slimefun or any of its\
+ addons.
+To assign an item a certain permission node you simply have to set the\
+ 'permission' attribute
+to your desired permission node.
+You can also customize the text that is displayed when a Player does not have\
+ that permission.""");
         // @formatter:on
 
         config.getConfiguration().options().copyHeader(true);
@@ -98,7 +99,7 @@ public class PermissionsService {
         }
 
         String permission = permissions.get(item.getId());
-        return permission == null || permission.equals("none") || p.hasPermission(permission);
+        return permission == null || "none".equals(permission) || p.hasPermission(permission);
     }
 
     /**
@@ -116,7 +117,7 @@ public class PermissionsService {
         Validate.notNull(item, "Cannot get permissions for null");
         String permission = permissions.get(item.getId());
 
-        if (permission == null || permission.equals("none")) {
+        if (permission == null || "none".equals(permission)) {
             return Optional.empty();
         } else {
             return Optional.of(permission);

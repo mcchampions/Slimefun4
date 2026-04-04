@@ -37,32 +37,6 @@ public class LegacyStorage implements Storage {
             }
         }
 
-        // Load backpacks
-        HashMap<Integer, PlayerBackpack> backpacks = new HashMap<>();
-        for (String key : playerFile.getKeys("backpacks")) {
-            try {
-                int id = Integer.parseInt(key);
-                int size = playerFile.getInt("backpacks." + key + ".size");
-
-                HashMap<Integer, ItemStack> items = new HashMap<>();
-                for (int i = 0; i < size; i++) {
-                    items.put(i, playerFile.getItem("backpacks." + key + ".contents." + i));
-                }
-
-                /*
-                PlayerBackpack backpack = PlayerBackpack.load(uuid, id, size, items);
-
-                backpacks.put(id, backpack);
-                */
-            } catch (Exception x) {
-                Slimefun.logger()
-                        .log(
-                                Level.WARNING,
-                                x,
-                                () -> "Could not load Backpack \"" + key + "\" for Player \"" + uuid + '"');
-            }
-        }
-
         // Load waypoints
         Set<Waypoint> waypoints = new HashSet<>();
         for (String key : waypointsFile.getKeys()) {
@@ -85,7 +59,7 @@ public class LegacyStorage implements Storage {
         long end = System.nanoTime();
         Slimefun.getAnalyticsService().recordPlayerProfileDataTime("legacy", true, end - start);
 
-        return new PlayerData(researches, backpacks, waypoints);
+        return new PlayerData(researches, new HashMap<>(), waypoints);
     }
 
     // The current design of saving all at once isn't great, this will be refined.
@@ -113,7 +87,7 @@ public class LegacyStorage implements Storage {
                 // Sooooo we're gonna hack this for now while we move away from the Legacy Storage
                 // Let's make sure the user doesn't have _any_ research with this ID and _then_ remove it
             } else if (playerFile.contains("researches." + research.getID())
-                    && !data.getResearches().stream().anyMatch((r) -> r.getID() == research.getID())) {
+                       && data.getResearches().stream().noneMatch((r) -> r.getID() == research.getID())) {
                 playerFile.setValue("researches." + research.getID(), null);
             }
         }

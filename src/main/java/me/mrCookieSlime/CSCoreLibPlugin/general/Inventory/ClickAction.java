@@ -9,8 +9,8 @@ package me.mrCookieSlime.CSCoreLibPlugin.general.Inventory;
 // todo: make it an enum
 public class ClickAction {
 
-    private boolean right;
-    private boolean shift;
+    private final boolean right;
+    private final boolean shift;
 
     public ClickAction(boolean rightClicked, boolean shiftClicked) {
         this.right = rightClicked;

@@ -44,7 +44,7 @@ public class VanillaCrafterListener implements SlimefunCraftingListener {
             }
 
             if (e.getResult() == Event.Result.DENY) {
-                Slimefun.getLocalization().sendMessage((Player) e.getWhoClicked(), "crafter.not-working", true);
+                Slimefun.getLocalization().sendMessage(e.getWhoClicked(), "crafter.not-working", true);
             }
         }
     }

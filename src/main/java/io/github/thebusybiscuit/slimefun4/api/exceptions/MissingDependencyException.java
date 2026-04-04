@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.api.exceptions;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.io.Serial;
 
 /**
  * A {@link MissingDependencyException} is thrown when a {@link SlimefunAddon} tried
@@ -12,6 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 public class MissingDependencyException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -2255888430181930571L;
 
     /**

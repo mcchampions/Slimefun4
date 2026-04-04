@@ -50,7 +50,7 @@ public class BrewingStandListener implements SlimefunCraftingListener {
             }
 
             if (e.getResult() == Result.DENY) {
-                Slimefun.getLocalization().sendMessage((Player) e.getWhoClicked(), "brewing_stand.not-working", true);
+                Slimefun.getLocalization().sendMessage(e.getWhoClicked(), "brewing_stand.not-working", true);
             }
         }
     }

@@ -200,16 +200,9 @@ public class EnchantmentRune extends SimpleSlimefunItem<ItemDropHandler> {
     private void removeIllegalEnchantments(
             @Nonnull ItemStack target, @Nonnull List<Enchantment> potentialEnchantments) {
         for (Enchantment enchantment : target.getEnchantments().keySet()) {
-            Iterator<Enchantment> iterator = potentialEnchantments.iterator();
 
-            while (iterator.hasNext()) {
-                Enchantment possibleEnchantment = iterator.next();
-
-                // Duplicate or conflict
-                if (possibleEnchantment.equals(enchantment) || possibleEnchantment.conflictsWith(enchantment)) {
-                    iterator.remove();
-                }
-            }
+            // Duplicate or conflict
+            potentialEnchantments.removeIf(possibleEnchantment -> possibleEnchantment.equals(enchantment) || possibleEnchantment.conflictsWith(enchantment));
         }
     }
 

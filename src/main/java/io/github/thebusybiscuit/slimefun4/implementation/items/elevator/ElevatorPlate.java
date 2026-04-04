@@ -217,12 +217,12 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         for (int i = GUI_SIZE; i < GUI_SIZE + 9; i++) {
             if (i == GUI_SIZE + 2 && pages > 1 && page != 1) {
                 menu.addItem(
-                        i, ChestMenuUtils.getPreviousButton(p, page, pages), (player, i1, itemStack, clickAction) -> {
+                    GUI_SIZE + 2, ChestMenuUtils.getPreviousButton(p, page, pages), (player, i1, itemStack, clickAction) -> {
                             openFloorSelector(b, floors, p, page - 1);
                             return false;
                         });
             } else if (i == GUI_SIZE + 6 && pages > 1 && page != pages) {
-                menu.addItem(i, ChestMenuUtils.getNextButton(p, page, pages), (player, i1, itemStack, clickAction) -> {
+                menu.addItem(GUI_SIZE + 6, ChestMenuUtils.getNextButton(p, page, pages), (player, i1, itemStack, clickAction) -> {
                     openFloorSelector(b, floors, p, page + 1);
                     return false;
                 });
@@ -255,7 +255,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                     player.getEyeLocation().getPitch());
 
             PaperLib.teleportAsync(player, destination).thenAccept(teleported -> {
-                if (teleported.booleanValue()) {
+                if (teleported) {
                     player.sendTitle(ChatColor.WHITE + ChatColors.color(floor.getName()), null, 20, 60, 20);
                 }
             });

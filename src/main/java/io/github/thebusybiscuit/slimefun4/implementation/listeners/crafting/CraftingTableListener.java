@@ -31,7 +31,7 @@ public class CraftingTableListener implements SlimefunCraftingListener {
 
             if (sfItem != null && !sfItem.isUseableInWorkbench()) {
                 e.setResult(Result.DENY);
-                Slimefun.getLocalization().sendMessage((Player) e.getWhoClicked(), "workbench.not-enhanced", true);
+                Slimefun.getLocalization().sendMessage(e.getWhoClicked(), "workbench.not-enhanced", true);
                 break;
             }
         }

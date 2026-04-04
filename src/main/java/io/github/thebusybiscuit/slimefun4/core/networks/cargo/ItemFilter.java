@@ -6,8 +6,6 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunUniversalData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
-import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.cargo.CargoNode;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
@@ -213,7 +211,6 @@ class ItemFilter implements Predicate<ItemStack> {
 
         if (potentialMatches == 0) {
             // If there is no match, we can safely assume the default value
-            return rejectOnMatch;
         } else {
             /*
              * If there is more than one potential match, create a wrapper to save
@@ -237,7 +234,7 @@ class ItemFilter implements Predicate<ItemStack> {
             }
 
             // If no particular item was matched, we fallback to our default value.
-            return rejectOnMatch;
         }
+        return rejectOnMatch;
     }
 }

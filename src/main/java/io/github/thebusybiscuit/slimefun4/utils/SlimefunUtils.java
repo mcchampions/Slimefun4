@@ -16,8 +16,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.virtual.VirtualItemHandler.M
 import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Soulbound;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
-import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
@@ -518,10 +516,10 @@ public final class SlimefunUtils {
                 }
 
                 return potionMeta.hasBasePotionType()
-                        && sfPotionMeta.hasBasePotionType()
-                        && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+                       && sfPotionMeta.hasBasePotionType()
+                       && potionMeta.getBasePotionType() == sfPotionMeta.getBasePotionType();
             } else if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
-                return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
+                return potionMeta.getBasePotionType() == sfPotionMeta.getBasePotionType();
             } else {
                 return potionMeta.getBasePotionData().equals(sfPotionMeta.getBasePotionData());
             }

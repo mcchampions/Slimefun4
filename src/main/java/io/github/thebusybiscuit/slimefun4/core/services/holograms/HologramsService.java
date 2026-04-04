@@ -100,15 +100,8 @@ public class HologramsService {
      * This purges any expired {@link Hologram}.
      */
     private void purge() {
-        Iterator<Hologram> iterator = cache.values().iterator();
 
-        while (iterator.hasNext()) {
-            Hologram hologram = iterator.next();
-
-            if (hologram.hasExpired()) {
-                iterator.remove();
-            }
-        }
+        cache.values().removeIf(Hologram::hasExpired);
     }
 
     /**

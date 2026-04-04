@@ -578,7 +578,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private boolean isVersionUnsupported() {
         try {
             // First check if they still use the unsupported CraftBukkit software.
-            if (!PaperLib.isSpigot() && Bukkit.getName().equals("CraftBukkit")) {
+            if (!PaperLib.isSpigot() && "CraftBukkit".equals(Bukkit.getName())) {
                 StartupWarnings.invalidServerSoftware(getLogger());
                 return true;
             }

@@ -221,7 +221,7 @@ public final class Script {
             loadScripts(scripts, AndroidType.NONE);
         }
 
-        Collections.sort(scripts, Comparator.comparingInt(script -> -script.getUpvotes() + 1 - script.getDownvotes()));
+        scripts.sort(Comparator.comparingInt(script -> -script.getUpvotes() + 1 - script.getDownvotes()));
         return scripts;
     }
 

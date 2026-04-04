@@ -8,7 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.virtual.VirtualItemHandler.I
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
-import io.papermc.lib.PaperLib;
+
 import java.util.UUID;
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
@@ -139,7 +139,6 @@ class MiningTask implements Runnable {
             if (fuelLevel <= 0) {
                 // This Miner has not got enough fuel to run.
                 stop(MinerStoppingReason.NO_FUEL);
-                return;
             }
         });
 

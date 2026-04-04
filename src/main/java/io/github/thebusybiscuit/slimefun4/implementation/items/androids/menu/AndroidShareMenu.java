@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
@@ -38,6 +39,7 @@ public final class AndroidShareMenu {
     private static final int DISPLAY_START_SLOT = 9;
     private static final NamespacedKey BLOCK_INFO_KEY = new NamespacedKey(Slimefun.instance(), "share-users");
     private static final int SHARED_USERS_LIMIT = 15;
+    private static final Pattern PATTERN = Pattern.compile(", ");
 
     private AndroidShareMenu() {}
 
@@ -192,7 +194,7 @@ public final class AndroidShareMenu {
         if (replacedText.isEmpty()) {
             return new ArrayList<>();
         } else {
-            return new ArrayList<>(Arrays.asList(replacedText.split(", ")));
+            return new ArrayList<>(Arrays.asList(PATTERN.split(replacedText)));
         }
     }
 
@@ -208,7 +210,7 @@ public final class AndroidShareMenu {
         Optional<String> trustUsers = getSharedUserData(b.getState());
 
         // Checks for old Android
-        if (!trustUsers.isPresent()) {
+        if (trustUsers.isEmpty()) {
             List<String> emptyUsers = new ArrayList<>();
             setSharedUserData(b.getState(), String.valueOf(emptyUsers));
             return emptyUsers;

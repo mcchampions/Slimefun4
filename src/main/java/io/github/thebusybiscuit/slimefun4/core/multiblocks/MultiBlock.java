@@ -129,9 +129,7 @@ public class MultiBlock {
                 return a == Material.MOVING_PISTON;
             }
 
-            if (b != a) {
-                return false;
-            }
+            return b == a;
         }
 
         return true;

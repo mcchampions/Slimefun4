@@ -158,7 +158,7 @@ public class ClimbingPick extends SimpleSlimefunItem<ItemUseHandler> implements 
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
-            if (!e.getClickedBlock().isPresent()) {
+            if (e.getClickedBlock().isEmpty()) {
                 return;
             }
 

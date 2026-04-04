@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import javax.annotation.Nonnull;
@@ -30,6 +31,7 @@ public class BackupService implements Runnable {
      * The maximum amount of backups to maintain
      */
     private static final int MAX_BACKUPS = 20;
+    private static final Pattern PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$");
 
     /**
      * Our {@link DateTimeFormatter} for formatting file names.
@@ -130,7 +132,7 @@ public class BackupService implements Runnable {
      */
     private void purgeBackups(@Nonnull List<File> backups) throws IOException {
         var matchedBackup = backups.stream()
-                .filter(f -> f.getName().matches("^\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$"))
+                .filter(f -> PATTERN.matcher(f.getName()).matches())
                 .sorted((a, b) -> {
                     LocalDateTime time1 = LocalDateTime.parse(
                             a.getName().substring(0, a.getName().length() - 4), format);

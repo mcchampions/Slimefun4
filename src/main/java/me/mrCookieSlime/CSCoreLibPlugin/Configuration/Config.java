@@ -16,7 +16,7 @@ public class Config {
      */
     @Getter
     private File file;
-    private FileConfiguration config;
+    private final FileConfiguration config;
     private static final FileConfiguration BLANK_CONFIGURATION = new YamlConfiguration();
 
     /**

@@ -2,7 +2,6 @@ package io.github.thebusybiscuit.slimefun4.core.commands.subcommands;
 
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
-import io.github.thebusybiscuit.slimefun4.core.debug.Debug;
 import io.github.thebusybiscuit.slimefun4.core.debug.TestCase;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import javax.annotation.Nonnull;
@@ -40,9 +39,7 @@ public class DebugCommand extends SubCommand {
         String test = args[1];
 
         switch (test.toLowerCase()) {
-            case "disable", "off" -> {
-                Slimefun.getLocalization().sendMessage(sender, "commands.debug.disabled");
-            }
+            case "disable", "off" -> Slimefun.getLocalization().sendMessage(sender, "commands.debug.disabled");
             default -> {
                 if (TestCase.DATABASE.toString().equals(test)) {
                     Slimefun.getLocalization().sendMessage(sender, "sf-cn.timings.started");

@@ -183,9 +183,7 @@ public final class ChestMenuUtils {
 
         builder.append("&7");
 
-        for (int i = 0; i < rest; i++) {
-            builder.append(':');
-        }
+        builder.append(":".repeat(Math.max(0, rest)));
 
         builder.append(" - ").append(percentage).append('%');
         return ChatColors.color(builder.toString());

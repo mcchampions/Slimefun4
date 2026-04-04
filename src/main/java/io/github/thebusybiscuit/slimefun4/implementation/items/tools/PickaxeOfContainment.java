@@ -13,7 +13,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.AbstractMo
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.BrokenSpawner;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.RepairedSpawner;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import io.papermc.lib.PaperLib;
+
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

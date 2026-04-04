@@ -45,9 +45,9 @@ class ResearchCommand extends SubCommand {
 
                     // Getting the PlayerProfile async
                     PlayerProfile.get(p, profile -> {
-                        if (args[2].equalsIgnoreCase("all")) {
+                        if ("all".equalsIgnoreCase(args[2])) {
                             researchAll(sender, profile, p);
-                        } else if (args[2].equalsIgnoreCase("reset")) {
+                        } else if ("reset".equalsIgnoreCase(args[2])) {
                             reset(profile, p);
                         } else {
                             giveResearch(sender, p, args[2]);

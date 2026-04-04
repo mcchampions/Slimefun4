@@ -167,9 +167,7 @@ public abstract class ADataController {
         scheduleWriteTask(
                 scopeKey,
                 key,
-                () -> {
-                    dataAdapter.deleteData(key);
-                },
+                () -> dataAdapter.deleteData(key),
                 forceScopeKey);
     }
 

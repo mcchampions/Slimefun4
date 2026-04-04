@@ -32,7 +32,7 @@ public class BeeListener implements Listener {
             Player p = (Player) e.getEntity();
             Optional<PlayerProfile> optional = PlayerProfile.find(p);
 
-            if (!optional.isPresent()) {
+            if (optional.isEmpty()) {
                 PlayerProfile.request(p);
                 return;
             }

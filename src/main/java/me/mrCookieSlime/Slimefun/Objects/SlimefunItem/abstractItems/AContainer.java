@@ -310,7 +310,7 @@ public abstract class AContainer extends SlimefunItem
     }
 
     public List<ItemStack> getDisplayRecipes() {
-        List<ItemStack> displayRecipes = new ArrayList<>(recipes.size() * 2);
+        List<ItemStack> displayRecipes = new ArrayList<>(recipes.size() << 1);
 
         for (MachineRecipe recipe : recipes) {
             if (recipe.getInput().length != 1) {
@@ -418,7 +418,7 @@ public abstract class AContainer extends SlimefunItem
                 return false;
             }
 
-            setCharge(l, (long) charge - getEnergyConsumption());
+            setCharge(l, charge - getEnergyConsumption());
             return true;
         } else {
             return true;

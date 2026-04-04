@@ -92,7 +92,7 @@ public class MagicianTalisman extends Talisman {
                         || e.getEnchantment().canEnchantItem(item))
                 .filter(e -> hasConflicts(existingEnchantments, e))
                 .filter(TalismanEnchantment::getValue)
-                .collect(Collectors.toList());
+                .toList();
         // @formatter:on
 
         return enabled.isEmpty()

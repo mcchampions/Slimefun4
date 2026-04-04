@@ -152,7 +152,7 @@ public class RecipeType implements Keyed {
         this.item = item;
         this.machine = machine;
 
-        if (machine.length() > 0) {
+        if (!machine.isEmpty()) {
             this.key = new NamespacedKey(Slimefun.instance(), machine.toLowerCase(Locale.ROOT));
         } else {
             this.key = new NamespacedKey(Slimefun.instance(), "unknown");
@@ -325,7 +325,7 @@ public class RecipeType implements Keyed {
 
     public static ItemStack getRecipeOutput(MultiBlockMachine machine, ItemStack input) {
         List<ItemStack[]> recipes = machine.getRecipes();
-        return recipes.get(((getRecipeInputs(machine).indexOf(input) * 2) + 1))[0].clone();
+        return recipes.get(((getRecipeInputs(machine).indexOf(input) << 1) + 1))[0].clone();
     }
 
     public static ItemStack getRecipeOutputList(MultiBlockMachine machine, ItemStack[] input) {

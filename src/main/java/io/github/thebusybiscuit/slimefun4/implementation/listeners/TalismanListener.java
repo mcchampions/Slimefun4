@@ -346,7 +346,7 @@ public class TalismanListener implements Listener {
         // Check if the experience change was positive.
         if (e.getAmount() > 0 && Talisman.trigger(e, SlimefunItems.TALISMAN_WISE)) {
             // Double-XP
-            e.setAmount(e.getAmount() * 2);
+            e.setAmount(e.getAmount() << 1);
         }
     }
 
@@ -390,7 +390,7 @@ public class TalismanListener implements Listener {
 
                     // We do not want to dupe blocks
                     if (!droppedItem.getType().isBlock()) {
-                        int amount = Math.max(1, (dropAmount * 2) - droppedItem.getAmount());
+                        int amount = Math.max(1, (dropAmount << 1) - droppedItem.getAmount());
                         e.getBlock()
                                 .getWorld()
                                 .dropItemNaturally(

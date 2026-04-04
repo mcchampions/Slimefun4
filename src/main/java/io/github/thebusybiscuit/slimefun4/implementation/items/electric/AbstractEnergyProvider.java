@@ -129,7 +129,7 @@ public abstract class AbstractEnergyProvider extends SlimefunItem
             ItemMeta im = item.getItemMeta();
             List<String> lore = new ArrayList<>();
             lore.add(ChatColors.color("&8\u21E8 &7持续时间 " + NumberUtils.getTimeLeft(fuel.getTicks() / 2)));
-            lore.add(ChatColors.color("&8\u21E8 &e\u26A1 &7" + getEnergyProduction() * 2) + " J/s");
+            lore.add(ChatColors.color("&8\u21E8 &e\u26A1 &7" + (getEnergyProduction() << 1)) + " J/s");
             lore.add(ChatColors.color("&8\u21E8 &e\u26A1 &7最大储存量: "
                     + NumberUtils.getCompactDouble((double) fuel.getTicks() * getEnergyProduction())
                     + " J"));

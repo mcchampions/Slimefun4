@@ -144,7 +144,7 @@ class GitHubTask implements Runnable {
             throws InterruptedException, ExecutionException, TimeoutException {
         Optional<UUID> uuid = contributor.getUniqueId();
 
-        if (!uuid.isPresent()) {
+        if (uuid.isEmpty()) {
             CompletableFuture<UUID> future =
                     UUIDLookup.getUuidFromUsername(Slimefun.instance(), contributor.getMinecraftName());
 

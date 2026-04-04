@@ -71,6 +71,6 @@ class LearningAnimationOption implements SlimefunGuideOption<Boolean> {
 
     @Override
     public void setSelectedOption(@Nonnull Player p, @Nonnull ItemStack guide, @Nonnull Boolean value) {
-        PersistentDataAPI.setByte(p, getKey(), (byte) (value.booleanValue() ? 1 : 0));
+        PersistentDataAPI.setByte(p, getKey(), (byte) (value ? 1 : 0));
     }
 }

@@ -24,7 +24,7 @@ public class MachineFuel implements Predicate<ItemStack> {
         Validate.notNull(fuel, "Fuel must never be null!");
         Validate.isTrue(seconds > 0, "Fuel must last at least one second!");
 
-        this.ticks = seconds * 2;
+        this.ticks = seconds << 1;
         this.fuel = fuel;
         this.wrapper = ItemStackWrapper.wrap(fuel);
         this.output = output;

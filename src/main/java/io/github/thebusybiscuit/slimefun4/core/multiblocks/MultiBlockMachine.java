@@ -180,8 +180,8 @@ public abstract class MultiBlockMachine extends SlimefunItem implements NotPlace
          * It's functionally the same as the old fit check for the dispenser,
          * only refactored.
          */
-        if (!outputChest.isPresent()
-                && Slimefun.getItemStackService().fits(placeCheckerInv, product, InventoryContext.MACHINE_OUTPUT)) {
+        if (outputChest.isEmpty()
+            && Slimefun.getItemStackService().fits(placeCheckerInv, product, InventoryContext.MACHINE_OUTPUT)) {
             return dispInv;
         } else {
             return outputChest.orElse(null);

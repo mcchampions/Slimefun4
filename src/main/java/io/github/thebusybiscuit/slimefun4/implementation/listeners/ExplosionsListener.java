@@ -78,7 +78,6 @@ public class ExplosionsListener implements Listener {
                 blocks.remove();
                 // add WitherProof api
                 if (item instanceof WitherProof) {
-                    continue;
                 } else {
                     Runnable destroyTask = () -> {
                         block.setType(Material.AIR);
