@@ -134,7 +134,7 @@ final class CargoUtils {
                     return withdrawFromVanillaInventory(network, node, template, inventory);
                 }
 
-                BlockState state = PaperLib.getBlockState(target, false).getState();
+                BlockState state = target.getState(false);
 
                 if (state instanceof InventoryHolder inventoryHolder) {
                     inventory = inventoryHolder.getInventory();
@@ -228,7 +228,7 @@ final class CargoUtils {
             Inventory inventory = inventories.get(target.getLocation());
 
             if (inventory == null) {
-                BlockState state = PaperLib.getBlockState(target, false).getState();
+                BlockState state = target.getState(false);
                 if (!(state instanceof InventoryHolder holder)) {
                     return null;
                 }
@@ -286,7 +286,7 @@ final class CargoUtils {
                 Inventory inventory = inventories.get(target.getLocation());
 
                 if (inventory == null) {
-                    BlockState state = PaperLib.getBlockState(target, false).getState();
+                    BlockState state = target.getState(false);
                     if (!(state instanceof InventoryHolder holder)) {
                         return stack;
                     }

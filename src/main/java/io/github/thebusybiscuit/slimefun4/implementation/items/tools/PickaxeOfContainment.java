@@ -79,7 +79,7 @@ public class PickaxeOfContainment extends SimpleSlimefunItem<ToolUseHandler> {
             return null;
         }
 
-        BlockState state = PaperLib.getBlockState(b, false).getState();
+        BlockState state = b.getState(false);
 
         if (state instanceof CreatureSpawner creatureSpawner) {
             // Fallback to pig in 1.19.3+
