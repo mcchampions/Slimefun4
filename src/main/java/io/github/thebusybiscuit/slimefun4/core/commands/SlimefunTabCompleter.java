@@ -63,7 +63,7 @@ public class SlimefunTabCompleter  {
         if (size == 4 && "give".equalsIgnoreCase(args.get(0))) {
             return createReturnList(COUNT_LIST, args.get(3));
         }
-        if (size == 0) {
+        if (size < 2) {
             return Slimefun.getCommand().getSubCommandNames();
         }
         return getPlayerList(args.get(size-1));
