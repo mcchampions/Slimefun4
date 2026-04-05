@@ -80,10 +80,10 @@ public class CustomItemDataService implements Keyed {
      * @param id
      *            The id to store on the {@link ItemMeta}
      */
-    public void setItemData(@Nonnull ItemMeta meta, @Nonnull String id) {
-        Validate.notNull(meta, "The ItemMeta cannot be null!");
-        Validate.notNull(id, "Cannot store null on an ItemMeta!");
-
+    public void setItemData(ItemMeta meta, @Nonnull String id) {
+        if (meta == null) {
+            return;
+        }
         PersistentDataContainer container = meta.getPersistentDataContainer();
         container.set(namespacedKey, PersistentDataType.STRING, id);
     }
