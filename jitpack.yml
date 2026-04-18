@@ -5,4 +5,3 @@ before_install:
 
 install:
   - chmod 777 ./mvnw
-  - ./mvnw -s .mvn/settings.xml install -DskipTests

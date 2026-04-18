@@ -228,11 +228,10 @@ public enum SoundEffect {
     }
 
     private Sound getPlaySound(String soundId) {
-        Sound playSound = null;
+        Sound playSound;
 
-        if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 21, 3)) {
-            playSound = Registry.SOUNDS.get(NamespacedKey.minecraft(soundId.toLowerCase(Locale.ROOT)));
-        }
+        playSound = Registry.SOUNDS.get(NamespacedKey.minecraft(soundId.toLowerCase(Locale.ROOT)));
+
 
         if (playSound == null) {
             try {

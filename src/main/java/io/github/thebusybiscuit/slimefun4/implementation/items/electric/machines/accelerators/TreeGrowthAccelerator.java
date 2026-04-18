@@ -9,9 +9,11 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.misc.OrganicFertilizer;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
@@ -24,10 +26,8 @@ import org.bukkit.inventory.ItemStack;
  * the {@link CropGrowthAccelerator} but boosts the growth of nearby trees.
  *
  * @author TheBusyBiscuit
- *
  * @see CropGrowthAccelerator
  * @see AnimalGrowthAccelerator
- *
  */
 public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
 
@@ -36,7 +36,7 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
 
     @ParametersAreNonnullByDefault
     public TreeGrowthAccelerator(
-            ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
@@ -69,14 +69,8 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
 
     @ParametersAreNonnullByDefault
     private boolean tryToBoostGrowth(Block machine, BlockMenu inv, Block sapling) {
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            // On 1.17+ we can actually simulate bonemeal :O
-            return applyBoneMeal(machine, sapling, inv);
-        } else {
-            Sapling saplingData = (Sapling) sapling.getBlockData();
-            return saplingData.getStage() < saplingData.getMaximumStage()
-                    && updateSaplingData(machine, sapling, inv, saplingData);
-        }
+        // On 1.17+ we can actually simulate bonemeal :O
+        return applyBoneMeal(machine, sapling, inv);
     }
 
     @ParametersAreNonnullByDefault
@@ -89,13 +83,13 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
 
                 inv.consumeItem(slot);
                 sapling.getWorld()
-                        .spawnParticle(
-                                VersionedParticle.HAPPY_VILLAGER,
-                                sapling.getLocation().add(0.5D, 0.5D, 0.5D),
-                                4,
-                                0.1F,
-                                0.1F,
-                                0.1F);
+                    .spawnParticle(
+                        VersionedParticle.HAPPY_VILLAGER,
+                        sapling.getLocation().add(0.5D, 0.5D, 0.5D),
+                        4,
+                        0.1F,
+                        0.1F,
+                        0.1F);
                 return true;
             }
         }
@@ -114,13 +108,13 @@ public class TreeGrowthAccelerator extends AbstractGrowthAccelerator {
 
                 inv.consumeItem(slot);
                 block.getWorld()
-                        .spawnParticle(
-                                VersionedParticle.HAPPY_VILLAGER,
-                                block.getLocation().add(0.5D, 0.5D, 0.5D),
-                                4,
-                                0.1F,
-                                0.1F,
-                                0.1F);
+                    .spawnParticle(
+                        VersionedParticle.HAPPY_VILLAGER,
+                        block.getLocation().add(0.5D, 0.5D, 0.5D),
+                        4,
+                        0.1F,
+                        0.1F,
+                        0.1F);
                 return true;
             }
         }

@@ -12,6 +12,10 @@ public class EnvUtil {
 
     public void init() {
         try (var resource = Slimefun.class.getResourceAsStream("/git.properties")) {
+            if (resource == null) {
+                return;
+            }
+
             var prop = new Properties();
             prop.load(resource);
 
@@ -22,7 +26,12 @@ public class EnvUtil {
     }
 
     private String getProperty(String key) {
-        return gitInfo == null ? "null" : gitInfo.getProperty(key);
+        if (gitInfo == null) {
+            return "unknown";
+        }
+
+        String value = gitInfo.getProperty(key);
+        return value == null || value.isBlank() ? "unknown" : value;
     }
 
     public String getBuildTime() {

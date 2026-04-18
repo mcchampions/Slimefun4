@@ -6,7 +6,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+
 import javax.annotation.ParametersAreNonnullByDefault;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Material;
@@ -68,13 +70,12 @@ public class BioGenerator extends AGenerator {
         registerFuel(new MachineFuel(2, new ItemStack(Material.WARPED_FUNGUS)));
         registerFuel(new MachineFuel(16, SlimefunItems.STRANGE_NETHER_GOO));
 
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
-            registerFuel(new MachineFuel(2, new ItemStack(Material.GLOW_BERRIES)));
-            registerFuel(new MachineFuel(3, new ItemStack(Material.SMALL_DRIPLEAF)));
-            registerFuel(new MachineFuel(3, new ItemStack(Material.BIG_DRIPLEAF)));
-            registerFuel(new MachineFuel(2, new ItemStack(Material.GLOW_LICHEN)));
-            registerFuel(new MachineFuel(20, new ItemStack(Material.SPORE_BLOSSOM)));
-        }
+        registerFuel(new MachineFuel(2, new ItemStack(Material.GLOW_BERRIES)));
+        registerFuel(new MachineFuel(3, new ItemStack(Material.SMALL_DRIPLEAF)));
+        registerFuel(new MachineFuel(3, new ItemStack(Material.BIG_DRIPLEAF)));
+        registerFuel(new MachineFuel(2, new ItemStack(Material.GLOW_LICHEN)));
+        registerFuel(new MachineFuel(20, new ItemStack(Material.SPORE_BLOSSOM)));
+
 
         // Leaves
         for (Material m : Tag.LEAVES.getValues()) {

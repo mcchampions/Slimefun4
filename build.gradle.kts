@@ -1,0 +1,114 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.gorylenko.GitPropertiesPluginExtension
+import org.gradle.language.jvm.tasks.ProcessResources
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+plugins {
+    java
+    `maven-publish`
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.git.properties)
+}
+
+group = "com.github.slimefun"
+version = "qs-fork"
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    withSourcesJar()
+}
+
+tasks.compileJava {
+    options.encoding = "UTF-8"
+    options.release.set(21)
+}
+
+dependencies {
+    compileOnly(libs.paper.api)
+    compileOnly(libs.jsr305)
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+
+    compileOnly(libs.log4j.core)
+
+    implementation(libs.dough.api)
+    implementation(libs.unirest.java) {
+        exclude(group = "com.google.code.gson", module = "gson")
+    }
+    implementation(libs.hikaricp)
+    implementation(libs.postgresql)
+
+    compileOnly(libs.worldedit.core) { exclude(group = "*", module = "*") }
+    compileOnly(libs.worldedit.bukkit) { exclude(group = "*", module = "*") }
+    compileOnly(libs.mcmmo) { exclude(group = "*", module = "*") }
+    compileOnly(libs.placeholderapi) { exclude(group = "*", module = "*") }
+    compileOnly(libs.clearlag.core) { exclude(group = "*", module = "*") }
+    compileOnly(libs.itemsadder.api) { exclude(group = "*", module = "*") }
+    compileOnly(libs.orebfuscator.api) { exclude(group = "*", module = "*") }
+    compileOnly(libs.vault.api) { exclude(group = "*", module = "*") }
+    compileOnly(libs.authlib) { exclude(group = "*", module = "*") }
+
+    implementation(libs.commons.lang)
+    implementation(libs.slimefun.comp.lib)
+    implementation(libs.guizhanlib.updater)
+    implementation(libs.guizhanlib.minecraft)
+    implementation(libs.json)
+}
+
+tasks.jar {
+    enabled = false
+}
+
+sourceSets.main {
+    java.exclude("**/package-info.java")
+}
+
+val buildVersion = version.toString()
+val gitBuildTime: String? = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+
+configure<GitPropertiesPluginExtension> {
+    keys = listOf(
+        "git.build.time",
+        "git.build.version",
+        "git.commit.id.abbrev",
+        "git.commit.id.full",
+        "git.branch",
+    )
+    customProperty("git.build.version", buildVersion)
+    customProperty("git.build.time", gitBuildTime)
+    gitPropertiesName = "git.properties"
+    gitPropertiesResourceDir = layout.buildDirectory.dir("generated/git-properties").get().asFile
+}
+
+tasks.named<ProcessResources>("processResources") {
+    dependsOn(tasks.named("generateGitProperties"))
+    val pluginVersion = buildVersion
+    inputs.property("version", pluginVersion)
+    filesMatching("plugin.yml") {
+        expand(mapOf("version" to pluginVersion))
+    }
+}
+
+tasks.named("sourcesJar") {
+    dependsOn(tasks.named("generateGitProperties"))
+}
+
+tasks.named<ShadowJar>("shadowJar") {
+    archiveBaseName.set("Slimefun")
+    archiveVersion.set(project.version.toString())
+    archiveClassifier.set("")
+    relocate("io.github.bakedlibs.dough", "io.github.thebusybiscuit.slimefun4.libraries.dough")
+    relocate("io.papermc.lib", "io.github.thebusybiscuit.slimefun4.libraries.paperlib")
+    relocate("kong.unirest", "io.github.thebusybiscuit.slimefun4.libraries.unirest")
+    relocate("org.apache.commons.lang", "io.github.thebusybiscuit.slimefun4.libraries.commons.lang")
+    relocate("net.guizhanss.guizhanlib", "io.github.thebusybiscuit.slimefun4.libraries.guizhanlib")
+    relocate("org.json", "io.github.thebusybiscuit.slimefun4.libraries.json")
+    /**exclude {
+        it.path == "META-INF" || it.path.startsWith("META-INF/")
+    }*/
+}
+
+tasks.build {
+    dependsOn(tasks.named("shadowJar"))
+}

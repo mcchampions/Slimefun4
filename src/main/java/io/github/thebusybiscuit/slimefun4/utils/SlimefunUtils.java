@@ -516,12 +516,10 @@ public final class SlimefunUtils {
                 }
 
                 return potionMeta.hasBasePotionType()
-                       && sfPotionMeta.hasBasePotionType()
-                       && potionMeta.getBasePotionType() == sfPotionMeta.getBasePotionType();
-            } else if (SlimefunExtended.getMinecraftVersion().isAtLeast(1, 20, 2)) {
-                return potionMeta.getBasePotionType() == sfPotionMeta.getBasePotionType();
+                        && sfPotionMeta.hasBasePotionType()
+                        && potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
             } else {
-                return potionMeta.getBasePotionData().equals(sfPotionMeta.getBasePotionData());
+                return potionMeta.getBasePotionType().equals(sfPotionMeta.getBasePotionType());
             }
         }
 
@@ -708,16 +706,7 @@ public final class SlimefunUtils {
      * @return True if the inventory is empty and false otherwise
      */
     public static boolean isInventoryEmpty(@Nonnull Inventory inventory) {
-        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_16)) {
-            return inventory.isEmpty();
-        } else {
-            for (ItemStack is : inventory.getStorageContents()) {
-                if (is != null && !is.getType().isAir()) {
-                    return false;
-                }
-            }
-            return true;
-        }
+        return inventory.isEmpty();
     }
 
     /**
