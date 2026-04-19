@@ -68,7 +68,7 @@ public class VanillaInventoryDropHandler<T extends BlockState & InventoryHolder>
             int size = inventory.getSize();
             for (int i = 0; i < size; i++) {
                 ItemStack item = inventory.getItem(i);
-                if (item != null && item.getType().isAir()) {
+                if (item != null && !item.getType().isAir()) {
                     inventory.setItem(i, null);
                     drops.add(item);
                 }
