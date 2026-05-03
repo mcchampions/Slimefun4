@@ -148,6 +148,7 @@ final class CargoUtils {
         // Use lightweight wrapper for initial material comparison
         ItemStackWrapper lightweightTemplate = ItemStackWrapper.wrapLightweight(template);
         Material templateType = template.getType();
+        int templateHash = lightweightTemplate.hashCode();
 
         for (int slot : menu.getPreset().getSlotsAccessedByItemTransport(menu, ItemTransportFlow.WITHDRAW, null)) {
             ItemStack is = menu.getItemInSlot(slot);
@@ -164,6 +165,11 @@ final class CargoUtils {
 
             // Only create full wrapper if material matches
             ItemStackWrapper wrapperItemInSlot = ItemStackWrapper.wrap(is);
+
+            // Quick hash check to filter out non-matching items
+            if (wrapperItemInSlot.hashCode() != templateHash) {
+                continue;
+            }
 
             // Check filter first (lightweight check)
             if (!matchesFilter(network, node, wrapperItemInSlot)) {
@@ -210,6 +216,7 @@ final class CargoUtils {
         // Use lightweight wrapper for initial material comparison
         ItemStackWrapper lightweightWrapper = ItemStackWrapper.wrapLightweight(template);
         Material templateType = template.getType();
+        int templateHash = lightweightWrapper.hashCode();
 
         for (int slot = minSlot; slot < maxSlot; slot++) {
             // Changes to these ItemStacks are synchronized with the Item in the Inventory
@@ -227,6 +234,11 @@ final class CargoUtils {
 
             // Only create full wrapper if material matches
             ItemStackWrapper wrapperInSlot = ItemStackWrapper.wrap(itemInSlot);
+
+            // Quick hash check to filter out non-matching items
+            if (wrapperInSlot.hashCode() != templateHash) {
+                continue;
+            }
 
             // Check filter first (lightweight check)
             if (!matchesFilter(network, node, wrapperInSlot)) {

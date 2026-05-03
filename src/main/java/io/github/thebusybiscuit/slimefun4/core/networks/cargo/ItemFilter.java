@@ -195,6 +195,9 @@ class ItemFilter implements Predicate<ItemStack> {
         }
 
         Material itemType = item.getType();
+        // Compute hash for the item being tested
+        int itemHash = 31 * itemType.hashCode() + item.getAmount();
+
         // The amount of potential matches with that item.
         int potentialMatches = 0;
         List<ItemStackWrapper> potentialMatchesList = new ArrayList<>(items.size());
@@ -206,36 +209,41 @@ class ItemFilter implements Predicate<ItemStack> {
          */
         for (ItemStackWrapper stack : items) {
             if (stack.getType() == itemType) {
-                // We found a potential match based on the Material
+                // Quick hash check to filter out non-matching items
+                if (stack.hashCode() != itemHash) {
+                    continue;
+                }
+                // We found a potential match based on the Material and hash
                 potentialMatches++;
                 potentialMatchesList.add(stack);
             }
         }
 
         if (potentialMatches == 0) {
-        } else {
-            /*
-             * If there is more than one potential match, create a wrapper to save
-             * performance on the ItemMeta otherwise just use the item directly.
-             */
-            ItemStack subject = potentialMatches == 1 ? item : ItemStackWrapper.wrap(item);
-
-            /*
-             * Only iterate over potential matches instead of all items
-             */
-            for (ItemStackWrapper stack : potentialMatchesList) {
-                if (SlimefunUtils.isItemSimilar(subject, stack, checkLore, false, true, true)) {
-                    /*
-                     * The filter has found a match, we can return the opposite
-                     * of our default value. If we exclude items, this is where we
-                     * would return false. Otherwise, we return true.
-                     */
-                    return !rejectOnMatch;
-                }
-            }
-
-            // If no particular item was matched, we fallback to our default value.
+            return rejectOnMatch;
         }
+
+        /*
+         * If there is more than one potential match, create a wrapper to save
+         * performance on the ItemMeta otherwise just use the item directly.
+         */
+        ItemStack subject = potentialMatches == 1 ? item : ItemStackWrapper.wrap(item);
+
+        /*
+         * Only iterate over potential matches instead of all items
+         */
+        for (ItemStackWrapper stack : potentialMatchesList) {
+            if (SlimefunUtils.isItemSimilar(subject, stack, checkLore, false, true, true)) {
+                /*
+                 * The filter has found a match, we can return the opposite
+                 * of our default value. If we exclude items, this is where we
+                 * would return false. Otherwise, we return true.
+                 */
+                return !rejectOnMatch;
+            }
+        }
+
+        // If no particular item was matched, we fallback to our default value.
         return rejectOnMatch;
     }
 }
