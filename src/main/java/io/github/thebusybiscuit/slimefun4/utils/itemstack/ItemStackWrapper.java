@@ -43,7 +43,7 @@ public final class ItemStackWrapper extends ItemStack {
         } else {
             meta = null;
             // Simple hash for items without meta
-            hashCode = 31 * item.getType().hashCode() + amount;
+            hashCode = 31 * item.getType().hashCode();
         }
     }
 
@@ -51,7 +51,7 @@ public final class ItemStackWrapper extends ItemStack {
         hasItemMeta = false;
         meta = null;
         amount = item.getAmount();
-        hashCode = 31 * item.getType().hashCode() + amount;
+        hashCode = 31 * item.getType().hashCode();
     }
 
     /**
@@ -59,7 +59,7 @@ public final class ItemStackWrapper extends ItemStack {
      * This is used for caching to improve comparison performance.
      */
     private int computeHashCode() {
-        int result = 31 * getType().hashCode() + amount;
+        int result = 31 * getType().hashCode();
         if (meta != null) {
             result = 31 * result + meta.hashCode();
         }
