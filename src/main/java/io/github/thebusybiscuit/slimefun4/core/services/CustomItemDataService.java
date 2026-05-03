@@ -116,8 +116,6 @@ public class CustomItemDataService implements Keyed {
      * @return An {@link Optional} describing the result
      */
     public @Nonnull Optional<String> getItemData(@Nonnull ItemMeta meta) {
-        Validate.notNull(meta, "Cannot read data from null!");
-
         PersistentDataContainer container = meta.getPersistentDataContainer();
         return Optional.ofNullable(container.get(namespacedKey, PersistentDataType.STRING));
     }

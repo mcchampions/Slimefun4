@@ -369,10 +369,10 @@ public final class SlimefunUtils {
                         }
                         return true;
                     }
-                    return id.equals(sfItemStack.getItemId());
+                    return false;
                 }
 
-                ItemMetaSnapshot meta = ((SlimefunItemStack) sfitem).getItemMetaSnapshot();
+                ItemMetaSnapshot meta = sfItemStack.getItemMetaSnapshot();
                 return equalsItemMeta(itemMeta, meta, checkLore);
             } else {
                 // issue # 1178 should compare sfid even if the second one isn't a ItemStackWrapper
@@ -423,7 +423,23 @@ public final class SlimefunUtils {
 
     private static boolean equalsItemMeta(
             @Nonnull ItemMeta itemMeta, @Nonnull ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
-        return equalsItemMeta(itemMeta, itemMetaSnapshot, checkLore, false);
+        Optional<String> displayName = itemMetaSnapshot.getDisplayName();
+
+        if (itemMeta.hasDisplayName() != displayName.isPresent()) {
+            return false;
+        } else if (itemMeta.hasDisplayName()
+                   && displayName.isPresent()
+                   && !itemMeta.getDisplayName().equals(displayName.get())) {
+            return false;
+        } else if (checkLore) {
+            Optional<List<String>> itemLore = itemMetaSnapshot.getLore();
+
+            if (itemMeta.hasLore() && itemLore.isPresent() && !equalsLore(itemMeta.getLore(), itemLore.get())) {
+                return false;
+            } else return itemMeta.hasLore() == itemLore.isPresent();
+        }
+
+        return true;
     }
 
     private static boolean equalsItemMeta(

@@ -223,7 +223,7 @@ class ItemFilter implements Predicate<ItemStack> {
              * and thus only perform .getItemMeta() once
              */
             for (ItemStackWrapper stack : items) {
-                if (SlimefunUtils.isItemSimilar(subject, stack, checkLore, false)) {
+                if (SlimefunUtils.isItemSimilar(subject, stack, checkLore, false, true, true)) {
                     /*
                      * The filter has found a match, we can return the opposite
                      * of our default value. If we exclude items, this is where we
