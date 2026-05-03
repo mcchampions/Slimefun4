@@ -96,7 +96,7 @@ public class UpdaterService {
      * @return Whether the {@link PluginUpdater} is enabled
      */
     public boolean isEnabled() {
-        return Slimefun.getCfg().getBoolean("options.auto-update") && updater != null;
+        return false;
     }
 
     /**

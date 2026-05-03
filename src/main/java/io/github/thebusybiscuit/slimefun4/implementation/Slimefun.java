@@ -454,7 +454,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/SlimefunGuguProject/Slimefun4/issues";
+        return "https://github.com/mcchampions/Slimefun4/issues";
     }
 
     @Override
