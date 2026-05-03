@@ -141,8 +141,7 @@ public class BlockPhysicsListener implements Listener {
         var state = block.getState(false);
 
         // Check the skull if it had lost its data, but name still remained.
-        if (state instanceof Skull) {
-            Skull skull = (Skull) state;
+        if (state instanceof Skull skull) {
 
             if (skull.hasOwner() && Objects.equals(skull.getOwningPlayer().getName(), "CS-CoreLib")) {
                 e.setCancelled(true);

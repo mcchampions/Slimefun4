@@ -196,7 +196,7 @@ public final class Slimefun extends JavaPlugin implements SlimefunAddon, ICompat
     private final SoundService soundService = new SoundService(this);
     private final ThreadService threadService = new ThreadService(this);
     private final AnalyticsService analyticsService = new AnalyticsService(this);
-    private final ItemStackService itemStackService = new ItemStackService();
+    private static final ItemStackService itemStackService = new ItemStackService();
 
     // Some other things we need
     private final IntegrationsManager integrations = new IntegrationsManager(this);

@@ -84,7 +84,7 @@ abstract class AbstractResource implements GEOResource {
      * @return A {@link BiomeMap} for this resource
      */
     @ParametersAreNonnullByDefault
-    static final @Nonnull BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
+    static @Nonnull BiomeMap<Integer> getBiomeMap(AbstractResource resource, String path) {
         Validate.notNull(resource, "Resource cannot be null.");
         Validate.notNull(path, "Path cannot be null.");
 

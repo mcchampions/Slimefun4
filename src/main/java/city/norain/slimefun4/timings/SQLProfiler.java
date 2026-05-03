@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 
 @Getter
 public class SQLProfiler {
-    private final boolean isProfiling = false;
+    private static final boolean isProfiling = false;
 
     public void initSlowSqlCheck(@Nonnull Slimefun plugin) {}
 

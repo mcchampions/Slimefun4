@@ -36,7 +36,7 @@ public class SlimefunProfiler {
      * This boolean marks whether we are currently profiling or not.
      */
     @Getter
-    private final boolean isProfiling = false;
+    private static final boolean isProfiling = false;
 
     /**
      * This method terminates the {@link SlimefunProfiler}.

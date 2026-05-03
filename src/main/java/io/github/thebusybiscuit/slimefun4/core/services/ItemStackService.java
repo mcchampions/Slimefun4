@@ -247,7 +247,7 @@ public final class ItemStackService {
                 int maxStackSize = Math.min(itemInSlot.getMaxStackSize(), inventoryMaxStackSize);
                 int freeSpace = Math.max(0, maxStackSize - itemInSlot.getAmount());
 
-                if (freeSpace <= 0) {
+                if (freeSpace == 0) {
                     continue;
                 }
 
