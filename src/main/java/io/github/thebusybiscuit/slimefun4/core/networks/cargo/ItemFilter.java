@@ -195,8 +195,6 @@ class ItemFilter implements Predicate<ItemStack> {
         }
 
         Material itemType = item.getType();
-        // Compute hash for the item being tested
-        int itemHash = 31 * itemType.hashCode() + item.getAmount();
 
         // The amount of potential matches with that item.
         int potentialMatches = 0;
@@ -209,11 +207,7 @@ class ItemFilter implements Predicate<ItemStack> {
          */
         for (ItemStackWrapper stack : items) {
             if (stack.getType() == itemType) {
-                // Quick hash check to filter out non-matching items
-                if (stack.hashCode() != itemHash) {
-                    continue;
-                }
-                // We found a potential match based on the Material and hash
+                // We found a potential match based on the Material
                 potentialMatches++;
                 potentialMatchesList.add(stack);
             }
