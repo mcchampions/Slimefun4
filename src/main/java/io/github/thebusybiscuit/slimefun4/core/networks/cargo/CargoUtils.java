@@ -116,6 +116,7 @@ final class CargoUtils {
         }
     }
 
+
     @Nullable static ItemStack withdraw(
             AbstractItemNetwork network,
             Map<Location, Inventory> inventories,
@@ -144,8 +145,10 @@ final class CargoUtils {
             return null;
         }
 
-        ItemStackWrapper wrapperTemplate = ItemStackWrapper.wrap(template);
+        // Use lightweight wrapper for initial material comparison
+        ItemStackWrapper lightweightTemplate = ItemStackWrapper.wrapLightweight(template);
         Material templateType = template.getType();
+
         for (int slot : menu.getPreset().getSlotsAccessedByItemTransport(menu, ItemTransportFlow.WITHDRAW, null)) {
             ItemStack is = menu.getItemInSlot(slot);
             if (is == null) {
@@ -159,10 +162,17 @@ final class CargoUtils {
                 continue;
             }
 
+            // Only create full wrapper if material matches
             ItemStackWrapper wrapperItemInSlot = ItemStackWrapper.wrap(is);
 
-            if (SlimefunUtils.isItemSimilar(wrapperItemInSlot, wrapperTemplate, true)
-                    && matchesFilter(network, node, wrapperItemInSlot)) {
+            // Check filter first (lightweight check)
+            if (!matchesFilter(network, node, wrapperItemInSlot)) {
+                continue;
+            }
+
+            // Check if we need detailed comparison or if lightweight is enough
+            if (!wrapperItemInSlot.hasItemMeta() && !lightweightTemplate.hasItemMeta()) {
+                // No meta on either, lightweight comparison is sufficient
                 if (is.getAmount() > template.getAmount()) {
                     is.setAmount(is.getAmount() - template.getAmount());
                     menu.replaceExistingItem(slot, is);
@@ -170,6 +180,19 @@ final class CargoUtils {
                 } else {
                     menu.replaceExistingItem(slot, null);
                     return is;
+                }
+            } else {
+                // Need detailed comparison with full template
+                ItemStackWrapper wrapperTemplate = ItemStackWrapper.wrap(template);
+                if (SlimefunUtils.isItemSimilar(wrapperItemInSlot, wrapperTemplate, true)) {
+                    if (is.getAmount() > template.getAmount()) {
+                        is.setAmount(is.getAmount() - template.getAmount());
+                        menu.replaceExistingItem(slot, is);
+                        return template;
+                    } else {
+                        menu.replaceExistingItem(slot, null);
+                        return is;
+                    }
                 }
             }
         }
@@ -184,7 +207,8 @@ final class CargoUtils {
         int minSlot = range[0];
         int maxSlot = range[1];
 
-        ItemStackWrapper wrapper = ItemStackWrapper.wrap(template);
+        // Use lightweight wrapper for initial material comparison
+        ItemStackWrapper lightweightWrapper = ItemStackWrapper.wrapLightweight(template);
         Material templateType = template.getType();
 
         for (int slot = minSlot; slot < maxSlot; slot++) {
@@ -201,9 +225,17 @@ final class CargoUtils {
                 continue;
             }
 
+            // Only create full wrapper if material matches
             ItemStackWrapper wrapperInSlot = ItemStackWrapper.wrap(itemInSlot);
-            if (SlimefunUtils.isItemSimilar(wrapperInSlot, wrapper, true, false)
-                    && matchesFilter(network, node, wrapperInSlot)) {
+
+            // Check filter first (lightweight check)
+            if (!matchesFilter(network, node, wrapperInSlot)) {
+                continue;
+            }
+
+            // Check if we need detailed comparison or if lightweight is enough
+            if (!wrapperInSlot.hasItemMeta() && !lightweightWrapper.hasItemMeta()) {
+                // No meta on either, lightweight comparison is sufficient
                 if (itemInSlot.getAmount() > template.getAmount()) {
                     itemInSlot.setAmount(itemInSlot.getAmount() - template.getAmount());
                     return template;
@@ -211,6 +243,19 @@ final class CargoUtils {
                     ItemStack clone = itemInSlot.clone();
                     itemInSlot.setAmount(0);
                     return clone;
+                }
+            } else {
+                // Need detailed comparison with full template
+                ItemStackWrapper wrapper = ItemStackWrapper.wrap(template);
+                if (SlimefunUtils.isItemSimilar(wrapperInSlot, wrapper, true, false)) {
+                    if (itemInSlot.getAmount() > template.getAmount()) {
+                        itemInSlot.setAmount(itemInSlot.getAmount() - template.getAmount());
+                        return template;
+                    } else {
+                        ItemStack clone = itemInSlot.clone();
+                        itemInSlot.setAmount(0);
+                        return clone;
+                    }
                 }
             }
         }

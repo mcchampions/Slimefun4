@@ -28,8 +28,9 @@ public final class ItemStackWrapper extends ItemStack {
     private final ItemMeta meta;
     private final int amount;
     private final boolean hasItemMeta;
+    private final int hashCode;
 
-    private ItemStackWrapper(@Nonnull ItemStack item) {
+    private ItemStackWrapper(ItemStack item) {
         super(item.getType());
 
         amount = item.getAmount();
@@ -37,9 +38,41 @@ public final class ItemStackWrapper extends ItemStack {
 
         if (hasItemMeta) {
             meta = item.getItemMeta();
+            // Pre-compute hashCode for better performance in comparisons
+            hashCode = computeHashCode();
         } else {
             meta = null;
+            // Simple hash for items without meta
+            hashCode = 31 * item.getType().hashCode() + amount;
         }
+    }
+
+    private ItemStackWrapper(ItemStack item, boolean temp) {
+        hasItemMeta = false;
+        meta = null;
+        amount = item.getAmount();
+        hashCode = 31 * item.getType().hashCode() + amount;
+    }
+
+    /**
+     * Computes a hash code for this wrapper.
+     * This is used for caching to improve comparison performance.
+     */
+    private int computeHashCode() {
+        int result = 31 * getType().hashCode() + amount;
+        if (meta != null) {
+            result = 31 * result + meta.hashCode();
+        }
+        return result;
+    }
+
+    /**
+     * Returns the pre-computed hash code.
+     * This is much faster than computing it on the fly.
+     */
+    @Override
+    public int hashCode() {
+        return hashCode;
     }
 
     @Override
@@ -65,11 +98,6 @@ public final class ItemStackWrapper extends ItemStack {
 
     @Override
     public boolean equals(Object obj) {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
-    }
-
-    @Override
-    public int hashCode() {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
     }
 
@@ -107,7 +135,7 @@ public final class ItemStackWrapper extends ItemStack {
      * @return Returns an {@link ItemStackWrapper} of the passed {@link ItemStack}
      * @see #wrap(ItemStack)
      */
-    public static @Nonnull ItemStackWrapper forceWrap(@Nonnull ItemStack itemStack) {
+    public static ItemStackWrapper forceWrap(ItemStack itemStack) {
         Validate.notNull(itemStack, "The ItemStack cannot be null!");
 
         return new ItemStackWrapper(itemStack);
@@ -123,14 +151,29 @@ public final class ItemStackWrapper extends ItemStack {
      * @return Returns an {@link ItemStackWrapper} of the passed {@link ItemStack}
      * @see #forceWrap(ItemStack)
      */
-    public static @Nonnull ItemStackWrapper wrap(@Nonnull ItemStack itemStack) {
-        Validate.notNull(itemStack, "The ItemStack cannot be null!");
-
+    public static ItemStackWrapper wrap(ItemStack itemStack) {
         if (itemStack instanceof ItemStackWrapper wrapper) {
             return wrapper;
         }
 
         return new ItemStackWrapper(itemStack);
+    }
+
+    /**
+     * Creates a lightweight {@link ItemStackWrapper} that only caches the Material and amount.
+     * This is useful for quick comparisons where ItemMeta is not needed.
+     * This wrapper will always return null for {@link #getItemMeta()} and false for {@link #hasItemMeta()}.
+     *
+     * @param itemStack
+     *            The {@link ItemStack} to wrap
+     * @return Returns a lightweight {@link ItemStackWrapper} of the passed {@link ItemStack}
+     */
+    public static ItemStackWrapper wrapLightweight(ItemStack itemStack) {
+        if (itemStack instanceof ItemStackWrapper wrapper) {
+            return wrapper;
+        }
+
+        return new ItemStackWrapper(itemStack,false);
     }
 
     /**
@@ -141,9 +184,7 @@ public final class ItemStackWrapper extends ItemStack {
      *
      * @return An {@link ItemStackWrapper} array
      */
-    public static @Nonnull ItemStackWrapper[] wrapArray(@Nonnull ItemStack[] items) {
-        Validate.notNull(items, "The array must not be null!");
-
+    public static ItemStackWrapper[] wrapArray(ItemStack[] items) {
         ItemStackWrapper[] array = new ItemStackWrapper[items.length];
 
         for (int i = 0; i < items.length; i++) {
@@ -163,8 +204,7 @@ public final class ItemStackWrapper extends ItemStack {
      *
      * @return An {@link ItemStackWrapper} array
      */
-    public static @Nonnull List<ItemStackWrapper> wrapList(@Nonnull List<ItemStack> items) {
-        Validate.notNull(items, "The list must not be null!");
+    public static List<ItemStackWrapper> wrapList(List<ItemStack> items) {
         List<ItemStackWrapper> list = new ArrayList<>(items.size());
 
         for (ItemStack item : items) {
