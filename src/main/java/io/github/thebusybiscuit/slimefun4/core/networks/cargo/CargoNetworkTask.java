@@ -64,7 +64,9 @@ class CargoNetworkTask implements Runnable {
                 Location input = entry.getKey();
                 Optional<Block> attachedBlock = network.getAttachedBlock(input);
 
-                attachedBlock.ifPresent(block -> routeItems(input, block, entry.getValue(), outputs));
+                if (attachedBlock.isPresent()) {
+                    routeItems(input, attachedBlock.get(), entry.getValue(), outputs);
+                }
 
                 // This will prevent this timings from showing up for the Cargo Manager
             }
@@ -162,11 +164,16 @@ class CargoNetworkTask implements Runnable {
             destinations = outputNodes;
         }
 
+        // Cache the wrapper to avoid creating it multiple times
+        ItemStackWrapper wrapper = null;
+
         for (Location output : destinations) {
             Optional<Block> target = network.getAttachedBlock(output);
 
             if (target.isPresent()) {
-                ItemStackWrapper wrapper = ItemStackWrapper.wrap(item);
+                if (wrapper == null) {
+                    wrapper = ItemStackWrapper.wrap(item);
+                }
                 item = CargoUtils.insert(
                     network, inventories, output.getBlock(), target.get(), smartFill, item, wrapper);
 

@@ -172,9 +172,13 @@ public final class ItemStackService {
             return InvUtils.fitAll(inventory, items, slots);
         }
 
-        ItemStack[] contents = Arrays.stream(inventory.getContents())
-                .map(stack -> stack == null ? null : stack.clone())
-                .toArray(ItemStack[]::new);
+        // Optimize: clone contents directly instead of using stream
+        ItemStack[] contents = inventory.getContents().clone();
+        for (int i = 0; i < contents.length; i++) {
+            if (contents[i] != null) {
+                contents[i] = contents[i].clone();
+            }
+        }
 
         for (ItemStack item : items) {
             if (item == null || item.getType().isAir()) {
@@ -208,9 +212,13 @@ public final class ItemStackService {
             return addItemDirectly(inventory, item, context, slots);
         }
 
-        ItemStack[] contents = Arrays.stream(inventory.getContents())
-                .map(stack -> stack == null ? null : stack.clone())
-                .toArray(ItemStack[]::new);
+        // Optimize: clone contents directly instead of using stream
+        ItemStack[] contents = inventory.getContents().clone();
+        for (int i = 0; i < contents.length; i++) {
+            if (contents[i] != null) {
+                contents[i] = contents[i].clone();
+            }
+        }
         int amountLeft = insertIntoSnapshot(contents, inventory.getMaxStackSize(), item, context, slots);
         inventory.setContents(contents);
 
@@ -364,19 +372,14 @@ public final class ItemStackService {
             return null;
         }
 
-        Optional<ItemHandler> opt = sfItem.getHandlers().stream()
-                .filter(h -> h instanceof VirtualItemHandler)
-                .findFirst();
-        if (opt.isEmpty()) {
-            return null;
+        // Use a more efficient approach to find VirtualItemHandler
+        for (ItemHandler handler : sfItem.getHandlers()) {
+            if (handler instanceof VirtualItemHandler virtualHandler && virtualHandler.isVirtualItem(item)) {
+                return virtualHandler;
+            }
         }
 
-        VirtualItemHandler handler = (VirtualItemHandler) opt.get();
-        if (!handler.isVirtualItem(item)) {
-            return null;
-        }
-
-        return handler;
+        return null;
     }
 
     private int[] resolveSlots(int inventorySize, int... slots) {

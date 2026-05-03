@@ -194,8 +194,10 @@ class ItemFilter implements Predicate<ItemStack> {
             return rejectOnMatch;
         }
 
+        Material itemType = item.getType();
         // The amount of potential matches with that item.
         int potentialMatches = 0;
+        List<ItemStackWrapper> potentialMatchesList = new ArrayList<>(items.size());
 
         /*
          * This is a first check for materials to see if we might even have any match.
@@ -203,14 +205,14 @@ class ItemFilter implements Predicate<ItemStack> {
          * intense operation .getItemMeta()
          */
         for (ItemStackWrapper stack : items) {
-            if (stack.getType() == item.getType()) {
+            if (stack.getType() == itemType) {
                 // We found a potential match based on the Material
                 potentialMatches++;
+                potentialMatchesList.add(stack);
             }
         }
 
         if (potentialMatches == 0) {
-            // If there is no match, we can safely assume the default value
         } else {
             /*
              * If there is more than one potential match, create a wrapper to save
@@ -219,10 +221,9 @@ class ItemFilter implements Predicate<ItemStack> {
             ItemStack subject = potentialMatches == 1 ? item : ItemStackWrapper.wrap(item);
 
             /*
-             * If there is only one match, we won't need to create a Wrapper
-             * and thus only perform .getItemMeta() once
+             * Only iterate over potential matches instead of all items
              */
-            for (ItemStackWrapper stack : items) {
+            for (ItemStackWrapper stack : potentialMatchesList) {
                 if (SlimefunUtils.isItemSimilar(subject, stack, checkLore, false, true, true)) {
                     /*
                      * The filter has found a match, we can return the opposite

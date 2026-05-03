@@ -379,11 +379,18 @@ public final class SlimefunUtils {
                     ItemMeta possibleSfItemMeta = sfitem.getItemMeta();
                     String id =
                             Slimefun.getItemDataService().getItemData(itemMeta).orElse(null);
+
+                    // Quick check: if no id on item, skip to meta comparison
+                    if (id == null) {
+                        return possibleSfItemMeta != null && 
+                               equalsItemMeta(itemMeta, possibleSfItemMeta, checkLore, checkCustomModelData);
+                    }
+
                     String possibleItemId = Slimefun.getItemDataService()
                             .getItemData(possibleSfItemMeta)
                             .orElse(null);
                     // Prioritize SlimefunItem id comparison over ItemMeta comparison
-                    if (id != null && possibleItemId != null) {
+                    if (possibleItemId != null) {
                         /*
                          * PR #3417
                          *
@@ -391,14 +398,14 @@ public final class SlimefunUtils {
                          * in which case we want to use the method provided to compare
                          */
                         // to fix issue #976
-                        var match = id.equals(possibleItemId);
-                        if (match) {
+                        if (id.equals(possibleItemId)) {
                             Optional<DistinctiveItem> optionalDistinctive = getDistinctiveItem(id);
                             if (optionalDistinctive.isPresent()) {
                                 return optionalDistinctive.get().canStack(possibleSfItemMeta, itemMeta);
                             }
+                            return true;
                         }
-                        return match;
+                        return false;
                     } else {
                         return equalsItemMeta(itemMeta, possibleSfItemMeta, checkLore, checkCustomModelData);
                     }

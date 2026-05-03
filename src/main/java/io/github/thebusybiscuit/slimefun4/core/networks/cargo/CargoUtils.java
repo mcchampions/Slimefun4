@@ -145,10 +145,17 @@ final class CargoUtils {
         }
 
         ItemStackWrapper wrapperTemplate = ItemStackWrapper.wrap(template);
-
+        Material templateType = template.getType();
         for (int slot : menu.getPreset().getSlotsAccessedByItemTransport(menu, ItemTransportFlow.WITHDRAW, null)) {
             ItemStack is = menu.getItemInSlot(slot);
-            if (is == null || is.getType().isAir()) {
+            if (is == null) {
+                continue;
+            }
+
+            Material isType = is.getType();
+
+            // Quick material check before creating wrapper
+            if (isType.isAir() || isType != templateType) {
                 continue;
             }
 
@@ -178,11 +185,19 @@ final class CargoUtils {
         int maxSlot = range[1];
 
         ItemStackWrapper wrapper = ItemStackWrapper.wrap(template);
+        Material templateType = template.getType();
 
         for (int slot = minSlot; slot < maxSlot; slot++) {
             // Changes to these ItemStacks are synchronized with the Item in the Inventory
             ItemStack itemInSlot = contents[slot];
-            if (itemInSlot == null || itemInSlot.getType().isAir()) {
+            if (itemInSlot == null) {
+                continue;
+            }
+
+            Material isType = itemInSlot.getType();
+
+            // Quick material check before creating wrapper
+            if (isType.isAir() || isType != templateType) {
                 continue;
             }
 
