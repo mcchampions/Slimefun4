@@ -19,6 +19,8 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -88,7 +90,7 @@ public class SlimefunItemStack extends ItemStack {
             @Nonnull String id, @Nonnull Material type, @Nullable String name, @Nonnull Consumer<ItemMeta> consumer) {
         this(id, type, meta -> {
             if (name != null) {
-                meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                meta.setDisplayName(TextUtils.translateAlternateColorCodes(name));
             }
 
             consumer.accept(meta);
@@ -98,14 +100,14 @@ public class SlimefunItemStack extends ItemStack {
     public SlimefunItemStack(@Nonnull String id, @Nonnull ItemStack item, @Nullable String name, String... lore) {
         this(id, item, im -> {
             if (name != null) {
-                im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                im.setDisplayName(TextUtils.translateAlternateColorCodes(name));
             }
 
             if (lore.length > 0) {
                 List<String> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(ChatColor.translateAlternateColorCodes('&', line));
+                    lines.add(TextUtils.translateAlternateColorCodes(line));
                 }
                 im.setLore(lines);
             }
@@ -120,14 +122,14 @@ public class SlimefunItemStack extends ItemStack {
             @Nonnull String id, @Nonnull Material type, @Nonnull Color color, @Nullable String name, String... lore) {
         this(id, type, im -> {
             if (name != null) {
-                im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                im.setDisplayName(TextUtils.translateAlternateColorCodes(name));
             }
 
             if (lore.length > 0) {
                 List<String> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(ChatColor.translateAlternateColorCodes('&', line));
+                    lines.add(TextUtils.translateAlternateColorCodes(line));
                 }
 
                 im.setLore(lines);
@@ -151,14 +153,14 @@ public class SlimefunItemStack extends ItemStack {
             String... lore) {
         this(id, Material.POTION, im -> {
             if (name != null) {
-                im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                im.setDisplayName(TextUtils.translateAlternateColorCodes(name));
             }
 
             if (lore.length > 0) {
                 List<String> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(ChatColor.translateAlternateColorCodes('&', line));
+                    lines.add(TextUtils.translateAlternateColorCodes(line));
                 }
 
                 im.setLore(lines);
@@ -193,7 +195,7 @@ public class SlimefunItemStack extends ItemStack {
             @Nonnull String id, @Nonnull String texture, @Nullable String name, @Nonnull Consumer<ItemMeta> consumer) {
         this(id, getSkull(id, texture), meta -> {
             if (name != null) {
-                meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                meta.setDisplayName(TextUtils.translateAlternateColorCodes(name));
             }
 
             consumer.accept(meta);

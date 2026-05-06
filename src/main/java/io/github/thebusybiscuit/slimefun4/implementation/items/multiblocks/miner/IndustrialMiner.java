@@ -19,6 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -170,7 +171,7 @@ public class IndustrialMiner extends MultiBlockMachine {
             ItemStack item = fuel.getInput().clone();
             ItemMeta im = item.getItemMeta();
             List<String> lore = new ArrayList<>();
-            lore.add(ChatColors.color("&8\u21E8 &7剩余最多 " + fuel.getTicks() + " 个矿石"));
+            lore.add(TextUtils.translateAlternateColorCodes("&8\u21E8 &7剩余最多 " + fuel.getTicks() + " 个矿石"));
             im.setLore(lore);
             item.setItemMeta(im);
             list.add(item);

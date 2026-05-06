@@ -12,6 +12,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -36,7 +38,7 @@ public class FortuneCookie extends SimpleSlimefunItem<ItemConsumptionHandler> {
             List<String> messages = Slimefun.getLocalization().getMessages(p, "messages.fortune-cookie");
             String message = messages.get(ThreadLocalRandom.current().nextInt(messages.size()));
 
-            p.sendMessage(ChatColors.color(message));
+            p.sendMessage(TextUtils.translateAlternateColorCodes(message));
         };
     }
 }

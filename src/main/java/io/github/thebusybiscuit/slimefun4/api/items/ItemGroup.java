@@ -14,6 +14,8 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Keyed;
@@ -240,7 +242,7 @@ public class ItemGroup implements Keyed {
      * @return The unlocalized name of this {@link ItemGroup}
      */
     public @Nonnull String getUnlocalizedName() {
-        return ChatColor.stripColor(item.getItemMeta().getDisplayName());
+        return TextUtils.toPlainText(item.getItemMeta().getDisplayName());
     }
 
     /**

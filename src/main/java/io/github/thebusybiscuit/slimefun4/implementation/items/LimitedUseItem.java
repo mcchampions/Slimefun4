@@ -15,6 +15,8 @@ import java.util.Collections;
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -130,7 +132,7 @@ public abstract class LimitedUseItem extends SimpleSlimefunItem<ItemUseHandler> 
     private void updateItemLore(ItemStack item, ItemMeta meta, int usesLeft) {
         List<String> lore = meta.getLore();
 
-        String newLine = ChatColors.color(LoreBuilder.usesLeft(usesLeft));
+        String newLine = TextUtils.translateAlternateColorCodes(LoreBuilder.usesLeft(usesLeft));
         if (lore != null && !lore.isEmpty()) {
             // find the correct line
             for (int i = 0; i < lore.size(); i++) {

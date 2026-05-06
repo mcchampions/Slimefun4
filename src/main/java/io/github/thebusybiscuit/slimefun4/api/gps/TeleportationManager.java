@@ -21,6 +21,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -232,8 +233,8 @@ public final class TeleportationManager {
 
         if (p != null) {
             p.sendTitle(
-                    ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.cancelled")),
-                    ChatColors.color("&c&k40&f&c%"),
+                    TextUtils.translateAlternateColorCodes(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.cancelled")),
+                    TextUtils.translateAlternateColorCodes("&c&k40&f&c%"),
                     20,
                     60,
                     20);
@@ -248,16 +249,16 @@ public final class TeleportationManager {
         if (isValid(p, source)) {
             if (progress > 99) {
                 p.sendTitle(
-                        ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleported")),
-                        ChatColors.color("&b100%"),
+                        TextUtils.translateAlternateColorCodes(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleported")),
+                        TextUtils.translateAlternateColorCodes("&b100%"),
                         20,
                         60,
                         20);
                 p.teleportAsync(destination).thenAccept(success -> onTeleport(p, destination, success, resistance));
             } else {
                 p.sendTitle(
-                        ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleporting")),
-                        ChatColors.color("&b" + progress + "%"),
+                        TextUtils.translateAlternateColorCodes(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleporting")),
+                        TextUtils.translateAlternateColorCodes("&b" + progress + "%"),
                         0,
                         60,
                         0);

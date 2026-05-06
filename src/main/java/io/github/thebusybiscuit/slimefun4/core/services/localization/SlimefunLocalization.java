@@ -17,6 +17,8 @@ import java.util.function.UnaryOperator;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -345,9 +347,9 @@ public abstract class SlimefunLocalization implements Keyed {
         String prefix = addPrefix ? getChatPrefix() : "";
 
         if (recipient instanceof Player player) {
-            recipient.sendMessage(ChatColors.color(prefix + getMessage(player, key)));
+            recipient.sendMessage(TextUtils.translateAlternateColorCodes(prefix + getMessage(player, key)));
         } else {
-            recipient.sendMessage(ChatColor.stripColor(ChatColors.color(prefix + getMessage(key))));
+            recipient.sendMessage(TextUtils.toPlainText(TextUtils.translateAlternateColorCodes(prefix + getMessage(key))));
         }
     }
 
@@ -356,7 +358,7 @@ public abstract class SlimefunLocalization implements Keyed {
         Validate.notNull(key, "Message key cannot be null!");
 
         String prefix = addPrefix ? getChatPrefix() : "";
-        String message = ChatColors.color(prefix + getMessage(player, key));
+        String message = TextUtils.translateAlternateColorCodes(prefix + getMessage(player, key));
 
         BaseComponent[] components = TextComponent.fromLegacyText(message);
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, components);
@@ -380,9 +382,9 @@ public abstract class SlimefunLocalization implements Keyed {
         String prefix = addPrefix ? getChatPrefix() : "";
 
         if (recipient instanceof Player player) {
-            recipient.sendMessage(ChatColors.color(prefix + function.apply(getMessage(player, key))));
+            recipient.sendMessage(TextUtils.translateAlternateColorCodes(prefix + function.apply(getMessage(player, key))));
         } else {
-            recipient.sendMessage(ChatColor.stripColor(ChatColors.color(prefix + function.apply(getMessage(key)))));
+            recipient.sendMessage(TextUtils.toPlainText(TextUtils.translateAlternateColorCodes(prefix + function.apply(getMessage(key)))));
         }
     }
 
@@ -391,13 +393,13 @@ public abstract class SlimefunLocalization implements Keyed {
 
         if (recipient instanceof Player player) {
             for (String translation : getMessages(player, key)) {
-                String message = ChatColors.color(prefix + translation);
+                String message = TextUtils.translateAlternateColorCodes(prefix + translation);
                 recipient.sendMessage(message);
             }
         } else {
             for (String translation : getDefaultMessages(key)) {
-                String message = ChatColors.color(prefix + translation);
-                recipient.sendMessage(ChatColor.stripColor(message));
+                String message = TextUtils.translateAlternateColorCodes(prefix + translation);
+                recipient.sendMessage(TextUtils.toPlainText(message));
             }
         }
     }
@@ -408,13 +410,13 @@ public abstract class SlimefunLocalization implements Keyed {
 
         if (recipient instanceof Player player) {
             for (String translation : getMessages(player, key)) {
-                String message = ChatColors.color(prefix + function.apply(translation));
+                String message = TextUtils.translateAlternateColorCodes(prefix + function.apply(translation));
                 recipient.sendMessage(message);
             }
         } else {
             for (String translation : getDefaultMessages(key)) {
-                String message = ChatColors.color(prefix + function.apply(translation));
-                recipient.sendMessage(ChatColor.stripColor(message));
+                String message = TextUtils.translateAlternateColorCodes(prefix + function.apply(translation));
+                recipient.sendMessage(TextUtils.toPlainText(message));
             }
         }
     }

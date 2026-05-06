@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.HologramProjector;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -33,7 +35,7 @@ public interface HologramOwner extends ItemAttribute {
      */
     default void updateHologram(@Nonnull Block b, @Nonnull String text) {
         Location loc = b.getLocation().add(getHologramOffset(b));
-        Slimefun.getHologramsService().setHologramLabel(loc, ChatColors.color(text));
+        Slimefun.getHologramsService().setHologramLabel(loc, TextUtils.translateAlternateColorCodes(text));
     }
 
     default void updateHologram(@Nonnull Block b, @Nonnull String text, Supplier<Boolean> abort) {

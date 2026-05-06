@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import lombok.Getter;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -55,7 +56,7 @@ public class ChestMenu extends SlimefunInventoryHolder {
      * @param title The title of the Menu
      */
     public ChestMenu(String title) {
-        this.title = ChatColor.translateAlternateColorCodes('&', title);
+        this.title = TextUtils.translateAlternateColorCodes(title);
         this.clickable = false;
         this.emptyClickable = true;
         this.items = new CopyOnWriteArrayList<>();

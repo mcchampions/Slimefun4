@@ -9,6 +9,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -91,7 +93,7 @@ public class SlimefunGuideListener implements Listener {
                     if (item.hasItemMeta()) {
                         return msg.replace(
                                 "%item_name%",
-                                ChatColor.stripColor(item.getItemMeta().getDisplayName()));
+                                TextUtils.toPlainText(item.getItemMeta().getDisplayName()));
                     } else {
                         return msg;
                     }

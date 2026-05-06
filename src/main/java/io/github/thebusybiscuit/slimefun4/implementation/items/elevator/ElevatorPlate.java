@@ -24,6 +24,7 @@ import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -140,7 +141,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
         for (var i = 0; i < blockDataList.size(); i++) {
             var blockData = blockDataList.get(i);
             floors.addFirst(new ElevatorFloor(
-                    ChatColors.color(blockData.getData(DATA_KEY)),
+                    TextUtils.translateAlternateColorCodes(blockData.getData(DATA_KEY)),
                     i,
                     blockData.getLocation().getBlock()));
         }
@@ -255,7 +256,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
 
             player.teleportAsync(destination).thenAccept(teleported -> {
                 if (teleported) {
-                    player.sendTitle(ChatColor.WHITE + ChatColors.color(floor.getName()), null, 20, 60, 20);
+                    player.sendTitle(ChatColor.WHITE + TextUtils.translateAlternateColorCodes(floor.getName()), null, 20, 60, 20);
                 }
             });
         });
@@ -271,7 +272,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
                         Material.NAME_TAG,
                         "&7楼层名 &e(单击编辑)",
                         "",
-                        ChatColor.WHITE + ChatColors.color(StorageCacheUtils.getData(b.getLocation(), DATA_KEY))));
+                        ChatColor.WHITE + TextUtils.translateAlternateColorCodes(StorageCacheUtils.getData(b.getLocation(), DATA_KEY))));
         menu.addMenuClickHandler(4, (pl, slot, item, action) -> {
             pl.closeInventory();
             pl.sendMessage("");

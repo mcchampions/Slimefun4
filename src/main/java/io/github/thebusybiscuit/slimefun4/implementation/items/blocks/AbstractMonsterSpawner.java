@@ -12,6 +12,8 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.block.BlockState;
@@ -55,11 +57,11 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem implements Dis
 
         // We may want to update this in the future to also make use of the BlockStateMeta
         for (String line : meta.getLore()) {
-            String stripColor = ChatColor.stripColor(line);
+            String stripColor = TextUtils.toPlainText(line);
 
             if ((stripColor.startsWith("类型: ") || stripColor.startsWith("Type:"))
                     && (!line.contains("<类型>") || line.contains("<Type>"))) {
-                EntityType type = EntityType.valueOf(ChatColor.stripColor(line)
+                EntityType type = EntityType.valueOf(TextUtils.toPlainText(line)
                         .replace("类型: ", "")
                         .replace("Type: ", "")
                         .replace(' ', '_')

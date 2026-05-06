@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -89,7 +91,7 @@ public class RadiationTask extends AbstractArmorTask {
                         .getMessage(p, "actionbar.radiation")
                         .replace("%level%", "" + exposureLevelAfter);
                 BaseComponent[] components =
-                        new ComponentBuilder().append(ChatColors.color(msg)).create();
+                        new ComponentBuilder().append(TextUtils.translateAlternateColorCodes(msg)).create();
                 p.spigot().sendMessage(ChatMessageType.ACTION_BAR, components);
             }
         } else {

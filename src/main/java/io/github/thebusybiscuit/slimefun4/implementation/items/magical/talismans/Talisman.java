@@ -18,6 +18,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -103,7 +105,7 @@ public class Talisman extends SlimefunItem {
         this.chance = chance;
 
         if (!(this instanceof EnderTalisman)) {
-            String name = "&5末影" + ChatColor.stripColor(getItem().getItemMeta().getDisplayName());
+            String name = "&5末影" + TextUtils.toPlainText(getItem().getItemMeta().getDisplayName());
             List<String> lore = new ArrayList<>();
             lore.add("&7&o注入末影精华");
             lore.add("");

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -27,10 +29,10 @@ import org.bukkit.persistence.PersistentDataType;
  */
 public final class ChargeUtils {
 
-    private static final String LORE_PREFIX = ChatColors.color("&8\u21E8 &e\u26A1 &7");
+    private static final String LORE_PREFIX = TextUtils.translateAlternateColorCodes("&8\u21E8 &e\u26A1 &7");
     private static final String NUMBER_REGEX = "([+-]?[\\d]+([\\.][\\d]+)?([Ee][+-]?[\\d]+)?)";
     private static final Pattern REGEX =
-            Pattern.compile(ChatColors.color("(&c&o)?" + LORE_PREFIX) + NUMBER_REGEX + " / " + NUMBER_REGEX + " J");
+            Pattern.compile(TextUtils.translateAlternateColorCodes("(&c&o)?" + LORE_PREFIX) + NUMBER_REGEX + " / " + NUMBER_REGEX + " J");
 
     private ChargeUtils() {}
 

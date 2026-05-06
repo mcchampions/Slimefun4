@@ -30,6 +30,8 @@ import java.util.function.Consumer;
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -365,10 +367,10 @@ public class PlayerProfile {
         float progress = Math.round(((unlockedResearches * 100.0F) / allResearches) * 100.0F) / 100.0F;
 
         sender.sendMessage("");
-        sender.sendMessage(ChatColors.color("&7玩家研究统计: &b" + getPlayer()));
+        sender.sendMessage(TextUtils.translateAlternateColorCodes("&7玩家研究统计: &b" + getPlayer()));
         sender.sendMessage("");
-        sender.sendMessage(ChatColors.color("&7研究等级: " + ChatColor.AQUA + getTitle()));
-        sender.sendMessage(ChatColors.color("&7研究进度: "
+        sender.sendMessage(TextUtils.translateAlternateColorCodes("&7研究等级: " + ChatColor.AQUA + getTitle()));
+        sender.sendMessage(TextUtils.translateAlternateColorCodes("&7研究进度: "
                 + NumberUtils.getColorFromPercentage(progress)
                 + progress
                 + " &r% "
@@ -378,7 +380,7 @@ public class PlayerProfile {
                 + " / "
                 + allResearches
                 + ')'));
-        sender.sendMessage(ChatColors.color("&7解锁总耗费经验: " + ChatColor.AQUA + levels));
+        sender.sendMessage(TextUtils.translateAlternateColorCodes("&7解锁总耗费经验: " + ChatColor.AQUA + levels));
     }
 
     /**

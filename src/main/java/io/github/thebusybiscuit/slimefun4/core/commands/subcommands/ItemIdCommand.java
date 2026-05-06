@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.commands.SubCommand;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import javax.annotation.Nonnull;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -41,7 +43,7 @@ class ItemIdCommand extends SubCommand {
                         Slimefun.getLocalization().sendMessage(sender, "messages.invalid-item-in-hand", true);
                     }
                 } else {
-                    sender.sendMessage(ChatColors.color("&b请将需要查看的物品拿在主手!"));
+                    sender.sendMessage(TextUtils.translateAlternateColorCodes("&b请将需要查看的物品拿在主手!"));
                 }
             } else {
                 Slimefun.getLocalization().sendMessage(sender, "messages.no-permission", true);

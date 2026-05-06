@@ -39,6 +39,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -1165,7 +1166,7 @@ public class SlimefunItem implements Placeable {
                                 p,
                                 "messages.disabled-item",
                                 true,
-                                msg -> msg.replace("%item_name%", ChatColor.stripColor(getItemName())));
+                                msg -> msg.replace("%item_name%", TextUtils.toPlainText(getItemName())));
             }
 
             return false;
@@ -1177,7 +1178,7 @@ public class SlimefunItem implements Placeable {
                                 p,
                                 "messages.disabled-in-world",
                                 true,
-                                msg -> msg.replace("%item_name%", ChatColor.stripColor(getItemName())));
+                                msg -> msg.replace("%item_name%", TextUtils.toPlainText(getItemName())));
             }
 
             return false;

@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -66,7 +67,7 @@ abstract class AbstractEnchantmentMachine extends AContainer {
             throw new IllegalStateException("自动附/祛魔机等级限制未被启用, 无法展示警告信息.");
         }
 
-        String notice = ChatColors.color(Slimefun.getLocalization().getMessage("messages.above-limit-level"));
+        String notice = TextUtils.translateAlternateColorCodes(Slimefun.getLocalization().getMessage("messages.above-limit-level"));
         notice = notice.replace("%level%", String.valueOf(levelLimit.getValue()));
         ItemStack progressBar = new CustomItemStack(Material.BARRIER, " ", notice);
         menu.replaceExistingItem(22, progressBar);
@@ -77,7 +78,7 @@ abstract class AbstractEnchantmentMachine extends AContainer {
             throw new IllegalStateException("自动附/祛魔机附魔数量限制未被启用, 无法展示警告信息.");
         }
 
-        String notice = ChatColors.color(Slimefun.getLocalization().getMessage("messages.above-enchant-limit"));
+        String notice = TextUtils.translateAlternateColorCodes(Slimefun.getLocalization().getMessage("messages.above-enchant-limit"));
         notice = notice.replace("%max%", String.valueOf(enchantLimit.getValue()));
         ItemStack progressBar = new CustomItemStack(Material.BARRIER, " ", notice);
         menu.replaceExistingItem(22, progressBar);
@@ -93,7 +94,7 @@ abstract class AbstractEnchantmentMachine extends AContainer {
 
                 // Check if any of the lines are found on the item
                 for (String lore : ignoredLore) {
-                    if (itemLore.contains(ChatColors.color(lore))) {
+                    if (itemLore.contains(TextUtils.translateAlternateColorCodes(lore))) {
                         return true;
                     }
                 }

@@ -39,6 +39,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -382,7 +383,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization()
                 .getMessage(p, "guide.search.inventory")
                 .replace("%item%", ChatUtils.crop(ChatColor.WHITE, input)));
-        String searchTerm = ChatColor.stripColor(input.toLowerCase(Locale.ROOT));
+        String searchTerm = TextUtils.toPlainText(input.toLowerCase(Locale.ROOT));
 
         if (addToHistory) {
             profile.getGuideHistory().add(searchTerm);
@@ -442,7 +443,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
 
     @ParametersAreNonnullByDefault
     private boolean isSearchFilterApplicable(SlimefunItem slimefunItem, String searchTerm) {
-        String itemName = ChatColor.stripColor(slimefunItem.getItemName()).toLowerCase(Locale.ROOT);
+        String itemName = TextUtils.toPlainText(slimefunItem.getItemName()).toLowerCase(Locale.ROOT);
         return !itemName.isEmpty() && (itemName.contains(searchTerm));
     }
 

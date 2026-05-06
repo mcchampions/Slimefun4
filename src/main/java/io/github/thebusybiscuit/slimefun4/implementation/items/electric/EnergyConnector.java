@@ -12,6 +12,8 @@ import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponen
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -49,9 +51,9 @@ public class EnergyConnector extends SimpleSlimefunItem<BlockUseHandler> impleme
             Block b = e.getClickedBlock().get();
 
             if (EnergyNet.getNetworkFromLocation(b.getLocation()) != null) {
-                p.sendMessage(ChatColors.color("&7连接状态: " + "&2\u2714"));
+                p.sendMessage(TextUtils.translateAlternateColorCodes("&7连接状态: " + "&2\u2714"));
             } else {
-                p.sendMessage(ChatColors.color("&7连接状态: " + "&4\u2718"));
+                p.sendMessage(TextUtils.translateAlternateColorCodes("&7连接状态: " + "&4\u2718"));
             }
         };
     }

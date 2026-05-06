@@ -6,6 +6,8 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
@@ -26,7 +28,7 @@ public class ColoredFireworkStar extends CustomItemStack {
     public ColoredFireworkStar(Color color, String name, String... lore) {
         super(Material.FIREWORK_STAR, im -> {
             if (name != null) {
-                im.setDisplayName(ChatColors.color(name));
+                im.setDisplayName(TextUtils.translateAlternateColorCodes(name));
             }
 
             ((FireworkEffectMeta) im)
@@ -39,7 +41,7 @@ public class ColoredFireworkStar extends CustomItemStack {
                 List<String> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(ChatColors.color(line));
+                    lines.add(TextUtils.translateAlternateColorCodes(line));
                 }
 
                 im.setLore(lines);

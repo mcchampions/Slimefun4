@@ -4,6 +4,8 @@ import io.github.bakedlibs.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -21,7 +23,7 @@ public class ChatUtils {
      * @param message 消息
      */
     public static void sendMessage(CommandSender sender, String message) {
-        sender.sendMessage(Slimefun.getLocalization().getChatPrefix() + ChatColors.color(message));
+        sender.sendMessage(Slimefun.getLocalization().getChatPrefix() + TextUtils.translateAlternateColorCodes(message));
     }
 
     /**

@@ -20,6 +20,7 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -112,7 +113,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
                         Material.NAME_TAG,
                         "&7展示文本 &e(点击编辑)",
                         "",
-                        "&f" + ChatColors.color(StorageCacheUtils.getData(projector.getLocation(), "text"))));
+                    "&f" + TextUtils.translateAlternateColorCodes(StorageCacheUtils.getData(projector.getLocation(), "text"))));
         menu.addMenuClickHandler(0, (pl, slot, item, action) -> {
             pl.closeInventory();
             Slimefun.getLocalization().sendMessage(pl, "machines.HOLOGRAM_PROJECTOR.enter-text", true);
@@ -126,7 +127,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
                 }
 
                 ArmorStand hologram = getArmorStand(projector, true);
-                hologram.setCustomName(ChatColors.color(message));
+                hologram.setCustomName(TextUtils.translateAlternateColorCodes(message));
                 StorageCacheUtils.setData(projector.getLocation(), "text", hologram.getCustomName());
                 openEditor(pl, projector);
             });

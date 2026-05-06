@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -48,14 +50,14 @@ public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
             List<String> lore = im.getLore();
 
             if (lore.get(1).isEmpty()) {
-                lore.set(0, ChatColors.color("&7主人: &b" + p.getName()));
+                lore.set(0, TextUtils.translateAlternateColorCodes("&7主人: &b" + p.getName()));
                 lore.set(1, ChatColor.BLACK + "" + p.getUniqueId());
                 im.setLore(lore);
                 item.setItemMeta(im);
                 SoundEffect.TOME_OF_KNOWLEDGE_USE_SOUND.playFor(p);
             } else {
                 UUID uuid = UUID.fromString(
-                        ChatColor.stripColor(item.getItemMeta().getLore().get(1)));
+                        TextUtils.toPlainText(item.getItemMeta().getLore().get(1)));
 
                 if (p.getUniqueId().equals(uuid)) {
                     Slimefun.getLocalization().sendMessage(p, "messages.no-tome-yourself");

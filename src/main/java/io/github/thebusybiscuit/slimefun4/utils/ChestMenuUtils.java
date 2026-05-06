@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.MenuClickHandler;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -92,7 +93,7 @@ public final class ChestMenuUtils {
 
     public static @Nonnull ItemStack getSearchButton(@Nonnull Player p) {
         return new CustomItemStack(SEARCH_BUTTON, meta -> {
-            meta.setDisplayName(ChatColors.color(Slimefun.getLocalization().getMessage(p, "guide.search.name")));
+            meta.setDisplayName(TextUtils.translateAlternateColorCodes(Slimefun.getLocalization().getMessage(p, "guide.search.name")));
 
             List<String> lore = Arrays.asList(
                     "", ChatColor.GRAY + "\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.search.tooltip"));
@@ -186,7 +187,7 @@ public final class ChestMenuUtils {
         builder.append(":".repeat(Math.max(0, rest)));
 
         builder.append(" - ").append(percentage).append('%');
-        return ChatColors.color(builder.toString());
+        return TextUtils.translateAlternateColorCodes(builder.toString());
     }
 
     private static short getDurability(@Nonnull ItemStack item, int timeLeft, int max) {

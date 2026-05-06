@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -115,12 +116,12 @@ final class ContributorsMenu {
                 info += " &7(" + entry.getValue() + ' ' + commits + ')';
             }
 
-            lore.add(ChatColors.color(info));
+            lore.add(TextUtils.translateAlternateColorCodes(info));
         }
 
         if (contributor.getProfile() != null) {
             lore.add("");
-            lore.add(ChatColors.color("&7\u21E8 &e")
+            lore.add(TextUtils.translateAlternateColorCodes("&7\u21E8 &e")
                     + Slimefun.getLocalization().getMessage(p, "guide.credits.profile-link"));
         }
 

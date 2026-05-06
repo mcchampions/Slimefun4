@@ -19,6 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import lombok.Getter;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -42,7 +43,7 @@ import org.bukkit.persistence.PersistentDataType;
  */
 public class PlayerBackpack extends SlimefunInventoryHolder {
     public static final String LORE_OWNER = "&7所有者: ";
-    private static final String COLORED_LORE_OWNER = ChatColors.color(LORE_OWNER);
+    private static final String COLORED_LORE_OWNER = TextUtils.translateAlternateColorCodes(LORE_OWNER);
     private static final NamespacedKey KEY_BACKPACK_UUID = new NamespacedKey(Slimefun.instance(), "B_UUID");
     private static final NamespacedKey KEY_OWNER_UUID = new NamespacedKey(Slimefun.instance(), "OWNER_UUID");
     private final OfflinePlayer owner;
@@ -83,11 +84,11 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         OptionalInt id = OptionalInt.empty();
         String uuid = "";
         for (String line : item.getItemMeta().getLore()) {
-            if (line.startsWith(ChatColors.color("&7ID: ")) && line.indexOf('#') != -1) {
+            if (line.startsWith(TextUtils.translateAlternateColorCodes("&7ID: ")) && line.indexOf('#') != -1) {
                 String[] splitLine = CommonPatterns.HASH.split(line);
 
                 if (CommonPatterns.NUMERIC.matcher(splitLine[1]).matches()) {
-                    uuid = splitLine[0].replace(ChatColors.color("&7ID: "), "");
+                    uuid = splitLine[0].replace(TextUtils.translateAlternateColorCodes("&7ID: "), "");
                     id = OptionalInt.of(Integer.parseInt(splitLine[1]));
                 }
             }
@@ -128,11 +129,11 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         String uuid = "";
 
         for (String line : item.getItemMeta().getLore()) {
-            if (line.startsWith(ChatColors.color("&7ID: ")) && line.indexOf('#') != -1) {
+            if (line.startsWith(TextUtils.translateAlternateColorCodes("&7ID: ")) && line.indexOf('#') != -1) {
                 String[] splitLine = CommonPatterns.HASH.split(line);
 
                 if (CommonPatterns.NUMERIC.matcher(splitLine[1]).matches()) {
-                    uuid = splitLine[0].replace(ChatColors.color("&7ID: "), "");
+                    uuid = splitLine[0].replace(TextUtils.translateAlternateColorCodes("&7ID: "), "");
                     id = OptionalInt.of(Integer.parseInt(splitLine[1]));
                 }
             }
@@ -173,10 +174,10 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         }
 
         for (String line : meta.getLore()) {
-            if (line.startsWith(ChatColors.color("&7ID: ")) && line.contains("#")) {
+            if (line.startsWith(TextUtils.translateAlternateColorCodes("&7ID: ")) && line.contains("#")) {
                 try {
                     return OptionalInt.of(Integer.parseInt(
-                            CommonPatterns.HASH.split(line.replace(ChatColors.color("&7ID: "), ""))[1]));
+                            CommonPatterns.HASH.split(line.replace(TextUtils.translateAlternateColorCodes("&7ID: "), ""))[1]));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -233,7 +234,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
         if (bp.name.isEmpty() || bp.name.isBlank()) {
             return;
         }
-        meta.setDisplayName(ChatColors.color(bp.name));
+        meta.setDisplayName(TextUtils.translateAlternateColorCodes(bp.name));
     }
 
     @ParametersAreNonnullByDefault
@@ -372,7 +373,7 @@ public class PlayerBackpack extends SlimefunInventoryHolder {
      */
     private Inventory newInv() {
         return Bukkit.createInventory(
-                this, size, (name.isEmpty() ? "背包" : ChatColors.color(name + "&r")) + " [大小 " + size + "]");
+                this, size, (name.isEmpty() ? "背包" : TextUtils.translateAlternateColorCodes(name + "&r")) + " [大小 " + size + "]");
     }
 
     private void updateInv() {

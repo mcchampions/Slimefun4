@@ -20,6 +20,8 @@ import java.util.function.BiConsumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
@@ -268,7 +270,7 @@ public class RecipeType implements Keyed {
 
     @ParametersAreNonnullByDefault
     private static void registerMobDrop(ItemStack[] recipe, ItemStack output) {
-        String mob = ChatColor.stripColor(recipe[4].getItemMeta().getDisplayName())
+        String mob = TextUtils.toPlainText(recipe[4].getItemMeta().getDisplayName())
                 .toUpperCase(Locale.ROOT)
                 .replace(' ', '_');
         EntityType entity = EntityType.valueOf(mob);

@@ -19,6 +19,8 @@ import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -157,7 +159,7 @@ public class Research implements Keyed {
      * @return The unlocalized, decolorized name for this {@link Research}
      */
     public @Nonnull String getUnlocalizedName() {
-        return ChatColor.stripColor(name);
+        return TextUtils.toPlainText(name);
     }
 
     /**

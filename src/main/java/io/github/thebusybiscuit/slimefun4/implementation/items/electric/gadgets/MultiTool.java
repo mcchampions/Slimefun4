@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
@@ -101,7 +103,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
                                 "messages.multi-tool.mode-change",
                                 true,
                                 msg -> msg.replace("%device%", "多功能工具")
-                                        .replace("%mode%", ChatColor.stripColor(itemName)));
+                                        .replace("%mode%", TextUtils.toPlainText(itemName)));
 
                 pdc.set(multiToolMode, PersistentDataType.INTEGER, index);
                 item.setItemMeta(im);

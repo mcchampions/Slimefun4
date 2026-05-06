@@ -14,6 +14,7 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -145,7 +146,7 @@ class BackpackCommand extends SubCommand {
             im.setDisplayName(bp.getName().isEmpty() ? "背包 #" + bp.getId() : bp.getName());
             var lore = new ArrayList<String>();
             lore.add("");
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&a左键 获取此背包"));
+            lore.add(TextUtils.translateAlternateColorCodes("&a左键 获取此背包"));
             im.setLore(lore);
             visualBackpack.setItemMeta(im);
 

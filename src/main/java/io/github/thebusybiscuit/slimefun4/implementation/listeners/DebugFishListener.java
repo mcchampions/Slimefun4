@@ -27,6 +27,8 @@ import java.util.Set;
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -124,7 +126,7 @@ public class DebugFishListener implements Listener {
                             .getUniversalDataUUID(b)
                             .ifPresentOrElse(
                                     (uuid) -> {
-                                        p.sendMessage(ChatColors.color(
+                                        p.sendMessage(TextUtils.translateAlternateColorCodes(
                                                 "&c检测到损坏的通用数据物品, UUID: " + uuid + ", 请检查数据库对应数据是否存在!"));
                                         sendVanillaInfo(p, b);
                                     },
@@ -188,10 +190,10 @@ public class DebugFishListener implements Listener {
         if (!tags.isEmpty()) {
             p.sendMessage(" ");
             p.sendMessage(
-                    ChatColors.color("&dSlimefun tags for: &e") + b.getType().name());
+                    TextUtils.translateAlternateColorCodes("&dSlimefun tags for: &e") + b.getType().name());
 
             for (SlimefunTag tag : tags) {
-                p.sendMessage(ChatColors.color("&d* &e") + tag.name());
+                p.sendMessage(TextUtils.translateAlternateColorCodes("&d* &e") + tag.name());
             }
 
             p.sendMessage(" ");
@@ -204,83 +206,83 @@ public class DebugFishListener implements Listener {
 
         p.sendMessage(" ");
         p.sendMessage(
-                ChatColors.color("&d" + b.getType() + " &e@ X: " + b.getX() + " Y: " + b.getY() + " Z: " + b.getZ()));
-        p.sendMessage(ChatColors.color("&dId: " + "&e" + item.getId()));
-        p.sendMessage(ChatColors.color("&dPlugin: " + "&e" + item.getAddon().getName()));
+                TextUtils.translateAlternateColorCodes("&d" + b.getType() + " &e@ X: " + b.getX() + " Y: " + b.getY() + " Z: " + b.getZ()));
+        p.sendMessage(TextUtils.translateAlternateColorCodes("&dId: " + "&e" + item.getId()));
+        p.sendMessage(TextUtils.translateAlternateColorCodes("&dPlugin: " + "&e" + item.getAddon().getName()));
 
         if (b.getState() instanceof Skull) {
-            p.sendMessage(ChatColors.color("&dSkull: " + greenCheckmark));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dSkull: " + greenCheckmark));
 
             // Check if the skull is a wall skull, and if so use Directional instead of Rotatable.
             if (b.getType() == Material.PLAYER_WALL_HEAD) {
-                p.sendMessage(ChatColors.color("  &dFacing: &e" + ((Directional) b.getBlockData()).getFacing()));
+                p.sendMessage(TextUtils.translateAlternateColorCodes("  &dFacing: &e" + ((Directional) b.getBlockData()).getFacing()));
             } else {
-                p.sendMessage(ChatColors.color("  &dRotation: &e" + ((Rotatable) b.getBlockData()).getRotation()));
+                p.sendMessage(TextUtils.translateAlternateColorCodes("  &dRotation: &e" + ((Rotatable) b.getBlockData()).getRotation()));
             }
         }
 
         if ((data instanceof SlimefunBlockData bd && bd.getBlockMenu() != null)
                 || (data instanceof SlimefunUniversalData ud && ud.getMenu() != null)) {
-            p.sendMessage(ChatColors.color("&dInventory: " + greenCheckmark));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dInventory: " + greenCheckmark));
         } else {
-            p.sendMessage(ChatColors.color("&dInventory: " + redCross));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dInventory: " + redCross));
         }
 
         if (data instanceof SlimefunUniversalData universalData) {
-            p.sendMessage(ChatColors.color("&dUniversal Item: " + greenCheckmark));
-            p.sendMessage(ChatColors.color("    &dUUID: " + universalData.getUUID()));
-            p.sendMessage(ChatColors.color("    &dTrait: " + universalData.getTraits()));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dUniversal Item: " + greenCheckmark));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("    &dUUID: " + universalData.getUUID()));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("    &dTrait: " + universalData.getTraits()));
         }
 
         if (item.isTicking()) {
-            p.sendMessage(ChatColors.color("&dTicker: " + greenCheckmark));
-            p.sendMessage(ChatColors.color(
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dTicker: " + greenCheckmark));
+            p.sendMessage(TextUtils.translateAlternateColorCodes(
                     "  &dAsync: &e" + (item.getBlockTicker().isSynchronized() ? redCross : greenCheckmark)));
         } else if (item instanceof EnergyNetProvider) {
-            p.sendMessage(ChatColors.color("&dTicker: &3Indirect (Generator)"));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dTicker: &3Indirect (Generator)"));
         } else {
-            p.sendMessage(ChatColors.color("&dTicker: " + redCross));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dTicker: " + redCross));
         }
 
         Slimefun.getTickerTask().getTickLocations(p.getLocation().getChunk()).stream()
                 .filter(l -> l.getLocation().equals(b.getLocation()))
                 .findFirst()
-                .ifPresent(tickLoc -> p.sendMessage(ChatColors.color(
+                .ifPresent(tickLoc -> p.sendMessage(TextUtils.translateAlternateColorCodes(
                         "&dIn Ticker Queue " + (tickLoc.isUniversal() ? "(Universal)" : "") + ": " + greenCheckmark)));
 
         if (item instanceof EnergyRegulator) {
-            p.sendMessage(ChatColors.color("&dEnergy Regulator"));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dEnergy Regulator"));
             EnergyNet network = EnergyNet.getNetworkFromLocationOrCreate(b.getLocation());
-            p.sendMessage(ChatColors.color("&dNetwork range: " + network.getRange()));
-            p.sendMessage(ChatColors.color("&dNetwork components:"));
-            p.sendMessage(ChatColors.color("  &d- Network capacitors:"));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dNetwork range: " + network.getRange()));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dNetwork components:"));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("  &d- Network capacitors:"));
             network.getCapacitors()
                     .forEach((loc, component) -> p.sendMessage(
-                            ChatColors.color("&d " + component.getId() + " - " + LocationUtils.locationToString(loc))));
-            p.sendMessage(ChatColors.color("  &d- Network consumers:"));
+                            TextUtils.translateAlternateColorCodes("&d " + component.getId() + " - " + LocationUtils.locationToString(loc))));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("  &d- Network consumers:"));
             network.getConsumers()
                     .forEach((loc, component) -> p.sendMessage(
-                            ChatColors.color("&d " + component.getId() + " - " + LocationUtils.locationToString(loc))));
-            p.sendMessage(ChatColors.color("  &d- Network generators:"));
+                            TextUtils.translateAlternateColorCodes("&d " + component.getId() + " - " + LocationUtils.locationToString(loc))));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("  &d- Network generators:"));
             network.getGenerators()
                     .forEach((loc, component) -> p.sendMessage(
-                            ChatColors.color("&d " + component.getId() + " - " + LocationUtils.locationToString(loc))));
+                            TextUtils.translateAlternateColorCodes("&d " + component.getId() + " - " + LocationUtils.locationToString(loc))));
         }
 
         if (item instanceof EnergyNetComponent component) {
-            p.sendMessage(ChatColors.color("&dEnergyNet Component"));
-            p.sendMessage(ChatColors.color("  &dType: &e" + component.getEnergyComponentType()));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("&dEnergyNet Component"));
+            p.sendMessage(TextUtils.translateAlternateColorCodes("  &dType: &e" + component.getEnergyComponentType()));
 
             if (component.isChargeable()) {
-                p.sendMessage(ChatColors.color("  &dChargeable: " + greenCheckmark));
-                p.sendMessage(ChatColors.color("  &dEnergy: &e" + component.getChargeLong(b.getLocation()) + " / "
+                p.sendMessage(TextUtils.translateAlternateColorCodes("  &dChargeable: " + greenCheckmark));
+                p.sendMessage(TextUtils.translateAlternateColorCodes("  &dEnergy: &e" + component.getChargeLong(b.getLocation()) + " / "
                         + component.getCapacityLong()));
             } else {
-                p.sendMessage(ChatColors.color("&dChargeable: " + redCross));
+                p.sendMessage(TextUtils.translateAlternateColorCodes("&dChargeable: " + redCross));
             }
         }
 
-        data.getAllData().forEach((k, v) -> p.sendMessage(ChatColors.color("&6" + k + ": " + v)));
+        data.getAllData().forEach((k, v) -> p.sendMessage(TextUtils.translateAlternateColorCodes("&6" + k + ": " + v)));
         p.sendMessage(" ");
     }
 }

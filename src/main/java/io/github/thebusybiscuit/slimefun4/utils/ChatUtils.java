@@ -7,6 +7,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.util.Locale;
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
+
+import me.qscbm.slimefun4.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -27,19 +29,19 @@ public final class ChatUtils {
         // way.
         sender.sendMessage("");
         Slimefun.getLocalization().sendMessage(sender, "messages.link-prompt", false);
-        sender.sendMessage(ChatColors.color("&7&o" + url));
+        sender.sendMessage(TextUtils.translateAlternateColorCodes("&7&o" + url));
         sender.sendMessage("");
     }
 
     public static @Nonnull String removeColorCodes(@Nonnull String string) {
-        return ChatColor.stripColor(ChatColors.color(string));
+        return TextUtils.toPlainText(TextUtils.translateAlternateColorCodes(string));
     }
 
     public static @Nonnull String crop(@Nonnull ChatColor color, @Nonnull String string) {
-        if (ChatColor.stripColor(color + string).length() > 19) {
-            return (color + ChatColor.stripColor(string)).substring(0, 18) + "...";
+        if (TextUtils.toPlainText(color + string).length() > 19) {
+            return (color + TextUtils.toPlainText(string)).substring(0, 18) + "...";
         } else {
-            return color + ChatColor.stripColor(string);
+            return color + TextUtils.toPlainText(string);
         }
     }
 
