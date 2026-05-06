@@ -38,6 +38,8 @@ public class CompatibilityUtil {
         }
     }
 
+    private static final NamespacedKey MAX_HEALTH_KEY = NamespacedKey.fromString("max_health");
+
     /**
      * 获取最大生命值属性。
      * 在 1.21.3 之前，使用 GENERIC_MAX_HEALTH。
@@ -45,6 +47,6 @@ public class CompatibilityUtil {
      * @return 最大生命值属性
      */
     public static Attribute getMaxHealth() {
-        return Registry.ATTRIBUTE.get(NamespacedKey.fromString("max_health"));
+        return Registry.ATTRIBUTE.get(MAX_HEALTH_KEY);
     }
 }
