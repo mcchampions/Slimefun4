@@ -15,7 +15,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import me.qscbm.slimefun4.utils.TextUtils;
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;

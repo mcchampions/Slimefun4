@@ -16,7 +16,6 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.StorageType;
 import io.github.bakedlibs.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import java.io.File;
-import java.io.IOException;
 import java.util.Locale;
 import java.util.logging.Level;
 import javax.annotation.Nullable;
