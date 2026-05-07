@@ -209,7 +209,7 @@ public final class ItemStackWrapper extends ItemStack {
             return wrapper;
         }
 
-        return new ItemStackWrapper(itemStack, itemStack.getType(),false);
+        return new ItemStackWrapper(itemStack, itemStack.getType(), false);
     }
 
     public static ItemStackWrapper wrap(ItemStack itemStack, Material type) {
