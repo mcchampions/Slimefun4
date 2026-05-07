@@ -137,9 +137,11 @@ class ItemFilter implements Predicate<ItemStack> {
 
                     for (int slot : slots) {
                         ItemStack stack = menu.getItemInSlot(slot);
-
-                        if (stack != null && stack.getType() != Material.AIR) {
-                            this.items.add(ItemStackWrapper.wrap(stack));
+                        if (stack != null) {
+                            Material type = stack.getType();
+                            if (type == Material.AIR) {
+                                this.items.add(ItemStackWrapper.wrap(stack, type));
+                            }
                         }
                     }
                 }
@@ -221,7 +223,61 @@ class ItemFilter implements Predicate<ItemStack> {
          * If there is more than one potential match, create a wrapper to save
          * performance on the ItemMeta otherwise just use the item directly.
          */
-        ItemStack subject = potentialMatches == 1 ? item : ItemStackWrapper.wrap(item);
+        ItemStack subject = potentialMatches == 1 ? item : ItemStackWrapper.wrap(item, itemType);
+
+        /*
+         * Only iterate over potential matches instead of all items
+         */
+        for (ItemStackWrapper stack : potentialMatchesList) {
+            if (SlimefunUtils.isItemSimilar(subject, stack, checkLore, false, true, true)) {
+                /*
+                 * The filter has found a match, we can return the opposite
+                 * of our default value. If we exclude items, this is where we
+                 * would return false. Otherwise, we return true.
+                 */
+                return !rejectOnMatch;
+            }
+        }
+
+        // If no particular item was matched, we fallback to our default value.
+        return rejectOnMatch;
+    }
+
+    public boolean test(ItemStack item, Material itemType) {
+        /*
+         * An empty Filter does not need to be iterated over.
+         * We can just return our default value in this scenario.
+         */
+        if (items.isEmpty()) {
+            return rejectOnMatch;
+        }
+
+        // The amount of potential matches with that item.
+        int potentialMatches = 0;
+        List<ItemStackWrapper> potentialMatchesList = new ArrayList<>(items.size());
+
+        /*
+         * This is a first check for materials to see if we might even have any match.
+         * If there is no potential match then we won't need to perform the quite
+         * intense operation .getItemMeta()
+         */
+        for (ItemStackWrapper stack : items) {
+            if (stack.getType() == itemType) {
+                // We found a potential match based on the Material
+                potentialMatches++;
+                potentialMatchesList.add(stack);
+            }
+        }
+
+        if (potentialMatches == 0) {
+            return rejectOnMatch;
+        }
+
+        /*
+         * If there is more than one potential match, create a wrapper to save
+         * performance on the ItemMeta otherwise just use the item directly.
+         */
+        ItemStack subject = potentialMatches == 1 ? item : ItemStackWrapper.wrap(item, itemType);
 
         /*
          * Only iterate over potential matches instead of all items

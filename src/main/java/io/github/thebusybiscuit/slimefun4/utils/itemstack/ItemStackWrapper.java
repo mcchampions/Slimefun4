@@ -29,10 +29,40 @@ public final class ItemStackWrapper extends ItemStack {
     private final int amount;
     private final boolean hasItemMeta;
     private final int hashCode;
+    private final Material type;
+
 
     private ItemStackWrapper(ItemStack item) {
         super(item.getType());
+        amount = item.getAmount();
+        Material type = item.getType();
+        this.type = type;
+        hasItemMeta = item.hasItemMeta();
 
+        if (hasItemMeta) {
+            meta = item.getItemMeta();
+            // Pre-compute hashCode for better performance in comparisons
+            hashCode = computeHashCode();
+        } else {
+            meta = null;
+            // Simple hash for items without meta
+            hashCode = 31 * type.hashCode();
+        }
+    }
+
+    private ItemStackWrapper(ItemStack item, boolean temp) {
+        hasItemMeta = false;
+        meta = null;
+        amount = item.getAmount();
+        Material type = item.getType();
+        this.type = type;
+        hashCode = 31 * type.hashCode();
+    }
+
+
+    private ItemStackWrapper(ItemStack item, Material type) {
+        super(type);
+        this.type = type;
         amount = item.getAmount();
         hasItemMeta = item.hasItemMeta();
 
@@ -43,15 +73,16 @@ public final class ItemStackWrapper extends ItemStack {
         } else {
             meta = null;
             // Simple hash for items without meta
-            hashCode = 31 * item.getType().hashCode();
+            hashCode = 31 * type.hashCode();
         }
     }
 
-    private ItemStackWrapper(ItemStack item, boolean temp) {
+    private ItemStackWrapper(ItemStack item, Material type, boolean temp) {
         hasItemMeta = false;
         meta = null;
         amount = item.getAmount();
-        hashCode = 31 * item.getType().hashCode();
+        this.type = type;
+        hashCode = 31 * type.hashCode();
     }
 
     /**
@@ -97,6 +128,11 @@ public final class ItemStackWrapper extends ItemStack {
     }
 
     @Override
+    public Material getType() {
+        return type;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         throw new UnsupportedOperationException(ERROR_MESSAGE);
     }
@@ -136,9 +172,9 @@ public final class ItemStackWrapper extends ItemStack {
      * @see #wrap(ItemStack)
      */
     public static ItemStackWrapper forceWrap(ItemStack itemStack) {
-        Validate.notNull(itemStack, "The ItemStack cannot be null!");
+        Material type = itemStack.getType();
 
-        return new ItemStackWrapper(itemStack);
+        return new ItemStackWrapper(itemStack, type);
     }
 
     /**
@@ -156,7 +192,7 @@ public final class ItemStackWrapper extends ItemStack {
             return wrapper;
         }
 
-        return new ItemStackWrapper(itemStack);
+        return new ItemStackWrapper(itemStack, itemStack.getType());
     }
 
     /**
@@ -173,7 +209,23 @@ public final class ItemStackWrapper extends ItemStack {
             return wrapper;
         }
 
-        return new ItemStackWrapper(itemStack,false);
+        return new ItemStackWrapper(itemStack, itemStack.getType(),false);
+    }
+
+    public static ItemStackWrapper wrap(ItemStack itemStack, Material type) {
+        if (itemStack instanceof ItemStackWrapper wrapper) {
+            return wrapper;
+        }
+
+        return new ItemStackWrapper(itemStack, type);
+    }
+
+    public static ItemStackWrapper wrapLightweight(ItemStack itemStack, Material type) {
+        if (itemStack instanceof ItemStackWrapper wrapper) {
+            return wrapper;
+        }
+
+        return new ItemStackWrapper(itemStack, type, false);
     }
 
     /**

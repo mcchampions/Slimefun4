@@ -143,14 +143,6 @@ public class DirtyChestMenu extends ChestMenu {
     }
 
     @Nullable public ItemStack pushItem(ItemStack item, int... slots) {
-        if (item == null || item.getType() == Material.AIR) {
-            throw new IllegalArgumentException("Cannot push null or AIR");
-        }
-
-        if (locked()) {
-            throw new IllegalStateException("Cannot push item when menu is locked");
-        }
-
         ItemStackWrapper wrapper = null;
         int amount = item.getAmount();
         var virtualItems = Slimefun.getItemStackService();

@@ -146,8 +146,8 @@ final class CargoUtils {
         }
 
         // Use lightweight wrapper for initial material comparison
-        ItemStackWrapper lightweightTemplate = ItemStackWrapper.wrapLightweight(template);
         Material templateType = template.getType();
+        ItemStackWrapper lightweightTemplate = ItemStackWrapper.wrapLightweight(template, templateType);
         int templateHash = lightweightTemplate.hashCode();
 
         for (int slot : menu.getPreset().getSlotsAccessedByItemTransport(menu, ItemTransportFlow.WITHDRAW, null)) {
@@ -164,7 +164,7 @@ final class CargoUtils {
             }
 
             // Only create full wrapper if material matches
-            ItemStackWrapper wrapperItemInSlot = ItemStackWrapper.wrap(is);
+            ItemStackWrapper wrapperItemInSlot = ItemStackWrapper.wrap(is, isType);
 
             // Quick hash check to filter out non-matching items
             if (wrapperItemInSlot.hashCode() != templateHash) {
@@ -189,7 +189,7 @@ final class CargoUtils {
                 }
             } else {
                 // Need detailed comparison with full template
-                ItemStackWrapper wrapperTemplate = ItemStackWrapper.wrap(template);
+                ItemStackWrapper wrapperTemplate = ItemStackWrapper.wrap(template, templateType);
                 if (SlimefunUtils.isItemSimilar(wrapperItemInSlot, wrapperTemplate, true)) {
                     if (is.getAmount() > template.getAmount()) {
                         is.setAmount(is.getAmount() - template.getAmount());
@@ -214,8 +214,8 @@ final class CargoUtils {
         int maxSlot = range[1];
 
         // Use lightweight wrapper for initial material comparison
-        ItemStackWrapper lightweightWrapper = ItemStackWrapper.wrapLightweight(template);
         Material templateType = template.getType();
+        ItemStackWrapper lightweightWrapper = ItemStackWrapper.wrapLightweight(template, templateType);
         int templateHash = lightweightWrapper.hashCode();
 
         for (int slot = minSlot; slot < maxSlot; slot++) {
@@ -258,7 +258,7 @@ final class CargoUtils {
                 }
             } else {
                 // Need detailed comparison with full template
-                ItemStackWrapper wrapper = ItemStackWrapper.wrap(template);
+                ItemStackWrapper wrapper = ItemStackWrapper.wrap(template, templateType);
                 if (SlimefunUtils.isItemSimilar(wrapperInSlot, wrapper, true, false)) {
                     if (itemInSlot.getAmount() > template.getAmount()) {
                         itemInSlot.setAmount(itemInSlot.getAmount() - template.getAmount());
@@ -344,7 +344,7 @@ final class CargoUtils {
             boolean smartFill,
             ItemStack stack,
             ItemStackWrapper wrapper) {
-        
+
         if (!matchesFilter(network, node, stack)) {
             return stack;
         }
@@ -533,11 +533,16 @@ final class CargoUtils {
     }
 
     static boolean matchesFilter(@Nonnull AbstractItemNetwork network, @Nonnull Block node, @Nullable ItemStack item) {
-        if (item == null || item.getType() == Material.AIR) {
+        if (item == null) {
             return false;
         }
 
-        return network.getItemFilter(node).test(item);
+        Material type = item.getType();
+        if (type == Material.AIR) {
+            return false;
+        }
+
+        return network.getItemFilter(node).test(item, type);
     }
 
     /**

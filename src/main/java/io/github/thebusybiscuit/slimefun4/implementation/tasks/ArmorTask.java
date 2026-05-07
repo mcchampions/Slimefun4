@@ -147,7 +147,12 @@ public class ArmorTask implements Runnable {
     }
 
     private boolean checkAndApplyRadiation(@Nonnull Player p, @Nullable ItemStack item) {
-        if (item == null || item.getType() == Material.AIR) {
+        if (item == null) {
+            return false;
+        }
+
+        Material type = item.getType();
+        if (type == Material.AIR) {
             return false;
         }
 
@@ -156,7 +161,7 @@ public class ArmorTask implements Runnable {
 
         if (!(item instanceof SlimefunItemStack) && radioactiveItems.size() > 1) {
             // Performance optimization to reduce ItemMeta calls
-            itemStack = ItemStackWrapper.wrap(item);
+            itemStack = ItemStackWrapper.wrap(item, type);
         }
 
         for (SlimefunItem radioactiveItem : radioactiveItems) {
