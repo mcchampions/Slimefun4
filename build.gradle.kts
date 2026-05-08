@@ -123,6 +123,16 @@ tasks.named<ShadowJar>("shadowJar") {
     }*/
 }
 
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.github.mcchampions'
+            artifactId = 'Slimefun4'
+            from components.java
+        }
+    }
+}
+
 tasks.build {
     dependsOn(tasks.named("shadowJar"))
 }
