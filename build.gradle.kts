@@ -125,10 +125,12 @@ tasks.named<ShadowJar>("shadowJar") {
 
 publishing {
     publications {
-        release(MavenPublication) {
-            groupId = 'com.github.mcchampions'
-            artifactId = 'Slimefun4'
-            from components.java
+        create<MavenPublication>("mavenJava") {
+            artifact(tasks.named("shadowJar"))
+            artifact(tasks.named("sourcesJar"))
+            groupId = "com.github.mcchampions"
+            artifactId = "Slimefun4"
+            version = project.version.toString()
         }
     }
 }
