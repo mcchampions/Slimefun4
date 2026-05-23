@@ -31,7 +31,7 @@ public final class ItemStackWrapper extends ItemStack {
     private final Material type;
 
 
-    private ItemStackWrapper(ItemStack item) {
+    public ItemStackWrapper(ItemStack item) {
         super(item.getType());
         amount = item.getAmount();
         Material type = item.getType();
@@ -49,7 +49,7 @@ public final class ItemStackWrapper extends ItemStack {
         }
     }
 
-    private ItemStackWrapper(ItemStack item, Material type, boolean lightweight) {
+    public ItemStackWrapper(ItemStack item, Material type, boolean lightweight) {
         super(type);
         this.type = type;
         amount = item.getAmount();
