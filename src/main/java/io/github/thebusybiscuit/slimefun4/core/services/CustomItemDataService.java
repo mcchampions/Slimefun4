@@ -115,7 +115,10 @@ public class CustomItemDataService implements Keyed {
      *
      * @return An {@link Optional} describing the result
      */
-    public @Nonnull Optional<String> getItemData(@Nonnull ItemMeta meta) {
+    public @Nonnull Optional<String> getItemData(ItemMeta meta) {
+        if (meta == null) {
+            return Optional.empty();
+        }
         PersistentDataContainer container = meta.getPersistentDataContainer();
         return Optional.ofNullable(container.get(namespacedKey, PersistentDataType.STRING));
     }
