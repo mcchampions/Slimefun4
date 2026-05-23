@@ -3,7 +3,6 @@ package io.github.thebusybiscuit.slimefun4.utils.itemstack;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -50,39 +49,25 @@ public final class ItemStackWrapper extends ItemStack {
         }
     }
 
-    private ItemStackWrapper(ItemStack item, boolean temp) {
-        hasItemMeta = false;
-        meta = null;
-        amount = item.getAmount();
-        Material type = item.getType();
-        this.type = type;
-        hashCode = 31 * type.hashCode();
-    }
-
-
-    private ItemStackWrapper(ItemStack item, Material type) {
+    private ItemStackWrapper(ItemStack item, Material type, boolean lightweight) {
         super(type);
         this.type = type;
         amount = item.getAmount();
-        hasItemMeta = item.hasItemMeta();
 
-        if (hasItemMeta) {
-            meta = item.getItemMeta();
-            // Pre-compute hashCode for better performance in comparisons
-            hashCode = computeHashCode();
-        } else {
+        if (lightweight) {
+            hasItemMeta = false;
             meta = null;
-            // Simple hash for items without meta
             hashCode = 31 * type.hashCode();
+        } else {
+            hasItemMeta = item.hasItemMeta();
+            if (hasItemMeta) {
+                meta = item.getItemMeta();
+                hashCode = computeHashCode();
+            } else {
+                meta = null;
+                hashCode = 31 * type.hashCode();
+            }
         }
-    }
-
-    private ItemStackWrapper(ItemStack item, Material type, boolean temp) {
-        hasItemMeta = false;
-        meta = null;
-        amount = item.getAmount();
-        this.type = type;
-        hashCode = 31 * type.hashCode();
     }
 
     /**
@@ -172,9 +157,7 @@ public final class ItemStackWrapper extends ItemStack {
      * @see #wrap(ItemStack)
      */
     public static ItemStackWrapper forceWrap(ItemStack itemStack) {
-        Material type = itemStack.getType();
-
-        return new ItemStackWrapper(itemStack, type);
+        return new ItemStackWrapper(itemStack, itemStack.getType(), false);
     }
 
     /**
@@ -192,7 +175,7 @@ public final class ItemStackWrapper extends ItemStack {
             return wrapper;
         }
 
-        return new ItemStackWrapper(itemStack, itemStack.getType());
+        return new ItemStackWrapper(itemStack, itemStack.getType(), false);
     }
 
     /**
@@ -209,7 +192,7 @@ public final class ItemStackWrapper extends ItemStack {
             return wrapper;
         }
 
-        return new ItemStackWrapper(itemStack, itemStack.getType(), false);
+        return new ItemStackWrapper(itemStack, itemStack.getType(), true);
     }
 
     public static ItemStackWrapper wrap(ItemStack itemStack, Material type) {
@@ -217,7 +200,7 @@ public final class ItemStackWrapper extends ItemStack {
             return wrapper;
         }
 
-        return new ItemStackWrapper(itemStack, type);
+        return new ItemStackWrapper(itemStack, type, false);
     }
 
     public static ItemStackWrapper wrapLightweight(ItemStack itemStack, Material type) {
@@ -225,7 +208,7 @@ public final class ItemStackWrapper extends ItemStack {
             return wrapper;
         }
 
-        return new ItemStackWrapper(itemStack, type, false);
+        return new ItemStackWrapper(itemStack, type, true);
     }
 
     /**

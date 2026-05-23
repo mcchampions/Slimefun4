@@ -297,6 +297,12 @@ public final class SlimefunUtils {
             boolean checkAmount,
             boolean checkDistinctiveItem,
             boolean checkCustomModelData) {
+        // Fast path: neither item is a SlimefunItemStack, skip virtual item handler lookup
+        if (!(item instanceof SlimefunItemStack) && !(sfitem instanceof SlimefunItemStack)) {
+            return isItemSimilarWithoutVirtualItems(
+                    item, sfitem, checkLore, checkAmount, checkDistinctiveItem, checkCustomModelData);
+        }
+
         ComparisonResult comparison = Slimefun.getItemStackService().matches(item, sfitem, MatchContext.GENERIC);
         if (comparison == ComparisonResult.MATCH) {
             return true;
@@ -561,10 +567,7 @@ public final class SlimefunUtils {
      *
      * @return Whether the two lores are equal
      */
-    public static boolean equalsLore(@Nonnull List<String> lore1, @Nonnull List<String> lore2) {
-        Validate.notNull(lore1, "Cannot compare lore that is null!");
-        Validate.notNull(lore2, "Cannot compare lore that is null!");
-
+    public static boolean equalsLore(List<String> lore1, List<String> lore2) {
         List<String> longerList = lore1.size() > lore2.size() ? lore1 : lore2;
         List<String> shorterList = lore1.size() > lore2.size() ? lore2 : lore1;
 
